@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>CS2OpenDev.Sdk</AssemblyName>
+        <RootNamespace>CS2OpenSchema</RootNamespace>
+
+        <!-- Suppressions that an empirical scan of the generator output proved we
+             still need (analyzer fires at least once with the current schema).
+             Reasons follow the C++/schema convention the generator is preserving.
+             Dropped from this list after Step 7's audit because the current output
+             no longer trips them:
+               CS8618 / CS0108 — covered by file-level `#pragma warning disable`.
+               CA1061          — no cross-hierarchy hiding fires on real schema.
+               CA1708          — NH-3 disambiguates case-only collisions by name.
+               CA1716          — Common namespace replaces Shared (CA1716 root). -->
+        <!-- CA1069 : duplicate enum values — intentional C++ sentinel/alias members -->
+        <!-- CA1707 : underscores in names (stub `_t` suffix, etc.) — C++ convention -->
+        <!-- CA1711 : names ending in Enum/Flag/Attribute/Queue/Stack — C++ type names -->
+        <!-- CA1712 : enum member prefixed with type name — C++ enum naming convention -->
+        <!-- CA1720 : identifier contains type name (Int8, Float, …) — C++ scalar names -->
+        <NoWarn>CA1069;CA1707;CA1711;CA1712;CA1720</NoWarn>
+
+        <!-- Emit the XML docs file so NuGet consumers get IntelliSense -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- NuGet package identity -->
+        <PackageId>CS2-OpenDev.Sdk</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>CS2-OpenDev Contributors</Authors>
+        <Description>
+            C# SDK generated from the CS2 Windows schema dump. Provides strongly-typed classes,
+            enums, and structs for every type reflected by CS2's schema system, with native
+            field names and byte offsets preserved as attributes for interop use.
+        </Description>
+        <PackageTags>cs2;counter-strike;schema;sdk;interop</PackageTags>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>CS2SchemaGen</RootNamespace>
+        <AssemblyName>CS2SchemaGen</AssemblyName>
+        <!-- CA1305 (IFormatProvider) doesn't apply: every interpolation here
+             produces C# source text, not locale-sensitive user output. -->
+        <NoWarn>$(NoWarn);CA1305</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- IVT targets the consumer's AssemblyName, not its project name. The
+             Exporter project's csproj overrides its assembly to CS2OpenDev.SdkExporter. -->
+        <InternalsVisibleTo Include="CS2OpenDev.SdkExporter"/>
+        <InternalsVisibleTo Include="CS2-OpenDev.Sdk.Generator.Tests"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,186 @@
+#region
+
+using System.Text;
+using CS2SchemaGen.Models;
+
+#endregion
+
+namespace CS2SchemaGen.Emitters;
+
+internal static class ClassEmitter
+{
+    // B4: when two fields would collide on the cleaned-up property name (e.g. m_pParent
+    // and m_hParent both stripping to "Parent"), every colliding field falls back to
+    // access-only naming (PParent / HParent). The old "first declared wins, rest get
+    // access-only" rule made a field reorder in the schema silently flip which alias
+    // wins — bad for diff stability and binary-ish reproducibility.
+    //
+    // Two passes:
+    //   1. Compute the clean candidate name for each field. Group by candidate; any
+    //      group with more than one member is "ambiguous" and falls back to access-only.
+    //   2. If two access-only names still collide (rare), append a stable ordinal suffix
+    //      to all but the first occurrence so the file compiles.
+    // Internal so SchemaNamesEmitter can produce const-string entries keyed by
+    // the same property names ClassEmitter emits. Sharing the helper keeps the
+    // B4 collision rule in one place.
+    internal static string[] ComputePropNames(FieldModel[] fields)
+    {
+        int n = fields.Length;
+        string[] result = new string[n];
+
+        // Pass 1: candidate clean name → access-only fallback on collision.
+        string[] candidate = new string[n];
+        Dictionary<string, int> candidateCounts = new(StringComparer.Ordinal);
+        for (int i = 0; i < n; i++)
+        {
+            candidate[i] = NameHelpers.Esc(NameHelpers.ToPropName(fields[i].Name));
+            candidateCounts.TryGetValue(candidate[i], out int c);
+            candidateCounts[candidate[i]] = c + 1;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            result[i] = candidateCounts[candidate[i]] > 1
+                ? NameHelpers.Esc(NameHelpers.ToPropNameAccessOnly(fields[i].Name))
+                : candidate[i];
+        }
+
+        // Pass 2: belt-and-braces ordinal suffix if the access-only fallback itself
+        // produces a duplicate (e.g. two siblings both named m_pFoo and m_pFoo would
+        // both become "PFoo"). Compilation-safety only; not expected to fire today.
+        Dictionary<string, int> seenIndex = new(StringComparer.Ordinal);
+        for (int i = 0; i < n; i++)
+        {
+            if (seenIndex.TryGetValue(result[i], out int idx))
+            {
+                idx++;
+                seenIndex[result[i]] = idx;
+                result[i] = result[i] + idx.ToString();
+            }
+            else
+            {
+                seenIndex[result[i]] = 1;
+            }
+        }
+
+        return result;
+    }
+
+    internal static void Emit(StringBuilder sb, ClassModel cls)
+    {
+        // Use the name-map lookup so collision-disambiguated names (see ModuleEmitter
+        // step 0) flow through to the actual class declaration.
+        string csName = NameHelpers.Esc(TypeMapper.LookupCsName(cls.Name));
+
+        bool alignKnown = cls.Alignment is > 0 and <= 128 &&
+                          (cls.Alignment & cls.Alignment - 1) == 0;
+
+        // ── XML documentation ────────────────────────────────────────────────────
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine($"///     {NameHelpers.XmlEscape(cls.Name)}");
+        sb.AppendLine("/// </summary>");
+        sb.AppendLine("/// <remarks>");
+        sb.Append($"///     Module: <c>{cls.Module}</c>");
+        if (cls.Size > 0)
+        {
+            sb.Append($" — {cls.Size} bytes");
+            if (alignKnown)
+            {
+                sb.Append($", align {cls.Alignment}");
+            }
+        }
+
+        if (cls.IsAbstract)
+        {
+            sb.Append(" — abstract");
+        }
+
+        sb.AppendLine(".");
+        sb.AppendLine("/// </remarks>");
+
+        // ── Attributes ───────────────────────────────────────────────────────────
+        if (cls.Size > 0)
+        {
+            // Informational: documents the native C++ size, NOT a P/Invoke contract.
+            // The managed class layout is unrelated; consumers must not assume binary
+            // compatibility. (Replaces the older [StructLayout(... Size = N)] which
+            // implied a marshaling promise the SDK doesn't make.)
+            sb.AppendLine($"[NativeSize({cls.Size})]");
+        }
+
+        // Preserve original C++ name for runtime interop when it differs from the C# name
+        if (csName != cls.Name && csName != "@" + cls.Name)
+        {
+            sb.AppendLine($"[NativeName(\"{cls.Name}\")]");
+        }
+
+        // ── Declaration ──────────────────────────────────────────────────────────
+        string abstractMod = cls.IsAbstract ? "abstract " : "";
+        string inheritance = cls.Parents.Length > 0
+            ? " : " + NameHelpers.Esc(TypeMapper.LookupCsName(cls.Parents[0].Name))
+            : "";
+
+        sb.AppendLine($"public {abstractMod}partial class {csName}{inheritance}");
+        sb.AppendLine("{");
+
+        if (cls.Parents.Length > 1)
+        {
+            List<string> extras = new(cls.Parents.Length - 1);
+            for (int i = 1; i < cls.Parents.Length; i++)
+            {
+                extras.Add(NameHelpers.Esc(TypeMapper.LookupCsName(cls.Parents[i].Name)));
+            }
+
+            sb.AppendLine("    // C# does not support multiple inheritance. Additional parents: "
+                          + string.Join(", ", extras));
+        }
+
+        string[] propNames = ComputePropNames(cls.Fields);
+
+        // Emit properties alphabetized by C# property name (formatter convention).
+        // Offset-order is preserved in metadata via [NativeOffset]; source order is
+        // for readability, not interop.
+        int[] order = new int[cls.Fields.Length];
+        for (int i = 0; i < cls.Fields.Length; i++)
+        {
+            order[i] = i;
+        }
+
+        Array.Sort(order, (a, b) => StringComparer.Ordinal.Compare(propNames[a], propNames[b]));
+
+        for (int k = 0; k < order.Length; k++)
+        {
+            int i = order[k];
+            FieldModel field = cls.Fields[i];
+            string csType = TypeMapper.Map(field.Type);
+            string propName = propNames[i];
+
+            if (k > 0 || cls.Parents.Length > 1)
+            {
+                sb.AppendLine();
+            }
+
+            sb.AppendLine($"    /// <summary>");
+            sb.AppendLine($"    ///     Gets or sets {propName}.");
+            sb.AppendLine($"    /// </summary>");
+            sb.AppendLine($"    /// <remarks>");
+            sb.AppendLine($"    ///     Native field <c>{NameHelpers.XmlEscape(field.Name)}</c> at offset <c>0x{field.Offset:X}</c>.");
+            sb.AppendLine($"    /// </remarks>");
+            sb.AppendLine($"    [NativeOffset(0x{field.Offset:X})]");
+            sb.AppendLine($"    [NativeName(\"{field.Name}\")]");
+            // CE-2: round-trip every metadata entry from the schema as a separate
+            // [NativeMetadata(...)] so downstream tooling can read the markers.
+            // Long two-arg forms get pre-split across two lines so the formatter
+            // doesn't have to do it on every pass.
+            foreach (MetadataEntry md in field.Metadata)
+            {
+                NameHelpers.AppendNativeMetadata(sb, "    ", md);
+            }
+
+            sb.AppendLine($"    public {csType} {propName} {{ get; set; }}");
+        }
+
+        sb.AppendLine("}");
+        sb.AppendLine();
+    }
+}

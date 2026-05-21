@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TUnit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Reference the generator project as a regular library so tests can call its
+             internal helpers directly. The generator grants access via InternalsVisibleTo. -->
+        <ProjectReference Include="../../src/CS2-OpenDev.Sdk.Generator/CS2-OpenDev.Sdk.Generator.csproj"/>
+        <!-- Reference the Exporter so we can unit-test its sink + stale-cleanup helpers. -->
+        <ProjectReference Include="../../src/CS2-OpenDev.Sdk.Exporter/CS2-OpenDev.Sdk.Exporter.csproj"/>
+    </ItemGroup>
+
+</Project>

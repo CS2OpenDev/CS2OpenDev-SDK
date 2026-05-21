@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>CS2OpenDev.SdkExporter</AssemblyName>
+        <RootNamespace>CS2OpenDev.SdkExporter</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../CS2-OpenDev.Sdk.Generator/CS2-OpenDev.Sdk.Generator.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="CS2-OpenDev.Sdk.Generator.Tests"/>
+    </ItemGroup>
+</Project>
