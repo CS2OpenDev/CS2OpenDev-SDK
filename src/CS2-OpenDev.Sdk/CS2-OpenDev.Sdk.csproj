@@ -29,7 +29,13 @@
 
         <!-- NuGet package identity -->
         <PackageId>CS2-OpenDev.Sdk</PackageId>
-        <Version>1.0.0</Version>
+        <!-- Version is supplied by Nerdbank.GitVersioning (`version.json`).
+             MAJOR.MINOR live in `version.json` and are bumped intentionally;
+             PATCH increments automatically with each commit that touches files
+             matched by `pathFilters` (currently `src/CS2-OpenDev.Sdk/`), so every
+             SDK regen produces a new monotone version. The CS2 schema revision
+             and dump date are appended as SemVer 2 build metadata at pack-time
+             by the `AddSchemaBuildMetadata` target below. -->
         <Authors>CS2-OpenDev Contributors</Authors>
         <Description>
             C# SDK generated from the CS2 Windows schema dump. Provides strongly-typed classes,
@@ -44,5 +50,33 @@
 
     <ItemGroup>
         <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <!-- Appends SemVer 2 build metadata (`+cs.{revision}.dump.{yyyy-MM-dd}`)
+         to the package version when CI passes CS2 schema revision and dump
+         date via MSBuild properties:
+
+             dotnet pack ... \
+                 -p:CS2SchemaRevision=10673343 \
+                 -p:CS2SchemaDate=2026-05-20
+
+         Local `dotnet pack` without these properties produces a clean
+         `1.0.42` version — no build metadata, no failure.
+
+         The items MUST live in a top-level `<ItemGroup>` rather than inside
+         a Target. NB.GV computes the version in a separate sub-project
+         (`PrivateP2PCaching.proj`) invoked via P2P, and items defined in a
+         `BeforeTargets="GetBuildVersion"` target in *this* csproj are never
+         visible to that sub-project. Static items declared here ARE passed
+         through because MSBuild evaluates them before the P2P call.
+
+         Date format must be ISO (no spaces) per the SemVer 2 identifier
+         grammar `[0-9A-Za-z-]+`; the CI step converts the schema's
+         "May 20 2026" upstream format to "2026-05-20" before invoking pack. -->
+    <ItemGroup>
+        <BuildMetadata Include="cs.$(CS2SchemaRevision)"
+                       Condition="'$(CS2SchemaRevision)' != ''"/>
+        <BuildMetadata Include="dump.$(CS2SchemaDate)"
+                       Condition="'$(CS2SchemaDate)' != ''"/>
     </ItemGroup>
 </Project>
