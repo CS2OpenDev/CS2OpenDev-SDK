@@ -213,18 +213,247 @@ public class TypeMapperTests
         await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsTrue();
     }
 
-    /// <summary><c>CHandle&lt;T&gt;</c> projects to the nullable inner type (<c>T?</c>).</summary>
+    /// <summary>The presence of a legacy <c>HandleKind</c> field doesn't change the projection — name-based dispatch wins, so <c>CHandle</c> always projects to <c>CHandle&lt;T&gt;</c> regardless of whether the legacy schema field is set.</summary>
     [Test]
-    public async Task MapAtomic_Handle_IsNullableInner()
+    public async Task MapAtomic_Handle_LegacyHandleKindIgnored()
     {
         AtomicType type = new(
             Name: "CHandle",
-            HandleKind: "entity",
+            HandleKind: "entity", // legacy field — should not change behavior
             Nullable: false,
             Inner: new DeclaredClassType("CFoo", "client"),
             Inner2: null);
         string actual = TypeMapper.Map(type);
-        await Assert.That(actual).IsEqualTo("CFoo?");
+        await Assert.That(actual).IsEqualTo("CHandle<CFoo>");
+    }
+
+    /// <summary>Current schema shape: <c>CHandle</c> with no <c>handle_kind</c> field projects to the typed value struct <c>CHandle&lt;T&gt;</c>.</summary>
+    [Test]
+    public async Task MapAtomic_Handle_NewSchema_ProjectsToTypedStruct()
+    {
+        AtomicType type = new(
+            Name: "CHandle",
+            HandleKind: null, // current upstream schema omits this field
+            Nullable: false,
+            Inner: new DeclaredClassType("CCSPlayerPawn", "server"),
+            Inner2: null);
+        string actual = TypeMapper.Map(type);
+        await Assert.That(actual).IsEqualTo("CHandle<CCSPlayerPawn>");
+    }
+
+    /// <summary>Resource-handle atomics (<c>CStrongHandle</c>, <c>CStrongHandleCopyable</c>, <c>CWeakHandle</c>) all wrap their inner as <c>{HandleName}&lt;T&gt;</c>.</summary>
+    [Test]
+    [Arguments("CStrongHandle")]
+    [Arguments("CStrongHandleCopyable")]
+    [Arguments("CWeakHandle")]
+    public async Task MapAtomic_ResourceHandle_ProjectsToTypedStruct(string handleName)
+    {
+        AtomicType type = new(
+            Name: handleName,
+            HandleKind: null,
+            Nullable: false,
+            Inner: new DeclaredClassType("MyResource", "resourcesystem"),
+            Inner2: null);
+        string actual = TypeMapper.Map(type);
+        await Assert.That(actual).IsEqualTo($"{handleName}<MyResource>");
+    }
+
+    /// <summary>Untyped handles (<c>CEntityHandle</c>, <c>CStrongHandleVoid</c>) project to the non-generic structs of the same name.</summary>
+    [Test]
+    [Arguments("CEntityHandle")]
+    [Arguments("CStrongHandleVoid")]
+    public async Task MapAtomic_UntypedHandle_ProjectsToNonGenericStruct(string handleName)
+    {
+        AtomicType type = new(
+            Name: handleName,
+            HandleKind: null,
+            Nullable: false,
+            Inner: null,
+            Inner2: null);
+        string actual = TypeMapper.Map(type);
+        await Assert.That(actual).IsEqualTo(handleName);
+    }
+
+    /// <summary>Defensive: <c>CHandle</c> without an inner falls back to the untyped <c>CEntityHandle</c> rather than emitting `CHandle&lt;&gt;`.</summary>
+    [Test]
+    public async Task MapAtomic_TypedHandle_NoInner_FallsBackToUntyped()
+    {
+        AtomicType type = new(
+            Name: "CHandle",
+            HandleKind: null,
+            Nullable: false,
+            Inner: null,
+            Inner2: null);
+        string actual = TypeMapper.Map(type);
+        await Assert.That(actual).IsEqualTo("CEntityHandle");
+    }
+
+    /// <summary><see cref="TypeMapper.IsKnownAtomicName"/> reports handle atomics as known so the stub-emission pass doesn't produce spurious empty `CHandle`/`CStrongHandle`/etc. classes.</summary>
+    [Test]
+    [Arguments("CHandle")]
+    [Arguments("CStrongHandle")]
+    [Arguments("CStrongHandleCopyable")]
+    [Arguments("CStrongHandleVoid")]
+    [Arguments("CWeakHandle")]
+    [Arguments("CEntityHandle")]
+    public async Task IsKnownAtomicName_HandleFamily_IsKnown(string name)
+    {
+        await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsTrue();
+    }
+
+    /// <summary><c>KeyValues</c> / <c>KeyValues3</c> project to a serialised string. The non-nullable form is returned because the common field shape is a pointer-to-KeyValues — the surrounding <see cref="PtrType"/> applies the <c>?</c>.</summary>
+    [Test]
+    [Arguments("KeyValues")]
+    [Arguments("KeyValues3")]
+    public async Task MapAtomic_KeyValues_ProjectsToString(string name)
+    {
+        AtomicType type = new(name, HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("string");
+    }
+
+    /// <summary>A `ptr → KeyValues` field shape (the most common KeyValues field in the schema) projects to <c>string?</c> via the standard PtrType wrapper.</summary>
+    [Test]
+    public async Task Map_PtrToKeyValues_ProjectsToNullableString()
+    {
+        PtrType field = new(new AtomicType("KeyValues", HandleKind: null, Nullable: false, Inner: null, Inner2: null));
+        await Assert.That(TypeMapper.Map(field)).IsEqualTo("string?");
+    }
+
+    /// <summary><c>CBitVec</c> / <c>CTypedBitVec</c> project to <c>byte[]</c> rather than an opaque stub class.</summary>
+    [Test]
+    [Arguments("CBitVec")]
+    [Arguments("CTypedBitVec")]
+    public async Task MapAtomic_BitVec_ProjectsToByteArray(string name)
+    {
+        AtomicType type = new(name, HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("byte[]");
+    }
+
+    // ── Researched atomic projections (P0 follow-up) ─────────────────────────
+    //
+    // Each test ties the projection back to the schema atomic name. Sources
+    // for the mappings live in TypeMapper's `ValueWrapperAtoms` / etc. comment
+    // blocks (hl2sdk cs2 branch, DumpSource2's SchemaAtomicCategory_t enum,
+    // CounterStrikeSharp's generated-schema projections).
+
+    /// <summary>Value-wrapper atomics project to their inner type — animation networked variables, script params, etc.</summary>
+    [Test]
+    [Arguments("CAnimNetVar")]
+    [Arguments("CAnimValue")]
+    [Arguments("CAnimScriptParam")]
+    public async Task MapAtomic_ValueWrapper_ProjectsToInner(string name)
+    {
+        AtomicType type = new(name, HandleKind: null, Nullable: false,
+            Inner: new BuiltinType("float32"), Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("float");
+    }
+
+    /// <summary>Optional-ref atomics project to nullable inner.</summary>
+    [Test]
+    public async Task MapAtomic_OptionalRef_ProjectsToNullableInner()
+    {
+        AtomicType type = new("CAnimGraph2ParamOptionalRef", HandleKind: null, Nullable: false,
+            Inner: new BuiltinType("bool"), Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("bool?");
+    }
+
+    /// <summary><c>CCompressor&lt;T&gt;</c> projects as an array of T (compressed animation sequence).</summary>
+    [Test]
+    public async Task MapAtomic_Compressor_ProjectsToInnerArray()
+    {
+        AtomicType type = new("CCompressor", HandleKind: null, Nullable: false,
+            Inner: new BuiltinType("float32"), Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("float[]");
+    }
+
+    /// <summary><c>CEntityOutputTemplate&lt;T&gt;</c> projects as nullable T — entity I/O fires events whose payload is T.</summary>
+    [Test]
+    public async Task MapAtomic_EntityOutputTemplate_ProjectsToNullableInner()
+    {
+        AtomicType type = new("CEntityOutputTemplate", HandleKind: null, Nullable: false,
+            Inner: new BuiltinType("int32"), Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("int?");
+    }
+
+    /// <summary>SmartProp editor attributes project per-type based on the atomic-name suffix.</summary>
+    [Test]
+    [Arguments("CSmartPropAttributeBool", "bool?")]
+    [Arguments("CSmartPropAttributeInt", "int?")]
+    [Arguments("CSmartPropAttributeFloat", "float?")]
+    [Arguments("CSmartPropAttributeVector", "Vector?")]
+    [Arguments("CSmartPropAttributeVector2D", "Vector2D?")]
+    [Arguments("CSmartPropAttributeAngles", "QAngle?")]
+    [Arguments("CSmartPropAttributeColor", "Color?")]
+    [Arguments("CSmartPropAttributeMaterialName", "string?")]
+    [Arguments("CSmartPropAttributeModelName", "string?")]
+    [Arguments("CSmartPropAttributeStateName", "string?")]
+    [Arguments("CSmartPropAttributeSurfaceProperty", "string?")]
+    [Arguments("CSmartPropAttributeMaterialGroup", "string?")]
+    public async Task MapAtomic_SmartPropAttribute_ProjectsPerType(string name, string expected)
+    {
+        AtomicType type = new(name, HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo(expected);
+    }
+
+    /// <summary>Foreign-pointer atomics project to <c>nint</c> — opaque pointers to FFI resources.</summary>
+    [Test]
+    [Arguments("HSCRIPT")]
+    [Arguments("BASEPTR")]
+    [Arguments("USEPTR")]
+    [Arguments("ENTITYFUNCPTR")]
+    [Arguments("IPLScene")]
+    [Arguments("IPLProbeBatch")]
+    [Arguments("IPLStaticMesh")]
+    [Arguments("IPLCompressedEnergyFields")]
+    public async Task MapAtomic_ForeignPointer_ProjectsToNint(string name)
+    {
+        AtomicType type = new(name, HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("nint");
+    }
+
+    /// <summary>Opaque-blob atomics project to nullable byte arrays — schema doesn't expose binary layout but the type carries some serialised payload.</summary>
+    [Test]
+    [Arguments("CPiecewiseCurve")]
+    [Arguments("CColorGradient")]
+    [Arguments("CMotionTransform")]
+    public async Task MapAtomic_OpaqueBlob_ProjectsToByteArray(string name)
+    {
+        AtomicType type = new(name, HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("byte[]?");
+    }
+
+    /// <summary><c>FourVectors</c> (3 fltx4 = 12 floats per hl2sdk:public/mathlib/ssemath.h) projects to <c>float[]?</c>.</summary>
+    [Test]
+    public async Task MapAtomic_FourVectors_ProjectsToFloatArray()
+    {
+        AtomicType type = new("FourVectors", HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("float[]?");
+    }
+
+    /// <summary><c>CKV3MemberNameSet</c> projects to a string array.</summary>
+    [Test]
+    public async Task MapAtomic_KV3MemberNameSet_ProjectsToStringArray()
+    {
+        AtomicType type = new("CKV3MemberNameSet", HandleKind: null, Nullable: false, Inner: null, Inner2: null);
+        await Assert.That(TypeMapper.Map(type)).IsEqualTo("string[]?");
+    }
+
+    /// <summary>All researched-projection atomics are reported as known so the stub-emission pre-pass doesn't produce spurious empty classes for them.</summary>
+    [Test]
+    [Arguments("CAnimNetVar")]
+    [Arguments("CAnimGraph2ParamOptionalRef")]
+    [Arguments("CCompressor")]
+    [Arguments("CEntityOutputTemplate")]
+    [Arguments("CSmartPropAttributeFloat")]
+    [Arguments("HSCRIPT")]
+    [Arguments("CPiecewiseCurve")]
+    [Arguments("FourVectors")]
+    [Arguments("CParticleNamedValueRef")]
+    [Arguments("CAnimVariant")]
+    [Arguments("CPulseValueFullType")]
+    public async Task IsKnownAtomicName_ResearchedAtomics_IsKnown(string name)
+    {
+        await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsTrue();
     }
 
     /// <summary><c>std::pair&lt;A,B&gt;</c> projects to a C# value tuple <c>(A, B)</c>.</summary>

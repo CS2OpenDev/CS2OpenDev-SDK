@@ -31,7 +31,17 @@ string outputDir = args.Length > 1
 if (!File.Exists(schemaPath))
 {
     Console.Error.WriteLine($"Schema file not found: {schemaPath}");
-    Console.Error.WriteLine("Pass the schema path as the first argument, or place schemas.json at output/schemas.json or repo root.");
+    if (schemaPath.Contains("upstream/", StringComparison.Ordinal))
+    {
+        Console.Error.WriteLine("The upstream submodule appears to be uninitialised.");
+        Console.Error.WriteLine("Run: git submodule update --init upstream");
+        Console.Error.WriteLine("Or refresh to latest: git submodule update --remote upstream");
+    }
+    else
+    {
+        Console.Error.WriteLine("Pass the schema path as the first argument.");
+    }
+
     return 1;
 }
 
@@ -80,6 +90,65 @@ Console.WriteLine();
 
 ModuleEmitter.EmitAll(sink, schema, namespaceLabel);
 
+// Game events live in a separate KV1-derived schema file next to cs2_schema.json
+// in the upstream submodule. Treat them as an optional input: emit if found,
+// silently skip otherwise so users running against a custom schema dump without
+// the events file see no failure. Reuses the cs2_schema revision for the file
+// stamp so a single `Schema revision: …` line lets consumers tie an event record
+// back to the same CS2 build the class projections were generated from.
+string? eventsPath = ResolveGameEventsPath(schemaPath);
+if (eventsPath is not null && File.Exists(eventsPath))
+{
+    string eventsJson;
+    try
+    {
+        eventsJson = File.ReadAllText(eventsPath);
+    }
+    catch (IOException ex)
+    {
+        Console.Error.WriteLine($"Failed to read {eventsPath}: {ex.Message}");
+        return 1;
+    }
+
+    GameEventsRoot eventsRoot;
+    try
+    {
+        eventsRoot = GameEventsModel.Parse(eventsJson);
+    }
+    catch (Exception ex)
+    {
+        WriteDiagnostic(Descriptors.ParseFailed, ex.Message);
+        return 1;
+    }
+
+    Console.WriteLine($"GameEvents: {eventsPath} ({eventsRoot.Events.Length} events)");
+    GameEventsEmitter.EmitAll(sink, eventsRoot, namespaceLabel, schema);
+}
+else
+{
+    // GameEvents schema is optional input: if the file is missing (e.g. a custom
+    // class-schema dump that doesn't ship one), preserve the previously-emitted
+    // Events/ bucket instead of letting the stale-sweep below nuke it. Without
+    // this carve-out, a temporary submodule-init failure would silently delete
+    // 288 event records that the next run would have to fully regenerate.
+    string eventsDir = Path.Combine(outputDir, "Events");
+    string schemaEventsFile = Path.GetFullPath(Path.Combine(outputDir, "SchemaEvents.cs"));
+    int preserved = staleCandidates.RemoveWhere(p =>
+        p.StartsWith(eventsDir + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+        || string.Equals(p, schemaEventsFile, StringComparison.Ordinal));
+    if (preserved > 0)
+    {
+        Console.WriteLine($"GameEvents: schema absent — preserved {preserved} existing event file(s).");
+    }
+    else
+    {
+        // No prior event files exist either. Surface the skip explicitly so a
+        // contributor running against a custom class-schema doesn't wonder why
+        // the Events/ directory is empty.
+        Console.WriteLine("GameEvents: schema not found alongside class schema — skipping events emission.");
+    }
+}
+
 // Delete any generator-owned file we tracked before emission that this run did
 // not produce — classes that disappeared from the schema since the last regen.
 int stale = 0;
@@ -115,20 +184,60 @@ return 0;
 
 static string ResolveDefaultSchemaPath()
 {
+    // Primary source: the upstream submodule's community-enriched cs2_schema.json,
+    // refreshed by `git submodule update --remote upstream`. Falls back to a
+    // local schemas.json at the repo root or output/ for offline scenarios and
+    // legacy paths. Returns the upstream path even when missing so the caller
+    // can emit a submodule-init hint instead of a generic "not found" error.
     string cwd = Directory.GetCurrentDirectory();
-    string preferred = Path.GetFullPath(Path.Combine(cwd, "output", "schemas.json"));
-    string fallback = Path.GetFullPath(Path.Combine(cwd, "schemas.json"));
+    string upstream = Path.GetFullPath(Path.Combine(cwd, "upstream", "docs", "generated",
+        "downstream-codegen-schemas", "cs2_schema.json"));
+    string outputLocal = Path.GetFullPath(Path.Combine(cwd, "output", "schemas.json"));
+    string rootLocal = Path.GetFullPath(Path.Combine(cwd, "schemas.json"));
 
-    bool preferredExists = File.Exists(preferred);
-    bool fallbackExists = File.Exists(fallback);
-
-    if (preferredExists && fallbackExists)
+    if (File.Exists(upstream))
     {
-        WriteDiagnostic(Descriptors.MultipleSchemaFiles, preferred);
-        return preferred;
+        return upstream;
     }
 
-    return preferredExists ? preferred : fallback;
+    bool outputExists = File.Exists(outputLocal);
+    bool rootExists = File.Exists(rootLocal);
+
+    if (outputExists && rootExists)
+    {
+        WriteDiagnostic(Descriptors.MultipleSchemaFiles, outputLocal);
+        return outputLocal;
+    }
+
+    if (outputExists)
+    {
+        return outputLocal;
+    }
+
+    if (rootExists)
+    {
+        return rootLocal;
+    }
+
+    // Nothing exists — return the preferred upstream path so the not-found
+    // branch can recognise it and print the submodule-init instructions.
+    return upstream;
+}
+
+// Sibling of the class-schema input — the upstream submodule keeps them in the
+// same directory. When the user passed a custom class-schema path, look for
+// gameevents_schema.json next to it; otherwise default to the upstream layout.
+// Returns null when no candidate is sensible so the caller can skip silently.
+static string? ResolveGameEventsPath(string classSchemaPath)
+{
+    string? dir = Path.GetDirectoryName(classSchemaPath);
+    if (dir is null)
+    {
+        return null;
+    }
+
+    string sibling = Path.Combine(dir, "gameevents_schema.json");
+    return File.Exists(sibling) ? sibling : null;
 }
 
 static void WriteDiagnostic(GeneratorDiagnostic diagnostic, params object[] args) =>

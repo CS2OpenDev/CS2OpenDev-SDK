@@ -24,14 +24,25 @@ internal record ClassModel(
     string Name,
     string Module,
     int Size,
-    byte Alignment, // 0 when absent from JSON
-    bool IsAbstract,
+    byte Alignment, // 0 when absent from JSON (current upstream schema omits this)
+    bool IsAbstract, // false when absent (current upstream schema omits this)
     ParentModel[] Parents,
-    FieldModel[] Fields);
+    FieldModel[] Fields,
+    MetadataEntry[] Metadata, // class-level metadata (MGetKV3ClassDefaults, etc.)
+    Annotations? Annotations = null);
 
 internal record ParentModel(string Name, string Module, uint Offset);
 
-internal record FieldModel(string Name, int Offset, TypeModel Type, MetadataEntry[] Metadata);
+internal record FieldModel(
+    string Name,
+    int Offset,
+    TypeModel Type,
+    MetadataEntry[] Metadata,
+    Annotations? Annotations = null);
+
+// Community-curated enrichment overlayed on classes / fields / enums / members.
+// All three fields optional; absent annotation block ⇒ null Annotations record.
+internal record Annotations(string? Description, string? Notes, string? Warning);
 
 // ── Type discriminated union ─────────────────────────────────────────────────
 
@@ -65,11 +76,17 @@ internal record EnumModel(
     string Name,
     string Module,
     string? Alignment, // "uint8_t" | "uint16_t" | "uint32_t" | "uint64_t" | null
-    int? StorageSize, // 1 | 2 | 4 | 8 | null
-    bool IsFlags,
-    MemberModel[] Members);
+    int? StorageSize, // 1 | 2 | 4 | 8 | null. Derived from Alignment when JSON omits it.
+    bool IsFlags, // current upstream schema omits this; always false unless overlay reintroduces it
+    MemberModel[] Members,
+    MetadataEntry[] Metadata,
+    Annotations? Annotations = null);
 
-internal record MemberModel(string Name, long Value, MetadataEntry[] Metadata);
+internal record MemberModel(
+    string Name,
+    long Value,
+    MetadataEntry[] Metadata,
+    Annotations? Annotations = null);
 
 internal record MetadataEntry(string Name, string? Value);
 
@@ -111,7 +128,12 @@ internal static class SchemaModel
         string name = Str(e, "name");
         string module = Str(e, "module");
         int size = e.TryGetProperty("size", out JsonElement sEl) ? sEl.GetInt32() : 0;
-        byte alignment = e.TryGetProperty("alignment", out JsonElement aEl) ? (byte)aEl.GetInt32() : (byte)0;
+        // The current upstream cs2_schema.json omits class-level alignment and the
+        // `abstract` flag; old schemas.json (and test fixtures) carry both. Keep
+        // the fields but treat absence as 0/false so emitters see consistent input.
+        byte alignment = e.TryGetProperty("alignment", out JsonElement aEl) && aEl.ValueKind == JsonValueKind.Number
+            ? (byte)aEl.GetInt32()
+            : (byte)0;
         bool isAbstract = e.TryGetProperty("abstract", out JsonElement abEl) && abEl.GetBoolean();
 
         ParentModel[] parents = e.TryGetProperty("parents", out JsonElement pEl)
@@ -122,7 +144,13 @@ internal static class SchemaModel
             ? ParseFields(fEl)
             : [];
 
-        return new ClassModel(name, module, size, alignment, isAbstract, parents, fields);
+        MetadataEntry[] metadata = e.TryGetProperty("metadata", out JsonElement mEl)
+            ? ParseMetadata(mEl)
+            : [];
+
+        Annotations? annotations = ParseAnnotations(e);
+
+        return new ClassModel(name, module, size, alignment, isAbstract, parents, fields, metadata, annotations);
     }
 
     // ── Classes ──
@@ -145,15 +173,64 @@ internal static class SchemaModel
         string? alignment = e.TryGetProperty("alignment", out JsonElement aEl) && aEl.ValueKind == JsonValueKind.String
             ? aEl.GetString()
             : null;
+        // Upstream cs2_schema.json no longer carries `storage_size` — it's fully
+        // recoverable from the `alignment` storage-type string. Honour the
+        // explicit field if present (old schemas.json + test fixtures), else
+        // derive from the alignment type so emitter logic is unchanged.
         int? storageSize = e.TryGetProperty("storage_size", out JsonElement ssEl) && ssEl.ValueKind == JsonValueKind.Number
             ? ssEl.GetInt32()
-            : (int?)null;
+            : DeriveStorageSize(alignment);
         bool isFlags = e.TryGetProperty("flags", out JsonElement fEl) && fEl.GetBoolean();
         MemberModel[] members = e.TryGetProperty("members", out JsonElement mEl)
             ? ParseMembers(mEl)
             : [];
 
-        return new EnumModel(name, module, alignment, storageSize, isFlags, members);
+        MetadataEntry[] metadata = e.TryGetProperty("metadata", out JsonElement mdEl)
+            ? ParseMetadata(mdEl)
+            : [];
+
+        Annotations? annotations = ParseAnnotations(e);
+
+        return new EnumModel(name, module, alignment, storageSize, isFlags, members, metadata, annotations);
+    }
+
+    private static int? DeriveStorageSize(string? alignment) =>
+        alignment switch
+        {
+            "uint8_t" or "int8_t" or "char" or "uchar" or "bool" => 1,
+            "uint16_t" or "int16_t" or "short" or "ushort" => 2,
+            "uint32_t" or "int32_t" or "int" or "uint" => 4,
+            "uint64_t" or "int64_t" or "long" or "ulong" => 8,
+            _ => null
+        };
+
+    // Per cs2_schema.json format reference: `annotations` is an optional object with
+    // `description`, `notes`, and `warning` string fields. Any subset may appear.
+    // Returns null when the key is absent or carries no recognised fields so the
+    // emitters can cheaply skip output for un-annotated entities.
+    private static Annotations? ParseAnnotations(JsonElement e)
+    {
+        if (!e.TryGetProperty("annotations", out JsonElement aEl) || aEl.ValueKind != JsonValueKind.Object)
+        {
+            return null;
+        }
+
+        string? description = aEl.TryGetProperty("description", out JsonElement dEl) && dEl.ValueKind == JsonValueKind.String
+            ? dEl.GetString()
+            : null;
+        string? notes = aEl.TryGetProperty("notes", out JsonElement nEl) && nEl.ValueKind == JsonValueKind.String
+            ? nEl.GetString()
+            : null;
+        string? warning = aEl.TryGetProperty("warning", out JsonElement wEl) && wEl.ValueKind == JsonValueKind.String
+            ? wEl.GetString()
+            : null;
+
+        if (description is null && notes is null && warning is null)
+        {
+            return null;
+        }
+
+        return new Annotations(description, notes, warning);
     }
 
     // ── Enums ──
@@ -182,7 +259,8 @@ internal static class SchemaModel
             MetadataEntry[] metadata = item.TryGetProperty("metadata", out JsonElement mEl)
                 ? ParseMetadata(mEl)
                 : [];
-            list.Add(new FieldModel(name, offset, type, metadata));
+            Annotations? annotations = ParseAnnotations(item);
+            list.Add(new FieldModel(name, offset, type, metadata, annotations));
         }
 
         return list.ToArray();
@@ -198,7 +276,8 @@ internal static class SchemaModel
             MetadataEntry[] metadata = item.TryGetProperty("metadata", out JsonElement mEl)
                 ? ParseMetadata(mEl)
                 : [];
-            list.Add(new MemberModel(name, value, metadata));
+            Annotations? annotations = ParseAnnotations(item);
+            list.Add(new MemberModel(name, value, metadata, annotations));
         }
 
         return list.ToArray();

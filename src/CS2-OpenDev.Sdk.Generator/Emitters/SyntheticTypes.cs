@@ -168,7 +168,94 @@ internal static class SyntheticTypes
             sb.AppendLine();
         }
 
+        EmitGraphEditorViewConfig(sb, definedClassNames);
+
         return sb.ToString();
+    }
+
+    // CGraphEditorViewConfig is referenced from CGraphEditorState.m_viewConfig
+    // (sounddoc_lib) but the schema dump itself never registers a class
+    // definition for it — DumpSource2 only reflects schema-registered types,
+    // and this one's runtime registration apparently lives in an editor
+    // module that the dumper doesn't load.
+    //
+    // The shape is reconstructable from primary sources we already have:
+    //   1. CGraphEditorState declares size=40 with `m_viewConfig` at offset 0
+    //      and no other fields — so CGraphEditorViewConfig itself is 40 bytes.
+    //   2. CGraphEditorState carries an `MGetKV3ClassDefaults` metadata block
+    //      whose JSON spells out the exact field shape:
+    //          { XAxis: {pos, scrollpos, min, max, scale},
+    //            YAxis: {pos, scrollpos, min, max, scale} }
+    //      Each axis is 5 fields × 4 bytes = 20 bytes; two axes = 40 bytes,
+    //      which matches CGraphEditorState's reported size exactly.
+    //
+    // We project the per-axis sub-struct as `CGraphEditorViewAxis` (no schema-
+    // referenced name for it, but the consistent naming + nested shape make a
+    // dedicated struct cleaner than inlining `XAxisPos`/`YAxisPos`/etc.).
+    //
+    // Adding `CGraphEditorViewConfig` to `TypeMapper.SyntheticAtoms` removes
+    // it from `Stubs.cs` (its previous home) and tells the using-directive
+    // resolver to look for it in the SDK root namespace (where every
+    // synthetic struct lives).
+    private static void EmitGraphEditorViewConfig(StringBuilder sb, HashSet<string> definedClassNames)
+    {
+        if (!definedClassNames.Contains("CGraphEditorViewAxis"))
+        {
+            sb.AppendLine("/// <summary>");
+            sb.AppendLine("///     Single-axis view configuration for the sound-tool graph editor.");
+            sb.AppendLine("/// </summary>");
+            sb.AppendLine("/// <remarks>");
+            sb.AppendLine("///     Shape recovered from the <c>MGetKV3ClassDefaults</c> metadata on");
+            sb.AppendLine("///     <see cref=\"CGraphEditorViewConfig\"/>'s parent class.");
+            sb.AppendLine("/// </remarks>");
+            sb.AppendLine("public readonly struct CGraphEditorViewAxis");
+            sb.AppendLine("{");
+            sb.AppendLine("    /// <summary>Current scroll/cursor position along the axis.</summary>");
+            sb.AppendLine("    [NativeName(\"pos\")]");
+            sb.AppendLine("    public float Pos { get; init; }");
+            sb.AppendLine();
+            sb.AppendLine("    /// <summary>Pixel/cell scroll offset along the axis.</summary>");
+            sb.AppendLine("    [NativeName(\"scrollpos\")]");
+            sb.AppendLine("    public int ScrollPos { get; init; }");
+            sb.AppendLine();
+            sb.AppendLine("    /// <summary>Lower bound of the visible range.</summary>");
+            sb.AppendLine("    [NativeName(\"min\")]");
+            sb.AppendLine("    public float Min { get; init; }");
+            sb.AppendLine();
+            sb.AppendLine("    /// <summary>Upper bound of the visible range.</summary>");
+            sb.AppendLine("    [NativeName(\"max\")]");
+            sb.AppendLine("    public float Max { get; init; }");
+            sb.AppendLine();
+            sb.AppendLine("    /// <summary>Zoom / scale factor applied to the axis.</summary>");
+            sb.AppendLine("    [NativeName(\"scale\")]");
+            sb.AppendLine("    public float Scale { get; init; }");
+            sb.AppendLine("}");
+            sb.AppendLine();
+        }
+
+        if (!definedClassNames.Contains("CGraphEditorViewConfig"))
+        {
+            sb.AppendLine("/// <summary>");
+            sb.AppendLine("///     2D view configuration for the sound-tool graph editor — X- and Y-axis");
+            sb.AppendLine("///     scroll/zoom state. Referenced by <c>CGraphEditorState.m_viewConfig</c>.");
+            sb.AppendLine("/// </summary>");
+            sb.AppendLine("/// <remarks>");
+            sb.AppendLine("///     Schema dump never registers a definition for this type — recovered");
+            sb.AppendLine("///     from the <c>MGetKV3ClassDefaults</c> JSON shape on");
+            sb.AppendLine("///     <c>CGraphEditorState</c> (40 bytes total, matching the parent's size).");
+            sb.AppendLine("/// </remarks>");
+            sb.AppendLine("public readonly struct CGraphEditorViewConfig");
+            sb.AppendLine("{");
+            sb.AppendLine("    /// <summary>X-axis (horizontal) view configuration.</summary>");
+            sb.AppendLine("    [NativeName(\"XAxis\")]");
+            sb.AppendLine("    public CGraphEditorViewAxis XAxis { get; init; }");
+            sb.AppendLine();
+            sb.AppendLine("    /// <summary>Y-axis (vertical) view configuration.</summary>");
+            sb.AppendLine("    [NativeName(\"YAxis\")]");
+            sb.AppendLine("    public CGraphEditorViewAxis YAxis { get; init; }");
+            sb.AppendLine("}");
+            sb.AppendLine();
+        }
     }
 
     private static void EmitAligned(StringBuilder sb, string name, int pack, string desc,

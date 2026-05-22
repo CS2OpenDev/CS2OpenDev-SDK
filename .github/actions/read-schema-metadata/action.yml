@@ -1,0 +1,60 @@
+name: Read CS2 schema metadata
+description: >
+  Reads the CS2 revision and dump date out of the upstream cs2_schema.json
+  and exposes them as outputs (`revision`, `date-iso`). Used by the CI
+  workflows that pack the SDK so the resulting NuGet package carries SemVer 2
+  build metadata identifying which CS2 build it was generated from.
+
+  The date is normalised from the upstream "Mon DD YYYY" format to ISO
+  "YYYY-MM-DD" so it fits the SemVer 2 build-metadata identifier grammar
+  ([0-9A-Za-z-]+, no spaces).
+
+outputs:
+  revision:
+    description: Numeric CS2 schema revision (e.g. "10673343").
+    value: ${{ steps.parse.outputs.revision }}
+  date-iso:
+    description: Schema dump date as ISO yyyy-MM-dd (e.g. "2026-05-20").
+    value: ${{ steps.parse.outputs.date-iso }}
+
+runs:
+  using: composite
+  steps:
+    - name: Parse cs2_schema.json header
+      id: parse
+      shell: bash
+      run: |
+        set -euo pipefail
+        SCHEMA_PATH="upstream/docs/generated/downstream-codegen-schemas/cs2_schema.json"
+        if [ ! -f "$SCHEMA_PATH" ]; then
+          echo "::error::Expected $SCHEMA_PATH (is the submodule initialised?)"
+          exit 1
+        fi
+
+        # The first ~200 bytes carry the header keys; full-file jq would parse
+        # 11MB needlessly. head -c keeps memory bounded but produces invalid JSON,
+        # so fall back to jq if the head heuristic ever fails.
+        HEADER=$(head -c 512 "$SCHEMA_PATH")
+        REV=$(printf '%s' "$HEADER" | sed -nE 's/.*"revision":[[:space:]]*([0-9]+).*/\1/p' | head -1)
+        DATE=$(printf '%s' "$HEADER" | sed -nE 's/.*"version_date":[[:space:]]*"([^"]+)".*/\1/p' | head -1)
+
+        if [ -z "$REV" ] || [ -z "$DATE" ]; then
+          # Fallback: full jq parse if the head heuristic missed the keys.
+          REV=$(jq -r '.revision' "$SCHEMA_PATH")
+          DATE=$(jq -r '.version_date' "$SCHEMA_PATH")
+        fi
+
+        # Normalise "May 20 2026" → "2026-05-20" so the value is valid as a
+        # SemVer 2 build-metadata identifier (no spaces).
+        DATE_ISO=$(date -d "$DATE" +%Y-%m-%d 2>/dev/null \
+                || date -jf '%b %d %Y' "$DATE" +%Y-%m-%d 2>/dev/null \
+                || echo "")
+        if [ -z "$DATE_ISO" ]; then
+          echo "::error::Could not parse schema date '$DATE' into ISO format"
+          exit 1
+        fi
+
+        echo "revision=$REV" >> "$GITHUB_OUTPUT"
+        echo "date-iso=$DATE_ISO" >> "$GITHUB_OUTPUT"
+        echo "CS2 revision: $REV"
+        echo "Dump date:    $DATE_ISO"

@@ -1,0 +1,119 @@
+name: Pack and publish
+
+# Reusable workflow that packs the SDK and publishes it to NuGet.org.
+# Invoked via `workflow_call` from both check-upstream.yml (scheduled bot
+# refresh) and release.yml (manual or version.json-driven release). Keeping
+# the pack+publish logic in one place avoids the chained-workflow gotcha
+# where the default GITHUB_TOKEN can't trigger downstream workflow_runs.
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Ref/SHA to build (defaults to the caller's ref).
+        type: string
+        required: false
+        default: ''
+    secrets:
+      NUGET_API_KEY:
+        description: NuGet.org publish key. When omitted the package is still built and uploaded as a workflow artifact so forks can download it.
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Pack and publish to NuGet.org
+    runs-on: ubuntu-latest
+    env:
+      # Job-level so `if: env.NUGET_API_KEY != ''` can read it in step
+      # conditions (step-level env is evaluated AFTER step `if:`).
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          submodules: recursive
+          # Full history so Nerdbank.GitVersioning can compute git-height.
+          fetch-depth: 0
+
+      - name: Capture checked-out SHA
+        # `github.sha` reflects the caller's trigger SHA, not necessarily the
+        # ref we actually checked out (when invoked from check-upstream.yml,
+        # the caller passes a freshly-pushed bot commit via `inputs.ref`).
+        # Capture HEAD now so the GitHub Release tags the right commit.
+        id: head
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore + build (Release)
+        run: dotnet build src/CS2-OpenDev.Sdk --configuration Release -nologo
+
+      - name: Read CS2 schema metadata
+        id: schema
+        uses: ./.github/actions/read-schema-metadata
+
+      - name: Pack SDK
+        run: |
+          dotnet pack src/CS2-OpenDev.Sdk \
+            --configuration Release \
+            -nologo \
+            -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
+            -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
+
+      - name: Resolve produced package
+        id: pkg
+        run: |
+          set -euo pipefail
+          PKG=$(find artifacts/package -name 'CS2-OpenDev.Sdk.*.nupkg' | head -1)
+          if [ -z "$PKG" ]; then
+            echo "::error::No .nupkg produced under artifacts/package/"
+            exit 1
+          fi
+          echo "path=$PKG" >> "$GITHUB_OUTPUT"
+          VERSION=$(basename "$PKG" .nupkg | sed 's/^CS2-OpenDev\.Sdk\.//')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Packed: $PKG ($VERSION)"
+
+      - name: Upload package as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg-${{ steps.pkg.outputs.version }}
+          path: ${{ steps.pkg.outputs.path }}
+          if-no-files-found: error
+
+      - name: Publish to NuGet.org
+        if: env.NUGET_API_KEY != ''
+        run: |
+          dotnet nuget push "${{ steps.pkg.outputs.path }}" \
+            --api-key "$NUGET_API_KEY" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: Notice when publish is skipped
+        # Loud notice that the package was built but NOT uploaded to NuGet.org.
+        # Catches misconfigured secrets (e.g. `NUGET_TOKEN` vs `NUGET_API_KEY`)
+        # that would otherwise silently fail to publish for weeks.
+        if: env.NUGET_API_KEY == ''
+        run: |
+          echo "::warning::NUGET_API_KEY secret is not set on this repository — package built (${{ steps.pkg.outputs.version }}) but NOT published to NuGet.org. Download it from the workflow run's Artifacts section. To enable publishing, add the secret in Settings → Secrets and variables → Actions."
+
+      - name: Create GitHub Release
+        if: env.NUGET_API_KEY != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NOTES=$(printf 'Automated release.\n\nCS2 schema revision: `%s` (dump %s).' \
+                         "${{ steps.schema.outputs.revision }}" \
+                         "${{ steps.schema.outputs.date-iso }}")
+          gh release create "v${{ steps.pkg.outputs.version }}" \
+            "${{ steps.pkg.outputs.path }}" \
+            --title "v${{ steps.pkg.outputs.version }}" \
+            --notes "$NOTES" \
+            --target ${{ steps.head.outputs.sha }}

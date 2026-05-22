@@ -73,11 +73,58 @@ public class SyntheticTypesTests
             "struct Color", "struct CTransform", "struct AABB",
             "struct Matrix3x4", "struct Matrix3x4a", "struct Fltx4",
             "struct DegreeEuler", "struct RadianEuler", "struct RotationVector",
-            "struct CRotation", "struct CTransformWS", "struct Range"
+            "struct CRotation", "struct CTransformWS", "struct Range",
+            "struct CGraphEditorViewAxis", "struct CGraphEditorViewConfig"
         ];
         foreach (string name in expected)
         {
             await Assert.That(src).Contains(name);
         }
+    }
+
+    // ── CGraphEditorViewConfig synthetic (recovered from KV3 defaults) ───────
+
+    /// <summary>Emits <c>CGraphEditorViewAxis</c> with the five fields recovered from the <c>MGetKV3ClassDefaults</c> metadata: float Pos / int ScrollPos / float Min / Max / Scale.</summary>
+    [Test]
+    public async Task BuildSource_EmitsCGraphEditorViewAxisWithFiveFields()
+    {
+        string src = SyntheticTypes.BuildSource("CS2Schema", new HashSet<string>(StringComparer.Ordinal), EmptySchema);
+        await Assert.That(src).Contains("public readonly struct CGraphEditorViewAxis");
+        await Assert.That(src).Contains("public float Pos { get; init; }");
+        await Assert.That(src).Contains("public int ScrollPos { get; init; }");
+        await Assert.That(src).Contains("public float Min { get; init; }");
+        await Assert.That(src).Contains("public float Max { get; init; }");
+        await Assert.That(src).Contains("public float Scale { get; init; }");
+    }
+
+    /// <summary><c>CGraphEditorViewConfig</c> has two <c>CGraphEditorViewAxis</c> fields (XAxis / YAxis) — the schema shape that matches CGraphEditorState's 40-byte size and its KV3 defaults JSON.</summary>
+    [Test]
+    public async Task BuildSource_EmitsCGraphEditorViewConfigWithTwoAxes()
+    {
+        string src = SyntheticTypes.BuildSource("CS2Schema", new HashSet<string>(StringComparer.Ordinal), EmptySchema);
+        await Assert.That(src).Contains("public readonly struct CGraphEditorViewConfig");
+        await Assert.That(src).Contains("public CGraphEditorViewAxis XAxis");
+        await Assert.That(src).Contains("public CGraphEditorViewAxis YAxis");
+    }
+
+    /// <summary>Native-name attributes round-trip the schema field identifiers (XAxis / YAxis / pos / scrollpos / min / max / scale) so downstream tooling can recover the original KV3 keys.</summary>
+    [Test]
+    public async Task BuildSource_GraphEditorView_NativeNamesPreserveSchemaKeys()
+    {
+        string src = SyntheticTypes.BuildSource("CS2Schema", new HashSet<string>(StringComparer.Ordinal), EmptySchema);
+        await Assert.That(src).Contains("[NativeName(\"XAxis\")]");
+        await Assert.That(src).Contains("[NativeName(\"YAxis\")]");
+        await Assert.That(src).Contains("[NativeName(\"pos\")]");
+        await Assert.That(src).Contains("[NativeName(\"scrollpos\")]");
+        await Assert.That(src).Contains("[NativeName(\"scale\")]");
+    }
+
+    /// <summary>When the reflected schema would declare CGraphEditorViewConfig itself (a future schema dump might pick it up), the synthetic emitter steps aside to avoid a duplicate.</summary>
+    [Test]
+    public async Task BuildSource_GraphEditorViewConfig_SuppressedWhenSchemaDeclaresIt()
+    {
+        HashSet<string> defined = new(StringComparer.Ordinal) { "CGraphEditorViewConfig" };
+        string src = SyntheticTypes.BuildSource("CS2Schema", defined, EmptySchema);
+        await Assert.That(src).DoesNotContain("public readonly struct CGraphEditorViewConfig");
     }
 }

@@ -76,11 +76,22 @@ internal static class ClassEmitter
                           (cls.Alignment & cls.Alignment - 1) == 0;
 
         // ── XML documentation ────────────────────────────────────────────────────
+        //
+        // Summary leads with the curated annotation description when present,
+        // else with the schema name. When the description wins, the schema name
+        // moves into `<remarks>` so it isn't lost from the rendered docs.
+        bool useDescription = NameHelpers.HasSummaryDescription(cls.Annotations, cls.Metadata);
         sb.AppendLine("/// <summary>");
-        sb.AppendLine($"///     {NameHelpers.XmlEscape(cls.Name)}");
+        sb.Append("///     ").AppendLine(NameHelpers.ResolveSummaryText(cls.Name, cls.Annotations, cls.Metadata));
         sb.AppendLine("/// </summary>");
         sb.AppendLine("/// <remarks>");
-        sb.Append($"///     Module: <c>{cls.Module}</c>");
+        sb.Append("///     ");
+        if (useDescription)
+        {
+            sb.Append($"Native name: <c>{NameHelpers.XmlEscape(cls.Name)}</c>. ");
+        }
+
+        sb.Append($"Module: <c>{cls.Module}</c>");
         if (cls.Size > 0)
         {
             sb.Append($" — {cls.Size} bytes");
@@ -96,6 +107,7 @@ internal static class ClassEmitter
         }
 
         sb.AppendLine(".");
+        NameHelpers.AppendAnnotationRemarks(sb, "", cls.Annotations);
         sb.AppendLine("/// </remarks>");
 
         // ── Attributes ───────────────────────────────────────────────────────────
@@ -112,6 +124,15 @@ internal static class ClassEmitter
         if (csName != cls.Name && csName != "@" + cls.Name)
         {
             sb.AppendLine($"[NativeName(\"{cls.Name}\")]");
+        }
+
+        // CE-3: round-trip class-level schema metadata (MGetKV3ClassDefaults,
+        // MPropertyFriendlyName, MNetworkVarNames, …) as [NativeMetadata]
+        // attributes on the class. Mirrors the field-level emission below.
+        // Without this 3000+ class-level metadata entries are silently dropped.
+        foreach (MetadataEntry md in cls.Metadata)
+        {
+            NameHelpers.AppendNativeMetadata(sb, "", md);
         }
 
         // ── Declaration ──────────────────────────────────────────────────────────
@@ -161,10 +182,12 @@ internal static class ClassEmitter
             }
 
             sb.AppendLine($"    /// <summary>");
-            sb.AppendLine($"    ///     Gets or sets {propName}.");
+            sb.Append("    ///     ").AppendLine(NameHelpers.ResolveSummaryText(
+                $"Gets or sets {propName}", field.Annotations, field.Metadata));
             sb.AppendLine($"    /// </summary>");
             sb.AppendLine($"    /// <remarks>");
             sb.AppendLine($"    ///     Native field <c>{NameHelpers.XmlEscape(field.Name)}</c> at offset <c>0x{field.Offset:X}</c>.");
+            NameHelpers.AppendAnnotationRemarks(sb, "    ", field.Annotations);
             sb.AppendLine($"    /// </remarks>");
             sb.AppendLine($"    [NativeOffset(0x{field.Offset:X})]");
             sb.AppendLine($"    [NativeName(\"{field.Name}\")]");

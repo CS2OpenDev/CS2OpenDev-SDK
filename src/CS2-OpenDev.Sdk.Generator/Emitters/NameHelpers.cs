@@ -140,12 +140,212 @@ internal static class NameHelpers
 
     private static readonly string[] TypeSuffixes = ["_t", "_s", "_e"];
 
-    // Emits a `[NativeMetadata(...)]` attribute line (or two-line wrap when the
-    // joined form would exceed the formatter's line-length threshold). Used by
-    // both ClassEmitter (field metadata, CE-2) and EnumEmitter (member metadata,
-    // EE-1). `indent` is the body indent of the enclosing class/enum (typically
-    // four spaces); the wrapped second line gets an additional four-space
-    // continuation indent under it.
+    // Appends annotation notes / warning to an already-open `<remarks>` block.
+    // `<summary>` is reserved for the brief description (Microsoft convention:
+    // one sentence in summary, longer prose in remarks), so notes and warnings
+    // always go here. Warning text is prefixed with `⚠ Warning:` so it stands
+    // out in IntelliSense tooltips that don't otherwise distinguish remark
+    // sections.
+    //
+    // Caller emits the standard `<remarks>` framing and any baseline content
+    // (e.g. "Module: …"), then invokes this helper before the closing tag.
+    internal static void AppendAnnotationRemarks(StringBuilder sb, string indent, Annotations? ann)
+    {
+        if (ann is null)
+        {
+            return;
+        }
+
+        if (ann.Notes is { Length: > 0 } notes)
+        {
+            sb.Append(indent).Append("///     <para>").Append(XmlEscape(notes)).AppendLine("</para>");
+        }
+
+        if (ann.Warning is { Length: > 0 } warning)
+        {
+            sb.Append(indent).Append("///     <para>⚠ Warning: ").Append(XmlEscape(warning)).AppendLine("</para>");
+        }
+    }
+
+    // Resolves the inner text of a `<summary>` block, picking from a priority
+    // chain of source-of-truth candidates and falling back to the caller-
+    // supplied default when none are present. Priority (highest first):
+    //
+    //   1. `annotations.description` — community overlay in CS2OpenDev-Docs.
+    //      Highest priority because it's hand-curated specifically for the
+    //      SDK's downstream audience.
+    //   2. `metadata["MPropertyDescription"]` — Source 2 editor description.
+    //      Authoritative when present; written by Valve for the Hammer editor.
+    //   3. `metadata["MPropertyFriendlyName"]` — Source 2 editor short name.
+    //      Less informative than a description but still beats the schema
+    //      identifier for human readability.
+    //   4. The `fallback` argument (e.g. the schema name or "Gets or sets X").
+    //
+    // Always XML-escapes the result and ensures it terminates in sentence-
+    // ending punctuation so doc output reads as prose rather than label
+    // fragments. When a non-fallback source wins the slot, the caller is
+    // responsible for surfacing the schema name via `<remarks>` (otherwise it
+    // disappears from the rendered docs entirely).
+    internal static string ResolveSummaryText(
+        string fallback,
+        Annotations? annotations,
+        MetadataEntry[]? metadata = null)
+    {
+        string raw = PickSummaryRawText(annotations, metadata) ?? fallback;
+        return WithTerminalPeriod(XmlEscape(raw));
+    }
+
+    // True iff a non-default summary source contributes text. Callers use this
+    // to decide whether to relocate the schema name into `<remarks>`. Keep in
+    // sync with `ResolveSummaryText`'s priority chain.
+    internal static bool HasSummaryDescription(
+        Annotations? annotations,
+        MetadataEntry[]? metadata = null) =>
+        PickSummaryRawText(annotations, metadata) != null;
+
+    // Searches the priority chain and returns the raw (unescaped) text, or
+    // null if no source carries a description. Quote-stripping + whitespace-
+    // normalisation are applied to schema-metadata values because the Source 2
+    // schema dumper stringifies KV3 string values as literal `"..."` (quotes
+    // included in the value), and the description bodies sometimes contain
+    // literal newlines which break XML-doc structure if they spill past the
+    // `///` line prefix.
+    private static string? PickSummaryRawText(
+        Annotations? annotations,
+        MetadataEntry[]? metadata)
+    {
+        if (annotations?.Description is { Length: > 0 } d)
+        {
+            return d;
+        }
+
+        if (metadata is null || metadata.Length == 0)
+        {
+            return null;
+        }
+
+        // Two-pass scan because MPropertyDescription has higher priority than
+        // MPropertyFriendlyName but both are searched in the same list.
+        string? desc = FindMetadataValue(metadata, "MPropertyDescription");
+        if (!string.IsNullOrEmpty(desc))
+        {
+            return CollapseWhitespace(StripSurroundingQuotes(desc));
+        }
+
+        string? friendly = FindMetadataValue(metadata, "MPropertyFriendlyName");
+        if (!string.IsNullOrEmpty(friendly))
+        {
+            return CollapseWhitespace(StripSurroundingQuotes(friendly));
+        }
+
+        return null;
+    }
+
+    private static string? FindMetadataValue(MetadataEntry[] metadata, string key)
+    {
+        foreach (MetadataEntry m in metadata)
+        {
+            if (string.Equals(m.Name, key, StringComparison.Ordinal) && m.Value is not null)
+            {
+                return m.Value;
+            }
+        }
+
+        return null;
+    }
+
+    // Source 2 schema dumper stringifies KV3 string values with the quotes
+    // included (`"Aim Camera"`, with literal leading and trailing `"`). Strip
+    // them once so XML-escaping + sentence-period appending operate on the
+    // bare text. Leaves the value alone if it isn't quote-wrapped — defensive
+    // against future format changes.
+    private static string StripSurroundingQuotes(string value)
+    {
+        if (value.Length >= 2 && value[0] == '"' && value[value.Length - 1] == '"')
+        {
+            return value.Substring(1, value.Length - 2);
+        }
+
+        return value;
+    }
+
+    // XML doc `///` line prefix means any literal newline inside a summary
+    // value would spill past the prefix and break the surrounding C# code.
+    // Collapse all runs of whitespace (including embedded `\n` from multi-
+    // paragraph schema descriptions) to a single space so the summary stays
+    // a single line. Long descriptions are sometimes also indented with `\t`
+    // — those collapse the same way.
+    private static string CollapseWhitespace(string value)
+    {
+        if (value.Length == 0)
+        {
+            return value;
+        }
+
+        bool needsCollapse = false;
+        foreach (char c in value)
+        {
+            if (c == '\n' || c == '\r' || c == '\t')
+            {
+                needsCollapse = true;
+                break;
+            }
+        }
+
+        if (!needsCollapse)
+        {
+            return value;
+        }
+
+        StringBuilder sb = new(value.Length);
+        bool prevWhitespace = false;
+        foreach (char c in value)
+        {
+            bool isWs = c == ' ' || c == '\t' || c == '\n' || c == '\r';
+            if (isWs)
+            {
+                if (!prevWhitespace && sb.Length > 0)
+                {
+                    sb.Append(' ');
+                }
+
+                prevWhitespace = true;
+            }
+            else
+            {
+                sb.Append(c);
+                prevWhitespace = false;
+            }
+        }
+
+        // Trim trailing whitespace introduced by the loop's "skip-leading" logic.
+        while (sb.Length > 0 && sb[sb.Length - 1] == ' ')
+        {
+            sb.Length--;
+        }
+
+        return sb.ToString();
+    }
+
+    // Appends sentence-ending punctuation when the input doesn't already end
+    // with one of `.`, `!`, `?`, `:`, or `;`. Used to normalise summary and
+    // remarks lines so the rendered docs are consistently punctuated.
+    internal static string WithTerminalPeriod(string s)
+    {
+        if (s.Length == 0)
+        {
+            return s;
+        }
+
+        char last = s[s.Length - 1];
+        if (last is '.' or '!' or '?' or ':' or ';')
+        {
+            return s;
+        }
+
+        return s + ".";
+    }
+
     internal static void AppendNativeMetadata(StringBuilder sb, string indent, MetadataEntry md)
     {
         string name = EscAttrString(md.Name);
@@ -340,6 +540,13 @@ internal static class NameHelpers
 
         string rest = name;
 
+        // Mirror StripFieldPrefix's `__` (do-not-network) handling so collision
+        // fallbacks produce the same shape as the primary strip path.
+        if (rest.StartsWith("__", StringComparison.Ordinal))
+        {
+            rest = rest.Substring(2);
+        }
+
         if (rest is [_, '_', ..] && char.IsLower(rest[0]))
         {
             rest = rest.Substring(2);
@@ -508,6 +715,22 @@ internal static class NameHelpers
         return true;
     }
 
+    // Public surface for the same snake-case-to-PascalCase fold the class/enum
+    // name pipeline uses internally. GameEvents' event and field names come from
+    // KV1 source as `player_death` / `weapon_originalowner_xuid` — no Hungarian
+    // prefixes, no `_t` suffix, just lowercase-snake. Reuses the same segment
+    // logic so the output style matches the rest of the SDK.
+    internal static string ToPascalCaseFromSnake(string s)
+    {
+        string normalised = NormalizeSegments(s);
+        if (normalised.Length > 0 && char.IsLower(normalised[0]))
+        {
+            normalised = char.ToUpperInvariant(normalised[0]) + normalised.Substring(1);
+        }
+
+        return normalised;
+    }
+
     // Converts underscore-separated segments to PascalCase.
     // No-ops if the string has no underscores.
     private static string NormalizeSegments(string s)
@@ -560,6 +783,16 @@ internal static class NameHelpers
     private static string StripFieldPrefix(string name)
     {
         string rest = name;
+
+        // Step 0: strip the Source 2 `__` prefix (a "do not network" marker that
+        // sits in front of the regular Hungarian prefix — e.g. `__m_pChainEntity`).
+        // Without this strip the result is `MPChainEntity` (unrecognisable as the
+        // C++ name); with it, we fall through to the normal pipeline and emit
+        // `ChainEntity`. The native name is still preserved via `[NativeName]`.
+        if (rest.StartsWith("__", StringComparison.Ordinal))
+        {
+            rest = rest.Substring(2);
+        }
 
         // Step 1: strip access prefix
         if (rest is [_, '_', ..] && char.IsLower(rest[0]))

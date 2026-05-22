@@ -15,11 +15,23 @@ internal static class EnumEmitter
         string csName = NameHelpers.Esc(TypeMapper.LookupCsName(en.Name, true, en.IsFlags));
 
         // ── XML documentation ────────────────────────────────────────────────────
+        //
+        // Mirrors ClassEmitter: description-first summary when annotated, native
+        // name relocated into `<remarks>`. The schema name is preserved through
+        // `[NativeName]` on the declaration as well, but surfacing it in remarks
+        // keeps the rendered docs self-contained.
+        bool useDescription = NameHelpers.HasSummaryDescription(en.Annotations, en.Metadata);
         sb.AppendLine("/// <summary>");
-        sb.AppendLine($"///     {NameHelpers.XmlEscape(en.Name)}");
+        sb.Append("///     ").AppendLine(NameHelpers.ResolveSummaryText(en.Name, en.Annotations, en.Metadata));
         sb.AppendLine("/// </summary>");
         sb.AppendLine("/// <remarks>");
-        sb.Append($"///     Module: <c>{en.Module}</c>");
+        sb.Append("///     ");
+        if (useDescription)
+        {
+            sb.Append($"Native name: <c>{NameHelpers.XmlEscape(en.Name)}</c>. ");
+        }
+
+        sb.Append($"Module: <c>{en.Module}</c>");
         if (en.StorageSize.HasValue)
         {
             sb.Append($" — {en.StorageSize * 8}-bit");
@@ -31,6 +43,7 @@ internal static class EnumEmitter
         }
 
         sb.AppendLine(".");
+        NameHelpers.AppendAnnotationRemarks(sb, "", en.Annotations);
         sb.AppendLine("/// </remarks>");
 
         // ── Attributes & declaration ─────────────────────────────────────────────
@@ -43,6 +56,16 @@ internal static class EnumEmitter
         if (csName != en.Name && csName != "@" + en.Name)
         {
             sb.AppendLine($"[NativeName(\"{en.Name}\")]");
+        }
+
+        // EE-2: round-trip enum-level metadata as [NativeMetadata] attributes.
+        // The current upstream schema carries zero enum-level metadata, but the
+        // field is parsed and reflected — emitting it defensively keeps parity
+        // with class-level metadata and means a future schema bump that adds it
+        // doesn't silently disappear.
+        foreach (MetadataEntry md in en.Metadata)
+        {
+            NameHelpers.AppendNativeMetadata(sb, "", md);
         }
 
         string underlying = en.StorageSize switch
@@ -97,10 +120,11 @@ internal static class EnumEmitter
             }
 
             sb.AppendLine($"    /// <summary>");
-            sb.AppendLine($"    ///     {memberName}");
+            sb.Append("    ///     ").AppendLine(NameHelpers.ResolveSummaryText(memberName, member.Annotations, member.Metadata));
             sb.AppendLine($"    /// </summary>");
             sb.AppendLine($"    /// <remarks>");
-            sb.AppendLine($"    ///     Native name: <c>{NameHelpers.XmlEscape(member.Name)}</c>");
+            sb.AppendLine($"    ///     Native name: <c>{NameHelpers.XmlEscape(member.Name)}</c>.");
+            NameHelpers.AppendAnnotationRemarks(sb, "    ", member.Annotations);
             sb.AppendLine($"    /// </remarks>");
 
             // CA1069: mark duplicate values as obsolete aliases

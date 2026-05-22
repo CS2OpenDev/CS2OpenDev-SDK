@@ -25,10 +25,14 @@ public class ClassEmitterTests
         int size = 0,
         bool isAbstract = false,
         ParentModel[]? parents = null,
-        FieldModel[]? fields = null) =>
+        FieldModel[]? fields = null,
+        Annotations? annotations = null,
+        MetadataEntry[]? metadata = null) =>
         new(name, module, size, Alignment: 0, isAbstract,
             parents ?? [],
-            fields ?? []);
+            fields ?? [],
+            Metadata: metadata ?? [],
+            annotations);
 
     private static FieldModel IntField(string name, int offset) =>
         new(name, offset, new BuiltinType("int32"), Metadata: []);
@@ -231,5 +235,142 @@ public class ClassEmitterTests
             parents: [new ParentModel("CParent", "client", 0)]);
         string src = Emit(cls);
         await Assert.That(src).Contains("public abstract partial class CChild : CParent");
+    }
+
+    // ── Annotation-driven summary handling ───────────────────────────────────
+
+    /// <summary>When a class carries an annotation description, the description IS the summary and the schema name moves into the remarks block as `Native name: ...`.</summary>
+    [Test]
+    public async Task Emit_AnnotatedClass_DescriptionBecomesSummary_NameRelocatesToRemarks()
+    {
+        ClassModel cls = MakeClass(
+            name: "CBaseCSGrenadeProjectile",
+            module: "server",
+            size: 2608,
+            annotations: new Annotations(
+                "Base class for all CS2 grenade projectile entities.",
+                Notes: null, Warning: null));
+        string src = Emit(cls);
+
+        await Assert.That(src).Contains("///     Base class for all CS2 grenade projectile entities.");
+        await Assert.That(src).Contains("Native name: <c>CBaseCSGrenadeProjectile</c>. Module: <c>server</c> — 2608 bytes.");
+        // Old shape (schema name as summary, description as <para> tail) must be gone.
+        await Assert.That(src).DoesNotContain("<para>Base class");
+    }
+
+    /// <summary>Unannotated classes keep the schema name as the summary and do NOT add a `Native name:` prefix to remarks.</summary>
+    [Test]
+    public async Task Emit_UnannotatedClass_SummaryIsSchemaName_NoRelocation()
+    {
+        string src = Emit(MakeClass(name: "CFoo", module: "client", size: 32));
+        await Assert.That(src).Contains("///     CFoo.");
+        await Assert.That(src).DoesNotContain("Native name: <c>CFoo</c>");
+    }
+
+    /// <summary>Annotation notes survive in remarks (as a `&lt;para&gt;`) even when description has been promoted to summary.</summary>
+    [Test]
+    public async Task Emit_AnnotatedClass_NotesAndWarningStayInRemarks()
+    {
+        ClassModel cls = MakeClass(
+            name: "CFoo",
+            annotations: new Annotations(
+                Description: "A short description.",
+                Notes: "Only valid during round-end.",
+                Warning: "Do not rely on this in 5v5."));
+        string src = Emit(cls);
+
+        await Assert.That(src).Contains("<para>Only valid during round-end.</para>");
+        await Assert.That(src).Contains("⚠ Warning: Do not rely on this in 5v5.");
+    }
+
+    /// <summary>Property summary leads with annotation description when present, replacing the "Gets or sets X." filler.</summary>
+    [Test]
+    public async Task Emit_AnnotatedField_DescriptionReplacesGetsOrSetsFiller()
+    {
+        FieldModel field = new("m_nBounces", 0x9D8, new BuiltinType("int32"),
+            Metadata: [],
+            Annotations: new Annotations(
+                "Number of times the grenade has bounced off a surface so far.",
+                Notes: null, Warning: null));
+        string src = Emit(MakeClass(fields: [field]));
+
+        await Assert.That(src).Contains("///     Number of times the grenade has bounced off a surface so far.");
+        await Assert.That(src).DoesNotContain("Gets or sets Bounces.");
+        await Assert.That(src).DoesNotContain("<para>Number of times");
+    }
+
+    /// <summary>Unannotated property summary still emits the standard "Gets or sets X." filler with a terminal period.</summary>
+    [Test]
+    public async Task Emit_UnannotatedField_KeepsGetsOrSetsFiller()
+    {
+        string src = Emit(MakeClass(fields: [IntField("m_iHealth", 0)]));
+        await Assert.That(src).Contains("///     Gets or sets Health.");
+    }
+
+    // ── Class-level metadata round-trip (CE-3) ───────────────────────────────
+
+    /// <summary>Class-level metadata entries are emitted as `[NativeMetadata]` attributes on the class declaration so 3000+ schema-carried markers (MGetKV3ClassDefaults, MPropertyFriendlyName, …) survive into the C# projection instead of being silently dropped.</summary>
+    [Test]
+    public async Task Emit_ClassMetadata_RoundTripsAsNativeMetadata()
+    {
+        ClassModel cls = MakeClass(metadata: [
+            new MetadataEntry("MPropertyFriendlyName", "\"Friendly\""),
+            new MetadataEntry("MGetKV3ClassDefaults", null)
+        ]);
+        string src = Emit(cls);
+        await Assert.That(src).Contains("[NativeMetadata(\"MPropertyFriendlyName\", \"\\\"Friendly\\\"\")]");
+        await Assert.That(src).Contains("[NativeMetadata(\"MGetKV3ClassDefaults\")]");
+    }
+
+    // ── Source 2 metadata → XML summary promotion ────────────────────────────
+
+    /// <summary>MPropertyDescription is promoted to the class XML summary (priority: annotation &gt; MPropertyDescription &gt; MPropertyFriendlyName &gt; default). Surrounding quotes from the KV3-stringified value are stripped.</summary>
+    [Test]
+    public async Task Emit_ClassWithMPropertyDescription_PromotesToSummary()
+    {
+        ClassModel cls = MakeClass(metadata: [
+            new MetadataEntry("MPropertyDescription", "\"The grenade projectile base class.\"")
+        ]);
+        string src = Emit(cls);
+        await Assert.That(src).Contains("///     The grenade projectile base class.");
+        // Schema name moves to remarks via Native name: prefix when promotion wins the summary slot.
+        await Assert.That(src).Contains("Native name: <c>CFoo</c>");
+    }
+
+    /// <summary>Annotation description still beats MPropertyDescription when both are present. (Metadata still round-trips via [NativeMetadata], it just doesn't win the summary slot.)</summary>
+    [Test]
+    public async Task Emit_ClassWithBothAnnotationAndMetadata_AnnotationWins()
+    {
+        ClassModel cls = MakeClass(
+            annotations: new Annotations("Curated annotation wins.", Notes: null, Warning: null),
+            metadata: [new MetadataEntry("MPropertyDescription", "\"Editor metadata loses.\"")]);
+        string src = Emit(cls);
+        await Assert.That(src).Contains("///     Curated annotation wins.");
+        // The metadata is still preserved via the [NativeMetadata] attribute
+        // round-trip, but the summary line itself must not carry the metadata
+        // text. Anchor on the `///     ` prefix to scope the check.
+        await Assert.That(src).DoesNotContain("///     Editor metadata loses.");
+    }
+
+    /// <summary>MPropertyFriendlyName is used as a last-resort summary when neither annotation description nor MPropertyDescription is present.</summary>
+    [Test]
+    public async Task Emit_ClassWithOnlyFriendlyName_PromotesToSummary()
+    {
+        ClassModel cls = MakeClass(metadata: [
+            new MetadataEntry("MPropertyFriendlyName", "\"Aim Camera Node\"")
+        ]);
+        string src = Emit(cls);
+        await Assert.That(src).Contains("///     Aim Camera Node.");
+    }
+
+    /// <summary>Field-level MPropertyDescription is promoted to the property's XML summary, replacing the default "Gets or sets X" filler.</summary>
+    [Test]
+    public async Task Emit_FieldWithMPropertyDescription_PromotesToSummary()
+    {
+        FieldModel field = new("m_iHealth", 0, new BuiltinType("int32"),
+            Metadata: [new MetadataEntry("MPropertyDescription", "\"Current health points.\"")]);
+        string src = Emit(MakeClass(fields: [field]));
+        await Assert.That(src).Contains("///     Current health points.");
+        await Assert.That(src).DoesNotContain("Gets or sets Health.");
     }
 }

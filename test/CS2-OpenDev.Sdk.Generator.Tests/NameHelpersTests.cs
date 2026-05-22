@@ -139,6 +139,30 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
+    /// <summary>Strips the Source 2 <c>__</c> (do-not-network) prefix before the rest of the Hungarian pipeline runs — <c>__m_pChainEntity</c> becomes <c>ChainEntity</c>, not <c>MPChainEntity</c>.</summary>
+    [Test]
+    [Arguments("__m_pChainEntity",  "ChainEntity")]
+    [Arguments("__m_iSlot",         "Slot")]
+    [Arguments("__m_bIsDirty",      "IsDirty")]
+    public async Task ToPropName_StripsSource2DoNotNetworkPrefix(string cpp, string expected)
+    {
+        string actual = NameHelpers.ToPropName(cpp);
+        await Assert.That(actual).IsEqualTo(expected);
+    }
+
+    /// <summary>The access-only fallback path mirrors the <c>__</c> strip so collision disambiguation produces shapes consistent with the primary path.</summary>
+    [Test]
+    public async Task ToPropNameAccessOnly_StripsSource2DoNotNetworkPrefix()
+    {
+        // The access-only fallback only strips the access prefix (m_) not the
+        // type-hint code (p). With `__` stripped first, the access-only result
+        // becomes `PChainEntity` — which differs from the primary path's
+        // `ChainEntity` precisely because that's the point of access-only:
+        // disambiguate colliding clean names by including the type-hint code.
+        string actual = NameHelpers.ToPropNameAccessOnly("__m_pChainEntity");
+        await Assert.That(actual).IsEqualTo("PChainEntity");
+    }
+
     // Compound Hungarian prefixes added by B1/NH-1.
     /// <summary>Strips compound Hungarian prefixes (<c>isz</c>, <c>psz</c>, <c>str</c>, <c>iv</c>, <c>ix</c>) added by B1/NH-1 — these match before their single-char shadows.</summary>
     [Test]

@@ -25,6 +25,26 @@ internal static class GeneratorHarness
         return new RunResult(sink.Files, sink.Diagnostics);
     }
 
+    // Drives GameEventsEmitter against a captured in-memory sink. The optional
+    // `schemaForStampJson` lets a test reuse a class-schema fragment for the
+    // schema-revision stamp; tests that don't care can pass null. Kept separate
+    // from Run() because GameEvents emission doesn't go through ModuleEmitter
+    // and doesn't need the class-schema name-map.
+    internal static RunResult RunGameEvents(
+        string eventsJson,
+        string? schemaForStampJson = null,
+        string? customNamespace = null)
+    {
+        GameEventsRoot events = GameEventsModel.Parse(eventsJson);
+        SchemaRoot? stamp = schemaForStampJson is null ? null : SchemaModel.Parse(schemaForStampJson);
+        string ns = customNamespace ?? "CS2Schema";
+
+        CapturingSink sink = new();
+        GameEventsEmitter.EmitAll(sink, events, ns, stamp);
+
+        return new RunResult(sink.Files, sink.Diagnostics);
+    }
+
     internal sealed record TestDiagnostic(string Id, GeneratorDiagnosticSeverity Severity, string Message);
 
     internal sealed record RunResult(

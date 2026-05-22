@@ -1,0 +1,155 @@
+name: Check upstream schema
+
+# Scheduled workflow that pulls the latest commit from the upstream
+# CS2OpenDev-Docs submodule, regenerates the SDK if anything changed, pushes
+# the result directly to main, AND publishes the new package in the same run.
+#
+# Why pack+publish here instead of letting release.yml fire on the push:
+# pushes from a workflow authenticated with the default GITHUB_TOKEN are
+# explicitly blocked from triggering downstream workflows (push, workflow_run
+# events don't fire on their own runs). Chaining via a PAT works but adds a
+# required secret and rotation burden. Calling the reusable pack-and-publish
+# workflow as a dependent job keeps everything in this single workflow run.
+#
+# Cadence matches the upstream repo's own 4-hour refresh, so we never lag
+# Valve's CS2 patches by more than ~4 hours (plus the upstream's own pickup
+# delay).
+
+on:
+  schedule:
+    # Top of every 4-hour block, offset by 15 minutes so we land after the
+    # upstream's hourly auto-commits have settled.
+    - cron: '15 */4 * * *'
+  workflow_dispatch: {}
+
+# Only one scheduled refresh at a time — avoids racing pushes if a manual
+# run overlaps the cron.
+concurrency:
+  group: check-upstream
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: Pull upstream, regen, push
+    runs-on: ubuntu-latest
+    outputs:
+      # Surfaced for the dependent publish job so it can skip if there's
+      # nothing to publish.
+      sdk_changed: ${{ steps.sdk_diff.outputs.sdk_changed }}
+      pushed_sha: ${{ steps.push.outputs.sha }}
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Configure bot git identity
+        run: |
+          git config user.name "cs2-opendev-bot"
+          git config user.email "bot@cs2-opendev.invalid"
+
+      - name: Capture pre-update schema revision
+        id: before
+        uses: ./.github/actions/read-schema-metadata
+
+      - name: Bump upstream submodule to latest
+        id: bump
+        run: |
+          # `--remote` updates the submodule's checked-out commit to the tip of
+          # its tracked branch. We deliberately don't pass `--merge`: submodules
+          # in a normal checkout are in detached-HEAD state, so there's no local
+          # branch to merge into and the flag behaves unpredictably. `--remote`
+          # alone plus `git add` is all we need.
+          git submodule update --remote upstream
+          if git diff --quiet -- upstream; then
+            echo "submodule_changed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Upstream submodule is already at latest — nothing to do."
+          else
+            echo "submodule_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Capture post-update schema revision
+        if: steps.bump.outputs.submodule_changed == 'true'
+        id: after
+        uses: ./.github/actions/read-schema-metadata
+
+      - name: Set up .NET
+        if: steps.bump.outputs.submodule_changed == 'true'
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build generator + exporter
+        if: steps.bump.outputs.submodule_changed == 'true'
+        run: dotnet build --configuration Release -nologo
+
+      - name: Run test suite
+        if: steps.bump.outputs.submodule_changed == 'true'
+        run: dotnet run --configuration Release --project test/CS2-OpenDev.Sdk.Generator.Tests
+
+      - name: Regenerate SDK
+        if: steps.bump.outputs.submodule_changed == 'true'
+        run: dotnet run --configuration Release --project src/CS2-OpenDev.Sdk.Exporter
+
+      - name: Decide whether SDK content changed
+        # The submodule moved but the regenerated SDK might match what's already
+        # committed (e.g. upstream re-committed an unrelated overlay change
+        # that doesn't affect the projected types). We still commit the submodule
+        # bump in that case, but we don't trigger a publish if there's nothing
+        # downstream consumers would see.
+        if: steps.bump.outputs.submodule_changed == 'true'
+        id: sdk_diff
+        run: |
+          if git diff --quiet -- src/CS2-OpenDev.Sdk/; then
+            echo "sdk_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "sdk_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit + push
+        if: steps.bump.outputs.submodule_changed == 'true'
+        id: push
+        env:
+          BEFORE_REV: ${{ steps.before.outputs.revision }}
+          AFTER_REV: ${{ steps.after.outputs.revision }}
+          AFTER_DATE: ${{ steps.after.outputs.date-iso }}
+          SDK_CHANGED: ${{ steps.sdk_diff.outputs.sdk_changed }}
+        run: |
+          set -euo pipefail
+          git add upstream src/CS2-OpenDev.Sdk/
+
+          if [ "$BEFORE_REV" = "$AFTER_REV" ]; then
+            SUBJECT="chore(schema): refresh upstream enrichment (CS2 ${AFTER_REV} unchanged)"
+          else
+            SUBJECT="chore(schema): regen for CS2 ${BEFORE_REV} → ${AFTER_REV}"
+          fi
+
+          BODY="Upstream submodule bumped to dump ${AFTER_DATE}."
+          if [ "$SDK_CHANGED" = "false" ]; then
+            BODY="${BODY}"$'\n'"SDK content unchanged — only the submodule pointer moved."
+          fi
+
+          git commit -m "$SUBJECT" -m "$BODY"
+          git push origin HEAD:main
+
+          # Surface the new SHA so the dependent publish job can target it
+          # explicitly (rather than the workflow's `github.sha`, which still
+          # points at the pre-bump commit this job was triggered on).
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  publish:
+    # Dependent job — runs only when the refresh produced an SDK content
+    # change. Calls the reusable pack-and-publish workflow targeting the SHA
+    # we just pushed. Keeping this inside the same workflow run sidesteps the
+    # GITHUB_TOKEN chained-workflow restriction.
+    needs: refresh
+    if: needs.refresh.outputs.sdk_changed == 'true'
+    uses: ./.github/workflows/_pack-and-publish.yml
+    with:
+      ref: ${{ needs.refresh.outputs.pushed_sha }}
+    secrets:
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

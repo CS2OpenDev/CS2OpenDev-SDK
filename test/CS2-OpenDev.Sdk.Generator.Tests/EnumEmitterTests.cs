@@ -13,9 +13,12 @@ public class EnumEmitterTests
         string module = "client",
         bool isFlags = false,
         int? storageSize = 4,
-        MemberModel[]? members = null) =>
+        MemberModel[]? members = null,
+        Annotations? annotations = null) =>
         new(name, module, Alignment: null, storageSize, isFlags,
-            members ?? [new MemberModel("A", 1L, [])]);
+            members ?? [new MemberModel("A", 1L, [])],
+            Metadata: [],
+            annotations);
 
     private static string Emit(EnumModel en)
     {
@@ -158,5 +161,55 @@ public class EnumEmitterTests
         await Assert.That(src).Contains("public enum EFoo");
         await Assert.That(src).Contains("{");
         await Assert.That(src).Contains("}");
+    }
+
+    // ── Annotation-driven summary handling ───────────────────────────────────
+
+    /// <summary>Enum annotation description becomes the summary; schema name relocates to remarks as `Native name:`.</summary>
+    [Test]
+    public async Task Emit_AnnotatedEnum_DescriptionBecomesSummary_NameRelocatesToRemarks()
+    {
+        EnumModel en = MakeEnum(
+            name: "EHitGroup",
+            annotations: new Annotations(
+                "Body region hit by a bullet trace.",
+                Notes: null, Warning: null));
+        string src = Emit(en);
+
+        await Assert.That(src).Contains("///     Body region hit by a bullet trace.");
+        await Assert.That(src).Contains("Native name: <c>EHitGroup</c>. Module: <c>client</c>");
+        await Assert.That(src).DoesNotContain("<para>Body region");
+    }
+
+    /// <summary>Unannotated enums keep the schema name as the summary with a terminal period and no native-name prefix in remarks.</summary>
+    [Test]
+    public async Task Emit_UnannotatedEnum_SummaryIsSchemaNameWithPeriod()
+    {
+        string src = Emit(MakeEnum(name: "EFoo"));
+        await Assert.That(src).Contains("///     EFoo.");
+        await Assert.That(src).DoesNotContain("Native name: <c>EFoo</c>");
+    }
+
+    /// <summary>Annotated enum member promotes its description to summary; native name stays in remarks as before.</summary>
+    [Test]
+    public async Task Emit_AnnotatedMember_DescriptionBecomesSummary()
+    {
+        EnumModel en = MakeEnum(members: [
+            new MemberModel("EFoo_HEAD", 1L, [],
+                Annotations: new Annotations("Headshot region.", Notes: null, Warning: null))
+        ]);
+        string src = Emit(en);
+
+        await Assert.That(src).Contains("///     Headshot region.");
+        // Native name remains in member remarks for round-trip.
+        await Assert.That(src).Contains("Native name: <c>EFoo_HEAD</c>.");
+    }
+
+    /// <summary>Enum members consistently terminate the remarks `Native name:` line with a period.</summary>
+    [Test]
+    public async Task Emit_Member_NativeNameRemarkHasTerminalPeriod()
+    {
+        string src = Emit(MakeEnum(members: [new MemberModel("EFoo_X", 1L, [])]));
+        await Assert.That(src).Contains("Native name: <c>EFoo_X</c>.");
     }
 }

@@ -1,0 +1,79 @@
+name: CI
+
+# Gatekeeper workflow on every PR and every push to main. Runs the test suite
+# AND an idempotency check: regenerate the SDK and fail if the working tree
+# diverges from what's committed. That catches "edited the generator but
+# forgot to regen" PRs before they merge.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Cancel superseded runs on the same PR / branch — saves CI minutes when a
+# contributor pushes a follow-up commit before the previous run finishes.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build, test, verify regen idempotency
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          # Full history so Nerdbank.GitVersioning can compute git-height.
+          fetch-depth: 0
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore + build (warnings-as-errors)
+        run: dotnet build --configuration Release -nologo
+
+      - name: Run test suite (TUnit via dotnet run)
+        # The test project is an exe under TUnit; `dotnet run` is the supported
+        # invocation per the project README (dotnet test is unsupported on
+        # Microsoft.Testing.Platform-on-net10).
+        run: dotnet run --configuration Release --project test/CS2-OpenDev.Sdk.Generator.Tests
+
+      - name: Regenerate SDK into a clean tree
+        run: dotnet run --configuration Release --project src/CS2-OpenDev.Sdk.Exporter
+
+      - name: Fail if regen produced a diff
+        # If the regen output differs from committed src/CS2-OpenDev.Sdk/,
+        # someone changed the generator (or the schema) without committing the
+        # corresponding SDK regeneration. Surface the diff so the contributor
+        # sees exactly what needs to be committed.
+        run: |
+          if ! git diff --exit-code -- src/CS2-OpenDev.Sdk/; then
+            echo "::error::Regenerated SDK differs from committed sources."
+            echo "::error::Run \`dotnet run --project src/CS2-OpenDev.Sdk.Exporter\` locally and commit the result."
+            exit 1
+          fi
+
+      - name: Read CS2 schema metadata
+        id: schema
+        uses: ./.github/actions/read-schema-metadata
+
+      - name: Verify NuGet pack succeeds
+        # Doesn't publish — just validates that pack runs clean end-to-end with
+        # the same build-metadata injection the release workflow uses. We
+        # deliberately omit `--no-build`: `dotnet pack` re-runs the pack-
+        # specific targets that aren't covered by the prior `dotnet build`,
+        # and the extra cost is small compared to the reliability win.
+        run: |
+          dotnet pack src/CS2-OpenDev.Sdk \
+            --configuration Release \
+            -nologo \
+            -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
+            -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
