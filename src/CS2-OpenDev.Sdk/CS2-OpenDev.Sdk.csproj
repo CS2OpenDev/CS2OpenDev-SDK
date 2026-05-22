@@ -29,6 +29,23 @@
         <!-- Emit the XML docs file so NuGet consumers get IntelliSense -->
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
+        <!-- Produce a `.snupkg` symbols package alongside the `.nupkg` so
+             consumers can step into the SDK with a debugger when needed.
+             `snupkg` (NuGet's modern symbols format) carries portable PDBs +
+             a symbols manifest; the matching `.nupkg` carries the assemblies
+             and stays free of debug bloat. NuGet.org's symbol server then
+             serves the PDBs to clients that have it configured.
+
+             The publish flow pushes both files in one `dotnet nuget push`
+             call against a `*.nupkg` glob — NuGet's push step auto-pairs
+             a `.snupkg` next to each `.nupkg` and uploads it to the
+             symbol server. -->
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+
         <!-- NuGet package identity -->
         <PackageId>CS2-OpenDev.Sdk</PackageId>
         <!-- Version is supplied by Nerdbank.GitVersioning (`version.json`).
