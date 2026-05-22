@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
   "version": "1.0",
   "pathFilters": [
-    ":/src/CS2-OpenDev.Sdk/"
+    ":/src/CS2OpenDev.Sdk/"
   ],
   "publicReleaseRefSpec": [
     "^refs/heads/main$"

@@ -53,7 +53,7 @@ jobs:
           global-json-file: global.json
 
       - name: Restore + build (Release)
-        run: dotnet build src/CS2-OpenDev.Sdk --configuration Release -nologo
+        run: dotnet build src/CS2OpenDev.Sdk --configuration Release -nologo
 
       - name: Read CS2 schema metadata
         id: schema
@@ -61,7 +61,7 @@ jobs:
 
       - name: Pack SDK
         run: |
-          dotnet pack src/CS2-OpenDev.Sdk \
+          dotnet pack src/CS2OpenDev.Sdk \
             --configuration Release \
             -nologo \
             -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
@@ -76,7 +76,7 @@ jobs:
           # `SymbolPackageFormat=snupkg` in the SDK csproj. Resolve the
           # `.nupkg` first — its filename carries the version — then derive
           # the matching `.snupkg` path. Both must exist before publish.
-          PKG=$(find artifacts/package -name 'CS2-OpenDev.Sdk.*.nupkg' -not -name '*.snupkg' | head -1)
+          PKG=$(find artifacts/package -name 'CS2OpenDev.Sdk.*.nupkg' -not -name '*.snupkg' | head -1)
           if [ -z "$PKG" ]; then
             echo "::error::No .nupkg produced under artifacts/package/"
             exit 1
@@ -86,7 +86,7 @@ jobs:
             echo "::warning::Symbols package missing at $SYM — proceeding without symbols"
             SYM=""
           fi
-          VERSION=$(basename "$PKG" .nupkg | sed 's/^CS2-OpenDev\.Sdk\.//')
+          VERSION=$(basename "$PKG" .nupkg | sed 's/^CS2OpenDev\.Sdk\.//')
           PKG_DIR=$(dirname "$PKG")
 
           {
@@ -104,7 +104,7 @@ jobs:
           name: nupkg-${{ steps.pkg.outputs.version }}
           # Glob captures the .nupkg AND the matching .snupkg so a single
           # downloadable artifact carries both.
-          path: ${{ steps.pkg.outputs.dir }}/CS2-OpenDev.Sdk.*.*nupkg
+          path: ${{ steps.pkg.outputs.dir }}/CS2OpenDev.Sdk.*.*nupkg
           if-no-files-found: error
 
       - name: Publish to NuGet.org
@@ -113,7 +113,7 @@ jobs:
         # adjacent .snupkg in one call — NuGet.org routes the symbols package
         # to its symbol server automatically when paired this way.
         run: |
-          dotnet nuget push "${{ steps.pkg.outputs.dir }}/CS2-OpenDev.Sdk.*.nupkg" \
+          dotnet nuget push "${{ steps.pkg.outputs.dir }}/CS2OpenDev.Sdk.*.nupkg" \
             --api-key "$NUGET_API_KEY" \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate

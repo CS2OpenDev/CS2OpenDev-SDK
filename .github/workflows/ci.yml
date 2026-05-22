@@ -44,20 +44,20 @@ jobs:
         # The test project is an exe under TUnit; `dotnet run` is the supported
         # invocation per the project README (dotnet test is unsupported on
         # Microsoft.Testing.Platform-on-net10).
-        run: dotnet run --configuration Release --project test/CS2-OpenDev.Sdk.Generator.Tests
+        run: dotnet run --configuration Release --project test/CS2OpenDev.Sdk.Generator.Tests
 
       - name: Regenerate SDK into a clean tree
-        run: dotnet run --configuration Release --project src/CS2-OpenDev.Sdk.Exporter
+        run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 
       - name: Fail if regen produced a diff
-        # If the regen output differs from committed src/CS2-OpenDev.Sdk/,
+        # If the regen output differs from committed src/CS2OpenDev.Sdk/,
         # someone changed the generator (or the schema) without committing the
         # corresponding SDK regeneration. Surface the diff so the contributor
         # sees exactly what needs to be committed.
         run: |
-          if ! git diff --exit-code -- src/CS2-OpenDev.Sdk/; then
+          if ! git diff --exit-code -- src/CS2OpenDev.Sdk/; then
             echo "::error::Regenerated SDK differs from committed sources."
-            echo "::error::Run \`dotnet run --project src/CS2-OpenDev.Sdk.Exporter\` locally and commit the result."
+            echo "::error::Run \`dotnet run --project src/CS2OpenDev.Sdk.Exporter\` locally and commit the result."
             exit 1
           fi
 
@@ -72,7 +72,7 @@ jobs:
         # specific targets that aren't covered by the prior `dotnet build`,
         # and the extra cost is small compared to the reliability win.
         run: |
-          dotnet pack src/CS2-OpenDev.Sdk \
+          dotnet pack src/CS2OpenDev.Sdk \
             --configuration Release \
             -nologo \
             -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \

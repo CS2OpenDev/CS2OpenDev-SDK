@@ -16,7 +16,7 @@
         <!-- IVT targets the consumer's AssemblyName, not its project name. The
              Exporter project's csproj overrides its assembly to CS2OpenDev.SdkExporter. -->
         <InternalsVisibleTo Include="CS2OpenDev.SdkExporter"/>
-        <InternalsVisibleTo Include="CS2-OpenDev.Sdk.Generator.Tests"/>
+        <InternalsVisibleTo Include="CS2OpenDev.Sdk.Generator.Tests"/>
     </ItemGroup>
 
 </Project>

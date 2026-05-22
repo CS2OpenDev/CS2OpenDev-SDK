@@ -9,9 +9,9 @@
         <RootNamespace>CS2OpenDev.SdkExporter</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="../CS2-OpenDev.Sdk.Generator/CS2-OpenDev.Sdk.Generator.csproj"/>
+        <ProjectReference Include="../CS2OpenDev.Sdk.Generator/CS2OpenDev.Sdk.Generator.csproj"/>
     </ItemGroup>
     <ItemGroup>
-        <InternalsVisibleTo Include="CS2-OpenDev.Sdk.Generator.Tests"/>
+        <InternalsVisibleTo Include="CS2OpenDev.Sdk.Generator.Tests"/>
     </ItemGroup>
 </Project>

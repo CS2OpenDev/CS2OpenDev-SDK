@@ -47,15 +47,15 @@
         <DebugType>portable</DebugType>
 
         <!-- NuGet package identity -->
-        <PackageId>CS2-OpenDev.Sdk</PackageId>
+        <PackageId>CS2OpenDev.Sdk</PackageId>
         <!-- Version is supplied by Nerdbank.GitVersioning (`version.json`).
              MAJOR.MINOR live in `version.json` and are bumped intentionally;
              PATCH increments automatically with each commit that touches files
-             matched by `pathFilters` (currently `src/CS2-OpenDev.Sdk/`), so every
+             matched by `pathFilters` (currently `src/CS2OpenDev.Sdk/`), so every
              SDK regen produces a new monotone version. The CS2 schema revision
              and dump date are appended as SemVer 2 build metadata at pack-time
              by the `AddSchemaBuildMetadata` target below. -->
-        <Authors>CS2-OpenDev Contributors</Authors>
+        <Authors>CS2OpenDev Contributors</Authors>
         <Description>
             C# SDK generated from the CS2 Windows schema dump. Provides strongly-typed classes,
             enums, and structs for every type reflected by CS2's schema system, with native

@@ -49,8 +49,8 @@ jobs:
 
       - name: Configure bot git identity
         run: |
-          git config user.name "cs2-opendev-bot"
-          git config user.email "bot@cs2-opendev.invalid"
+          git config user.name "CS2OpenDev-bot"
+          git config user.email "bot@CS2OpenDev.invalid"
 
       - name: Capture pre-update schema revision
         id: before
@@ -89,11 +89,11 @@ jobs:
 
       - name: Run test suite
         if: steps.bump.outputs.submodule_changed == 'true'
-        run: dotnet run --configuration Release --project test/CS2-OpenDev.Sdk.Generator.Tests
+        run: dotnet run --configuration Release --project test/CS2OpenDev.Sdk.Generator.Tests
 
       - name: Regenerate SDK
         if: steps.bump.outputs.submodule_changed == 'true'
-        run: dotnet run --configuration Release --project src/CS2-OpenDev.Sdk.Exporter
+        run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 
       - name: Decide whether SDK content changed
         # The submodule moved but the regenerated SDK might match what's already
@@ -104,7 +104,7 @@ jobs:
         if: steps.bump.outputs.submodule_changed == 'true'
         id: sdk_diff
         run: |
-          if git diff --quiet -- src/CS2-OpenDev.Sdk/; then
+          if git diff --quiet -- src/CS2OpenDev.Sdk/; then
             echo "sdk_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "sdk_changed=true" >> "$GITHUB_OUTPUT"
@@ -120,7 +120,7 @@ jobs:
           SDK_CHANGED: ${{ steps.sdk_diff.outputs.sdk_changed }}
         run: |
           set -euo pipefail
-          git add upstream src/CS2-OpenDev.Sdk/
+          git add upstream src/CS2OpenDev.Sdk/
 
           if [ "$BEFORE_REV" = "$AFTER_REV" ]; then
             SUBJECT="chore(schema): refresh upstream enrichment (CS2 ${AFTER_REV} unchanged)"

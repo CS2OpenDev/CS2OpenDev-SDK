@@ -1,12 +1,12 @@
-// CS2-OpenDev.Sdk.Exporter
+// CS2OpenDev.Sdk.Exporter
 //
 // Reads schemas.json, drives the schema-gen emitters with a disk-writing sink,
-// and produces the per-class file layout under src/CS2-OpenDev.Sdk/. Includes
+// and produces the per-class file layout under src/CS2OpenDev.Sdk/. Includes
 // stale-file cleanup so classes removed from the schema disappear from disk.
 //
 // Usage (from repo root):
-//   dotnet run --project src/CS2-OpenDev.Sdk.Exporter
-//   dotnet run --project src/CS2-OpenDev.Sdk.Exporter -- <schemas.json> <outputDir>
+//   dotnet run --project src/CS2OpenDev.Sdk.Exporter
+//   dotnet run --project src/CS2OpenDev.Sdk.Exporter -- <schemas.json> <outputDir>
 
 #region
 
@@ -26,7 +26,7 @@ string schemaPath = args.Length > 0
 
 string outputDir = args.Length > 1
     ? Path.GetFullPath(args[1])
-    : Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "src/CS2-OpenDev.Sdk"));
+    : Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "src/CS2OpenDev.Sdk"));
 
 if (!File.Exists(schemaPath))
 {

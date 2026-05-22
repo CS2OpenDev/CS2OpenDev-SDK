@@ -5,7 +5,7 @@ name: Release
 # reusable `_pack-and-publish.yml` so the same pipeline runs whether release
 # is invoked here, from check-upstream.yml, or via manual workflow_dispatch.
 #
-# Per the versioning policy: every commit touching `src/CS2-OpenDev.Sdk/`
+# Per the versioning policy: every commit touching `src/CS2OpenDev.Sdk/`
 # advances the Nerdbank.GitVersioning patch number (`pathFilters` in
 # version.json), so every triggered run produces a new monotonic version.
 # Build metadata (`+cs.{revision}.dump.{yyyy-MM-dd}`) is injected by the
@@ -15,7 +15,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/CS2-OpenDev.Sdk/**'
+      - 'src/CS2OpenDev.Sdk/**'
       - 'version.json'
   workflow_dispatch: {}
 

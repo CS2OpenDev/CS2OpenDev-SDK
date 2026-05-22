@@ -86,7 +86,7 @@ internal static class GameEventsEmitter
 
         // Emit one file per event. Filename is `Events/{TypeName}.g.cs` mirroring
         // the per-module class layout, so the Exporter's `DiskSink` lands them at
-        // `src/CS2-OpenDev.Sdk/Events/{TypeName}.cs`.
+        // `src/CS2OpenDev.Sdk/Events/{TypeName}.cs`.
         foreach (GameEventModel ev in root.Events)
         {
             string typeName = csNames[ev];
