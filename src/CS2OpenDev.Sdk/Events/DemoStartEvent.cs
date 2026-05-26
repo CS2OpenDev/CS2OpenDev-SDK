@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 [NativeName("demo_start")]
 [GameEventSource("core.gameevents")]
 [GameEventLocal]
-public sealed record DemoStartEvent
+public sealed partial record DemoStartEvent
 {
     /// <summary>
     ///     CSVCMsgList_GameEvents that are combat log events.

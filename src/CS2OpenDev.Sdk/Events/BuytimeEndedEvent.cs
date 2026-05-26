@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("buytime_ended")]
 [GameEventSource("mod.gameevents")]
-public sealed record BuytimeEndedEvent
+public sealed partial record BuytimeEndedEvent
 {
 }

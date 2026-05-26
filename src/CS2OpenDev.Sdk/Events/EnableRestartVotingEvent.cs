@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("enable_restart_voting")]
 [GameEventSource("mod.gameevents")]
-public sealed record EnableRestartVotingEvent
+public sealed partial record EnableRestartVotingEvent
 {
     /// <summary>
     ///     Enable.

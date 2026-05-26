@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("endmatch_mapvote_selecting_map")]
 [GameEventSource("game.gameevents")]
-public sealed record EndmatchMapvoteSelectingMapEvent
+public sealed partial record EndmatchMapvoteSelectingMapEvent
 {
     /// <summary>
     ///     Number of "ties".

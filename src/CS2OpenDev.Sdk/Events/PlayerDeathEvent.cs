@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_death")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerDeathEvent
+public sealed partial record PlayerDeathEvent
 {
     /// <summary>
     ///     assister helped with a flash.

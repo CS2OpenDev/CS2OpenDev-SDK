@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("add_bullet_hit_marker")]
 [GameEventSource("game.gameevents")]
-public sealed record AddBulletHitMarkerEvent
+public sealed partial record AddBulletHitMarkerEvent
 {
     /// <summary>
     ///     AngX.

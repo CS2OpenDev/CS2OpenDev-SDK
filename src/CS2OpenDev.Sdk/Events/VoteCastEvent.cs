@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("vote_cast")]
 [GameEventSource("game.gameevents")]
-public sealed record VoteCastEvent
+public sealed partial record VoteCastEvent
 {
     /// <summary>
     ///     Team.

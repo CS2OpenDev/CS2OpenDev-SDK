@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("vip_killed")]
 [GameEventSource("mod.gameevents")]
-public sealed record VipKilledEvent
+public sealed partial record VipKilledEvent
 {
     /// <summary>
     ///     user ID who killed the VIP.

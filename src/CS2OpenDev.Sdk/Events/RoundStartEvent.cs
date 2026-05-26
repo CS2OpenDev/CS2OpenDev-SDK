@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_start")]
 [GameEventSource("core.gameevents")]
-public sealed record RoundStartEvent
+public sealed partial record RoundStartEvent
 {
     /// <summary>
     ///     frag limit in seconds.

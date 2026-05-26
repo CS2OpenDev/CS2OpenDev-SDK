@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("endmatch_cmm_start_reveal_items")]
 [GameEventSource("game.gameevents")]
-public sealed record EndmatchCmmStartRevealItemsEvent
+public sealed partial record EndmatchCmmStartRevealItemsEvent
 {
 }

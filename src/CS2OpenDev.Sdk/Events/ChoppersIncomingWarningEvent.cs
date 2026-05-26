@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("choppers_incoming_warning")]
 [GameEventSource("mod.gameevents")]
-public sealed record ChoppersIncomingWarningEvent
+public sealed partial record ChoppersIncomingWarningEvent
 {
     /// <summary>
     ///     Global.

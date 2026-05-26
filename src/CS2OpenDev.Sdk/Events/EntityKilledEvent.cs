@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("entity_killed")]
 [GameEventSource("core.gameevents")]
-public sealed record EntityKilledEvent
+public sealed partial record EntityKilledEvent
 {
     /// <summary>
     ///     Damagebits.

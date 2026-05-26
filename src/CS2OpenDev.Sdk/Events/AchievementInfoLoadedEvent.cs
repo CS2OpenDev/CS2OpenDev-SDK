@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("achievement_info_loaded")]
 [GameEventSource("mod.gameevents")]
-public sealed record AchievementInfoLoadedEvent
+public sealed partial record AchievementInfoLoadedEvent
 {
 }

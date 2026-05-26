@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_given_c4")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerGivenC4Event
+public sealed partial record PlayerGivenC4Event
 {
     /// <summary>
     ///     user ID who received the c4.

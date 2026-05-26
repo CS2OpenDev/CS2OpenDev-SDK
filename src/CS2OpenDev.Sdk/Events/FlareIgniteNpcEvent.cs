@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("flare_ignite_npc")]
 [GameEventSource("core.gameevents")]
-public sealed record FlareIgniteNpcEvent
+public sealed partial record FlareIgniteNpcEvent
 {
     /// <summary>
     ///     entity ignited.

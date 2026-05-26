@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_activate")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerActivateEvent
+public sealed partial record PlayerActivateEvent
 {
     /// <summary>
     ///     user ID on server.

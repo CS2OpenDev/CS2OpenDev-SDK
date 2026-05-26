@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_falldamage")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerFalldamageEvent
+public sealed partial record PlayerFalldamageEvent
 {
     /// <summary>
     ///     Damage.

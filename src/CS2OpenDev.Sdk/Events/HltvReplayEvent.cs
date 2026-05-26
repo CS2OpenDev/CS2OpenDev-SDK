@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_replay")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvReplayEvent
+public sealed partial record HltvReplayEvent
 {
     /// <summary>
     ///     number of seconds in killer replay delay.

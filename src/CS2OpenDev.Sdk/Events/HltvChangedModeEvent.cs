@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_changed_mode")]
 [GameEventSource("mod.gameevents")]
-public sealed record HltvChangedModeEvent
+public sealed partial record HltvChangedModeEvent
 {
     /// <summary>
     ///     Newmode.

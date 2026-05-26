@@ -62,7 +62,7 @@
             field names and byte offsets preserved as attributes for interop use.
         </Description>
         <PackageTags>cs2;counter-strike;schema;sdk;interop</PackageTags>
-        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_ping")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerPingEvent
+public sealed partial record PlayerPingEvent
 {
     /// <summary>
     ///     Entityid.

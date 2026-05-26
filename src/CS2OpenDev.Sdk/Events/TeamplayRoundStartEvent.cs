@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("teamplay_round_start")]
 [GameEventSource("core.gameevents")]
-public sealed record TeamplayRoundStartEvent
+public sealed partial record TeamplayRoundStartEvent
 {
     /// <summary>
     ///     is this a full reset of the map.

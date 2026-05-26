@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("team_score")]
 [GameEventSource("core.gameevents")]
-public sealed record TeamScoreEvent
+public sealed partial record TeamScoreEvent
 {
     /// <summary>
     ///     total team score.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("weapon_fire_on_empty")]
 [GameEventSource("mod.gameevents")]
-public sealed record WeaponFireOnEmptyEvent
+public sealed partial record WeaponFireOnEmptyEvent
 {
     /// <summary>
     ///     Userid.

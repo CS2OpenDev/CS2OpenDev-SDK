@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("server_shutdown")]
 [GameEventSource("core.gameevents")]
-public sealed record ServerShutdownEvent
+public sealed partial record ServerShutdownEvent
 {
     /// <summary>
     ///     reason why server was shut down.

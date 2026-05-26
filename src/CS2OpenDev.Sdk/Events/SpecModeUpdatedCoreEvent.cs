@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("spec_mode_updated")]
 [GameEventSource("core.gameevents")]
-public sealed record SpecModeUpdatedCoreEvent
+public sealed partial record SpecModeUpdatedCoreEvent
 {
     /// <summary>
     ///     spectating player.

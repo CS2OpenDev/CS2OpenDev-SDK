@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_shoot")]
 [GameEventSource("game.gameevents")]
-public sealed record PlayerShootEvent
+public sealed partial record PlayerShootEvent
 {
     /// <summary>
     ///     weapon mode.

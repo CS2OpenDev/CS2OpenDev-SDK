@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_spawned")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerSpawnedEvent
+public sealed partial record PlayerSpawnedEvent
 {
     /// <summary>
     ///     true if restart is pending.

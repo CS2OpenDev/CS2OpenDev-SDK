@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("vip_escaped")]
 [GameEventSource("mod.gameevents")]
-public sealed record VipEscapedEvent
+public sealed partial record VipEscapedEvent
 {
     /// <summary>
     ///     player who was the VIP.

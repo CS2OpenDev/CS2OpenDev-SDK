@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("entity_visible")]
 [GameEventSource("core.gameevents")]
-public sealed record EntityVisibleCoreEvent
+public sealed partial record EntityVisibleCoreEvent
 {
     /// <summary>
     ///     Classname of the entity they see.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("spec_mode_updated")]
 [GameEventSource("mod.gameevents")]
-public sealed record SpecModeUpdatedEvent
+public sealed partial record SpecModeUpdatedEvent
 {
     /// <summary>
     ///     entindex of the player.

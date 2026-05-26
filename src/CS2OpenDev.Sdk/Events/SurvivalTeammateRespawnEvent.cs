@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("survival_teammate_respawn")]
 [GameEventSource("mod.gameevents")]
-public sealed record SurvivalTeammateRespawnEvent
+public sealed partial record SurvivalTeammateRespawnEvent
 {
     /// <summary>
     ///     Userid.

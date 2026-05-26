@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_reset_vote")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerResetVoteEvent
+public sealed partial record PlayerResetVoteEvent
 {
     /// <summary>
     ///     Userid.

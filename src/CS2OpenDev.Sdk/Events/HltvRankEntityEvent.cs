@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_rank_entity")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvRankEntityEvent
+public sealed partial record HltvRankEntityEvent
 {
     /// <summary>
     ///     ranking, how interesting is this entity to view.

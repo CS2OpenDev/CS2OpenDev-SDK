@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bonus_updated")]
 [GameEventSource("core.gameevents")]
-public sealed record BonusUpdatedEvent
+public sealed partial record BonusUpdatedEvent
 {
     /// <summary>
     ///     Numadvanced.

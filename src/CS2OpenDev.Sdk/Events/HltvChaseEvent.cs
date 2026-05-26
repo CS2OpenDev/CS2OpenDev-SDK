@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_chase")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvChaseEvent
+public sealed partial record HltvChaseEvent
 {
     /// <summary>
     ///     camera distance.

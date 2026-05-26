@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("parachute_pickup")]
 [GameEventSource("mod.gameevents")]
-public sealed record ParachutePickupEvent
+public sealed partial record ParachutePickupEvent
 {
     /// <summary>
     ///     Userid.

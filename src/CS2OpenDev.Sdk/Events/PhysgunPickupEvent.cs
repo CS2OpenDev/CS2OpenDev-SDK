@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("physgun_pickup")]
 [GameEventSource("core.gameevents")]
-public sealed record PhysgunPickupEvent
+public sealed partial record PhysgunPickupEvent
 {
     /// <summary>
     ///     entity picked up.

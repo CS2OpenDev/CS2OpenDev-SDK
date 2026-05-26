@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("teamchange_pending")]
 [GameEventSource("mod.gameevents")]
-public sealed record TeamchangePendingEvent
+public sealed partial record TeamchangePendingEvent
 {
     /// <summary>
     ///     Toteam.

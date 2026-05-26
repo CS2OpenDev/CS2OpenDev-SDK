@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_time_warning")]
 [GameEventSource("game.gameevents")]
-public sealed record RoundTimeWarningEvent
+public sealed partial record RoundTimeWarningEvent
 {
 }

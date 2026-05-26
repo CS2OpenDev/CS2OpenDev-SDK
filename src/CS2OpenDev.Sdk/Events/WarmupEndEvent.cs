@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("warmup_end")]
 [GameEventSource("game.gameevents")]
-public sealed record WarmupEndEvent
+public sealed partial record WarmupEndEvent
 {
 }

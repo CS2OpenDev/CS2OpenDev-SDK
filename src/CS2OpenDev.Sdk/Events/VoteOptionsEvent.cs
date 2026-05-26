@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("vote_options")]
 [GameEventSource("game.gameevents")]
-public sealed record VoteOptionsEvent
+public sealed partial record VoteOptionsEvent
 {
     /// <summary>
     ///     Number of options - up to MAX_VOTE_OPTIONS.

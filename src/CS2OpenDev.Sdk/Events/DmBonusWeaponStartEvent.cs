@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("dm_bonus_weapon_start")]
 [GameEventSource("game.gameevents")]
-public sealed record DmBonusWeaponStartEvent
+public sealed partial record DmBonusWeaponStartEvent
 {
     /// <summary>
     ///     Loadout position of the bonus weapon.

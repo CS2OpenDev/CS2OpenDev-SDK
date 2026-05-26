@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_full_update")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerFullUpdateEvent
+public sealed partial record PlayerFullUpdateEvent
 {
     /// <summary>
     ///     Number of this full update.

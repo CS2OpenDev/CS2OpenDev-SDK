@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("inventory_updated")]
 [GameEventSource("game.gameevents")]
-public sealed record InventoryUpdatedEvent
+public sealed partial record InventoryUpdatedEvent
 {
 }

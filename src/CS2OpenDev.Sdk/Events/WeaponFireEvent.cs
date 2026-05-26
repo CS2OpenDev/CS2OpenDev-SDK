@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("weapon_fire")]
 [GameEventSource("mod.gameevents")]
-public sealed record WeaponFireEvent
+public sealed partial record WeaponFireEvent
 {
     /// <summary>
     ///     is weapon silenced.

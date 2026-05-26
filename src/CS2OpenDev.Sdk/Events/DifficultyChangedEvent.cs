@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("difficulty_changed")]
 [GameEventSource("core.gameevents")]
-public sealed record DifficultyChangedEvent
+public sealed partial record DifficultyChangedEvent
 {
     /// <summary>
     ///     NewDifficulty.

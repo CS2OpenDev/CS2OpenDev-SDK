@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("clientside_reload_custom_econ")]
 [GameEventSource("mod.gameevents")]
-public sealed record ClientsideReloadCustomEconEvent
+public sealed partial record ClientsideReloadCustomEconEvent
 {
     /// <summary>
     ///     Steamid.

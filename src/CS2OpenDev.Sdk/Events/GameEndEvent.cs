@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("game_end")]
 [GameEventSource("game.gameevents")]
-public sealed record GameEndEvent
+public sealed partial record GameEndEvent
 {
     /// <summary>
     ///     winner team/user id.

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_end_upload_stats")]
 [GameEventSource("game.gameevents")]
-public sealed record RoundEndUploadStatsEvent
+public sealed partial record RoundEndUploadStatsEvent
 {
 }

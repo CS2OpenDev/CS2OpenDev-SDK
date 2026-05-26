@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("server_cvar")]
 [GameEventSource("core.gameevents")]
-public sealed record ServerCvarEvent
+public sealed partial record ServerCvarEvent
 {
     /// <summary>
     ///     cvar name, eg "mp_roundtime".

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_freeze_end")]
 [GameEventSource("core.gameevents")]
-public sealed record RoundFreezeEndEvent
+public sealed partial record RoundFreezeEndEvent
 {
 }

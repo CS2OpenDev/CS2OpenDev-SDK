@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cart_updated")]
 [GameEventSource("core.gameevents")]
-public sealed record CartUpdatedEvent
+public sealed partial record CartUpdatedEvent
 {
 }

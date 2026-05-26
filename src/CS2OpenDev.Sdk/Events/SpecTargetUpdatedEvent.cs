@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("spec_target_updated")]
 [GameEventSource("core.gameevents")]
-public sealed record SpecTargetUpdatedEvent
+public sealed partial record SpecTargetUpdatedEvent
 {
     /// <summary>
     ///     ehandle of the target.

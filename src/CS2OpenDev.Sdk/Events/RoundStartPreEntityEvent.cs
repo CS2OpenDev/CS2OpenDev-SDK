@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_start_pre_entity")]
 [GameEventSource("core.gameevents")]
-public sealed record RoundStartPreEntityEvent
+public sealed partial record RoundStartPreEntityEvent
 {
 }

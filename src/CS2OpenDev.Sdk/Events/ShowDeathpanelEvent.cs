@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("show_deathpanel")]
 [GameEventSource("mod.gameevents")]
-public sealed record ShowDeathpanelEvent
+public sealed partial record ShowDeathpanelEvent
 {
     /// <summary>
     ///     DamageGiven.

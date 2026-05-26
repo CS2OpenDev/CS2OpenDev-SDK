@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("team_intro_end")]
 [GameEventSource("mod.gameevents")]
-public sealed record TeamIntroEndEvent
+public sealed partial record TeamIntroEndEvent
 {
 }

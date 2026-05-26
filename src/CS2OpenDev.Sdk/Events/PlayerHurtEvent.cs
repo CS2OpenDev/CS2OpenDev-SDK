@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_hurt")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerHurtEvent
+public sealed partial record PlayerHurtEvent
 {
     /// <summary>
     ///     remaining armor points.

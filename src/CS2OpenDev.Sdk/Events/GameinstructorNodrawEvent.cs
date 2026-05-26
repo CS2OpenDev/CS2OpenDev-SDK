@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("gameinstructor_nodraw")]
 [GameEventSource("core.gameevents")]
-public sealed record GameinstructorNodrawEvent
+public sealed partial record GameinstructorNodrawEvent
 {
 }

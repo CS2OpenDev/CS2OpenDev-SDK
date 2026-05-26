@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("game_message")]
 [GameEventSource("core.gameevents")]
-public sealed record GameMessageEvent
+public sealed partial record GameMessageEvent
 {
     /// <summary>
     ///     0 = console, 1 = HUD.

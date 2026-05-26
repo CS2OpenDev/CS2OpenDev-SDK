@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("grenade_bounce")]
 [GameEventSource("mod.gameevents")]
-public sealed record GrenadeBounceEvent
+public sealed partial record GrenadeBounceEvent
 {
     /// <summary>
     ///     Userid.

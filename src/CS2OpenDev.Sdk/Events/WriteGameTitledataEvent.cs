@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("write_game_titledata")]
 [GameEventSource("game.gameevents")]
-public sealed record WriteGameTitledataEvent
+public sealed partial record WriteGameTitledataEvent
 {
     /// <summary>
     ///     Controller id of user.

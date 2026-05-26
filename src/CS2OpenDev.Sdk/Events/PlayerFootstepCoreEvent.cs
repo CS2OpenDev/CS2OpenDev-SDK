@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_footstep")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerFootstepCoreEvent
+public sealed partial record PlayerFootstepCoreEvent
 {
     /// <summary>
     ///     Userid.

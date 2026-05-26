@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("map_shutdown")]
 [GameEventSource("core.gameevents")]
-public sealed record MapShutdownEvent
+public sealed partial record MapShutdownEvent
 {
 }

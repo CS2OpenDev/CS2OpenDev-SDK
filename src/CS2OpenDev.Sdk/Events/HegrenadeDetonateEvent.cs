@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hegrenade_detonate")]
 [GameEventSource("mod.gameevents")]
-public sealed record HegrenadeDetonateEvent
+public sealed partial record HegrenadeDetonateEvent
 {
     /// <summary>
     ///     Entityid.

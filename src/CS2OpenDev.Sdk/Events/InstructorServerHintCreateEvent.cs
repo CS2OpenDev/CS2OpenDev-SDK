@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("instructor_server_hint_create")]
 [GameEventSource("game.gameevents")]
-public sealed record InstructorServerHintCreateEvent
+public sealed partial record InstructorServerHintCreateEvent
 {
     /// <summary>
     ///     the hint caption that only the activator sees e.g. "#YouPushedItGood".

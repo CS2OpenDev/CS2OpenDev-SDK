@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("write_profile_data")]
 [GameEventSource("mod.gameevents")]
-public sealed record WriteProfileDataEvent
+public sealed partial record WriteProfileDataEvent
 {
 }

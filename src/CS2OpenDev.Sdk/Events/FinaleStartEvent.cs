@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("finale_start")]
 [GameEventSource("core.gameevents")]
-public sealed record FinaleStartEvent
+public sealed partial record FinaleStartEvent
 {
     /// <summary>
     ///     Rushes.

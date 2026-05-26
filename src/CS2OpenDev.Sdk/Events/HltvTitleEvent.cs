@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_title")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvTitleEvent
+public sealed partial record HltvTitleEvent
 {
     /// <summary>
     ///     Text.

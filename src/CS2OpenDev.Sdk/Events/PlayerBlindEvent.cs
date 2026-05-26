@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_blind")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerBlindEvent
+public sealed partial record PlayerBlindEvent
 {
     /// <summary>
     ///     user ID who threw the flash.

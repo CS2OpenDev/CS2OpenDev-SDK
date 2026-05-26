@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("switch_team")]
 [GameEventSource("mod.gameevents")]
-public sealed record SwitchTeamEvent
+public sealed partial record SwitchTeamEvent
 {
     /// <summary>
     ///     average rank of human players.

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("local_player_pawn_changed")]
 [GameEventSource("core.gameevents")]
-public sealed record LocalPlayerPawnChangedEvent
+public sealed partial record LocalPlayerPawnChangedEvent
 {
 }

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("item_schema_initialized")]
 [GameEventSource("core.gameevents")]
-public sealed record ItemSchemaInitializedEvent
+public sealed partial record ItemSchemaInitializedEvent
 {
 }

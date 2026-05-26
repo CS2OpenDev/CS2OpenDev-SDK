@@ -18,6 +18,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_poststart")]
 [GameEventSource("mod.gameevents")]
-public sealed record RoundPoststartEvent
+public sealed partial record RoundPoststartEvent
 {
 }

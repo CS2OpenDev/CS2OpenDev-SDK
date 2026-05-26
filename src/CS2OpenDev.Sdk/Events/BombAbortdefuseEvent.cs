@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bomb_abortdefuse")]
 [GameEventSource("mod.gameevents")]
-public sealed record BombAbortdefuseEvent
+public sealed partial record BombAbortdefuseEvent
 {
     /// <summary>
     ///     player who was defusing.

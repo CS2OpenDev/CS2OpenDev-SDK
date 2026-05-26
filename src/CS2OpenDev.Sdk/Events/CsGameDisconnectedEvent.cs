@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_game_disconnected")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsGameDisconnectedEvent
+public sealed partial record CsGameDisconnectedEvent
 {
 }

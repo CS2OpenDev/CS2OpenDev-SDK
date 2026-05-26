@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bullet_damage")]
 [GameEventSource("mod.gameevents")]
-public sealed record BulletDamageEvent
+public sealed partial record BulletDamageEvent
 {
     /// <summary>
     ///     aim punch x.

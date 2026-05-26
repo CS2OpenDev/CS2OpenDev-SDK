@@ -218,4 +218,4 @@ Workflow: edit the relevant emitter, run the test suite, regenerate, review the 
 
 ## License
 
-GPL-3.0 — see [`LICENSE`](LICENSE).
+MIT — see [`LICENSE`](LICENSE).

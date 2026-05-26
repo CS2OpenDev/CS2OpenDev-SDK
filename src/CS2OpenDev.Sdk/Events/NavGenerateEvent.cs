@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("nav_generate")]
 [GameEventSource("mod.gameevents")]
-public sealed record NavGenerateEvent
+public sealed partial record NavGenerateEvent
 {
 }

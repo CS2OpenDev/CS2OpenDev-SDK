@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("weaponhud_selection")]
 [GameEventSource("game.gameevents")]
-public sealed record WeaponhudSelectionEvent
+public sealed partial record WeaponhudSelectionEvent
 {
     /// <summary>
     ///     Weapon entity index.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_win_panel_round")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsWinPanelRoundEvent
+public sealed partial record CsWinPanelRoundEvent
 {
     /// <summary>
     ///     define in cs_gamerules.h.

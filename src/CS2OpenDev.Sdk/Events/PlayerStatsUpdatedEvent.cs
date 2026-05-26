@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_stats_updated")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerStatsUpdatedEvent
+public sealed partial record PlayerStatsUpdatedEvent
 {
     /// <summary>
     ///     Forceupload.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("achievement_earned")]
 [GameEventSource("core.gameevents")]
-public sealed record AchievementEarnedEvent
+public sealed partial record AchievementEarnedEvent
 {
     /// <summary>
     ///     achievement ID.

@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_cameraman")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvCameramanEvent
+public sealed partial record HltvCameramanEvent
 {
     /// <summary>
     ///     camera man entity index.

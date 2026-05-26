@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("door_break")]
 [GameEventSource("game.gameevents")]
-public sealed record DoorBreakEvent
+public sealed partial record DoorBreakEvent
 {
     /// <summary>
     ///     Dmgstate.

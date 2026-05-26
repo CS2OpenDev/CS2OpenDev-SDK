@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bomb_begindefuse")]
 [GameEventSource("mod.gameevents")]
-public sealed record BombBegindefuseEvent
+public sealed partial record BombBegindefuseEvent
 {
     /// <summary>
     ///     Haskit.

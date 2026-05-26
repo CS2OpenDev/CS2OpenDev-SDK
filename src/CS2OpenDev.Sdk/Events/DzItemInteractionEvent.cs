@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("dz_item_interaction")]
 [GameEventSource("mod.gameevents")]
-public sealed record DzItemInteractionEvent
+public sealed partial record DzItemInteractionEvent
 {
     /// <summary>
     ///     crate entindex.

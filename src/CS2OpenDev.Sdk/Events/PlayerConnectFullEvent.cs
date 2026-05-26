@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_connect_full")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerConnectFullEvent
+public sealed partial record PlayerConnectFullEvent
 {
     /// <summary>
     ///     user ID on server (unique on server).

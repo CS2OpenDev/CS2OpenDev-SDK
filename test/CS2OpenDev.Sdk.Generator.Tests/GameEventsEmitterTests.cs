@@ -18,7 +18,7 @@ public class GameEventsEmitterTests
 {
     // ── Per-event file shape ──────────────────────────────────────────────────
 
-    /// <summary>Emits a `public sealed record` declaration in the Events sub-namespace with the expected `{Name}Event` type name.</summary>
+    /// <summary>Emits a `public sealed partial record` declaration in the Events sub-namespace with the expected `{Name}Event` type name.</summary>
     [Test]
     public async Task Emit_BasicEvent_ProducesSealedRecordDeclaration()
     {
@@ -36,7 +36,7 @@ public class GameEventsEmitterTests
 
         string src = result.Files["Events/PlayerDeathEvent"];
         await Assert.That(src).Contains("namespace CS2Schema.Events;");
-        await Assert.That(src).Contains("public sealed record PlayerDeathEvent");
+        await Assert.That(src).Contains("public sealed partial record PlayerDeathEvent");
     }
 
     /// <summary>Stamps the record with `[NativeName]` carrying the raw event name and `[GameEventSource]` carrying the originating `.gameevents` file.</summary>
@@ -205,7 +205,7 @@ public class GameEventsEmitterTests
             """);
 
         string src = result.Files["Events/DemoStopEvent"];
-        await Assert.That(src).Contains("public sealed record DemoStopEvent");
+        await Assert.That(src).Contains("public sealed partial record DemoStopEvent");
         // No `required` field properties at all — the body is just braces.
         await Assert.That(src).DoesNotContain("public required");
     }

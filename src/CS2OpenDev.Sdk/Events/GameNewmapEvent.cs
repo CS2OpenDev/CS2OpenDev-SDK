@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("game_newmap")]
 [GameEventSource("game.gameevents")]
-public sealed record GameNewmapEvent
+public sealed partial record GameNewmapEvent
 {
     /// <summary>
     ///     map name.

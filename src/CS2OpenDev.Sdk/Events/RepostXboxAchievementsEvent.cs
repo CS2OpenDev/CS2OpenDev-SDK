@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("repost_xbox_achievements")]
 [GameEventSource("mod.gameevents")]
-public sealed record RepostXboxAchievementsEvent
+public sealed partial record RepostXboxAchievementsEvent
 {
     /// <summary>
     ///     splitscreen ID.

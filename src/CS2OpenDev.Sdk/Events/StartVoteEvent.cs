@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("start_vote")]
 [GameEventSource("mod.gameevents")]
-public sealed record StartVoteEvent
+public sealed partial record StartVoteEvent
 {
     /// <summary>
     ///     Type.

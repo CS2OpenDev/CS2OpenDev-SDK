@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("teamplay_broadcast_audio")]
 [GameEventSource("core.gameevents")]
-public sealed record TeamplayBroadcastAudioEvent
+public sealed partial record TeamplayBroadcastAudioEvent
 {
     /// <summary>
     ///     name of the sound to emit.

@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("server_spawn")]
 [GameEventSource("core.gameevents")]
-public sealed record ServerSpawnEvent
+public sealed partial record ServerSpawnEvent
 {
     /// <summary>
     ///     addon name.

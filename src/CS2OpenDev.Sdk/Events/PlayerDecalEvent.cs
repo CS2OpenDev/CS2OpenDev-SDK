@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_decal")]
 [GameEventSource("game.gameevents")]
-public sealed record PlayerDecalEvent
+public sealed partial record PlayerDecalEvent
 {
     /// <summary>
     ///     Userid.

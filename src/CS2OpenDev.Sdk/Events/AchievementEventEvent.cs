@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("achievement_event")]
 [GameEventSource("core.gameevents")]
-public sealed record AchievementEventEvent
+public sealed partial record AchievementEventEvent
 {
     /// <summary>
     ///     non-localized name of achievement.

@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("instructor_server_hint_stop")]
 [GameEventSource("game.gameevents")]
-public sealed record InstructorServerHintStopEvent
+public sealed partial record InstructorServerHintStopEvent
 {
     /// <summary>
     ///     The hint to stop. Will stop ALL hints with this name.

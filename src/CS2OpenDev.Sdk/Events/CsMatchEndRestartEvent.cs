@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_match_end_restart")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsMatchEndRestartEvent
+public sealed partial record CsMatchEndRestartEvent
 {
 }

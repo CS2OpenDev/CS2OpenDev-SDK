@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("break_breakable")]
 [GameEventSource("core.gameevents")]
-public sealed record BreakBreakableEvent
+public sealed partial record BreakBreakableEvent
 {
     /// <summary>
     ///     Entindex.

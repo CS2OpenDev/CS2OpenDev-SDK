@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("dynamic_shadow_light_changed")]
 [GameEventSource("core.gameevents")]
-public sealed record DynamicShadowLightChangedEvent
+public sealed partial record DynamicShadowLightChangedEvent
 {
 }

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bomb_pickup")]
 [GameEventSource("mod.gameevents")]
-public sealed record BombPickupEvent
+public sealed partial record BombPickupEvent
 {
     /// <summary>
     ///     player pawn who picked up the bomb.

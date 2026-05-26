@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_hurt")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerHurtCoreEvent
+public sealed partial record PlayerHurtCoreEvent
 {
     /// <summary>
     ///     player who attacked.

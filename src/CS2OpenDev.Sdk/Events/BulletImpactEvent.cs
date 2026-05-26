@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bullet_impact")]
 [GameEventSource("mod.gameevents")]
-public sealed record BulletImpactEvent
+public sealed partial record BulletImpactEvent
 {
     /// <summary>
     ///     Userid.

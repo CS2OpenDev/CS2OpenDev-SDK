@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("smokegrenade_expired")]
 [GameEventSource("mod.gameevents")]
-public sealed record SmokegrenadeExpiredEvent
+public sealed partial record SmokegrenadeExpiredEvent
 {
     /// <summary>
     ///     Entityid.

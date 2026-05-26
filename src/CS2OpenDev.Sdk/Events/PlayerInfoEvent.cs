@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_info")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerInfoEvent
+public sealed partial record PlayerInfoEvent
 {
     /// <summary>
     ///     true if player is a AI bot.

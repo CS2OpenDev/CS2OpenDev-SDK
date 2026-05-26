@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("door_close")]
 [GameEventSource("core.gameevents")]
-public sealed record DoorCloseEvent
+public sealed partial record DoorCloseEvent
 {
     /// <summary>
     ///     Is the door a checkpoint door.

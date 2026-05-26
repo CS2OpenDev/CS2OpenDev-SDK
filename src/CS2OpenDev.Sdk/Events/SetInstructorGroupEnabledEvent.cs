@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("set_instructor_group_enabled")]
 [GameEventSource("core.gameevents")]
-public sealed record SetInstructorGroupEnabledEvent
+public sealed partial record SetInstructorGroupEnabledEvent
 {
     /// <summary>
     ///     Enabled.

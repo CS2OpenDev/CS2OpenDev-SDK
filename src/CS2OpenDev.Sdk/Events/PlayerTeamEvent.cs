@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_team")]
 [GameEventSource("game.gameevents")]
-public sealed record PlayerTeamEvent
+public sealed partial record PlayerTeamEvent
 {
     /// <summary>
     ///     team change because player disconnects.

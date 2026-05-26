@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("instructor_server_hint_stop")]
 [GameEventSource("core.gameevents")]
-public sealed record InstructorServerHintStopCoreEvent
+public sealed partial record InstructorServerHintStopCoreEvent
 {
     /// <summary>
     ///     entity id of the env_instructor_hint that fired the event.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("instructor_start_lesson")]
 [GameEventSource("core.gameevents")]
-public sealed record InstructorStartLessonEvent
+public sealed partial record InstructorStartLessonEvent
 {
     /// <summary>
     ///     Name of the lesson to start.  Must match instructor_lesson.txt.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("jointeam_failed")]
 [GameEventSource("mod.gameevents")]
-public sealed record JointeamFailedEvent
+public sealed partial record JointeamFailedEvent
 {
     /// <summary>
     ///     0 = team_full.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hostname_changed")]
 [GameEventSource("core.gameevents")]
-public sealed record HostnameChangedEvent
+public sealed partial record HostnameChangedEvent
 {
     /// <summary>
     ///     Hostname.

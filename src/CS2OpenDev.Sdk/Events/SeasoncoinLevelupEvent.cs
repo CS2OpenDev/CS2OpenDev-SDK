@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("seasoncoin_levelup")]
 [GameEventSource("mod.gameevents")]
-public sealed record SeasoncoinLevelupEvent
+public sealed partial record SeasoncoinLevelupEvent
 {
     /// <summary>
     ///     Category.

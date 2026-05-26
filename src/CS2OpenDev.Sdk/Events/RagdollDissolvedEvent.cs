@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("ragdoll_dissolved")]
 [GameEventSource("core.gameevents")]
-public sealed record RagdollDissolvedEvent
+public sealed partial record RagdollDissolvedEvent
 {
     /// <summary>
     ///     Entindex.

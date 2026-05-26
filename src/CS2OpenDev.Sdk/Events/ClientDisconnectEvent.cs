@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("client_disconnect")]
 [GameEventSource("mod.gameevents")]
-public sealed record ClientDisconnectEvent
+public sealed partial record ClientDisconnectEvent
 {
 }

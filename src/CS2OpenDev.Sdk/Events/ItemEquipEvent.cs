@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("item_equip")]
 [GameEventSource("mod.gameevents")]
-public sealed record ItemEquipEvent
+public sealed partial record ItemEquipEvent
 {
     /// <summary>
     ///     Canzoom.

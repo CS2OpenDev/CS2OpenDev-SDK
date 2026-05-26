@@ -18,6 +18,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("user_data_downloaded")]
 [GameEventSource("core.gameevents")]
-public sealed record UserDataDownloadedEvent
+public sealed partial record UserDataDownloadedEvent
 {
 }

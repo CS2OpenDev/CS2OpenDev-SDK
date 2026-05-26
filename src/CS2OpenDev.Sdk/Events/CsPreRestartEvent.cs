@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_pre_restart")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsPreRestartEvent
+public sealed partial record CsPreRestartEvent
 {
 }

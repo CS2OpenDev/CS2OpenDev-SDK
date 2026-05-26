@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_chat")]
 [GameEventSource("game.gameevents")]
-public sealed record PlayerChatEvent
+public sealed partial record PlayerChatEvent
 {
     /// <summary>
     ///     true if team only chat.

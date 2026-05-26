@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("door_open")]
 [GameEventSource("game.gameevents")]
-public sealed record DoorOpenEvent
+public sealed partial record DoorOpenEvent
 {
     /// <summary>
     ///     Entindex.

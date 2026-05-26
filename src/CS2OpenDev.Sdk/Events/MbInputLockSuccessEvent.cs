@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("mb_input_lock_success")]
 [GameEventSource("mod.gameevents")]
-public sealed record MbInputLockSuccessEvent
+public sealed partial record MbInputLockSuccessEvent
 {
 }

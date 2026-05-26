@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("material_default_complete")]
 [GameEventSource("mod.gameevents")]
-public sealed record MaterialDefaultCompleteEvent
+public sealed partial record MaterialDefaultCompleteEvent
 {
 }

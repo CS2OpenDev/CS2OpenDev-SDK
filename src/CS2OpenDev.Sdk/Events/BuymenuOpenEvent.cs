@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("buymenu_open")]
 [GameEventSource("mod.gameevents")]
-public sealed record BuymenuOpenEvent
+public sealed partial record BuymenuOpenEvent
 {
 }

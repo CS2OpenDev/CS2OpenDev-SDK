@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 [NativeName("vote_passed")]
 [GameEventSource("core.gameevents")]
 [GameEventReliable]
-public sealed record VotePassedEvent
+public sealed partial record VotePassedEvent
 {
     /// <summary>
     ///     Details.

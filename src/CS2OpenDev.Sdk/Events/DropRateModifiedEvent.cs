@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("drop_rate_modified")]
 [GameEventSource("core.gameevents")]
-public sealed record DropRateModifiedEvent
+public sealed partial record DropRateModifiedEvent
 {
 }

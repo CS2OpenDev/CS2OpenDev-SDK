@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_hintmessage")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerHintmessageEvent
+public sealed partial record PlayerHintmessageEvent
 {
     /// <summary>
     ///     localizable string of a hint.

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("gc_connected")]
 [GameEventSource("core.gameevents")]
-public sealed record GcConnectedEvent
+public sealed partial record GcConnectedEvent
 {
 }

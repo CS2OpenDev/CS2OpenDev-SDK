@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hostage_killed")]
 [GameEventSource("mod.gameevents")]
-public sealed record HostageKilledEvent
+public sealed partial record HostageKilledEvent
 {
     /// <summary>
     ///     hostage entity index.

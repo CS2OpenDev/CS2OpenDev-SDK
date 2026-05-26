@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("silencer_on")]
 [GameEventSource("mod.gameevents")]
-public sealed record SilencerOnEvent
+public sealed partial record SilencerOnEvent
 {
     /// <summary>
     ///     Userid.

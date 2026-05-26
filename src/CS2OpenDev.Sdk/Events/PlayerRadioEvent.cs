@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_radio")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerRadioEvent
+public sealed partial record PlayerRadioEvent
 {
     /// <summary>
     ///     Slot.

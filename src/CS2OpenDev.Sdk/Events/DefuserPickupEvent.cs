@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("defuser_pickup")]
 [GameEventSource("mod.gameevents")]
-public sealed record DefuserPickupEvent
+public sealed partial record DefuserPickupEvent
 {
     /// <summary>
     ///     defuser's entity ID.

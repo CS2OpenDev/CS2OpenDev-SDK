@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 [NativeName("vote_started")]
 [GameEventSource("core.gameevents")]
 [GameEventReliable]
-public sealed record VoteStartedCoreEvent
+public sealed partial record VoteStartedCoreEvent
 {
     /// <summary>
     ///     entity id of the player who initiated the vote.

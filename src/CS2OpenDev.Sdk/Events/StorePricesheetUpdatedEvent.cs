@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("store_pricesheet_updated")]
 [GameEventSource("core.gameevents")]
-public sealed record StorePricesheetUpdatedEvent
+public sealed partial record StorePricesheetUpdatedEvent
 {
 }

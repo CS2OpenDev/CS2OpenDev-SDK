@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("enter_bombzone")]
 [GameEventSource("mod.gameevents")]
-public sealed record EnterBombzoneEvent
+public sealed partial record EnterBombzoneEvent
 {
     /// <summary>
     ///     Hasbomb.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_end")]
 [GameEventSource("core.gameevents")]
-public sealed record RoundEndCoreEvent
+public sealed partial record RoundEndCoreEvent
 {
     /// <summary>
     ///     end round message.

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("guardian_wave_restart")]
 [GameEventSource("mod.gameevents")]
-public sealed record GuardianWaveRestartEvent
+public sealed partial record GuardianWaveRestartEvent
 {
 }

@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("start_halftime")]
 [GameEventSource("mod.gameevents")]
-public sealed record StartHalftimeEvent
+public sealed partial record StartHalftimeEvent
 {
 }

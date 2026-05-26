@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("survival_paradrop_break")]
 [GameEventSource("mod.gameevents")]
-public sealed record SurvivalParadropBreakEvent
+public sealed partial record SurvivalParadropBreakEvent
 {
     /// <summary>
     ///     Entityid.

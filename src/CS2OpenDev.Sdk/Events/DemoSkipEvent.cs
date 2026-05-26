@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 [NativeName("demo_skip")]
 [GameEventSource("core.gameevents")]
 [GameEventLocal]
-public sealed record DemoSkipEvent
+public sealed partial record DemoSkipEvent
 {
     /// <summary>
     ///     CSVCMsgList_GameEvents.

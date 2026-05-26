@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("item_remove")]
 [GameEventSource("mod.gameevents")]
-public sealed record ItemRemoveEvent
+public sealed partial record ItemRemoveEvent
 {
     /// <summary>
     ///     Defindex.

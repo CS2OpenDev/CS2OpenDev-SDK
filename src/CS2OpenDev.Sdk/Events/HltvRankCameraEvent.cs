@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_rank_camera")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvRankCameraEvent
+public sealed partial record HltvRankCameraEvent
 {
     /// <summary>
     ///     fixed camera index.

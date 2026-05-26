@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("helicopter_grenade_punt_miss")]
 [GameEventSource("core.gameevents")]
-public sealed record HelicopterGrenadePuntMissEvent
+public sealed partial record HelicopterGrenadePuntMissEvent
 {
 }

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_prev_next_spectator")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsPrevNextSpectatorEvent
+public sealed partial record CsPrevNextSpectatorEvent
 {
     /// <summary>
     ///     Next.

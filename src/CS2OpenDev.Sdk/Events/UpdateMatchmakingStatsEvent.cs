@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("update_matchmaking_stats")]
 [GameEventSource("mod.gameevents")]
-public sealed record UpdateMatchmakingStatsEvent
+public sealed partial record UpdateMatchmakingStatsEvent
 {
 }

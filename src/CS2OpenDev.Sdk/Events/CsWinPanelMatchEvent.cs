@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_win_panel_match")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsWinPanelMatchEvent
+public sealed partial record CsWinPanelMatchEvent
 {
 }

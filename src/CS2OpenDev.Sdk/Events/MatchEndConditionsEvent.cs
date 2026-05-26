@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("match_end_conditions")]
 [GameEventSource("mod.gameevents")]
-public sealed record MatchEndConditionsEvent
+public sealed partial record MatchEndConditionsEvent
 {
     /// <summary>
     ///     Frags.

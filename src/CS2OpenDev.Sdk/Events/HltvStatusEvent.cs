@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_status")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvStatusEvent
+public sealed partial record HltvStatusEvent
 {
     /// <summary>
     ///     number of HLTV spectators.

@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("nextlevel_changed")]
 [GameEventSource("mod.gameevents")]
-public sealed record NextlevelChangedEvent
+public sealed partial record NextlevelChangedEvent
 {
     /// <summary>
     ///     Mapgroup.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("ugc_map_download_error")]
 [GameEventSource("game.gameevents")]
-public sealed record UgcMapDownloadErrorEvent
+public sealed partial record UgcMapDownloadErrorEvent
 {
     /// <summary>
     ///     ErrorCode.

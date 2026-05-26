@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("clientside_lesson_closed")]
 [GameEventSource("core.gameevents")]
-public sealed record ClientsideLessonClosedEvent
+public sealed partial record ClientsideLessonClosedEvent
 {
     /// <summary>
     ///     LessonName.

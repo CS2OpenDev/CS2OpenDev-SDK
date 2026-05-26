@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("client_loadout_changed")]
 [GameEventSource("game.gameevents")]
-public sealed record ClientLoadoutChangedEvent
+public sealed partial record ClientLoadoutChangedEvent
 {
 }

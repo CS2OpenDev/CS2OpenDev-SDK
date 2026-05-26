@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("announce_phase_end")]
 [GameEventSource("mod.gameevents")]
-public sealed record AnnouncePhaseEndEvent
+public sealed partial record AnnouncePhaseEndEvent
 {
 }

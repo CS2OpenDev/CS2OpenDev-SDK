@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("drone_dispatched")]
 [GameEventSource("mod.gameevents")]
-public sealed record DroneDispatchedEvent
+public sealed partial record DroneDispatchedEvent
 {
     /// <summary>
     ///     DroneDispatched.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_end")]
 [GameEventSource("mod.gameevents")]
-public sealed record RoundEndEvent
+public sealed partial record RoundEndEvent
 {
     /// <summary>
     ///     server-generated legacy value.

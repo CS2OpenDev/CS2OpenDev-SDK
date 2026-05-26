@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("ammo_refill")]
 [GameEventSource("mod.gameevents")]
-public sealed record AmmoRefillEvent
+public sealed partial record AmmoRefillEvent
 {
     /// <summary>
     ///     Success.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("sfuievent")]
 [GameEventSource("mod.gameevents")]
-public sealed record SfuieventEvent
+public sealed partial record SfuieventEvent
 {
     /// <summary>
     ///     Action.

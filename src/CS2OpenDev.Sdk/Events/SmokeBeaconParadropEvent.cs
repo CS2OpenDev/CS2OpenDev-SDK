@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("smoke_beacon_paradrop")]
 [GameEventSource("mod.gameevents")]
-public sealed record SmokeBeaconParadropEvent
+public sealed partial record SmokeBeaconParadropEvent
 {
     /// <summary>
     ///     Paradrop.

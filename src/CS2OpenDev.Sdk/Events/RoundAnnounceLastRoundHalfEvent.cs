@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_announce_last_round_half")]
 [GameEventSource("game.gameevents")]
-public sealed record RoundAnnounceLastRoundHalfEvent
+public sealed partial record RoundAnnounceLastRoundHalfEvent
 {
 }

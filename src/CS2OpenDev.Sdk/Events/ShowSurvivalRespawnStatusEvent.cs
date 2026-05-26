@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("show_survival_respawn_status")]
 [GameEventSource("mod.gameevents")]
-public sealed record ShowSurvivalRespawnStatusEvent
+public sealed partial record ShowSurvivalRespawnStatusEvent
 {
     /// <summary>
     ///     Duration.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("loot_crate_opened")]
 [GameEventSource("mod.gameevents")]
-public sealed record LootCrateOpenedEvent
+public sealed partial record LootCrateOpenedEvent
 {
     /// <summary>
     ///     type of crate (metal, wood, or paradrop).

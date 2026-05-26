@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_fixed")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvFixedEvent
+public sealed partial record HltvFixedEvent
 {
     /// <summary>
     ///     Fov.

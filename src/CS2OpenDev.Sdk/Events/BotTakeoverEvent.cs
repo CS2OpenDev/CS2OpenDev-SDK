@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bot_takeover")]
 [GameEventSource("core.gameevents")]
-public sealed record BotTakeoverEvent
+public sealed partial record BotTakeoverEvent
 {
     /// <summary>
     ///     Botid.

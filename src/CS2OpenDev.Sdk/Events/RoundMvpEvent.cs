@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("round_mvp")]
 [GameEventSource("mod.gameevents")]
-public sealed record RoundMvpEvent
+public sealed partial record RoundMvpEvent
 {
     /// <summary>
     ///     Musickitid.

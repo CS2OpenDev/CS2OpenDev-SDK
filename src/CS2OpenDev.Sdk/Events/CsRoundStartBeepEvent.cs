@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_round_start_beep")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsRoundStartBeepEvent
+public sealed partial record CsRoundStartBeepEvent
 {
 }

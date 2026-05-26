@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("game_start")]
 [GameEventSource("game.gameevents")]
-public sealed record GameStartEvent
+public sealed partial record GameStartEvent
 {
     /// <summary>
     ///     frag limit.

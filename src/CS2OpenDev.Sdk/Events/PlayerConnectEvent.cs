@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_connect")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerConnectEvent
+public sealed partial record PlayerConnectEvent
 {
     /// <summary>
     ///     Bot.

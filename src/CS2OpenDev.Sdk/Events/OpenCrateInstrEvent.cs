@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("open_crate_instr")]
 [GameEventSource("mod.gameevents")]
-public sealed record OpenCrateInstrEvent
+public sealed partial record OpenCrateInstrEvent
 {
     /// <summary>
     ///     crate entindex.

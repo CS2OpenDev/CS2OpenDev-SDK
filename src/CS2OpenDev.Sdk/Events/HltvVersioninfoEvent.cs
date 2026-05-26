@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_versioninfo")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvVersioninfoEvent
+public sealed partial record HltvVersioninfoEvent
 {
     /// <summary>
     ///     Version.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("trial_time_expired")]
 [GameEventSource("mod.gameevents")]
-public sealed record TrialTimeExpiredEvent
+public sealed partial record TrialTimeExpiredEvent
 {
     /// <summary>
     ///     player whose time has expired.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("survival_announce_phase")]
 [GameEventSource("game.gameevents")]
-public sealed record SurvivalAnnouncePhaseEvent
+public sealed partial record SurvivalAnnouncePhaseEvent
 {
     /// <summary>
     ///     The phase #.

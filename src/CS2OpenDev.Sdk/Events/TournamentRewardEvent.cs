@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("tournament_reward")]
 [GameEventSource("mod.gameevents")]
-public sealed record TournamentRewardEvent
+public sealed partial record TournamentRewardEvent
 {
     /// <summary>
     ///     Accountid.

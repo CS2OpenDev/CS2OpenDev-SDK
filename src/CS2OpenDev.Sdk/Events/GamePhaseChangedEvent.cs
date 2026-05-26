@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("game_phase_changed")]
 [GameEventSource("mod.gameevents")]
-public sealed record GamePhaseChangedEvent
+public sealed partial record GamePhaseChangedEvent
 {
     /// <summary>
     ///     NewPhase.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("ugc_map_info_received")]
 [GameEventSource("game.gameevents")]
-public sealed record UgcMapInfoReceivedEvent
+public sealed partial record UgcMapInfoReceivedEvent
 {
     /// <summary>
     ///     PublishedFileId.

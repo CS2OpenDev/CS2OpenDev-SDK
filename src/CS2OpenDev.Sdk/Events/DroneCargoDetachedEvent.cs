@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("drone_cargo_detached")]
 [GameEventSource("mod.gameevents")]
-public sealed record DroneCargoDetachedEvent
+public sealed partial record DroneCargoDetachedEvent
 {
     /// <summary>
     ///     Cargo.

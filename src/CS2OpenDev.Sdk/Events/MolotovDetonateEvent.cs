@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("molotov_detonate")]
 [GameEventSource("mod.gameevents")]
-public sealed record MolotovDetonateEvent
+public sealed partial record MolotovDetonateEvent
 {
     /// <summary>
     ///     Userid.

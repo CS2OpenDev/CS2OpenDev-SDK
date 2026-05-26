@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("nav_blocked")]
 [GameEventSource("mod.gameevents")]
-public sealed record NavBlockedEvent
+public sealed partial record NavBlockedEvent
 {
     /// <summary>
     ///     Area.

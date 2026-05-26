@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("cs_intermission")]
 [GameEventSource("mod.gameevents")]
-public sealed record CsIntermissionEvent
+public sealed partial record CsIntermissionEvent
 {
 }

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("ammo_pickup")]
 [GameEventSource("mod.gameevents")]
-public sealed record AmmoPickupEvent
+public sealed partial record AmmoPickupEvent
 {
     /// <summary>
     ///     the weapon entindex.

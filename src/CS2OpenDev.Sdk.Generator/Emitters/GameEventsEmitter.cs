@@ -7,7 +7,7 @@ using CS2SchemaGen.Models;
 
 namespace CS2SchemaGen.Emitters;
 
-// Emits one `public sealed record {Name}Event` per entry in gameevents_schema.json
+// Emits one `public sealed partial record {Name}Event` per entry in gameevents_schema.json
 // into a `CS2OpenSchema.Events` namespace, plus a `GameEvents` static registry of
 // every event's native name.
 //
@@ -181,7 +181,10 @@ internal static class GameEventsEmitter
         // post-construction; `sealed` because no event derives from another. An
         // empty event (no `fields`) still emits — parameterless `new XEvent()` is
         // valid and lets dispatchers signal occurrence without a payload.
-        sb.AppendLine($"public sealed record {typeName}");
+        // `partial` mirrors ClassEmitter so consumers can attach sibling-file
+        // extensions (computed properties, per-fire transport metadata) that
+        // survive regeneration — see the README's partial-extension pattern.
+        sb.AppendLine($"public sealed partial record {typeName}");
         sb.AppendLine("{");
 
         // Stable alphabetised emission of properties (matches the formatter

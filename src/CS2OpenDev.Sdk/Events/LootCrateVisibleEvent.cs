@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("loot_crate_visible")]
 [GameEventSource("mod.gameevents")]
-public sealed record LootCrateVisibleEvent
+public sealed partial record LootCrateVisibleEvent
 {
     /// <summary>
     ///     crate entindex.

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("firstbombs_incoming_warning")]
 [GameEventSource("mod.gameevents")]
-public sealed record FirstbombsIncomingWarningEvent
+public sealed partial record FirstbombsIncomingWarningEvent
 {
     /// <summary>
     ///     Global.

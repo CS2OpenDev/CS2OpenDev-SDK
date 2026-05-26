@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("map_transition")]
 [GameEventSource("core.gameevents")]
-public sealed record MapTransitionEvent
+public sealed partial record MapTransitionEvent
 {
 }

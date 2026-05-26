@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("vote_cast_yes")]
 [GameEventSource("core.gameevents")]
-public sealed record VoteCastYesEvent
+public sealed partial record VoteCastYesEvent
 {
     /// <summary>
     ///     entity id of the voter.

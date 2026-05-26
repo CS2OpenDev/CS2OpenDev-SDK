@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("local_player_team")]
 [GameEventSource("core.gameevents")]
-public sealed record LocalPlayerTeamEvent
+public sealed partial record LocalPlayerTeamEvent
 {
 }

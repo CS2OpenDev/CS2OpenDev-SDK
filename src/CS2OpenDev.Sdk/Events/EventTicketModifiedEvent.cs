@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("event_ticket_modified")]
 [GameEventSource("core.gameevents")]
-public sealed record EventTicketModifiedEvent
+public sealed partial record EventTicketModifiedEvent
 {
 }

@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("ugc_file_download_finished")]
 [GameEventSource("game.gameevents")]
-public sealed record UgcFileDownloadFinishedEvent
+public sealed partial record UgcFileDownloadFinishedEvent
 {
     /// <summary>
     ///     id of this specific content (may be image or map).

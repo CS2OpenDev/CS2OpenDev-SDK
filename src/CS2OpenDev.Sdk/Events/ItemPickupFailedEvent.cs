@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("item_pickup_failed")]
 [GameEventSource("mod.gameevents")]
-public sealed record ItemPickupFailedEvent
+public sealed partial record ItemPickupFailedEvent
 {
     /// <summary>
     ///     Item.

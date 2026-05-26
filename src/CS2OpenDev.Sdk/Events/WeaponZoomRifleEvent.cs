@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("weapon_zoom_rifle")]
 [GameEventSource("mod.gameevents")]
-public sealed record WeaponZoomRifleEvent
+public sealed partial record WeaponZoomRifleEvent
 {
     /// <summary>
     ///     Userid.

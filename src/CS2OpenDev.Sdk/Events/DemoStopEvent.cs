@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("demo_stop")]
 [GameEventSource("core.gameevents")]
-public sealed record DemoStopEvent
+public sealed partial record DemoStopEvent
 {
 }

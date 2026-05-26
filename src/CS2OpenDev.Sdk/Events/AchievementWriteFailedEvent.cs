@@ -17,6 +17,6 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("achievement_write_failed")]
 [GameEventSource("core.gameevents")]
-public sealed record AchievementWriteFailedEvent
+public sealed partial record AchievementWriteFailedEvent
 {
 }

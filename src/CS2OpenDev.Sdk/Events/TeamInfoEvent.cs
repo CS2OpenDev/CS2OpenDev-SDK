@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("team_info")]
 [GameEventSource("core.gameevents")]
-public sealed record TeamInfoEvent
+public sealed partial record TeamInfoEvent
 {
     /// <summary>
     ///     unique team id.

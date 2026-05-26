@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("exit_rescue_zone")]
 [GameEventSource("mod.gameevents")]
-public sealed record ExitRescueZoneEvent
+public sealed partial record ExitRescueZoneEvent
 {
     /// <summary>
     ///     Userid.

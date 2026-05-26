@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("server_message")]
 [GameEventSource("core.gameevents")]
-public sealed record ServerMessageEvent
+public sealed partial record ServerMessageEvent
 {
     /// <summary>
     ///     the message text.

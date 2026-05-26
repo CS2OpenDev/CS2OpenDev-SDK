@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_disconnect")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerDisconnectEvent
+public sealed partial record PlayerDisconnectEvent
 {
     /// <summary>
     ///     Was the player ever fully connected?

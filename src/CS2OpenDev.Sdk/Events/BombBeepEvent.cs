@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("bomb_beep")]
 [GameEventSource("mod.gameevents")]
-public sealed record BombBeepEvent
+public sealed partial record BombBeepEvent
 {
     /// <summary>
     ///     c4 entity.

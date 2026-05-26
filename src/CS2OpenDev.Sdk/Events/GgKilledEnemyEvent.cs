@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("gg_killed_enemy")]
 [GameEventSource("mod.gameevents")]
-public sealed record GgKilledEnemyEvent
+public sealed partial record GgKilledEnemyEvent
 {
     /// <summary>
     ///     user ID who killed.

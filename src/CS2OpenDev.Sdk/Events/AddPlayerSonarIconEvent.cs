@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("add_player_sonar_icon")]
 [GameEventSource("game.gameevents")]
-public sealed record AddPlayerSonarIconEvent
+public sealed partial record AddPlayerSonarIconEvent
 {
     /// <summary>
     ///     PosX.

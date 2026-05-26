@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("parachute_deploy")]
 [GameEventSource("mod.gameevents")]
-public sealed record ParachuteDeployEvent
+public sealed partial record ParachuteDeployEvent
 {
     /// <summary>
     ///     Userid.

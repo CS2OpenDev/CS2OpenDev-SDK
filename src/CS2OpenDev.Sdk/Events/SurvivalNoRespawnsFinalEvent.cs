@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("survival_no_respawns_final")]
 [GameEventSource("mod.gameevents")]
-public sealed record SurvivalNoRespawnsFinalEvent
+public sealed partial record SurvivalNoRespawnsFinalEvent
 {
     /// <summary>
     ///     Userid.

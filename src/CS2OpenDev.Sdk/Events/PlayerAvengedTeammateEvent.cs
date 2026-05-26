@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_avenged_teammate")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerAvengedTeammateEvent
+public sealed partial record PlayerAvengedTeammateEvent
 {
     /// <summary>
     ///     AvengedPlayerId.

@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_chat")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvChatEvent
+public sealed partial record HltvChatEvent
 {
     /// <summary>
     ///     steam id.

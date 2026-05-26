@@ -18,7 +18,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_chat")]
 [GameEventSource("core.gameevents")]
-public sealed record PlayerChatCoreEvent
+public sealed partial record PlayerChatCoreEvent
 {
     /// <summary>
     ///     chatting player ID.

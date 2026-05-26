@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("survival_no_respawns_warning")]
 [GameEventSource("mod.gameevents")]
-public sealed record SurvivalNoRespawnsWarningEvent
+public sealed partial record SurvivalNoRespawnsWarningEvent
 {
     /// <summary>
     ///     Userid.

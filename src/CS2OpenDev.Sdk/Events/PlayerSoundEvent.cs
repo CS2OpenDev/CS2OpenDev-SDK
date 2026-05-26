@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("player_sound")]
 [GameEventSource("mod.gameevents")]
-public sealed record PlayerSoundEvent
+public sealed partial record PlayerSoundEvent
 {
     /// <summary>
     ///     Duration.

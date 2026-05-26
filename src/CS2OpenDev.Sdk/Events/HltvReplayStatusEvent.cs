@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("hltv_replay_status")]
 [GameEventSource("core.gameevents")]
-public sealed record HltvReplayStatusEvent
+public sealed partial record HltvReplayStatusEvent
 {
     /// <summary>
     ///     reason for hltv replay status change ().

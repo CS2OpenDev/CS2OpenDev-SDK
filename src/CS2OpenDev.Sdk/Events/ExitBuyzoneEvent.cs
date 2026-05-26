@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("exit_buyzone")]
 [GameEventSource("mod.gameevents")]
-public sealed record ExitBuyzoneEvent
+public sealed partial record ExitBuyzoneEvent
 {
     /// <summary>
     ///     Canbuy.

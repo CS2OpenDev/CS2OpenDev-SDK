@@ -17,7 +17,7 @@ namespace CS2OpenSchema.Events;
 /// </remarks>
 [NativeName("item_pickup_slerp")]
 [GameEventSource("mod.gameevents")]
-public sealed record ItemPickupSlerpEvent
+public sealed partial record ItemPickupSlerpEvent
 {
     /// <summary>
     ///     Behavior.
