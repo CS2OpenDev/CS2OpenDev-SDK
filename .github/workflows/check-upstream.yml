@@ -30,6 +30,10 @@ concurrency:
 
 permissions:
   contents: write
+  # The scheduled bot path also calls _pack-and-publish.yml, which pushes to
+  # GitHub Packages. Without this the reusable workflow's own `packages: write`
+  # is capped away by this caller and the push fails with a 403.
+  packages: write
 
 jobs:
   refresh:

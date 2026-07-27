@@ -26,6 +26,9 @@ concurrency:
 
 permissions:
   contents: write
+  # Passed through to _pack-and-publish.yml for the GitHub Packages push.
+  # A reusable workflow cannot elevate beyond what its caller grants.
+  packages: write
 
 jobs:
   release:

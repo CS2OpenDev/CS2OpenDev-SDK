@@ -21,6 +21,11 @@ on:
 
 permissions:
   contents: write
+  # Required to push to the GitHub Packages NuGet feed. Must also be declared
+  # by every caller (release.yml, check-upstream.yml): a reusable workflow can
+  # only hold or reduce the caller's GITHUB_TOKEN permissions, never elevate
+  # them, so a caller that omits this makes the push fail with a 403.
+  packages: write
 
 jobs:
   publish:
@@ -169,33 +174,98 @@ jobs:
 
       - name: Publish to NuGet.org
         if: env.NUGET_API_KEY != ''
-        # `dotnet nuget push` with a glob picks up both the .nupkg and the
-        # adjacent .snupkg in one call — NuGet.org routes the symbols package
-        # to its symbol server automatically when paired this way.
+        # The `.nupkg` and `.snupkg` are pushed as two explicit calls rather
+        # than one wildcard. The previous glob (`CS2OpenDev.Sdk.*.nupkg`) did
+        # not literally match `.snupkg`, and relied on the client auto-pairing
+        # the adjacent symbols package — behaviour that NuGet/Home#9867 reports
+        # as unreliable when a wildcard is involved. This never actually ran
+        # (NUGET_API_KEY has never been set), so the pairing was untested.
+        # Naming both files explicitly removes the guesswork: `--no-symbols`
+        # suppresses the implicit pairing, then the `.snupkg` is pushed on its
+        # own to NuGet.org's symbol server.
         run: |
-          dotnet nuget push "${{ steps.pkg.outputs.dir }}/CS2OpenDev.Sdk.*.nupkg" \
+          dotnet nuget push "${{ steps.pkg.outputs.path }}" \
             --api-key "$NUGET_API_KEY" \
             --source https://api.nuget.org/v3/index.json \
+            --no-symbols \
             --skip-duplicate
 
-      - name: Notice when publish is skipped
-        # Loud notice that the package was built but NOT uploaded to NuGet.org.
-        # Catches misconfigured secrets (e.g. `NUGET_TOKEN` vs `NUGET_API_KEY`)
-        # that would otherwise silently fail to publish for weeks.
+          if [ -n "${{ steps.pkg.outputs.symbols }}" ]; then
+            dotnet nuget push "${{ steps.pkg.outputs.symbols }}" \
+              --api-key "$NUGET_API_KEY" \
+              --source https://api.nuget.org/v3/index.json \
+              --skip-duplicate
+          else
+            echo "::warning::No .snupkg produced — symbols were not published."
+          fi
+
+      - name: Publish to GitHub Packages
+        # Runs unconditionally — GITHUB_TOKEN is always present, so this feed
+        # works with no repository secret configured. It is what keeps a
+        # consumable package flowing while NUGET_API_KEY is unset.
+        #
+        # Deliberately ordered AFTER the NuGet.org push. NuGet.org is the
+        # canonical feed and its publishes are irreversible (a version can be
+        # unlisted but never replaced), so it must not be gated on a secondary
+        # feed's availability. If this step fails, the canonical publish has
+        # already succeeded and only the mirror needs retrying.
+        #
+        # Two GitHub Packages constraints shape this step:
+        #
+        #   1. It does NOT support symbol packages. Pushing a `.snupkg` (or
+        #      letting the client auto-pair the adjacent one) is rejected as a
+        #      version conflict, which would fail the job. `--no-symbols` stops
+        #      the client from ever offering it, so symbols go to NuGet.org's
+        #      symbol server only.
+        #   2. Auth is the token, passed as the API key. `packages: write` is
+        #      declared here AND in both callers (release.yml,
+        #      check-upstream.yml) — a called workflow can only hold or reduce
+        #      the caller's permissions, never elevate, so a caller that omits
+        #      it yields a 403 here.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          dotnet nuget push "${{ steps.pkg.outputs.path }}" \
+            --api-key "$GITHUB_TOKEN" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --no-symbols \
+            --skip-duplicate
+
+      - name: Notice when NuGet.org publish is skipped
+        # Loud notice that the package reached GitHub Packages but NOT
+        # NuGet.org. Catches misconfigured secrets (e.g. `NUGET_TOKEN` vs
+        # `NUGET_API_KEY`) that would otherwise silently fail for weeks.
+        #
+        # Ordered AFTER the GitHub Packages push, not before it: the message
+        # states in the past tense that the package reached GitHub Packages,
+        # and a step cannot truthfully report the outcome of one that hasn't
+        # run yet. If that push fails the job stops here and this misleading
+        # notice is never emitted.
         if: env.NUGET_API_KEY == ''
         run: |
-          echo "::warning::NUGET_API_KEY secret is not set on this repository — package built (${{ steps.pkg.outputs.version }}) but NOT published to NuGet.org. Download it from the workflow run's Artifacts section. To enable publishing, add the secret in Settings → Secrets and variables → Actions."
+          echo "::warning::NUGET_API_KEY secret is not set on this repository — ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. To enable NuGet.org publishing, add the secret in Settings → Secrets and variables → Actions."
 
       - name: Create GitHub Release
         if: env.NUGET_API_KEY != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PKG_PATH: ${{ steps.pkg.outputs.path }}
+          PKG_SYMBOLS: ${{ steps.pkg.outputs.symbols }}
         run: |
           NOTES=$(printf 'Automated release.\n\nCS2 schema revision: `%s` (dump %s).' \
                          "${{ steps.schema.outputs.revision }}" \
                          "${{ steps.schema.outputs.date-iso }}")
+          # Attach both packages so the release page carries the symbols too,
+          # not just the assemblies. Built as an array so a missing .snupkg
+          # degrades to a nupkg-only release instead of passing an empty
+          # argument to `gh`.
+          ASSETS=("$PKG_PATH")
+          if [ -n "$PKG_SYMBOLS" ]; then
+            ASSETS+=("$PKG_SYMBOLS")
+          fi
+
           gh release create "v${{ steps.pkg.outputs.version }}" \
-            "${{ steps.pkg.outputs.path }}" \
+            "${ASSETS[@]}" \
             --title "v${{ steps.pkg.outputs.version }}" \
             --notes "$NOTES" \
             --target ${{ steps.head.outputs.sha }}
