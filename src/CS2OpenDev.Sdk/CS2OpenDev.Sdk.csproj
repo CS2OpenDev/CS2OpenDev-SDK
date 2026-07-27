@@ -121,4 +121,49 @@
         <BuildMetadata Include="dump.$(CS2SchemaDate)"
                        Condition="'$(CS2SchemaDate)' != ''"/>
     </ItemGroup>
+
+    <!-- The same schema revision + dump date, recorded in two places that do
+         NOT depend on the version string surviving intact.
+
+         SemVer 2 build metadata (the `+cs.…` above) is the fragile channel:
+         it is not part of a NuGet package's identity, it never appears in the
+         `.nupkg` filename, and feeds are inconsistent about preserving it —
+         GitHub Packages in particular has a long-standing bug where a `+`
+         version is registered but then requested from a URL without the
+         metadata. So the same facts are duplicated where they cannot be
+         stripped:
+
+           1. `AssemblyMetadata` — emitted as `[assembly: AssemblyMetadata]`
+              attributes, so the values travel inside the DLL itself and are
+              readable by reflection or any metadata reader, forever,
+              regardless of how the package was obtained:
+
+                  typeof(CS2OpenSchema.Attributes.SchemaClassAttribute).Assembly
+                      .GetCustomAttributes<AssemblyMetadataAttribute>()
+                      .First(a => a.Key == "CS2SchemaRevision").Value
+
+              or, without loading it: `ikdasm` / `monodis`, or
+              `strings CS2OpenDev.Sdk.dll | grep CS2Schema`.
+
+           2. `PackageReleaseNotes` — surfaced on the NuGet.org and GitHub
+              Packages listing pages, so the provenance is visible before
+              downloading anything.
+
+         Both are conditional: a local `dotnet pack` that passes neither
+         property omits them rather than emitting empty values. Note this
+         widens the existing local-vs-CI binary divergence — a CI pack already
+         differs from a local one via AssemblyInformationalVersion — which is
+         why the two feeds are fed from a single pack rather than one each. -->
+    <ItemGroup>
+        <AssemblyMetadata Include="CS2SchemaRevision"
+                          Value="$(CS2SchemaRevision)"
+                          Condition="'$(CS2SchemaRevision)' != ''"/>
+        <AssemblyMetadata Include="CS2SchemaDumpDate"
+                          Value="$(CS2SchemaDate)"
+                          Condition="'$(CS2SchemaDate)' != ''"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PackageReleaseNotes Condition="'$(CS2SchemaRevision)' != '' Or '$(CS2SchemaDate)' != ''">Generated from CS2 schema revision $(CS2SchemaRevision) (dump $(CS2SchemaDate)). The same values are available as AssemblyMetadata attributes on the shipped assembly, under the keys CS2SchemaRevision and CS2SchemaDumpDate.</PackageReleaseNotes>
+    </PropertyGroup>
 </Project>

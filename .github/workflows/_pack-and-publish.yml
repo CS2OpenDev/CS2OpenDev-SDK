@@ -94,13 +94,36 @@ jobs:
           VERSION=$(basename "$PKG" .nupkg | sed 's/^CS2OpenDev\.Sdk\.//')
           PKG_DIR=$(dirname "$PKG")
 
+          # Only stable versions get published. A SemVer prerelease label
+          # (`1.0.4-g4a3672a4ae`) means this build did not come from a public
+          # release ref: Nerdbank.GitVersioning appends `-g<commit>` whenever
+          # the ref doesn't match `publicReleaseRefSpec` in version.json
+          # (currently `^refs/heads/main$`).
+          #
+          # In practice this guards the paths that can build off an arbitrary
+          # ref — `workflow_dispatch` from a branch, or a `ref` input passed to
+          # this reusable workflow — rather than the normal main-branch push,
+          # which always yields a clean version.
+          #
+          # Build metadata is stripped before the test. It cannot appear in a
+          # .nupkg filename today, but it legitimately contains hyphens (the
+          # ISO dump date, `+cs.10677034.dump.2026-05-21`), so testing the raw
+          # string would misread a stable build as a prerelease if that ever
+          # changed.
+          if case "${VERSION%%+*}" in *-*) true ;; *) false ;; esac; then
+            PRERELEASE=true
+          else
+            PRERELEASE=false
+          fi
+
           {
             echo "path=$PKG"
             echo "symbols=$SYM"
             echo "dir=$PKG_DIR"
             echo "version=$VERSION"
+            echo "prerelease=$PRERELEASE"
           } >> "$GITHUB_OUTPUT"
-          echo "Packed: $PKG ($VERSION)"
+          echo "Packed: $PKG ($VERSION), prerelease=$PRERELEASE"
           if [ -n "$SYM" ]; then echo "Symbols: $SYM"; fi
 
       - name: Assert no build-machine paths in packages
@@ -173,7 +196,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish to NuGet.org
-        if: env.NUGET_API_KEY != ''
+        if: env.NUGET_API_KEY != '' && steps.pkg.outputs.prerelease == 'false'
         # The `.nupkg` and `.snupkg` are pushed as two explicit calls rather
         # than one wildcard. The previous glob (`CS2OpenDev.Sdk.*.nupkg`) did
         # not literally match `.snupkg`, and relied on the client auto-pairing
@@ -200,15 +223,24 @@ jobs:
           fi
 
       - name: Publish to GitHub Packages
-        # Runs unconditionally — GITHUB_TOKEN is always present, so this feed
-        # works with no repository secret configured. It is what keeps a
-        # consumable package flowing while NUGET_API_KEY is unset.
+        # Needs no repository secret — GITHUB_TOKEN is always present — so this
+        # feed keeps a consumable package flowing while NUGET_API_KEY is unset.
+        # Gated only on the version being stable.
+        if: steps.pkg.outputs.prerelease == 'false'
         #
         # Deliberately ordered AFTER the NuGet.org push. NuGet.org is the
         # canonical feed and its publishes are irreversible (a version can be
         # unlisted but never replaced), so it must not be gated on a secondary
         # feed's availability. If this step fails, the canonical publish has
         # already succeeded and only the mirror needs retrying.
+        #
+        # The coupling is not symmetric, and the `if:` below does not remove
+        # it: a step's condition still implies success() unless stated
+        # otherwise, so a FAILED NuGet.org push skips this mirror as well.
+        # That is the accepted trade — the canonical feed is the one whose
+        # failure should stop a release — but it does mean a NuGet.org outage
+        # blocks GitHub Packages, and the fix in that case is to re-run the
+        # job once NuGet.org recovers (`--skip-duplicate` makes that safe).
         #
         # Two GitHub Packages constraints shape this step:
         #
@@ -231,22 +263,33 @@ jobs:
             --no-symbols \
             --skip-duplicate
 
+      - name: Notice when publishing is skipped for a prerelease
+        # Prerelease builds are packed, gated and uploaded as a workflow
+        # artifact, but never published to a feed. Say so explicitly — a run
+        # that is green and published nothing is otherwise indistinguishable
+        # from one that published successfully.
+        if: steps.pkg.outputs.prerelease == 'true'
+        run: |
+          echo "::warning::${{ steps.pkg.outputs.version }} is a prerelease version — NOTHING was published, to NuGet.org or GitHub Packages. Only stable versions (e.g. 1.0.4, not 1.0.4-g0123456789) are published. Nerdbank.GitVersioning appends the -g<commit> label when the built ref does not match publicReleaseRefSpec in version.json (currently ^refs/heads/main\$). Download the package from this run's Artifacts section if you need it."
+
       - name: Notice when NuGet.org publish is skipped
-        # Loud notice that the package reached GitHub Packages but NOT
+        # Loud notice that a STABLE package reached GitHub Packages but not
         # NuGet.org. Catches misconfigured secrets (e.g. `NUGET_TOKEN` vs
         # `NUGET_API_KEY`) that would otherwise silently fail for weeks.
         #
-        # Ordered AFTER the GitHub Packages push, not before it: the message
-        # states in the past tense that the package reached GitHub Packages,
-        # and a step cannot truthfully report the outcome of one that hasn't
-        # run yet. If that push fails the job stops here and this misleading
-        # notice is never emitted.
-        if: env.NUGET_API_KEY == ''
+        # Conditioned on non-prerelease as well as the missing key, and ordered
+        # AFTER the GitHub Packages push: the message asserts in the past tense
+        # that the package reached GitHub Packages, so it must not fire when
+        # that push was skipped (prerelease) or has not yet run. The prerelease
+        # case is covered by the separate notice above.
+        if: env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
         run: |
           echo "::warning::NUGET_API_KEY secret is not set on this repository — ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. To enable NuGet.org publishing, add the secret in Settings → Secrets and variables → Actions."
 
       - name: Create GitHub Release
-        if: env.NUGET_API_KEY != ''
+        # Also gated on a stable version, or a prerelease build would create a
+        # `v1.0.4-g4a3672a4ae` tag and release for something never published.
+        if: env.NUGET_API_KEY != '' && steps.pkg.outputs.prerelease == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PKG_PATH: ${{ steps.pkg.outputs.path }}
