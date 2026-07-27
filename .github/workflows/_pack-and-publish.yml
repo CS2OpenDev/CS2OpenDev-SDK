@@ -98,6 +98,66 @@ jobs:
           echo "Packed: $PKG ($VERSION)"
           if [ -n "$SYM" ]; then echo "Symbols: $SYM"; fi
 
+      - name: Assert no build-machine paths in packages
+        # Guards the leak fixed in v1.0.3: v1.0.2 shipped the packer's home
+        # directory in the assembly's CodeView record and in the `.snupkg`
+        # PDB's SourceLink map. `ContinuousIntegrationBuild=true` in the SDK
+        # csproj rewrites those to `/_/`; this step fails the release if a
+        # build ever stops honouring it (e.g. the property gets dropped, or a
+        # future runner layout defeats the path mapping).
+        #
+        # Asserts the positive signal too — a `/_/` path must be PRESENT, not
+        # merely a home path absent. Absence alone is equally what you get from
+        # scanning the wrong file or a stale artifact.
+        #
+        # No third-party allowlist needed: both packages contain only
+        # first-party output (the assembly, its XML docs, README, and NuGet
+        # metadata). Microsoft's and other vendors' binaries legitimately
+        # carry their own CI agents' paths, but none are bundled here.
+        env:
+          PKG: ${{ steps.pkg.outputs.path }}
+          SYM: ${{ steps.pkg.outputs.symbols }}
+        run: |
+          set -euo pipefail
+          python3 - "$PKG" ${SYM:+"$SYM"} <<'PY'
+          import sys, zipfile
+
+          LEAKS = (b'/Users/', b'/home/', b'/root/', b'C:\\Users\\')
+          rc = 0
+
+          for path in sys.argv[1:]:
+              print(f'=== {path} ===')
+              leaked, normalised = {}, 0
+              with zipfile.ZipFile(path) as z:
+                  for name in z.namelist():
+                      data = z.read(name)
+                      found = {n.decode('latin1'): data.count(n)
+                               for n in LEAKS if data.count(n)}
+                      normalised += data.count(b'/_/')
+                      if found:
+                          leaked[name] = found
+                          for n in LEAKS:
+                              i = data.find(n)
+                              if i >= 0:
+                                  print(f'  {name}: {data[i:i + 110]!r}')
+              if leaked:
+                  print(f'::error::Build-machine path in {path}: '
+                        f'{", ".join(leaked)}. Check that '
+                        'ContinuousIntegrationBuild=true is still set in '
+                        'src/CS2OpenDev.Sdk/CS2OpenDev.Sdk.csproj.')
+                  rc = 1
+              elif not normalised:
+                  print(f'::error::No build-machine path in {path}, but no '
+                        'normalised `/_/` path either — the build did not '
+                        'pick up ContinuousIntegrationBuild, or this is a '
+                        'stale artifact. Treating as unverified.')
+                  rc = 1
+              else:
+                  print(f'  clean ({normalised} normalised `/_/` occurrence(s))')
+
+          sys.exit(rc)
+          PY
+
       - name: Upload packages as workflow artifact
         uses: actions/upload-artifact@v4
         with:

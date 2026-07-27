@@ -46,6 +46,29 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <DebugType>portable</DebugType>
 
+        <!-- Normalise the absolute build paths that would otherwise be baked
+             into the shipped binaries. Two places leak them without this:
+
+               1. The assembly's debug directory (CodeView / `RSDS` record) in
+                  `lib/net8.0/CS2OpenDev.Sdk.dll`, which stores where the PDB
+                  lived at build time — it ships even though the PDB doesn't.
+               2. The SourceLink document map inside the PDB in the `.snupkg`,
+                  which is published to NuGet.org's public symbol server.
+
+             v1.0.2 shipped `/Users/<user>/Development/CS2OpenDev-SDK/…` in
+             both, disclosing the packer's OS username and home layout to
+             every downstream consumer that redistributes the assembly.
+             `DeterministicSourcePaths` (which this property enables) rewrites
+             the repo root to `/_/`, so the recorded paths keep their shape and
+             stack traces stay usable — unlike `DebugType=none`, which would
+             drop the debug directory entirely and hollow out the `.snupkg`.
+
+             Deliberately NOT gated on CI: `dotnet pack` run from a developer
+             machine has to normalise paths too, or the leak walks straight
+             back in on the next hand-packed release. The pack workflow's
+             "Assert no build-machine paths" step enforces this either way. -->
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
         <!-- NuGet package identity -->
         <PackageId>CS2OpenDev.Sdk</PackageId>
         <!-- Version is supplied by Nerdbank.GitVersioning (`version.json`).
