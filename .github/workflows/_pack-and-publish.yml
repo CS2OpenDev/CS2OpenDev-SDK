@@ -287,17 +287,36 @@ jobs:
           echo "::warning::NUGET_API_KEY secret is not set on this repository — ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. To enable NuGet.org publishing, add the secret in Settings → Secrets and variables → Actions."
 
       - name: Create GitHub Release
-        # Also gated on a stable version, or a prerelease build would create a
-        # `v1.0.4-g4a3672a4ae` tag and release for something never published.
-        if: env.NUGET_API_KEY != '' && steps.pkg.outputs.prerelease == 'false'
+        # Gated on a stable version only — a prerelease build would otherwise
+        # tag `v1.0.4-g4a3672a4ae` for something that was never published.
+        #
+        # Deliberately NOT gated on NUGET_API_KEY. Every version that reaches a
+        # feed gets a matching tag and release, and GitHub Packages publishes
+        # without any secret, so tying the tag to the NuGet.org key would leave
+        # published versions with no corresponding tag in the repo.
+        if: steps.pkg.outputs.prerelease == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PKG_PATH: ${{ steps.pkg.outputs.path }}
           PKG_SYMBOLS: ${{ steps.pkg.outputs.symbols }}
+          TAG: v${{ steps.pkg.outputs.version }}
+          TARGET_SHA: ${{ steps.head.outputs.sha }}
+          REVISION: ${{ steps.schema.outputs.revision }}
+          DUMP_DATE: ${{ steps.schema.outputs.date-iso }}
         run: |
-          NOTES=$(printf 'Automated release.\n\nCS2 schema revision: `%s` (dump %s).' \
-                         "${{ steps.schema.outputs.revision }}" \
-                         "${{ steps.schema.outputs.date-iso }}")
+          set -euo pipefail
+
+          # Record which feeds actually received this version, so the release
+          # page can't imply a NuGet.org publish that never happened.
+          if [ -n "${NUGET_API_KEY:-}" ]; then
+            FEEDS='Published to NuGet.org (with symbols) and GitHub Packages.'
+          else
+            FEEDS='Published to GitHub Packages only — NUGET_API_KEY is not configured, so this version is not on NuGet.org and its symbols were not published to a symbol server.'
+          fi
+
+          NOTES=$(printf 'Automated release.\n\nCS2 schema revision: `%s` (dump %s).\n\n%s' \
+                         "$REVISION" "$DUMP_DATE" "$FEEDS")
+
           # Attach both packages so the release page carries the symbols too,
           # not just the assemblies. Built as an array so a missing .snupkg
           # degrades to a nupkg-only release instead of passing an empty
@@ -307,8 +326,19 @@ jobs:
             ASSETS+=("$PKG_SYMBOLS")
           fi
 
-          gh release create "v${{ steps.pkg.outputs.version }}" \
-            "${ASSETS[@]}" \
-            --title "v${{ steps.pkg.outputs.version }}" \
-            --notes "$NOTES" \
-            --target ${{ steps.head.outputs.sha }}
+          # Idempotent: `gh release create` hard-fails if the tag already
+          # exists, which would break any re-run of this job on the same
+          # commit — exactly what happens when NUGET_API_KEY is added later and
+          # the release is dispatched again to push the same version to
+          # NuGet.org. Update the existing release's assets instead.
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "::notice::Release $TAG already exists — refreshing its assets and notes."
+            gh release upload "$TAG" "${ASSETS[@]}" --clobber
+            gh release edit "$TAG" --notes "$NOTES"
+          else
+            gh release create "$TAG" \
+              "${ASSETS[@]}" \
+              --title "$TAG" \
+              --notes "$NOTES" \
+              --target "$TARGET_SHA"
+          fi
