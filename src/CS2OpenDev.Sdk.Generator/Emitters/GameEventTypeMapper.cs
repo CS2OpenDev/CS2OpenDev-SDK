@@ -1,3 +1,9 @@
+#region
+
+using CS2SchemaGen.Models;
+
+#endregion
+
 namespace CS2SchemaGen.Emitters;
 
 // Maps a KV1 .gameevents type tag to its C# projection. Per the agreement in the
@@ -23,6 +29,15 @@ namespace CS2SchemaGen.Emitters;
 //   ehandle                            3
 internal static class GameEventTypeMapper
 {
+    // A consumer-supplied override wins over the built-in projection. The same
+    // override drives the generated factory (see GameEventFactoryEmitter), so a
+    // record property and the code that fills it cannot disagree about the type.
+    internal static string Map(string typeTag, GameEventOverrides? overrides)
+    {
+        FieldTypeOverride? o = overrides?.For(typeTag);
+        return o is not null ? o.CSharpType : Map(typeTag);
+    }
+
     internal static string Map(string typeTag) => typeTag switch
     {
         "string" => "string",

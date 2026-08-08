@@ -33,14 +33,32 @@ internal static class GeneratorHarness
     internal static RunResult RunGameEvents(
         string eventsJson,
         string? schemaForStampJson = null,
-        string? customNamespace = null)
+        string? customNamespace = null,
+        GameEventOverrides? overrides = null)
     {
         GameEventsRoot events = GameEventsModel.Parse(eventsJson);
         SchemaRoot? stamp = schemaForStampJson is null ? null : SchemaModel.Parse(schemaForStampJson);
         string ns = customNamespace ?? "CS2Schema";
 
         CapturingSink sink = new();
-        GameEventsEmitter.EmitAll(sink, events, ns, stamp);
+        GameEventsEmitter.EmitAll(sink, events, ns, stamp, overrides);
+
+        return new RunResult(sink.Files, sink.Diagnostics);
+    }
+
+    // Drives the factory/registry emitter — the CS2OpenDev.Sdk.GameEvents half of
+    // game-event emission. Separate entry point because it writes to a different
+    // output tree and takes no namespace argument.
+    internal static RunResult RunGameEventFactories(
+        string eventsJson,
+        string? schemaForStampJson = null,
+        GameEventOverrides? overrides = null)
+    {
+        GameEventsRoot events = GameEventsModel.Parse(eventsJson);
+        SchemaRoot? stamp = schemaForStampJson is null ? null : SchemaModel.Parse(schemaForStampJson);
+
+        CapturingSink sink = new();
+        GameEventFactoryEmitter.EmitAll(sink, events, stamp, overrides);
 
         return new RunResult(sink.Files, sink.Diagnostics);
     }

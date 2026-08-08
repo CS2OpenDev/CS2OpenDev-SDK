@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>CS2OpenDev.Sdk.GameEvents</AssemblyName>
+        <RootNamespace>CS2OpenDev.Sdk.GameEvents</RootNamespace>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- Generated/ is exporter output, written to the same conventions as
+             src/CS2OpenDev.Sdk. It carries the schema's own naming (underscored
+             KV1 keys, C++-flavoured type names), so the same analyzer carve-outs
+             the SDK needs apply. -->
+        <NoWarn>$(NoWarn);CA1707;CA1711;CA1720</NoWarn>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+        <PackageId>CS2OpenDev.Sdk.GameEvents</PackageId>
+        <Authors>CS2OpenDev Contributors</Authors>
+        <Description>
+            Decodes Counter-Strike 2's legacy game-event wire messages
+            (CMsgSource1LegacyGameEvent) into the strongly-typed event records shipped by
+            CS2OpenDev.Sdk. Includes the event-name to factory registry and a per-fire envelope
+            carrying demo transport context.
+        </Description>
+        <PackageTags>cs2;counter-strike;demo;game-events;source2;protobuf</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- The decoder's input type is a protobuf message, so this package takes
+             the Google.Protobuf dependency that CS2OpenDev.Sdk deliberately does
+             not. That split is the whole reason this is a separate package:
+             consumers who only want schema types keep a zero-dependency SDK. -->
+        <ProjectReference Include="../CS2OpenDev.Protos/CS2OpenDev.Protos.csproj"/>
+        <ProjectReference Include="../CS2OpenDev.Sdk/CS2OpenDev.Sdk.csproj"/>
+    </ItemGroup>
+</Project>

@@ -14,11 +14,16 @@ using CS2OpenDev.SdkExporter;
 using CS2SchemaGen;
 using CS2SchemaGen.Diagnostics;
 using CS2SchemaGen.Emitters;
+using System.Text.Json;
 using CS2SchemaGen.Models;
 
 #endregion
 
 const string namespaceLabel = "CS2OpenSchema";
+
+// Conventional filename for the optional consumer-overrides file (B4). Looked
+// for next to the schema first, then in the working directory.
+const string overridesFileName = "game-event-overrides.json";
 
 string schemaPath = args.Length > 0
     ? Path.GetFullPath(args[0])
@@ -92,6 +97,28 @@ foreach (string path in Directory.EnumerateFiles(outputDir, "*.cs", SearchOption
 
 DiskSink sink = new(outputDir, staleCandidates);
 
+// Second output tree: the generated half of CS2OpenDev.Sdk.GameEvents. Derived
+// from the SDK output dir so `dotnet run --project src/CS2OpenDev.Sdk.Exporter`
+// with no arguments lands both trees in the right place, and an explicit
+// two-argument invocation (custom schema → scratch dir) keeps them together
+// rather than writing into the repo.
+string gameEventsDir = Path.GetFullPath(
+    Path.Combine(outputDir, "..", "CS2OpenDev.Sdk.GameEvents"));
+Directory.CreateDirectory(gameEventsDir);
+
+HashSet<string> gameEventsStale = new(StringComparer.Ordinal);
+string gameEventsGenerated = Path.Combine(gameEventsDir, "Generated");
+if (Directory.Exists(gameEventsGenerated))
+{
+    foreach (string path in Directory.EnumerateFiles(gameEventsGenerated, "*.cs", SearchOption.AllDirectories))
+    {
+        if (IsGeneratedFile(path))
+        {
+            gameEventsStale.Add(Path.GetFullPath(path));
+        }
+    }
+}
+
 Console.WriteLine($"Schema: {schemaPath}");
 Console.WriteLine($"Output: {outputDir}");
 Console.WriteLine();
@@ -123,14 +150,65 @@ if (eventsPath is not null && File.Exists(eventsPath))
     {
         eventsRoot = GameEventsModel.Parse(eventsJson);
     }
+    catch (NotSupportedException ex)
+    {
+        WriteDiagnosticRaw(Descriptors.UnsupportedSchemaFormat.Id, GeneratorDiagnosticSeverity.Error, ex.Message);
+        return 1;
+    }
     catch (Exception ex)
     {
         WriteDiagnostic(Descriptors.ParseFailed, ex.Message);
         return 1;
     }
 
+    // Optional consumer overrides (B4). Absent by default; when present it can
+    // re-point a KV1 type tag at a consumer's own type. Applied to the records
+    // and the factories from the same source, so the two cannot disagree.
+    GameEventOverrides overrides = GameEventOverrides.Empty;
+    string overridesPath = Path.Combine(Path.GetDirectoryName(schemaPath) ?? ".", overridesFileName);
+    if (!File.Exists(overridesPath))
+    {
+        overridesPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), overridesFileName));
+    }
+
+    if (File.Exists(overridesPath))
+    {
+        try
+        {
+            overrides = GameEventOverrides.Parse(File.ReadAllText(overridesPath));
+        }
+        catch (Exception ex) when (ex is JsonException or InvalidOperationException)
+        {
+            WriteDiagnosticRaw(
+                Descriptors.InvalidOverrides.Id,
+                GeneratorDiagnosticSeverity.Error,
+                Descriptors.InvalidOverrides.Format(overridesPath, ex.Message));
+            return 1;
+        }
+
+        Console.WriteLine(
+            $"Overrides: {overridesPath} ({overrides.FieldTypes.Count} field-type override(s))");
+    }
+
     Console.WriteLine($"GameEvents: {eventsPath} ({eventsRoot.Events.Length} events)");
-    GameEventsEmitter.EmitAll(sink, eventsRoot, namespaceLabel, schema);
+    GameEventsEmitter.EmitAll(sink, eventsRoot, namespaceLabel, schema, overrides);
+
+    // The decoder's factory table and name registry go to a *different* package.
+    // They reference protobuf-decoded values, so they cannot live in
+    // CS2OpenDev.Sdk without putting Google.Protobuf in every consumer's
+    // dependency graph — and that package's zero-dependency footprint is a
+    // deliberate, load-bearing property.
+    //
+    // Its own sink, its own stale sweep: the two output trees are independent,
+    // and a file vanishing from one must not be evaluated against the other's
+    // candidate set.
+    DiskSink gameEventsSink = new(gameEventsDir, gameEventsStale);
+    GameEventFactoryEmitter.EmitAll(gameEventsSink, eventsRoot, schema, overrides);
+    Console.WriteLine($"GameEvents package: {gameEventsSink.WrittenCount} file(s) to {gameEventsDir}");
+    foreach (string path in gameEventsStale)
+    {
+        File.Delete(path);
+    }
 }
 else
 {

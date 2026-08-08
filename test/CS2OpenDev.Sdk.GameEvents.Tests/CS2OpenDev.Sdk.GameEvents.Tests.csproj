@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TUnit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Runtime packages, referenced as a consumer would: these tests exercise
+             the shipped surface (decoder, registry, reader) against real protobuf
+             messages rather than the generator that produced half of it. -->
+        <ProjectReference Include="../../src/CS2OpenDev.Sdk.GameEvents/CS2OpenDev.Sdk.GameEvents.csproj"/>
+    </ItemGroup>
+
+</Project>

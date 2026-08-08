@@ -37,7 +37,12 @@ internal static class GameEventsEmitter
     // schema stamp on every emitted event file. One stamp per CS2 build keeps
     // the per-file headers consistent across both buckets; if upstream ever adds
     // its own revision metadata to the events schema, swap the source here.
-    internal static void EmitAll(IGeneratorSink sink, GameEventsRoot root, string rootNs, SchemaRoot? schemaForStamp)
+    internal static void EmitAll(
+        IGeneratorSink sink,
+        GameEventsRoot root,
+        string rootNs,
+        SchemaRoot? schemaForStamp,
+        GameEventOverrides? overrides = null)
     {
         if (root.Events.Length == 0)
         {
@@ -46,9 +51,41 @@ internal static class GameEventsEmitter
 
         string eventsNs = rootNs + "." + EventsNamespaceSegment;
 
-        // Group by raw event name; pick a winner per group; assign final C# type
-        // names so the (uncommon) name-collision case gets deterministic suffixes
-        // without disturbing the 273 events whose names are unique.
+        Dictionary<GameEventModel, string> csNames = AssignTypeNames(root);
+
+        // Emit one file per event. Filename is `Events/{TypeName}.g.cs` mirroring
+        // the per-module class layout, so the Exporter's `DiskSink` lands them at
+        // `src/CS2OpenDev.Sdk/Events/{TypeName}.cs`.
+        foreach (GameEventModel ev in root.Events)
+        {
+            string typeName = csNames[ev];
+            string relativePath = EventsNamespaceSegment + "/" + typeName;
+            string source = BuildEventSource(ev, typeName, eventsNs, schemaForStamp, overrides);
+            sink.AddSource(relativePath, source);
+        }
+
+        // SchemaEvents reverse-lookup: { TypeName → "native_event_name", plus
+        // per-event field-name tables } — same shape as SchemaNames so consumers
+        // can switch on a C# property name and recover the raw KV1 identifier.
+        string registry = BuildRegistrySource(root.Events, csNames, rootNs, schemaForStamp);
+        sink.AddSource("SchemaEvents", registry);
+    }
+
+    // Assign a C# type name to every event record, resolving the cross-file
+    // duplicate names.
+    //
+    // Shared with GameEventFactoryEmitter rather than recomputed there: the
+    // factories reference these types by name, so any divergence between the two
+    // assignments emits code that does not compile. 15 of 272 native names carry
+    // more than one record (31 records), so this is not a rare edge case that
+    // would surface late.
+    //
+    // Within a name-group, sort by source priority descending; the winner takes
+    // "{Pascal}Event", subsequent entries "{Pascal}{SourcePascal}Event". Source
+    // name is the tie-breaker so the assignment stays stable when upstream
+    // introduces a new `.gameevents` file.
+    internal static Dictionary<GameEventModel, string> AssignTypeNames(GameEventsRoot root)
+    {
         Dictionary<string, List<GameEventModel>> byName = new(StringComparer.Ordinal);
         foreach (GameEventModel ev in root.Events)
         {
@@ -60,10 +97,6 @@ internal static class GameEventsEmitter
             list.Add(ev);
         }
 
-        // Stable assignment of C# type names. Within a name-group, sort by source
-        // priority descending; the winner takes "{Pascal}Event"; subsequent entries
-        // take "{Pascal}{SourcePascal}Event". Sorting by source name as the tie-
-        // breaker keeps the assignment stable when a new source file is introduced.
         Dictionary<GameEventModel, string> csNames = new();
         foreach (List<GameEventModel> group in byName.Values)
         {
@@ -84,25 +117,21 @@ internal static class GameEventsEmitter
             }
         }
 
-        // Emit one file per event. Filename is `Events/{TypeName}.g.cs` mirroring
-        // the per-module class layout, so the Exporter's `DiskSink` lands them at
-        // `src/CS2OpenDev.Sdk/Events/{TypeName}.cs`.
-        foreach (GameEventModel ev in root.Events)
-        {
-            string typeName = csNames[ev];
-            string relativePath = EventsNamespaceSegment + "/" + typeName;
-            string source = BuildEventSource(ev, typeName, eventsNs, schemaForStamp);
-            sink.AddSource(relativePath, source);
-        }
-
-        // SchemaEvents reverse-lookup: { TypeName → "native_event_name", plus
-        // per-event field-name tables } — same shape as SchemaNames so consumers
-        // can switch on a C# property name and recover the raw KV1 identifier.
-        string registry = BuildRegistrySource(root.Events, csNames, rootNs, schemaForStamp);
-        sink.AddSource("SchemaEvents", registry);
+        return csNames;
     }
 
-    private static string BuildEventSource(GameEventModel ev, string typeName, string ns, SchemaRoot? schemaForStamp)
+    // True when this record is the one a native-name lookup should resolve to —
+    // the highest-priority source for its name. Used by the factory registry to
+    // pick the preferred entry without re-deriving the precedence rule.
+    internal static bool IsPreferredForName(GameEventModel ev, Dictionary<GameEventModel, string> csNames) =>
+        csNames[ev] == NameHelpers.ToPascalCaseFromSnake(ev.Name) + EventTypeSuffix;
+
+    private static string BuildEventSource(
+        GameEventModel ev,
+        string typeName,
+        string ns,
+        SchemaRoot? schemaForStamp,
+        GameEventOverrides? overrides)
     {
         StringBuilder sb = new(2048);
         sb.AppendLine("// <auto-generated/>");
@@ -122,6 +151,19 @@ internal static class GameEventsEmitter
 
         sb.AppendLine("#nullable enable");
         sb.AppendLine();
+
+        // A field-type override may name a type in the consumer's own namespace,
+        // so the overrides file carries the usings needed to resolve it.
+        if (overrides is { Usings.Count: > 0 })
+        {
+            foreach (string ns2 in overrides.Usings)
+            {
+                sb.Append("using ").Append(ns2).AppendLine(";");
+            }
+
+            sb.AppendLine();
+        }
+
         sb.AppendLine($"namespace {ns};");
         sb.AppendLine();
 
@@ -204,7 +246,7 @@ internal static class GameEventsEmitter
             int i = order[k];
             GameEventFieldModel field = ev.Fields[i];
             string propName = propNames[i];
-            string csType = GameEventTypeMapper.Map(field.Type);
+            string csType = GameEventTypeMapper.Map(field.Type, overrides);
 
             if (k > 0)
             {

@@ -44,4 +44,13 @@ internal static class Descriptors
         "Upstream schema declares schema_format_version {0}, but this generator supports {1}.x. "
         + "The schema shape changed and the generator has not been migrated — see "
         + "docs/upstream/schematracker-migration.md for the breaking surface and the upstream blockers.");
+
+    // Raised when a consumer-supplied game-event overrides file is present but
+    // unusable. Reported rather than ignored: silently falling back to the
+    // built-in projections would produce an SDK that compiles and quietly
+    // ignores what the consumer asked for.
+    internal static readonly GeneratorDiagnostic InvalidOverrides = new(
+        "CS2_GEN_005",
+        GeneratorDiagnosticSeverity.Error,
+        "Invalid game-event overrides in {0}: {1}");
 }
