@@ -6,6 +6,37 @@ The SDK is built from the community-enriched [CS2OpenDev-Docs](https://github.co
 
 ---
 
+## Packages
+
+Three packages ship from this repo. They are layered so that taking the schema types never costs you a dependency you didn't ask for.
+
+| Package | What it is | Depends on |
+|---|---|---|
+| **`CS2OpenDev.Sdk`** | Schema classes, enums and game-event records. | **nothing** |
+| **`CS2OpenDev.Protos`** | Generated protobuf message types for the demo/engine wire protocol. | `Google.Protobuf` |
+| **`CS2OpenDev.Sdk.GameEvents`** | Decodes `CMsgSource1LegacyGameEvent` into the SDK's typed records. | `CS2OpenDev.Protos`, `CS2OpenDev.Sdk` |
+
+`CS2OpenDev.Sdk`'s **zero dependencies are a deliberate, load-bearing property**, not an accident of the current implementation. A decoder's input type is a protobuf message, so putting one in the SDK would drag `Google.Protobuf` onto every consumer who only wanted to name a schema type. That is the entire reason the decoder is a separate package, and CI fails the build if the SDK's nuspec ever grows a `<dependency>`.
+
+The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
+
+### Upstreams
+
+Two submodules, each vending a distinct artifact:
+
+| Submodule | Vends | Used for |
+|---|---|---|
+| `upstream/` → [CS2OpenDev-Docs](https://github.com/CS2OpenDev/CS2OpenDev-Docs) | enriched schema JSON | `CS2OpenDev.Sdk` |
+| `schema-tracker/` → [CS2OpenDev-SchemaTracker](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker) | per-build `.proto` files | `CS2OpenDev.Protos` |
+
+Docs publishes the proto surface only as markdown, and SchemaTracker's output is not annotation-enriched, so neither subsumes the other. SchemaTracker is pinned to its `latest` branch (newest build only) rather than the multi-GB full history:
+
+```sh
+git submodule update --init --depth 1 schema-tracker
+```
+
+---
+
 ## Using the SDK
 
 Add the NuGet package to your project:
@@ -102,17 +133,29 @@ src/
     Events/                       — one record per `.gameevents` entry (288 events)
     SchemaNames.cs                — reverse-lookup table: C# property → native C++ field
     SchemaEvents.cs               — reverse-lookup table: C# event property → native KV1 name
+  CS2OpenDev.Protos/          — protobuf package; compiles ../../protos/ via Grpc.Tools at build
+  CS2OpenDev.Sdk.GameEvents/  — decoder, registry, envelope
+    Generated/                    — exporter output: 288 factories + the name registry
   CS2OpenDev.Sdk.Generator/   — emitter library (consumes cs2_schema.json + gameevents_schema.json)
-  CS2OpenDev.Sdk.Exporter/    — CLI that drives the emitters and writes the SDK to disk
+  CS2OpenDev.Sdk.Exporter/    — CLI that drives the emitters and writes both output trees to disk
 test/
-  CS2OpenDev.Sdk.Generator.Tests/
+  CS2OpenDev.Sdk.Generator.Tests/     — emitter + model unit tests
+  CS2OpenDev.Sdk.GameEvents.Tests/    — decoder tests against real protobuf messages
+protos/                        — staged, namespace-injected .proto subset (generated, committed)
+  PROVENANCE.json              — CS2 build id / platform / tracker commit the protos came from
+scripts/
+  normalize-protos.py          — restages protos/ from the schema-tracker submodule
 upstream/                      — git submodule → CS2OpenDev-Docs (refreshed every 4h upstream)
   docs/generated/downstream-codegen-schemas/
-    cs2_schema.json            — entity classes/enums/fields (DumpSource2 mirror)
+    cs2_schema.json            — entity classes/enums/fields
     gameevents_schema.json     — `.gameevents` registry (KV1)
+schema-tracker/                — git submodule → CS2OpenDev-SchemaTracker (`latest` branch)
+  artifacts/<build>/windows-x86_64/protos/   — source for protos/
 ```
 
-The SDK targets `net8.0` for broad consumer compatibility. The Generator and Exporter target `net10.0`.
+The three shipped packages target `net8.0` for broad consumer compatibility. The Generator, Exporter and tests target `net10.0`.
+
+Two directories are **generated but committed**: `src/CS2OpenDev.Sdk/` (plus `src/CS2OpenDev.Sdk.GameEvents/Generated/`) and `protos/`. CI regenerates both and fails on a diff, so a change to either has to arrive with the regeneration that produced it. The C# protoc emits from `protos/` is *not* committed — that would be ~240,000 lines of review surface per CS2 patch, for output the build reproduces exactly.
 
 ---
 

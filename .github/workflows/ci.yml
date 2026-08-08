@@ -1,9 +1,10 @@
 name: CI
 
-# Gatekeeper workflow on every PR and every push to main. Runs the test suite
-# AND an idempotency check: regenerate the SDK and fail if the working tree
-# diverges from what's committed. That catches "edited the generator but
-# forgot to regen" PRs before they merge.
+# Gatekeeper workflow on every PR and every push to main. Runs the test suites
+# AND two regenerate-and-compare checks: the SDK/GameEvents sources and the
+# staged protobuf subset must both match what's committed. That catches "edited
+# the generator but forgot to regen" and "bumped the tracker but forgot to
+# restage protos" PRs before they merge.
 
 on:
   pull_request:
@@ -40,23 +41,36 @@ jobs:
       - name: Restore + build (warnings-as-errors)
         run: dotnet build --configuration Release -nologo
 
-      - name: Run test suite (TUnit via dotnet run)
-        # The test project is an exe under TUnit; `dotnet run` is the supported
+      - name: Run generator test suite (TUnit via dotnet run)
+        # The test projects are exes under TUnit; `dotnet run` is the supported
         # invocation per the project README (dotnet test is unsupported on
         # Microsoft.Testing.Platform-on-net10).
         run: dotnet run --configuration Release --project test/CS2OpenDev.Sdk.Generator.Tests
 
-      - name: Regenerate SDK into a clean tree
+      - name: Run game-events test suite
+        # Exercises the shipped decoder surface against real protobuf messages,
+        # rather than the generator that emitted half of it.
+        run: dotnet run --configuration Release --project test/CS2OpenDev.Sdk.GameEvents.Tests
+
+      - name: Verify staged protos are current
+        # Re-derives the demo/engine subset from the schema-tracker submodule and
+        # fails if `protos/` differs. Also compiles the subset in isolation, which
+        # is the only way to prove it is import-closed — protoc resolves imports
+        # against anything on its include path, so a set that "works" inside the
+        # full 40-file directory may not actually be closed.
+        run: python3 scripts/normalize-protos.py --check
+
+      - name: Regenerate SDK + game-event factories into a clean tree
         run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 
       - name: Fail if regen produced a diff
-        # If the regen output differs from committed src/CS2OpenDev.Sdk/,
-        # someone changed the generator (or the schema) without committing the
-        # corresponding SDK regeneration. Surface the diff so the contributor
-        # sees exactly what needs to be committed.
+        # If regen output differs from what's committed, someone changed the
+        # generator (or the schema) without committing the corresponding
+        # regeneration. Both output trees are checked: the SDK proper and the
+        # generated half of CS2OpenDev.Sdk.GameEvents.
         run: |
-          if ! git diff --exit-code -- src/CS2OpenDev.Sdk/; then
-            echo "::error::Regenerated SDK differs from committed sources."
+          if ! git diff --exit-code -- src/CS2OpenDev.Sdk/ src/CS2OpenDev.Sdk.GameEvents/Generated/; then
+            echo "::error::Regenerated sources differ from what is committed."
             echo "::error::Run \`dotnet run --project src/CS2OpenDev.Sdk.Exporter\` locally and commit the result."
             exit 1
           fi
@@ -66,14 +80,48 @@ jobs:
         uses: ./.github/actions/read-schema-metadata
 
       - name: Verify NuGet pack succeeds
-        # Doesn't publish — just validates that pack runs clean end-to-end with
-        # the same build-metadata injection the release workflow uses. We
-        # deliberately omit `--no-build`: `dotnet pack` re-runs the pack-
-        # specific targets that aren't covered by the prior `dotnet build`,
-        # and the extra cost is small compared to the reliability win.
+        # Doesn't publish — just validates that pack runs clean end-to-end for
+        # every shipped package, with the same build-metadata injection the
+        # release workflow uses. We deliberately omit `--no-build`: `dotnet pack`
+        # re-runs pack-specific targets that aren't covered by the prior
+        # `dotnet build`, and the extra cost is small compared to the
+        # reliability win.
+        #
+        # CS2OpenDev.Protos takes no CS2Schema* properties: it stamps its
+        # provenance from the committed `protos/PROVENANCE.json` instead, so a
+        # local pack produces a correctly identified package too.
         run: |
           dotnet pack src/CS2OpenDev.Sdk \
             --configuration Release \
             -nologo \
             -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
             -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
+          dotnet pack src/CS2OpenDev.Protos --configuration Release -nologo
+          dotnet pack src/CS2OpenDev.Sdk.GameEvents \
+            --configuration Release \
+            -nologo \
+            -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
+            -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
+
+      - name: Assert CS2OpenDev.Sdk stays dependency-free
+        # A standing constraint, and one that is easy to break by accident: the
+        # SDK ships schema types only, and a consumer who wants those must not be
+        # made to take Google.Protobuf. That is the entire reason the decoder
+        # lives in a separate package. Enforced here rather than trusted, because
+        # a stray ProjectReference would otherwise ship silently.
+        run: |
+          PKG=$(find artifacts/package -name 'CS2OpenDev.Sdk.[0-9]*.nupkg' -not -name '*.snupkg' | head -1)
+          if [ -z "$PKG" ]; then
+            echo "::error::No CS2OpenDev.Sdk .nupkg found to inspect"
+            exit 1
+          fi
+          mkdir -p /tmp/sdk-nuspec && unzip -o -q "$PKG" -d /tmp/sdk-nuspec
+          NUSPEC=/tmp/sdk-nuspec/CS2OpenDev.Sdk.nuspec
+          if grep -q '<dependency ' "$NUSPEC"; then
+            echo "::error::CS2OpenDev.Sdk gained a package dependency:"
+            grep '<dependency ' "$NUSPEC"
+            echo "::error::Schema types must stay dependency-free. Put anything needing"
+            echo "::error::Google.Protobuf in CS2OpenDev.Sdk.GameEvents instead."
+            exit 1
+          fi
+          echo "CS2OpenDev.Sdk has no package dependencies."

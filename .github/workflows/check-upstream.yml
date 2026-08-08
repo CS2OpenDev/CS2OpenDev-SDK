@@ -1,8 +1,16 @@
 name: Check upstream schema
 
-# Scheduled workflow that pulls the latest commit from the upstream
-# CS2OpenDev-Docs submodule, regenerates the SDK if anything changed, pushes
-# the result directly to main, AND publishes the new package in the same run.
+# Scheduled workflow that pulls the latest commit from BOTH upstream
+# submodules, regenerates whatever changed, pushes the result directly to main,
+# AND publishes the new packages in the same run.
+#
+# Two upstreams, two artifacts, two clocks:
+#   upstream/       (CS2OpenDev-Docs)         -> schema JSON  -> CS2OpenDev.Sdk
+#   schema-tracker/ (CS2OpenDev-SchemaTracker) -> .proto files -> CS2OpenDev.Protos
+#
+# They move independently: most CS2 patches change the schema without touching
+# a single .proto, and a tracker rebuild can land protos with no schema change.
+# Refreshing only one would silently freeze the other package.
 #
 # Why pack+publish here instead of letting release.yml fire on the push:
 # pushes from a workflow authenticated with the default GITHUB_TOKEN are
@@ -60,18 +68,34 @@ jobs:
         id: before
         uses: ./.github/actions/read-schema-metadata
 
-      - name: Bump upstream submodule to latest
+      - name: Bump upstream submodules to latest
         id: bump
         run: |
-          # `--remote` updates the submodule's checked-out commit to the tip of
+          # `--remote` updates each submodule's checked-out commit to the tip of
           # its tracked branch. We deliberately don't pass `--merge`: submodules
           # in a normal checkout are in detached-HEAD state, so there's no local
           # branch to merge into and the flag behaves unpredictably. `--remote`
           # alone plus `git add` is all we need.
-          git submodule update --remote upstream
+          #
+          # schema-tracker tracks its `latest` branch (newest CS2 build only),
+          # declared in .gitmodules.
+          git submodule update --remote upstream schema-tracker
+
           if git diff --quiet -- upstream; then
+            echo "docs_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "docs_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if git diff --quiet -- schema-tracker; then
+            echo "tracker_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "tracker_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if git diff --quiet -- upstream schema-tracker; then
             echo "submodule_changed=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Upstream submodule is already at latest — nothing to do."
+            echo "::notice::Both upstream submodules are already at latest — nothing to do."
           else
             echo "submodule_changed=true" >> "$GITHUB_OUTPUT"
           fi
@@ -95,20 +119,33 @@ jobs:
         if: steps.bump.outputs.submodule_changed == 'true'
         run: dotnet run --configuration Release --project test/CS2OpenDev.Sdk.Generator.Tests
 
-      - name: Regenerate SDK
+      - name: Restage protos from the tracker
+        # Only when the tracker actually moved. Re-derives the demo/engine
+        # subset, re-injects the csharp_namespace option, and rewrites
+        # protos/PROVENANCE.json with the new CS2 build id. Also re-verifies the
+        # subset compiles in isolation, so a Valve change that breaks the import
+        # closure fails here rather than in a consumer's build.
+        if: steps.bump.outputs.tracker_changed == 'true'
+        run: python3 scripts/normalize-protos.py
+
+      - name: Regenerate SDK + game-event factories
         if: steps.bump.outputs.submodule_changed == 'true'
         run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 
-      - name: Decide whether SDK content changed
-        # The submodule moved but the regenerated SDK might match what's already
-        # committed (e.g. upstream re-committed an unrelated overlay change
-        # that doesn't affect the projected types). We still commit the submodule
+      - name: Decide whether any shipped content changed
+        # A submodule moved, but the regenerated output might match what's
+        # already committed (e.g. upstream re-committed an unrelated overlay
+        # change that doesn't affect the projected types, or a tracker rebuild
+        # produced byte-identical descriptors). We still commit the submodule
         # bump in that case, but we don't trigger a publish if there's nothing
         # downstream consumers would see.
+        #
+        # All three shipped trees are checked, because each feeds a different
+        # package and any one of them changing is worth a release.
         if: steps.bump.outputs.submodule_changed == 'true'
         id: sdk_diff
         run: |
-          if git diff --quiet -- src/CS2OpenDev.Sdk/; then
+          if git diff --quiet -- src/CS2OpenDev.Sdk/ src/CS2OpenDev.Sdk.GameEvents/Generated/ protos/; then
             echo "sdk_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "sdk_changed=true" >> "$GITHUB_OUTPUT"
@@ -122,19 +159,36 @@ jobs:
           AFTER_REV: ${{ steps.after.outputs.revision }}
           AFTER_DATE: ${{ steps.after.outputs.date-iso }}
           SDK_CHANGED: ${{ steps.sdk_diff.outputs.sdk_changed }}
+          DOCS_CHANGED: ${{ steps.bump.outputs.docs_changed }}
+          TRACKER_CHANGED: ${{ steps.bump.outputs.tracker_changed }}
         run: |
           set -euo pipefail
-          git add upstream src/CS2OpenDev.Sdk/
+          git add upstream schema-tracker src/CS2OpenDev.Sdk/ \
+                  src/CS2OpenDev.Sdk.GameEvents/Generated/ protos/
 
-          if [ "$BEFORE_REV" = "$AFTER_REV" ]; then
-            SUBJECT="chore(schema): refresh upstream enrichment (CS2 ${AFTER_REV} unchanged)"
-          else
+          # Subject names whichever upstream actually moved, so the log reads as
+          # what happened rather than always as a schema regen.
+          if [ "$DOCS_CHANGED" = "true" ] && [ "$BEFORE_REV" != "$AFTER_REV" ]; then
             SUBJECT="chore(schema): regen for CS2 ${BEFORE_REV} → ${AFTER_REV}"
+          elif [ "$DOCS_CHANGED" = "true" ] && [ "$TRACKER_CHANGED" = "true" ]; then
+            SUBJECT="chore(upstream): refresh schema enrichment and protos"
+          elif [ "$TRACKER_CHANGED" = "true" ]; then
+            BUILD_ID=$(python3 -c "import json;print(json.load(open('protos/PROVENANCE.json'))['build_id'])")
+            SUBJECT="chore(protos): restage for CS2 build ${BUILD_ID}"
+          else
+            SUBJECT="chore(schema): refresh upstream enrichment (CS2 ${AFTER_REV} unchanged)"
           fi
 
-          BODY="Upstream submodule bumped to dump ${AFTER_DATE}."
+          BODY=""
+          if [ "$DOCS_CHANGED" = "true" ]; then
+            BODY="Docs submodule bumped to dump ${AFTER_DATE}."
+          fi
+          if [ "$TRACKER_CHANGED" = "true" ]; then
+            [ -n "$BODY" ] && BODY="${BODY}"$'\n'
+            BODY="${BODY}SchemaTracker submodule bumped; protos/ restaged."
+          fi
           if [ "$SDK_CHANGED" = "false" ]; then
-            BODY="${BODY}"$'\n'"SDK content unchanged — only the submodule pointer moved."
+            BODY="${BODY}"$'\n'"Shipped content unchanged — only submodule pointers moved."
           fi
 
           git commit -m "$SUBJECT" -m "$BODY"

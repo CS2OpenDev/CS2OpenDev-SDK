@@ -1,10 +1,16 @@
 name: Pack and publish
 
-# Reusable workflow that packs the SDK and publishes it to NuGet.org.
-# Invoked via `workflow_call` from both check-upstream.yml (scheduled bot
-# refresh) and release.yml (manual or version.json-driven release). Keeping
-# the pack+publish logic in one place avoids the chained-workflow gotcha
-# where the default GITHUB_TOKEN can't trigger downstream workflow_runs.
+# Reusable workflow that packs every shipped package and publishes it to
+# NuGet.org. Invoked via `workflow_call` from both check-upstream.yml (scheduled
+# bot refresh) and release.yml (manual or version.json-driven release). Keeping
+# the pack+publish logic in one place avoids the chained-workflow gotcha where
+# the default GITHUB_TOKEN can't trigger downstream workflow_runs.
+#
+# Three packages ship, and they do NOT share a version. CS2OpenDev.Protos moves
+# on the protobuf clock (its version.json matches `protos/` only), while the
+# other two move on the schema clock. So each package resolves its own version,
+# gets its own release tag, and is skipped independently when its version is a
+# prerelease.
 
 on:
   workflow_call:
@@ -29,8 +35,32 @@ permissions:
 
 jobs:
   publish:
-    name: Pack and publish to NuGet.org
+    name: Pack and publish ${{ matrix.id }}
     runs-on: ubuntu-latest
+    strategy:
+      # Strictly sequential, in dependency order: CS2OpenDev.Sdk.GameEvents
+      # declares dependencies on the other two, so publishing it first would put
+      # a package on the feed whose dependencies aren't resolvable yet. NuGet
+      # does not validate that at push time — the push succeeds and a consumer
+      # restoring in the gap gets the failure instead.
+      max-parallel: 1
+      # One package failing must not cancel the others mid-publish. A partial
+      # release is recoverable (`--skip-duplicate` makes a re-run safe); a
+      # cancelled one leaves less signal about what actually happened.
+      fail-fast: false
+      matrix:
+        include:
+          - id: CS2OpenDev.Protos
+            path: src/CS2OpenDev.Protos
+            # Stamps its provenance from the committed protos/PROVENANCE.json,
+            # so it needs no CS2Schema* properties passed in.
+            schema_metadata: false
+          - id: CS2OpenDev.Sdk
+            path: src/CS2OpenDev.Sdk
+            schema_metadata: true
+          - id: CS2OpenDev.Sdk.GameEvents
+            path: src/CS2OpenDev.Sdk.GameEvents
+            schema_metadata: true
     env:
       # Job-level so `if: env.NUGET_API_KEY != ''` can read it in step
       # conditions (step-level env is evaluated AFTER step `if:`).
@@ -58,32 +88,45 @@ jobs:
           global-json-file: global.json
 
       - name: Restore + build (Release)
-        run: dotnet build src/CS2OpenDev.Sdk --configuration Release -nologo
+        run: dotnet build ${{ matrix.path }} --configuration Release -nologo
 
       - name: Read CS2 schema metadata
         id: schema
+        if: matrix.schema_metadata
         uses: ./.github/actions/read-schema-metadata
 
-      - name: Pack SDK
+      - name: Pack
         run: |
-          dotnet pack src/CS2OpenDev.Sdk \
-            --configuration Release \
-            -nologo \
-            -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
-            -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
+          if [ "${{ matrix.schema_metadata }}" = "true" ]; then
+            dotnet pack ${{ matrix.path }} \
+              --configuration Release \
+              -nologo \
+              -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
+              -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
+          else
+            dotnet pack ${{ matrix.path }} --configuration Release -nologo
+          fi
 
       - name: Resolve produced packages
         id: pkg
+        env:
+          ID: ${{ matrix.id }}
         run: |
           set -euo pipefail
           # The pack step produces both `.nupkg` (assemblies) and `.snupkg`
           # (symbols / portable PDBs) thanks to `IncludeSymbols=true` +
-          # `SymbolPackageFormat=snupkg` in the SDK csproj. Resolve the
-          # `.nupkg` first — its filename carries the version — then derive
-          # the matching `.snupkg` path. Both must exist before publish.
-          PKG=$(find artifacts/package -name 'CS2OpenDev.Sdk.*.nupkg' -not -name '*.snupkg' | head -1)
+          # `SymbolPackageFormat=snupkg`. Resolve the `.nupkg` first — its
+          # filename carries the version — then derive the matching `.snupkg`.
+          #
+          # The `[0-9]` after the id is load-bearing, not decoration. A plain
+          # `CS2OpenDev.Sdk.*.nupkg` also matches
+          # `CS2OpenDev.Sdk.GameEvents.1.0.5.nupkg`, because the sibling
+          # package's id is a prefix-extension of this one. Anchoring on the
+          # version's first digit keeps each package resolving only its own
+          # artifact.
+          PKG=$(find artifacts/package -name "${ID}.[0-9]*.nupkg" -not -name '*.snupkg' | head -1)
           if [ -z "$PKG" ]; then
-            echo "::error::No .nupkg produced under artifacts/package/"
+            echo "::error::No ${ID} .nupkg produced under artifacts/package/"
             exit 1
           fi
           SYM="${PKG%.nupkg}.snupkg"
@@ -91,7 +134,12 @@ jobs:
             echo "::warning::Symbols package missing at $SYM — proceeding without symbols"
             SYM=""
           fi
-          VERSION=$(basename "$PKG" .nupkg | sed 's/^CS2OpenDev\.Sdk\.//')
+
+          # Strip the package id prefix with parameter expansion rather than a
+          # regex — the id contains dots, and each package needs its own
+          # pattern otherwise.
+          BASE=$(basename "$PKG" .nupkg)
+          VERSION="${BASE#"${ID}".}"
           PKG_DIR=$(dirname "$PKG")
 
           # Only stable versions get published. A SemVer prerelease label
@@ -129,31 +177,33 @@ jobs:
       - name: Assert no build-machine paths in packages
         # Guards the leak fixed in v1.0.3: v1.0.2 shipped the packer's home
         # directory in the assembly's CodeView record and in the `.snupkg`
-        # PDB's SourceLink map. `ContinuousIntegrationBuild=true` in the SDK
-        # csproj rewrites those to `/_/`; this step fails the release if a
-        # build ever stops honouring it (e.g. the property gets dropped, or a
+        # PDB's SourceLink map. `ContinuousIntegrationBuild=true` in each
+        # shipped csproj rewrites those to `/_/`; this step fails the release if
+        # a build ever stops honouring it (e.g. the property gets dropped, or a
         # future runner layout defeats the path mapping).
         #
         # Asserts the positive signal too — a `/_/` path must be PRESENT, not
         # merely a home path absent. Absence alone is equally what you get from
         # scanning the wrong file or a stale artifact.
         #
-        # No third-party allowlist needed: both packages contain only
+        # No third-party allowlist needed: every package contains only
         # first-party output (the assembly, its XML docs, README, and NuGet
-        # metadata). Microsoft's and other vendors' binaries legitimately
-        # carry their own CI agents' paths, but none are bundled here.
+        # metadata). Microsoft's and other vendors' binaries legitimately carry
+        # their own CI agents' paths, but none are bundled here.
         env:
           PKG: ${{ steps.pkg.outputs.path }}
           SYM: ${{ steps.pkg.outputs.symbols }}
+          PROJECT: ${{ matrix.path }}
         run: |
           set -euo pipefail
-          python3 - "$PKG" ${SYM:+"$SYM"} <<'PY'
+          python3 - "$PROJECT" "$PKG" ${SYM:+"$SYM"} <<'PY'
           import sys, zipfile
 
           LEAKS = (b'/Users/', b'/home/', b'/root/', b'C:\\Users\\')
+          project, paths = sys.argv[1], sys.argv[2:]
           rc = 0
 
-          for path in sys.argv[1:]:
+          for path in paths:
               print(f'=== {path} ===')
               leaked, normalised = {}, 0
               with zipfile.ZipFile(path) as z:
@@ -171,8 +221,7 @@ jobs:
               if leaked:
                   print(f'::error::Build-machine path in {path}: '
                         f'{", ".join(leaked)}. Check that '
-                        'ContinuousIntegrationBuild=true is still set in '
-                        'src/CS2OpenDev.Sdk/CS2OpenDev.Sdk.csproj.')
+                        f'ContinuousIntegrationBuild=true is still set in {project}.')
                   rc = 1
               elif not normalised:
                   print(f'::error::No build-machine path in {path}, but no '
@@ -189,23 +238,23 @@ jobs:
       - name: Upload packages as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nupkg-${{ steps.pkg.outputs.version }}
-          # Glob captures the .nupkg AND the matching .snupkg so a single
-          # downloadable artifact carries both.
-          path: ${{ steps.pkg.outputs.dir }}/CS2OpenDev.Sdk.*.*nupkg
+          name: nupkg-${{ matrix.id }}-${{ steps.pkg.outputs.version }}
+          # Named explicitly rather than globbed: a `${id}.*.*nupkg` pattern
+          # would sweep in the sibling package whose id extends this one.
+          path: |
+            ${{ steps.pkg.outputs.path }}
+            ${{ steps.pkg.outputs.symbols }}
           if-no-files-found: error
 
       - name: Publish to NuGet.org
         if: env.NUGET_API_KEY != '' && steps.pkg.outputs.prerelease == 'false'
         # The `.nupkg` and `.snupkg` are pushed as two explicit calls rather
-        # than one wildcard. The previous glob (`CS2OpenDev.Sdk.*.nupkg`) did
-        # not literally match `.snupkg`, and relied on the client auto-pairing
-        # the adjacent symbols package — behaviour that NuGet/Home#9867 reports
-        # as unreliable when a wildcard is involved. This never actually ran
-        # (NUGET_API_KEY has never been set), so the pairing was untested.
-        # Naming both files explicitly removes the guesswork: `--no-symbols`
-        # suppresses the implicit pairing, then the `.snupkg` is pushed on its
-        # own to NuGet.org's symbol server.
+        # than one wildcard. A glob does not literally match `.snupkg`, and
+        # relying on the client auto-pairing the adjacent symbols package is
+        # behaviour NuGet/Home#9867 reports as unreliable when a wildcard is
+        # involved. Naming both files explicitly removes the guesswork:
+        # `--no-symbols` suppresses the implicit pairing, then the `.snupkg` is
+        # pushed on its own to NuGet.org's symbol server.
         run: |
           dotnet nuget push "${{ steps.pkg.outputs.path }}" \
             --api-key "$NUGET_API_KEY" \
@@ -270,7 +319,7 @@ jobs:
         # from one that published successfully.
         if: steps.pkg.outputs.prerelease == 'true'
         run: |
-          echo "::warning::${{ steps.pkg.outputs.version }} is a prerelease version — NOTHING was published, to NuGet.org or GitHub Packages. Only stable versions (e.g. 1.0.4, not 1.0.4-g0123456789) are published. Nerdbank.GitVersioning appends the -g<commit> label when the built ref does not match publicReleaseRefSpec in version.json (currently ^refs/heads/main\$). Download the package from this run's Artifacts section if you need it."
+          echo "::warning::${{ matrix.id }} ${{ steps.pkg.outputs.version }} is a prerelease version — NOTHING was published, to NuGet.org or GitHub Packages. Only stable versions (e.g. 1.0.4, not 1.0.4-g0123456789) are published. Nerdbank.GitVersioning appends the -g<commit> label when the built ref does not match publicReleaseRefSpec in version.json (currently ^refs/heads/main\$). Download the package from this run's Artifacts section if you need it."
 
       - name: Notice when NuGet.org publish is skipped
         # Loud notice that a STABLE package reached GitHub Packages but not
@@ -284,22 +333,29 @@ jobs:
         # case is covered by the separate notice above.
         if: env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
         run: |
-          echo "::warning::NUGET_API_KEY secret is not set on this repository — ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. To enable NuGet.org publishing, add the secret in Settings → Secrets and variables → Actions."
+          echo "::warning::NUGET_API_KEY secret is not set on this repository — ${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. To enable NuGet.org publishing, add the secret in Settings → Secrets and variables → Actions."
 
       - name: Create GitHub Release
         # Gated on a stable version only — a prerelease build would otherwise
-        # tag `v1.0.4-g4a3672a4ae` for something that was never published.
+        # tag something that was never published.
         #
         # Deliberately NOT gated on NUGET_API_KEY. Every version that reaches a
         # feed gets a matching tag and release, and GitHub Packages publishes
         # without any secret, so tying the tag to the NuGet.org key would leave
         # published versions with no corresponding tag in the repo.
+        #
+        # Tags are namespaced per package (`CS2OpenDev.Protos/v1.0.7`) because
+        # the three packages no longer share a version: CS2OpenDev.Protos moves
+        # on the protobuf clock and the others on the schema clock, so a bare
+        # `v1.0.7` would be ambiguous the first time those diverge. Releases
+        # tagged `v*` before this change belong to CS2OpenDev.Sdk.
         if: steps.pkg.outputs.prerelease == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PKG_ID: ${{ matrix.id }}
           PKG_PATH: ${{ steps.pkg.outputs.path }}
           PKG_SYMBOLS: ${{ steps.pkg.outputs.symbols }}
-          TAG: v${{ steps.pkg.outputs.version }}
+          TAG: ${{ matrix.id }}/v${{ steps.pkg.outputs.version }}
           TARGET_SHA: ${{ steps.head.outputs.sha }}
           REVISION: ${{ steps.schema.outputs.revision }}
           DUMP_DATE: ${{ steps.schema.outputs.date-iso }}
@@ -314,8 +370,19 @@ jobs:
             FEEDS='Published to GitHub Packages only — NUGET_API_KEY is not configured, so this version is not on NuGet.org and its symbols were not published to a symbol server.'
           fi
 
-          NOTES=$(printf 'Automated release.\n\nCS2 schema revision: `%s` (dump %s).\n\n%s' \
-                         "$REVISION" "$DUMP_DATE" "$FEEDS")
+          # CS2OpenDev.Protos carries no schema revision — it is versioned on
+          # the protobuf clock and stamps its own CS2 build id from
+          # protos/PROVENANCE.json. Reporting an empty revision would read as a
+          # missing value rather than a deliberately absent one.
+          if [ -n "${REVISION:-}" ]; then
+            PROVENANCE=$(printf 'CS2 schema revision: `%s` (dump %s).' "$REVISION" "$DUMP_DATE")
+          else
+            BUILD_ID=$(python3 -c "import json;print(json.load(open('protos/PROVENANCE.json'))['build_id'])")
+            PROVENANCE=$(printf 'Protobuf descriptors from CS2 build `%s`. See `protos/PROVENANCE.json`.' "$BUILD_ID")
+          fi
+
+          NOTES=$(printf 'Automated release of `%s`.\n\n%s\n\n%s' \
+                         "$PKG_ID" "$PROVENANCE" "$FEEDS")
 
           # Attach both packages so the release page carries the symbols too,
           # not just the assemblies. Built as an array so a missing .snupkg
