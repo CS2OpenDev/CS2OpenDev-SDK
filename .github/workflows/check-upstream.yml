@@ -79,6 +79,20 @@ jobs:
           #
           # schema-tracker tracks its `latest` branch (newest CS2 build only),
           # declared in .gitmodules.
+          #
+          # That submodule is also declared `shallow = true`, and the two
+          # settings fight each other here: actions/checkout honours `shallow`
+          # and clones it at the pinned SHA with no remote-tracking refs, but
+          # `--remote` resolves `refs/remotes/origin/<branch>` inside the
+          # submodule. It isn't there, so the whole step dies with
+          #   fatal: Unable to find refs/remotes/origin/latest revision in
+          #   submodule path 'schema-tracker'
+          # and exit 128 — before the regen that this job actually exists to
+          # run. Create the ref explicitly first. `--depth 1` is what keeps the
+          # multi-GB artifact history out, which is the point of `shallow`.
+          git -C schema-tracker fetch --depth 1 origin \
+            latest:refs/remotes/origin/latest
+
           git submodule update --remote upstream schema-tracker
 
           if git diff --quiet -- upstream; then
