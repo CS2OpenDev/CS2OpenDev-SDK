@@ -11,6 +11,7 @@
         <Project Path="src/CS2OpenDev.Sdk.Exporter/CS2OpenDev.Sdk.Exporter.csproj"/>
         <Project Path="src/CS2OpenDev.Sdk/CS2OpenDev.Sdk.csproj"/>
         <Project Path="src/CS2OpenDev.Sdk.Generator/CS2OpenDev.Sdk.Generator.csproj"/>
+        <Project Path="src/CS2OpenDev.Protos/CS2OpenDev.Protos.csproj"/>
     </Folder>
     <Folder Name="/test/">
         <Project Path="test/CS2OpenDev.Sdk.Generator.Tests/CS2OpenDev.Sdk.Generator.Tests.csproj"/>

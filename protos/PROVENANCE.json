@@ -1,0 +1,41 @@
+{
+  "build_id": 24537688,
+  "csharp_namespace": "CS2OpenSchema.Protos",
+  "files": [
+    "clientmessages.proto",
+    "cs_gameevents.proto",
+    "cs_usercmd.proto",
+    "cstrike15_gcmessages.proto",
+    "cstrike15_usermessages.proto",
+    "demo.proto",
+    "engine_gcmessages.proto",
+    "gameevents.proto",
+    "gcsdk_gcmessages.proto",
+    "netmessages.proto",
+    "network_connection.proto",
+    "networkbasetypes.proto",
+    "source2_steam_stats.proto",
+    "steammessages.proto",
+    "te.proto",
+    "usercmd.proto",
+    "usermessages.proto",
+    "valveextensions.proto"
+  ],
+  "generated_utc": "2026-08-06T20:24:31Z",
+  "platform": "windows-x86_64",
+  "roots": [
+    "clientmessages.proto",
+    "cs_gameevents.proto",
+    "cs_usercmd.proto",
+    "cstrike15_usermessages.proto",
+    "demo.proto",
+    "gameevents.proto",
+    "netmessages.proto",
+    "networkbasetypes.proto",
+    "te.proto",
+    "usercmd.proto",
+    "usermessages.proto"
+  ],
+  "source_commit": "fbf719e72af652144b5c9678d0665ea60b90d685",
+  "source_repo": "https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker"
+}

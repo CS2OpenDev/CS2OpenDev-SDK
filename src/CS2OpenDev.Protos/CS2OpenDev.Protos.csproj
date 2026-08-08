@@ -1,0 +1,128 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>CS2OpenDev.Protos</AssemblyName>
+        <RootNamespace>CS2OpenSchema.Protos</RootNamespace>
+
+        <!-- Every `.cs` in this assembly is protoc output. It is machine-written
+             to Google's house style, not ours, and we do not edit it — so the
+             repo-wide analyzer settings from Directory.Build.props are relaxed
+             here rather than suppressed file-by-file in generated code we would
+             have to re-suppress on every regen.
+
+             CS1591 (missing XML docs) is already in the parent NoWarn. The rest
+             are the analyzer IDs protoc output trips: reserved-word and casing
+             conventions inherited from the `.proto` field names, and the
+             generated reflection/partial-class plumbing. -->
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <EnableNETAnalyzers>false</EnableNETAnalyzers>
+        <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+        <NoWarn>$(NoWarn);CS1591;CS0612;CS0618;CA1707;CA1716;CA1720;CA1819;CA2227;IDE0005</NoWarn>
+
+        <!-- Symbols, deterministic paths and provenance: identical rationale to
+             CS2OpenDev.Sdk. See that csproj for the full reasoning — in short,
+             `ContinuousIntegrationBuild` rewrites the repo root to `/_/` so no
+             build-machine path ships inside the assembly or the symbols
+             package. -->
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+        <!-- NuGet package identity.
+
+             Versioned independently of CS2OpenDev.Sdk: this project has its own
+             `version.json` whose `pathFilters` cover `protos/` and this
+             directory only. The schema dump and the protobuf descriptors move on
+             different clocks — a schema regen that leaves the `.proto` files
+             untouched must not bump this package, or consumers eat a version
+             bump, a diff review and a CI run for a byte-identical assembly. -->
+        <PackageId>CS2OpenDev.Protos</PackageId>
+        <Authors>CS2OpenDev Contributors</Authors>
+        <Description>
+            Generated C# protobuf message types for Counter-Strike 2's demo and engine wire
+            protocol, recovered per-build from the shipped game binaries. Covers demo packets,
+            entity updates, user messages, game events and usercmds. Types live in the
+            CS2OpenSchema.Protos namespace; proto short names and .proto filenames are preserved
+            unchanged.
+        </Description>
+        <PackageTags>cs2;counter-strike;protobuf;demo;source2;wire-protocol</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Runtime dependency, and the package's only one. Public-surface ABI
+             commitment — see the floor policy in README.md. -->
+        <PackageReference Include="Google.Protobuf"/>
+        <!-- Build-only: supplies protoc and the Protobuf item-group integration.
+             `PrivateAssets="all"` keeps it out of the produced nuspec so
+             consumers never see it. -->
+        <PackageReference Include="Grpc.Tools" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <!-- The staged, namespace-injected `.proto` files at the repo root.
+         `scripts/normalize-protos.py` produces them from the schema-tracker
+         submodule and CI re-runs it in check mode, so this directory is
+         generated-but-committed: reviewable as a diff per CS2 build, without
+         committing the roughly 240k lines of C# protoc turns it into.
+
+         `ProtoRoot` must be the directory the imports resolve against — the
+         `.proto` files import each other by bare filename. -->
+    <ItemGroup>
+        <Protobuf Include="../../protos/*.proto"
+                  ProtoRoot="../../protos"
+                  GrpcServices="None"
+                  CompileOutputs="true"/>
+    </ItemGroup>
+
+    <!-- Build provenance, read from the committed `protos/PROVENANCE.json` that
+         the normalisation script writes.
+
+         Unlike the SDK, this needs no CI-supplied MSBuild property: the values
+         travel in a committed file, so a local `dotnet pack` produces a
+         correctly stamped package too. That matters because the identity here
+         is a Steam `build_id` — it names the actual CS2 game build the
+         descriptors were recovered from, which is the one thing a consumer
+         debugging a wire-format mismatch needs to know.
+
+         Recorded in two places that do not depend on the version string
+         surviving intact, for the same reason CS2OpenDev.Sdk does it: SemVer 2
+         build metadata is not part of a package's identity, never appears in
+         the `.nupkg` filename, and feeds are inconsistent about preserving it.
+         `AssemblyMetadata` travels inside the DLL and cannot be stripped. -->
+    <!-- Read at EVALUATION time, not inside a target.
+
+         Nerdbank.GitVersioning computes the version in a separate sub-project
+         (`PrivateP2PCaching.proj`) invoked via P2P, and anything a target sets
+         in *this* project is invisible to it. `BuildMetadata` items therefore
+         have to reference properties that already exist when MSBuild evaluates
+         the file — a target-set property evaluates to empty, the item's
+         Condition fails, and the metadata silently vanishes from the version.
+         CS2OpenDev.Sdk hit the same trap; see its csproj. -->
+    <PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)../../protos/PROVENANCE.json')">
+        <_ProvenanceJson>$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)../../protos/PROVENANCE.json'))</_ProvenanceJson>
+        <CS2BuildId>$([System.Text.RegularExpressions.Regex]::Match($(_ProvenanceJson), '"build_id":\s*(\d+)').Groups[1].Value)</CS2BuildId>
+        <CS2Platform>$([System.Text.RegularExpressions.Regex]::Match($(_ProvenanceJson), '"platform":\s*"([^"]+)"').Groups[1].Value)</CS2Platform>
+        <CS2TrackerCommit>$([System.Text.RegularExpressions.Regex]::Match($(_ProvenanceJson), '"source_commit":\s*"([^"]+)"').Groups[1].Value)</CS2TrackerCommit>
+        <PackageReleaseNotes>Protobuf descriptors recovered from CS2 build $(CS2BuildId) ($(CS2Platform)), via CS2OpenDev-SchemaTracker $(CS2TrackerCommit).</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(CS2BuildId)' != ''">
+        <BuildMetadata Include="cs.build.$(CS2BuildId)"/>
+        <AssemblyMetadata Include="CS2BuildId" Value="$(CS2BuildId)"/>
+        <AssemblyMetadata Include="CS2Platform" Value="$(CS2Platform)"/>
+        <AssemblyMetadata Include="CS2SchemaTrackerCommit" Value="$(CS2TrackerCommit)"/>
+    </ItemGroup>
+</Project>

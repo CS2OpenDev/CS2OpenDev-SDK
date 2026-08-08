@@ -1,3 +1,19 @@
 [submodule "upstream"]
 	path = upstream
 	url = https://github.com/CS2OpenDev/CS2OpenDev-Docs
+
+[submodule "schema-tracker"]
+	path = schema-tracker
+	url = https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker.git
+	branch = latest
+	# Source for `protos/` only — the schema JSON comes from the `upstream`
+	# submodule above, which enriches SchemaTracker's output with the community
+	# annotation overlay. Two upstreams, two distinct artifacts: Docs vends
+	# enriched schema JSON, SchemaTracker vends the raw `.proto` files (Docs
+	# publishes those only as markdown).
+	#
+	# Pinned to the `latest` branch, which carries just the newest build's
+	# artifact set plus a root LATEST.json rather than the multi-GB full
+	# history. Materialise with:
+	#   git submodule update --init --depth 1 schema-tracker
+	shallow = true
