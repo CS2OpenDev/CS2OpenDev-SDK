@@ -63,6 +63,14 @@ try
 {
     schema = SchemaModel.Parse(schemaJson);
 }
+catch (NotSupportedException ex)
+{
+    // Format-version mismatch. Already carries its own diagnostic text (built
+    // from Descriptors.UnsupportedSchemaFormat), so report it under that id
+    // rather than wrapping it in the generic parse-failure message.
+    WriteDiagnosticRaw(Descriptors.UnsupportedSchemaFormat.Id, GeneratorDiagnosticSeverity.Error, ex.Message);
+    return 1;
+}
 catch (Exception ex)
 {
     WriteDiagnostic(Descriptors.ParseFailed, ex.Message);

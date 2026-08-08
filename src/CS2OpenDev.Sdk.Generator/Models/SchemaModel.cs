@@ -24,8 +24,14 @@ internal record ClassModel(
     string Name,
     string Module,
     int Size,
-    byte Alignment, // 0 when absent from JSON (current upstream schema omits this)
-    bool IsAbstract, // false when absent (current upstream schema omits this)
+    byte Alignment, // 0 when absent from JSON (schema 1.x omits this; 2.0 carries it)
+    // False when absent. Schema 1.x omits it entirely; schema 2.0 exposes the
+    // runtime bitfield instead, where `flags & (1 << 1)` is
+    // SCHEMA_CF1_IS_ABSTRACT — confirmed upstream against the pinned hl2sdk
+    // (CS2OpenDev-SchemaTracker#2), and matching all three known-abstract
+    // exemplars. Wire it up in the 2.0 migration; it restores ~142 abstract
+    // projections that have been flat since the old pipeline dropped the field.
+    bool IsAbstract,
     ParentModel[] Parents,
     FieldModel[] Fields,
     MetadataEntry[] Metadata, // class-level metadata (MGetKV3ClassDefaults, etc.)
@@ -77,7 +83,21 @@ internal record EnumModel(
     string Module,
     string? Alignment, // "uint8_t" | "uint16_t" | "uint32_t" | "uint64_t" | null
     int? StorageSize, // 1 | 2 | 4 | 8 | null. Derived from Alignment when JSON omits it.
-    bool IsFlags, // current upstream schema omits this; always false unless overlay reintroduces it
+    // Always false against real upstream input, and permanently so — this is
+    // not a gap waiting to be filled.
+    //
+    // Schema 1.x dropped the old `flags: true` marker. Schema 2.0 exposes the
+    // runtime bitfield, but SchemaEnumFlags_t declares exactly three bits —
+    // IS_REGISTERED (1), MODULE_LOCAL_TYPE_SCOPE (2), GLOBAL_TYPE_SCOPE (4) —
+    // and none of them marks a flag-set (CS2OpenDev-SchemaTracker#2).
+    //
+    // We measured every bit against a power-of-two-membership oracle before
+    // asking: bit 1 is set on all 610 enums (it is IS_REGISTERED), and the best
+    // remaining candidate, bit 16, is unnamed in the SDK and scored 8 false
+    // positives against 14 false negatives. Deriving [Flags] from the bitfield
+    // would be pattern-matching noise. Only a consumer overlay can reintroduce
+    // this.
+    bool IsFlags,
     MemberModel[] Members,
     MetadataEntry[] Metadata,
     Annotations? Annotations = null);
@@ -101,6 +121,8 @@ internal static class SchemaModel
             AllowTrailingCommas = true
         });
         JsonElement root = doc.RootElement;
+
+        SchemaFormatGuard.ThrowIfUnsupported(root);
 
         ClassModel[] classes = root.TryGetProperty("classes", out JsonElement cEl)
             ? ParseClasses(cEl)

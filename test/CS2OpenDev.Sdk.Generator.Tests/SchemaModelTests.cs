@@ -322,4 +322,60 @@ public class SchemaModelTests
             """);
         await Assert.That(root.Classes.Length).IsEqualTo(1);
     }
+
+    // ── schema_format_version guard (CS2_GEN_004) ────────────────────────────
+    //
+    // Upstream moved to format 2.0 on 2026-08-06, which reshaped every record
+    // (numerics became JSON strings, `category` uppercased, the namespace key
+    // moved from `module` to `projectName`). Without this guard the mismatch
+    // surfaced as an opaque Number/String error from the offset parse.
+
+    /// <summary>A schema declaring a different format major fails with the migration diagnostic rather than an opaque type error.</summary>
+    [Test]
+    public async Task Parse_UnsupportedFormatMajor_ThrowsWithDiagnosticText()
+    {
+        NotSupportedException? ex = Assert.Throws<NotSupportedException>(() =>
+            SchemaModel.Parse("""
+                { "schema_format_version": "2.0", "classes": [], "enums": [] }
+                """));
+
+        await Assert.That(ex.Message).Contains("2.0");
+        await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
+    }
+
+    /// <summary>The declared supported major parses normally.</summary>
+    [Test]
+    public async Task Parse_SupportedFormatMajor_IsAccepted()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            {
+              "schema_format_version": "1.0",
+              "classes": [{ "name": "CFoo", "module": "client", "fields": [] }]
+            }
+            """);
+        await Assert.That(root.Classes.Length).IsEqualTo(1);
+    }
+
+    /// <summary>Fixtures and pre-1.0 dumps omit the key entirely; absence must not block a parse.</summary>
+    [Test]
+    public async Task Parse_MissingFormatVersion_IsAccepted()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            { "classes": [{ "name": "CFoo", "module": "client", "fields": [] }] }
+            """);
+        await Assert.That(root.Classes.Length).IsEqualTo(1);
+    }
+
+    /// <summary>An unreadable version string is treated as compatible — a format-string change alone must not hard-block a regen that would otherwise succeed.</summary>
+    [Test]
+    public async Task Parse_UnparseableFormatVersion_IsAccepted()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            {
+              "schema_format_version": "v-next",
+              "classes": [{ "name": "CFoo", "module": "client", "fields": [] }]
+            }
+            """);
+        await Assert.That(root.Classes.Length).IsEqualTo(1);
+    }
 }

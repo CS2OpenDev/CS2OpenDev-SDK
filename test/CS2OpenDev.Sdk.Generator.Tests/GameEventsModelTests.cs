@@ -257,4 +257,34 @@ public class GameEventsModelTests
         await Assert.That(root.Events[1].Name).IsEqualTo("second");
         await Assert.That(root.Events[2].Name).IsEqualTo("third");
     }
+
+    // ── schema_format_version guard (CS2_GEN_004) ────────────────────────────
+    //
+    // gameevents_schema.json carries the same header key as cs2_schema.json and
+    // moved to 2.0 in the same cutover, where field types went from KV1 integer
+    // tags to named strings. Guarded independently so a future drift between the
+    // two files still reports by name.
+
+    /// <summary>A game-events schema declaring a different format major fails with the migration diagnostic.</summary>
+    [Test]
+    public async Task Parse_UnsupportedFormatMajor_ThrowsWithDiagnosticText()
+    {
+        NotSupportedException? ex = Assert.Throws<NotSupportedException>(() =>
+            GameEventsModel.Parse("""
+                { "schema_format_version": "2.0", "events": [] }
+                """));
+
+        await Assert.That(ex.Message).Contains("2.0");
+        await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
+    }
+
+    /// <summary>Fixtures omit the key; absence must not block a parse.</summary>
+    [Test]
+    public async Task Parse_MissingFormatVersion_IsAccepted()
+    {
+        GameEventsRoot root = GameEventsModel.Parse("""
+            { "events": [{ "name": "player_death", "source": "game.gameevents" }] }
+            """);
+        await Assert.That(root.Events.Length).IsEqualTo(1);
+    }
 }

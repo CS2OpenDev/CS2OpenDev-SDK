@@ -45,6 +45,8 @@ internal static class GameEventsModel
         });
         JsonElement root = doc.RootElement;
 
+        SchemaFormatGuard.ThrowIfUnsupported(root);
+
         GameEventModel[] events = root.TryGetProperty("events", out JsonElement eEl)
             ? ParseEvents(eEl)
             : [];

@@ -27,4 +27,21 @@ internal static class Descriptors
         "CS2_GEN_003",
         GeneratorDiagnosticSeverity.Info,
         "Unknown atomic type '{0}' — emitted as empty stub class. Add it to TypeMapper if it has a meaningful C# projection.");
+
+    // Raised when the upstream schema declares a `schema_format_version` whose
+    // major differs from the one this generator was written against.
+    //
+    // Without this the mismatch surfaces as whatever the shape change happens
+    // to break first — for the 1.0 → 2.0 move that was
+    // "requires an element of type 'Number', but the target element has type
+    // 'String'" out of the field-offset parse, which says nothing about the
+    // actual cause. The scheduled upstream-tracking workflow re-runs every four
+    // hours, so an opaque failure gets re-reported indefinitely; this one names
+    // the versions and points at the migration notes.
+    internal static readonly GeneratorDiagnostic UnsupportedSchemaFormat = new(
+        "CS2_GEN_004",
+        GeneratorDiagnosticSeverity.Error,
+        "Upstream schema declares schema_format_version {0}, but this generator supports {1}.x. "
+        + "The schema shape changed and the generator has not been migrated — see "
+        + "docs/upstream/schematracker-migration.md for the breaking surface and the upstream blockers.");
 }
