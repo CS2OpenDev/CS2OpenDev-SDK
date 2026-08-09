@@ -82,6 +82,20 @@ jobs:
         id: head
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
+      - name: Refuse to publish a schema the SDK cannot attribute
+        # Gated here rather than in the callers because both of them reach
+        # publication through this workflow, and only one of them was covered.
+        # check-upstream runs the same check before its regen, but release.yml
+        # has no such step: a merge to main touching src/CS2OpenDev.Sdk/ or
+        # version.json publishes whatever is committed. Without this, "hold the
+        # release until upstream ships enum projectName" is enforced by nobody
+        # merging the branch — a property of memory rather than of the repo.
+        #
+        # Only the schema-derived packages. CS2OpenDev.Protos is built from
+        # protos/ on its own clock and is unaffected by the enum gap.
+        if: matrix.schema_metadata
+        run: python3 scripts/check-migration-readiness.py
+
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:

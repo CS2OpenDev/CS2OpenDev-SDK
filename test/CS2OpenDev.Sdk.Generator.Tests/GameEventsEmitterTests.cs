@@ -456,7 +456,7 @@ public class GameEventsEmitterTests
                 """,
             schemaForStampJson: """
                 {
-                  "revision": 10673343,
+                  "build_id": 10673343,
                   "version_date": "May 20 2026",
                   "version_time": "15:25:57",
                   "classes": [], "enums": []

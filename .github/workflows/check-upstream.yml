@@ -142,6 +142,20 @@ jobs:
         if: steps.bump.outputs.tracker_changed == 'true'
         run: python3 scripts/normalize-protos.py
 
+      - name: Check the bumped schema is one we can ship
+        # This job bumps, regenerates, commits, pushes to main, and triggers a
+        # publish — unattended, every four hours. Until 2026-08-09 the thing
+        # standing between a breaking upstream change and a stable release was
+        # the generator being unable to parse schema 2.0 at all: the regen below
+        # failed, so nothing after it ran. That was never a designed gate, and
+        # teaching the generator to read 2.0 removed it.
+        #
+        # So state the condition instead of relying on a parse failure to imply
+        # it. Runs before the regen so the log says "not ready to bump" rather
+        # than burying it behind a successful regen of output we would not ship.
+        if: steps.bump.outputs.submodule_changed == 'true'
+        run: python3 scripts/check-migration-readiness.py
+
       - name: Regenerate SDK + game-event factories
         if: steps.bump.outputs.submodule_changed == 'true'
         run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter

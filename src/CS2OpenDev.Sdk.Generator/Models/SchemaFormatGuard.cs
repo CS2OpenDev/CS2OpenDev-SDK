@@ -14,11 +14,16 @@ namespace CS2SchemaGen.Models;
 // rather than failing on whatever shape change happens to break first.
 internal static class SchemaFormatGuard
 {
-    // The `schema_format_version` major this generator was written against.
-    // Upstream bumps the major when record shapes change incompatibly; the
-    // minor is additive, so 1.0 and 1.1 are both fine and only the major is
-    // compared.
-    internal const int SupportedMajor = 1;
+    // The `schema_format_version` major this generator parses. Upstream bumps
+    // the major when record shapes change incompatibly; the minor is additive,
+    // so 2.0 and a future 2.1 are both fine and only the major is compared.
+    //
+    // 1.x support was deliberate but temporary, and is gone: it existed only to
+    // keep the pinned submodule building while the parser learned 2.0, and
+    // upstream no longer publishes it. Keeping both would have meant carrying
+    // two shapes of every numeric, every category spelling and every namespace
+    // key indefinitely for a format nothing produces.
+    internal const int SupportedMajor = 2;
 
     // Absent or unparseable is deliberately allowed through: pre-1.0 dumps and
     // every hand-written test fixture omit the key, and they parse fine. A
@@ -52,6 +57,7 @@ internal static class SchemaFormatGuard
         }
 
         throw new NotSupportedException(
-            Diagnostics.Descriptors.UnsupportedSchemaFormat.Format(declared, SupportedMajor));
+            Diagnostics.Descriptors.UnsupportedSchemaFormat.Format(
+                declared, SupportedMajor + ".x"));
     }
 }
