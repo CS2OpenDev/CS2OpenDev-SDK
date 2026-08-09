@@ -85,12 +85,28 @@ run_case 2.0-no-build-id \
   '{"schema_format_version":"2.0","revision":"hl2sdk-cs2/5f891c90/v1/3d1200e3","version_date":"2026-08-03","classes":[]}' \
   1
 
+# No version_date at all. This is the case that failed on the runner and
+# passed locally: GNU date reads "" as "now", so the action emitted today's
+# date as if it had read it from the header. BSD date rejects "", so macOS
+# never saw it. Keep it.
 run_case missing-date \
   '{"schema_format_version":"2.0","build_id":24537688,"classes":[]}' \
   1
 
 run_case unparseable-date \
   '{"schema_format_version":"2.0","build_id":24537688,"version_date":"sometime last tuesday","classes":[]}' \
+  1
+
+# The other half of the same problem: GNU date accepts relative expressions, so
+# a junk value can parse into a real, plausible-looking date instead of failing.
+run_case relative-date \
+  '{"schema_format_version":"2.0","build_id":24537688,"version_date":"last tuesday","classes":[]}' \
+  1
+
+# A date shape neither upstream has ever emitted. GNU date parses this happily;
+# it is still not a header we know how to read.
+run_case unknown-date-shape \
+  '{"schema_format_version":"2.0","build_id":24537688,"version_date":"08/03/2026","classes":[]}' \
   1
 
 # `build_id` beyond the 512-byte head window, which is how the jq fallback gets

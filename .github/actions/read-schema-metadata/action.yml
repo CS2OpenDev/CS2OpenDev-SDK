@@ -83,17 +83,35 @@ runs:
         fi
 
         # Normalise to ISO so the value is valid as a SemVer 2 build-metadata
-        # identifier (no spaces). 1.x emits "May 20 2026"; 2.0 emits
-        # "2026-08-03" already. Take the already-ISO case in bash rather than
-        # shelling out: `date -d` is GNU-only and `date -jf` is BSD-only, so the
-        # 2.0 path would otherwise be the one thing in this action that works on
-        # the runner and fails for anyone reproducing it on macOS.
+        # identifier (no spaces). Upstream has produced exactly two shapes:
+        # "May 21 2026" on schema 1.x and "2026-08-03" on 2.0.
+        #
+        # Both are matched here before `date` is involved, and anything else is
+        # rejected without asking it, because `date` is the wrong thing to lean
+        # on for validation twice over:
+        #
+        #   * GNU date reads the empty string as "now" and prints today, so a
+        #     header missing version_date produced a well-formed ISO date that
+        #     passed every check and stamped the date of the CI run into the
+        #     package version. BSD date rejects it, so this reproduced only on
+        #     the runner — it was caught by test.sh's first CI run, not locally.
+        #   * GNU date also accepts relative expressions ("last tuesday"), so a
+        #     junk value can parse to a real date rather than failing.
+        #
+        # `date` now only ever sees a string already known to be "%b %d %Y",
+        # which is the one case that genuinely needs converting. The ISO case is
+        # a passthrough, which also keeps it working where `date -d` does not
+        # exist — that flag is GNU-only and `-jf` is BSD-only.
         if printf '%s' "$DATE" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
           DATE_ISO="$DATE"
-        else
+        elif printf '%s' "$DATE" | grep -qE '^[A-Z][a-z]{2} [0-9]{1,2} [0-9]{4}$'; then
           DATE_ISO=$(date -d "$DATE" +%Y-%m-%d 2>/dev/null \
                   || date -jf '%b %d %Y' "$DATE" +%Y-%m-%d 2>/dev/null \
                   || echo "")
+        else
+          echo "::error::Unrecognised version_date '$DATE' in $SCHEMA_PATH." \
+               "Expected ISO yyyy-MM-dd (schema 2.0) or 'Mon DD YYYY' (1.x)."
+          exit 1
         fi
         if ! printf '%s' "$DATE_ISO" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
           echo "::error::Could not parse schema date '$DATE' into ISO format" \
