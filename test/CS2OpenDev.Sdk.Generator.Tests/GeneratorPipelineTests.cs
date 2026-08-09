@@ -707,4 +707,54 @@ public class GeneratorPipelineTests
         await Assert.That(result.Files).ContainsKey("Synthetics");
         await Assert.That(result.Files["Synthetics"]).Contains("public readonly struct Vector");
     }
+
+    // ── Schema 2.0 shapes that do not compile if passed through ──────────────
+    //
+    // Both of these produced a package that failed to build when the generator
+    // was first pointed at a real 2.0 artifact, and neither is caught by "did
+    // the regen succeed" — the generator exits 0 and emits invalid C#.
+
+    /// <summary>
+    ///     A 2.0 module name is a binary, and one of them is <c>!GlobalTypes</c>. Passed through it emitted
+    ///     <c>namespace CS2OpenSchema.!GlobalTypes;</c> across 591 files — a syntax error, not a bad name.
+    /// </summary>
+    [Test]
+    public async Task Generator_ModuleNameWithIllegalIdentifierChars_SanitisesNamespace()
+    {
+        GeneratorHarness.RunResult result = GeneratorHarness.Run("""
+            {
+              "classes": [{ "name": "CFoo", "module": "!GlobalTypes", "fields": [] }],
+              "enums": []
+            }
+            """);
+
+        string emitted = string.Join("\n", result.Files.Values);
+        await Assert.That(emitted).DoesNotContain("namespace CS2Schema.!");
+        await Assert.That(emitted).Contains("namespace CS2Schema.GlobalTypes");
+    }
+
+    /// <summary>
+    ///     C# forbids a member named after its enclosing type (CS0542). Schema 2.0's <c>TagStatus</c> class carries
+    ///     a field <c>m_TagStatus</c>, which broke both the class file and the SchemaNames table.
+    /// </summary>
+    [Test]
+    public async Task Generator_FieldNamedAfterItsClass_IsRenamed()
+    {
+        GeneratorHarness.RunResult result = GeneratorHarness.Run("""
+            {
+              "classes": [{
+                "name": "TagStatus", "module": "animgraphlib",
+                "fields": [{ "name": "m_TagStatus", "offset": 0,
+                  "type": { "category": "builtin", "name": "int32" } }]
+              }],
+              "enums": []
+            }
+            """);
+
+        string emitted = string.Join("\n", result.Files.Values);
+        // The property is renamed, and the native name is still recoverable.
+        await Assert.That(emitted).Contains("TagStatusValue");
+        await Assert.That(emitted).Contains("m_TagStatus");
+        await Assert.That(emitted).DoesNotContain("int TagStatus { get; set; }");
+    }
 }

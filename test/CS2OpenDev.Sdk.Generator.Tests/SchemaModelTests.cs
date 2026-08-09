@@ -327,29 +327,34 @@ public class SchemaModelTests
     //
     // Upstream moved to format 2.0 on 2026-08-06, which reshaped every record
     // (numerics became JSON strings, `category` uppercased, the namespace key
-    // moved from `module` to `projectName`). Without this guard the mismatch
-    // surfaced as an opaque Number/String error from the offset parse.
+    // moved from `module` to `projectName`). The guard existed to turn that
+    // mismatch into a named error instead of an opaque Number/String throw from
+    // the offset parse; the parser now reads both majors, so what the guard
+    // still has to do is reject a *third* shape nobody has taught it.
 
-    /// <summary>A schema declaring a different format major fails with the migration diagnostic rather than an opaque type error.</summary>
+    /// <summary>An unknown format major still fails with the migration diagnostic rather than an opaque type error.</summary>
     [Test]
     public async Task Parse_UnsupportedFormatMajor_ThrowsWithDiagnosticText()
     {
         NotSupportedException? ex = Assert.Throws<NotSupportedException>(() =>
             SchemaModel.Parse("""
-                { "schema_format_version": "2.0", "classes": [], "enums": [] }
+                { "schema_format_version": "3.0", "classes": [], "enums": [] }
                 """));
 
-        await Assert.That(ex.Message).Contains("2.0");
+        await Assert.That(ex.Message).Contains("3.0");
         await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
     }
 
-    /// <summary>The declared supported major parses normally.</summary>
+    /// <summary>Both supported majors parse normally — 1.x is what the pinned submodule serves, 2.0 is what Docs publishes at HEAD.</summary>
     [Test]
-    public async Task Parse_SupportedFormatMajor_IsAccepted()
+    [Arguments("1.0")]
+    [Arguments("1.1")]
+    [Arguments("2.0")]
+    public async Task Parse_SupportedFormatMajor_IsAccepted(string declared)
     {
-        SchemaRoot root = SchemaModel.Parse("""
+        SchemaRoot root = SchemaModel.Parse($$"""
             {
-              "schema_format_version": "1.0",
+              "schema_format_version": "{{declared}}",
               "classes": [{ "name": "CFoo", "module": "client", "fields": [] }]
             }
             """);
@@ -377,5 +382,152 @@ public class SchemaModelTests
             }
             """);
         await Assert.That(root.Classes.Length).IsEqualTo(1);
+    }
+
+    // ── schema 2.0 record shape ──────────────────────────────────────────────
+    //
+    // These sit alongside the 1.x tests above rather than replacing them: both
+    // shapes are live. The pinned submodule serves 1.1 and Docs publishes 2.0,
+    // and the generator has to read whichever it is handed.
+    //
+    // A 2.0 fixture in the shape upstream actually ships — uppercase category
+    // discriminators, every numeric quoted, `projectName` alongside `module`,
+    // `flags` as an integer bitfield, no `abstract` key.
+    private const string Format20Class = """
+        {
+          "schema_format_version": "2.0",
+          "build_id": 24537688,
+          "revision": "hl2sdk-cs2/5f891c90/v1/3d1200e3",
+          "version_date": "2026-08-03",
+          "classes": [{
+            "name": "CFoo", "module": "server.dll", "projectName": "server",
+            "size": "56", "alignment": 8, "flags": 2, "flags2": 0,
+            "parents": [], "metadata": [],
+            "fields": [
+              { "name": "m_x", "offset": "0", "metadata": [],
+                "type": { "category": "BUILTIN", "name": "int32", "count": "0" } },
+              { "name": "m_arr", "offset": "8", "metadata": [],
+                "type": { "category": "FIXED_ARRAY", "count": "10",
+                          "inner": { "category": "BUILTIN", "name": "float32" } } },
+              { "name": "m_bits", "offset": "48", "metadata": [],
+                "type": { "category": "BITFIELD", "count": "3" } }
+            ]
+          }],
+          "enums": [{
+            "name": "EFoo", "module": "!GlobalTypes", "alignment": "uint8_t",
+            "size": 1, "flags": 9,
+            "members": [{ "name": "A", "value": "0" }, { "name": "B", "value": "7" }]
+          }]
+        }
+        """;
+
+    /// <summary>Uppercase 2.0 category discriminators dispatch to the same type models as their lowercase 1.x spellings.</summary>
+    [Test]
+    public async Task Parse20_UppercaseCategories_DispatchNotToUnknown()
+    {
+        SchemaRoot root = SchemaModel.Parse(Format20Class);
+        FieldModel[] fields = root.Classes[0].Fields;
+
+        await Assert.That(fields[0].Type).IsTypeOf<BuiltinType>();
+        await Assert.That(fields[1].Type).IsTypeOf<FixedArrayType>();
+        await Assert.That(fields[2].Type).IsTypeOf<BitfieldType>();
+    }
+
+    /// <summary>String-encoded 2.0 numerics parse to the same values 1.x carries as JSON numbers.</summary>
+    [Test]
+    public async Task Parse20_StringEncodedNumerics_AreRead()
+    {
+        SchemaRoot root = SchemaModel.Parse(Format20Class);
+        ClassModel cls = root.Classes[0];
+
+        await Assert.That(cls.Size).IsEqualTo(56);
+        await Assert.That(cls.Fields[1].Offset).IsEqualTo(8);
+        await Assert.That(((FixedArrayType)cls.Fields[1].Type).Count).IsEqualTo(10);
+        await Assert.That(((BitfieldType)cls.Fields[2].Type).Count).IsEqualTo(3);
+        await Assert.That(root.Enums[0].Members[1].Value).IsEqualTo(7L);
+    }
+
+    /// <summary>The namespace key comes from <c>projectName</c> when present, so 2.0 classes land in the same namespaces as their 1.x counterparts.</summary>
+    [Test]
+    public async Task Parse20_ProjectNameWinsOverModule()
+    {
+        SchemaRoot root = SchemaModel.Parse(Format20Class);
+        await Assert.That(root.Classes[0].Module).IsEqualTo("server");
+    }
+
+    /// <summary>2.0 dropped the <c>abstract</c> boolean; abstractness comes from bit 1 of the class flags bitfield.</summary>
+    [Test]
+    public async Task Parse20_IsAbstractComesFromFlagBit()
+    {
+        SchemaRoot root = SchemaModel.Parse(Format20Class);
+        await Assert.That(root.Classes[0].IsAbstract).IsTrue();
+    }
+
+    /// <summary>A class whose flags lack bit 1 is not abstract — guards against the bit test matching anything set.</summary>
+    [Test]
+    public async Task Parse20_FlagsWithoutAbstractBit_IsNotAbstract()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            {
+              "schema_format_version": "2.0",
+              "classes": [{ "name": "CFoo", "projectName": "client", "flags": 44, "fields": [] }]
+            }
+            """);
+        await Assert.That(root.Classes[0].IsAbstract).IsFalse();
+    }
+
+    /// <summary>2.0 reuses <c>flags</c> on enums for an integer bitfield; reading it as a boolean threw on every one of the 610 enum records.</summary>
+    [Test]
+    public async Task Parse20_IntegerEnumFlags_DoesNotThrowAndIsNotFlagged()
+    {
+        SchemaRoot root = SchemaModel.Parse(Format20Class);
+
+        await Assert.That(root.Enums[0].IsFlags).IsFalse();
+        await Assert.That(root.Enums[0].StorageSize).IsEqualTo(1);
+    }
+
+    /// <summary>1.x <c>flags: true</c> still marks a flag-set — the integer guard must not swallow the boolean form.</summary>
+    [Test]
+    public async Task Parse11_BooleanEnumFlags_StillMarksFlagSet()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            {
+              "enums": [{ "name": "EFoo", "module": "client", "alignment": "uint32_t",
+                          "flags": true, "members": [] }]
+            }
+            """);
+        await Assert.That(root.Enums[0].IsFlags).IsTrue();
+    }
+
+    /// <summary>Revision comes from <c>build_id</c> on 2.0, never from the walker-identity string that replaced the numeric <c>revision</c>.</summary>
+    [Test]
+    public async Task Parse20_RevisionComesFromBuildIdNotWalkerIdentity()
+    {
+        SchemaRoot root = SchemaModel.Parse(Format20Class);
+        await Assert.That(root.Revision).IsEqualTo(24537688L);
+    }
+
+    /// <summary>A 2.0 header with no <c>build_id</c> leaves the revision null rather than adopting the slash-bearing walker identity.</summary>
+    [Test]
+    public async Task Parse20_MissingBuildId_LeavesRevisionNull()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            {
+              "schema_format_version": "2.0",
+              "revision": "hl2sdk-cs2/5f891c90/v1/3d1200e3",
+              "classes": []
+            }
+            """);
+        await Assert.That(root.Revision).IsNull();
+    }
+
+    /// <summary>1.x numeric revision still reads, so the pinned submodule's stamp is unchanged.</summary>
+    [Test]
+    public async Task Parse11_NumericRevision_StillRead()
+    {
+        SchemaRoot root = SchemaModel.Parse("""
+            { "revision": 10677034, "classes": [] }
+            """);
+        await Assert.That(root.Revision).IsEqualTo(10677034L);
     }
 }

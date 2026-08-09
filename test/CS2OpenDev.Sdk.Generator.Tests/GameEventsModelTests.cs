@@ -261,21 +261,44 @@ public class GameEventsModelTests
     // ── schema_format_version guard (CS2_GEN_004) ────────────────────────────
     //
     // gameevents_schema.json carries the same header key as cs2_schema.json and
-    // moved to 2.0 in the same cutover, where field types went from KV1 integer
-    // tags to named strings. Guarded independently so a future drift between the
-    // two files still reports by name.
+    // moved to 2.0 in the same cutover. Guarded independently so a future drift
+    // between the two files still reports by name.
+    //
+    // The event records themselves did not change shape — 1.1 and 2.0 carry the
+    // same 13 named field types with the same counts — so 2.0 parses here for
+    // the same reason it now parses in SchemaModel.
 
-    /// <summary>A game-events schema declaring a different format major fails with the migration diagnostic.</summary>
+    /// <summary>A game-events schema declaring an unknown format major fails with the migration diagnostic.</summary>
     [Test]
     public async Task Parse_UnsupportedFormatMajor_ThrowsWithDiagnosticText()
     {
         NotSupportedException? ex = Assert.Throws<NotSupportedException>(() =>
             GameEventsModel.Parse("""
-                { "schema_format_version": "2.0", "events": [] }
+                { "schema_format_version": "3.0", "events": [] }
                 """));
 
-        await Assert.That(ex.Message).Contains("2.0");
+        await Assert.That(ex.Message).Contains("3.0");
         await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
+    }
+
+    /// <summary>A 2.0 game-events schema parses, with field types unchanged from 1.x.</summary>
+    [Test]
+    public async Task Parse20_EventRecords_AreUnchanged()
+    {
+        GameEventsRoot root = GameEventsModel.Parse("""
+            {
+              "schema_format_version": "2.0",
+              "build_id": 24537688,
+              "events": [{
+                "name": "player_death", "comment": "", "source": "core.gameevents",
+                "properties": {},
+                "fields": [{ "name": "userid", "type": "player_controller_and_pawn", "comment": "" }]
+              }]
+            }
+            """);
+
+        await Assert.That(root.Events.Length).IsEqualTo(1);
+        await Assert.That(root.Events[0].Fields[0].Type).IsEqualTo("player_controller_and_pawn");
     }
 
     /// <summary>Fixtures omit the key; absence must not block a parse.</summary>

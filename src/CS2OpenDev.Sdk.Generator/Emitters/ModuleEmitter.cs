@@ -972,7 +972,7 @@ internal static class ModuleEmitter
             sb.AppendLine("    {");
 
             // Alphabetise consts by property name to match formatter convention.
-            string[] propNames = ClassEmitter.ComputePropNames(cls.Fields);
+            string[] propNames = ClassEmitter.ComputePropNames(cls.Fields, classCsName);
             int[] order = new int[cls.Fields.Length];
             for (int i = 0; i < cls.Fields.Length; i++)
             {
@@ -1185,19 +1185,34 @@ internal static class ModuleEmitter
         StringBuilder sb = new();
         foreach (string segment in module.Split('_'))
         {
-            if (segment.Length == 0)
+            // Everything that is not legal in a C# identifier is dropped rather
+            // than passed through. Every module name in schema 1.x is
+            // [a-z0-9_]+, so this changes nothing today — but schema 2.0 module
+            // names are binaries, and one of them is `!GlobalTypes`, which fell
+            // through verbatim and emitted `namespace CS2OpenSchema.!GlobalTypes;`
+            // across 591 files. That is a syntax error, not a bad name: the
+            // package would not have compiled at all.
+            bool first = true;
+            foreach (char c in segment)
             {
-                continue;
-            }
+                if (!char.IsLetterOrDigit(c) && c != '_')
+                {
+                    continue;
+                }
 
-            sb.Append(char.ToUpperInvariant(segment[0]));
-            if (segment.Length > 1)
-            {
-                sb.Append(segment, 1, segment.Length - 1);
+                sb.Append(first ? char.ToUpperInvariant(c) : c);
+                first = false;
             }
         }
 
-        return sb.Length > 0 ? sb.ToString() : "Unknown";
+        if (sb.Length == 0)
+        {
+            return "Unknown";
+        }
+
+        // A namespace part cannot open with a digit. Reachable only if a module
+        // name ever starts with one; cheap to rule out.
+        return char.IsDigit(sb[0]) ? "_" + sb : sb.ToString();
     }
 
     private static bool TypeReferencesAmbiguous(TypeModel type, HashSet<string> ambiguous)

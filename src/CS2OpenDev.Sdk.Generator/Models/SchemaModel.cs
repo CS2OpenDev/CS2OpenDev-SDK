@@ -132,9 +132,17 @@ internal static class SchemaModel
             ? ParseEnums(eEl)
             : [];
 
-        long? revision = root.TryGetProperty("revision", out JsonElement rEl) && rEl.ValueKind == JsonValueKind.Number
-            ? rEl.GetInt64()
-            : null;
+        // 1.x: `revision` is the numeric mirror id. 2.0: `build_id` is the Steam
+        // CS2 game build and `revision` was repurposed as a walker-identity
+        // string ("hl2sdk-cs2/5f891c90…/v1/…"). Take build_id first, and require
+        // a Number from `revision` so the 2.0 string can never land here — it
+        // reaches the package version as SemVer 2 build metadata, where slashes
+        // are not legal. Same precedence the CI metadata action uses.
+        long? revision = root.TryGetProperty("build_id", out JsonElement bEl) && bEl.ValueKind == JsonValueKind.Number
+            ? bEl.GetInt64()
+            : root.TryGetProperty("revision", out JsonElement rEl) && rEl.ValueKind == JsonValueKind.Number
+                ? rEl.GetInt64()
+                : null;
         string? versionDate = root.TryGetProperty("version_date", out JsonElement vdEl) && vdEl.ValueKind == JsonValueKind.String
             ? vdEl.GetString()
             : null;
@@ -148,15 +156,34 @@ internal static class SchemaModel
     private static ClassModel ParseClass(JsonElement e)
     {
         string name = Str(e, "name");
-        string module = Str(e, "module");
-        int size = e.TryGetProperty("size", out JsonElement sEl) ? sEl.GetInt32() : 0;
-        // The current upstream cs2_schema.json omits class-level alignment and the
-        // `abstract` flag; old schemas.json (and test fixtures) carry both. Keep
-        // the fields but treat absence as 0/false so emitters see consistent input.
+        // The namespace key. In 1.x `module` is the project (`client`, `server`,
+        // `particles`); in 2.0 `module` became the binary that registered the
+        // type (`server.dll`, `!GlobalTypes`) and `projectName` took over the
+        // project role. Read projectName first so both shapes produce the same
+        // namespace layout — this is the whole reason class records survive the
+        // format change without a namespace break.
+        //
+        // Enum records in 2.0 carry no projectName at all, which is what blocks
+        // the submodule bump rather than this parser
+        // (CS2OpenDev-SchemaTracker#1). See ParseEnum.
+        string module = Str(e, "projectName") is { Length: > 0 } project
+            ? project
+            : Str(e, "module");
+        int size = NumInt(e, "size");
+        // Schema 1.x omits class-level alignment; 2.0 carries it. Absence is 0
+        // so emitters see consistent input either way.
         byte alignment = e.TryGetProperty("alignment", out JsonElement aEl) && aEl.ValueKind == JsonValueKind.Number
             ? (byte)aEl.GetInt32()
             : (byte)0;
-        bool isAbstract = e.TryGetProperty("abstract", out JsonElement abEl) && abEl.GetBoolean();
+        // 1.x carries an `abstract` boolean. 2.0 dropped it and exposes the
+        // runtime bitfield instead, where bit 1 is SCHEMA_CF1_IS_ABSTRACT —
+        // confirmed upstream against the pinned hl2sdk
+        // (CS2OpenDev-SchemaTracker#2). Prefer the explicit boolean where it
+        // exists so 1.x and hand-written fixtures are unaffected.
+        bool isAbstract = e.TryGetProperty("abstract", out JsonElement abEl)
+                          && abEl.ValueKind is JsonValueKind.True or JsonValueKind.False
+            ? abEl.GetBoolean()
+            : (Num(e, "flags") & (1 << 1)) != 0;
 
         ParentModel[] parents = e.TryGetProperty("parents", out JsonElement pEl)
             ? ParseParents(pEl)
@@ -191,7 +218,19 @@ internal static class SchemaModel
     private static EnumModel ParseEnum(JsonElement e)
     {
         string name = Str(e, "name");
-        string module = Str(e, "module");
+        // Same key preference as classes, and it currently never fires: no 2.0
+        // enum record carries projectName (0 of 610, measured against Docs
+        // 3053793), so every enum falls back to `module` — which in 2.0 is the
+        // binary, and reads `!GlobalTypes` for 591 of them.
+        //
+        // That is why the submodule pin has not moved. Parsing 2.0 is correct
+        // and complete; regenerating *from* 2.0 would collapse 591 enums into
+        // one namespace and break every consumer's `using` lines. The preference
+        // is written now so the bump is a one-line pin change once
+        // CS2OpenDev-SchemaTracker#1 ships in an artifact.
+        string module = Str(e, "projectName") is { Length: > 0 } project
+            ? project
+            : Str(e, "module");
         string? alignment = e.TryGetProperty("alignment", out JsonElement aEl) && aEl.ValueKind == JsonValueKind.String
             ? aEl.GetString()
             : null;
@@ -202,7 +241,18 @@ internal static class SchemaModel
         int? storageSize = e.TryGetProperty("storage_size", out JsonElement ssEl) && ssEl.ValueKind == JsonValueKind.Number
             ? ssEl.GetInt32()
             : DeriveStorageSize(alignment);
-        bool isFlags = e.TryGetProperty("flags", out JsonElement fEl) && fEl.GetBoolean();
+        // 1.x wrote `flags: true` to mark a flag-set. 2.0 reuses the same key for
+        // the runtime bitfield, an integer — so an unguarded GetBoolean() throws
+        // on every one of the 610 enum records rather than on some edge case.
+        //
+        // The bitfield deliberately does not feed IsFlags. SchemaEnumFlags_t
+        // declares three bits — IS_REGISTERED, MODULE_LOCAL_TYPE_SCOPE,
+        // GLOBAL_TYPE_SCOPE — and none marks a flag-set
+        // (CS2OpenDev-SchemaTracker#2), so there is nothing here to read. See
+        // the note on EnumModel.IsFlags.
+        bool isFlags = e.TryGetProperty("flags", out JsonElement fEl)
+                       && fEl.ValueKind is JsonValueKind.True or JsonValueKind.False
+                       && fEl.GetBoolean();
         MemberModel[] members = e.TryGetProperty("members", out JsonElement mEl)
             ? ParseMembers(mEl)
             : [];
@@ -274,7 +324,7 @@ internal static class SchemaModel
         foreach (JsonElement item in el.EnumerateArray())
         {
             string name = Str(item, "name");
-            int offset = item.TryGetProperty("offset", out JsonElement oEl) ? oEl.GetInt32() : 0;
+            int offset = NumInt(item, "offset");
             TypeModel type = item.TryGetProperty("type", out JsonElement tEl)
                 ? ParseType(tEl)
                 : new UnknownType(null);
@@ -294,7 +344,7 @@ internal static class SchemaModel
         foreach (JsonElement item in el.EnumerateArray())
         {
             string name = Str(item, "name");
-            long value = item.TryGetProperty("value", out JsonElement vEl) ? vEl.GetInt64() : 0L;
+            long value = Num(item, "value");
             MetadataEntry[] metadata = item.TryGetProperty("metadata", out JsonElement mEl)
                 ? ParseMetadata(mEl)
                 : [];
@@ -327,9 +377,7 @@ internal static class SchemaModel
         {
             string name = Str(item, "name");
             string module = Str(item, "module");
-            uint offset = item.TryGetProperty("offset", out JsonElement oEl)
-                ? (uint)oEl.GetInt64()
-                : 0u;
+            uint offset = (uint)Num(item, "offset");
             list.Add(new ParentModel(name, module, offset));
         }
 
@@ -343,7 +391,14 @@ internal static class SchemaModel
             return new UnknownType(null);
         }
 
-        string category = Str(e, "category");
+        // 1.x writes the discriminator lowercase ("builtin"), 2.0 uppercase
+        // ("BUILTIN"). Normalise rather than adding arms, because getting this
+        // wrong does not throw — every type falls through to UnknownType, the
+        // emitters produce `object /* BUILTIN */` and empty stub classes, and
+        // the regen succeeds. A silent 100% degradation is worse than a crash,
+        // so the tests assert zero unknown categories on real input.
+        string rawCategory = Str(e, "category");
+        string category = rawCategory.ToLowerInvariant();
         switch (category)
         {
             case "builtin":
@@ -358,7 +413,7 @@ internal static class SchemaModel
             }
             case "fixed_array":
             {
-                int count = e.TryGetProperty("count", out JsonElement cEl) ? cEl.GetInt32() : 0;
+                int count = NumInt(e, "count");
                 TypeModel inner = e.TryGetProperty("inner", out JsonElement iEl)
                     ? ParseType(iEl)
                     : new UnknownType("fixed_array-inner");
@@ -381,11 +436,11 @@ internal static class SchemaModel
 
             case "bitfield":
             {
-                int count = e.TryGetProperty("count", out JsonElement cEl) ? cEl.GetInt32() : 0;
+                int count = NumInt(e, "count");
                 return new BitfieldType(count);
             }
             default:
-                return new UnknownType(category);
+                return new UnknownType(rawCategory);
         }
     }
 
@@ -395,4 +450,36 @@ internal static class SchemaModel
         e.TryGetProperty(key, out JsonElement el) && el.ValueKind == JsonValueKind.String
             ? el.GetString() ?? ""
             : "";
+
+    // Schema 1.x writes sizes, offsets, counts and enum member values as JSON
+    // numbers; 2.0 writes the same values as quoted strings ("24", "0"). Both
+    // are read here rather than at each call site, because the failure mode of
+    // getting it wrong is a throw from deep inside a field parse whose message
+    // names neither the field nor the record — that is exactly how the 1.x → 2.0
+    // break originally presented ("requires an element of type 'Number', but the
+    // target element has type 'String'").
+    //
+    // A malformed string yields the fallback rather than throwing: these feed
+    // struct layout metadata, not correctness of the emitted type, and a single
+    // unparseable offset should not take down a 3,769-class regen.
+    private static long Num(JsonElement e, string key, long fallback = 0)
+    {
+        if (!e.TryGetProperty(key, out JsonElement el))
+        {
+            return fallback;
+        }
+
+        return el.ValueKind switch
+        {
+            JsonValueKind.Number => el.TryGetInt64(out long n) ? n : fallback,
+            JsonValueKind.String => long.TryParse(el.GetString(), out long s) ? s : fallback,
+            _ => fallback
+        };
+    }
+
+    private static int NumInt(JsonElement e, string key, int fallback = 0)
+    {
+        long v = Num(e, key, fallback);
+        return v is >= int.MinValue and <= int.MaxValue ? (int)v : fallback;
+    }
 }

@@ -14,11 +14,16 @@ namespace CS2SchemaGen.Models;
 // rather than failing on whatever shape change happens to break first.
 internal static class SchemaFormatGuard
 {
-    // The `schema_format_version` major this generator was written against.
-    // Upstream bumps the major when record shapes change incompatibly; the
-    // minor is additive, so 1.0 and 1.1 are both fine and only the major is
-    // compared.
-    internal const int SupportedMajor = 1;
+    // The `schema_format_version` majors this generator can parse. Upstream
+    // bumps the major when record shapes change incompatibly; the minor is
+    // additive, so 1.0 and 1.1 are both fine and only the major is compared.
+    //
+    // Two are supported deliberately, not transitionally. 1.x is what the
+    // pinned submodule serves and 2.0 is what Docs publishes at HEAD, and the
+    // generator reads both because the pin cannot move until enum records carry
+    // `projectName` (CS2OpenDev-SchemaTracker#1). Parsing 2.0 and bumping the
+    // submodule are separate steps; this is the first.
+    internal static readonly int[] SupportedMajors = [1, 2];
 
     // Absent or unparseable is deliberately allowed through: pre-1.0 dumps and
     // every hand-written test fixture omit the key, and they parse fine. A
@@ -46,12 +51,13 @@ internal static class SchemaFormatGuard
             majorSpan = majorSpan[..dot];
         }
 
-        if (!int.TryParse(majorSpan, out int major) || major == SupportedMajor)
+        if (!int.TryParse(majorSpan, out int major) || Array.IndexOf(SupportedMajors, major) >= 0)
         {
             return;
         }
 
         throw new NotSupportedException(
-            Diagnostics.Descriptors.UnsupportedSchemaFormat.Format(declared, SupportedMajor));
+            Diagnostics.Descriptors.UnsupportedSchemaFormat.Format(
+                declared, string.Join("/", SupportedMajors)));
     }
 }

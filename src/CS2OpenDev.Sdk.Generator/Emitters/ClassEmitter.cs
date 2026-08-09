@@ -23,7 +23,16 @@ internal static class ClassEmitter
     // Internal so SchemaNamesEmitter can produce const-string entries keyed by
     // the same property names ClassEmitter emits. Sharing the helper keeps the
     // B4 collision rule in one place.
-    internal static string[] ComputePropNames(FieldModel[] fields)
+    // `enclosingTypeName` is the emitted C# name of the class these fields
+    // belong to. C# forbids a member sharing its enclosing type's name (CS0542),
+    // and upstream does not: schema 2.0 introduced `TagStatus`, whose first
+    // field is `m_TagStatus`, which projects straight onto `TagStatus`. Two
+    // files failed to compile — the class and the SchemaNames table, both fed
+    // from here, which is why the fix belongs here and not at either call site.
+    //
+    // Optional so hand-written fixtures and tests that only care about
+    // field-vs-field collisions can keep calling it with one argument.
+    internal static string[] ComputePropNames(FieldModel[] fields, string? enclosingTypeName = null)
     {
         int n = fields.Length;
         string[] result = new string[n];
@@ -43,6 +52,23 @@ internal static class ClassEmitter
             result[i] = candidateCounts[candidate[i]] > 1
                 ? NameHelpers.Esc(NameHelpers.ToPropNameAccessOnly(fields[i].Name))
                 : candidate[i];
+        }
+
+        // Pass 1b: a member may not be named after its enclosing type. Suffixed
+        // rather than access-only-fallbacked, because the collision is with the
+        // type name and not with a sibling — the access-only form of
+        // `m_TagStatus` is still `TagStatus`. Runs before pass 2 so that if the
+        // suffixed name collides with a real sibling, the ordinal pass catches
+        // it. `[NativeName]` still carries `m_TagStatus`, so nothing is lost.
+        if (!string.IsNullOrEmpty(enclosingTypeName))
+        {
+            for (int i = 0; i < n; i++)
+            {
+                if (string.Equals(result[i], enclosingTypeName, StringComparison.Ordinal))
+                {
+                    result[i] = NameHelpers.Esc(result[i] + "Value");
+                }
+            }
         }
 
         // Pass 2: belt-and-braces ordinal suffix if the access-only fallback itself
@@ -156,7 +182,7 @@ internal static class ClassEmitter
                           + string.Join(", ", extras));
         }
 
-        string[] propNames = ComputePropNames(cls.Fields);
+        string[] propNames = ComputePropNames(cls.Fields, csName);
 
         // Emit properties alphabetized by C# property name (formatter convention).
         // Offset-order is preserved in metadata via [NativeOffset]; source order is
