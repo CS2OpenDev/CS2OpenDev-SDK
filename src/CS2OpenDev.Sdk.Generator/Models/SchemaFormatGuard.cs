@@ -56,8 +56,10 @@ internal static class SchemaFormatGuard
             return;
         }
 
+        // Rendered, not concatenated: joining the raw majors put "1/2" in front
+        // of the message's ".x", which read as a fraction.
         throw new NotSupportedException(
             Diagnostics.Descriptors.UnsupportedSchemaFormat.Format(
-                declared, string.Join("/", SupportedMajors)));
+                declared, string.Join(" and ", SupportedMajors.Select(m => m + ".x"))));
     }
 }

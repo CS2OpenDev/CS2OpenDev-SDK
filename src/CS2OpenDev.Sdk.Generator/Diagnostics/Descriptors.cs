@@ -41,7 +41,7 @@ internal static class Descriptors
     internal static readonly GeneratorDiagnostic UnsupportedSchemaFormat = new(
         "CS2_GEN_004",
         GeneratorDiagnosticSeverity.Error,
-        "Upstream schema declares schema_format_version {0}, but this generator supports {1}.x only. "
+        "Upstream schema declares schema_format_version {0}, but this generator supports {1}. "
         + "The schema shape changed and the generator has not been migrated — see "
         + "docs/upstream/schematracker-migration.md for the breaking surface and the upstream blockers.");
 

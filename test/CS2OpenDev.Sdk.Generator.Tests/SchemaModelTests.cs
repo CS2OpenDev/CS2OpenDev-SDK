@@ -343,6 +343,10 @@ public class SchemaModelTests
 
         await Assert.That(ex.Message).Contains("3.0");
         await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
+        // The supported set is interpolated, and joining the bare majors used to
+        // render "supports 1/2.x only" — which reads as a fraction. Assert the
+        // rendered text, not just that a message came out.
+        await Assert.That(ex.Message).Contains("supports 1.x and 2.x");
     }
 
     /// <summary>Both supported majors parse normally — 1.x is what the pinned submodule serves, 2.0 is what Docs publishes at HEAD.</summary>

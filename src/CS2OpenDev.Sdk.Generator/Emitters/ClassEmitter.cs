@@ -62,12 +62,32 @@ internal static class ClassEmitter
         // it. `[NativeName]` still carries `m_TagStatus`, so nothing is lost.
         if (!string.IsNullOrEmpty(enclosingTypeName))
         {
+            HashSet<string> taken = new(result, StringComparer.Ordinal);
             for (int i = 0; i < n; i++)
             {
-                if (string.Equals(result[i], enclosingTypeName, StringComparison.Ordinal))
+                if (!string.Equals(result[i], enclosingTypeName, StringComparison.Ordinal))
                 {
-                    result[i] = NameHelpers.Esc(result[i] + "Value");
+                    continue;
                 }
+
+                // Step past any name a sibling already owns rather than letting
+                // pass 2 resolve it. Pass 2 suffixes by order of appearance, so
+                // a class X with fields m_X and m_XValue would hand `XValue` to
+                // the renamed m_X and push the legitimate owner to `XValue2` —
+                // exactly the "a field reorder silently flips which alias wins"
+                // instability the B4 rule above exists to prevent. No class in
+                // the current schema hits this; it costs three lines to not
+                // depend on that.
+                string renamed = result[i] + "Value";
+                int suffix = 2;
+                while (taken.Contains(renamed))
+                {
+                    renamed = result[i] + "Value" + suffix.ToString();
+                    suffix++;
+                }
+
+                taken.Add(renamed);
+                result[i] = NameHelpers.Esc(renamed);
             }
         }
 
