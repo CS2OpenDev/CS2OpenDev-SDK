@@ -76,6 +76,16 @@ These 187 are settled and safe to act on now.
 | `CS2OpenSchema.Server` | `CS2OpenSchema.Physicslib` | 1 | `CGenericShapeProxy` |
 | `CS2OpenSchema.Client` | `CS2OpenSchema.Physicslib` | 1 | `PhysicsParticleId` |
 
+## Removed types
+
+40 types no longer appear in the schema and are gone from the SDK. Code
+referencing any of these stops compiling — this is the most actionable item
+here, so it is listed in full rather than counted. Most are the `SndSeq*`
+family and the scene-request types; `BeamClipStyle` and `Attribute_t` are the
+notable singletons.
+
+`AIMotorDebugSnapshotData`, `AIMotorGroundAnimgraphDebugSnapshotData`, `AIMotorGroundAnimgraphDebugSnapshotDataTEvent`, `Attribute_t`, `BeamClipStyle`, `BodySectionAuthority`, `CAnimEventListener`, `CAnimEventListenerBase`, `CAnimEventQueueListener`, `CCompressorGroup`, `CInfoInteraction`, `CPulseAnimFuncs`, `CPulseCellWaitForCursorsWithTagBaseCursorState`, `CSceneCriteria`, `CSceneOpportunity`, `CScenePayloadVData`, `CSceneRequest`, `CTriggerToggleSave`, `CVoiceContainerEnvelope`, `CastSphereSATParams`, `ChickenActivity`, `ENPCBehaviorOverride`, `ESceneRequestState`, `EntityDisolveType`, `ExternalAnimGraph`, `InteractionPassive`, `InteractionPriority`, `PulseCursorExecResult`, `PulseObservableBoolExpression`, `SceneInterestTags`, `SceneOpportunityActor`, `SceneOpportunityHandle`, `SceneRequestHandle`, `SceneRequestTargetMapPair`, `SndSeqMidiStatusType`, `SndSeqPlayerType`, `SndSeqQuantizeType`, `SndSeqRegionType`, `SndSeqSyncType`, `SndSeqTrackPlaybackType`
+
 ## What is still moving
 
 The remaining 516 moves are all *into* `CS2OpenSchema.GlobalTypes` and are an
