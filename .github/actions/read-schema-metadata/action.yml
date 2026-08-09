@@ -1,20 +1,27 @@
 name: Read CS2 schema metadata
 description: >
-  Reads the CS2 revision and dump date out of the upstream cs2_schema.json
+  Reads the CS2 build identity and dump date out of the upstream cs2_schema.json
   and exposes them as outputs (`revision`, `date-iso`). Used by the CI
   workflows that pack the SDK so the resulting NuGet package carries SemVer 2
   build metadata identifying which CS2 build it was generated from.
 
-  The date is normalised from the upstream "Mon DD YYYY" format to ISO
-  "YYYY-MM-DD" so it fits the SemVer 2 build-metadata identifier grammar
-  ([0-9A-Za-z-]+, no spaces).
+  Reads both upstream header shapes. Schema 1.x carries `revision` as a numeric
+  mirror id; schema 2.0 replaced it with `build_id` (the Steam CS2 game build)
+  and repurposed `revision` as a walker-identity string. `build_id` wins where
+  both are present.
+
+  Both outputs are validated against the SemVer 2 build-metadata identifier
+  grammar ([0-9A-Za-z-]+, no spaces) before they are emitted, because that is
+  where they end up: `+cs.{revision}.dump.{date-iso}` on the package version.
 
 outputs:
   revision:
-    description: Numeric CS2 schema revision (e.g. "10673343").
+    description: >
+      Numeric CS2 build identity (e.g. "24537688"). Sourced from the header's
+      `build_id` on schema 2.0, or its numeric `revision` on schema 1.x.
     value: ${{ steps.parse.outputs.revision }}
   date-iso:
-    description: Schema dump date as ISO yyyy-MM-dd (e.g. "2026-05-20").
+    description: Schema dump date as ISO yyyy-MM-dd (e.g. "2026-08-03").
     value: ${{ steps.parse.outputs.date-iso }}
 
 runs:
@@ -31,30 +38,70 @@ runs:
           exit 1
         fi
 
-        # The first ~200 bytes carry the header keys; full-file jq would parse
+        # The first ~300 bytes carry the header keys; full-file jq would parse
         # 11MB needlessly. head -c keeps memory bounded but produces invalid JSON,
         # so fall back to jq if the head heuristic ever fails.
         HEADER=$(head -c 512 "$SCHEMA_PATH")
-        REV=$(printf '%s' "$HEADER" | sed -nE 's/.*"revision":[[:space:]]*([0-9]+).*/\1/p' | head -1)
+
+        # Two header shapes, and the difference matters because on 2.0 the key
+        # named `revision` holds something that must never reach a package
+        # version:
+        #
+        #   1.1  "revision": 10677034
+        #   2.0  "build_id": 24537688,
+        #        "revision": "hl2sdk-cs2/5f891c90…/v1/3d1200e3…"
+        #
+        # So take `build_id` first and only fall back to `revision`, rather than
+        # reading `revision` and hoping. Both patterns want digits, which keeps
+        # the 2.0 walker identity from matching either.
+        BUILD=$(printf '%s' "$HEADER" | sed -nE 's/.*"build_id":[[:space:]]*([0-9]+).*/\1/p' | head -1)
+        if [ -z "$BUILD" ]; then
+          BUILD=$(printf '%s' "$HEADER" | sed -nE 's/.*"revision":[[:space:]]*([0-9]+).*/\1/p' | head -1)
+        fi
         DATE=$(printf '%s' "$HEADER" | sed -nE 's/.*"version_date":[[:space:]]*"([^"]+)".*/\1/p' | head -1)
 
-        if [ -z "$REV" ] || [ -z "$DATE" ]; then
+        if [ -z "$BUILD" ] || [ -z "$DATE" ]; then
           # Fallback: full jq parse if the head heuristic missed the keys.
-          REV=$(jq -r '.revision' "$SCHEMA_PATH")
-          DATE=$(jq -r '.version_date' "$SCHEMA_PATH")
+          # `// empty` rather than jq's default null-to-string, so a missing key
+          # stays empty and trips the check below instead of emitting "null".
+          BUILD=$(jq -r '.build_id // .revision // empty' "$SCHEMA_PATH")
+          DATE=$(jq -r '.version_date // empty' "$SCHEMA_PATH")
         fi
 
-        # Normalise "May 20 2026" → "2026-05-20" so the value is valid as a
-        # SemVer 2 build-metadata identifier (no spaces).
-        DATE_ISO=$(date -d "$DATE" +%Y-%m-%d 2>/dev/null \
-                || date -jf '%b %d %Y' "$DATE" +%Y-%m-%d 2>/dev/null \
-                || echo "")
-        if [ -z "$DATE_ISO" ]; then
-          echo "::error::Could not parse schema date '$DATE' into ISO format"
+        # Fail closed. The predecessor to this check did not exist, and the
+        # consequence was not a failed run but a silent wrong one: on a 2.0
+        # header the sed above missed, the jq fallback read the walker identity,
+        # nothing was empty, and the action exited 0 having produced
+        # `+cs.hl2sdk-cs2/5f891c90…` — slashes and all — as a SemVer 2 build
+        # metadata identifier. Anything non-numeric here is a header shape we
+        # have not been taught to read, and guessing is worse than stopping.
+        if ! printf '%s' "$BUILD" | grep -qE '^[0-9]+$'; then
+          echo "::error::No numeric build identity in $SCHEMA_PATH header." \
+               "Read '$BUILD' from build_id/revision. Schema 2.0 headers must" \
+               "carry build_id; see docs/upstream/schematracker-migration.md."
           exit 1
         fi
 
-        echo "revision=$REV" >> "$GITHUB_OUTPUT"
+        # Normalise to ISO so the value is valid as a SemVer 2 build-metadata
+        # identifier (no spaces). 1.x emits "May 20 2026"; 2.0 emits
+        # "2026-08-03" already. Take the already-ISO case in bash rather than
+        # shelling out: `date -d` is GNU-only and `date -jf` is BSD-only, so the
+        # 2.0 path would otherwise be the one thing in this action that works on
+        # the runner and fails for anyone reproducing it on macOS.
+        if printf '%s' "$DATE" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+          DATE_ISO="$DATE"
+        else
+          DATE_ISO=$(date -d "$DATE" +%Y-%m-%d 2>/dev/null \
+                  || date -jf '%b %d %Y' "$DATE" +%Y-%m-%d 2>/dev/null \
+                  || echo "")
+        fi
+        if ! printf '%s' "$DATE_ISO" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+          echo "::error::Could not parse schema date '$DATE' into ISO format" \
+               "(got '$DATE_ISO')"
+          exit 1
+        fi
+
+        echo "revision=$BUILD" >> "$GITHUB_OUTPUT"
         echo "date-iso=$DATE_ISO" >> "$GITHUB_OUTPUT"
-        echo "CS2 revision: $REV"
-        echo "Dump date:    $DATE_ISO"
+        echo "CS2 build:  $BUILD"
+        echo "Dump date:  $DATE_ISO"

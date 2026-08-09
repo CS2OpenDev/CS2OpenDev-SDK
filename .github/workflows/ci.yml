@@ -75,6 +75,13 @@ jobs:
             exit 1
           fi
 
+      - name: Test the schema-metadata action
+        # Runs before the action does, because the action's failure mode is a
+        # silent wrong answer rather than a red step: it feeds the package
+        # version, and `dotnet pack` accepts whatever it is handed. The cases
+        # cover both upstream header shapes plus the fail-closed paths.
+        run: bash .github/actions/read-schema-metadata/test.sh
+
       - name: Read CS2 schema metadata
         id: schema
         uses: ./.github/actions/read-schema-metadata
