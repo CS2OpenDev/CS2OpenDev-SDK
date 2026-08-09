@@ -67,13 +67,14 @@ run_case() {
   echo "ok   $name (exit $rc, revision '$rev', date '$date')"
 }
 
-# Schema 1.x: numeric `revision`, "Mon DD YYYY" date. This is what the pinned
-# submodule still serves, so it must keep working unchanged.
-run_case format-1.x \
+# Schema 1.x is no longer read. Its numeric `revision` must NOT be mistaken for
+# a build id now that the fallback is gone — an old artifact is a header shape
+# we do not support, and stopping beats stamping a mirror id into a version.
+run_case format-1.x-rejected \
   '{"schema_format_version":"1.1","revision":10677034,"version_date":"May 21 2026","classes":[]}' \
-  0 10677034
+  1
 
-# Schema 2.0: numeric `build_id`, ISO date, and a `revision` that must be
+# The shipped shape: numeric `build_id`, ISO date, and a `revision` that must be
 # ignored. Reading `revision` here is the bug this action was rewritten for.
 run_case format-2.0 \
   '{"schema_format_version":"2.0","generator":"x","build_id":24537688,"platform":"windows-x86_64","revision":"hl2sdk-cs2/5f891c9026230cce0fc0a3fc4b5fef1c467a1385/v1/3d1200e346019c59","version_date":"2026-08-03","version_time":"2026-08-03T18:18:10Z","classes":[]}' \
@@ -95,6 +96,11 @@ run_case missing-date \
 
 run_case unparseable-date \
   '{"schema_format_version":"2.0","build_id":24537688,"version_date":"sometime last tuesday","classes":[]}' \
+  1
+
+# The 1.x date shape is no longer converted, so it is no longer accepted.
+run_case legacy-date-shape-rejected \
+  '{"schema_format_version":"2.0","build_id":24537688,"version_date":"May 21 2026","classes":[]}' \
   1
 
 # The other half of the same problem: GNU date accepts relative expressions, so

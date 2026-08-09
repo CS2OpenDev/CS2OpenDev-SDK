@@ -50,22 +50,16 @@ def main() -> int:
         return fail(f"{SCHEMA} is not valid JSON: {exc}")
 
     declared = str(schema.get("schema_format_version", ""))
-    major = declared.split(".")[0]
 
     enums = schema.get("enums", [])
     if not enums:
         return fail(f"{SCHEMA} declares no enums — refusing to treat that as ready.")
 
-    # The namespace key. 1.x put the project in `module`; 2.0 moved it to
-    # `projectName` and repurposed `module` for the binary. Classes carry the
-    # new key, enums do not yet.
-    if major == "1":
-        attributed = sum(1 for e in enums if e.get("module"))
-        key = "module"
-    else:
-        attributed = sum(1 for e in enums if e.get("projectName"))
-        key = "projectName"
-
+    # The namespace key. `module` is the binary; `projectName` is the project,
+    # and it is what the SDK's namespace layout is built from. Classes carry it,
+    # enums do not yet.
+    key = "projectName"
+    attributed = sum(1 for e in enums if e.get(key))
     total = len(enums)
     if attributed == total:
         print(f"Ready: all {total} enum records carry `{key}` (schema {declared}).")

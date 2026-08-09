@@ -14,16 +14,16 @@ namespace CS2SchemaGen.Models;
 // rather than failing on whatever shape change happens to break first.
 internal static class SchemaFormatGuard
 {
-    // The `schema_format_version` majors this generator can parse. Upstream
-    // bumps the major when record shapes change incompatibly; the minor is
-    // additive, so 1.0 and 1.1 are both fine and only the major is compared.
+    // The `schema_format_version` major this generator parses. Upstream bumps
+    // the major when record shapes change incompatibly; the minor is additive,
+    // so 2.0 and a future 2.1 are both fine and only the major is compared.
     //
-    // Two are supported deliberately, not transitionally. 1.x is what the
-    // pinned submodule serves and 2.0 is what Docs publishes at HEAD, and the
-    // generator reads both because the pin cannot move until enum records carry
-    // `projectName` (CS2OpenDev-SchemaTracker#1). Parsing 2.0 and bumping the
-    // submodule are separate steps; this is the first.
-    internal static readonly int[] SupportedMajors = [1, 2];
+    // 1.x support was deliberate but temporary, and is gone: it existed only to
+    // keep the pinned submodule building while the parser learned 2.0, and
+    // upstream no longer publishes it. Keeping both would have meant carrying
+    // two shapes of every numeric, every category spelling and every namespace
+    // key indefinitely for a format nothing produces.
+    internal const int SupportedMajor = 2;
 
     // Absent or unparseable is deliberately allowed through: pre-1.0 dumps and
     // every hand-written test fixture omit the key, and they parse fine. A
@@ -51,15 +51,13 @@ internal static class SchemaFormatGuard
             majorSpan = majorSpan[..dot];
         }
 
-        if (!int.TryParse(majorSpan, out int major) || Array.IndexOf(SupportedMajors, major) >= 0)
+        if (!int.TryParse(majorSpan, out int major) || major == SupportedMajor)
         {
             return;
         }
 
-        // Rendered, not concatenated: joining the raw majors put "1/2" in front
-        // of the message's ".x", which read as a fraction.
         throw new NotSupportedException(
             Diagnostics.Descriptors.UnsupportedSchemaFormat.Format(
-                declared, string.Join(" and ", SupportedMajors.Select(m => m + ".x"))));
+                declared, SupportedMajor + ".x"));
     }
 }

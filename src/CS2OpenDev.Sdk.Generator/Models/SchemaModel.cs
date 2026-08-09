@@ -11,9 +11,9 @@ namespace CS2SchemaGen.Models;
 internal record SchemaRoot(
     ClassModel[] Classes,
     EnumModel[] Enums,
-    // Source-traceability fields (F3 / ME-3) from the DumpSource2 dump:
-    // numeric revision, plus the dump's wall-clock date/time. All optional —
-    // older dumps and handwritten test fixtures may omit them.
+    // Source-traceability fields (F3 / ME-3): the CS2 build id from the
+    // header's `build_id`, plus the extraction's wall-clock date/time. All
+    // optional — hand-written test fixtures omit them.
     long? Revision = null,
     string? VersionDate = null,
     string? VersionTime = null);
@@ -24,13 +24,11 @@ internal record ClassModel(
     string Name,
     string Module,
     int Size,
-    byte Alignment, // 0 when absent from JSON (schema 1.x omits this; 2.0 carries it)
-    // False when absent. Schema 1.x omits it entirely; schema 2.0 exposes the
-    // runtime bitfield instead, where `flags & (1 << 1)` is
-    // SCHEMA_CF1_IS_ABSTRACT — confirmed upstream against the pinned hl2sdk
-    // (CS2OpenDev-SchemaTracker#2), and matching all three known-abstract
-    // exemplars. Wire it up in the 2.0 migration; it restores ~142 abstract
-    // projections that have been flat since the old pipeline dropped the field.
+    byte Alignment, // 0 when absent from JSON
+    // Read from `flags & (1 << 1)` — SCHEMA_CF1_IS_ABSTRACT, confirmed upstream
+    // against the pinned hl2sdk (CS2OpenDev-SchemaTracker#2). Restores 142
+    // abstract projections that were flat while the old pipeline dropped the
+    // field.
     bool IsAbstract,
     ParentModel[] Parents,
     FieldModel[] Fields,
@@ -82,14 +80,14 @@ internal record EnumModel(
     string Name,
     string Module,
     string? Alignment, // "uint8_t" | "uint16_t" | "uint32_t" | "uint64_t" | null
-    int? StorageSize, // 1 | 2 | 4 | 8 | null. Derived from Alignment when JSON omits it.
-    // Always false against real upstream input, and permanently so — this is
-    // not a gap waiting to be filled.
+    int? StorageSize, // 1 | 2 | 4 | 8 | null. Derived from Alignment; upstream carries no such field.
+    // Always false, and permanently so — this is not a gap waiting to be
+    // filled.
     //
-    // Schema 1.x dropped the old `flags: true` marker. Schema 2.0 exposes the
-    // runtime bitfield, but SchemaEnumFlags_t declares exactly three bits —
-    // IS_REGISTERED (1), MODULE_LOCAL_TYPE_SCOPE (2), GLOBAL_TYPE_SCOPE (4) —
-    // and none of them marks a flag-set (CS2OpenDev-SchemaTracker#2).
+    // The header exposes a runtime bitfield on `flags`, but SchemaEnumFlags_t
+    // declares exactly three bits — IS_REGISTERED (1), MODULE_LOCAL_TYPE_SCOPE
+    // (2), GLOBAL_TYPE_SCOPE (4) — and none marks a flag-set
+    // (CS2OpenDev-SchemaTracker#2).
     //
     // We measured every bit against a power-of-two-membership oracle before
     // asking: bit 1 is set on all 610 enums (it is IS_REGISTERED), and the best
@@ -132,17 +130,14 @@ internal static class SchemaModel
             ? ParseEnums(eEl)
             : [];
 
-        // 1.x: `revision` is the numeric mirror id. 2.0: `build_id` is the Steam
-        // CS2 game build and `revision` was repurposed as a walker-identity
-        // string ("hl2sdk-cs2/5f891c90…/v1/…"). Take build_id first, and require
-        // a Number from `revision` so the 2.0 string can never land here — it
+        // `build_id` is the Steam CS2 game build. The header also carries a
+        // `revision`, but it is a walker-identity string
+        // ("hl2sdk-cs2/5f891c90…/v1/…") and must never be read here: this value
         // reaches the package version as SemVer 2 build metadata, where slashes
-        // are not legal. Same precedence the CI metadata action uses.
+        // are not legal. Same key the CI metadata action reads.
         long? revision = root.TryGetProperty("build_id", out JsonElement bEl) && bEl.ValueKind == JsonValueKind.Number
             ? bEl.GetInt64()
-            : root.TryGetProperty("revision", out JsonElement rEl) && rEl.ValueKind == JsonValueKind.Number
-                ? rEl.GetInt64()
-                : null;
+            : null;
         string? versionDate = root.TryGetProperty("version_date", out JsonElement vdEl) && vdEl.ValueKind == JsonValueKind.String
             ? vdEl.GetString()
             : null;
@@ -156,34 +151,23 @@ internal static class SchemaModel
     private static ClassModel ParseClass(JsonElement e)
     {
         string name = Str(e, "name");
-        // The namespace key. In 1.x `module` is the project (`client`, `server`,
-        // `particles`); in 2.0 `module` became the binary that registered the
-        // type (`server.dll`, `!GlobalTypes`) and `projectName` took over the
-        // project role. Read projectName first so both shapes produce the same
-        // namespace layout — this is the whole reason class records survive the
-        // format change without a namespace break.
-        //
-        // Enum records in 2.0 carry no projectName at all, which is what blocks
-        // the submodule bump rather than this parser
-        // (CS2OpenDev-SchemaTracker#1). See ParseEnum.
+        // The namespace key. `module` is the binary that registered the type
+        // (`server.dll`, `!GlobalTypes`); `projectName` is the project
+        // (`client`, `server`, `particles`) and is what the namespace layout is
+        // built from. Falling back to `module` is not a compatibility shim —
+        // enum records still ship without `projectName`
+        // (CS2OpenDev-SchemaTracker#1), and the fallback is what makes that
+        // degrade into one wrong namespace instead of an empty one.
         string module = Str(e, "projectName") is { Length: > 0 } project
             ? project
             : Str(e, "module");
         int size = NumInt(e, "size");
-        // Schema 1.x omits class-level alignment; 2.0 carries it. Absence is 0
-        // so emitters see consistent input either way.
         byte alignment = e.TryGetProperty("alignment", out JsonElement aEl) && aEl.ValueKind == JsonValueKind.Number
             ? (byte)aEl.GetInt32()
             : (byte)0;
-        // 1.x carries an `abstract` boolean. 2.0 dropped it and exposes the
-        // runtime bitfield instead, where bit 1 is SCHEMA_CF1_IS_ABSTRACT —
-        // confirmed upstream against the pinned hl2sdk
-        // (CS2OpenDev-SchemaTracker#2). Prefer the explicit boolean where it
-        // exists so 1.x and hand-written fixtures are unaffected.
-        bool isAbstract = e.TryGetProperty("abstract", out JsonElement abEl)
-                          && abEl.ValueKind is JsonValueKind.True or JsonValueKind.False
-            ? abEl.GetBoolean()
-            : (Num(e, "flags") & (1 << 1)) != 0;
+        // Bit 1 of the class flags bitfield is SCHEMA_CF1_IS_ABSTRACT, confirmed
+        // upstream against the pinned hl2sdk (CS2OpenDev-SchemaTracker#2).
+        bool isAbstract = (Num(e, "flags") & (1 << 1)) != 0;
 
         ParentModel[] parents = e.TryGetProperty("parents", out JsonElement pEl)
             ? ParseParents(pEl)
@@ -218,41 +202,30 @@ internal static class SchemaModel
     private static EnumModel ParseEnum(JsonElement e)
     {
         string name = Str(e, "name");
-        // Same key preference as classes, and it currently never fires: no 2.0
-        // enum record carries projectName (0 of 610, measured against Docs
-        // 3053793), so every enum falls back to `module` — which in 2.0 is the
-        // binary, and reads `!GlobalTypes` for 591 of them.
+        // Same key preference as classes, and it does not fire yet: no enum
+        // record carries projectName (0 of 610, measured against Docs 3053793),
+        // so every enum falls back to `module` — the binary — which reads
+        // `!GlobalTypes` for 591 of them and collapses them into one namespace.
         //
-        // That is why the submodule pin has not moved. Parsing 2.0 is correct
-        // and complete; regenerating *from* 2.0 would collapse 591 enums into
-        // one namespace and break every consumer's `using` lines. The preference
-        // is written now so the bump is a one-line pin change once
-        // CS2OpenDev-SchemaTracker#1 ships in an artifact.
+        // That is the release blocker, not a parser gap
+        // (CS2OpenDev-SchemaTracker#1, fixed in their main at ba3bd0cf but not
+        // yet in a published artifact). When it lands this line starts
+        // resolving and the namespaces spread back out with no code change.
         string module = Str(e, "projectName") is { Length: > 0 } project
             ? project
             : Str(e, "module");
         string? alignment = e.TryGetProperty("alignment", out JsonElement aEl) && aEl.ValueKind == JsonValueKind.String
             ? aEl.GetString()
             : null;
-        // Upstream cs2_schema.json no longer carries `storage_size` — it's fully
-        // recoverable from the `alignment` storage-type string. Honour the
-        // explicit field if present (old schemas.json + test fixtures), else
-        // derive from the alignment type so emitter logic is unchanged.
-        int? storageSize = e.TryGetProperty("storage_size", out JsonElement ssEl) && ssEl.ValueKind == JsonValueKind.Number
-            ? ssEl.GetInt32()
-            : DeriveStorageSize(alignment);
-        // 1.x wrote `flags: true` to mark a flag-set. 2.0 reuses the same key for
-        // the runtime bitfield, an integer — so an unguarded GetBoolean() throws
-        // on every one of the 610 enum records rather than on some edge case.
-        //
-        // The bitfield deliberately does not feed IsFlags. SchemaEnumFlags_t
-        // declares three bits — IS_REGISTERED, MODULE_LOCAL_TYPE_SCOPE,
-        // GLOBAL_TYPE_SCOPE — and none marks a flag-set
-        // (CS2OpenDev-SchemaTracker#2), so there is nothing here to read. See
-        // the note on EnumModel.IsFlags.
-        bool isFlags = e.TryGetProperty("flags", out JsonElement fEl)
-                       && fEl.ValueKind is JsonValueKind.True or JsonValueKind.False
-                       && fEl.GetBoolean();
+        // Upstream carries no `storage_size`; it is fully recoverable from the
+        // `alignment` storage-type string.
+        int? storageSize = DeriveStorageSize(alignment);
+        // Always false, and deliberately not read from `flags`. That key is the
+        // runtime bitfield, and SchemaEnumFlags_t declares three bits —
+        // IS_REGISTERED, MODULE_LOCAL_TYPE_SCOPE, GLOBAL_TYPE_SCOPE — none of
+        // which marks a flag-set (CS2OpenDev-SchemaTracker#2). See the note on
+        // EnumModel.IsFlags for why deriving it anyway would be noise.
+        const bool isFlags = false;
         MemberModel[] members = e.TryGetProperty("members", out JsonElement mEl)
             ? ParseMembers(mEl)
             : [];
@@ -391,12 +364,14 @@ internal static class SchemaModel
             return new UnknownType(null);
         }
 
-        // 1.x writes the discriminator lowercase ("builtin"), 2.0 uppercase
-        // ("BUILTIN"). Normalise rather than adding arms, because getting this
-        // wrong does not throw — every type falls through to UnknownType, the
-        // emitters produce `object /* BUILTIN */` and empty stub classes, and
-        // the regen succeeds. A silent 100% degradation is worse than a crash,
-        // so the tests assert zero unknown categories on real input.
+        // Upstream writes the discriminator uppercase ("BUILTIN"). Lowered
+        // rather than matched uppercase so a case change on either side is a
+        // non-event, because getting this wrong does not throw: every type
+        // falls through to UnknownType, the emitters produce
+        // `object /* BUILTIN */` and empty stub classes, and the regen
+        // succeeds. A silent 100% degradation is worse than a crash — which is
+        // how the 1.x → 2.0 case flip actually presented — so the tests assert
+        // zero unknown categories on real input.
         string rawCategory = Str(e, "category");
         string category = rawCategory.ToLowerInvariant();
         switch (category)
@@ -451,13 +426,14 @@ internal static class SchemaModel
             ? el.GetString() ?? ""
             : "";
 
-    // Schema 1.x writes sizes, offsets, counts and enum member values as JSON
-    // numbers; 2.0 writes the same values as quoted strings ("24", "0"). Both
-    // are read here rather than at each call site, because the failure mode of
-    // getting it wrong is a throw from deep inside a field parse whose message
-    // names neither the field nor the record — that is exactly how the 1.x → 2.0
-    // break originally presented ("requires an element of type 'Number', but the
-    // target element has type 'String'").
+    // Upstream is not internally consistent about how it encodes integers: class
+    // `size` and field `offset` are quoted strings ("24", "0") while class
+    // `alignment` and enum `size` are JSON numbers. Both encodings are read here
+    // rather than at each call site, because the failure mode of getting it
+    // wrong is a throw from deep inside a field parse whose message names
+    // neither the field nor the record — that is exactly how the 1.x → 2.0 break
+    // originally presented ("requires an element of type 'Number', but the
+    // target element has type 'String').
     //
     // A malformed string yields the fallback rather than throwing: these feed
     // struct layout metadata, not correctness of the emitted type, and a single

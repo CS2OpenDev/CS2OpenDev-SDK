@@ -5,10 +5,8 @@ description: >
   workflows that pack the SDK so the resulting NuGet package carries SemVer 2
   build metadata identifying which CS2 build it was generated from.
 
-  Reads both upstream header shapes. Schema 1.x carries `revision` as a numeric
-  mirror id; schema 2.0 replaced it with `build_id` (the Steam CS2 game build)
-  and repurposed `revision` as a walker-identity string. `build_id` wins where
-  both are present.
+  The header's `build_id` is the Steam CS2 game build. It also carries a
+  `revision`, but that is a walker-identity string and must never be used here.
 
   Both outputs are validated against the SemVer 2 build-metadata identifier
   grammar ([0-9A-Za-z-]+, no spaces) before they are emitted, because that is
@@ -17,8 +15,8 @@ description: >
 outputs:
   revision:
     description: >
-      Numeric CS2 build identity (e.g. "24537688"). Sourced from the header's
-      `build_id` on schema 2.0, or its numeric `revision` on schema 1.x.
+      Numeric CS2 build identity (e.g. "24537688"), from the header's
+      `build_id`.
     value: ${{ steps.parse.outputs.revision }}
   date-iso:
     description: Schema dump date as ISO yyyy-MM-dd (e.g. "2026-08-03").
@@ -43,28 +41,24 @@ runs:
         # so fall back to jq if the head heuristic ever fails.
         HEADER=$(head -c 512 "$SCHEMA_PATH")
 
-        # Two header shapes, and the difference matters because on 2.0 the key
-        # named `revision` holds something that must never reach a package
+        # Read `build_id` and nothing else. The header also carries a key named
+        # `revision`, and it holds something that must never reach a package
         # version:
         #
-        #   1.1  "revision": 10677034
-        #   2.0  "build_id": 24537688,
-        #        "revision": "hl2sdk-cs2/5f891c90…/v1/3d1200e3…"
+        #   "build_id": 24537688,
+        #   "revision": "hl2sdk-cs2/5f891c90…/v1/3d1200e3…"
         #
-        # So take `build_id` first and only fall back to `revision`, rather than
-        # reading `revision` and hoping. Both patterns want digits, which keeps
-        # the 2.0 walker identity from matching either.
+        # An earlier version of this action read `revision`, matched that string,
+        # and emitted it as SemVer 2 build metadata. The digit-only pattern is a
+        # second line of defence against the same mistake.
         BUILD=$(printf '%s' "$HEADER" | sed -nE 's/.*"build_id":[[:space:]]*([0-9]+).*/\1/p' | head -1)
-        if [ -z "$BUILD" ]; then
-          BUILD=$(printf '%s' "$HEADER" | sed -nE 's/.*"revision":[[:space:]]*([0-9]+).*/\1/p' | head -1)
-        fi
         DATE=$(printf '%s' "$HEADER" | sed -nE 's/.*"version_date":[[:space:]]*"([^"]+)".*/\1/p' | head -1)
 
         if [ -z "$BUILD" ] || [ -z "$DATE" ]; then
           # Fallback: full jq parse if the head heuristic missed the keys.
           # `// empty` rather than jq's default null-to-string, so a missing key
           # stays empty and trips the check below instead of emitting "null".
-          BUILD=$(jq -r '.build_id // .revision // empty' "$SCHEMA_PATH")
+          BUILD=$(jq -r '.build_id // empty' "$SCHEMA_PATH")
           DATE=$(jq -r '.version_date // empty' "$SCHEMA_PATH")
         fi
 
@@ -77,18 +71,14 @@ runs:
         # have not been taught to read, and guessing is worse than stopping.
         if ! printf '%s' "$BUILD" | grep -qE '^[0-9]+$'; then
           echo "::error::No numeric build identity in $SCHEMA_PATH header." \
-               "Read '$BUILD' from build_id/revision. Schema 2.0 headers must" \
-               "carry build_id; see docs/upstream/schematracker-migration.md."
+               "Read '$BUILD' from build_id; the header must carry it." \
+               "See docs/upstream/schematracker-migration.md."
           exit 1
         fi
 
-        # Normalise to ISO so the value is valid as a SemVer 2 build-metadata
-        # identifier (no spaces). Upstream has produced exactly two shapes:
-        # "May 21 2026" on schema 1.x and "2026-08-03" on 2.0.
-        #
-        # Both are matched here before `date` is involved, and anything else is
-        # rejected without asking it, because `date` is the wrong thing to lean
-        # on for validation twice over:
+        # `version_date` is already ISO ("2026-08-03"), which is what the SemVer 2
+        # build-metadata identifier grammar needs, so this validates the shape
+        # rather than converting it. `date` is deliberately not involved:
         #
         #   * GNU date reads the empty string as "now" and prints today, so a
         #     header missing version_date produced a well-formed ISO date that
@@ -98,26 +88,15 @@ runs:
         #   * GNU date also accepts relative expressions ("last tuesday"), so a
         #     junk value can parse to a real date rather than failing.
         #
-        # `date` now only ever sees a string already known to be "%b %d %Y",
-        # which is the one case that genuinely needs converting. The ISO case is
-        # a passthrough, which also keeps it working where `date -d` does not
-        # exist — that flag is GNU-only and `-jf` is BSD-only.
-        if printf '%s' "$DATE" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
-          DATE_ISO="$DATE"
-        elif printf '%s' "$DATE" | grep -qE '^[A-Z][a-z]{2} [0-9]{1,2} [0-9]{4}$'; then
-          DATE_ISO=$(date -d "$DATE" +%Y-%m-%d 2>/dev/null \
-                  || date -jf '%b %d %Y' "$DATE" +%Y-%m-%d 2>/dev/null \
-                  || echo "")
-        else
+        # Dropping the call also drops the portability split: `date -d` is
+        # GNU-only and `-jf` is BSD-only, so the conversion path behaved
+        # differently on the runner and on a maintainer's machine.
+        if ! printf '%s' "$DATE" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
           echo "::error::Unrecognised version_date '$DATE' in $SCHEMA_PATH." \
-               "Expected ISO yyyy-MM-dd (schema 2.0) or 'Mon DD YYYY' (1.x)."
+               "Expected ISO yyyy-MM-dd."
           exit 1
         fi
-        if ! printf '%s' "$DATE_ISO" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
-          echo "::error::Could not parse schema date '$DATE' into ISO format" \
-               "(got '$DATE_ISO')"
-          exit 1
-        fi
+        DATE_ISO="$DATE"
 
         echo "revision=$BUILD" >> "$GITHUB_OUTPUT"
         echo "date-iso=$DATE_ISO" >> "$GITHUB_OUTPUT"

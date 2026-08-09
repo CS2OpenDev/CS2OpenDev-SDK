@@ -1018,7 +1018,14 @@ internal static class ModuleEmitter
         {
             string sanitized = kv.Key;
             string original = kv.Value;
-            sb.AppendLine($"/// <summary>{original} — forward-declared stub (type not reflected in cs2_schema.json).</summary>");
+            // Escaped, because the stub names are raw C++ and a good many are
+            // templates: `CAnimGraph2ParamOptionalRef< CGlobalSymbol >` puts a
+            // bare `<` inside the summary and the compiler reads it as an
+            // element, giving CS1570 "badly formed XML". The SDK csproj
+            // generates a documentation file, so that is an error and not a
+            // warning — 5,430 of them on the first 2.0 regen. Everywhere else
+            // that interpolates a schema name into XML already escapes it.
+            sb.AppendLine($"/// <summary>{NameHelpers.XmlEscape(original)} — forward-declared stub (type not reflected in cs2_schema.json).</summary>");
             // CE-1: when SanitizeName had to rewrite the original (typically because
             // it contained C++ scope operators), preserve the original via [NativeName]
             // so runtime interop can round-trip back to the schema identifier.

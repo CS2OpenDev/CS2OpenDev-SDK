@@ -186,7 +186,7 @@ public class SchemaModelTests
             {
               "classes": [{
                 "name": "CChild", "module": "client",
-                "size": 32, "alignment": 8, "abstract": true,
+                "size": 32, "alignment": 8, "flags": 2,
                 "parents": [{ "name": "CParent", "module": "client", "offset": 0 }],
                 "fields": []
               }]
@@ -229,7 +229,7 @@ public class SchemaModelTests
             {
               "enums": [{
                 "name": "EMyFlags", "module": "client",
-                "storage_size": 4, "flags": true,
+                "alignment": "uint32_t", "flags": 9,
                 "members": [
                   { "name": "None", "value": 0 },
                   { "name": "A",    "value": 1 },
@@ -240,7 +240,9 @@ public class SchemaModelTests
             """);
 
         EnumModel en = root.Enums[0];
-        await Assert.That(en.IsFlags).IsTrue();
+        // `flags` is the runtime bitfield, never a flag-set marker, and storage
+        // size is derived from `alignment` — upstream ships no storage_size.
+        await Assert.That(en.IsFlags).IsFalse();
         await Assert.That(en.StorageSize).IsEqualTo(4);
         await Assert.That(en.Members.Length).IsEqualTo(3);
         await Assert.That(en.Members[2].Value).IsEqualTo(2L);
@@ -346,14 +348,13 @@ public class SchemaModelTests
         // The supported set is interpolated, and joining the bare majors used to
         // render "supports 1/2.x only" — which reads as a fraction. Assert the
         // rendered text, not just that a message came out.
-        await Assert.That(ex.Message).Contains("supports 1.x and 2.x");
+        await Assert.That(ex.Message).Contains("supports 2.x");
     }
 
     /// <summary>Both supported majors parse normally — 1.x is what the pinned submodule serves, 2.0 is what Docs publishes at HEAD.</summary>
     [Test]
-    [Arguments("1.0")]
-    [Arguments("1.1")]
     [Arguments("2.0")]
+    [Arguments("2.1")]
     public async Task Parse_SupportedFormatMajor_IsAccepted(string declared)
     {
         SchemaRoot root = SchemaModel.Parse($$"""
@@ -490,19 +491,6 @@ public class SchemaModelTests
         await Assert.That(root.Enums[0].StorageSize).IsEqualTo(1);
     }
 
-    /// <summary>1.x <c>flags: true</c> still marks a flag-set — the integer guard must not swallow the boolean form.</summary>
-    [Test]
-    public async Task Parse11_BooleanEnumFlags_StillMarksFlagSet()
-    {
-        SchemaRoot root = SchemaModel.Parse("""
-            {
-              "enums": [{ "name": "EFoo", "module": "client", "alignment": "uint32_t",
-                          "flags": true, "members": [] }]
-            }
-            """);
-        await Assert.That(root.Enums[0].IsFlags).IsTrue();
-    }
-
     /// <summary>Revision comes from <c>build_id</c> on 2.0, never from the walker-identity string that replaced the numeric <c>revision</c>.</summary>
     [Test]
     public async Task Parse20_RevisionComesFromBuildIdNotWalkerIdentity()
@@ -525,13 +513,13 @@ public class SchemaModelTests
         await Assert.That(root.Revision).IsNull();
     }
 
-    /// <summary>1.x numeric revision still reads, so the pinned submodule's stamp is unchanged.</summary>
+    /// <summary>A numeric <c>revision</c> is not a build id — the legacy key must not be mistaken for one now the fallback is gone.</summary>
     [Test]
-    public async Task Parse11_NumericRevision_StillRead()
+    public async Task Parse_LegacyNumericRevision_IsNotReadAsBuildId()
     {
         SchemaRoot root = SchemaModel.Parse("""
             { "revision": 10677034, "classes": [] }
             """);
-        await Assert.That(root.Revision).IsEqualTo(10677034L);
+        await Assert.That(root.Revision).IsNull();
     }
 }

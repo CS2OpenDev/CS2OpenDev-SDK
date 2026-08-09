@@ -297,7 +297,7 @@ public class GeneratorPipelineTests
     {
         GeneratorHarness.RunResult result = GeneratorHarness.Run("""
                                                                  {
-                                                                   "revision": 10641237,
+                                                                   "build_id": 10641237,
                                                                    "version_date": "May 07 2026",
                                                                    "classes": [{ "name": "CFoo", "module": "client", "fields": [] }]
                                                                  }
