@@ -201,7 +201,7 @@ Package versions follow SemVer 2 with build metadata identifying the upstream sc
 
 | Segment | Where it comes from | Who bumps it |
 |---|---|---|
-| `MAJOR` | `version.json` | Human — reserved for breaking SDK API changes |
+| `MAJOR` | `version.json` | Human — reserved for breaking SDK API changes. **Bump all three `version.json` files together** |
 | `MINOR` | `version.json` | Human — new emitter features |
 | `PATCH` | Git commit height since the last `MAJOR.MINOR` bump | Automatic via Nerdbank.GitVersioning |
 | Build metadata | `cs2_schema.json` → `build_id`, `version_date` | Automatic from CI at pack-time |
@@ -209,6 +209,8 @@ Package versions follow SemVer 2 with build metadata identifying the upstream sc
 The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header's `revision` field. In schema 2.0 `revision` is a slash-bearing walker identity (`hl2sdk-cs2/5f891c90…/v1/3d1200e3…`) which is not a legal SemVer 2 build-metadata identifier; `.github/actions/read-schema-metadata` reads `build_id` and fails closed if it is missing rather than falling back to it.
 
 `pathFilters` in `version.json` scopes the patch-bumping commits to `src/CS2OpenDev.Sdk/` only, so every regen produces a monotonically newer version, while contributions to tests / docs / generator code that don't change the SDK content don't churn the version. Build metadata is informational — NuGet shows it in the package details, but ordering is determined by `MAJOR.MINOR.PATCH` alone, which is exactly what we want (every regen advances the SortKey).
+
+**`CS2OpenDev.Protos` has its own `version.json`, and it is a patch clock, not a major one.** Its `pathFilters` cover `protos/`, `src/CS2OpenDev.Protos/` and `scripts/normalize-protos.py`, so a schema regen that leaves the `.proto` files alone does not bump it — that is the point, and it stays. But the `MAJOR` is kept in step with the SDK by hand, so the three packages that ship from this repo read as one product rather than three unrelated ones. A major bump is therefore a two-file edit; the version numbers will agree on major and differ on patch, which is intended.
 
 ### Continuous integration
 

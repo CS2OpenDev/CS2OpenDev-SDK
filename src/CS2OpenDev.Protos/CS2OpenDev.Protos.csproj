@@ -37,12 +37,23 @@
 
         <!-- NuGet package identity.
 
-             Versioned independently of CS2OpenDev.Sdk: this project has its own
-             `version.json` whose `pathFilters` cover `protos/` and this
-             directory only. The schema dump and the protobuf descriptors move on
-             different clocks — a schema regen that leaves the `.proto` files
-             untouched must not bump this package, or consumers eat a version
-             bump, a diff review and a CI run for a byte-identical assembly. -->
+             Versioned on its own clock: this project has its own `version.json`
+             whose `pathFilters` cover `protos/` and this directory only. The
+             schema dump and the protobuf descriptors move independently — a
+             schema regen that leaves the `.proto` files untouched must not bump
+             this package, or consumers eat a version bump, a diff review and a
+             CI run for a byte-identical assembly.
+
+             The MAJOR is deliberately *not* independent. It tracks
+             CS2OpenDev.Sdk so the three packages that ship together read as one
+             product: three majors on a feed invites the reading that
+             `CS2OpenDev.Protos` 1.x is the version to pair with
+             `CS2OpenDev.Sdk` 1.x, which was never true. The cost of that choice
+             is that this package's major no longer says anything about the wire
+             format — it will move when the *schema* breaks. Wire-format changes
+             show up in the patch, alongside everything else. -->
+        <!-- MAJOR/MINOR live in version.json and are bumped by hand, in step
+             with src/CS2OpenDev.Sdk/../../version.json. -->
         <PackageId>CS2OpenDev.Protos</PackageId>
         <Authors>CS2OpenDev Contributors</Authors>
         <Description>

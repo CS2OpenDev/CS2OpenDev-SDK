@@ -126,17 +126,24 @@ names carry more than one record, across **31** records, and
 
 ## Versions
 
+All three packages move to major **2**.
+
 | Package | last 1.x | first 2.0 |
 |---|---|---|
 | `CS2OpenDev.Sdk` | 1.0.5 | **2.0.3** |
 | `CS2OpenDev.Sdk.GameEvents` | 1.0.5 | **2.0.3** |
-| `CS2OpenDev.Protos` | 1.0.6 | **1.0.7** (stays 1.x) |
+| `CS2OpenDev.Protos` | 1.0.7 | **2.0.x** |
 
 The patch component is Nerdbank.GitVersioning's git height, not a hand-set
 number, so it advances on every regen — take the newest `2.0.x`, not `2.0.3`
-specifically. `CS2OpenDev.Protos` stays on the protobuf clock and does not go
-to 2.0; its `.proto` content is unchanged and only `protos/PROVENANCE.json`
-moved, to record the source extraction.
+specifically.
+
+**`CS2OpenDev.Protos` 2.0 contains no breaking change.** Its `.proto` content
+is identical to 1.0.7; the major moved only so the three packages that ship
+together carry one major. It keeps its own patch clock — a schema regen that
+leaves the `.proto` files alone still does not bump it — which means the three
+version numbers are aligned on major but will not match digit for digit. Take
+the newest of each.
 
 **These are published to GitHub Packages and attached to each GitHub release,
 not to NuGet.org** — the publish credential is not configured. Each release's

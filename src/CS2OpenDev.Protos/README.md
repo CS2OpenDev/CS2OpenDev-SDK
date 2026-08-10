@@ -120,13 +120,20 @@ The floor is therefore deliberately conservative and moves rarely:
 
 ## Versioning
 
-Versioned on the **protobuf clock**, independently of `CS2OpenDev.Sdk`.
+**Patch on the protobuf clock, major in step with `CS2OpenDev.Sdk`.**
 
 The schema dump and the protobuf descriptors move separately: most CS2 patches change the schema
 without touching a single `.proto`. If this package rode the SDK's version stream, every schema
 regen would push a new version, a diff review and a CI run for a byte-identical assembly. Its
 `version.json` matches only `protos/`, `src/CS2OpenDev.Protos/` and the normalisation script, so the
 patch version moves when — and only when — the descriptors do.
+
+The major is the exception, and it is deliberate. It tracks `CS2OpenDev.Sdk` so the three packages
+that ship from this repo read as one product; three independent majors on a feed invites pairing
+`CS2OpenDev.Protos` 1.x with `CS2OpenDev.Sdk` 1.x, which was never a real correspondence. The cost
+is that **this package's major tells you nothing about the wire format** — it moves when the schema
+breaks. Wire changes land in the patch like everything else, and `protos/PROVENANCE.json` plus the
+`CS2BuildId` assembly attribute are what actually identify the descriptors.
 
 ## Regenerating
 
