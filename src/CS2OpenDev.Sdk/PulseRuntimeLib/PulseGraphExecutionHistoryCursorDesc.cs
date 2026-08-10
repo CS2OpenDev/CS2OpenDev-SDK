@@ -55,24 +55,24 @@ public partial class PulseGraphExecutionHistoryCursorDesc
     public int LastValidEntryIdx { get; set; }
 
     /// <summary>
-    ///     Gets or sets RetiredAtNodeID.
+    ///     Gets or sets RetiredAtNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>nRetiredAtNodeID</c> at offset <c>0x1C</c>.
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("nRetiredAtNodeID")]
-    public PulseDocNodeID RetiredAtNodeID { get; set; }
+    public PulseDocNodeId RetiredAtNodeId { get; set; }
 
     /// <summary>
-    ///     Gets or sets SpawnNodeID.
+    ///     Gets or sets SpawnNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>nSpawnNodeID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("nSpawnNodeID")]
-    public PulseDocNodeID SpawnNodeID { get; set; }
+    public PulseDocNodeId SpawnNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets WasAnObservableComputation.

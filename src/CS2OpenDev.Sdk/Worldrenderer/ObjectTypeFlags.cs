@@ -58,13 +58,13 @@ public enum ObjectTypeFlags : uint
     ObjectTypeNoShadows = 32,
 
     /// <summary>
-    ///     ObjectTypeWorldspaceTexureBlend.
+    ///     ObjectTypeWorldSpaceTexureBlend.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>OBJECT_TYPE_WORLDSPACE_TEXURE_BLEND</c>.
     /// </remarks>
     [NativeName("OBJECT_TYPE_WORLDSPACE_TEXURE_BLEND")]
-    ObjectTypeWorldspaceTexureBlend = 64,
+    ObjectTypeWorldSpaceTexureBlend = 64,
 
     /// <summary>
     ///     ObjectTypeDisabledInLowQuality.

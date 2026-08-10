@@ -27,7 +27,7 @@ public sealed partial record GgKilledEnemyEvent
     /// </remarks>
     [NativeName("attackerid")]
     [GameEventFieldType("player_controller")]
-    public required int Attackerid { get; init; }
+    public required int AttackerId { get; init; }
 
     /// <summary>
     ///     did killer kill with a bonus weapon?
@@ -67,5 +67,5 @@ public sealed partial record GgKilledEnemyEvent
     /// </remarks>
     [NativeName("victimid")]
     [GameEventFieldType("player_controller")]
-    public required int Victimid { get; init; }
+    public required int VictimId { get; init; }
 }

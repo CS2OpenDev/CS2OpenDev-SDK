@@ -48,7 +48,7 @@ public partial class CAnimGraphDocParamSpan
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_id")]
-    public AnimParamID Id { get; set; }
+    public AnimParamId Id { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

@@ -105,7 +105,7 @@ public partial class CAmbientGeneric : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_iSoundLevel")]
-    public Soundlevel SoundLevel { get; set; }
+    public SoundLevel SoundLevel { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundSource.

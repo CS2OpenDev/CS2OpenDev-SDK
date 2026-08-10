@@ -64,7 +64,7 @@ public partial class CAnimGraphDocCycleControlNode : CAnimGraphDocNode
     [NativeName("m_param")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

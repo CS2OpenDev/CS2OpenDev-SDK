@@ -292,22 +292,22 @@ public enum PARTICLEMESSAGE : uint
     GameParticleManagerEventFreezeInvolving = 29,
 
     /// <summary>
-    ///     GameParticleManagerEventAddModellistOverrideElement.
+    ///     GameParticleManagerEventAddModelListOverrideElement.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GAME_PARTICLE_MANAGER_EVENT_ADD_MODELLIST_OVERRIDE_ELEMENT</c>.
     /// </remarks>
     [NativeName("GAME_PARTICLE_MANAGER_EVENT_ADD_MODELLIST_OVERRIDE_ELEMENT")]
-    GameParticleManagerEventAddModellistOverrideElement = 30,
+    GameParticleManagerEventAddModelListOverrideElement = 30,
 
     /// <summary>
-    ///     GameParticleManagerEventClearModellistOverride.
+    ///     GameParticleManagerEventClearModelListOverride.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GAME_PARTICLE_MANAGER_EVENT_CLEAR_MODELLIST_OVERRIDE</c>.
     /// </remarks>
     [NativeName("GAME_PARTICLE_MANAGER_EVENT_CLEAR_MODELLIST_OVERRIDE")]
-    GameParticleManagerEventClearModellistOverride = 31,
+    GameParticleManagerEventClearModelListOverride = 31,
 
     /// <summary>
     ///     GameParticleManagerEventCreatePhysicsSim.

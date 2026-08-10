@@ -64,14 +64,14 @@ public partial class CRenderGroom
     public bool EnableSimulation { get; set; }
 
     /// <summary>
-    ///     Gets or sets GroomGroupID.
+    ///     Gets or sets GroomGroupId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nGroomGroupID</c> at offset <c>0x8C</c>.
     /// </remarks>
     [NativeOffset(0x8C)]
     [NativeName("m_nGroomGroupID")]
-    public int GroomGroupID { get; set; }
+    public int GroomGroupId { get; set; }
 
     /// <summary>
     ///     Gets or sets GuideHairCount.

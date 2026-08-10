@@ -49,7 +49,7 @@ public enum CompositeMaterialMatchFilterType : uint
     /// </remarks>
     [NativeName("MATCH_FILTER_MATERIAL_NAME_SUBSTR")]
     [NativeMetadata("MPropertyFriendlyName", "Target Material Name SubStr")]
-    MatchFilterMaterialNameSubstr = 2,
+    MatchFilterMaterialNameSubStr = 2,
 
     /// <summary>
     ///     Target Material Attribute Equals.

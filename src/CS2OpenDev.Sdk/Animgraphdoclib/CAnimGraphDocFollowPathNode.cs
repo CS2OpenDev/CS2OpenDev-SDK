@@ -132,7 +132,7 @@ public partial class CAnimGraphDocFollowPathNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter")]
     [NativeMetadata("MPropertyGroupName", "Turn to Face")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

@@ -198,7 +198,7 @@ public partial class C_ColorCorrection : C_BaseEntity
     public float MinFalloff { get; set; }
 
     /// <summary>
-    ///     Gets or sets NetlookupFilename.
+    ///     Gets or sets NetlookupFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_netlookupFilename</c> at offset <c>0x624</c>.
@@ -206,7 +206,7 @@ public partial class C_ColorCorrection : C_BaseEntity
     [NativeOffset(0x624)]
     [NativeName("m_netlookupFilename")]
     [NativeMetadata("MNotSaved", "")]
-    public string NetlookupFilename { get; set; }
+    public string NetlookupFileName { get; set; }
 
     /// <summary>
     ///     Gets or sets Origin.

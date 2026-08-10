@@ -48,7 +48,7 @@ public sealed partial record PlayerInfoEvent
     /// </remarks>
     [NativeName("steamid")]
     [GameEventFieldType("uint64")]
-    public required ulong Steamid { get; init; }
+    public required ulong SteamId { get; init; }
 
     /// <summary>
     ///     user ID on server (unique on server).
@@ -58,5 +58,5 @@ public sealed partial record PlayerInfoEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

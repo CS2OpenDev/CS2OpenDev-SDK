@@ -73,14 +73,14 @@ public partial class ShardModelDesc
     public CStrongHandle__InfoForResourceTypeIMaterial2__ MaterialDamageOverlay { get; set; }
 
     /// <summary>
-    ///     Gets or sets ModelID.
+    ///     Gets or sets ModelId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nModelID</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_nModelID")]
-    public int ModelID { get; set; }
+    public int ModelId { get; set; }
 
     /// <summary>
     ///     Gets or sets PanelSize.

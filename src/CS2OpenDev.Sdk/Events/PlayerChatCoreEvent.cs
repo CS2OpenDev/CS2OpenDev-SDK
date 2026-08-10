@@ -28,7 +28,7 @@ public sealed partial record PlayerChatCoreEvent
     /// </remarks>
     [NativeName("playerid")]
     [GameEventFieldType("short")]
-    public required short Playerid { get; init; }
+    public required short PlayerId { get; init; }
 
     /// <summary>
     ///     true if team only chat.
@@ -58,5 +58,5 @@ public sealed partial record PlayerChatCoreEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

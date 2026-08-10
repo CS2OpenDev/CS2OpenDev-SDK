@@ -34,7 +34,7 @@ public partial class CVoiceContainerVsndRadioButton : CVoiceContainerBase
     [NativeOffset(0x70)]
     [NativeName("m_namespace")]
     [NativeMetadata("MPropertyFriendlyName", "Namespace")]
-    public string Namespace { get; set; }
+    public string NameSpace { get; set; }
 
     /// <summary>
     ///     Vsnd 01.

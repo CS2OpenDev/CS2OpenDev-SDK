@@ -31,22 +31,22 @@ namespace CS2OpenSchema.Animgraphdoclib;
 public partial class CAnimGraphDocNodeConnection
 {
     /// <summary>
-    ///     Gets or sets NodeID.
+    ///     Gets or sets NodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nodeID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nodeID")]
-    public AnimNodeID NodeID { get; set; }
+    public AnimNodeId NodeId { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutputID.
+    ///     Gets or sets OutputId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_outputID</c> at offset <c>0x4</c>.
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_outputID")]
-    public AnimNodeOutputID OutputID { get; set; }
+    public AnimNodeOutputId OutputId { get; set; }
 }

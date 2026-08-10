@@ -79,7 +79,7 @@ public enum SpriteCardTextureType : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_NORMALMAP")]
     [NativeMetadata("MPropertyFriendlyName", "Normal Map")]
-    SpritecardTextureNormalmap = 5,
+    SpritecardTextureNormalMap = 5,
 
     /// <summary>
     ///     Animation Smoothing Motion Vector.

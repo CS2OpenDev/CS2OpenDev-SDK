@@ -42,7 +42,7 @@ public partial class CAnimGraphDocStanceOverrideNode : CAnimGraphDocNode
     [NativeName("m_blendParamID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Blend Parameter (optional)")]
-    public AnimParamID BlendParamID { get; set; }
+    public AnimParamId BlendParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets BlendParamName.

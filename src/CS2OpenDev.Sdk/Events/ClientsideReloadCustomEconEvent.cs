@@ -20,12 +20,12 @@ namespace CS2OpenSchema.Events;
 public sealed partial record ClientsideReloadCustomEconEvent
 {
     /// <summary>
-    ///     Steamid.
+    ///     SteamId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>steamid</c> — KV1 type <c>string</c>.
     /// </remarks>
     [NativeName("steamid")]
     [GameEventFieldType("string")]
-    public required string Steamid { get; init; }
+    public required string SteamId { get; init; }
 }

@@ -24,7 +24,7 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocGlobalTransitionNode : CNmGraphDocTransitionNode
 {
     /// <summary>
-    ///     Gets or sets StateID.
+    ///     Gets or sets StateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_stateID</c> at offset <c>0x120</c>.
@@ -32,5 +32,5 @@ public partial class CNmGraphDocGlobalTransitionNode : CNmGraphDocTransitionNode
     [NativeOffset(0x120)]
     [NativeName("m_stateID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public Guid StateID { get; set; }
+    public Guid StateId { get; set; }
 }

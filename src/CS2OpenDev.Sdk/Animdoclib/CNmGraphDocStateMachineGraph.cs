@@ -24,12 +24,12 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocStateMachineGraph : CNmGraphDocGraph
 {
     /// <summary>
-    ///     Gets or sets EntryStateID.
+    ///     Gets or sets EntryStateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_entryStateID</c> at offset <c>0x50</c>.
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_entryStateID")]
-    public Guid EntryStateID { get; set; }
+    public Guid EntryStateId { get; set; }
 }

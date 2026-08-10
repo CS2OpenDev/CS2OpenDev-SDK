@@ -73,7 +73,7 @@ public partial class CRenderComponent : CEntityComponent
     public bool IsRenderingWithViewModels { get; set; }
 
     /// <summary>
-    ///     Gets or sets SplitscreenFlags.
+    ///     Gets or sets SplitScreenFlags.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nSplitscreenFlags</c> at offset <c>0x54</c>.
@@ -81,5 +81,5 @@ public partial class CRenderComponent : CEntityComponent
     [NativeOffset(0x54)]
     [NativeName("m_nSplitscreenFlags")]
     [NativeMetadata("MNotSaved", "")]
-    public uint SplitscreenFlags { get; set; }
+    public uint SplitScreenFlags { get; set; }
 }

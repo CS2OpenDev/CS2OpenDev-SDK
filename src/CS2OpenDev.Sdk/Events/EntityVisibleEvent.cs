@@ -27,7 +27,7 @@ public sealed partial record EntityVisibleEvent
     /// </remarks>
     [NativeName("classname")]
     [GameEventFieldType("string")]
-    public required string Classname { get; init; }
+    public required string ClassName { get; init; }
 
     /// <summary>
     ///     name of the entity they see.
@@ -37,7 +37,7 @@ public sealed partial record EntityVisibleEvent
     /// </remarks>
     [NativeName("entityname")]
     [GameEventFieldType("string")]
-    public required string Entityname { get; init; }
+    public required string EntityName { get; init; }
 
     /// <summary>
     ///     Entindex of the entity they see.
@@ -57,5 +57,5 @@ public sealed partial record EntityVisibleEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

@@ -77,12 +77,12 @@ public partial class Sky3dparams
     public short Scale { get; set; }
 
     /// <summary>
-    ///     Gets or sets WorldGroupID.
+    ///     Gets or sets WorldGroupId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nWorldGroupID</c> at offset <c>0x88</c>.
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_nWorldGroupID")]
-    public int WorldGroupID { get; set; }
+    public int WorldGroupId { get; set; }
 }

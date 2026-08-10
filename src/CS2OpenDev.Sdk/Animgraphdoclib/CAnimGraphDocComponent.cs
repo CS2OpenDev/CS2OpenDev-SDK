@@ -50,7 +50,7 @@ public abstract partial class CAnimGraphDocComponent
     [NativeOffset(0x28)]
     [NativeName("m_id")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimComponentID Id { get; set; }
+    public AnimComponentId Id { get; set; }
 
     /// <summary>
     ///     Network Mode.

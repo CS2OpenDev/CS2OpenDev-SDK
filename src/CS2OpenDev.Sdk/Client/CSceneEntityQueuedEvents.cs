@@ -23,12 +23,12 @@ namespace CS2OpenSchema.Client;
 public partial class CSceneEntityQueuedEvents
 {
     /// <summary>
-    ///     Gets or sets Starttime.
+    ///     Gets or sets StartTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>starttime</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("starttime")]
-    public float Starttime { get; set; }
+    public float StartTime { get; set; }
 }

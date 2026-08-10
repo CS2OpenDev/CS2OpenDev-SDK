@@ -67,13 +67,13 @@ public enum CNmTransitionNodeTransitionOptions : byte
     MatchSyncEventIndex = 4,
 
     /// <summary>
-    ///     MatchSyncEventID.
+    ///     MatchSyncEventId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MatchSyncEventID</c>.
     /// </remarks>
     [NativeName("MatchSyncEventID")]
-    MatchSyncEventID = 5,
+    MatchSyncEventId = 5,
 
     /// <summary>
     ///     MatchSyncEventPercentage.
@@ -85,13 +85,13 @@ public enum CNmTransitionNodeTransitionOptions : byte
     MatchSyncEventPercentage = 6,
 
     /// <summary>
-    ///     PreferClosestSyncEventID.
+    ///     PreferClosestSyncEventId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PreferClosestSyncEventID</c>.
     /// </remarks>
     [NativeName("PreferClosestSyncEventID")]
-    PreferClosestSyncEventID = 7,
+    PreferClosestSyncEventId = 7,
 
     /// <summary>
     ///     MatchTimeInSeconds.

@@ -20,34 +20,34 @@ namespace CS2OpenSchema.Events;
 public sealed partial record RoundMvpEvent
 {
     /// <summary>
-    ///     Musickitid.
+    ///     MusicKitId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>musickitid</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("musickitid")]
     [GameEventFieldType("long")]
-    public required int Musickitid { get; init; }
+    public required int MusicKitId { get; init; }
 
     /// <summary>
-    ///     Musickitmvps.
+    ///     MusicKitMvps.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>musickitmvps</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("musickitmvps")]
     [GameEventFieldType("long")]
-    public required int Musickitmvps { get; init; }
+    public required int MusicKitMvps { get; init; }
 
     /// <summary>
-    ///     Nomusic.
+    ///     NoMusic.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>nomusic</c> — KV1 type <c>byte</c>.
     /// </remarks>
     [NativeName("nomusic")]
     [GameEventFieldType("byte")]
-    public required byte Nomusic { get; init; }
+    public required byte NoMusic { get; init; }
 
     /// <summary>
     ///     Reason.
@@ -60,14 +60,14 @@ public sealed partial record RoundMvpEvent
     public required short Reason { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_controller</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     Value.

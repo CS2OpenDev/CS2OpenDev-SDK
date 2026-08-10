@@ -121,31 +121,31 @@ public enum Flags : uint
     FlInVehicle = 4096,
 
     /// <summary>
-    ///     FlGodmode.
+    ///     FlGodMode.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_GODMODE</c>.
     /// </remarks>
     [NativeName("FL_GODMODE")]
-    FlGodmode = 16384,
+    FlGodMode = 16384,
 
     /// <summary>
-    ///     FlNotarget.
+    ///     FlNoTarget.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_NOTARGET</c>.
     /// </remarks>
     [NativeName("FL_NOTARGET")]
-    FlNotarget = 32768,
+    FlNoTarget = 32768,
 
     /// <summary>
-    ///     FlAimtarget.
+    ///     FlAimTarget.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_AIMTARGET</c>.
     /// </remarks>
     [NativeName("FL_AIMTARGET")]
-    FlAimtarget = 65536,
+    FlAimTarget = 65536,
 
     /// <summary>
     ///     FlGrenade.
@@ -166,13 +166,13 @@ public enum Flags : uint
     FlDonttouch = 4194304,
 
     /// <summary>
-    ///     FlBasevelocity.
+    ///     FlBaseVelocity.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_BASEVELOCITY</c>.
     /// </remarks>
     [NativeName("FL_BASEVELOCITY")]
-    FlBasevelocity = 8388608,
+    FlBaseVelocity = 8388608,
 
     /// <summary>
     ///     FlConveyor.

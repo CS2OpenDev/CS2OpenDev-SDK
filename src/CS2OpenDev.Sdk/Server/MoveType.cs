@@ -101,7 +101,7 @@ public enum MoveType : byte
     ///     Native name: <c>MOVETYPE_NOCLIP</c>.
     /// </remarks>
     [NativeName("MOVETYPE_NOCLIP")]
-    Noclip = 7,
+    NoClip = 7,
 
     /// <summary>
     ///     Spectator free-look movement.

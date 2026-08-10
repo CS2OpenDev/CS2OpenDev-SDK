@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record HltvChangedModeEvent
 {
     /// <summary>
-    ///     Newmode.
+    ///     NewMode.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>newmode</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("newmode")]
     [GameEventFieldType("long")]
-    public required int Newmode { get; init; }
+    public required int NewMode { get; init; }
 
     /// <summary>
     ///     ObsTarget.
@@ -40,12 +40,12 @@ public sealed partial record HltvChangedModeEvent
     public required int ObsTarget { get; init; }
 
     /// <summary>
-    ///     Oldmode.
+    ///     OldMode.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>oldmode</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("oldmode")]
     [GameEventFieldType("long")]
-    public required int Oldmode { get; init; }
+    public required int OldMode { get; init; }
 }

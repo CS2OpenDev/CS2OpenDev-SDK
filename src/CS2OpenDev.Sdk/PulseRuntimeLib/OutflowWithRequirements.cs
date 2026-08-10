@@ -45,14 +45,14 @@ public partial class OutflowWithRequirements
     public CUtlVector__int32__ CursorStateBlockIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets DestinationFlowNodeID.
+    ///     Gets or sets DestinationFlowNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_DestinationFlowNodeID</c> at offset <c>0x48</c>.
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_DestinationFlowNodeID")]
-    public PulseDocNodeID DestinationFlowNodeID { get; set; }
+    public PulseDocNodeId DestinationFlowNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets RequirementNodeIDs.

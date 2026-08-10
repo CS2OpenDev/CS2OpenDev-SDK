@@ -22,24 +22,24 @@ namespace CS2OpenSchema.Client;
 public partial class C_CSTeam : C_Team
 {
     /// <summary>
-    ///     Gets or sets ClanID.
+    ///     Gets or sets ClanId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iClanID</c> at offset <c>0x950</c>.
     /// </remarks>
     [NativeOffset(0x950)]
     [NativeName("m_iClanID")]
-    public uint ClanID { get; set; }
+    public uint ClanId { get; set; }
 
     /// <summary>
-    ///     Gets or sets ClanTeamname.
+    ///     Gets or sets ClanTeamName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_szClanTeamname</c> at offset <c>0x8CC</c>.
     /// </remarks>
     [NativeOffset(0x8CC)]
     [NativeName("m_szClanTeamname")]
-    public string ClanTeamname { get; set; }
+    public string ClanTeamName { get; set; }
 
     /// <summary>
     ///     Gets or sets NumMapVictories.

@@ -25,14 +25,14 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocFlowGraphConnection
 {
     /// <summary>
-    ///     Gets or sets FromNodeID.
+    ///     Gets or sets FromNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_fromNodeID</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_fromNodeID")]
-    public Guid FromNodeID { get; set; }
+    public Guid FromNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets ID.
@@ -45,32 +45,32 @@ public partial class CNmGraphDocFlowGraphConnection
     public Guid ID { get; set; }
 
     /// <summary>
-    ///     Gets or sets InputPinID.
+    ///     Gets or sets InputPinId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_inputPinID</c> at offset <c>0x40</c>.
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_inputPinID")]
-    public Guid InputPinID { get; set; }
+    public Guid InputPinId { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutputPinID.
+    ///     Gets or sets OutputPinId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_outputPinID</c> at offset <c>0x20</c>.
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_outputPinID")]
-    public Guid OutputPinID { get; set; }
+    public Guid OutputPinId { get; set; }
 
     /// <summary>
-    ///     Gets or sets ToNodeID.
+    ///     Gets or sets ToNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_toNodeID</c> at offset <c>0x30</c>.
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_toNodeID")]
-    public Guid ToNodeID { get; set; }
+    public Guid ToNodeId { get; set; }
 }

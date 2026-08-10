@@ -47,7 +47,7 @@ public partial class CAnimationGraphVisualizerPrimitiveBase
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_OwningAnimNodePaths")]
-    public AnimNodeID[] OwningAnimNodePaths { get; set; }
+    public AnimNodeId[] OwningAnimNodePaths { get; set; }
 
     /// <summary>
     ///     Gets or sets Type.

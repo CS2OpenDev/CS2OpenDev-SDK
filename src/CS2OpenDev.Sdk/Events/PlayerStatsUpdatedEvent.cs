@@ -20,12 +20,12 @@ namespace CS2OpenSchema.Events;
 public sealed partial record PlayerStatsUpdatedEvent
 {
     /// <summary>
-    ///     Forceupload.
+    ///     ForceUpload.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>forceupload</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("forceupload")]
     [GameEventFieldType("bool")]
-    public required bool Forceupload { get; init; }
+    public required bool ForceUpload { get; init; }
 }

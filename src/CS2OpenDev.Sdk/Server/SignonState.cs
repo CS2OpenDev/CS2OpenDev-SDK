@@ -85,11 +85,11 @@ public enum SignonState : uint
     Full = 6,
 
     /// <summary>
-    ///     Changelevel.
+    ///     ChangeLevel.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SIGNONSTATE_CHANGELEVEL</c>.
     /// </remarks>
     [NativeName("SIGNONSTATE_CHANGELEVEL")]
-    Changelevel = 7
+    ChangeLevel = 7
 }

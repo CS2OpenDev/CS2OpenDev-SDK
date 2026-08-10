@@ -22,13 +22,13 @@ namespace CS2OpenSchema.Server;
 public enum RotatorTargetSpace : uint
 {
     /// <summary>
-    ///     RotatorTargetWorldspace.
+    ///     RotatorTargetWorldSpace.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ROTATOR_TARGET_WORLDSPACE</c>.
     /// </remarks>
     [NativeName("ROTATOR_TARGET_WORLDSPACE")]
-    RotatorTargetWorldspace = 0,
+    RotatorTargetWorldSpace = 0,
 
     /// <summary>
     ///     RotatorTargetLocalspace.

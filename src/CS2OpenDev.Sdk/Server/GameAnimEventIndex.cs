@@ -31,58 +31,58 @@ public enum GameAnimEventIndex : uint
     AeEmpty = 0,
 
     /// <summary>
-    ///     AeClPlaysound.
+    ///     AeClPlaySound.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_PLAYSOUND</c>.
     /// </remarks>
     [NativeName("AE_CL_PLAYSOUND")]
-    AeClPlaysound = 1,
+    AeClPlaySound = 1,
 
     /// <summary>
-    ///     AeClPlaysoundAttachment.
+    ///     AeClPlaySoundAttachment.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_PLAYSOUND_ATTACHMENT</c>.
     /// </remarks>
     [NativeName("AE_CL_PLAYSOUND_ATTACHMENT")]
-    AeClPlaysoundAttachment = 2,
+    AeClPlaySoundAttachment = 2,
 
     /// <summary>
-    ///     AeClPlaysoundPosition.
+    ///     AeClPlaySoundPosition.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_PLAYSOUND_POSITION</c>.
     /// </remarks>
     [NativeName("AE_CL_PLAYSOUND_POSITION")]
-    AeClPlaysoundPosition = 3,
+    AeClPlaySoundPosition = 3,
 
     /// <summary>
-    ///     AeSvPlaysound.
+    ///     AeSvPlaySound.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_SV_PLAYSOUND</c>.
     /// </remarks>
     [NativeName("AE_SV_PLAYSOUND")]
-    AeSvPlaysound = 4,
+    AeSvPlaySound = 4,
 
     /// <summary>
-    ///     AeClStopsound.
+    ///     AeClStopSound.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_STOPSOUND</c>.
     /// </remarks>
     [NativeName("AE_CL_STOPSOUND")]
-    AeClStopsound = 5,
+    AeClStopSound = 5,
 
     /// <summary>
-    ///     AeClPlaysoundLooping.
+    ///     AeClPlaySoundLooping.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_PLAYSOUND_LOOPING</c>.
     /// </remarks>
     [NativeName("AE_CL_PLAYSOUND_LOOPING")]
-    AeClPlaysoundLooping = 6,
+    AeClPlaySoundLooping = 6,
 
     /// <summary>
     ///     AeClCreateParticleEffect.
@@ -148,31 +148,31 @@ public enum GameAnimEventIndex : uint
     AeClStopRagdollControl = 13,
 
     /// <summary>
-    ///     AeClEnableBodygroup.
+    ///     AeClEnableBodyGroup.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_ENABLE_BODYGROUP</c>.
     /// </remarks>
     [NativeName("AE_CL_ENABLE_BODYGROUP")]
-    AeClEnableBodygroup = 14,
+    AeClEnableBodyGroup = 14,
 
     /// <summary>
-    ///     AeClDisableBodygroup.
+    ///     AeClDisableBodyGroup.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_CL_DISABLE_BODYGROUP</c>.
     /// </remarks>
     [NativeName("AE_CL_DISABLE_BODYGROUP")]
-    AeClDisableBodygroup = 15,
+    AeClDisableBodyGroup = 15,
 
     /// <summary>
-    ///     AeBodygroupSetValue.
+    ///     AeBodyGroupSetValue.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_BODYGROUP_SET_VALUE</c>.
     /// </remarks>
     [NativeName("AE_BODYGROUP_SET_VALUE")]
-    AeBodygroupSetValue = 16,
+    AeBodyGroupSetValue = 16,
 
     /// <summary>
     ///     AeWeaponPerformAttack.
@@ -445,13 +445,13 @@ public enum GameAnimEventIndex : uint
     AeWpnCompleteReload = 46,
 
     /// <summary>
-    ///     AeWpnHealthshotInject.
+    ///     AeWpnHealthShotInject.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AE_WPN_HEALTHSHOT_INJECT</c>.
     /// </remarks>
     [NativeName("AE_WPN_HEALTHSHOT_INJECT")]
-    AeWpnHealthshotInject = 47,
+    AeWpnHealthShotInject = 47,
 
     /// <summary>
     ///     AeGrenadeThrowComplete.

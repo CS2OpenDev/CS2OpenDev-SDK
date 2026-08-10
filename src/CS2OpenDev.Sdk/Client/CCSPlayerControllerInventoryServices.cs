@@ -36,7 +36,7 @@ public partial class CCSPlayerControllerInventoryServices : CPlayerControllerCom
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_unMusicID")]
-    public ushort MusicID { get; set; }
+    public ushort MusicId { get; set; }
 
     /// <summary>
     ///     Networked loadout — the item/skin occupying each equipped weapon slot.

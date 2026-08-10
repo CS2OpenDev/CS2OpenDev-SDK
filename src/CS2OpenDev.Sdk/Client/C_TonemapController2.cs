@@ -63,12 +63,12 @@ public partial class C_TonemapController2 : C_BaseEntity
     public float ExposureAdaptationSpeedUp { get; set; }
 
     /// <summary>
-    ///     Gets or sets TonemapEVSmoothingRange.
+    ///     Gets or sets ToneMapEVSmoothingRange.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flTonemapEVSmoothingRange</c> at offset <c>0x610</c>.
     /// </remarks>
     [NativeOffset(0x610)]
     [NativeName("m_flTonemapEVSmoothingRange")]
-    public float TonemapEVSmoothingRange { get; set; }
+    public float ToneMapEVSmoothingRange { get; set; }
 }

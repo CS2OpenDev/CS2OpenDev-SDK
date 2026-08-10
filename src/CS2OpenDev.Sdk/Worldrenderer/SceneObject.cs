@@ -85,14 +85,14 @@ public partial class SceneObject
     public Vector LightingOrigin { get; set; }
 
     /// <summary>
-    ///     Gets or sets ObjectID.
+    ///     Gets or sets ObjectId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nObjectID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nObjectID")]
-    public uint ObjectID { get; set; }
+    public uint ObjectId { get; set; }
 
     /// <summary>
     ///     Gets or sets ObjectTypeFlags.

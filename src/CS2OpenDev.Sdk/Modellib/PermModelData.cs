@@ -235,14 +235,14 @@ public partial class PermModelData
     public CUtlVector__CStrongHandle__InfoForResourceTypeCPhysAggregateData____ RefPhysicsData { get; set; }
 
     /// <summary>
-    ///     Gets or sets RefPhysicsHitboxData.
+    ///     Gets or sets RefPhysicsHitBoxData.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_refPhysicsHitboxData</c> at offset <c>0x108</c>.
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_refPhysicsHitboxData")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCPhysAggregateData____ RefPhysicsHitboxData { get; set; }
+    public CUtlVector__CStrongHandle__InfoForResourceTypeCPhysAggregateData____ RefPhysicsHitBoxData { get; set; }
 
     /// <summary>
     ///     Gets or sets RefSequenceGroups.

@@ -156,29 +156,29 @@ public enum ESource2PlayStatsFieldType : uint
     Source2PlayStats_UTCDateTime = 14,
 
     /// <summary>
-    ///     Source2PlayStats_SteamIDTrustBucket.
+    ///     Source2PlayStats_SteamIdTrustBucket.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>Source2PlayStats_SteamIDTrustBucket</c>.
     /// </remarks>
     [NativeName("Source2PlayStats_SteamIDTrustBucket")]
-    Source2PlayStats_SteamIDTrustBucket = 15,
+    Source2PlayStats_SteamIdTrustBucket = 15,
 
     /// <summary>
-    ///     Source2PlayStats_SteamIDTrustBucketMin.
+    ///     Source2PlayStats_SteamIdTrustBucketMin.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>Source2PlayStats_SteamIDTrustBucketMin</c>.
     /// </remarks>
     [NativeName("Source2PlayStats_SteamIDTrustBucketMin")]
-    Source2PlayStats_SteamIDTrustBucketMin = 16,
+    Source2PlayStats_SteamIdTrustBucketMin = 16,
 
     /// <summary>
-    ///     Source2PlayStats_SteamID.
+    ///     Source2PlayStats_SteamId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>Source2PlayStats_SteamID</c>.
     /// </remarks>
     [NativeName("Source2PlayStats_SteamID")]
-    Source2PlayStats_SteamID = 17
+    Source2PlayStats_SteamId = 17
 }

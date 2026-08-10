@@ -40,13 +40,13 @@ public enum InventoryNodeType : uint
     VirtualNodeSchemaPrefab = 1,
 
     /// <summary>
-    ///     VirtualNodeSchemaItemdef.
+    ///     VirtualNodeSchemaItemDef.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VIRTUAL_NODE_SCHEMA_ITEMDEF</c>.
     /// </remarks>
     [NativeName("VIRTUAL_NODE_SCHEMA_ITEMDEF")]
-    VirtualNodeSchemaItemdef = 2,
+    VirtualNodeSchemaItemDef = 2,
 
     /// <summary>
     ///     VirtualNodeSchemaSticker.
@@ -76,13 +76,13 @@ public enum InventoryNodeType : uint
     ConcreteNodeSchemaPrefab = 5,
 
     /// <summary>
-    ///     ConcreteNodeSchemaItemdef.
+    ///     ConcreteNodeSchemaItemDef.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CONCRETE_NODE_SCHEMA_ITEMDEF</c>.
     /// </remarks>
     [NativeName("CONCRETE_NODE_SCHEMA_ITEMDEF")]
-    ConcreteNodeSchemaItemdef = 6,
+    ConcreteNodeSchemaItemDef = 6,
 
     /// <summary>
     ///     ConcreteNodeSchemaSticker.

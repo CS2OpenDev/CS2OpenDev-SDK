@@ -64,7 +64,7 @@ public partial class CAnimGraphDocTargetWarpNode : CAnimGraphDocNode
     [NativeName("m_desiredMoveHeadingParamID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Desired Move Heading")]
-    public AnimParamID DesiredMoveHeadingParamID { get; set; }
+    public AnimParamId DesiredMoveHeadingParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets InputConnection.
@@ -112,7 +112,7 @@ public partial class CAnimGraphDocTargetWarpNode : CAnimGraphDocNode
     [NativeName("m_moveHeadingParamID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Move Heading")]
-    public AnimParamID MoveHeadingParamID { get; set; }
+    public AnimParamId MoveHeadingParamId { get; set; }
 
     /// <summary>
     ///     Only warp if there is a warp tag active. Otherwise this node will warp whenever it's active.
@@ -148,7 +148,7 @@ public partial class CAnimGraphDocTargetWarpNode : CAnimGraphDocNode
     [NativeName("m_targetFacePositionParamID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Target Face Position")]
-    public AnimParamID TargetFacePositionParamID { get; set; }
+    public AnimParamId TargetFacePositionParamId { get; set; }
 
     /// <summary>
     ///     Target Position Is World Space.
@@ -173,7 +173,7 @@ public partial class CAnimGraphDocTargetWarpNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Target Position")]
-    public AnimParamID TargetPositionParamID { get; set; }
+    public AnimParamId TargetPositionParamId { get; set; }
 
     /// <summary>
     ///     Target Up Vector (World Space).
@@ -185,7 +185,7 @@ public partial class CAnimGraphDocTargetWarpNode : CAnimGraphDocNode
     [NativeName("m_targetUpVectorParamID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Target Up Vector (World Space)")]
-    public AnimParamID TargetUpVectorParamID { get; set; }
+    public AnimParamId TargetUpVectorParamId { get; set; }
 
     /// <summary>
     ///     Timing Method.

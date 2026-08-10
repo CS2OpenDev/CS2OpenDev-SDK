@@ -100,8 +100,8 @@ public static class GameEventRegistry
             ["dynamic_shadow_light_changed"] = static (in GameEventReader r) => GameEventFactories.DynamicShadowLightChangedEventFrom(r),
             ["dz_item_interaction"] = static (in GameEventReader r) => GameEventFactories.DzItemInteractionEventFrom(r),
             ["enable_restart_voting"] = static (in GameEventReader r) => GameEventFactories.EnableRestartVotingEventFrom(r),
-            ["endmatch_cmm_start_reveal_items"] = static (in GameEventReader r) => GameEventFactories.EndmatchCmmStartRevealItemsEventFrom(r),
-            ["endmatch_mapvote_selecting_map"] = static (in GameEventReader r) => GameEventFactories.EndmatchMapvoteSelectingMapEventFrom(r),
+            ["endmatch_cmm_start_reveal_items"] = static (in GameEventReader r) => GameEventFactories.EndMatchCmmStartRevealItemsEventFrom(r),
+            ["endmatch_mapvote_selecting_map"] = static (in GameEventReader r) => GameEventFactories.EndMatchMapVoteSelectingMapEventFrom(r),
             ["enter_bombzone"] = static (in GameEventReader r) => GameEventFactories.EnterBombzoneEventFrom(r),
             ["enter_buyzone"] = static (in GameEventReader r) => GameEventFactories.EnterBuyzoneEventFrom(r),
             ["enter_rescue_zone"] = static (in GameEventReader r) => GameEventFactories.EnterRescueZoneEventFrom(r),
@@ -118,7 +118,7 @@ public static class GameEventRegistry
             ["game_end"] = static (in GameEventReader r) => GameEventFactories.GameEndEventFrom(r),
             ["game_init"] = static (in GameEventReader r) => GameEventFactories.GameInitEventFrom(r),
             ["game_message"] = static (in GameEventReader r) => GameEventFactories.GameMessageEventFrom(r),
-            ["game_newmap"] = static (in GameEventReader r) => GameEventFactories.GameNewmapEventFrom(r),
+            ["game_newmap"] = static (in GameEventReader r) => GameEventFactories.GameNewMapEventFrom(r),
             ["game_phase_changed"] = static (in GameEventReader r) => GameEventFactories.GamePhaseChangedEventFrom(r),
             ["game_start"] = static (in GameEventReader r) => GameEventFactories.GameStartEventFrom(r),
             ["gameinstructor_draw"] = static (in GameEventReader r) => GameEventFactories.GameinstructorDrawEventFrom(r),
@@ -144,7 +144,8 @@ public static class GameEventRegistry
             ["hltv_replay_status"] = static (in GameEventReader r) => GameEventFactories.HltvReplayStatusEventFrom(r),
             ["hltv_status"] = static (in GameEventReader r) => GameEventFactories.HltvStatusEventFrom(r),
             ["hltv_title"] = static (in GameEventReader r) => GameEventFactories.HltvTitleEventFrom(r),
-            ["hltv_versioninfo"] = static (in GameEventReader r) => GameEventFactories.HltvVersioninfoEventFrom(r),
+            ["hltv_versioninfo"] = static (in GameEventReader r) => GameEventFactories.HltvVersionInfoEventFrom(r),
+            ["hostname_changed"] = static (in GameEventReader r) => GameEventFactories.HostNameChangedEventFrom(r),
             ["hostage_call_for_help"] = static (in GameEventReader r) => GameEventFactories.HostageCallForHelpEventFrom(r),
             ["hostage_follows"] = static (in GameEventReader r) => GameEventFactories.HostageFollowsEventFrom(r),
             ["hostage_hurt"] = static (in GameEventReader r) => GameEventFactories.HostageHurtEventFrom(r),
@@ -152,7 +153,6 @@ public static class GameEventRegistry
             ["hostage_rescued_all"] = static (in GameEventReader r) => GameEventFactories.HostageRescuedAllEventFrom(r),
             ["hostage_rescued"] = static (in GameEventReader r) => GameEventFactories.HostageRescuedEventFrom(r),
             ["hostage_stops_following"] = static (in GameEventReader r) => GameEventFactories.HostageStopsFollowingEventFrom(r),
-            ["hostname_changed"] = static (in GameEventReader r) => GameEventFactories.HostnameChangedEventFrom(r),
             ["inferno_expire"] = static (in GameEventReader r) => GameEventFactories.InfernoExpireEventFrom(r),
             ["inferno_extinguish"] = static (in GameEventReader r) => GameEventFactories.InfernoExtinguishEventFrom(r),
             ["inferno_startburn"] = static (in GameEventReader r) => GameEventFactories.InfernoStartburnEventFrom(r),
@@ -184,7 +184,7 @@ public static class GameEventRegistry
             ["molotov_detonate"] = static (in GameEventReader r) => GameEventFactories.MolotovDetonateEventFrom(r),
             ["nav_blocked"] = static (in GameEventReader r) => GameEventFactories.NavBlockedEventFrom(r),
             ["nav_generate"] = static (in GameEventReader r) => GameEventFactories.NavGenerateEventFrom(r),
-            ["nextlevel_changed"] = static (in GameEventReader r) => GameEventFactories.NextlevelChangedEventFrom(r),
+            ["nextlevel_changed"] = static (in GameEventReader r) => GameEventFactories.NextLevelChangedEventFrom(r),
             ["open_crate_instr"] = static (in GameEventReader r) => GameEventFactories.OpenCrateInstrEventFrom(r),
             ["other_death"] = static (in GameEventReader r) => GameEventFactories.OtherDeathEventFrom(r),
             ["parachute_deploy"] = static (in GameEventReader r) => GameEventFactories.ParachuteDeployEventFrom(r),
@@ -193,7 +193,7 @@ public static class GameEventRegistry
             ["player_activate"] = static (in GameEventReader r) => GameEventFactories.PlayerActivateEventFrom(r),
             ["player_avenged_teammate"] = static (in GameEventReader r) => GameEventFactories.PlayerAvengedTeammateEventFrom(r),
             ["player_blind"] = static (in GameEventReader r) => GameEventFactories.PlayerBlindEventFrom(r),
-            ["player_changename"] = static (in GameEventReader r) => GameEventFactories.PlayerChangenameEventFrom(r),
+            ["player_changename"] = static (in GameEventReader r) => GameEventFactories.PlayerChangeNameEventFrom(r),
             ["player_chat"] = static (in GameEventReader r) => GameEventFactories.PlayerChatEventFrom(r),
             ["player_connect"] = static (in GameEventReader r) => GameEventFactories.PlayerConnectEventFrom(r),
             ["player_connect_full"] = static (in GameEventReader r) => GameEventFactories.PlayerConnectFullEventFrom(r),
@@ -204,7 +204,7 @@ public static class GameEventRegistry
             ["player_footstep"] = static (in GameEventReader r) => GameEventFactories.PlayerFootstepEventFrom(r),
             ["player_full_update"] = static (in GameEventReader r) => GameEventFactories.PlayerFullUpdateEventFrom(r),
             ["player_given_c4"] = static (in GameEventReader r) => GameEventFactories.PlayerGivenC4EventFrom(r),
-            ["player_hintmessage"] = static (in GameEventReader r) => GameEventFactories.PlayerHintmessageEventFrom(r),
+            ["player_hintmessage"] = static (in GameEventReader r) => GameEventFactories.PlayerHintMessageEventFrom(r),
             ["player_hurt"] = static (in GameEventReader r) => GameEventFactories.PlayerHurtEventFrom(r),
             ["player_info"] = static (in GameEventReader r) => GameEventFactories.PlayerInfoEventFrom(r),
             ["player_jump"] = static (in GameEventReader r) => GameEventFactories.PlayerJumpEventFrom(r),
@@ -253,11 +253,11 @@ public static class GameEventRegistry
             ["silencer_off"] = static (in GameEventReader r) => GameEventFactories.SilencerOffEventFrom(r),
             ["silencer_on"] = static (in GameEventReader r) => GameEventFactories.SilencerOnEventFrom(r),
             ["smoke_beacon_paradrop"] = static (in GameEventReader r) => GameEventFactories.SmokeBeaconParadropEventFrom(r),
-            ["smokegrenade_detonate"] = static (in GameEventReader r) => GameEventFactories.SmokegrenadeDetonateEventFrom(r),
-            ["smokegrenade_expired"] = static (in GameEventReader r) => GameEventFactories.SmokegrenadeExpiredEventFrom(r),
+            ["smokegrenade_detonate"] = static (in GameEventReader r) => GameEventFactories.SmokeGrenadeDetonateEventFrom(r),
+            ["smokegrenade_expired"] = static (in GameEventReader r) => GameEventFactories.SmokeGrenadeExpiredEventFrom(r),
             ["spec_mode_updated"] = static (in GameEventReader r) => GameEventFactories.SpecModeUpdatedEventFrom(r),
             ["spec_target_updated"] = static (in GameEventReader r) => GameEventFactories.SpecTargetUpdatedEventFrom(r),
-            ["start_halftime"] = static (in GameEventReader r) => GameEventFactories.StartHalftimeEventFrom(r),
+            ["start_halftime"] = static (in GameEventReader r) => GameEventFactories.StartHalfTimeEventFrom(r),
             ["start_vote"] = static (in GameEventReader r) => GameEventFactories.StartVoteEventFrom(r),
             ["store_pricesheet_updated"] = static (in GameEventReader r) => GameEventFactories.StorePricesheetUpdatedEventFrom(r),
             ["survival_announce_phase"] = static (in GameEventReader r) => GameEventFactories.SurvivalAnnouncePhaseEventFrom(r),
@@ -268,13 +268,13 @@ public static class GameEventRegistry
             ["survival_teammate_respawn"] = static (in GameEventReader r) => GameEventFactories.SurvivalTeammateRespawnEventFrom(r),
             ["switch_team"] = static (in GameEventReader r) => GameEventFactories.SwitchTeamEventFrom(r),
             ["tagrenade_detonate"] = static (in GameEventReader r) => GameEventFactories.TagrenadeDetonateEventFrom(r),
+            ["teamchange_pending"] = static (in GameEventReader r) => GameEventFactories.TeamChangePendingEventFrom(r),
             ["team_info"] = static (in GameEventReader r) => GameEventFactories.TeamInfoEventFrom(r),
             ["team_intro_end"] = static (in GameEventReader r) => GameEventFactories.TeamIntroEndEventFrom(r),
             ["team_intro_start"] = static (in GameEventReader r) => GameEventFactories.TeamIntroStartEventFrom(r),
+            ["teamplay_broadcast_audio"] = static (in GameEventReader r) => GameEventFactories.TeamPlayBroadcastAudioEventFrom(r),
+            ["teamplay_round_start"] = static (in GameEventReader r) => GameEventFactories.TeamPlayRoundStartEventFrom(r),
             ["team_score"] = static (in GameEventReader r) => GameEventFactories.TeamScoreEventFrom(r),
-            ["teamchange_pending"] = static (in GameEventReader r) => GameEventFactories.TeamchangePendingEventFrom(r),
-            ["teamplay_broadcast_audio"] = static (in GameEventReader r) => GameEventFactories.TeamplayBroadcastAudioEventFrom(r),
-            ["teamplay_round_start"] = static (in GameEventReader r) => GameEventFactories.TeamplayRoundStartEventFrom(r),
             ["tournament_reward"] = static (in GameEventReader r) => GameEventFactories.TournamentRewardEventFrom(r),
             ["trial_time_expired"] = static (in GameEventReader r) => GameEventFactories.TrialTimeExpiredEventFrom(r),
             ["ugc_file_download_finished"] = static (in GameEventReader r) => GameEventFactories.UgcFileDownloadFinishedEventFrom(r),
@@ -588,11 +588,11 @@ public static class GameEventRegistry
             ],
             ["endmatch_cmm_start_reveal_items"] =
             [
-                new("game.gameevents", typeof(global::CS2OpenSchema.Events.EndmatchCmmStartRevealItemsEvent), static (in GameEventReader r) => GameEventFactories.EndmatchCmmStartRevealItemsEventFrom(r)),
+                new("game.gameevents", typeof(global::CS2OpenSchema.Events.EndMatchCmmStartRevealItemsEvent), static (in GameEventReader r) => GameEventFactories.EndMatchCmmStartRevealItemsEventFrom(r)),
             ],
             ["endmatch_mapvote_selecting_map"] =
             [
-                new("game.gameevents", typeof(global::CS2OpenSchema.Events.EndmatchMapvoteSelectingMapEvent), static (in GameEventReader r) => GameEventFactories.EndmatchMapvoteSelectingMapEventFrom(r)),
+                new("game.gameevents", typeof(global::CS2OpenSchema.Events.EndMatchMapVoteSelectingMapEvent), static (in GameEventReader r) => GameEventFactories.EndMatchMapVoteSelectingMapEventFrom(r)),
             ],
             ["enter_bombzone"] =
             [
@@ -661,8 +661,8 @@ public static class GameEventRegistry
             ],
             ["game_newmap"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.GameNewmapCoreEvent), static (in GameEventReader r) => GameEventFactories.GameNewmapCoreEventFrom(r)),
-                new("game.gameevents", typeof(global::CS2OpenSchema.Events.GameNewmapEvent), static (in GameEventReader r) => GameEventFactories.GameNewmapEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.GameNewMapCoreEvent), static (in GameEventReader r) => GameEventFactories.GameNewMapCoreEventFrom(r)),
+                new("game.gameevents", typeof(global::CS2OpenSchema.Events.GameNewMapEvent), static (in GameEventReader r) => GameEventFactories.GameNewMapEventFrom(r)),
             ],
             ["game_phase_changed"] =
             [
@@ -766,7 +766,7 @@ public static class GameEventRegistry
             ],
             ["hltv_versioninfo"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.HltvVersioninfoEvent), static (in GameEventReader r) => GameEventFactories.HltvVersioninfoEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.HltvVersionInfoEvent), static (in GameEventReader r) => GameEventFactories.HltvVersionInfoEventFrom(r)),
             ],
             ["hostage_call_for_help"] =
             [
@@ -798,7 +798,7 @@ public static class GameEventRegistry
             ],
             ["hostname_changed"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.HostnameChangedEvent), static (in GameEventReader r) => GameEventFactories.HostnameChangedEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.HostNameChangedEvent), static (in GameEventReader r) => GameEventFactories.HostNameChangedEventFrom(r)),
             ],
             ["inferno_expire"] =
             [
@@ -929,7 +929,7 @@ public static class GameEventRegistry
             ],
             ["nextlevel_changed"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.NextlevelChangedEvent), static (in GameEventReader r) => GameEventFactories.NextlevelChangedEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.NextLevelChangedEvent), static (in GameEventReader r) => GameEventFactories.NextLevelChangedEventFrom(r)),
             ],
             ["open_crate_instr"] =
             [
@@ -965,7 +965,7 @@ public static class GameEventRegistry
             ],
             ["player_changename"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.PlayerChangenameEvent), static (in GameEventReader r) => GameEventFactories.PlayerChangenameEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.PlayerChangeNameEvent), static (in GameEventReader r) => GameEventFactories.PlayerChangeNameEventFrom(r)),
             ],
             ["player_chat"] =
             [
@@ -1012,7 +1012,7 @@ public static class GameEventRegistry
             ],
             ["player_hintmessage"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.PlayerHintmessageEvent), static (in GameEventReader r) => GameEventFactories.PlayerHintmessageEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.PlayerHintMessageEvent), static (in GameEventReader r) => GameEventFactories.PlayerHintMessageEventFrom(r)),
             ],
             ["player_hurt"] =
             [
@@ -1212,11 +1212,11 @@ public static class GameEventRegistry
             ],
             ["smokegrenade_detonate"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.SmokegrenadeDetonateEvent), static (in GameEventReader r) => GameEventFactories.SmokegrenadeDetonateEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.SmokeGrenadeDetonateEvent), static (in GameEventReader r) => GameEventFactories.SmokeGrenadeDetonateEventFrom(r)),
             ],
             ["smokegrenade_expired"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.SmokegrenadeExpiredEvent), static (in GameEventReader r) => GameEventFactories.SmokegrenadeExpiredEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.SmokeGrenadeExpiredEvent), static (in GameEventReader r) => GameEventFactories.SmokeGrenadeExpiredEventFrom(r)),
             ],
             ["spec_mode_updated"] =
             [
@@ -1229,7 +1229,7 @@ public static class GameEventRegistry
             ],
             ["start_halftime"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.StartHalftimeEvent), static (in GameEventReader r) => GameEventFactories.StartHalftimeEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.StartHalfTimeEvent), static (in GameEventReader r) => GameEventFactories.StartHalfTimeEventFrom(r)),
             ],
             ["start_vote"] =
             [
@@ -1289,15 +1289,15 @@ public static class GameEventRegistry
             ],
             ["teamchange_pending"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.TeamchangePendingEvent), static (in GameEventReader r) => GameEventFactories.TeamchangePendingEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.TeamChangePendingEvent), static (in GameEventReader r) => GameEventFactories.TeamChangePendingEventFrom(r)),
             ],
             ["teamplay_broadcast_audio"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.TeamplayBroadcastAudioEvent), static (in GameEventReader r) => GameEventFactories.TeamplayBroadcastAudioEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.TeamPlayBroadcastAudioEvent), static (in GameEventReader r) => GameEventFactories.TeamPlayBroadcastAudioEventFrom(r)),
             ],
             ["teamplay_round_start"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.TeamplayRoundStartEvent), static (in GameEventReader r) => GameEventFactories.TeamplayRoundStartEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.TeamPlayRoundStartEvent), static (in GameEventReader r) => GameEventFactories.TeamPlayRoundStartEventFrom(r)),
             ],
             ["tournament_reward"] =
             [

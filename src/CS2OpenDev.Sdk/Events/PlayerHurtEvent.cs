@@ -77,7 +77,7 @@ public sealed partial record PlayerHurtEvent
     /// </remarks>
     [NativeName("hitgroup")]
     [GameEventFieldType("byte")]
-    public required byte Hitgroup { get; init; }
+    public required byte HitGroup { get; init; }
 
     /// <summary>
     ///     player index who was hurt.
@@ -87,7 +87,7 @@ public sealed partial record PlayerHurtEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     weapon name attacker used, if not the world.

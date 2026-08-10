@@ -158,7 +158,7 @@ public partial class CAnimGraphDocTwoBoneIKNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "QuaternionParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Rotation Parameter")]
     [NativeMetadata("MPropertyGroupName", "Target")]
-    public AnimParamID RotationParam { get; set; }
+    public AnimParamId RotationParam { get; set; }
 
     /// <summary>
     ///     Gets or sets RotationParamName.
@@ -197,7 +197,7 @@ public partial class CAnimGraphDocTwoBoneIKNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Position Parameter")]
     [NativeMetadata("MPropertyGroupName", "Target")]
-    public AnimParamID TargetParam { get; set; }
+    public AnimParamId TargetParam { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetParamName.

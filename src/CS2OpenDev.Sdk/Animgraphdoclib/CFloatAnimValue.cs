@@ -41,7 +41,7 @@ public partial class CFloatAnimValue
     public float ConstValue { get; set; }
 
     /// <summary>
-    ///     Gets or sets ParamID.
+    ///     Gets or sets ParamId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_paramID</c> at offset <c>0x18</c>.
@@ -49,7 +49,7 @@ public partial class CFloatAnimValue
     [NativeOffset(0x18)]
     [NativeName("m_paramID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID ParamID { get; set; }
+    public AnimParamId ParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

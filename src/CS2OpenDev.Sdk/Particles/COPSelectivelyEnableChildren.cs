@@ -39,7 +39,7 @@ public partial class COPSelectivelyEnableChildren : CParticleFunctionPreEmission
     [NativeOffset(0x1E0)]
     [NativeName("m_nChildGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "group ID to affect")]
-    public CParticleCollectionFloatInput ChildGroupID { get; set; }
+    public CParticleCollectionFloatInput ChildGroupId { get; set; }
 
     /// <summary>
     ///     destroy particles immediately when child is removed.

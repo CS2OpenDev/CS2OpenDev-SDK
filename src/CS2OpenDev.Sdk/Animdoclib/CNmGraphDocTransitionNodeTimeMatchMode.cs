@@ -67,40 +67,40 @@ public enum CNmGraphDocTransitionNodeTimeMatchMode : uint
     MatchSourceSyncEventIndexAndPercentage = 4,
 
     /// <summary>
-    ///     MatchSyncEventID.
+    ///     MatchSyncEventId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MatchSyncEventID</c>.
     /// </remarks>
     [NativeName("MatchSyncEventID")]
-    MatchSyncEventID = 5,
+    MatchSyncEventId = 5,
 
     /// <summary>
-    ///     MatchClosestSyncEventID.
+    ///     MatchClosestSyncEventId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MatchClosestSyncEventID</c>.
     /// </remarks>
     [NativeName("MatchClosestSyncEventID")]
-    MatchClosestSyncEventID = 6,
+    MatchClosestSyncEventId = 6,
 
     /// <summary>
-    ///     MatchSyncEventIDAndPercentage.
+    ///     MatchSyncEventIdAndPercentage.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MatchSyncEventIDAndPercentage</c>.
     /// </remarks>
     [NativeName("MatchSyncEventIDAndPercentage")]
-    MatchSyncEventIDAndPercentage = 7,
+    MatchSyncEventIdAndPercentage = 7,
 
     /// <summary>
-    ///     MatchClosestSyncEventIDAndPercentage.
+    ///     MatchClosestSyncEventIdAndPercentage.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MatchClosestSyncEventIDAndPercentage</c>.
     /// </remarks>
     [NativeName("MatchClosestSyncEventIDAndPercentage")]
-    MatchClosestSyncEventIDAndPercentage = 8,
+    MatchClosestSyncEventIdAndPercentage = 8,
 
     /// <summary>
     ///     MatchTimeInSeconds.

@@ -20,22 +20,22 @@ namespace CS2OpenSchema.Events;
 public sealed partial record InventoryUpdatedCoreEvent
 {
     /// <summary>
-    ///     Itemdef.
+    ///     ItemDef.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>itemdef</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("itemdef")]
     [GameEventFieldType("short")]
-    public required short Itemdef { get; init; }
+    public required short ItemDef { get; init; }
 
     /// <summary>
-    ///     Itemid.
+    ///     ItemId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>itemid</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("itemid")]
     [GameEventFieldType("long")]
-    public required int Itemid { get; init; }
+    public required int ItemId { get; init; }
 }

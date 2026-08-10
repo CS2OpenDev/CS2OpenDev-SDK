@@ -31,14 +31,14 @@ namespace CS2OpenSchema.Server;
 public partial class Entitytable
 {
     /// <summary>
-    ///     Gets or sets Classname.
+    ///     Gets or sets ClassName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>classname</c> at offset <c>0x20</c>.
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("classname")]
-    public string Classname { get; set; }
+    public string ClassName { get; set; }
 
     /// <summary>
     ///     Gets or sets Edictindex.
@@ -51,14 +51,14 @@ public partial class Entitytable
     public int Edictindex { get; set; }
 
     /// <summary>
-    ///     Gets or sets Entityname.
+    ///     Gets or sets EntityName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>entityname</c> at offset <c>0x30</c>.
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("entityname")]
-    public string Entityname { get; set; }
+    public string EntityName { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.
@@ -71,14 +71,14 @@ public partial class Entitytable
     public SaveRestoreTableFlags Flags { get; set; }
 
     /// <summary>
-    ///     Gets or sets Globalname.
+    ///     Gets or sets GlobalName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>globalname</c> at offset <c>0x28</c>.
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("globalname")]
-    public string Globalname { get; set; }
+    public string GlobalName { get; set; }
 
     /// <summary>
     ///     Gets or sets Id.

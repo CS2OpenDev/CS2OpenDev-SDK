@@ -149,7 +149,7 @@ public partial class C_PointWorldText : C_ModelPointEntity
     public bool ForceRecreateNextUpdate { get; set; }
 
     /// <summary>
-    ///     Gets or sets Fullbright.
+    ///     Gets or sets FullBright.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bFullbright</c> at offset <c>0x1259</c>.
@@ -157,7 +157,7 @@ public partial class C_PointWorldText : C_ModelPointEntity
     [NativeOffset(0x1259)]
     [NativeName("m_bFullbright")]
     [NativeMetadata("MNotSaved", "")]
-    public bool Fullbright { get; set; }
+    public bool FullBright { get; set; }
 
     /// <summary>
     ///     Gets or sets JustifyHorizontal.

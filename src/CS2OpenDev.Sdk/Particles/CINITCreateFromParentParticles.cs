@@ -66,7 +66,7 @@ public partial class CINITCreateFromParentParticles : CParticleFunctionInitializ
     [NativeOffset(0x1F1)]
     [NativeName("m_bSetRopeSegmentID")]
     [NativeMetadata("MPropertyFriendlyName", "set rope segment id")]
-    public bool SetRopeSegmentID { get; set; }
+    public bool SetRopeSegmentId { get; set; }
 
     /// <summary>
     ///     sub frame interpolation.

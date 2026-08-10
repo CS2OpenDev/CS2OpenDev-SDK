@@ -55,14 +55,14 @@ public partial class CNmGraphDocumentDebugParameterSet
     public string ID { get; set; }
 
     /// <summary>
-    ///     Gets or sets IDValues.
+    ///     Gets or sets IdValues.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_IDValues</c> at offset <c>0x28</c>.
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_IDValues")]
-    public CUtlLeanVector__std_pair__CGlobalSymbol__CGlobalSymbol____ IDValues { get; set; }
+    public CUtlLeanVector__std_pair__CGlobalSymbol__CGlobalSymbol____ IdValues { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetValues.

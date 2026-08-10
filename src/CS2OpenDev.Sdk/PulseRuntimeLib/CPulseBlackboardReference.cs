@@ -45,14 +45,14 @@ public partial class CPulseBlackboardReference
     public CStrongHandle__InfoForResourceTypeIPulseGraphDef__ HBlackboardResource { get; set; }
 
     /// <summary>
-    ///     Gets or sets NodeID.
+    ///     Gets or sets NodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nNodeID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_nNodeID")]
-    public PulseDocNodeID NodeID { get; set; }
+    public PulseDocNodeId NodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeName.

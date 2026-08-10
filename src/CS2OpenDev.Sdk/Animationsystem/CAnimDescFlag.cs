@@ -75,14 +75,14 @@ public partial class CAnimDescFlag
     public bool ImplicitSeqIgnoreDelta { get; set; }
 
     /// <summary>
-    ///     Gets or sets LegacyWorldspace.
+    ///     Gets or sets LegacyWorldSpace.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bLegacyWorldspace</c> at offset <c>0x4</c>.
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_bLegacyWorldspace")]
-    public bool LegacyWorldspace { get; set; }
+    public bool LegacyWorldSpace { get; set; }
 
     /// <summary>
     ///     Gets or sets Looping.

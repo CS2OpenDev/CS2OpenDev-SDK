@@ -29,7 +29,7 @@ public enum SosActionStopType : uint
     /// </remarks>
     [NativeName("SOS_STOPTYPE_NONE")]
     [NativeMetadata("MPropertyFriendlyName", "None")]
-    SosStoptypeNone = 0,
+    SosStopTypeNone = 0,
 
     /// <summary>
     ///     Elapsed Time.
@@ -39,7 +39,7 @@ public enum SosActionStopType : uint
     /// </remarks>
     [NativeName("SOS_STOPTYPE_TIME")]
     [NativeMetadata("MPropertyFriendlyName", "Elapsed Time")]
-    SosStoptypeTime = 1,
+    SosStopTypeTime = 1,
 
     /// <summary>
     ///     Opvar Float.
@@ -49,5 +49,5 @@ public enum SosActionStopType : uint
     /// </remarks>
     [NativeName("SOS_STOPTYPE_OPVAR")]
     [NativeMetadata("MPropertyFriendlyName", "Opvar Float")]
-    SosStoptypeOpvar = 2
+    SosStopTypeOpvar = 2
 }

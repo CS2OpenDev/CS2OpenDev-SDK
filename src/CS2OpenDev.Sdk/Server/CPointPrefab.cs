@@ -52,14 +52,14 @@ public partial class CPointPrefab : CServerOnlyPointEntity
     public bool FixupNames { get; set; }
 
     /// <summary>
-    ///     Gets or sets ForceWorldGroupID.
+    ///     Gets or sets ForceWorldGroupId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_forceWorldGroupID</c> at offset <c>0x4B0</c>.
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_forceWorldGroupID")]
-    public string ForceWorldGroupID { get; set; }
+    public string ForceWorldGroupId { get; set; }
 
     /// <summary>
     ///     Gets or sets LoadDynamic.

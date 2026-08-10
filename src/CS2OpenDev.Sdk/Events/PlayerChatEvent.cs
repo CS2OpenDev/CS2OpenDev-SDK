@@ -48,5 +48,5 @@ public sealed partial record PlayerChatEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("short")]
-    public required short Userid { get; init; }
+    public required short UserId { get; init; }
 }

@@ -28,7 +28,7 @@ public sealed partial record HltvChatEvent
     /// </remarks>
     [NativeName("steamID")]
     [GameEventFieldType("uint64")]
-    public required ulong SteamID { get; init; }
+    public required ulong SteamId { get; init; }
 
     /// <summary>
     ///     Text.

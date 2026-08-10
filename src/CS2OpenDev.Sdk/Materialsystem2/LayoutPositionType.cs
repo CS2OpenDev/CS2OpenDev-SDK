@@ -22,13 +22,13 @@ namespace CS2OpenSchema.Materialsystem2;
 public enum LayoutPositionType : uint
 {
     /// <summary>
-    ///     ViewportRelative.
+    ///     ViewPortRelative.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LAYOUTPOSITIONTYPE_VIEWPORT_RELATIVE</c>.
     /// </remarks>
     [NativeName("LAYOUTPOSITIONTYPE_VIEWPORT_RELATIVE")]
-    ViewportRelative = 0,
+    ViewPortRelative = 0,
 
     /// <summary>
     ///     Fractional.

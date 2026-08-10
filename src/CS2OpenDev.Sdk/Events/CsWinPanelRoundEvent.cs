@@ -90,14 +90,14 @@ public sealed partial record CsWinPanelRoundEvent
     public required bool ShowTimerAttack { get; init; }
 
     /// <summary>
-    ///     ShowTimerDefend.
+    ///     ShowTimerDefEnd.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>show_timer_defend</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("show_timer_defend")]
     [GameEventFieldType("bool")]
-    public required bool ShowTimerDefend { get; init; }
+    public required bool ShowTimerDefEnd { get; init; }
 
     /// <summary>
     ///     TimerTime.

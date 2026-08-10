@@ -43,7 +43,7 @@ public partial class CAnimGraphDocBoneMaskNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Blend Parameter")]
-    public AnimParamID BlendParameter { get; set; }
+    public AnimParamId BlendParameter { get; set; }
 
     /// <summary>
     ///     Gets or sets BlendParameterName.

@@ -20,7 +20,10 @@ Three packages ship from this repo. They are layered so that taking the schema t
 
 The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
 
-> **Upgrading from 1.x?** `CS2OpenDev.Sdk` 2.0 moves 297 types to a different namespace and removes 40. Read **[docs/MIGRATION-2.0.md](docs/MIGRATION-2.0.md)** first — it lists every removed type in full and names the `using` lines to change.
+> **Upgrading?** Two breaking releases, each with a migration guide listing every affected name:
+>
+> - **[3.0](docs/MIGRATION-3.0.md)** — generated identifiers move to idiomatic .NET casing (`Userid` → `UserId`, `...ID` → `...Id`). Renames only: nothing moved namespace, nothing was added or removed, no behaviour changed.
+> - **[2.0](docs/MIGRATION-2.0.md)** — 297 types moved namespace and 40 were removed, when the schema's namespace key changed from `module` to `projectName`.
 
 ### Upstreams
 

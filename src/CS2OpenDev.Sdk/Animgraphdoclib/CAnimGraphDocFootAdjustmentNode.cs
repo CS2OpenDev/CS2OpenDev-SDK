@@ -81,7 +81,7 @@ public partial class CAnimGraphDocFootAdjustmentNode : CAnimGraphDocNode
     [NativeName("m_facingTarget")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Turn to Face")]
-    public AnimParamID FacingTarget { get; set; }
+    public AnimParamId FacingTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets FacingTargetParam.

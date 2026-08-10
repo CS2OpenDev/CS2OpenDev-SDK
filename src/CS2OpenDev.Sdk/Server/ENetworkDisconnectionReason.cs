@@ -183,13 +183,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectSteamOwnership = 17,
 
     /// <summary>
-    ///     NetworkDisconnectServerinfoOverflow.
+    ///     NetworkDisconnectServerInfoOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_SERVERINFO_OVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_SERVERINFO_OVERFLOW")]
-    NetworkDisconnectServerinfoOverflow = 18,
+    NetworkDisconnectServerInfoOverflow = 18,
 
     /// <summary>
     ///     NetworkDisconnectTickmsgOverflow.
@@ -426,13 +426,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectPureserverMismatch = 44,
 
     /// <summary>
-    ///     NetworkDisconnectUsercmd.
+    ///     NetworkDisconnectUserCmd.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_USERCMD</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_USERCMD")]
-    NetworkDisconnectUsercmd = 45,
+    NetworkDisconnectUserCmd = 45,
 
     /// <summary>
     ///     NetworkDisconnectRejectedByGame.
@@ -525,22 +525,22 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectLoopdeactivate = 55,
 
     /// <summary>
-    ///     NetworkDisconnectHostEndgame.
+    ///     NetworkDisconnectHostEndGame.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_HOST_ENDGAME</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_HOST_ENDGAME")]
-    NetworkDisconnectHostEndgame = 56,
+    NetworkDisconnectHostEndGame = 56,
 
     /// <summary>
-    ///     NetworkDisconnectLoopLevelloadActivate.
+    ///     NetworkDisconnectLoopLevelLoadActivate.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOOP_LEVELLOAD_ACTIVATE</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOOP_LEVELLOAD_ACTIVATE")]
-    NetworkDisconnectLoopLevelloadActivate = 57,
+    NetworkDisconnectLoopLevelLoadActivate = 57,
 
     /// <summary>
     ///     NetworkDisconnectCreateServerFailed.
@@ -561,22 +561,22 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectExiting = 59,
 
     /// <summary>
-    ///     NetworkDisconnectRequestHoststateIdle.
+    ///     NetworkDisconnectRequestHostStateIdle.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REQUEST_HOSTSTATE_IDLE</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REQUEST_HOSTSTATE_IDLE")]
-    NetworkDisconnectRequestHoststateIdle = 60,
+    NetworkDisconnectRequestHostStateIdle = 60,
 
     /// <summary>
-    ///     NetworkDisconnectRequestHoststateHltvrelay.
+    ///     NetworkDisconnectRequestHostStateHltvrelay.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REQUEST_HOSTSTATE_HLTVRELAY</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REQUEST_HOSTSTATE_HLTVRELAY")]
-    NetworkDisconnectRequestHoststateHltvrelay = 61,
+    NetworkDisconnectRequestHostStateHltvrelay = 61,
 
     /// <summary>
     ///     NetworkDisconnectClientConsistencyFail.
@@ -840,13 +840,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectRejectBadpassword = 134,
 
     /// <summary>
-    ///     NetworkDisconnectRejectServerfull.
+    ///     NetworkDisconnectRejectServerFull.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REJECT_SERVERFULL</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REJECT_SERVERFULL")]
-    NetworkDisconnectRejectServerfull = 135,
+    NetworkDisconnectRejectServerFull = 135,
 
     /// <summary>
     ///     NetworkDisconnectRejectInvalidreservation.

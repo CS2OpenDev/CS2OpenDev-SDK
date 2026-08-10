@@ -31,148 +31,148 @@ public enum SaveRestoreTableFlags : uint
     FenttableNone = 0,
 
     /// <summary>
-    ///     LevelmaskBit0.
+    ///     LevelMaskBit0.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_0</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_0")]
-    LevelmaskBit0 = 1,
+    LevelMaskBit0 = 1,
 
     /// <summary>
-    ///     LevelmaskBit1.
+    ///     LevelMaskBit1.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_1</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_1")]
-    LevelmaskBit1 = 2,
+    LevelMaskBit1 = 2,
 
     /// <summary>
-    ///     LevelmaskBit2.
+    ///     LevelMaskBit2.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_2</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_2")]
-    LevelmaskBit2 = 4,
+    LevelMaskBit2 = 4,
 
     /// <summary>
-    ///     LevelmaskBit3.
+    ///     LevelMaskBit3.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_3</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_3")]
-    LevelmaskBit3 = 8,
+    LevelMaskBit3 = 8,
 
     /// <summary>
-    ///     LevelmaskBit4.
+    ///     LevelMaskBit4.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_4</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_4")]
-    LevelmaskBit4 = 16,
+    LevelMaskBit4 = 16,
 
     /// <summary>
-    ///     LevelmaskBit5.
+    ///     LevelMaskBit5.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_5</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_5")]
-    LevelmaskBit5 = 32,
+    LevelMaskBit5 = 32,
 
     /// <summary>
-    ///     LevelmaskBit6.
+    ///     LevelMaskBit6.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_6</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_6")]
-    LevelmaskBit6 = 64,
+    LevelMaskBit6 = 64,
 
     /// <summary>
-    ///     LevelmaskBit7.
+    ///     LevelMaskBit7.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_7</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_7")]
-    LevelmaskBit7 = 128,
+    LevelMaskBit7 = 128,
 
     /// <summary>
-    ///     LevelmaskBit8.
+    ///     LevelMaskBit8.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_8</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_8")]
-    LevelmaskBit8 = 256,
+    LevelMaskBit8 = 256,
 
     /// <summary>
-    ///     LevelmaskBit9.
+    ///     LevelMaskBit9.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_9</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_9")]
-    LevelmaskBit9 = 512,
+    LevelMaskBit9 = 512,
 
     /// <summary>
-    ///     LevelmaskBit10.
+    ///     LevelMaskBit10.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_10</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_10")]
-    LevelmaskBit10 = 1024,
+    LevelMaskBit10 = 1024,
 
     /// <summary>
-    ///     LevelmaskBit11.
+    ///     LevelMaskBit11.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_11</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_11")]
-    LevelmaskBit11 = 2048,
+    LevelMaskBit11 = 2048,
 
     /// <summary>
-    ///     LevelmaskBit12.
+    ///     LevelMaskBit12.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_12</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_12")]
-    LevelmaskBit12 = 4096,
+    LevelMaskBit12 = 4096,
 
     /// <summary>
-    ///     LevelmaskBit13.
+    ///     LevelMaskBit13.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_13</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_13")]
-    LevelmaskBit13 = 8192,
+    LevelMaskBit13 = 8192,
 
     /// <summary>
-    ///     LevelmaskBit14.
+    ///     LevelMaskBit14.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_14</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_14")]
-    LevelmaskBit14 = 16384,
+    LevelMaskBit14 = 16384,
 
     /// <summary>
-    ///     LevelmaskBit15.
+    ///     LevelMaskBit15.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LEVELMASK_BIT_15</c>.
     /// </remarks>
     [NativeName("LEVELMASK_BIT_15")]
-    LevelmaskBit15 = 32768,
+    LevelMaskBit15 = 32768,
 
     /// <summary>
     ///     FenttablePlayerchild.

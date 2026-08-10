@@ -41,7 +41,7 @@ public partial class CFootLockItem
     [NativeName("m_disableTagID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyFriendlyName", "Disable Tag")]
-    public AnimTagID DisableTagID { get; set; }
+    public AnimTagId DisableTagId { get; set; }
 
     /// <summary>
     ///     Gets or sets DisableTagName.
@@ -76,7 +76,7 @@ public partial class CFootLockItem
     [NativeName("m_footstepLandedTag")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyFriendlyName", "Footstep Landed Tag")]
-    public AnimTagID FootstepLandedTag { get; set; }
+    public AnimTagId FootstepLandedTag { get; set; }
 
     /// <summary>
     ///     Gets or sets FootstepLandedTagName.

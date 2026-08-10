@@ -39,7 +39,7 @@ public enum AnimationType : uint
     /// </remarks>
     [NativeName("ANIMATION_TYPE_FIT_LIFETIME")]
     [NativeMetadata("MPropertyFriendlyName", "Fit Lifetime")]
-    AnimationTypeFitLifetime = 1,
+    AnimationTypeFitLifeTime = 1,
 
     /// <summary>
     ///     Set Frames Manually.

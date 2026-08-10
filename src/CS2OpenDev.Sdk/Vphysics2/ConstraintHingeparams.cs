@@ -44,7 +44,7 @@ public partial class ConstraintHingeparams
     [NativeOffset(0x18)]
     [NativeName("hingeAxis")]
     [NativeMetadata("MNotSaved", "")]
-    public ConstraintAxislimit HingeAxis { get; set; }
+    public ConstraintAxisLimit HingeAxis { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldAxisDirection.

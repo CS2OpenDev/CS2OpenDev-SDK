@@ -20,12 +20,12 @@ namespace CS2OpenSchema.Events;
 public sealed partial record RagdollDissolvedEvent
 {
     /// <summary>
-    ///     Entindex.
+    ///     EntIndex.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entindex</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("entindex")]
     [GameEventFieldType("long")]
-    public required int Entindex { get; init; }
+    public required int EntIndex { get; init; }
 }

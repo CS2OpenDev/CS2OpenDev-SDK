@@ -22,14 +22,14 @@ namespace CS2OpenSchema.Server;
 public partial class CPlayerSprayDecal : CModelPointEntity
 {
     /// <summary>
-    ///     Gets or sets AccountID.
+    ///     Gets or sets AccountId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_unAccountID</c> at offset <c>0x774</c>.
     /// </remarks>
     [NativeOffset(0x774)]
     [NativeName("m_unAccountID")]
-    public uint AccountID { get; set; }
+    public uint AccountId { get; set; }
 
     /// <summary>
     ///     Gets or sets CreationTime.
@@ -62,14 +62,14 @@ public partial class CPlayerSprayDecal : CModelPointEntity
     public int Entity { get; set; }
 
     /// <summary>
-    ///     Gets or sets Hitbox.
+    ///     Gets or sets HitBox.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nHitbox</c> at offset <c>0x7B8</c>.
     /// </remarks>
     [NativeOffset(0x7B8)]
     [NativeName("m_nHitbox")]
-    public int Hitbox { get; set; }
+    public int HitBox { get; set; }
 
     /// <summary>
     ///     Gets or sets Left.
@@ -122,24 +122,24 @@ public partial class CPlayerSprayDecal : CModelPointEntity
     public VectorWS Start { get; set; }
 
     /// <summary>
-    ///     Gets or sets TintID.
+    ///     Gets or sets TintId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nTintID</c> at offset <c>0x7C0</c>.
     /// </remarks>
     [NativeOffset(0x7C0)]
     [NativeName("m_nTintID")]
-    public int TintID { get; set; }
+    public int TintId { get; set; }
 
     /// <summary>
-    ///     Gets or sets TraceID.
+    ///     Gets or sets TraceId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_unTraceID</c> at offset <c>0x778</c>.
     /// </remarks>
     [NativeOffset(0x778)]
     [NativeName("m_unTraceID")]
-    public uint TraceID { get; set; }
+    public uint TraceId { get; set; }
 
     /// <summary>
     ///     Gets or sets UbSignature.
@@ -152,14 +152,14 @@ public partial class CPlayerSprayDecal : CModelPointEntity
     public byte[] UbSignature { get; set; }
 
     /// <summary>
-    ///     Gets or sets UniqueID.
+    ///     Gets or sets UniqueId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nUniqueID</c> at offset <c>0x770</c>.
     /// </remarks>
     [NativeOffset(0x770)]
     [NativeName("m_nUniqueID")]
-    public int UniqueID { get; set; }
+    public int UniqueId { get; set; }
 
     /// <summary>
     ///     Gets or sets Version.

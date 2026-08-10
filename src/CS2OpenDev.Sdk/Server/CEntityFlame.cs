@@ -81,7 +81,7 @@ public partial class CEntityFlame : CBaseEntity
     public CHandle__CBaseEntity__ EntAttached { get; set; }
 
     /// <summary>
-    ///     Gets or sets HitboxFireScale.
+    ///     Gets or sets HitBoxFireScale.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flHitboxFireScale</c> at offset <c>0x4BC</c>.
@@ -89,20 +89,20 @@ public partial class CEntityFlame : CBaseEntity
     [NativeOffset(0x4BC)]
     [NativeName("m_flHitboxFireScale")]
     [NativeMetadata("MNotSaved", "")]
-    public float HitboxFireScale { get; set; }
+    public float HitBoxFireScale { get; set; }
 
     /// <summary>
-    ///     Gets or sets Lifetime.
+    ///     Gets or sets LifeTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flLifetime</c> at offset <c>0x4C0</c>.
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_flLifetime")]
-    public GameTime Lifetime { get; set; }
+    public GameTime LifeTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets NumHitboxFires.
+    ///     Gets or sets NumHitBoxFires.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iNumHitboxFires</c> at offset <c>0x4B8</c>.
@@ -110,7 +110,7 @@ public partial class CEntityFlame : CBaseEntity
     [NativeOffset(0x4B8)]
     [NativeName("m_iNumHitboxFires")]
     [NativeMetadata("MNotSaved", "")]
-    public int NumHitboxFires { get; set; }
+    public int NumHitBoxFires { get; set; }
 
     /// <summary>
     ///     Gets or sets Size.
@@ -123,7 +123,7 @@ public partial class CEntityFlame : CBaseEntity
     public float Size { get; set; }
 
     /// <summary>
-    ///     Gets or sets UseHitboxes.
+    ///     Gets or sets UseHitBoxes.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bUseHitboxes</c> at offset <c>0x4B4</c>.
@@ -131,5 +131,5 @@ public partial class CEntityFlame : CBaseEntity
     [NativeOffset(0x4B4)]
     [NativeName("m_bUseHitboxes")]
     [NativeMetadata("MNotSaved", "")]
-    public bool UseHitboxes { get; set; }
+    public bool UseHitBoxes { get; set; }
 }

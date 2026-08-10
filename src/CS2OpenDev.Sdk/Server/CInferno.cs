@@ -126,7 +126,7 @@ public partial class CInferno : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x10BC)]
     [NativeName("m_nFireLifetime")]
-    public float FireLifetime { get; set; }
+    public float FireLifeTime { get; set; }
 
     /// <summary>
     ///     Array of parent fire-cell positions that spawned each fire cell (for spread graph).

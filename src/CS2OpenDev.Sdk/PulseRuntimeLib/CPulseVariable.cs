@@ -45,14 +45,14 @@ public partial class CPulseVariable
     public string Description { get; set; }
 
     /// <summary>
-    ///     Gets or sets EditorNodeID.
+    ///     Gets or sets EditorNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nEditorNodeID</c> at offset <c>0x4C</c>.
     /// </remarks>
     [NativeOffset(0x4C)]
     [NativeName("m_nEditorNodeID")]
-    public PulseDocNodeID EditorNodeID { get; set; }
+    public PulseDocNodeId EditorNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets IsObservable.

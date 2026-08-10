@@ -38,7 +38,7 @@ public partial class CAnimGraphDocMotionParameter
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_id")]
-    public AnimParamID Id { get; set; }
+    public AnimParamId Id { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxValue.

@@ -21,47 +21,47 @@ namespace CS2OpenSchema.Server;
 public enum ShatterDamageCause : byte
 {
     /// <summary>
-    ///     ShatterdamageBullet.
+    ///     ShatterDamageBullet.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERDAMAGE_BULLET</c>.
     /// </remarks>
     [NativeName("SHATTERDAMAGE_BULLET")]
-    ShatterdamageBullet = 0,
+    ShatterDamageBullet = 0,
 
     /// <summary>
-    ///     ShatterdamageMelee.
+    ///     ShatterDamageMelee.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERDAMAGE_MELEE</c>.
     /// </remarks>
     [NativeName("SHATTERDAMAGE_MELEE")]
-    ShatterdamageMelee = 1,
+    ShatterDamageMelee = 1,
 
     /// <summary>
-    ///     ShatterdamageThrown.
+    ///     ShatterDamageThrown.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERDAMAGE_THROWN</c>.
     /// </remarks>
     [NativeName("SHATTERDAMAGE_THROWN")]
-    ShatterdamageThrown = 2,
+    ShatterDamageThrown = 2,
 
     /// <summary>
-    ///     ShatterdamageScript.
+    ///     ShatterDamageScript.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERDAMAGE_SCRIPT</c>.
     /// </remarks>
     [NativeName("SHATTERDAMAGE_SCRIPT")]
-    ShatterdamageScript = 3,
+    ShatterDamageScript = 3,
 
     /// <summary>
-    ///     ShatterdamageExplosive.
+    ///     ShatterDamageExplosive.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERDAMAGE_EXPLOSIVE</c>.
     /// </remarks>
     [NativeName("SHATTERDAMAGE_EXPLOSIVE")]
-    ShatterdamageExplosive = 4
+    ShatterDamageExplosive = 4
 }

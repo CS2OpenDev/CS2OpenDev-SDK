@@ -145,7 +145,7 @@ public partial class CAnimGraphDocState
     public string SComment { get; set; }
 
     /// <summary>
-    ///     Gets or sets StateID.
+    ///     Gets or sets StateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_stateID</c> at offset <c>0x68</c>.
@@ -153,7 +153,7 @@ public partial class CAnimGraphDocState
     [NativeOffset(0x68)]
     [NativeName("m_stateID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimStateID StateID { get; set; }
+    public AnimStateId StateId { get; set; }
 
     /// <summary>
     ///     Gets or sets Transitions.

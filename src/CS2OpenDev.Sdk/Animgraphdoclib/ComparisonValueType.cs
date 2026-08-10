@@ -21,13 +21,13 @@ namespace CS2OpenSchema.Animgraphdoclib;
 public enum ComparisonValueType : byte
 {
     /// <summary>
-    ///     Fixedvalue.
+    ///     FixedValue.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>COMPARISONVALUETYPE_FIXEDVALUE</c>.
     /// </remarks>
     [NativeName("COMPARISONVALUETYPE_FIXEDVALUE")]
-    Fixedvalue = 0,
+    FixedValue = 0,
 
     /// <summary>
     ///     Parameter.

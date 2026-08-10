@@ -120,14 +120,14 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     public CNetworkUtlVectorBase__CHandle__CPostProcessingVolume____ PostProcessingVolumes { get; set; }
 
     /// <summary>
-    ///     Gets or sets TonemapController.
+    ///     Gets or sets ToneMapController.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hTonemapController</c> at offset <c>0xA8</c>.
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_hTonemapController")]
-    public CHandle__CTonemapController2__ TonemapController { get; set; }
+    public CHandle__CTonemapController2__ ToneMapController { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerSoundscapeList.

@@ -74,14 +74,14 @@ public partial class CSeqSeqDescFlag
     public bool LegacyRealtime { get; set; }
 
     /// <summary>
-    ///     Gets or sets LegacyWorldspace.
+    ///     Gets or sets LegacyWorldSpace.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bLegacyWorldspace</c> at offset <c>0x7</c>.
     /// </remarks>
     [NativeOffset(0x7)]
     [NativeName("m_bLegacyWorldspace")]
-    public bool LegacyWorldspace { get; set; }
+    public bool LegacyWorldSpace { get; set; }
 
     /// <summary>
     ///     Gets or sets Looping.

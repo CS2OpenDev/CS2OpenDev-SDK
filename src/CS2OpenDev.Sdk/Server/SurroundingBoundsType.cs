@@ -40,13 +40,13 @@ public enum SurroundingBoundsType : byte
     UseBestCollisionBounds = 1,
 
     /// <summary>
-    ///     UseHitboxes.
+    ///     UseHitBoxes.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>USE_HITBOXES</c>.
     /// </remarks>
     [NativeName("USE_HITBOXES")]
-    UseHitboxes = 2,
+    UseHitBoxes = 2,
 
     /// <summary>
     ///     SurroundingTypeBitCount.

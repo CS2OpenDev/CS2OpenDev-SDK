@@ -36,7 +36,7 @@ public abstract partial class CMotionNode
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_id")]
-    public AnimNodeID Id { get; set; }
+    public AnimNodeId Id { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record InfernoExpireEvent
 {
     /// <summary>
-    ///     Entityid.
+    ///     EntityId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entityid</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("entityid")]
     [GameEventFieldType("short")]
-    public required short Entityid { get; init; }
+    public required short EntityId { get; init; }
 
     /// <summary>
     ///     X.

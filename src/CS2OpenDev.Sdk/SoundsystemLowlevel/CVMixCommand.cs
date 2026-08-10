@@ -32,7 +32,7 @@ public partial class CVMixCommand
     [NativeOffset(0x0)]
     [NativeName("m_nCommand")]
     [NativeMetadata("MKV3TransferName", "command")]
-    public VMixGraphCommandID Command { get; set; }
+    public VMixGraphCommandId Command { get; set; }
 
     /// <summary>
     ///     Gets or sets InputSubmix0.
@@ -79,7 +79,7 @@ public partial class CVMixCommand
     public int InputValue1 { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutputSubmix.
+    ///     Gets or sets OutputSubMix.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nOutputSubmix</c> at offset <c>0x8</c>.
@@ -87,7 +87,7 @@ public partial class CVMixCommand
     [NativeOffset(0x8)]
     [NativeName("m_nOutputSubmix")]
     [NativeMetadata("MKV3TransferName", "outputSubmix")]
-    public int OutputSubmix { get; set; }
+    public int OutputSubMix { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterNameHash.

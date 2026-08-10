@@ -31,22 +31,22 @@ public enum ParticleAttachment : uint
     PattachInvalid = 4294967295,
 
     /// <summary>
-    ///     PattachAbsorigin.
+    ///     PattachAbsOrigin.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_ABSORIGIN</c>.
     /// </remarks>
     [NativeName("PATTACH_ABSORIGIN")]
-    PattachAbsorigin = 0,
+    PattachAbsOrigin = 0,
 
     /// <summary>
-    ///     PattachAbsoriginFollow.
+    ///     PattachAbsOriginFollow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_ABSORIGIN_FOLLOW</c>.
     /// </remarks>
     [NativeName("PATTACH_ABSORIGIN_FOLLOW")]
-    PattachAbsoriginFollow = 1,
+    PattachAbsOriginFollow = 1,
 
     /// <summary>
     ///     PattachCustomorigin.
@@ -103,13 +103,13 @@ public enum ParticleAttachment : uint
     PattachOverheadFollow = 7,
 
     /// <summary>
-    ///     PattachWorldorigin.
+    ///     PattachWorldOrigin.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_WORLDORIGIN</c>.
     /// </remarks>
     [NativeName("PATTACH_WORLDORIGIN")]
-    PattachWorldorigin = 8,
+    PattachWorldOrigin = 8,
 
     /// <summary>
     ///     PattachRootboneFollow.
@@ -121,13 +121,13 @@ public enum ParticleAttachment : uint
     PattachRootboneFollow = 9,
 
     /// <summary>
-    ///     PattachRenderoriginFollow.
+    ///     PattachRenderOriginFollow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_RENDERORIGIN_FOLLOW</c>.
     /// </remarks>
     [NativeName("PATTACH_RENDERORIGIN_FOLLOW")]
-    PattachRenderoriginFollow = 10,
+    PattachRenderOriginFollow = 10,
 
     /// <summary>
     ///     PattachMainView.
@@ -166,13 +166,13 @@ public enum ParticleAttachment : uint
     PattachCustomGameState1 = 14,
 
     /// <summary>
-    ///     PattachHealthbar.
+    ///     PattachHealthBar.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_HEALTHBAR</c>.
     /// </remarks>
     [NativeName("PATTACH_HEALTHBAR")]
-    PattachHealthbar = 15,
+    PattachHealthBar = 15,
 
     /// <summary>
     ///     MaxPattachTypes.

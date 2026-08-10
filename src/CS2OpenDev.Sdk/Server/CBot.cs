@@ -92,14 +92,14 @@ public abstract partial class CBot
     public bool IsRunning { get; set; }
 
     /// <summary>
-    ///     Gets or sets JumpTimestamp.
+    ///     Gets or sets JumpTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_jumpTimestamp</c> at offset <c>0xD8</c>.
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_jumpTimestamp")]
-    public float JumpTimestamp { get; set; }
+    public float JumpTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets LeftSpeed.

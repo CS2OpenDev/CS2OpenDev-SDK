@@ -34,7 +34,7 @@ public partial class CINITRandomLifeTime : CParticleFunctionInitializer
     [NativeName("m_fLifetimeMax")]
     [NativeMetadata("MPropertyAttributeRange", "0 20")]
     [NativeMetadata("MPropertyFriendlyName", "lifetime max")]
-    public float LifetimeMax { get; set; }
+    public float LifeTimeMax { get; set; }
 
     /// <summary>
     ///     lifetime min.
@@ -46,7 +46,7 @@ public partial class CINITRandomLifeTime : CParticleFunctionInitializer
     [NativeName("m_fLifetimeMin")]
     [NativeMetadata("MPropertyAttributeRange", "0 20")]
     [NativeMetadata("MPropertyFriendlyName", "lifetime min")]
-    public float LifetimeMin { get; set; }
+    public float LifeTimeMin { get; set; }
 
     /// <summary>
     ///     lifetime random exponent.
@@ -57,5 +57,5 @@ public partial class CINITRandomLifeTime : CParticleFunctionInitializer
     [NativeOffset(0x1E8)]
     [NativeName("m_fLifetimeRandExponent")]
     [NativeMetadata("MPropertyFriendlyName", "lifetime random exponent")]
-    public float LifetimeRandExponent { get; set; }
+    public float LifeTimeRandExponent { get; set; }
 }

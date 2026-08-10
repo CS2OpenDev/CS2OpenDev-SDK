@@ -82,12 +82,12 @@ public partial class CChoreoComponent
     public CHandle__C_BaseModelEntity__ Owner { get; set; }
 
     /// <summary>
-    ///     Gets or sets SActiveExternalChoreoGraphSlotID.
+    ///     Gets or sets SActiveExternalChoreoGraphSlotId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_sActiveExternalChoreoGraphSlotID</c> at offset <c>0x38</c>.
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_sActiveExternalChoreoGraphSlotID")]
-    public string SActiveExternalChoreoGraphSlotID { get; set; }
+    public string SActiveExternalChoreoGraphSlotId { get; set; }
 }

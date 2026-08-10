@@ -28,14 +28,14 @@ namespace CS2OpenSchema.Server;
 public partial class CMultiSource : CLogicalEntity
 {
     /// <summary>
-    ///     Gets or sets Globalstate.
+    ///     Gets or sets GlobalState.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_globalstate</c> at offset <c>0x5C8</c>.
     /// </remarks>
     [NativeOffset(0x5C8)]
     [NativeName("m_globalstate")]
-    public string Globalstate { get; set; }
+    public string GlobalState { get; set; }
 
     /// <summary>
     ///     Gets or sets OnTrigger.

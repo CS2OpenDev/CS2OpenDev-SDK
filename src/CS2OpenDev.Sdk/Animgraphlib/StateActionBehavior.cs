@@ -21,47 +21,47 @@ namespace CS2OpenSchema.Animgraphlib;
 public enum StateActionBehavior : uint
 {
     /// <summary>
-    ///     StatetagbehaviorActiveWhileCurrent.
+    ///     StateTagBehaviorActiveWhileCurrent.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATETAGBEHAVIOR_ACTIVE_WHILE_CURRENT</c>.
     /// </remarks>
     [NativeName("STATETAGBEHAVIOR_ACTIVE_WHILE_CURRENT")]
-    StatetagbehaviorActiveWhileCurrent = 0,
+    StateTagBehaviorActiveWhileCurrent = 0,
 
     /// <summary>
-    ///     StatetagbehaviorFireOnEnter.
+    ///     StateTagBehaviorFireOnEnter.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATETAGBEHAVIOR_FIRE_ON_ENTER</c>.
     /// </remarks>
     [NativeName("STATETAGBEHAVIOR_FIRE_ON_ENTER")]
-    StatetagbehaviorFireOnEnter = 1,
+    StateTagBehaviorFireOnEnter = 1,
 
     /// <summary>
-    ///     StatetagbehaviorFireOnExit.
+    ///     StateTagBehaviorFireOnExit.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATETAGBEHAVIOR_FIRE_ON_EXIT</c>.
     /// </remarks>
     [NativeName("STATETAGBEHAVIOR_FIRE_ON_EXIT")]
-    StatetagbehaviorFireOnExit = 2,
+    StateTagBehaviorFireOnExit = 2,
 
     /// <summary>
-    ///     StatetagbehaviorFireOnEnterAndExit.
+    ///     StateTagBehaviorFireOnEnterAndExit.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATETAGBEHAVIOR_FIRE_ON_ENTER_AND_EXIT</c>.
     /// </remarks>
     [NativeName("STATETAGBEHAVIOR_FIRE_ON_ENTER_AND_EXIT")]
-    StatetagbehaviorFireOnEnterAndExit = 3,
+    StateTagBehaviorFireOnEnterAndExit = 3,
 
     /// <summary>
-    ///     StatetagbehaviorActiveWhileFullyBlended.
+    ///     StateTagBehaviorActiveWhileFullyBlended.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATETAGBEHAVIOR_ACTIVE_WHILE_FULLY_BLENDED</c>.
     /// </remarks>
     [NativeName("STATETAGBEHAVIOR_ACTIVE_WHILE_FULLY_BLENDED")]
-    StatetagbehaviorActiveWhileFullyBlended = 4
+    StateTagBehaviorActiveWhileFullyBlended = 4
 }

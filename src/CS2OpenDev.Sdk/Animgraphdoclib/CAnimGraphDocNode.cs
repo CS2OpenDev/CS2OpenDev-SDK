@@ -56,7 +56,7 @@ public abstract partial class CAnimGraphDocNode
     public AnimNodeNetworkMode NetworkMode { get; set; }
 
     /// <summary>
-    ///     Gets or sets NodeID.
+    ///     Gets or sets NodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nNodeID</c> at offset <c>0x30</c>.
@@ -65,7 +65,7 @@ public abstract partial class CAnimGraphDocNode
     [NativeName("m_nNodeID")]
     [NativeMetadata("MPropertyGroupName", "Debug")]
     [NativeMetadata("MPropertySortPriority", "-100")]
-    public AnimNodeID NodeID { get; set; }
+    public AnimNodeId NodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets Position.

@@ -23,14 +23,14 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class CPulseBreakpointLocation
 {
     /// <summary>
-    ///     Gets or sets NodeID.
+    ///     Gets or sets NodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_NodeID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_NodeID")]
-    public PulseDocNodeID NodeID { get; set; }
+    public PulseDocNodeId NodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets PortName.

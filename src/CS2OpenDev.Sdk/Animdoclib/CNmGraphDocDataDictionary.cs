@@ -24,7 +24,7 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocDataDictionary
 {
     /// <summary>
-    ///     Gets or sets IDSets.
+    ///     Gets or sets IdSets.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_IDSets</c> at offset <c>0x18</c>.
@@ -32,7 +32,7 @@ public partial class CNmGraphDocDataDictionary
     [NativeOffset(0x18)]
     [NativeName("m_IDSets")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocDataDictionary_IDSet_t__ IDSets { get; set; }
+    public CUtlVector__CNmGraphDocDataDictionary_IDSet_t__ IdSets { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterSets.

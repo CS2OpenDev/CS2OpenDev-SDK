@@ -31,13 +31,13 @@ public enum AssetWarningFixType : uint
     None = 0,
 
     /// <summary>
-    ///     VmdlConvertToModeldoc.
+    ///     VmdlConvertToModelDoc.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VMDL_CONVERT_TO_MODELDOC</c>.
     /// </remarks>
     [NativeName("VMDL_CONVERT_TO_MODELDOC")]
-    VmdlConvertToModeldoc = 1,
+    VmdlConvertToModelDoc = 1,
 
     /// <summary>
     ///     VmapManualRecompile.

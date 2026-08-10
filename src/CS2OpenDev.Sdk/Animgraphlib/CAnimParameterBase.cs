@@ -62,7 +62,7 @@ public abstract partial class CAnimParameterBase
     [NativeName("m_id")]
     [NativeMetadata("MPropertyReadOnly", "")]
     [NativeMetadata("MPropertySortPriority", "-90")]
-    public AnimParamID Id { get; set; }
+    public AnimParamId Id { get; set; }
 
     /// <summary>
     ///     Gets or sets IsReferenced.

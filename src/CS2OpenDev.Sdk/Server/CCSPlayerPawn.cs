@@ -170,14 +170,14 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     public CCSPlayerDamageReactServices? DamageReactServices { get; set; }
 
     /// <summary>
-    ///     Gets or sets DealtDamageToEnemyMostRecentTimestamp.
+    ///     Gets or sets DealtDamageToEnemyMostRecentTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flDealtDamageToEnemyMostRecentTimestamp</c> at offset <c>0x1244</c>.
     /// </remarks>
     [NativeOffset(0x1244)]
     [NativeName("m_flDealtDamageToEnemyMostRecentTimestamp")]
-    public float DealtDamageToEnemyMostRecentTimestamp { get; set; }
+    public float DealtDamageToEnemyMostRecentTimeStamp { get; set; }
 
     /// <summary>
     ///     Eye angles at the moment of death, used to pose the ragdoll's head correctly.
@@ -300,7 +300,7 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x12DC)]
     [NativeName("m_unFreezetimeEndEquipmentValue")]
-    public ushort FreezetimeEndEquipmentValue { get; set; }
+    public ushort FreezeTimeEndEquipmentValue { get; set; }
 
     /// <summary>
     ///     Gets or sets GrenadeParameterStashTime.
@@ -634,14 +634,14 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     public string LastPlaceName { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastWeaponFireUsercmd.
+    ///     Gets or sets LastWeaponFireUserCmd.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iLastWeaponFireUsercmd</c> at offset <c>0x12E0</c>.
     /// </remarks>
     [NativeOffset(0x12E0)]
     [NativeName("m_iLastWeaponFireUsercmd")]
-    public int LastWeaponFireUsercmd { get; set; }
+    public int LastWeaponFireUserCmd { get; set; }
 
     /// <summary>
     ///     True when the player has switched the weapon to the left hand (cl_lefthand 1).
@@ -992,7 +992,7 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x1234)]
     [NativeName("m_flViewmodelFOV")]
-    public float ViewmodelFOV { get; set; }
+    public float ViewModelFOV { get; set; }
 
     /// <summary>
     ///     Custom viewmodel X offset in world units (cl_viewmodel_offset_x).
@@ -1002,7 +1002,7 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x1228)]
     [NativeName("m_flViewmodelOffsetX")]
-    public float ViewmodelOffsetX { get; set; }
+    public float ViewModelOffsetX { get; set; }
 
     /// <summary>
     ///     Custom viewmodel Y offset in world units (cl_viewmodel_offset_y).
@@ -1012,7 +1012,7 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x122C)]
     [NativeName("m_flViewmodelOffsetY")]
-    public float ViewmodelOffsetY { get; set; }
+    public float ViewModelOffsetY { get; set; }
 
     /// <summary>
     ///     Custom viewmodel Z offset in world units (cl_viewmodel_offset_z).
@@ -1022,7 +1022,7 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x1230)]
     [NativeName("m_flViewmodelOffsetZ")]
-    public float ViewmodelOffsetZ { get; set; }
+    public float ViewModelOffsetZ { get; set; }
 
     /// <summary>
     ///     True when the weapon's fire input must be fully released before the next shot is accepted (prevents auto-fire on re-deploy).

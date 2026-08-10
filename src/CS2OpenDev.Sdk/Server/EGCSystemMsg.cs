@@ -93,22 +93,22 @@ public enum EGCSystemMsg : uint
     EGCMsgStopPlaying = 54,
 
     /// <summary>
-    ///     EGCMsgStartGameserver.
+    ///     EGCMsgStartGameServer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EGCMsgStartGameserver</c>.
     /// </remarks>
     [NativeName("k_EGCMsgStartGameserver")]
-    EGCMsgStartGameserver = 55,
+    EGCMsgStartGameServer = 55,
 
     /// <summary>
-    ///     EGCMsgStopGameserver.
+    ///     EGCMsgStopGameServer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EGCMsgStopGameserver</c>.
     /// </remarks>
     [NativeName("k_EGCMsgStopGameserver")]
-    EGCMsgStopGameserver = 56,
+    EGCMsgStopGameServer = 56,
 
     /// <summary>
     ///     EGCMsgWGRequest.

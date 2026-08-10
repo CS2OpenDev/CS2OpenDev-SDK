@@ -352,7 +352,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x260)]
     [NativeName("m_nGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "group id")]
-    public int GroupID { get; set; }
+    public int GroupId { get; set; }
 
     /// <summary>
     ///     infinite bounds - don't cull.
@@ -648,7 +648,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x35B)]
     [NativeName("m_bShouldHitboxesFallbackToCollisionHulls")]
     [NativeMetadata("MPropertyFriendlyName", "Hitboxes fall back to collision hulls")]
-    public bool ShouldHitboxesFallbackToCollisionHulls { get; set; }
+    public bool ShouldHitBoxesFallbackToCollisionHulls { get; set; }
 
     /// <summary>
     ///     Hitboxes fall back to render bounds.
@@ -659,7 +659,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x359)]
     [NativeName("m_bShouldHitboxesFallbackToRenderBounds")]
     [NativeMetadata("MPropertyFriendlyName", "Hitboxes fall back to render bounds")]
-    public bool ShouldHitboxesFallbackToRenderBounds { get; set; }
+    public bool ShouldHitBoxesFallbackToRenderBounds { get; set; }
 
     /// <summary>
     ///     Hitboxes fall back to snapshot.
@@ -670,7 +670,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x35A)]
     [NativeName("m_bShouldHitboxesFallbackToSnapshot")]
     [NativeMetadata("MPropertyFriendlyName", "Hitboxes fall back to snapshot")]
-    public bool ShouldHitboxesFallbackToSnapshot { get; set; }
+    public bool ShouldHitBoxesFallbackToSnapshot { get; set; }
 
     /// <summary>
     ///     sort particles (DEPRECATED - USE RENDERER OPTION).
@@ -758,7 +758,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x368)]
     [NativeName("m_pszTargetLayerID")]
     [NativeMetadata("MPropertyFriendlyName", "target layer ID for rendering")]
-    public string TargetLayerID { get; set; }
+    public string TargetLayerId { get; set; }
 
     /// <summary>
     ///     view model effect.

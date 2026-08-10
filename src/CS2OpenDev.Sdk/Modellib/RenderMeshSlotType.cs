@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Modellib;
 public enum RenderMeshSlotType : byte
 {
     /// <summary>
-    ///     RendermeshSlotInvalid.
+    ///     RenderMeshSlotInvalid.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RENDERMESH_SLOT_INVALID</c>.
     /// </remarks>
     [NativeName("RENDERMESH_SLOT_INVALID")]
-    RendermeshSlotInvalid = 255,
+    RenderMeshSlotInvalid = 255,
 
     /// <summary>
-    ///     RendermeshSlotPerVertex.
+    ///     RenderMeshSlotPerVertex.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RENDERMESH_SLOT_PER_VERTEX</c>.
     /// </remarks>
     [NativeName("RENDERMESH_SLOT_PER_VERTEX")]
-    RendermeshSlotPerVertex = 0,
+    RenderMeshSlotPerVertex = 0,
 
     /// <summary>
-    ///     RendermeshSlotPerInstance.
+    ///     RenderMeshSlotPerInstance.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RENDERMESH_SLOT_PER_INSTANCE</c>.
     /// </remarks>
     [NativeName("RENDERMESH_SLOT_PER_INSTANCE")]
-    RendermeshSlotPerInstance = 1
+    RenderMeshSlotPerInstance = 1
 }

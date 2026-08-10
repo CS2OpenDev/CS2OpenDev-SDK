@@ -56,7 +56,7 @@ public partial class COPRestartAfterDuration : CParticleFunctionOperator
     [NativeOffset(0x1E8)]
     [NativeName("m_nChildGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "child group ID")]
-    public int ChildGroupID { get; set; }
+    public int ChildGroupId { get; set; }
 
     /// <summary>
     ///     maximum restart time.

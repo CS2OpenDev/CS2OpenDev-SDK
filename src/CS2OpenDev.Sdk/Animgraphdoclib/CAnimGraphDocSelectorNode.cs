@@ -66,7 +66,7 @@ public partial class CAnimGraphDocSelectorNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "BoolParameter")]
     [NativeMetadata("MPropertyAutoRebuildOnChange", "")]
     [NativeMetadata("MPropertyFriendlyName", "Bool Parameter")]
-    public AnimParamID BoolParamID { get; set; }
+    public AnimParamId BoolParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets BoolParamName.
@@ -102,7 +102,7 @@ public partial class CAnimGraphDocSelectorNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "EnumParameter")]
     [NativeMetadata("MPropertyAutoRebuildOnChange", "")]
     [NativeMetadata("MPropertyFriendlyName", "Enum Parameter")]
-    public AnimParamID EnumParamID { get; set; }
+    public AnimParamId EnumParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets EnumParamName.
@@ -194,7 +194,7 @@ public partial class CAnimGraphDocSelectorNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyAutoRebuildOnChange", "")]
     [NativeMetadata("MPropertyFriendlyName", "Tag Parameter")]
-    public AnimTagID TagID { get; set; }
+    public AnimTagId TagId { get; set; }
 
     /// <summary>
     ///     Gets or sets Tags.

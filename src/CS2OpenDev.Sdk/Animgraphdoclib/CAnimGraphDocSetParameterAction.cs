@@ -40,7 +40,7 @@ public partial class CAnimGraphDocSetParameterAction : CAnimGraphDocAction
     [NativeName("m_param")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Parameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

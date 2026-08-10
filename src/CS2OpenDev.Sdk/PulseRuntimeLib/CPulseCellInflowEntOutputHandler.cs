@@ -22,7 +22,7 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 [NativeName("CPulseCell_Inflow_EntOutputHandler")]
 [NativeMetadata("MGetKV3ClassDefaults",
     "{\n\t\"_class\": \"CPulseCell_Inflow_EntOutputHandler\",\n\t\"m_nEditorNodeID\": -1,\n\t\"m_EntryChunk\": -1,\n\t\"m_RegisterMap\":\n\t{\n\t\t\"m_Inparams\": null,\n\t\t\"m_Outparams\": null\n\t},\n\t\"m_SourceEntity\": \"\",\n\t\"m_SourceOutput\": \"\",\n\t\"m_ExpectedParamType\": \"PVAL_VOID\"\n}")]
-public partial class CPulseCellInflowEntOutputHandler : CPulseCellInflowBaseEntrypoint
+public partial class CPulseCellInflowEntOutputHandler : CPulseCellInflowBaseEntryPoint
 {
     /// <summary>
     ///     Gets or sets ExpectedParamType.

@@ -25,14 +25,14 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class CPulseInstructionDebug
 {
     /// <summary>
-    ///     Gets or sets FlowNodeID.
+    ///     Gets or sets FlowNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nFlowNodeID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nFlowNodeID")]
-    public PulseDocNodeID FlowNodeID { get; set; }
+    public PulseDocNodeId FlowNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets SequencePointName.
@@ -45,12 +45,12 @@ public partial class CPulseInstructionDebug
     public string SequencePointName { get; set; }
 
     /// <summary>
-    ///     Gets or sets ValueNodeID.
+    ///     Gets or sets ValueNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nValueNodeID</c> at offset <c>0x4</c>.
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_nValueNodeID")]
-    public PulseDocNodeID ValueNodeID { get; set; }
+    public PulseDocNodeId ValueNodeId { get; set; }
 }

@@ -33,7 +33,7 @@ public partial class CNmSkeletonDocumentSecondarySkeleton
     [NativeOffset(0x8)]
     [NativeName("m_attachToBoneID")]
     [NativeMetadata("MPropertyDescription", "The bone that we expect this skeleton to be attached to in the parent")]
-    public string AttachToBoneID { get; set; }
+    public string AttachToBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets Skeleton.

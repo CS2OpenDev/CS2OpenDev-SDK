@@ -21,65 +21,65 @@ namespace CS2OpenSchema.Server;
 public enum CSWeaponCategory : uint
 {
     /// <summary>
-    ///     WeaponcategoryOther.
+    ///     WeaponCategoryOther.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_OTHER</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_OTHER")]
-    WeaponcategoryOther = 0,
+    WeaponCategoryOther = 0,
 
     /// <summary>
-    ///     WeaponcategoryMelee.
+    ///     WeaponCategoryMelee.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_MELEE</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_MELEE")]
-    WeaponcategoryMelee = 1,
+    WeaponCategoryMelee = 1,
 
     /// <summary>
-    ///     WeaponcategorySecondary.
+    ///     WeaponCategorySecondary.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_SECONDARY</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_SECONDARY")]
-    WeaponcategorySecondary = 2,
+    WeaponCategorySecondary = 2,
 
     /// <summary>
-    ///     WeaponcategorySmg.
+    ///     WeaponCategorySmg.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_SMG</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_SMG")]
-    WeaponcategorySmg = 3,
+    WeaponCategorySmg = 3,
 
     /// <summary>
-    ///     WeaponcategoryRifle.
+    ///     WeaponCategoryRifle.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_RIFLE</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_RIFLE")]
-    WeaponcategoryRifle = 4,
+    WeaponCategoryRifle = 4,
 
     /// <summary>
-    ///     WeaponcategoryHeavy.
+    ///     WeaponCategoryHeavy.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_HEAVY</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_HEAVY")]
-    WeaponcategoryHeavy = 5,
+    WeaponCategoryHeavy = 5,
 
     /// <summary>
-    ///     WeaponcategoryCount.
+    ///     WeaponCategoryCount.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONCATEGORY_COUNT</c>.
     /// </remarks>
     [NativeName("WEAPONCATEGORY_COUNT")]
-    WeaponcategoryCount = 6
+    WeaponCategoryCount = 6
 }

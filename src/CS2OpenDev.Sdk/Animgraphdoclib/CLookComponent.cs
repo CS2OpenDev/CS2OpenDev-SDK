@@ -30,7 +30,7 @@ namespace CS2OpenSchema.Animgraphdoclib;
 public partial class CLookComponent : CAnimGraphDocComponent
 {
     /// <summary>
-    ///     Gets or sets LookDirectionID.
+    ///     Gets or sets LookDirectionId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookDirectionID</c> at offset <c>0x50</c>.
@@ -38,10 +38,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x50)]
     [NativeName("m_lookDirectionID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookDirectionID { get; set; }
+    public AnimParamId LookDirectionId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookDistanceID.
+    ///     Gets or sets LookDistanceId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookDistanceID</c> at offset <c>0x4C</c>.
@@ -49,10 +49,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x4C)]
     [NativeName("m_lookDistanceID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookDistanceID { get; set; }
+    public AnimParamId LookDistanceId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookHeadingID.
+    ///     Gets or sets LookHeadingId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookHeadingID</c> at offset <c>0x3C</c>.
@@ -60,10 +60,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x3C)]
     [NativeName("m_lookHeadingID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookHeadingID { get; set; }
+    public AnimParamId LookHeadingId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookHeadingNormalizedID.
+    ///     Gets or sets LookHeadingNormalizedId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookHeadingNormalizedID</c> at offset <c>0x40</c>.
@@ -71,10 +71,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x40)]
     [NativeName("m_lookHeadingNormalizedID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookHeadingNormalizedID { get; set; }
+    public AnimParamId LookHeadingNormalizedId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookHeadingVelocityID.
+    ///     Gets or sets LookHeadingVelocityId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookHeadingVelocityID</c> at offset <c>0x44</c>.
@@ -82,10 +82,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x44)]
     [NativeName("m_lookHeadingVelocityID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookHeadingVelocityID { get; set; }
+    public AnimParamId LookHeadingVelocityId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookPitchID.
+    ///     Gets or sets LookPitchId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookPitchID</c> at offset <c>0x48</c>.
@@ -93,10 +93,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x48)]
     [NativeName("m_lookPitchID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookPitchID { get; set; }
+    public AnimParamId LookPitchId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookTargetID.
+    ///     Gets or sets LookTargetId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookTargetID</c> at offset <c>0x54</c>.
@@ -104,10 +104,10 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x54)]
     [NativeName("m_lookTargetID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookTargetID { get; set; }
+    public AnimParamId LookTargetId { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookTargetWorldSpaceID.
+    ///     Gets or sets LookTargetWorldSpaceId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookTargetWorldSpaceID</c> at offset <c>0x58</c>.
@@ -115,7 +115,7 @@ public partial class CLookComponent : CAnimGraphDocComponent
     [NativeOffset(0x58)]
     [NativeName("m_lookTargetWorldSpaceID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID LookTargetWorldSpaceID { get; set; }
+    public AnimParamId LookTargetWorldSpaceId { get; set; }
 
     /// <summary>
     ///     Network Look Target.

@@ -22,14 +22,14 @@ namespace CS2OpenSchema.Server;
 public partial class CEnvWindController : CBaseEntity
 {
     /// <summary>
-    ///     Gets or sets ClipmapLevels.
+    ///     Gets or sets ClipMapLevels.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nClipmapLevels</c> at offset <c>0x5F4</c>.
     /// </remarks>
     [NativeOffset(0x5F4)]
     [NativeName("m_nClipmapLevels")]
-    public int ClipmapLevels { get; set; }
+    public int ClipMapLevels { get; set; }
 
     /// <summary>
     ///     Gets or sets DirectionVariation.

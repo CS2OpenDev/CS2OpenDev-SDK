@@ -42,14 +42,14 @@ public partial class CAnimGraphDocCycleCondition : CAnimGraphDocCondition
     public Comparison ComparisonOp { get; set; }
 
     /// <summary>
-    ///     Gets or sets ComparisonParamID.
+    ///     Gets or sets ComparisonParamId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_comparisonParamID</c> at offset <c>0x48</c>.
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_comparisonParamID")]
-    public AnimParamID ComparisonParamID { get; set; }
+    public AnimParamId ComparisonParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets ComparisonParamName.

@@ -72,14 +72,14 @@ public partial class C_CSWeaponBaseGun : C_CSWeaponBase
     public int SilencedModelIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets SilencerBodygroup.
+    ///     Gets or sets SilencerBodyGroup.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iSilencerBodygroup</c> at offset <c>0x1CE8</c>.
     /// </remarks>
     [NativeOffset(0x1CE8)]
     [NativeName("m_iSilencerBodygroup")]
-    public int SilencerBodygroup { get; set; }
+    public int SilencerBodyGroup { get; set; }
 
     /// <summary>
     ///     Gets or sets ZoomLevel.

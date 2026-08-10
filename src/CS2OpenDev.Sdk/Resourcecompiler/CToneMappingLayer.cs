@@ -36,5 +36,5 @@ public partial class CToneMappingLayer : CColorCorrectionLayer
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_params")]
-    public PostProcessingTonemapParameters Params { get; set; }
+    public PostProcessingToneMapParameters Params { get; set; }
 }

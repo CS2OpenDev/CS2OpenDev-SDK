@@ -112,13 +112,13 @@ public enum ClassT : uint
     ClassHudmodelAddon = 9,
 
     /// <summary>
-    ///     ClassWorldmodelGloves.
+    ///     ClassWorldModelGloves.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CLASS_WORLDMODEL_GLOVES</c>.
     /// </remarks>
     [NativeName("CLASS_WORLDMODEL_GLOVES")]
-    ClassWorldmodelGloves = 10,
+    ClassWorldModelGloves = 10,
 
     /// <summary>
     ///     ClassDoor.

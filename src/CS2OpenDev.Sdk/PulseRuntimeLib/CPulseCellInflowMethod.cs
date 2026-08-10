@@ -22,7 +22,7 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 [NativeName("CPulseCell_Inflow_Method")]
 [NativeMetadata("MGetKV3ClassDefaults",
     "{\n\t\"_class\": \"CPulseCell_Inflow_Method\",\n\t\"m_nEditorNodeID\": -1,\n\t\"m_EntryChunk\": -1,\n\t\"m_RegisterMap\":\n\t{\n\t\t\"m_Inparams\": null,\n\t\t\"m_Outparams\": null\n\t},\n\t\"m_MethodName\": \"\",\n\t\"m_Description\": \"\",\n\t\"m_bIsPublic\": false,\n\t\"m_ReturnType\": \"PVAL_VOID\",\n\t\"m_Args\":\n\t[\n\t]\n}")]
-public partial class CPulseCellInflowMethod : CPulseCellInflowBaseEntrypoint
+public partial class CPulseCellInflowMethod : CPulseCellInflowBaseEntryPoint
 {
     /// <summary>
     ///     Gets or sets Args.

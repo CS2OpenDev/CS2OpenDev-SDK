@@ -27,7 +27,7 @@ public sealed partial record DefuserPickupEvent
     /// </remarks>
     [NativeName("entityid")]
     [GameEventFieldType("long")]
-    public required int Entityid { get; init; }
+    public required int EntityId { get; init; }
 
     /// <summary>
     ///     player who picked up the defuser.
@@ -37,5 +37,5 @@ public sealed partial record DefuserPickupEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

@@ -29,7 +29,7 @@ public enum RenderModelSubModelFieldType : uint
     /// </remarks>
     [NativeName("SUBMODEL_AS_BODYGROUP_SUBMODEL")]
     [NativeMetadata("MPropertyFriendlyName", "BodyGroup SubModel")]
-    SubmodelAsBodygroupSubmodel = 0,
+    SubModelAsBodyGroupSubModel = 0,
 
     /// <summary>
     ///     MeshGroup Index.
@@ -39,7 +39,7 @@ public enum RenderModelSubModelFieldType : uint
     /// </remarks>
     [NativeName("SUBMODEL_AS_MESHGROUP_INDEX")]
     [NativeMetadata("MPropertyFriendlyName", "MeshGroup Index")]
-    SubmodelAsMeshgroupIndex = 1,
+    SubModelAsMeshGroupIndex = 1,
 
     /// <summary>
     ///     MeshGroup Mask.
@@ -49,7 +49,7 @@ public enum RenderModelSubModelFieldType : uint
     /// </remarks>
     [NativeName("SUBMODEL_AS_MESHGROUP_MASK")]
     [NativeMetadata("MPropertyFriendlyName", "MeshGroup Mask")]
-    SubmodelAsMeshgroupMask = 2,
+    SubModelAsMeshGroupMask = 2,
 
     /// <summary>
     ///     Model Default MeshGroup Mask.
@@ -59,5 +59,5 @@ public enum RenderModelSubModelFieldType : uint
     /// </remarks>
     [NativeName("SUBMODEL_IGNORED_USE_MODEL_DEFAULT_MESHGROUP_MASK")]
     [NativeMetadata("MPropertyFriendlyName", "Model Default MeshGroup Mask")]
-    SubmodelIgnoredUseModelDefaultMeshgroupMask = 3
+    SubModelIgnoredUseModelDefaultMeshGroupMask = 3
 }

@@ -24,7 +24,7 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
 {
     /// <summary>
-    ///     Gets or sets CloneSourceStateID.
+    ///     Gets or sets CloneSourceStateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_cloneSourceStateID</c> at offset <c>0x54</c>.
@@ -32,7 +32,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0x54)]
     [NativeName("m_cloneSourceStateID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public Guid CloneSourceStateID { get; set; }
+    public Guid CloneSourceStateId { get; set; }
 
     /// <summary>
     ///     Gets or sets EntryEvents.

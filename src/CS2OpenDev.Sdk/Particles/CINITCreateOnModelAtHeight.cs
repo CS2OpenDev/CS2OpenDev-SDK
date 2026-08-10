@@ -39,7 +39,7 @@ public partial class CINITCreateOnModelAtHeight : CParticleFunctionInitializer
     [NativeOffset(0x10D0)]
     [NativeName("m_nBiasType")]
     [NativeMetadata("MPropertyFriendlyName", "bias type")]
-    public ParticleHitboxBiasType BiasType { get; set; }
+    public ParticleHitBoxBiasType BiasType { get; set; }
 
     /// <summary>
     ///     control point number.
@@ -117,7 +117,7 @@ public partial class CINITCreateOnModelAtHeight : CParticleFunctionInitializer
     [NativeOffset(0x10D6)]
     [NativeName("m_HitboxSetName")]
     [NativeMetadata("MPropertyFriendlyName", "hitbox set")]
-    public string HitboxSetName { get; set; }
+    public string HitBoxSetName { get; set; }
 
     /// <summary>
     ///     hitbox velocity inherited scale.
@@ -128,7 +128,7 @@ public partial class CINITCreateOnModelAtHeight : CParticleFunctionInitializer
     [NativeOffset(0x1158)]
     [NativeName("m_flHitboxVelocityScale")]
     [NativeMetadata("MPropertyFriendlyName", "hitbox velocity inherited scale")]
-    public CParticleCollectionFloatInput HitboxVelocityScale { get; set; }
+    public CParticleCollectionFloatInput HitBoxVelocityScale { get; set; }
 
     /// <summary>
     ///     bias in local space.

@@ -27,7 +27,7 @@ public enum CSWeaponSilencerType : uint
     ///     Native name: <c>WEAPONSILENCER_NONE</c>.
     /// </remarks>
     [NativeName("WEAPONSILENCER_NONE")]
-    WeaponsilencerNone = 0,
+    WeaponSilencerNone = 0,
 
     /// <summary>
     ///     Detachable silencer (M4A1-S, USP-S).
@@ -36,7 +36,7 @@ public enum CSWeaponSilencerType : uint
     ///     Native name: <c>WEAPONSILENCER_DETACHABLE</c>.
     /// </remarks>
     [NativeName("WEAPONSILENCER_DETACHABLE")]
-    WeaponsilencerDetachable = 1,
+    WeaponSilencerDetachable = 1,
 
     /// <summary>
     ///     Permanently integrated silencer.
@@ -45,5 +45,5 @@ public enum CSWeaponSilencerType : uint
     ///     Native name: <c>WEAPONSILENCER_INTEGRATED</c>.
     /// </remarks>
     [NativeName("WEAPONSILENCER_INTEGRATED")]
-    WeaponsilencerIntegrated = 2
+    WeaponSilencerIntegrated = 2
 }

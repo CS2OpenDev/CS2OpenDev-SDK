@@ -21,13 +21,13 @@ namespace CS2OpenSchema.Server;
 public enum EBaseGameEvents : uint
 {
     /// <summary>
-    ///     GE_VDebugGameSessionIDEvent.
+    ///     GE_VDebugGameSessionIdEvent.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GE_VDebugGameSessionIDEvent</c>.
     /// </remarks>
     [NativeName("GE_VDebugGameSessionIDEvent")]
-    GE_VDebugGameSessionIDEvent = 200,
+    GE_VDebugGameSessionIdEvent = 200,
 
     /// <summary>
     ///     GE_PlaceDecalEvent.

@@ -98,7 +98,7 @@ public class GameEventOverridesTests
     public async Task Emit_WithoutOverrides_UsesBuiltInProjection()
     {
         string record = GeneratorHarness.RunGameEvents(EventsJson).Files["Events/PlayerDeathEvent"];
-        await Assert.That(record).Contains("public required int Userid { get; init; }");
+        await Assert.That(record).Contains("public required int UserId { get; init; }");
         await Assert.That(record).DoesNotContain("PlayerRef");
     }
 
@@ -110,7 +110,7 @@ public class GameEventOverridesTests
             .RunGameEvents(EventsJson, overrides: GameEventOverrides.Parse(OverridesJson))
             .Files["Events/PlayerDeathEvent"];
         await Assert.That(record).Contains("using MyGame.Model;");
-        await Assert.That(record).Contains("public required PlayerRef Userid { get; init; }");
+        await Assert.That(record).Contains("public required PlayerRef UserId { get; init; }");
         await Assert.That(record).Contains("public required PlayerRef Attacker { get; init; }");
         // Untouched tags keep their built-in projection.
         await Assert.That(record).Contains("public required string Weapon { get; init; }");
@@ -126,7 +126,7 @@ public class GameEventOverridesTests
             .RunGameEventFactories(EventsJson, overrides: GameEventOverrides.Parse(OverridesJson))
             .Files["Generated/GameEventFactories"];
         await Assert.That(factories).Contains("using MyGame.Model;");
-        await Assert.That(factories).Contains("Userid = new PlayerRef(reader.GetInt32(\"userid\"))");
+        await Assert.That(factories).Contains("UserId = new PlayerRef(reader.GetInt32(\"userid\"))");
         await Assert.That(factories).Contains("Attacker = new PlayerRef(reader.GetInt32(\"attacker\"))");
         await Assert.That(factories).Contains("Weapon = reader.GetString(\"weapon\")");
     }

@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum WorldTextPanelVerticalAlign : uint
 {
     /// <summary>
-    ///     WorldtextVerticalAlignTop.
+    ///     WorldTextVerticalAlignTop.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_VERTICAL_ALIGN_TOP</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_VERTICAL_ALIGN_TOP")]
-    WorldtextVerticalAlignTop = 0,
+    WorldTextVerticalAlignTop = 0,
 
     /// <summary>
-    ///     WorldtextVerticalAlignCenter.
+    ///     WorldTextVerticalAlignCenter.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_VERTICAL_ALIGN_CENTER</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_VERTICAL_ALIGN_CENTER")]
-    WorldtextVerticalAlignCenter = 1,
+    WorldTextVerticalAlignCenter = 1,
 
     /// <summary>
-    ///     WorldtextVerticalAlignBottom.
+    ///     WorldTextVerticalAlignBottom.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_VERTICAL_ALIGN_BOTTOM</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_VERTICAL_ALIGN_BOTTOM")]
-    WorldtextVerticalAlignBottom = 2
+    WorldTextVerticalAlignBottom = 2
 }

@@ -34,12 +34,12 @@ public partial class CNmGraphDocVariationDataNodeOverrideValue
     public CNmGraphDocVariationDataNodeCData? Data { get; set; }
 
     /// <summary>
-    ///     Gets or sets VariationID.
+    ///     Gets or sets VariationId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_variationID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_variationID")]
-    public string VariationID { get; set; }
+    public string VariationId { get; set; }
 }

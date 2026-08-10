@@ -54,7 +54,7 @@ public partial class CConnectionProxyItem
     public string Name { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutputID.
+    ///     Gets or sets OutputId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_outputID</c> at offset <c>0x8</c>.
@@ -62,5 +62,5 @@ public partial class CConnectionProxyItem
     [NativeOffset(0x8)]
     [NativeName("m_outputID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimNodeOutputID OutputID { get; set; }
+    public AnimNodeOutputId OutputId { get; set; }
 }

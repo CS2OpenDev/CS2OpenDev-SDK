@@ -49,13 +49,13 @@ public enum HierarchyType : uint
     HierarchyAttachment = 2,
 
     /// <summary>
-    ///     HierarchyAbsorigin.
+    ///     HierarchyAbsOrigin.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HIERARCHY_ABSORIGIN</c>.
     /// </remarks>
     [NativeName("HIERARCHY_ABSORIGIN")]
-    HierarchyAbsorigin = 3,
+    HierarchyAbsOrigin = 3,
 
     /// <summary>
     ///     HierarchyBone.

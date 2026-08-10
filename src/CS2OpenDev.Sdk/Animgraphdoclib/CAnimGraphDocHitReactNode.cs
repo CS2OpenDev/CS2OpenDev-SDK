@@ -130,7 +130,7 @@ public partial class CAnimGraphDocHitReactNode : CAnimGraphDocNode
     [NativeName("m_hitBoneParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "IntParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Hit Bone Parameter")]
-    public AnimParamID HitBoneParam { get; set; }
+    public AnimParamId HitBoneParam { get; set; }
 
     /// <summary>
     ///     Gets or sets HitBoneParamName.
@@ -153,7 +153,7 @@ public partial class CAnimGraphDocHitReactNode : CAnimGraphDocNode
     [NativeName("m_hitDirectionParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Hit Direction Parameter")]
-    public AnimParamID HitDirectionParam { get; set; }
+    public AnimParamId HitDirectionParam { get; set; }
 
     /// <summary>
     ///     Gets or sets HitDirectionParamName.
@@ -176,7 +176,7 @@ public partial class CAnimGraphDocHitReactNode : CAnimGraphDocNode
     [NativeName("m_hitOffsetParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Hit Offset Parameter")]
-    public AnimParamID HitOffsetParam { get; set; }
+    public AnimParamId HitOffsetParam { get; set; }
 
     /// <summary>
     ///     Gets or sets HitOffsetParamName.
@@ -199,7 +199,7 @@ public partial class CAnimGraphDocHitReactNode : CAnimGraphDocNode
     [NativeName("m_hitStrengthParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Hit Strength Parameter")]
-    public AnimParamID HitStrengthParam { get; set; }
+    public AnimParamId HitStrengthParam { get; set; }
 
     /// <summary>
     ///     Gets or sets HitStrengthParamName.
@@ -299,7 +299,7 @@ public partial class CAnimGraphDocHitReactNode : CAnimGraphDocNode
     [NativeName("m_triggerParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "BoolParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Trigger Parameter")]
-    public AnimParamID TriggerParam { get; set; }
+    public AnimParamId TriggerParam { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerParamName.

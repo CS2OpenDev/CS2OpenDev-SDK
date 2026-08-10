@@ -27,7 +27,7 @@ public sealed partial record WeaponhudSelectionEvent
     /// </remarks>
     [NativeName("entindex")]
     [GameEventFieldType("long")]
-    public required int Entindex { get; init; }
+    public required int EntIndex { get; init; }
 
     /// <summary>
     ///     EWeaponHudSelectionMode (switch / pickup / drop).
@@ -47,5 +47,5 @@ public sealed partial record WeaponhudSelectionEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

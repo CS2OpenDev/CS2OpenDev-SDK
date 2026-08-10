@@ -28,14 +28,14 @@ namespace CS2OpenSchema.Server;
 public partial class CLogicAchievement : CLogicalEntity
 {
     /// <summary>
-    ///     Gets or sets AchievementEventID.
+    ///     Gets or sets AchievementEventId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iszAchievementEventID</c> at offset <c>0x4B0</c>.
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_iszAchievementEventID")]
-    public string AchievementEventID { get; set; }
+    public string AchievementEventId { get; set; }
 
     /// <summary>
     ///     Gets or sets Disabled.

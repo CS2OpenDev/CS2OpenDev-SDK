@@ -40,7 +40,7 @@ public partial class CAnimGraphDocToggleComponentAction : CAnimGraphDocAction
     [NativeName("m_componentID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Component")]
     [NativeMetadata("MPropertyFriendlyName", "Component")]
-    public AnimComponentID ComponentID { get; set; }
+    public AnimComponentId ComponentId { get; set; }
 
     /// <summary>
     ///     Set Enabled.

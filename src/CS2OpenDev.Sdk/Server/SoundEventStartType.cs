@@ -29,7 +29,7 @@ public enum SoundEventStartType : uint
     /// </remarks>
     [NativeName("SOUNDEVENT_START_PLAYER")]
     [NativeMetadata("MPropertyFriendlyName", "From Player")]
-    SoundeventStartPlayer = 0,
+    SoundEventStartPlayer = 0,
 
     /// <summary>
     ///     From World.
@@ -39,7 +39,7 @@ public enum SoundEventStartType : uint
     /// </remarks>
     [NativeName("SOUNDEVENT_START_WORLD")]
     [NativeMetadata("MPropertyFriendlyName", "From World")]
-    SoundeventStartWorld = 1,
+    SoundEventStartWorld = 1,
 
     /// <summary>
     ///     From Entity.
@@ -49,5 +49,5 @@ public enum SoundEventStartType : uint
     /// </remarks>
     [NativeName("SOUNDEVENT_START_ENTITY")]
     [NativeMetadata("MPropertyFriendlyName", "From Entity")]
-    SoundeventStartEntity = 2
+    SoundEventStartEntity = 2
 }

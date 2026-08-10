@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record BreakPropCoreEvent
 {
     /// <summary>
-    ///     Entindex.
+    ///     EntIndex.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entindex</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("entindex")]
     [GameEventFieldType("long")]
-    public required int Entindex { get; init; }
+    public required int EntIndex { get; init; }
 
     /// <summary>
     ///     PlayerDropped.
@@ -60,12 +60,12 @@ public sealed partial record BreakPropCoreEvent
     public required bool PlayerThrown { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_pawn</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

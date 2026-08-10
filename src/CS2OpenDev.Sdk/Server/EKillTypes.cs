@@ -85,11 +85,11 @@ public enum EKillTypes : byte
     KillShock = 6,
 
     /// <summary>
-    ///     KilltypeCount.
+    ///     KillTypeCount.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>KILLTYPE_COUNT</c>.
     /// </remarks>
     [NativeName("KILLTYPE_COUNT")]
-    KilltypeCount = 7
+    KillTypeCount = 7
 }

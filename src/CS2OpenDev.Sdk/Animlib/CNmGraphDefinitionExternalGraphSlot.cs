@@ -34,12 +34,12 @@ public partial class CNmGraphDefinitionExternalGraphSlot
     public short NodeIdx { get; set; }
 
     /// <summary>
-    ///     Gets or sets SlotID.
+    ///     Gets or sets SlotId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slotID</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_slotID")]
-    public string SlotID { get; set; }
+    public string SlotId { get; set; }
 }

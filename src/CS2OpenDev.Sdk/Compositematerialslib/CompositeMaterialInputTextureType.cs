@@ -39,7 +39,7 @@ public enum CompositeMaterialInputTextureType : uint
     /// </remarks>
     [NativeName("INPUT_TEXTURE_TYPE_NORMALMAP")]
     [NativeMetadata("MPropertyFriendlyName", "Normal Map")]
-    InputTextureTypeNormalmap = 1,
+    InputTextureTypeNormalMap = 1,
 
     /// <summary>
     ///     Color.

@@ -84,7 +84,7 @@ public partial class CollisionDetailLayerInfo
     public string SParentDetailLayer { get; set; }
 
     /// <summary>
-    ///     Gets or sets SubtreeDetailLayers.
+    ///     Gets or sets SubTreeDetailLayers.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vecSubtreeDetailLayers</c> at offset <c>0x20</c>.
@@ -92,5 +92,5 @@ public partial class CollisionDetailLayerInfo
     [NativeOffset(0x20)]
     [NativeName("m_vecSubtreeDetailLayers")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CollisionDetailLayerInfo_t_Name_t__ SubtreeDetailLayers { get; set; }
+    public CUtlVector__CollisionDetailLayerInfo_t_Name_t__ SubTreeDetailLayers { get; set; }
 }

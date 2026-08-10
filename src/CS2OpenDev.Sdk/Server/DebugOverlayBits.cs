@@ -85,7 +85,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_ABSBOX_BIT")]
     [NativeMetadata("MPropertyDescription", "show abs bounding box overlay")]
     [NativeMetadata("MPropertyFriendlyName", "ABS BBox")]
-    OverlayAbsboxBit = 32,
+    OverlayAbsBoxBit = 32,
 
     /// <summary>
     ///     show the rbox overlay.
@@ -184,7 +184,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_HITBOX_BIT")]
     [NativeMetadata("MPropertyDescription", "show hitboxes for this entity")]
     [NativeMetadata("MPropertyFriendlyName", "Hitboxes")]
-    OverlayHitboxBit = 16384,
+    OverlayHitBoxBit = 16384,
 
     /// <summary>
     ///     show interpolated hitboxes.
@@ -195,7 +195,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_INTERPOLATED_HITBOX_BIT")]
     [NativeMetadata("MPropertyDescription", "show interpolated hitboxes")]
     [NativeMetadata("MPropertyFriendlyName", "Interpolated Hitboxes")]
-    OverlayInterpolatedHitboxBit = 32768,
+    OverlayInterpolatedHitBoxBit = 32768,
 
     /// <summary>
     ///     TODO Display autoaim radius.
@@ -425,7 +425,7 @@ public enum DebugOverlayBits : ulong
     [NativeMetadata("MPropertyDescription",
         "show fancy actor name over head of actors (entities which return ShouldDisplayInActorNames() == true)")]
     [NativeMetadata("MPropertyFriendlyName", "Actor Name")]
-    OverlayActornameBit = 274877906944,
+    OverlayActorNameBit = 274877906944,
 
     /// <summary>
     ///     show condition gathering text info.

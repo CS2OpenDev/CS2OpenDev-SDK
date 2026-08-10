@@ -266,12 +266,12 @@ public partial class C_DynamicProp : C_BreakableProp
     public bool UseAnimGraph { get; set; }
 
     /// <summary>
-    ///     Gets or sets UseHitboxesForRenderBox.
+    ///     Gets or sets UseHitBoxesForRenderBox.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bUseHitboxesForRenderBox</c> at offset <c>0x12F0</c>.
     /// </remarks>
     [NativeOffset(0x12F0)]
     [NativeName("m_bUseHitboxesForRenderBox")]
-    public bool UseHitboxesForRenderBox { get; set; }
+    public bool UseHitBoxesForRenderBox { get; set; }
 }

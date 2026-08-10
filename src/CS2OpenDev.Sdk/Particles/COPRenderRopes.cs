@@ -289,7 +289,7 @@ public partial class COPRenderRopes : CBaseRendererSource2
     [NativeName("m_bSortBySegmentID")]
     [NativeMetadata("MPropertyFriendlyName", "sort by rope segment id")]
     [NativeMetadata("MPropertySuppressExpr", "m_nSplitField == PARTICLE_ATTRIBUTE_UNUSED")]
-    public bool SortBySegmentID { get; set; }
+    public bool SortBySegmentId { get; set; }
 
     /// <summary>
     ///     attribute to use for rope segment id.

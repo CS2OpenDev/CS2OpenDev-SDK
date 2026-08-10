@@ -20,64 +20,64 @@ namespace CS2OpenSchema.Events;
 public sealed partial record ItemEquipEvent
 {
     /// <summary>
-    ///     Canzoom.
+    ///     CanZoom.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>canzoom</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("canzoom")]
     [GameEventFieldType("bool")]
-    public required bool Canzoom { get; init; }
+    public required bool CanZoom { get; init; }
 
     /// <summary>
-    ///     Defindex.
+    ///     DefIndex.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>defindex</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("defindex")]
     [GameEventFieldType("long")]
-    public required int Defindex { get; init; }
+    public required int DefIndex { get; init; }
 
     /// <summary>
-    ///     Hassilencer.
+    ///     HasSilencer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>hassilencer</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("hassilencer")]
     [GameEventFieldType("bool")]
-    public required bool Hassilencer { get; init; }
+    public required bool HasSilencer { get; init; }
 
     /// <summary>
-    ///     Hastracers.
+    ///     HasTracers.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>hastracers</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("hastracers")]
     [GameEventFieldType("bool")]
-    public required bool Hastracers { get; init; }
+    public required bool HasTracers { get; init; }
 
     /// <summary>
-    ///     Ispainted.
+    ///     IsPainted.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ispainted</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("ispainted")]
     [GameEventFieldType("bool")]
-    public required bool Ispainted { get; init; }
+    public required bool IsPainted { get; init; }
 
     /// <summary>
-    ///     Issilenced.
+    ///     IsSilenced.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>issilenced</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("issilenced")]
     [GameEventFieldType("bool")]
-    public required bool Issilenced { get; init; }
+    public required bool IsSilenced { get; init; }
 
     /// <summary>
     ///     either a weapon such as 'tmp' or 'hegrenade', or an item such as 'nvgs'.
@@ -90,22 +90,22 @@ public sealed partial record ItemEquipEvent
     public required string Item { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_controller</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
-    ///     Weptype.
+    ///     WepType.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>weptype</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("weptype")]
     [GameEventFieldType("short")]
-    public required short Weptype { get; init; }
+    public required short WepType { get; init; }
 }

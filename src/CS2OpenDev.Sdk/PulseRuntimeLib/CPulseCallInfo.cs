@@ -25,24 +25,24 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class CPulseCallInfo
 {
     /// <summary>
-    ///     Gets or sets CallMethodID.
+    ///     Gets or sets CallMethodId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_CallMethodID</c> at offset <c>0x48</c>.
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_CallMethodID")]
-    public PulseDocNodeID CallMethodID { get; set; }
+    public PulseDocNodeId CallMethodId { get; set; }
 
     /// <summary>
-    ///     Gets or sets EditorNodeID.
+    ///     Gets or sets EditorNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nEditorNodeID</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_nEditorNodeID")]
-    public PulseDocNodeID EditorNodeID { get; set; }
+    public PulseDocNodeId EditorNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets PortName.

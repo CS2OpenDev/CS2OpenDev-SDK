@@ -54,14 +54,14 @@ public partial class CNmFloatChannelData
     public CUtlVector__uint32__ CompressedOffsets { get; set; }
 
     /// <summary>
-    ///     Gets or sets SetID.
+    ///     Gets or sets SetId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_setID</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_setID")]
-    public string SetID { get; set; }
+    public string SetId { get; set; }
 
     /// <summary>
     ///     Gets or sets Skeleton.

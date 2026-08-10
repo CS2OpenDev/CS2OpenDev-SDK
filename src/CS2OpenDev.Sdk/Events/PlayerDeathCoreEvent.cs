@@ -38,5 +38,5 @@ public sealed partial record PlayerDeathCoreEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

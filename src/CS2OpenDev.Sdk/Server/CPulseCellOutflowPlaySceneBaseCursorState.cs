@@ -25,14 +25,14 @@ namespace CS2OpenSchema.Server;
 public partial class CPulseCellOutflowPlaySceneBaseCursorState
 {
     /// <summary>
-    ///     Gets or sets CursorIDToEventID.
+    ///     Gets or sets CursorIdToEventId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_cursorIDToEventID</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_cursorIDToEventID")]
-    public CUtlHashtable__PulseCursorID_t__int32__ CursorIDToEventID { get; set; }
+    public CUtlHashtable__PulseCursorID_t__int32__ CursorIdToEventId { get; set; }
 
     /// <summary>
     ///     Gets or sets MainActor.

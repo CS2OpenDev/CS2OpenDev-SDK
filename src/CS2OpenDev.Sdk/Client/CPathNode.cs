@@ -42,14 +42,14 @@ public partial class CPathNode : C_PointEntity
     public Vector OutTangentLocal { get; set; }
 
     /// <summary>
-    ///     Gets or sets ParentPathUniqueID.
+    ///     Gets or sets ParentPathUniqueId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_strParentPathUniqueID</c> at offset <c>0x618</c>.
     /// </remarks>
     [NativeOffset(0x618)]
     [NativeName("m_strParentPathUniqueID")]
-    public string ParentPathUniqueID { get; set; }
+    public string ParentPathUniqueId { get; set; }
 
     /// <summary>
     ///     Gets or sets Path.

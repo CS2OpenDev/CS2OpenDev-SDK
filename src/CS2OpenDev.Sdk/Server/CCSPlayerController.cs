@@ -521,14 +521,14 @@ public partial class CCSPlayerController : CBasePlayerController
     public int MVPs { get; set; }
 
     /// <summary>
-    ///     Gets or sets MsQueuedModeDisconnectionTimestamp.
+    ///     Gets or sets MsQueuedModeDisconnectionTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_msQueuedModeDisconnectionTimestamp</c> at offset <c>0x8B4</c>.
     /// </remarks>
     [NativeOffset(0x8B4)]
     [NativeName("m_msQueuedModeDisconnectionTimestamp")]
-    public uint MsQueuedModeDisconnectionTimestamp { get; set; }
+    public uint MsQueuedModeDisconnectionTimeStamp { get; set; }
 
     /// <summary>
     ///     Item definition index of the music kit active for this player.
@@ -538,7 +538,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x930)]
     [NativeName("m_iMusicKitID")]
-    public int MusicKitID { get; set; }
+    public int MusicKitId { get; set; }
 
     /// <summary>
     ///     Number of MVPs awarded while this music kit has been equipped (affects music kit stat tracking).
@@ -700,7 +700,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x908)]
     [NativeName("m_iPawnLifetimeEnd")]
-    public int PawnLifetimeEnd { get; set; }
+    public int PawnLifeTimeEnd { get; set; }
 
     /// <summary>
     ///     Server tick on which the current pawn was spawned.
@@ -710,7 +710,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x904)]
     [NativeName("m_iPawnLifetimeStart")]
-    public int PawnLifetimeStart { get; set; }
+    public int PawnLifeTimeStart { get; set; }
 
     /// <summary>
     ///     Team number the player will be moved to at the next team-change opportunity.

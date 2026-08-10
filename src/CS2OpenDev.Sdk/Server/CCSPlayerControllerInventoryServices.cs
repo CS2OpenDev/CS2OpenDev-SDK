@@ -50,7 +50,7 @@ public partial class CCSPlayerControllerInventoryServices : CPlayerControllerCom
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_unMusicID")]
-    public ushort MusicID { get; set; }
+    public ushort MusicId { get; set; }
 
     /// <summary>
     ///     Gets or sets PersonaDataPublicCommendsFriendly.

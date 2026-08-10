@@ -43,12 +43,12 @@ public abstract partial class CNmEvent
     public NmPercent StartTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets SyncID.
+    ///     Gets or sets SyncId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_syncID</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_syncID")]
-    public string SyncID { get; set; }
+    public string SyncId { get; set; }
 }

@@ -20,12 +20,12 @@ namespace CS2OpenSchema.Events;
 public sealed partial record PlayerFootstepCoreEvent
 {
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_pawn</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

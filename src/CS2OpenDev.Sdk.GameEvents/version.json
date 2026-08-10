@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "2.0",
+  "version": "3.0",
   "// pathFilters": [
     "Until this file existed, CS2OpenDev.Sdk.GameEvents inherited the root",
     "version.json, whose pathFilters are `:/src/CS2OpenDev.Sdk/` — which does",
@@ -17,20 +17,15 @@
     ":/src/CS2OpenDev.Sdk.GameEvents/"
   ],
   "// versionHeightOffset": [
-    "2.0.4 is already published, from the inherited clock. Switching clocks",
-    "restarts the height, and a version below 2.0.4 would leave NuGet serving",
-    "2.0.4 as newest forever — the new clock has to clear the old one.",
+    "Gone, and deliberately. It existed for one job: this package switched to",
+    "its own clock while 2.0.4 was already published, and a restarted height",
+    "would have produced a version BELOW the one on the feed, leaving NuGet",
+    "serving 2.0.4 as newest forever. The offset bought clearance.",
     "",
-    "The natural height on this path is 5, so 2.0.5 would technically clear",
-    "2.0.4 by one. That is too little margin for a number nothing else",
-    "guards: the height is a function of which commits touched this",
-    "directory, and a history rewrite or a squashed merge can lower it. The",
-    "offset buys headroom, putting the first version off this clock at",
-    "2.0.10.",
-    "",
-    "Remove it only if this package's published history is ever reset."
+    "The 3.0 bump does that job on its own — any 3.0.x outranks every 2.0.x —",
+    "so keeping the offset would only inflate the patch number for no reason.",
+    "Restore it if this package ever switches clocks again inside a major."
   ],
-  "versionHeightOffset": 5,
   "publicReleaseRefSpec": [
     "^refs/heads/main$"
   ],

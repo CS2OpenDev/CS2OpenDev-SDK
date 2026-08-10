@@ -39,7 +39,7 @@ public enum ParticleEntityPos : uint
     /// </remarks>
     [NativeName("PARTICLE_WORLDSPACE_CENTER")]
     [NativeMetadata("MPropertyFriendlyName", "Worldspace Center")]
-    ParticleWorldspaceCenter = 1,
+    ParticleWorldSpaceCenter = 1,
 
     /// <summary>
     ///     Eyes.

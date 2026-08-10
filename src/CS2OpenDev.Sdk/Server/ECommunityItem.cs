@@ -67,22 +67,22 @@ public enum ECommunityItem : uint
     TradableTime = 4,
 
     /// <summary>
-    ///     StorePackageID.
+    ///     StorePackageId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_ECommunityItemAttribute_StorePackageID</c>.
     /// </remarks>
     [NativeName("k_ECommunityItemAttribute_StorePackageID")]
-    StorePackageID = 5,
+    StorePackageId = 5,
 
     /// <summary>
-    ///     CommunityItemAppID.
+    ///     CommunityItemAppId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_ECommunityItemAttribute_CommunityItemAppID</c>.
     /// </remarks>
     [NativeName("k_ECommunityItemAttribute_CommunityItemAppID")]
-    CommunityItemAppID = 6,
+    CommunityItemAppId = 6,
 
     /// <summary>
     ///     CommunityItemType.

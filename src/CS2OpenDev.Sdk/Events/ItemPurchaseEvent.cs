@@ -40,14 +40,14 @@ public sealed partial record ItemPurchaseEvent
     public required short Team { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_controller</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     Weapon.

@@ -152,12 +152,12 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     public string PanelClassName { get; set; }
 
     /// <summary>
-    ///     Gets or sets PanelID.
+    ///     Gets or sets PanelId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_PanelID</c> at offset <c>0x788</c>.
     /// </remarks>
     [NativeOffset(0x788)]
     [NativeName("m_PanelID")]
-    public string PanelID { get; set; }
+    public string PanelId { get; set; }
 }

@@ -63,5 +63,5 @@ public partial class CAnimGraphDocTagCondition : CAnimGraphDocCondition
     [NativeName("m_tagID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyFriendlyName", "Tag")]
-    public AnimTagID TagID { get; set; }
+    public AnimTagId TagId { get; set; }
 }

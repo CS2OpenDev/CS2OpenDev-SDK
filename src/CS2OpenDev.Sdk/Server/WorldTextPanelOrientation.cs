@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum WorldTextPanelOrientation : uint
 {
     /// <summary>
-    ///     WorldtextOrientationDefault.
+    ///     WorldTextOrientationDefault.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_ORIENTATION_DEFAULT</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_ORIENTATION_DEFAULT")]
-    WorldtextOrientationDefault = 0,
+    WorldTextOrientationDefault = 0,
 
     /// <summary>
-    ///     WorldtextOrientationFaceuser.
+    ///     WorldTextOrientationFaceUser.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_ORIENTATION_FACEUSER</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_ORIENTATION_FACEUSER")]
-    WorldtextOrientationFaceuser = 1,
+    WorldTextOrientationFaceUser = 1,
 
     /// <summary>
-    ///     WorldtextOrientationFaceuserUpright.
+    ///     WorldTextOrientationFaceUserUpright.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_ORIENTATION_FACEUSER_UPRIGHT</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_ORIENTATION_FACEUSER_UPRIGHT")]
-    WorldtextOrientationFaceuserUpright = 2
+    WorldTextOrientationFaceUserUpright = 2
 }

@@ -38,5 +38,5 @@ public sealed partial record TeamScoreEvent
     /// </remarks>
     [NativeName("teamid")]
     [GameEventFieldType("byte")]
-    public required byte Teamid { get; init; }
+    public required byte TeamId { get; init; }
 }

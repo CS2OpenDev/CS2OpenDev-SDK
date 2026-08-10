@@ -31,7 +31,7 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocGraphEventConditionNodeCondition
 {
     /// <summary>
-    ///     Gets or sets EventID.
+    ///     Gets or sets EventId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_eventID</c> at offset <c>0x0</c>.
@@ -39,7 +39,7 @@ public partial class CNmGraphDocGraphEventConditionNodeCondition
     [NativeOffset(0x0)]
     [NativeName("m_eventID")]
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
-    public string EventID { get; set; }
+    public string EventId { get; set; }
 
     /// <summary>
     ///     Gets or sets Type.

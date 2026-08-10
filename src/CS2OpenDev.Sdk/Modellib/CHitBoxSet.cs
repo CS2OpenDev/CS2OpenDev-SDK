@@ -54,12 +54,12 @@ public partial class CHitBoxSet
     public uint NameHash { get; set; }
 
     /// <summary>
-    ///     Gets or sets SourceFilename.
+    ///     Gets or sets SourceFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_SourceFilename</c> at offset <c>0x28</c>.
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_SourceFilename")]
-    public string SourceFilename { get; set; }
+    public string SourceFileName { get; set; }
 }

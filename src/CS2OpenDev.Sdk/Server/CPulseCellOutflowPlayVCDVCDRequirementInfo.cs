@@ -31,14 +31,14 @@ namespace CS2OpenSchema.Server;
 public partial class CPulseCellOutflowPlayVCDVCDRequirementInfo
 {
     /// <summary>
-    ///     Gets or sets EventID.
+    ///     Gets or sets EventId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nEventID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nEventID")]
-    public int EventID { get; set; }
+    public int EventId { get; set; }
 
     /// <summary>
     ///     Gets or sets Outflow.

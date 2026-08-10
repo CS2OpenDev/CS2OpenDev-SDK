@@ -292,22 +292,22 @@ public enum ParticleFloatType : uint
     PfTypeParticleRopeSegmentNormalized = 28,
 
     /// <summary>
-    ///     PfTypeParticleScreenspaceCameraDistance.
+    ///     PfTypeParticleScreenSpaceCameraDistance.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DISTANCE</c>.
     /// </remarks>
     [NativeName("PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DISTANCE")]
-    PfTypeParticleScreenspaceCameraDistance = 29,
+    PfTypeParticleScreenSpaceCameraDistance = 29,
 
     /// <summary>
-    ///     PfTypeParticleScreenspaceCameraDotProduct.
+    ///     PfTypeParticleScreenSpaceCameraDotProduct.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DOT_PRODUCT</c>.
     /// </remarks>
     [NativeName("PF_TYPE_PARTICLE_SCREENSPACE_CAMERA_DOT_PRODUCT")]
-    PfTypeParticleScreenspaceCameraDotProduct = 30,
+    PfTypeParticleScreenSpaceCameraDotProduct = 30,
 
     /// <summary>
     ///     PfTypeCount.

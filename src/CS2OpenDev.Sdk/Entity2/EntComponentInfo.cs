@@ -33,14 +33,14 @@ public partial class EntComponentInfo
     public CEntityComponentHelper? BaseClassComponentHelper { get; set; }
 
     /// <summary>
-    ///     Gets or sets CPPClassname.
+    ///     Gets or sets CPPClassName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pCPPClassname</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_pCPPClassname")]
-    public string? CPPClassname { get; set; }
+    public string? CPPClassName { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.

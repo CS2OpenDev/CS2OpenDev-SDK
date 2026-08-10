@@ -74,7 +74,7 @@ public class GameEventDecoderTests
         PlayerDeathEvent death = (PlayerDeathEvent)payload!;
 
         await Assert.That(death.Attacker).IsEqualTo(7);
-        await Assert.That(death.Userid).IsEqualTo(3);
+        await Assert.That(death.UserId).IsEqualTo(3);
         await Assert.That(death.Headshot).IsTrue();
         await Assert.That(death.Weapon).IsEqualTo("ak47");
     }
@@ -90,7 +90,7 @@ public class GameEventDecoderTests
         PlayerDeathEvent death = (PlayerDeathEvent)payload!;
 
         await Assert.That(death.Attacker).IsEqualTo(7);
-        await Assert.That(death.Userid).IsEqualTo(0);
+        await Assert.That(death.UserId).IsEqualTo(0);
         await Assert.That(death.Weapon).IsEqualTo(string.Empty);
         await Assert.That(death.Headshot).IsFalse();
     }
@@ -120,7 +120,7 @@ public class GameEventDecoderTests
         };
 
         await Assert.That(decoder.TryDecode(Fire(55, key), out object? payload)).IsTrue();
-        await Assert.That(((PlayerDeathEvent)payload!).Userid).IsEqualTo(42);
+        await Assert.That(((PlayerDeathEvent)payload!).UserId).IsEqualTo(42);
     }
 
     /// <summary>A bool-declared field accepts an integer slot, which is how servers commonly encode flags.</summary>
@@ -191,7 +191,7 @@ public class GameEventDecoderTests
         ev.EventName = "player_death";
 
         await Assert.That(decoder.TryDecode(ev, out object? payload)).IsTrue();
-        await Assert.That(((PlayerDeathEvent)payload!).Userid).IsEqualTo(11);
+        await Assert.That(((PlayerDeathEvent)payload!).UserId).IsEqualTo(11);
     }
 
     /// <summary>An event the SDK generates no record for is reported, not thrown — a demo may predate this SDK build.</summary>
@@ -212,7 +212,7 @@ public class GameEventDecoderTests
         decoder.LoadDescriptors(DescriptorList(55, "player_death", "userid"));
 
         await Assert.That(decoder.TryDecode(Fire(55, Long(5), Long(6), Long(7)), out object? payload)).IsTrue();
-        await Assert.That(((PlayerDeathEvent)payload!).Userid).IsEqualTo(5);
+        await Assert.That(((PlayerDeathEvent)payload!).UserId).IsEqualTo(5);
     }
 
     /// <summary>Reloading descriptors replaces the earlier table for the same id.</summary>
@@ -228,7 +228,7 @@ public class GameEventDecoderTests
 
         PlayerDeathEvent death = (PlayerDeathEvent)payload!;
         await Assert.That(death.Attacker).IsEqualTo(9);
-        await Assert.That(death.Userid).IsEqualTo(0);
+        await Assert.That(death.UserId).IsEqualTo(0);
     }
 
     /// <summary>ResolveName reports the native name for a loaded id.</summary>
@@ -256,7 +256,7 @@ public class GameEventDecoderTests
 
         await Assert.That(decoder.TryDecode(ev, gameTick: 999, frameNumber: 42, out GameEventEnvelope<PlayerDeathEvent> envelope)).IsTrue();
 
-        await Assert.That(envelope.Payload.Userid).IsEqualTo(4);
+        await Assert.That(envelope.Payload.UserId).IsEqualTo(4);
         await Assert.That(envelope.EventId).IsEqualTo(55);
         await Assert.That(envelope.ServerTick).IsEqualTo(12345);
         await Assert.That(envelope.GameTick).IsEqualTo(999);

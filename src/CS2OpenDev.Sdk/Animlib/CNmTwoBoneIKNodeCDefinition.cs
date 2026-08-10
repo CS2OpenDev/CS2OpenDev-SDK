@@ -55,14 +55,14 @@ public partial class CNmTwoBoneIKNodeCDefinition : CNmPassthroughNodeCDefinition
     public float ChainRotationWeight { get; set; }
 
     /// <summary>
-    ///     Gets or sets EffectorBoneID.
+    ///     Gets or sets EffectorBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_effectorBoneID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_effectorBoneID")]
-    public string EffectorBoneID { get; set; }
+    public string EffectorBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets EffectorTargetNodeIdx.

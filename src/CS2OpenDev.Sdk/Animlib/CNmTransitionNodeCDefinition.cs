@@ -95,14 +95,14 @@ public partial class CNmTransitionNodeCDefinition : CNmPoseNodeCDefinition
     public short TargetStateNodeIdx { get; set; }
 
     /// <summary>
-    ///     Gets or sets TargetSyncIDNodeIdx.
+    ///     Gets or sets TargetSyncIdNodeIdx.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_targetSyncIDNodeIdx</c> at offset <c>0x28</c>.
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_targetSyncIDNodeIdx")]
-    public short TargetSyncIDNodeIdx { get; set; }
+    public short TargetSyncIdNodeIdx { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeOffset.

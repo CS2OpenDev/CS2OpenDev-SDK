@@ -85,13 +85,13 @@ public enum ModelSkeletonDataTBoneFlags : uint
     FlagMesh = 128,
 
     /// <summary>
-    ///     FlagHitbox.
+    ///     FlagHitBox.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FLAG_HITBOX</c>.
     /// </remarks>
     [NativeName("FLAG_HITBOX")]
-    FlagHitbox = 256,
+    FlagHitBox = 256,
 
     /// <summary>
     ///     FlagBoneUsedByVertexLod0.

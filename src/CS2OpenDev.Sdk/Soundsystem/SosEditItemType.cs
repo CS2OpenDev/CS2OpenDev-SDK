@@ -31,13 +31,13 @@ public enum SosEditItemType : uint
     SosEditItemTypeSoundevents = 0,
 
     /// <summary>
-    ///     SosEditItemTypeSoundevent.
+    ///     SosEditItemTypeSoundEvent.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SOS_EDIT_ITEM_TYPE_SOUNDEVENT</c>.
     /// </remarks>
     [NativeName("SOS_EDIT_ITEM_TYPE_SOUNDEVENT")]
-    SosEditItemTypeSoundevent = 1,
+    SosEditItemTypeSoundEvent = 1,
 
     /// <summary>
     ///     SosEditItemTypeLibrarystacks.

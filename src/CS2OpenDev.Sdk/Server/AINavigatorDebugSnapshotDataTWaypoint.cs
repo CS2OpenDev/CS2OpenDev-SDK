@@ -35,14 +35,14 @@ public partial class AINavigatorDebugSnapshotDataTWaypoint
     public uint Flags { get; set; }
 
     /// <summary>
-    ///     Gets or sets IsPathcorner.
+    ///     Gets or sets IsPathCorner.
     /// </summary>
     /// <remarks>
     ///     Native field <c>is_pathcorner</c> at offset <c>0x14</c>.
     /// </remarks>
     [NativeOffset(0x14)]
     [NativeName("is_pathcorner")]
-    public bool IsPathcorner { get; set; }
+    public bool IsPathCorner { get; set; }
 
     /// <summary>
     ///     Gets or sets NavType.

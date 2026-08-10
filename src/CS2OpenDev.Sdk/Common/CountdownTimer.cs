@@ -39,24 +39,24 @@ public partial class CountdownTimer
     public float Duration { get; set; }
 
     /// <summary>
-    ///     Gets or sets Timescale.
+    ///     Gets or sets TimeScale.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_timescale</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_timescale")]
-    public float Timescale { get; set; }
+    public float TimeScale { get; set; }
 
     /// <summary>
-    ///     Gets or sets Timestamp.
+    ///     Gets or sets TimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_timestamp</c> at offset <c>0xC</c>.
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_timestamp")]
-    public GameTime Timestamp { get; set; }
+    public GameTime TimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldGroupId.

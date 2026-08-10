@@ -44,14 +44,14 @@ public partial class CPulseGraphExecutionHistory
     public CUtlVector__PulseGraphExecutionHistoryEntry_t___ History { get; set; }
 
     /// <summary>
-    ///     Gets or sets InstanceID.
+    ///     Gets or sets InstanceId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nInstanceID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nInstanceID")]
-    public PulseGraphInstanceID InstanceID { get; set; }
+    public PulseGraphInstanceId InstanceId { get; set; }
 
     /// <summary>
     ///     Gets or sets MapCellDesc.

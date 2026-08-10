@@ -65,14 +65,14 @@ public partial class ParticlePreviewState
     public PetGroundType GroundType { get; set; }
 
     /// <summary>
-    ///     Gets or sets HitboxSetName.
+    ///     Gets or sets HitBoxSetName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hitboxSetName</c> at offset <c>0x20</c>.
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_hitboxSetName")]
-    public string HitboxSetName { get; set; }
+    public string HitBoxSetName { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialGroupName.
@@ -195,12 +195,12 @@ public partial class ParticlePreviewState
     public bool ShouldDrawControlPointAxes { get; set; }
 
     /// <summary>
-    ///     Gets or sets ShouldDrawHitboxes.
+    ///     Gets or sets ShouldDrawHitBoxes.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bShouldDrawHitboxes</c> at offset <c>0x50</c>.
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_bShouldDrawHitboxes")]
-    public bool ShouldDrawHitboxes { get; set; }
+    public bool ShouldDrawHitBoxes { get; set; }
 }

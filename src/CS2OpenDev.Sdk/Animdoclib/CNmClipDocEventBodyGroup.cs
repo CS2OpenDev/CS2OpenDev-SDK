@@ -39,7 +39,7 @@ public partial class CNmClipDocEventBodyGroup : CNmClipDocEvent
     [NativeOffset(0x18)]
     [NativeName("bodygroup")]
     [NativeMetadata("MPropertyFriendlyName", "Body Group")]
-    public string Bodygroup { get; set; }
+    public string BodyGroup { get; set; }
 
     /// <summary>
     ///     Gets or sets Target.

@@ -20,24 +20,24 @@ namespace CS2OpenSchema.Events;
 public sealed partial record TagrenadeDetonateEvent
 {
     /// <summary>
-    ///     Entityid.
+    ///     EntityId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entityid</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("entityid")]
     [GameEventFieldType("short")]
-    public required short Entityid { get; init; }
+    public required short EntityId { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_controller</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     X.

@@ -63,7 +63,7 @@ public partial class COPLockToBone : CParticleFunctionOperator
     [NativeOffset(0x2B0)]
     [NativeName("m_HitboxSetName")]
     [NativeMetadata("MPropertyFriendlyName", "hitbox set")]
-    public string HitboxSetName { get; set; }
+    public string HitBoxSetName { get; set; }
 
     /// <summary>
     ///     instant jump threshold.

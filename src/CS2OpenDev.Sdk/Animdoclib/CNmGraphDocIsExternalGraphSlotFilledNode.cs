@@ -24,12 +24,12 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocIsExternalGraphSlotFilledNode : CNmGraphDocFlowNode
 {
     /// <summary>
-    ///     Gets or sets SlotID.
+    ///     Gets or sets SlotId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slotID</c> at offset <c>0x100</c>.
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_slotID")]
-    public string SlotID { get; set; }
+    public string SlotId { get; set; }
 }

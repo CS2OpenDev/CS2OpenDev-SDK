@@ -24,14 +24,14 @@ namespace CS2OpenSchema.Animlib;
 public partial class CNmSkeletonSecondarySkeleton
 {
     /// <summary>
-    ///     Gets or sets AttachToBoneID.
+    ///     Gets or sets AttachToBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_attachToBoneID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_attachToBoneID")]
-    public string AttachToBoneID { get; set; }
+    public string AttachToBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets Skeleton.

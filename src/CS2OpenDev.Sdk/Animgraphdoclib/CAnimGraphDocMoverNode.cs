@@ -120,7 +120,7 @@ public partial class CAnimGraphDocMoverNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Movement Heading Parameter")]
     [NativeMetadata("MPropertyGroupName", "Orient Movement")]
-    public AnimParamID MoveHeadingParam { get; set; }
+    public AnimParamId MoveHeadingParam { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveHeadingParamName.
@@ -145,7 +145,7 @@ public partial class CAnimGraphDocMoverNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Movement Velocity Parameter")]
     [NativeMetadata("MPropertyGroupName", "Generate Movement")]
-    public AnimParamID MoveVectorParam { get; set; }
+    public AnimParamId MoveVectorParam { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveVectorParamName.
@@ -183,7 +183,7 @@ public partial class CAnimGraphDocMoverNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Facing Parameter")]
     [NativeMetadata("MPropertyGroupName", "Turn to Face")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

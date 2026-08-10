@@ -138,13 +138,13 @@ public enum WeaponGameplayAnimState : ushort
     WpnAnimstateC4Plant = 300,
 
     /// <summary>
-    ///     WpnAnimstateHealthshotInject.
+    ///     WpnAnimstateHealthShotInject.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WPN_ANIMSTATE_HEALTHSHOT_INJECT</c>.
     /// </remarks>
     [NativeName("WPN_ANIMSTATE_HEALTHSHOT_INJECT")]
-    WpnAnimstateHealthshotInject = 400,
+    WpnAnimstateHealthShotInject = 400,
 
     /// <summary>
     ///     WpnAnimstateKnifePrimaryHit.

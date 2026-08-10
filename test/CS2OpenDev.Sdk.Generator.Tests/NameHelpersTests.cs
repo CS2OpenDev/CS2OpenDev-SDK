@@ -91,7 +91,7 @@ public class NameHelpersTests
     [Arguments("m_rgbColor",     "Color")]
     [Arguments("m_clrColor",     "Color")]
     [Arguments("m_unVoiceFlags", "VoiceFlags")]
-    [Arguments("m_ulSteamID",    "SteamID")]
+    [Arguments("m_ulSteamID",    "SteamId")]
     public async Task ToPropName_StripsKnownHungarianPrefix(string cpp, string expected)
     {
         string actual = NameHelpers.ToPropName(cpp);

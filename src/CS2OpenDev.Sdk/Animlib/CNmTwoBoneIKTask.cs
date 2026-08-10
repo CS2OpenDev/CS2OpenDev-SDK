@@ -52,14 +52,14 @@ public partial class CNmTwoBoneIKTask : CNmPoseTask
     public float ChainRotationWeight { get; set; }
 
     /// <summary>
-    ///     Gets or sets DebugEffectorBoneID.
+    ///     Gets or sets DebugEffectorBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_debugEffectorBoneID</c> at offset <c>0xE0</c>.
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_debugEffectorBoneID")]
-    public string DebugEffectorBoneID { get; set; }
+    public string DebugEffectorBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets EffectorBoneIdx.

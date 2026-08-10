@@ -66,7 +66,7 @@ public partial class COPModelCull : CParticleFunctionOperator
     [NativeOffset(0x1DF)]
     [NativeName("m_HitboxSetName")]
     [NativeMetadata("MPropertyFriendlyName", "hitbox set")]
-    public string HitboxSetName { get; set; }
+    public string HitBoxSetName { get; set; }
 
     /// <summary>
     ///     use bones instead of hitboxes.

@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record BombDroppedEvent
 {
     /// <summary>
-    ///     Entindex.
+    ///     EntIndex.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entindex</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("entindex")]
     [GameEventFieldType("long")]
-    public required int Entindex { get; init; }
+    public required int EntIndex { get; init; }
 
     /// <summary>
     ///     player who dropped the bomb.
@@ -37,5 +37,5 @@ public sealed partial record BombDroppedEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

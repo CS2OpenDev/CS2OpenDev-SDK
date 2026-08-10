@@ -29,7 +29,7 @@ public enum SosGroupType : uint
     /// </remarks>
     [NativeName("SOS_GROUPTYPE_DYNAMIC")]
     [NativeMetadata("MPropertyFriendlyName", "Dynamic")]
-    SosGrouptypeDynamic = 0,
+    SosGroupTypeDynamic = 0,
 
     /// <summary>
     ///     Static.
@@ -39,5 +39,5 @@ public enum SosGroupType : uint
     /// </remarks>
     [NativeName("SOS_GROUPTYPE_STATIC")]
     [NativeMetadata("MPropertyFriendlyName", "Static")]
-    SosGrouptypeStatic = 1
+    SosGroupTypeStatic = 1
 }

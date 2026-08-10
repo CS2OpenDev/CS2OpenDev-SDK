@@ -147,7 +147,7 @@ public partial class CAnimGraphDocLookAtNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Target Parameter")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.
@@ -231,7 +231,7 @@ public partial class CAnimGraphDocLookAtNode : CAnimGraphDocNode
     [NativeName("m_weightParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Weight Parameter")]
-    public AnimParamID WeightParam { get; set; }
+    public AnimParamId WeightParam { get; set; }
 
     /// <summary>
     ///     Gets or sets WeightParamName.

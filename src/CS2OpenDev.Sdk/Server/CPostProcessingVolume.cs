@@ -133,12 +133,12 @@ public partial class CPostProcessingVolume : CBaseTrigger
     public CStrongHandle__InfoForResourceTypeCPostProcessingResource__ PostSettings { get; set; }
 
     /// <summary>
-    ///     Gets or sets TonemapEVSmoothingRange.
+    ///     Gets or sets ToneMapEVSmoothingRange.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flTonemapEVSmoothingRange</c> at offset <c>0x920</c>.
     /// </remarks>
     [NativeOffset(0x920)]
     [NativeName("m_flTonemapEVSmoothingRange")]
-    public float TonemapEVSmoothingRange { get; set; }
+    public float ToneMapEVSmoothingRange { get; set; }
 }

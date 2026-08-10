@@ -35,7 +35,7 @@ public partial class CNmGraphDocBoneMaskNode : CNmGraphDocVariationDataNode
     public bool IsOptionalMask { get; set; }
 
     /// <summary>
-    ///     Gets or sets MaskID.
+    ///     Gets or sets MaskId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_maskID</c> at offset <c>0x200</c>.
@@ -43,5 +43,5 @@ public partial class CNmGraphDocBoneMaskNode : CNmGraphDocVariationDataNode
     [NativeOffset(0x200)]
     [NativeName("m_maskID")]
     [NativeMetadata("MPropertyAttributeEditor", "BoneMaskID()")]
-    public string MaskID { get; set; }
+    public string MaskId { get; set; }
 }

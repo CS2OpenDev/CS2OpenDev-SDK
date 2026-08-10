@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum WorldTextPanelHorizontalAlign : uint
 {
     /// <summary>
-    ///     WorldtextHorizontalAlignLeft.
+    ///     WorldTextHorizontalAlignLeft.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_HORIZONTAL_ALIGN_LEFT</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_HORIZONTAL_ALIGN_LEFT")]
-    WorldtextHorizontalAlignLeft = 0,
+    WorldTextHorizontalAlignLeft = 0,
 
     /// <summary>
-    ///     WorldtextHorizontalAlignCenter.
+    ///     WorldTextHorizontalAlignCenter.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_HORIZONTAL_ALIGN_CENTER</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_HORIZONTAL_ALIGN_CENTER")]
-    WorldtextHorizontalAlignCenter = 1,
+    WorldTextHorizontalAlignCenter = 1,
 
     /// <summary>
-    ///     WorldtextHorizontalAlignRight.
+    ///     WorldTextHorizontalAlignRight.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WORLDTEXT_HORIZONTAL_ALIGN_RIGHT</c>.
     /// </remarks>
     [NativeName("WORLDTEXT_HORIZONTAL_ALIGN_RIGHT")]
-    WorldtextHorizontalAlignRight = 2
+    WorldTextHorizontalAlignRight = 2
 }

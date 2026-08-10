@@ -86,7 +86,7 @@ public partial class CAnimGraphDocLeanMatrixNode : CAnimGraphDocNode
     [NativeName("m_param")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

@@ -28,7 +28,7 @@ public sealed partial record ServerSpawnEvent
     /// </remarks>
     [NativeName("addonname")]
     [GameEventFieldType("string")]
-    public required string Addonname { get; init; }
+    public required string AddonName { get; init; }
 
     /// <summary>
     ///     hostame, IP or DNS name.
@@ -68,7 +68,7 @@ public sealed partial record ServerSpawnEvent
     /// </remarks>
     [NativeName("hostname")]
     [GameEventFieldType("string")]
-    public required string Hostname { get; init; }
+    public required string HostName { get; init; }
 
     /// <summary>
     ///     map name.
@@ -78,7 +78,7 @@ public sealed partial record ServerSpawnEvent
     /// </remarks>
     [NativeName("mapname")]
     [GameEventFieldType("string")]
-    public required string Mapname { get; init; }
+    public required string MapName { get; init; }
 
     /// <summary>
     ///     max players.

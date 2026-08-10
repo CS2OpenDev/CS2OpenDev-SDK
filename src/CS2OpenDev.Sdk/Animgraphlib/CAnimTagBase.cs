@@ -77,7 +77,7 @@ public partial class CAnimTagBase
     public string SComment { get; set; }
 
     /// <summary>
-    ///     Gets or sets TagID.
+    ///     Gets or sets TagId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_tagID</c> at offset <c>0x30</c>.
@@ -85,5 +85,5 @@ public partial class CAnimTagBase
     [NativeOffset(0x30)]
     [NativeName("m_tagID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimTagID TagID { get; set; }
+    public AnimTagId TagId { get; set; }
 }

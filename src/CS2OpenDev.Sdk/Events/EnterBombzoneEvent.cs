@@ -20,32 +20,32 @@ namespace CS2OpenSchema.Events;
 public sealed partial record EnterBombzoneEvent
 {
     /// <summary>
-    ///     Hasbomb.
+    ///     HasBomb.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>hasbomb</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("hasbomb")]
     [GameEventFieldType("bool")]
-    public required bool Hasbomb { get; init; }
+    public required bool HasBomb { get; init; }
 
     /// <summary>
-    ///     Isplanted.
+    ///     IsPlanted.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>isplanted</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("isplanted")]
     [GameEventFieldType("bool")]
-    public required bool Isplanted { get; init; }
+    public required bool IsPlanted { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_controller</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

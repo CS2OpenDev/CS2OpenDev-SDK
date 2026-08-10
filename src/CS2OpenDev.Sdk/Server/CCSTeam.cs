@@ -29,7 +29,7 @@ public partial class CCSTeam : CTeam
     /// </remarks>
     [NativeOffset(0x800)]
     [NativeName("m_iClanID")]
-    public uint ClanID { get; set; }
+    public uint ClanId { get; set; }
 
     /// <summary>
     ///     Team organisation/clan name displayed in the scoreboard (up to 129 bytes; set by tournament operators).
@@ -39,7 +39,7 @@ public partial class CCSTeam : CTeam
     /// </remarks>
     [NativeOffset(0x77C)]
     [NativeName("m_szClanTeamname")]
-    public string ClanTeamname { get; set; }
+    public string ClanTeamName { get; set; }
 
     /// <summary>
     ///     Gets or sets LastRecievedShorthandedRoundBonus.

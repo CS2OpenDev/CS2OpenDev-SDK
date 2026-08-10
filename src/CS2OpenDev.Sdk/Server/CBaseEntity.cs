@@ -291,7 +291,7 @@ public partial class CBaseEntity : CEntityInstance
     public float Friction { get; set; }
 
     /// <summary>
-    ///     Gets or sets Globalname.
+    ///     Gets or sets GlobalName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iGlobalname</c> at offset <c>0x348</c>.
@@ -299,7 +299,7 @@ public partial class CBaseEntity : CEntityInstance
     [NativeOffset(0x348)]
     [NativeName("m_iGlobalname")]
     [NativeMetadata("MSaveBehavior", "")]
-    public string Globalname { get; set; }
+    public string GlobalName { get; set; }
 
     /// <summary>
     ///     Gets or sets GravityActuallyDisabled.
@@ -697,14 +697,14 @@ public partial class CBaseEntity : CEntityInstance
     public bool RestoreInHierarchy { get; set; }
 
     /// <summary>
-    ///     Gets or sets SUniqueHammerID.
+    ///     Gets or sets SUniqueHammerId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_sUniqueHammerID</c> at offset <c>0x358</c>.
     /// </remarks>
     [NativeOffset(0x358)]
     [NativeName("m_sUniqueHammerID")]
-    public string SUniqueHammerID { get; set; }
+    public string SUniqueHammerId { get; set; }
 
     /// <summary>
     ///     Gets or sets SentToClients.
@@ -761,14 +761,14 @@ public partial class CBaseEntity : CEntityInstance
     public uint Spawnflags { get; set; }
 
     /// <summary>
-    ///     Gets or sets SubclassID.
+    ///     Gets or sets SubclassId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nSubclassID</c> at offset <c>0x31C</c>.
     /// </remarks>
     [NativeOffset(0x31C)]
     [NativeName("m_nSubclassID")]
-    public string SubclassID { get; set; }
+    public string SubclassId { get; set; }
 
     /// <summary>
     ///     Gets or sets TakeDamageFlags.

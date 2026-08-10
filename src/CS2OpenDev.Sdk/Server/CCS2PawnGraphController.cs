@@ -144,14 +144,14 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ GroundAction { get; set; }
 
     /// <summary>
-    ///     Gets or sets GroundActionDirectionID.
+    ///     Gets or sets GroundActionDirectionId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_groundActionDirectionID</c> at offset <c>0x690</c>.
     /// </remarks>
     [NativeOffset(0x690)]
     [NativeName("m_groundActionDirectionID")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ GroundActionDirectionID { get; set; }
+    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ GroundActionDirectionId { get; set; }
 
     /// <summary>
     ///     Gets or sets GroundTurnAngleOrVelocity.
@@ -224,14 +224,14 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     public CAnimGraph2ParamOptionalRef__CNmTarget__ LeftFootTarget { get; set; }
 
     /// <summary>
-    ///     Gets or sets MoveDirectionID.
+    ///     Gets or sets MoveDirectionId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_moveDirectionID</c> at offset <c>0x5B8</c>.
     /// </remarks>
     [NativeOffset(0x5B8)]
     [NativeName("m_moveDirectionID")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ MoveDirectionID { get; set; }
+    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ MoveDirectionId { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveSpeedHorizontal.

@@ -47,5 +47,5 @@ public partial class CAnimNodePath
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_path")]
-    public AnimNodeID[] Path { get; set; }
+    public AnimNodeId[] Path { get; set; }
 }

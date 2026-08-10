@@ -26,7 +26,7 @@ namespace CS2OpenSchema.Smartprops;
 public abstract partial class CSmartPropParameter
 {
     /// <summary>
-    ///     Gets or sets ElementID.
+    ///     Gets or sets ElementId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nElementID</c> at offset <c>0x8</c>.
@@ -35,5 +35,5 @@ public abstract partial class CSmartPropParameter
     [NativeName("m_nElementID")]
     [NativeMetadata("MPropertySuppressField", "")]
     [NativeMetadata("MVDataUniqueMonotonicInt", "_editor/next_element_id")]
-    public int ElementID { get; set; }
+    public int ElementId { get; set; }
 }

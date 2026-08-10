@@ -37,7 +37,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("attackerblind")]
     [GameEventFieldType("bool")]
-    public required bool Attackerblind { get; init; }
+    public required bool AttackerBlind { get; init; }
 
     /// <summary>
     ///     singals a headshot.
@@ -57,7 +57,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("noscope")]
     [GameEventFieldType("bool")]
-    public required bool Noscope { get; init; }
+    public required bool NoScope { get; init; }
 
     /// <summary>
     ///     other entity ID who died.
@@ -67,7 +67,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("otherid")]
     [GameEventFieldType("short")]
-    public required short Otherid { get; init; }
+    public required short OtherId { get; init; }
 
     /// <summary>
     ///     other entity type.
@@ -77,7 +77,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("othertype")]
     [GameEventFieldType("string")]
-    public required string Othertype { get; init; }
+    public required string OtherType { get; init; }
 
     /// <summary>
     ///     number of objects shot penetrated before killing target.
@@ -97,7 +97,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("thrusmoke")]
     [GameEventFieldType("bool")]
-    public required bool Thrusmoke { get; init; }
+    public required bool ThruSmoke { get; init; }
 
     /// <summary>
     ///     weapon name killer used.
@@ -127,7 +127,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("weapon_itemid")]
     [GameEventFieldType("string")]
-    public required string WeaponItemid { get; init; }
+    public required string WeaponItemId { get; init; }
 
     /// <summary>
     ///     WeaponOriginalownerXuid.

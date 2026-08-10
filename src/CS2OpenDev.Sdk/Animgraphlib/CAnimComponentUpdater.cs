@@ -36,7 +36,7 @@ public abstract partial class CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_id")]
-    public AnimComponentID Id { get; set; }
+    public AnimComponentId Id { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

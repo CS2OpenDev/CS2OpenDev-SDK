@@ -35,14 +35,14 @@ public partial class CNmTransitionEventConditionNodeCDefinition : CNmBoolValueNo
     public CNmBitFlags EventConditionRules { get; set; }
 
     /// <summary>
-    ///     Gets or sets RequireRuleID.
+    ///     Gets or sets RequireRuleId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_requireRuleID</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_requireRuleID")]
-    public string RequireRuleID { get; set; }
+    public string RequireRuleId { get; set; }
 
     /// <summary>
     ///     Gets or sets RuleCondition.

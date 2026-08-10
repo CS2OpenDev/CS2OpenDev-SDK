@@ -25,12 +25,12 @@ namespace CS2OpenSchema.Animlib;
 public partial class CNmBoneMaskNodeCDefinition : CNmBoneMaskValueNodeCDefinition
 {
     /// <summary>
-    ///     Gets or sets BoneMaskID.
+    ///     Gets or sets BoneMaskId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_boneMaskID</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_boneMaskID")]
-    public string BoneMaskID { get; set; }
+    public string BoneMaskId { get; set; }
 }

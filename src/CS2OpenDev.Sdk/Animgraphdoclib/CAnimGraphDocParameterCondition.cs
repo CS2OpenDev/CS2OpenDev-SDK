@@ -62,14 +62,14 @@ public partial class CAnimGraphDocParameterCondition : CAnimGraphDocCondition
     public object? ComparisonValue { get; set; }
 
     /// <summary>
-    ///     Gets or sets ParamID.
+    ///     Gets or sets ParamId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_paramID</c> at offset <c>0x30</c>.
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_paramID")]
-    public AnimParamID ParamID { get; set; }
+    public AnimParamId ParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.

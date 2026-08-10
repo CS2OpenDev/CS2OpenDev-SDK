@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum VoiceDataFormat : uint
 {
     /// <summary>
-    ///     VoicedataFormatSteam.
+    ///     VoiceDataFormatSteam.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOICEDATA_FORMAT_STEAM</c>.
     /// </remarks>
     [NativeName("VOICEDATA_FORMAT_STEAM")]
-    VoicedataFormatSteam = 0,
+    VoiceDataFormatSteam = 0,
 
     /// <summary>
-    ///     VoicedataFormatEngine.
+    ///     VoiceDataFormatEngine.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOICEDATA_FORMAT_ENGINE</c>.
     /// </remarks>
     [NativeName("VOICEDATA_FORMAT_ENGINE")]
-    VoicedataFormatEngine = 1,
+    VoiceDataFormatEngine = 1,
 
     /// <summary>
-    ///     VoicedataFormatOpus.
+    ///     VoiceDataFormatOpus.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOICEDATA_FORMAT_OPUS</c>.
     /// </remarks>
     [NativeName("VOICEDATA_FORMAT_OPUS")]
-    VoicedataFormatOpus = 2
+    VoiceDataFormatOpus = 2
 }

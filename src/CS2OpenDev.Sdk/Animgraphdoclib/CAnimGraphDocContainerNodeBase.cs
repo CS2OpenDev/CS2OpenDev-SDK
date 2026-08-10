@@ -41,7 +41,7 @@ public abstract partial class CAnimGraphDocContainerNodeBase : CAnimGraphDocNode
     public CUtlHashtable__AnimNodeOutputID__CAnimGraphDoc_NodeConnection__ InputConnectionMap { get; set; }
 
     /// <summary>
-    ///     Gets or sets InputNodeID.
+    ///     Gets or sets InputNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_inputNodeID</c> at offset <c>0x48</c>.
@@ -49,10 +49,10 @@ public abstract partial class CAnimGraphDocContainerNodeBase : CAnimGraphDocNode
     [NativeOffset(0x48)]
     [NativeName("m_inputNodeID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimNodeID InputNodeID { get; set; }
+    public AnimNodeId InputNodeId { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutputNodeID.
+    ///     Gets or sets OutputNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_outputNodeID</c> at offset <c>0x4C</c>.
@@ -60,5 +60,5 @@ public abstract partial class CAnimGraphDocContainerNodeBase : CAnimGraphDocNode
     [NativeOffset(0x4C)]
     [NativeName("m_outputNodeID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimNodeID OutputNodeID { get; set; }
+    public AnimNodeId OutputNodeId { get; set; }
 }

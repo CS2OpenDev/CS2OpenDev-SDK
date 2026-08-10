@@ -21,67 +21,67 @@ namespace CS2OpenSchema.Server;
 public enum CSWeaponType : uint
 {
     /// <summary>
-    ///     WeapontypeKnife.
+    ///     WeaponTypeKnife.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_KNIFE</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_KNIFE")]
-    WeapontypeKnife = 0,
+    WeaponTypeKnife = 0,
 
     /// <summary>
-    ///     WeapontypePistol.
+    ///     WeaponTypePistol.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_PISTOL</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_PISTOL")]
-    WeapontypePistol = 1,
+    WeaponTypePistol = 1,
 
     /// <summary>
-    ///     WeapontypeSubmachinegun.
+    ///     WeaponTypeSubmachinegun.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_SUBMACHINEGUN</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_SUBMACHINEGUN")]
-    WeapontypeSubmachinegun = 2,
+    WeaponTypeSubmachinegun = 2,
 
     /// <summary>
-    ///     WeapontypeRifle.
+    ///     WeaponTypeRifle.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_RIFLE</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_RIFLE")]
-    WeapontypeRifle = 3,
+    WeaponTypeRifle = 3,
 
     /// <summary>
-    ///     WeapontypeShotgun.
+    ///     WeaponTypeShotgun.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_SHOTGUN</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_SHOTGUN")]
-    WeapontypeShotgun = 4,
+    WeaponTypeShotgun = 4,
 
     /// <summary>
-    ///     WeapontypeSniperRifle.
+    ///     WeaponTypeSniperRifle.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_SNIPER_RIFLE</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_SNIPER_RIFLE")]
-    WeapontypeSniperRifle = 5,
+    WeaponTypeSniperRifle = 5,
 
     /// <summary>
-    ///     WeapontypeMachinegun.
+    ///     WeaponTypeMachineGun.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_MACHINEGUN</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_MACHINEGUN")]
-    WeapontypeMachinegun = 6,
+    WeaponTypeMachineGun = 6,
 
     /// <summary>
     ///     The bomb (C4).
@@ -90,7 +90,7 @@ public enum CSWeaponType : uint
     ///     Native name: <c>WEAPONTYPE_C4</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_C4")]
-    WeapontypeC4 = 7,
+    WeaponTypeC4 = 7,
 
     /// <summary>
     ///     The zeus x27 taser.
@@ -99,7 +99,7 @@ public enum CSWeaponType : uint
     ///     Native name: <c>WEAPONTYPE_TASER</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_TASER")]
-    WeapontypeTaser = 8,
+    WeaponTypeTaser = 8,
 
     /// <summary>
     ///     A throwable grenade.
@@ -108,7 +108,7 @@ public enum CSWeaponType : uint
     ///     Native name: <c>WEAPONTYPE_GRENADE</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_GRENADE")]
-    WeapontypeGrenade = 9,
+    WeaponTypeGrenade = 9,
 
     /// <summary>
     ///     Equipment (kevlar, defuse kit, and similar non-firing items).
@@ -117,23 +117,23 @@ public enum CSWeaponType : uint
     ///     Native name: <c>WEAPONTYPE_EQUIPMENT</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_EQUIPMENT")]
-    WeapontypeEquipment = 10,
+    WeaponTypeEquipment = 10,
 
     /// <summary>
-    ///     WeapontypeStackableitem.
+    ///     WeaponTypeStackableitem.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_STACKABLEITEM</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_STACKABLEITEM")]
-    WeapontypeStackableitem = 11,
+    WeaponTypeStackableitem = 11,
 
     /// <summary>
-    ///     WeapontypeUnknown.
+    ///     WeaponTypeUnknown.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_UNKNOWN</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_UNKNOWN")]
-    WeapontypeUnknown = 12
+    WeaponTypeUnknown = 12
 }

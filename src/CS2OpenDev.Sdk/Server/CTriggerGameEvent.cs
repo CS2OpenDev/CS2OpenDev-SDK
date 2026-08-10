@@ -42,12 +42,12 @@ public partial class CTriggerGameEvent : CBaseTrigger
     public string StartTouchEventName { get; set; }
 
     /// <summary>
-    ///     Gets or sets TriggerID.
+    ///     Gets or sets TriggerId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_strTriggerID</c> at offset <c>0x8F8</c>.
     /// </remarks>
     [NativeOffset(0x8F8)]
     [NativeName("m_strTriggerID")]
-    public string TriggerID { get; set; }
+    public string TriggerId { get; set; }
 }

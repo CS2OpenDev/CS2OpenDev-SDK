@@ -103,14 +103,14 @@ public partial class CCSGOMapPreviewCameraPathNode : C_BaseEntity
     public Vector OutTangentWorld { get; set; }
 
     /// <summary>
-    ///     Gets or sets ParentPathUniqueID.
+    ///     Gets or sets ParentPathUniqueId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_szParentPathUniqueID</c> at offset <c>0x600</c>.
     /// </remarks>
     [NativeOffset(0x600)]
     [NativeName("m_szParentPathUniqueID")]
-    public string ParentPathUniqueID { get; set; }
+    public string ParentPathUniqueId { get; set; }
 
     /// <summary>
     ///     Gets or sets PathIndex.

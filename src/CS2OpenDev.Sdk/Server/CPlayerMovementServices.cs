@@ -23,14 +23,14 @@ namespace CS2OpenSchema.Server;
 public partial class CPlayerMovementServices : CPlayerPawnComponent
 {
     /// <summary>
-    ///     Gets or sets ArrForceSubtickMoveWhen.
+    ///     Gets or sets ArrForceSubTickMoveWhen.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_arrForceSubtickMoveWhen</c> at offset <c>0x1B0</c>.
     /// </remarks>
     [NativeOffset(0x1B0)]
     [NativeName("m_arrForceSubtickMoveWhen")]
-    public float[] ArrForceSubtickMoveWhen { get; set; }
+    public float[] ArrForceSubTickMoveWhen { get; set; }
 
     /// <summary>
     ///     Gets or sets ButtonDoublePressed.
@@ -153,7 +153,7 @@ public partial class CPlayerMovementServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x1AC)]
     [NativeName("m_flMaxspeed")]
-    public float Maxspeed { get; set; }
+    public float MaxSpeed { get; set; }
 
     /// <summary>
     ///     Gets or sets OldViewAngles.

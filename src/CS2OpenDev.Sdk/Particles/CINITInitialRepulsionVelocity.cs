@@ -44,7 +44,7 @@ public partial class CINITInitialRepulsionVelocity : CParticleFunctionInitialize
     [NativeOffset(0x290)]
     [NativeName("m_nChildGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "child group ID to affect")]
-    public int ChildGroupID { get; set; }
+    public int ChildGroupId { get; set; }
 
     /// <summary>
     ///     collision group.

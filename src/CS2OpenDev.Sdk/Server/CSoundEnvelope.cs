@@ -34,14 +34,14 @@ public partial class CSoundEnvelope
     public float Current { get; set; }
 
     /// <summary>
-    ///     Gets or sets Forceupdate.
+    ///     Gets or sets ForceUpdate.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_forceupdate</c> at offset <c>0xC</c>.
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_forceupdate")]
-    public bool Forceupdate { get; set; }
+    public bool ForceUpdate { get; set; }
 
     /// <summary>
     ///     Gets or sets Rate.

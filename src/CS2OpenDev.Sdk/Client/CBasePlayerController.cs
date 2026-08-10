@@ -198,7 +198,7 @@ public partial class CBasePlayerController : C_BaseEntity
     [NativeOffset(0x780)]
     [NativeName("m_steamID")]
     [NativeMetadata("MNotSaved", "")]
-    public ulong SteamID { get; set; }
+    public ulong SteamId { get; set; }
 
     /// <summary>
     ///     Server tick number at the time of the most-recent usercmd from this client.

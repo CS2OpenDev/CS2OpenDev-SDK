@@ -30,7 +30,7 @@ namespace CS2OpenSchema.Animgraphdoclib;
 public partial class CSlopeComponent : CAnimGraphDocComponent
 {
     /// <summary>
-    ///     Gets or sets SlopeAngleFrontID.
+    ///     Gets or sets SlopeAngleFrontId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slopeAngleFrontID</c> at offset <c>0x48</c>.
@@ -38,10 +38,10 @@ public partial class CSlopeComponent : CAnimGraphDocComponent
     [NativeOffset(0x48)]
     [NativeName("m_slopeAngleFrontID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID SlopeAngleFrontID { get; set; }
+    public AnimParamId SlopeAngleFrontId { get; set; }
 
     /// <summary>
-    ///     Gets or sets SlopeAngleID.
+    ///     Gets or sets SlopeAngleId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slopeAngleID</c> at offset <c>0x3C</c>.
@@ -49,10 +49,10 @@ public partial class CSlopeComponent : CAnimGraphDocComponent
     [NativeOffset(0x3C)]
     [NativeName("m_slopeAngleID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID SlopeAngleID { get; set; }
+    public AnimParamId SlopeAngleId { get; set; }
 
     /// <summary>
-    ///     Gets or sets SlopeAngleSideID.
+    ///     Gets or sets SlopeAngleSideId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slopeAngleSideID</c> at offset <c>0x44</c>.
@@ -60,10 +60,10 @@ public partial class CSlopeComponent : CAnimGraphDocComponent
     [NativeOffset(0x44)]
     [NativeName("m_slopeAngleSideID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID SlopeAngleSideID { get; set; }
+    public AnimParamId SlopeAngleSideId { get; set; }
 
     /// <summary>
-    ///     Gets or sets SlopeHeadingID.
+    ///     Gets or sets SlopeHeadingId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slopeHeadingID</c> at offset <c>0x40</c>.
@@ -71,10 +71,10 @@ public partial class CSlopeComponent : CAnimGraphDocComponent
     [NativeOffset(0x40)]
     [NativeName("m_slopeHeadingID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID SlopeHeadingID { get; set; }
+    public AnimParamId SlopeHeadingId { get; set; }
 
     /// <summary>
-    ///     Gets or sets SlopeNormalID.
+    ///     Gets or sets SlopeNormalId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slopeNormalID</c> at offset <c>0x4C</c>.
@@ -82,10 +82,10 @@ public partial class CSlopeComponent : CAnimGraphDocComponent
     [NativeOffset(0x4C)]
     [NativeName("m_slopeNormalID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID SlopeNormalID { get; set; }
+    public AnimParamId SlopeNormalId { get; set; }
 
     /// <summary>
-    ///     Gets or sets SlopeNormalWorldSpaceID.
+    ///     Gets or sets SlopeNormalWorldSpaceId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_slopeNormal_WorldSpaceID</c> at offset <c>0x50</c>.
@@ -93,7 +93,7 @@ public partial class CSlopeComponent : CAnimGraphDocComponent
     [NativeOffset(0x50)]
     [NativeName("m_slopeNormal_WorldSpaceID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID SlopeNormalWorldSpaceID { get; set; }
+    public AnimParamId SlopeNormalWorldSpaceId { get; set; }
 
     /// <summary>
     ///     Trace Distance.

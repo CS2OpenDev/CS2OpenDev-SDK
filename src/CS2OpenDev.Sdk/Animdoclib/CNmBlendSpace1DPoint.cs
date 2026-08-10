@@ -35,7 +35,7 @@ public partial class CNmBlendSpace1DPoint
     public string Name { get; set; }
 
     /// <summary>
-    ///     Gets or sets PinID.
+    ///     Gets or sets PinId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pinID</c> at offset <c>0xC</c>.
@@ -43,7 +43,7 @@ public partial class CNmBlendSpace1DPoint
     [NativeOffset(0xC)]
     [NativeName("m_pinID")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public Guid PinID { get; set; }
+    public Guid PinId { get; set; }
 
     /// <summary>
     ///     Gets or sets Value.

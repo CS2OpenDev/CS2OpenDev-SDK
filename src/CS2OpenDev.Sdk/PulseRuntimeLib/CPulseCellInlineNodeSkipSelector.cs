@@ -46,14 +46,14 @@ public partial class CPulseCellInlineNodeSkipSelector : CPulseCellBaseFlow
     public CPulseOutflowConnection FailOutflow { get; set; }
 
     /// <summary>
-    ///     Gets or sets FlowNodeID.
+    ///     Gets or sets FlowNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nFlowNodeID</c> at offset <c>0x48</c>.
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_nFlowNodeID")]
-    public PulseDocNodeID FlowNodeID { get; set; }
+    public PulseDocNodeId FlowNodeId { get; set; }
 
     /// <summary>
     ///     Gets or sets PassOutflow.

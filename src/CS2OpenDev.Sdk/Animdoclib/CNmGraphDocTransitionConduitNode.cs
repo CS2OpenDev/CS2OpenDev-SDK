@@ -24,22 +24,22 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocTransitionConduitNode : CNmGraphDocStateMachineGraphNode
 {
     /// <summary>
-    ///     Gets or sets EndStateID.
+    ///     Gets or sets EndStateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_endStateID</c> at offset <c>0x60</c>.
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_endStateID")]
-    public Guid EndStateID { get; set; }
+    public Guid EndStateId { get; set; }
 
     /// <summary>
-    ///     Gets or sets StartStateID.
+    ///     Gets or sets StartStateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_startStateID</c> at offset <c>0x50</c>.
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_startStateID")]
-    public Guid StartStateID { get; set; }
+    public Guid StartStateId { get; set; }
 }

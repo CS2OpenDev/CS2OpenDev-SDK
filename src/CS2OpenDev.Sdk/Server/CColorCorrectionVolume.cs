@@ -78,14 +78,14 @@ public partial class CColorCorrectionVolume : CBaseTrigger
     public float LastExitWeight { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookupFilename.
+    ///     Gets or sets LookupFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookupFilename</c> at offset <c>0x8F4</c>.
     /// </remarks>
     [NativeOffset(0x8F4)]
     [NativeName("m_lookupFilename")]
-    public string LookupFilename { get; set; }
+    public string LookupFileName { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxWeight.

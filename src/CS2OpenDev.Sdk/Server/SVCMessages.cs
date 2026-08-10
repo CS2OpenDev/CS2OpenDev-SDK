@@ -229,13 +229,13 @@ public enum SVCMessages : uint
     Svc_HLTVStatus = 62,
 
     /// <summary>
-    ///     Svc_ServerSteamID.
+    ///     Svc_ServerSteamId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>svc_ServerSteamID</c>.
     /// </remarks>
     [NativeName("svc_ServerSteamID")]
-    Svc_ServerSteamID = 63,
+    Svc_ServerSteamId = 63,
 
     /// <summary>
     ///     Svc_FullFrameSplit.

@@ -94,7 +94,7 @@ public partial class C_ColorCorrectionVolume : C_BaseTrigger
     public float LastExitWeight { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookupFilename.
+    ///     Gets or sets LookupFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookupFilename</c> at offset <c>0x10B8</c>.
@@ -102,7 +102,7 @@ public partial class C_ColorCorrectionVolume : C_BaseTrigger
     [NativeOffset(0x10B8)]
     [NativeName("m_lookupFilename")]
     [NativeMetadata("MNotSaved", "")]
-    public string LookupFilename { get; set; }
+    public string LookupFileName { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxWeight.

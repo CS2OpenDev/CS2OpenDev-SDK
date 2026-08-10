@@ -41,7 +41,7 @@ public partial class CAnimGraphDocDampedPathMotor : CAnimGraphDocPathMotorBase
     [NativeName("m_anticipationHeadingParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Anticipation Heading Parameter")]
-    public AnimParamID AnticipationHeadingParam { get; set; }
+    public AnimParamId AnticipationHeadingParam { get; set; }
 
     /// <summary>
     ///     Gets or sets AnticipationHeadingParamName.
@@ -64,7 +64,7 @@ public partial class CAnimGraphDocDampedPathMotor : CAnimGraphDocPathMotorBase
     [NativeName("m_anticipationPosParam")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Anticipation Position Parameter")]
-    public AnimParamID AnticipationPosParam { get; set; }
+    public AnimParamId AnticipationPosParam { get; set; }
 
     /// <summary>
     ///     Gets or sets AnticipationPosParamName.

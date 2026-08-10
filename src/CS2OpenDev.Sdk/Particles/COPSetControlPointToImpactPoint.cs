@@ -94,7 +94,7 @@ public partial class COPSetControlPointToImpactPoint : CParticleFunctionPreEmiss
     [NativeOffset(0x3F8)]
     [NativeName("m_bSetToEndpoint")]
     [NativeMetadata("MPropertyFriendlyName", "set to trace endpoint if no collision")]
-    public bool SetToEndpoint { get; set; }
+    public bool SetToEndPoint { get; set; }
 
     /// <summary>
     ///     offset start point amount.

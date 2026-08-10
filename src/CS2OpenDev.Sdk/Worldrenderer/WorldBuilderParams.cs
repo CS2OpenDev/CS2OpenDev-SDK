@@ -65,14 +65,14 @@ public partial class WorldBuilderParams
     public ulong CompileFingerprint { get; set; }
 
     /// <summary>
-    ///     Gets or sets CompileTimestamp.
+    ///     Gets or sets CompileTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nCompileTimestamp</c> at offset <c>0x50</c>.
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_nCompileTimestamp")]
-    public ulong CompileTimestamp { get; set; }
+    public ulong CompileTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets MinDrawVolumeSize.

@@ -39,5 +39,5 @@ public enum ParticleLightnintBranchBehavior : uint
     /// </remarks>
     [NativeName("PARTICLE_LIGHTNING_BRANCH_ENDPOINT_DIR")]
     [NativeMetadata("MPropertyFriendlyName", "Branch Towards Endpoint")]
-    ParticleLightningBranchEndpointDir = 1
+    ParticleLightningBranchEndPointDir = 1
 }

@@ -41,7 +41,7 @@ public partial class CRemapValueItem
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter In")]
-    public AnimParamID FloatParamIn { get; set; }
+    public AnimParamId FloatParamIn { get; set; }
 
     /// <summary>
     ///     Gets or sets FloatParamNameIn.
@@ -76,7 +76,7 @@ public partial class CRemapValueItem
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "PrivateFloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter Out")]
-    public AnimParamID FloatParamOut { get; set; }
+    public AnimParamId FloatParamOut { get; set; }
 
     /// <summary>
     ///     Max Input Value.
@@ -145,7 +145,7 @@ public partial class CRemapValueItem
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter In")]
-    public AnimParamID VectorParamIn { get; set; }
+    public AnimParamId VectorParamIn { get; set; }
 
     /// <summary>
     ///     Gets or sets VectorParamNameIn.
@@ -180,5 +180,5 @@ public partial class CRemapValueItem
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "PrivateVectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter Out")]
-    public AnimParamID VectorParamOut { get; set; }
+    public AnimParamId VectorParamOut { get; set; }
 }

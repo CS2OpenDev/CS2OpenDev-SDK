@@ -28,7 +28,7 @@ public sealed partial record InstructorServerHintStopCoreEvent
     /// </remarks>
     [NativeName("hint_entindex")]
     [GameEventFieldType("long")]
-    public required int HintEntindex { get; init; }
+    public required int HintEntIndex { get; init; }
 
     /// <summary>
     ///     The hint to stop. Will stop ALL hints with this name.

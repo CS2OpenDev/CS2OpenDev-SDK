@@ -61,12 +61,12 @@ public sealed partial record VoteStartedCoreEvent
     public required byte Team { get; init; }
 
     /// <summary>
-    ///     Votedata.
+    ///     VoteData.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>votedata</c> — KV1 type <c>string</c>.
     /// </remarks>
     [NativeName("votedata")]
     [GameEventFieldType("string")]
-    public required string Votedata { get; init; }
+    public required string VoteData { get; init; }
 }

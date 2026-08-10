@@ -25,24 +25,24 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class PulseGraphExecutionHistoryEntry
 {
     /// <summary>
-    ///     Gets or sets CursorID.
+    ///     Gets or sets CursorId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>nCursorID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("nCursorID")]
-    public PulseCursorID CursorID { get; set; }
+    public PulseCursorId CursorId { get; set; }
 
     /// <summary>
-    ///     Gets or sets EditorID.
+    ///     Gets or sets EditorId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>nEditorID</c> at offset <c>0x4</c>.
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("nEditorID")]
-    public PulseDocNodeID EditorID { get; set; }
+    public PulseDocNodeId EditorId { get; set; }
 
     /// <summary>
     ///     Gets or sets ExecTime.

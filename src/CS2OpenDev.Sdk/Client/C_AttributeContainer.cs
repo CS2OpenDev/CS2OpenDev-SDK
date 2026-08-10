@@ -42,12 +42,12 @@ public partial class C_AttributeContainer : CAttributeManager
     public C_EconItemView Item { get; set; }
 
     /// <summary>
-    ///     Gets or sets UllRegisteredAsItemID.
+    ///     Gets or sets UllRegisteredAsItemId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_ullRegisteredAsItemID</c> at offset <c>0x4C8</c>.
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_ullRegisteredAsItemID")]
-    public ulong UllRegisteredAsItemID { get; set; }
+    public ulong UllRegisteredAsItemId { get; set; }
 }

@@ -110,14 +110,14 @@ public partial class CStateUpdateData
     public AnimScriptHandle Script { get; set; }
 
     /// <summary>
-    ///     Gets or sets StateID.
+    ///     Gets or sets StateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_stateID</c> at offset <c>0x40</c>.
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_stateID")]
-    public AnimStateID StateID { get; set; }
+    public AnimStateId StateId { get; set; }
 
     /// <summary>
     ///     Gets or sets TransitionIndices.

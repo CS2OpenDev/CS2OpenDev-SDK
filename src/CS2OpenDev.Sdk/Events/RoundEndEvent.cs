@@ -48,7 +48,7 @@ public sealed partial record RoundEndEvent
     /// </remarks>
     [NativeName("nomusic")]
     [GameEventFieldType("byte")]
-    public required byte Nomusic { get; init; }
+    public required byte NoMusic { get; init; }
 
     /// <summary>
     ///     total number of players alive at the end of round, used for statistics gathering, computed on the server in the event client is in replay when receiving this message.

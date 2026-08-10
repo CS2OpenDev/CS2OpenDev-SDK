@@ -31,22 +31,22 @@ public enum InputLayoutVariation : byte
     InputLayoutVariationDefault = 0,
 
     /// <summary>
-    ///     InputLayoutVariationStream1Instanceid.
+    ///     InputLayoutVariationStream1InstanceId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID</c>.
     /// </remarks>
     [NativeName("INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID")]
-    InputLayoutVariationStream1Instanceid = 1,
+    InputLayoutVariationStream1InstanceId = 1,
 
     /// <summary>
-    ///     InputLayoutVariationStream1InstanceidMorphVertId.
+    ///     InputLayoutVariationStream1InstanceIdMorphVertId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID_MORPH_VERT_ID</c>.
     /// </remarks>
     [NativeName("INPUT_LAYOUT_VARIATION_STREAM1_INSTANCEID_MORPH_VERT_ID")]
-    InputLayoutVariationStream1InstanceidMorphVertId = 2,
+    InputLayoutVariationStream1InstanceIdMorphVertId = 2,
 
     /// <summary>
     ///     InputLayoutVariationMax.

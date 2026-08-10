@@ -31,13 +31,13 @@ public enum EntityIOTargetType : uint
     EntityIoTargetInvalid = 4294967295,
 
     /// <summary>
-    ///     EntityIoTargetEntityname.
+    ///     EntityIoTargetEntityName.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ENTITY_IO_TARGET_ENTITYNAME</c>.
     /// </remarks>
     [NativeName("ENTITY_IO_TARGET_ENTITYNAME")]
-    EntityIoTargetEntityname = 2,
+    EntityIoTargetEntityName = 2,
 
     /// <summary>
     ///     EntityIoTargetEhandle.
@@ -49,11 +49,11 @@ public enum EntityIOTargetType : uint
     EntityIoTargetEhandle = 6,
 
     /// <summary>
-    ///     EntityIoTargetEntitynameOrClassname.
+    ///     EntityIoTargetEntityNameOrClassName.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ENTITY_IO_TARGET_ENTITYNAME_OR_CLASSNAME</c>.
     /// </remarks>
     [NativeName("ENTITY_IO_TARGET_ENTITYNAME_OR_CLASSNAME")]
-    EntityIoTargetEntitynameOrClassname = 7
+    EntityIoTargetEntityNameOrClassName = 7
 }

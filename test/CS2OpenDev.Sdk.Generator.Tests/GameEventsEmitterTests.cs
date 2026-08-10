@@ -71,7 +71,7 @@ public class GameEventsEmitterTests
             """);
 
         string src = result.Files["Events/XEvent"];
-        await Assert.That(src).Contains("public required int Userid { get; init; }");
+        await Assert.That(src).Contains("public required int UserId { get; init; }");
     }
 
     /// <summary>Field-level `[NativeName]` and `[GameEventFieldType]` round-trip the raw KV1 name and tag.</summary>
@@ -94,7 +94,7 @@ public class GameEventsEmitterTests
 
     /// <summary>Snake-case field names fold into PascalCase property names (matches the rest of the SDK's name handling).</summary>
     [Test]
-    [Arguments("userid", "Userid")]
+    [Arguments("userid", "UserId")]
     [Arguments("dmg_health", "DmgHealth")]
     [Arguments("weapon_originalowner_xuid", "WeaponOriginalownerXuid")]
     public async Task Emit_FieldName_FoldsSnakeToPascal(string rawName, string propName)
@@ -430,7 +430,7 @@ public class GameEventsEmitterTests
             """);
 
         string src = result.Files["SchemaEvents"];
-        await Assert.That(src).Contains("public const string Userid = \"userid\";");
+        await Assert.That(src).Contains("public const string UserId = \"userid\";");
         await Assert.That(src).Contains("public const string DmgHealth = \"dmg_health\";");
     }
 

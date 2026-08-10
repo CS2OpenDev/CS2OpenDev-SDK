@@ -20,6 +20,6 @@ namespace CS2OpenSchema.Server;
 /// </remarks>
 [NativeSize(1192)]
 [NativeName("CCSGO_EndOfMatchLineupStart")]
-public partial class CCSGOEndOfMatchLineupStart : CCSGOEndOfMatchLineupEndpoint
+public partial class CCSGOEndOfMatchLineupStart : CCSGOEndOfMatchLineupEndPoint
 {
 }

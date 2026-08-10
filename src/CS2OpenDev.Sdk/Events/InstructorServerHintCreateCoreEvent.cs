@@ -38,7 +38,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_activator_userid")]
     [GameEventFieldType("player_controller")]
-    public required int HintActivatorUserid { get; init; }
+    public required int HintActivatorUserId { get; init; }
 
     /// <summary>
     ///     if false, the hint will dissappear if the target entity is invisible.
@@ -88,7 +88,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_entindex")]
     [GameEventFieldType("long")]
-    public required int HintEntindex { get; init; }
+    public required int HintEntIndex { get; init; }
 
     /// <summary>
     ///     hint flags.
@@ -288,5 +288,5 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

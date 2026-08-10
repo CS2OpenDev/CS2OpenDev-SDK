@@ -214,12 +214,12 @@ public partial class C_EconEntity : CBaseAnimGraph
     public int UnloadedModelIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets ViewmodelAttachment.
+    ///     Gets or sets ViewModelAttachment.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hViewmodelAttachment</c> at offset <c>0x16B0</c>.
     /// </remarks>
     [NativeOffset(0x16B0)]
     [NativeName("m_hViewmodelAttachment")]
-    public CHandle__CBaseAnimGraph__ ViewmodelAttachment { get; set; }
+    public CHandle__CBaseAnimGraph__ ViewModelAttachment { get; set; }
 }

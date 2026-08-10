@@ -22,24 +22,24 @@ namespace CS2OpenSchema.Server;
 public partial class CCSPlayerResource : CBaseEntity
 {
     /// <summary>
-    ///     Gets or sets BombsiteCenterA.
+    ///     Gets or sets BombSiteCenterA.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bombsiteCenterA</c> at offset <c>0x4F0</c>.
     /// </remarks>
     [NativeOffset(0x4F0)]
     [NativeName("m_bombsiteCenterA")]
-    public VectorWS BombsiteCenterA { get; set; }
+    public VectorWS BombSiteCenterA { get; set; }
 
     /// <summary>
-    ///     Gets or sets BombsiteCenterB.
+    ///     Gets or sets BombSiteCenterB.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bombsiteCenterB</c> at offset <c>0x4FC</c>.
     /// </remarks>
     [NativeOffset(0x4FC)]
     [NativeName("m_bombsiteCenterB")]
-    public VectorWS BombsiteCenterB { get; set; }
+    public VectorWS BombSiteCenterB { get; set; }
 
     /// <summary>
     ///     Gets or sets EndMatchNextMapAllVoted.

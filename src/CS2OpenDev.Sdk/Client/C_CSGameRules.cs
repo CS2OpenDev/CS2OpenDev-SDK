@@ -469,44 +469,44 @@ public partial class C_CSGameRules : C_TeamplayRules
     public bool MatchWaitingForResume { get; set; }
 
     /// <summary>
-    ///     Gets or sets MinimapMaxs.
+    ///     Gets or sets MiniMapMaxs.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vMinimapMaxs</c> at offset <c>0xC2C</c>.
     /// </remarks>
     [NativeOffset(0xC2C)]
     [NativeName("m_vMinimapMaxs")]
-    public VectorWS MinimapMaxs { get; set; }
+    public VectorWS MiniMapMaxs { get; set; }
 
     /// <summary>
-    ///     Gets or sets MinimapMins.
+    ///     Gets or sets MiniMapMins.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vMinimapMins</c> at offset <c>0xC20</c>.
     /// </remarks>
     [NativeOffset(0xC20)]
     [NativeName("m_vMinimapMins")]
-    public VectorWS MinimapMins { get; set; }
+    public VectorWS MiniMapMins { get; set; }
 
     /// <summary>
-    ///     Gets or sets MinimapVerticalSectionHeights.
+    ///     Gets or sets MiniMapVerticalSectionHeights.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_MinimapVerticalSectionHeights</c> at offset <c>0xC38</c>.
     /// </remarks>
     [NativeOffset(0xC38)]
     [NativeName("m_MinimapVerticalSectionHeights")]
-    public float[] MinimapVerticalSectionHeights { get; set; }
+    public float[] MiniMapVerticalSectionHeights { get; set; }
 
     /// <summary>
-    ///     Gets or sets NextMapInMapgroup.
+    ///     Gets or sets NextMapInMapGroup.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nNextMapInMapgroup</c> at offset <c>0xB4</c>.
     /// </remarks>
     [NativeOffset(0xB4)]
     [NativeName("m_nNextMapInMapgroup")]
-    public int NextMapInMapgroup { get; set; }
+    public int NextMapInMapGroup { get; set; }
 
     /// <summary>
     ///     Gets or sets NextRespawnWave.
@@ -689,14 +689,14 @@ public partial class C_CSGameRules : C_TeamplayRules
     public int RoundEndReason { get; set; }
 
     /// <summary>
-    ///     Gets or sets RoundEndShowTimerDefend.
+    ///     Gets or sets RoundEndShowTimerDefEnd.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRoundEndShowTimerDefend</c> at offset <c>0xF10</c>.
     /// </remarks>
     [NativeOffset(0xF10)]
     [NativeName("m_bRoundEndShowTimerDefend")]
-    public bool RoundEndShowTimerDefend { get; set; }
+    public bool RoundEndShowTimerDefEnd { get; set; }
 
     /// <summary>
     ///     Gets or sets RoundEndTimerTime.
@@ -969,14 +969,14 @@ public partial class C_CSGameRules : C_TeamplayRules
     public string TournamentPredictionsTxt { get; set; }
 
     /// <summary>
-    ///     Gets or sets UllLocalMatchID.
+    ///     Gets or sets UllLocalMatchId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_ullLocalMatchID</c> at offset <c>0xC58</c>.
     /// </remarks>
     [NativeOffset(0xC58)]
     [NativeName("m_ullLocalMatchID")]
-    public ulong UllLocalMatchID { get; set; }
+    public ulong UllLocalMatchId { get; set; }
 
     /// <summary>
     ///     Gets or sets WarmupPeriod.

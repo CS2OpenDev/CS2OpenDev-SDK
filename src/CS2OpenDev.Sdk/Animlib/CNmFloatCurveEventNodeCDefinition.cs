@@ -55,12 +55,12 @@ public partial class CNmFloatCurveEventNodeCDefinition : CNmFloatValueNodeCDefin
     public CNmBitFlags EventConditionRules { get; set; }
 
     /// <summary>
-    ///     Gets or sets EventID.
+    ///     Gets or sets EventId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_eventID</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_eventID")]
-    public string EventID { get; set; }
+    public string EventId { get; set; }
 }

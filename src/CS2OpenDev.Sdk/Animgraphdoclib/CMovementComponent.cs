@@ -85,5 +85,5 @@ public partial class CMovementComponent : CAnimGraphDocComponent
     [NativeOffset(0x74)]
     [NativeName("m_paramIDs")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimParamID[] ParamIDs { get; set; }
+    public AnimParamId[] ParamIDs { get; set; }
 }

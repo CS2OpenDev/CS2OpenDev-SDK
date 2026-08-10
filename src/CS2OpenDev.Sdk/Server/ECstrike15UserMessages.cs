@@ -282,22 +282,22 @@ public enum ECstrike15UserMessages : uint
     CS_UM_KillCam = 330,
 
     /// <summary>
-    ///     CS_UM_DesiredTimescale.
+    ///     CS_UM_DesiredTimeScale.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CS_UM_DesiredTimescale</c>.
     /// </remarks>
     [NativeName("CS_UM_DesiredTimescale")]
-    CS_UM_DesiredTimescale = 331,
+    CS_UM_DesiredTimeScale = 331,
 
     /// <summary>
-    ///     CS_UM_CurrentTimescale.
+    ///     CS_UM_CurrentTimeScale.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CS_UM_CurrentTimescale</c>.
     /// </remarks>
     [NativeName("CS_UM_CurrentTimescale")]
-    CS_UM_CurrentTimescale = 332,
+    CS_UM_CurrentTimeScale = 332,
 
     /// <summary>
     ///     CS_UM_AchievementEvent.

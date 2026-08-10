@@ -138,12 +138,12 @@ public partial class CBtActionAim : CBtNode
     public CountdownTimer SniperHoldTimer { get; set; }
 
     /// <summary>
-    ///     Gets or sets ZoomCooldownTimestamp.
+    ///     Gets or sets ZoomCooldownTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flZoomCooldownTimestamp</c> at offset <c>0x88</c>.
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_flZoomCooldownTimestamp")]
-    public float ZoomCooldownTimestamp { get; set; }
+    public float ZoomCooldownTimeStamp { get; set; }
 }

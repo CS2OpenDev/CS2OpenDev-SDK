@@ -48,7 +48,7 @@ public sealed partial record PlayerConnectEvent
     /// </remarks>
     [NativeName("networkid")]
     [GameEventFieldType("string")]
-    public required string Networkid { get; init; }
+    public required string NetworkId { get; init; }
 
     /// <summary>
     ///     user ID on server (unique on server).
@@ -58,7 +58,7 @@ public sealed partial record PlayerConnectEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     steam id.

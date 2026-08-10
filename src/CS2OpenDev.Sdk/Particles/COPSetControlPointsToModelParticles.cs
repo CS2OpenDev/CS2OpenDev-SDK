@@ -77,7 +77,7 @@ public partial class COPSetControlPointsToModelParticles : CParticleFunctionOper
     [NativeOffset(0x1D8)]
     [NativeName("m_HitboxSetName")]
     [NativeMetadata("MPropertyFriendlyName", "hitbox set")]
-    public string HitboxSetName { get; set; }
+    public string HitBoxSetName { get; set; }
 
     /// <summary>
     ///     # of control points to set.

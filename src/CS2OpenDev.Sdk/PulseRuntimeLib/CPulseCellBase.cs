@@ -24,7 +24,7 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class CPulseCellBase
 {
     /// <summary>
-    ///     Gets or sets EditorNodeID.
+    ///     Gets or sets EditorNodeId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nEditorNodeID</c> at offset <c>0x8</c>.
@@ -32,5 +32,5 @@ public partial class CPulseCellBase
     [NativeOffset(0x8)]
     [NativeName("m_nEditorNodeID")]
     [NativeMetadata("MFgdFromSchemaCompletelySkipField", "")]
-    public PulseDocNodeID EditorNodeID { get; set; }
+    public PulseDocNodeId EditorNodeId { get; set; }
 }

@@ -52,12 +52,12 @@ public abstract partial class C_BaseClientUIEntity : C_BaseModelEntity
     public string PanelClassName { get; set; }
 
     /// <summary>
-    ///     Gets or sets PanelID.
+    ///     Gets or sets PanelId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_PanelID</c> at offset <c>0xFD0</c>.
     /// </remarks>
     [NativeOffset(0xFD0)]
     [NativeName("m_PanelID")]
-    public string PanelID { get; set; }
+    public string PanelId { get; set; }
 }

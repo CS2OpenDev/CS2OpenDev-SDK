@@ -544,22 +544,22 @@ public enum PulseInstructionCode : ushort
     AddVec4 = 57,
 
     /// <summary>
-    ///     AddGametimeFloat.
+    ///     AddGameTimeFloat.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ADD_GAMETIME_FLOAT</c>.
     /// </remarks>
     [NativeName("ADD_GAMETIME_FLOAT")]
-    AddGametimeFloat = 58,
+    AddGameTimeFloat = 58,
 
     /// <summary>
-    ///     AddFloatGametime.
+    ///     AddFloatGameTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ADD_FLOAT_GAMETIME</c>.
     /// </remarks>
     [NativeName("ADD_FLOAT_GAMETIME")]
-    AddFloatGametime = 59,
+    AddFloatGameTime = 59,
 
     /// <summary>
     ///     SubInt.
@@ -625,22 +625,22 @@ public enum PulseInstructionCode : ushort
     SubVec4 = 66,
 
     /// <summary>
-    ///     SubGametimeFloat.
+    ///     SubGameTimeFloat.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SUB_GAMETIME_FLOAT</c>.
     /// </remarks>
     [NativeName("SUB_GAMETIME_FLOAT")]
-    SubGametimeFloat = 67,
+    SubGameTimeFloat = 67,
 
     /// <summary>
-    ///     SubGametime.
+    ///     SubGameTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SUB_GAMETIME</c>.
     /// </remarks>
     [NativeName("SUB_GAMETIME")]
-    SubGametime = 68,
+    SubGameTime = 68,
 
     /// <summary>
     ///     MulInt.
@@ -706,13 +706,13 @@ public enum PulseInstructionCode : ushort
     LtFloat = 75,
 
     /// <summary>
-    ///     LtGametime.
+    ///     LtGameTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LT_GAMETIME</c>.
     /// </remarks>
     [NativeName("LT_GAMETIME")]
-    LtGametime = 76,
+    LtGameTime = 76,
 
     /// <summary>
     ///     LteInt.
@@ -733,13 +733,13 @@ public enum PulseInstructionCode : ushort
     LteFloat = 78,
 
     /// <summary>
-    ///     LteGametime.
+    ///     LteGameTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LTE_GAMETIME</c>.
     /// </remarks>
     [NativeName("LTE_GAMETIME")]
-    LteGametime = 79,
+    LteGameTime = 79,
 
     /// <summary>
     ///     EqBool.
@@ -886,13 +886,13 @@ public enum PulseInstructionCode : ushort
     EqArray = 95,
 
     /// <summary>
-    ///     EqGametime.
+    ///     EqGameTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>EQ_GAMETIME</c>.
     /// </remarks>
     [NativeName("EQ_GAMETIME")]
-    EqGametime = 96,
+    EqGameTime = 96,
 
     /// <summary>
     ///     NeBool.
@@ -1039,13 +1039,13 @@ public enum PulseInstructionCode : ushort
     NeArray = 112,
 
     /// <summary>
-    ///     NeGametime.
+    ///     NeGameTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NE_GAMETIME</c>.
     /// </remarks>
     [NativeName("NE_GAMETIME")]
-    NeGametime = 113,
+    NeGameTime = 113,
 
     /// <summary>
     ///     ScaleVec3.

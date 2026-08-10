@@ -37,5 +37,5 @@ public sealed partial record AchievementEarnedLocalEvent
     /// </remarks>
     [NativeName("splitscreenplayer")]
     [GameEventFieldType("short")]
-    public required short Splitscreenplayer { get; init; }
+    public required short SplitScreenPlayer { get; init; }
 }

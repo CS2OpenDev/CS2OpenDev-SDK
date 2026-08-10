@@ -24,14 +24,14 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocTargetControlParameterNode : CNmGraphDocControlParameterNode
 {
     /// <summary>
-    ///     Gets or sets IsBoneID.
+    ///     Gets or sets IsBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bIsBoneID</c> at offset <c>0x119</c>.
     /// </remarks>
     [NativeOffset(0x119)]
     [NativeName("m_bIsBoneID")]
-    public bool IsBoneID { get; set; }
+    public bool IsBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets IsSet.
@@ -44,14 +44,14 @@ public partial class CNmGraphDocTargetControlParameterNode : CNmGraphDocControlP
     public bool IsSet { get; set; }
 
     /// <summary>
-    ///     Gets or sets PreviewStartBoneID.
+    ///     Gets or sets PreviewStartBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_previewStartBoneID</c> at offset <c>0x138</c>.
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_previewStartBoneID")]
-    public string PreviewStartBoneID { get; set; }
+    public string PreviewStartBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetOrientation.

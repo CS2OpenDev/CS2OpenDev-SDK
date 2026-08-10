@@ -58,11 +58,11 @@ public enum Touch : uint
     Player_or_npc = 3,
 
     /// <summary>
-    ///     Player_or_npc_or_physicsprop.
+    ///     Player_Or_Npc_Or_PhysicsProp.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>touch_player_or_npc_or_physicsprop</c>.
     /// </remarks>
     [NativeName("touch_player_or_npc_or_physicsprop")]
-    Player_or_npc_or_physicsprop = 4
+    Player_Or_Npc_Or_PhysicsProp = 4
 }

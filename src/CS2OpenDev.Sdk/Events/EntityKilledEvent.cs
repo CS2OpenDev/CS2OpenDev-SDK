@@ -30,32 +30,32 @@ public sealed partial record EntityKilledEvent
     public required int Damagebits { get; init; }
 
     /// <summary>
-    ///     EntindexAttacker.
+    ///     EntIndexAttacker.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entindex_attacker</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("entindex_attacker")]
     [GameEventFieldType("long")]
-    public required int EntindexAttacker { get; init; }
+    public required int EntIndexAttacker { get; init; }
 
     /// <summary>
-    ///     EntindexInflictor.
+    ///     EntIndexInflictor.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entindex_inflictor</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("entindex_inflictor")]
     [GameEventFieldType("long")]
-    public required int EntindexInflictor { get; init; }
+    public required int EntIndexInflictor { get; init; }
 
     /// <summary>
-    ///     EntindexKilled.
+    ///     EntIndexKilled.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>entindex_killed</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("entindex_killed")]
     [GameEventFieldType("long")]
-    public required int EntindexKilled { get; init; }
+    public required int EntIndexKilled { get; init; }
 }

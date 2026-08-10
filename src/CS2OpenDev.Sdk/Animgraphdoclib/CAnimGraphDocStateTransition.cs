@@ -51,7 +51,7 @@ public partial class CAnimGraphDocStateTransition
     [NativeOffset(0x5C)]
     [NativeName("m_destState")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimStateID DestState { get; set; }
+    public AnimStateId DestState { get; set; }
 
     /// <summary>
     ///     Disable.
@@ -86,5 +86,5 @@ public partial class CAnimGraphDocStateTransition
     [NativeOffset(0x58)]
     [NativeName("m_srcState")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public AnimStateID SrcState { get; set; }
+    public AnimStateId SrcState { get; set; }
 }

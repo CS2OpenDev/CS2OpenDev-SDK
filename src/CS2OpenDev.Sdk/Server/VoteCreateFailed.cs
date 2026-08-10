@@ -166,13 +166,13 @@ public enum VoteCreateFailed : uint
     VoteFailedFailedRecentKick = 15,
 
     /// <summary>
-    ///     VoteFailedFailedRecentChangemap.
+    ///     VoteFailedFailedRecentChangeMap.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_FAILED_RECENT_CHANGEMAP</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_FAILED_RECENT_CHANGEMAP")]
-    VoteFailedFailedRecentChangemap = 16,
+    VoteFailedFailedRecentChangeMap = 16,
 
     /// <summary>
     ///     VoteFailedFailedRecentSwapteams.
@@ -220,13 +220,13 @@ public enum VoteCreateFailed : uint
     VoteFailedDisabled = 21,
 
     /// <summary>
-    ///     VoteFailedNextlevelSet.
+    ///     VoteFailedNextLevelSet.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_NEXTLEVEL_SET</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_NEXTLEVEL_SET")]
-    VoteFailedNextlevelSet = 22,
+    VoteFailedNextLevelSet = 22,
 
     /// <summary>
     ///     VoteFailedTooEarlySurrender.

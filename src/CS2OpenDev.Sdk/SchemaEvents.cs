@@ -29,7 +29,7 @@ public static class SchemaEvents
         public const string EventName = "achievement_earned_local";
 
         public const string Achievement = "achievement";
-        public const string Splitscreenplayer = "splitscreenplayer";
+        public const string SplitScreenPlayer = "splitscreenplayer";
     }
 
     public static class AchievementEventEvent
@@ -66,7 +66,7 @@ public static class SchemaEvents
         public const string StartX = "start_x";
         public const string StartY = "start_y";
         public const string StartZ = "start_z";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class AddPlayerSonarIconEvent
@@ -76,7 +76,7 @@ public static class SchemaEvents
         public const string PosX = "pos_x";
         public const string PosY = "pos_y";
         public const string PosZ = "pos_z";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class AmmoPickupEvent
@@ -85,7 +85,7 @@ public static class SchemaEvents
 
         public const string Index = "index";
         public const string Item = "item";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class AmmoRefillEvent
@@ -93,7 +93,7 @@ public static class SchemaEvents
         public const string EventName = "ammo_refill";
 
         public const string Success = "success";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class AnnouncePhaseEndEvent
@@ -110,7 +110,7 @@ public static class SchemaEvents
     {
         public const string EventName = "bomb_abortdefuse";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BombAbortplantEvent
@@ -118,22 +118,22 @@ public static class SchemaEvents
         public const string EventName = "bomb_abortplant";
 
         public const string Site = "site";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BombBeepEvent
     {
         public const string EventName = "bomb_beep";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
     }
 
     public static class BombBegindefuseEvent
     {
         public const string EventName = "bomb_begindefuse";
 
-        public const string Haskit = "haskit";
-        public const string Userid = "userid";
+        public const string HasKit = "haskit";
+        public const string UserId = "userid";
     }
 
     public static class BombBeginplantEvent
@@ -141,7 +141,7 @@ public static class SchemaEvents
         public const string EventName = "bomb_beginplant";
 
         public const string Site = "site";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BombDefusedEvent
@@ -150,15 +150,15 @@ public static class SchemaEvents
 
         public const string C4 = "c4";
         public const string Site = "site";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BombDroppedEvent
     {
         public const string EventName = "bomb_dropped";
 
-        public const string Entindex = "entindex";
-        public const string Userid = "userid";
+        public const string EntIndex = "entindex";
+        public const string UserId = "userid";
     }
 
     public static class BombExplodedEvent
@@ -167,14 +167,14 @@ public static class SchemaEvents
 
         public const string C4 = "c4";
         public const string Site = "site";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BombPickupEvent
     {
         public const string EventName = "bomb_pickup";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BombPlantedEvent
@@ -183,17 +183,17 @@ public static class SchemaEvents
 
         public const string C4 = "c4";
         public const string Site = "site";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BonusUpdatedEvent
     {
         public const string EventName = "bonus_updated";
 
-        public const string Numadvanced = "numadvanced";
-        public const string Numbronze = "numbronze";
-        public const string Numgold = "numgold";
-        public const string Numsilver = "numsilver";
+        public const string NumAdvanced = "numadvanced";
+        public const string NumBronze = "numbronze";
+        public const string NumGold = "numgold";
+        public const string NumSilver = "numsilver";
     }
 
     public static class BotTakeoverEvent
@@ -203,7 +203,7 @@ public static class SchemaEvents
         public const string Botid = "botid";
         public const string P = "p";
         public const string R = "r";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Y = "y";
     }
 
@@ -211,37 +211,37 @@ public static class SchemaEvents
     {
         public const string EventName = "break_breakable";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
         public const string Material = "material";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BreakPropCoreEvent
     {
         public const string EventName = "break_prop";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
         public const string PlayerDropped = "player_dropped";
         public const string PlayerHeld = "player_held";
         public const string PlayerThrown = "player_thrown";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BreakPropEvent
     {
         public const string EventName = "break_prop";
 
-        public const string Entindex = "entindex";
-        public const string Userid = "userid";
+        public const string EntIndex = "entindex";
+        public const string UserId = "userid";
     }
 
     public static class BrokenBreakableEvent
     {
         public const string EventName = "broken_breakable";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
         public const string Material = "material";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BulletDamageEvent
@@ -278,7 +278,7 @@ public static class SchemaEvents
     {
         public const string EventName = "bullet_impact";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -288,7 +288,7 @@ public static class SchemaEvents
     {
         public const string EventName = "buymenu_close";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class BuymenuOpenEvent
@@ -334,7 +334,7 @@ public static class SchemaEvents
     {
         public const string EventName = "clientside_reload_custom_econ";
 
-        public const string Steamid = "steamid";
+        public const string SteamId = "steamid";
     }
 
     public static class CsGameDisconnectedEvent
@@ -390,7 +390,7 @@ public static class SchemaEvents
         public const string FunfactPlayer = "funfact_player";
         public const string FunfactToken = "funfact_token";
         public const string ShowTimerAttack = "show_timer_attack";
-        public const string ShowTimerDefend = "show_timer_defend";
+        public const string ShowTimerDefEnd = "show_timer_defend";
         public const string TimerTime = "timer_time";
     }
 
@@ -398,8 +398,8 @@ public static class SchemaEvents
     {
         public const string EventName = "decoy_detonate";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -409,8 +409,8 @@ public static class SchemaEvents
     {
         public const string EventName = "decoy_firing";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -420,8 +420,8 @@ public static class SchemaEvents
     {
         public const string EventName = "decoy_started";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -431,15 +431,15 @@ public static class SchemaEvents
     {
         public const string EventName = "defuser_dropped";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
     }
 
     public static class DefuserPickupEvent
     {
         public const string EventName = "defuser_pickup";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
     }
 
     public static class DemoSkipEvent
@@ -487,8 +487,8 @@ public static class SchemaEvents
     {
         public const string EventName = "door_break";
 
-        public const string Dmgstate = "dmgstate";
-        public const string Entindex = "entindex";
+        public const string DmgState = "dmgstate";
+        public const string EntIndex = "entindex";
     }
 
     public static class DoorCloseEvent
@@ -496,31 +496,31 @@ public static class SchemaEvents
         public const string EventName = "door_close";
 
         public const string Checkpoint = "checkpoint";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class DoorClosedEvent
     {
         public const string EventName = "door_closed";
 
-        public const string Entindex = "entindex";
-        public const string Userid = "userid";
+        public const string EntIndex = "entindex";
+        public const string UserId = "userid";
     }
 
     public static class DoorMovingEvent
     {
         public const string EventName = "door_moving";
 
-        public const string Entindex = "entindex";
-        public const string Userid = "userid";
+        public const string EntIndex = "entindex";
+        public const string UserId = "userid";
     }
 
     public static class DoorOpenEvent
     {
         public const string EventName = "door_open";
 
-        public const string Entindex = "entindex";
-        public const string Userid = "userid";
+        public const string EntIndex = "entindex";
+        public const string UserId = "userid";
     }
 
     public static class DroneAboveRoofEvent
@@ -528,7 +528,7 @@ public static class SchemaEvents
         public const string EventName = "drone_above_roof";
 
         public const string Cargo = "cargo";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class DroneCargoDetachedEvent
@@ -537,7 +537,7 @@ public static class SchemaEvents
 
         public const string Cargo = "cargo";
         public const string Delivered = "delivered";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class DroneDispatchedEvent
@@ -546,14 +546,14 @@ public static class SchemaEvents
 
         public const string DroneDispatched = "drone_dispatched";
         public const string Priority = "priority";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class DronegunAttackEvent
     {
         public const string EventName = "dronegun_attack";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class DropRateModifiedEvent
@@ -572,7 +572,7 @@ public static class SchemaEvents
 
         public const string Subject = "subject";
         public const string Type = "type";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class EnableRestartVotingEvent
@@ -582,12 +582,12 @@ public static class SchemaEvents
         public const string Enable = "enable";
     }
 
-    public static class EndmatchCmmStartRevealItemsEvent
+    public static class EndMatchCmmStartRevealItemsEvent
     {
         public const string EventName = "endmatch_cmm_start_reveal_items";
     }
 
-    public static class EndmatchMapvoteSelectingMapEvent
+    public static class EndMatchMapVoteSelectingMapEvent
     {
         public const string EventName = "endmatch_mapvote_selecting_map";
 
@@ -608,9 +608,9 @@ public static class SchemaEvents
     {
         public const string EventName = "enter_bombzone";
 
-        public const string Hasbomb = "hasbomb";
-        public const string Isplanted = "isplanted";
-        public const string Userid = "userid";
+        public const string HasBomb = "hasbomb";
+        public const string IsPlanted = "isplanted";
+        public const string UserId = "userid";
     }
 
     public static class EnterBuyzoneEvent
@@ -618,14 +618,14 @@ public static class SchemaEvents
         public const string EventName = "enter_buyzone";
 
         public const string Canbuy = "canbuy";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class EnterRescueZoneEvent
     {
         public const string EventName = "enter_rescue_zone";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class EntityKilledEvent
@@ -633,29 +633,29 @@ public static class SchemaEvents
         public const string EventName = "entity_killed";
 
         public const string Damagebits = "damagebits";
-        public const string EntindexAttacker = "entindex_attacker";
-        public const string EntindexInflictor = "entindex_inflictor";
-        public const string EntindexKilled = "entindex_killed";
+        public const string EntIndexAttacker = "entindex_attacker";
+        public const string EntIndexInflictor = "entindex_inflictor";
+        public const string EntIndexKilled = "entindex_killed";
     }
 
     public static class EntityVisibleCoreEvent
     {
         public const string EventName = "entity_visible";
 
-        public const string Classname = "classname";
-        public const string Entityname = "entityname";
+        public const string ClassName = "classname";
+        public const string EntityName = "entityname";
         public const string Subject = "subject";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class EntityVisibleEvent
     {
         public const string EventName = "entity_visible";
 
-        public const string Classname = "classname";
-        public const string Entityname = "entityname";
+        public const string ClassName = "classname";
+        public const string EntityName = "entityname";
         public const string Subject = "subject";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class EventTicketModifiedEvent
@@ -667,9 +667,9 @@ public static class SchemaEvents
     {
         public const string EventName = "exit_bombzone";
 
-        public const string Hasbomb = "hasbomb";
-        public const string Isplanted = "isplanted";
-        public const string Userid = "userid";
+        public const string HasBomb = "hasbomb";
+        public const string IsPlanted = "isplanted";
+        public const string UserId = "userid";
     }
 
     public static class ExitBuyzoneEvent
@@ -677,14 +677,14 @@ public static class SchemaEvents
         public const string EventName = "exit_buyzone";
 
         public const string Canbuy = "canbuy";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ExitRescueZoneEvent
     {
         public const string EventName = "exit_rescue_zone";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class FinaleStartEvent
@@ -705,15 +705,15 @@ public static class SchemaEvents
     {
         public const string EventName = "flare_ignite_npc";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
     }
 
     public static class FlashbangDetonateEvent
     {
         public const string EventName = "flashbang_detonate";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -739,19 +739,19 @@ public static class SchemaEvents
         public const string Text = "text";
     }
 
-    public static class GameNewmapCoreEvent
+    public static class GameNewMapCoreEvent
     {
         public const string EventName = "game_newmap";
 
-        public const string Mapname = "mapname";
+        public const string MapName = "mapname";
         public const string Transition = "transition";
     }
 
-    public static class GameNewmapEvent
+    public static class GameNewMapEvent
     {
         public const string EventName = "game_newmap";
 
-        public const string Mapname = "mapname";
+        public const string MapName = "mapname";
     }
 
     public static class GamePhaseChangedEvent
@@ -765,10 +765,10 @@ public static class SchemaEvents
     {
         public const string EventName = "game_start";
 
-        public const string Fraglimit = "fraglimit";
+        public const string FragLimit = "fraglimit";
         public const string Objective = "objective";
-        public const string Roundslimit = "roundslimit";
-        public const string Timelimit = "timelimit";
+        public const string RoundsLimit = "roundslimit";
+        public const string TimeLimit = "timelimit";
     }
 
     public static class GameinstructorDrawEvent
@@ -795,25 +795,25 @@ public static class SchemaEvents
     {
         public const string EventName = "gg_killed_enemy";
 
-        public const string Attackerid = "attackerid";
+        public const string AttackerId = "attackerid";
         public const string Bonus = "bonus";
         public const string Dominated = "dominated";
         public const string Revenge = "revenge";
-        public const string Victimid = "victimid";
+        public const string VictimId = "victimid";
     }
 
     public static class GrenadeBounceEvent
     {
         public const string EventName = "grenade_bounce";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class GrenadeThrownEvent
     {
         public const string EventName = "grenade_thrown";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
     }
 
@@ -826,8 +826,8 @@ public static class SchemaEvents
     {
         public const string EventName = "hegrenade_detonate";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -847,16 +847,16 @@ public static class SchemaEvents
     {
         public const string EventName = "hltv_cameraman";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class HltvChangedModeEvent
     {
         public const string EventName = "hltv_changed_mode";
 
-        public const string Newmode = "newmode";
+        public const string NewMode = "newmode";
         public const string ObsTarget = "obs_target";
-        public const string Oldmode = "oldmode";
+        public const string OldMode = "oldmode";
     }
 
     public static class HltvChaseEvent
@@ -876,7 +876,7 @@ public static class SchemaEvents
     {
         public const string EventName = "hltv_chat";
 
-        public const string SteamID = "steamID";
+        public const string SteamId = "steamID";
         public const string Text = "text";
     }
 
@@ -916,7 +916,7 @@ public static class SchemaEvents
 
         public const string Rank = "rank";
         public const string Target = "target";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class HltvReplayEvent
@@ -951,11 +951,18 @@ public static class SchemaEvents
         public const string Text = "text";
     }
 
-    public static class HltvVersioninfoEvent
+    public static class HltvVersionInfoEvent
     {
         public const string EventName = "hltv_versioninfo";
 
         public const string Version = "version";
+    }
+
+    public static class HostNameChangedEvent
+    {
+        public const string EventName = "hostname_changed";
+
+        public const string HostName = "hostname";
     }
 
     public static class HostageCallForHelpEvent
@@ -970,7 +977,7 @@ public static class SchemaEvents
         public const string EventName = "hostage_follows";
 
         public const string Hostage = "hostage";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class HostageHurtEvent
@@ -978,7 +985,7 @@ public static class SchemaEvents
         public const string EventName = "hostage_hurt";
 
         public const string Hostage = "hostage";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class HostageKilledEvent
@@ -986,7 +993,7 @@ public static class SchemaEvents
         public const string EventName = "hostage_killed";
 
         public const string Hostage = "hostage";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class HostageRescuedAllEvent
@@ -1000,7 +1007,7 @@ public static class SchemaEvents
 
         public const string Hostage = "hostage";
         public const string Site = "site";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class HostageStopsFollowingEvent
@@ -1008,21 +1015,14 @@ public static class SchemaEvents
         public const string EventName = "hostage_stops_following";
 
         public const string Hostage = "hostage";
-        public const string Userid = "userid";
-    }
-
-    public static class HostnameChangedEvent
-    {
-        public const string EventName = "hostname_changed";
-
-        public const string Hostname = "hostname";
+        public const string UserId = "userid";
     }
 
     public static class InfernoExpireEvent
     {
         public const string EventName = "inferno_expire";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1032,7 +1032,7 @@ public static class SchemaEvents
     {
         public const string EventName = "inferno_extinguish";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1042,7 +1042,7 @@ public static class SchemaEvents
     {
         public const string EventName = "inferno_startburn";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1052,7 +1052,7 @@ public static class SchemaEvents
     {
         public const string EventName = "inspect_weapon";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class InstructorCloseLessonEvent
@@ -1060,7 +1060,7 @@ public static class SchemaEvents
         public const string EventName = "instructor_close_lesson";
 
         public const string HintName = "hint_name";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class InstructorServerHintCreateCoreEvent
@@ -1068,12 +1068,12 @@ public static class SchemaEvents
         public const string EventName = "instructor_server_hint_create";
 
         public const string HintActivatorCaption = "hint_activator_caption";
-        public const string HintActivatorUserid = "hint_activator_userid";
+        public const string HintActivatorUserId = "hint_activator_userid";
         public const string HintAllowNodrawTarget = "hint_allow_nodraw_target";
         public const string HintBinding = "hint_binding";
         public const string HintCaption = "hint_caption";
         public const string HintColor = "hint_color";
-        public const string HintEntindex = "hint_entindex";
+        public const string HintEntIndex = "hint_entindex";
         public const string HintFlags = "hint_flags";
         public const string HintForcecaption = "hint_forcecaption";
         public const string HintIconOffscreen = "hint_icon_offscreen";
@@ -1093,7 +1093,7 @@ public static class SchemaEvents
         public const string HintVrOffsetY = "hint_vr_offset_y";
         public const string HintVrOffsetZ = "hint_vr_offset_z";
         public const string HintVrPanelType = "hint_vr_panel_type";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class InstructorServerHintCreateEvent
@@ -1101,7 +1101,7 @@ public static class SchemaEvents
         public const string EventName = "instructor_server_hint_create";
 
         public const string HintActivatorCaption = "hint_activator_caption";
-        public const string HintActivatorUserid = "hint_activator_userid";
+        public const string HintActivatorUserId = "hint_activator_userid";
         public const string HintAllowNodrawTarget = "hint_allow_nodraw_target";
         public const string HintBinding = "hint_binding";
         public const string HintCaption = "hint_caption";
@@ -1119,14 +1119,14 @@ public static class SchemaEvents
         public const string HintReplaceKey = "hint_replace_key";
         public const string HintTarget = "hint_target";
         public const string HintTimeout = "hint_timeout";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class InstructorServerHintStopCoreEvent
     {
         public const string EventName = "instructor_server_hint_stop";
 
-        public const string HintEntindex = "hint_entindex";
+        public const string HintEntIndex = "hint_entindex";
         public const string HintName = "hint_name";
     }
 
@@ -1143,7 +1143,7 @@ public static class SchemaEvents
 
         public const string HintName = "hint_name";
         public const string HintTarget = "hint_target";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string VrControllerType = "vr_controller_type";
         public const string VrMovementType = "vr_movement_type";
         public const string VrSingleController = "vr_single_controller";
@@ -1153,8 +1153,8 @@ public static class SchemaEvents
     {
         public const string EventName = "inventory_updated";
 
-        public const string Itemdef = "itemdef";
-        public const string Itemid = "itemid";
+        public const string ItemDef = "itemdef";
+        public const string ItemId = "itemid";
     }
 
     public static class InventoryUpdatedEvent
@@ -1166,25 +1166,25 @@ public static class SchemaEvents
     {
         public const string EventName = "item_equip";
 
-        public const string Canzoom = "canzoom";
-        public const string Defindex = "defindex";
-        public const string Hassilencer = "hassilencer";
-        public const string Hastracers = "hastracers";
-        public const string Ispainted = "ispainted";
-        public const string Issilenced = "issilenced";
+        public const string CanZoom = "canzoom";
+        public const string DefIndex = "defindex";
+        public const string HasSilencer = "hassilencer";
+        public const string HasTracers = "hastracers";
+        public const string IsPainted = "ispainted";
+        public const string IsSilenced = "issilenced";
         public const string Item = "item";
-        public const string Userid = "userid";
-        public const string Weptype = "weptype";
+        public const string UserId = "userid";
+        public const string WepType = "weptype";
     }
 
     public static class ItemPickupEvent
     {
         public const string EventName = "item_pickup";
 
-        public const string Defindex = "defindex";
+        public const string DefIndex = "defindex";
         public const string Item = "item";
         public const string Silent = "silent";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ItemPickupFailedEvent
@@ -1194,7 +1194,7 @@ public static class SchemaEvents
         public const string Item = "item";
         public const string Limit = "limit";
         public const string Reason = "reason";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ItemPickupSlerpEvent
@@ -1203,7 +1203,7 @@ public static class SchemaEvents
 
         public const string Behavior = "behavior";
         public const string Index = "index";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ItemPurchaseEvent
@@ -1212,7 +1212,7 @@ public static class SchemaEvents
 
         public const string Loadout = "loadout";
         public const string Team = "team";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
     }
 
@@ -1220,9 +1220,9 @@ public static class SchemaEvents
     {
         public const string EventName = "item_remove";
 
-        public const string Defindex = "defindex";
+        public const string DefIndex = "defindex";
         public const string Item = "item";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ItemSchemaInitializedEvent
@@ -1235,7 +1235,7 @@ public static class SchemaEvents
         public const string EventName = "jointeam_failed";
 
         public const string Reason = "reason";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class LocalPlayerControllerTeamEvent
@@ -1258,7 +1258,7 @@ public static class SchemaEvents
         public const string EventName = "loot_crate_opened";
 
         public const string Type = "type";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class LootCrateVisibleEvent
@@ -1267,7 +1267,7 @@ public static class SchemaEvents
 
         public const string Subject = "subject";
         public const string Type = "type";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class MapShutdownEvent
@@ -1309,7 +1309,7 @@ public static class SchemaEvents
     {
         public const string EventName = "molotov_detonate";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1328,13 +1328,13 @@ public static class SchemaEvents
         public const string EventName = "nav_generate";
     }
 
-    public static class NextlevelChangedEvent
+    public static class NextLevelChangedEvent
     {
         public const string EventName = "nextlevel_changed";
 
-        public const string Mapgroup = "mapgroup";
-        public const string Nextlevel = "nextlevel";
-        public const string Skirmishmode = "skirmishmode";
+        public const string MapGroup = "mapgroup";
+        public const string NextLevel = "nextlevel";
+        public const string SkirmishMode = "skirmishmode";
     }
 
     public static class OpenCrateInstrEvent
@@ -1343,7 +1343,7 @@ public static class SchemaEvents
 
         public const string Subject = "subject";
         public const string Type = "type";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class OtherDeathEvent
@@ -1351,16 +1351,16 @@ public static class SchemaEvents
         public const string EventName = "other_death";
 
         public const string Attacker = "attacker";
-        public const string Attackerblind = "attackerblind";
+        public const string AttackerBlind = "attackerblind";
         public const string Headshot = "headshot";
-        public const string Noscope = "noscope";
-        public const string Otherid = "otherid";
-        public const string Othertype = "othertype";
+        public const string NoScope = "noscope";
+        public const string OtherId = "otherid";
+        public const string OtherType = "othertype";
         public const string Penetrated = "penetrated";
-        public const string Thrusmoke = "thrusmoke";
+        public const string ThruSmoke = "thrusmoke";
         public const string Weapon = "weapon";
         public const string WeaponFauxitemid = "weapon_fauxitemid";
-        public const string WeaponItemid = "weapon_itemid";
+        public const string WeaponItemId = "weapon_itemid";
         public const string WeaponOriginalownerXuid = "weapon_originalowner_xuid";
     }
 
@@ -1368,14 +1368,14 @@ public static class SchemaEvents
     {
         public const string EventName = "parachute_deploy";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ParachutePickupEvent
     {
         public const string EventName = "parachute_pickup";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PhysgunPickupEvent
@@ -1389,7 +1389,7 @@ public static class SchemaEvents
     {
         public const string EventName = "player_activate";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerAvengedTeammateEvent
@@ -1406,27 +1406,27 @@ public static class SchemaEvents
 
         public const string Attacker = "attacker";
         public const string BlindDuration = "blind_duration";
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
     }
 
-    public static class PlayerChangenameEvent
+    public static class PlayerChangeNameEvent
     {
         public const string EventName = "player_changename";
 
-        public const string Newname = "newname";
-        public const string Oldname = "oldname";
-        public const string Userid = "userid";
+        public const string NewName = "newname";
+        public const string OldName = "oldname";
+        public const string UserId = "userid";
     }
 
     public static class PlayerChatCoreEvent
     {
         public const string EventName = "player_chat";
 
-        public const string Playerid = "playerid";
+        public const string PlayerId = "playerid";
         public const string Teamonly = "teamonly";
         public const string Text = "text";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerChatEvent
@@ -1435,7 +1435,7 @@ public static class SchemaEvents
 
         public const string Teamonly = "teamonly";
         public const string Text = "text";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerConnectEvent
@@ -1444,8 +1444,8 @@ public static class SchemaEvents
 
         public const string Bot = "bot";
         public const string Name = "name";
-        public const string Networkid = "networkid";
-        public const string Userid = "userid";
+        public const string NetworkId = "networkid";
+        public const string UserId = "userid";
         public const string Xuid = "xuid";
     }
 
@@ -1453,7 +1453,7 @@ public static class SchemaEvents
     {
         public const string EventName = "player_connect_full";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerDeathCoreEvent
@@ -1461,33 +1461,33 @@ public static class SchemaEvents
         public const string EventName = "player_death";
 
         public const string Attacker = "attacker";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerDeathEvent
     {
         public const string EventName = "player_death";
 
-        public const string Assistedflash = "assistedflash";
+        public const string AssistedFlash = "assistedflash";
         public const string Assister = "assister";
         public const string Attacker = "attacker";
-        public const string Attackerblind = "attackerblind";
-        public const string Attackerinair = "attackerinair";
+        public const string AttackerBlind = "attackerblind";
+        public const string AttackerInAir = "attackerinair";
         public const string Distance = "distance";
         public const string DmgArmor = "dmg_armor";
         public const string DmgHealth = "dmg_health";
         public const string Dominated = "dominated";
         public const string Headshot = "headshot";
-        public const string Hitgroup = "hitgroup";
+        public const string HitGroup = "hitgroup";
+        public const string NoScope = "noscope";
         public const string Noreplay = "noreplay";
-        public const string Noscope = "noscope";
         public const string Penetrated = "penetrated";
         public const string Revenge = "revenge";
-        public const string Thrusmoke = "thrusmoke";
-        public const string Userid = "userid";
+        public const string ThruSmoke = "thrusmoke";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
         public const string WeaponFauxitemid = "weapon_fauxitemid";
-        public const string WeaponItemid = "weapon_itemid";
+        public const string WeaponItemId = "weapon_itemid";
         public const string WeaponOriginalownerXuid = "weapon_originalowner_xuid";
         public const string Wipe = "wipe";
     }
@@ -1496,7 +1496,7 @@ public static class SchemaEvents
     {
         public const string EventName = "player_decal";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerDisconnectEvent
@@ -1505,10 +1505,10 @@ public static class SchemaEvents
 
         public const string EverFullyConnected = "ever_fully_connected";
         public const string Name = "name";
-        public const string Networkid = "networkid";
-        public const string PlayerID = "PlayerID";
+        public const string NetworkId = "networkid";
+        public const string PlayerId = "PlayerID";
         public const string Reason = "reason";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Xuid = "xuid";
     }
 
@@ -1517,21 +1517,21 @@ public static class SchemaEvents
         public const string EventName = "player_falldamage";
 
         public const string Damage = "damage";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerFootstepCoreEvent
     {
         public const string EventName = "player_footstep";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerFootstepEvent
     {
         public const string EventName = "player_footstep";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerFullUpdateEvent
@@ -1539,21 +1539,21 @@ public static class SchemaEvents
         public const string EventName = "player_full_update";
 
         public const string Count = "count";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerGivenC4Event
     {
         public const string EventName = "player_given_c4";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
-    public static class PlayerHintmessageEvent
+    public static class PlayerHintMessageEvent
     {
         public const string EventName = "player_hintmessage";
 
-        public const string Hintmessage = "hintmessage";
+        public const string HintMessage = "hintmessage";
     }
 
     public static class PlayerHurtCoreEvent
@@ -1562,7 +1562,7 @@ public static class SchemaEvents
 
         public const string Attacker = "attacker";
         public const string Health = "health";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerHurtEvent
@@ -1574,8 +1574,8 @@ public static class SchemaEvents
         public const string DmgArmor = "dmg_armor";
         public const string DmgHealth = "dmg_health";
         public const string Health = "health";
-        public const string Hitgroup = "hitgroup";
-        public const string Userid = "userid";
+        public const string HitGroup = "hitgroup";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
     }
 
@@ -1585,24 +1585,24 @@ public static class SchemaEvents
 
         public const string Bot = "bot";
         public const string Name = "name";
-        public const string Steamid = "steamid";
-        public const string Userid = "userid";
+        public const string SteamId = "steamid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerJumpEvent
     {
         public const string EventName = "player_jump";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerPingEvent
     {
         public const string EventName = "player_ping";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
         public const string Urgent = "urgent";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1612,7 +1612,7 @@ public static class SchemaEvents
     {
         public const string EventName = "player_ping_stop";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
     }
 
     public static class PlayerRadioEvent
@@ -1620,14 +1620,14 @@ public static class SchemaEvents
         public const string EventName = "player_radio";
 
         public const string Slot = "slot";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerResetVoteEvent
     {
         public const string EventName = "player_reset_vote";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Vote = "vote";
     }
 
@@ -1638,7 +1638,7 @@ public static class SchemaEvents
         public const string Deaths = "deaths";
         public const string Kills = "kills";
         public const string Score = "score";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerShootEvent
@@ -1646,7 +1646,7 @@ public static class SchemaEvents
         public const string EventName = "player_shoot";
 
         public const string Mode = "mode";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
     }
 
@@ -1657,29 +1657,29 @@ public static class SchemaEvents
         public const string Duration = "duration";
         public const string Radius = "radius";
         public const string Step = "step";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerSpawnEvent
     {
         public const string EventName = "player_spawn";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerSpawnedEvent
     {
         public const string EventName = "player_spawned";
 
-        public const string Inrestart = "inrestart";
-        public const string Userid = "userid";
+        public const string InRestart = "inrestart";
+        public const string UserId = "userid";
     }
 
     public static class PlayerStatsUpdatedEvent
     {
         public const string EventName = "player_stats_updated";
 
-        public const string Forceupload = "forceupload";
+        public const string ForceUpload = "forceupload";
     }
 
     public static class PlayerTeamCoreEvent
@@ -1689,10 +1689,10 @@ public static class SchemaEvents
         public const string Disconnect = "disconnect";
         public const string Isbot = "isbot";
         public const string Name = "name";
-        public const string Oldteam = "oldteam";
+        public const string OldTeam = "oldteam";
         public const string Silent = "silent";
         public const string Team = "team";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class PlayerTeamEvent
@@ -1701,17 +1701,17 @@ public static class SchemaEvents
 
         public const string Disconnect = "disconnect";
         public const string Isbot = "isbot";
-        public const string Oldteam = "oldteam";
+        public const string OldTeam = "oldteam";
         public const string Silent = "silent";
         public const string Team = "team";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class RagdollDissolvedEvent
     {
         public const string EventName = "ragdoll_dissolved";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
     }
 
     public static class ReadGameTitledataEvent
@@ -1725,7 +1725,7 @@ public static class SchemaEvents
     {
         public const string EventName = "repost_xbox_achievements";
 
-        public const string Splitscreenplayer = "splitscreenplayer";
+        public const string SplitScreenPlayer = "splitscreenplayer";
     }
 
     public static class ResetGameTitledataEvent
@@ -1776,7 +1776,7 @@ public static class SchemaEvents
 
         public const string Legacy = "legacy";
         public const string Message = "message";
-        public const string Nomusic = "nomusic";
+        public const string NoMusic = "nomusic";
         public const string PlayerCount = "player_count";
         public const string Reason = "reason";
         public const string Winner = "winner";
@@ -1806,11 +1806,11 @@ public static class SchemaEvents
     {
         public const string EventName = "round_mvp";
 
-        public const string Musickitid = "musickitid";
-        public const string Musickitmvps = "musickitmvps";
-        public const string Nomusic = "nomusic";
+        public const string MusicKitId = "musickitid";
+        public const string MusicKitMvps = "musickitmvps";
+        public const string NoMusic = "nomusic";
         public const string Reason = "reason";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Value = "value";
     }
 
@@ -1833,9 +1833,9 @@ public static class SchemaEvents
     {
         public const string EventName = "round_start";
 
-        public const string Fraglimit = "fraglimit";
+        public const string FragLimit = "fraglimit";
         public const string Objective = "objective";
-        public const string Timelimit = "timelimit";
+        public const string TimeLimit = "timelimit";
     }
 
     public static class RoundStartPostNavEvent
@@ -1859,15 +1859,15 @@ public static class SchemaEvents
 
         public const string Category = "category";
         public const string Rank = "rank";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class ServerCvarEvent
     {
         public const string EventName = "server_cvar";
 
-        public const string Cvarname = "cvarname";
-        public const string Cvarvalue = "cvarvalue";
+        public const string CVarName = "cvarname";
+        public const string CVarValue = "cvarvalue";
     }
 
     public static class ServerMessageEvent
@@ -1895,12 +1895,12 @@ public static class SchemaEvents
     {
         public const string EventName = "server_spawn";
 
-        public const string Addonname = "addonname";
+        public const string AddonName = "addonname";
         public const string Address = "address";
         public const string Dedicated = "dedicated";
         public const string Game = "game";
-        public const string Hostname = "hostname";
-        public const string Mapname = "mapname";
+        public const string HostName = "hostname";
+        public const string MapName = "mapname";
         public const string Maxplayers = "maxplayers";
         public const string Os = "os";
         public const string Password = "password";
@@ -1943,28 +1943,28 @@ public static class SchemaEvents
 
         public const string Duration = "duration";
         public const string LocToken = "loc_token";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SilencerDetachEvent
     {
         public const string EventName = "silencer_detach";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SilencerOffEvent
     {
         public const string EventName = "silencer_off";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SilencerOnEvent
     {
         public const string EventName = "silencer_on";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SmokeBeaconParadropEvent
@@ -1972,26 +1972,26 @@ public static class SchemaEvents
         public const string EventName = "smoke_beacon_paradrop";
 
         public const string Paradrop = "paradrop";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
-    public static class SmokegrenadeDetonateEvent
+    public static class SmokeGrenadeDetonateEvent
     {
         public const string EventName = "smokegrenade_detonate";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
     }
 
-    public static class SmokegrenadeExpiredEvent
+    public static class SmokeGrenadeExpiredEvent
     {
         public const string EventName = "smokegrenade_expired";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -2001,14 +2001,14 @@ public static class SchemaEvents
     {
         public const string EventName = "spec_mode_updated";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SpecModeUpdatedEvent
     {
         public const string EventName = "spec_mode_updated";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SpecTargetUpdatedEvent
@@ -2016,10 +2016,10 @@ public static class SchemaEvents
         public const string EventName = "spec_target_updated";
 
         public const string Target = "target";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
-    public static class StartHalftimeEvent
+    public static class StartHalfTimeEvent
     {
         public const string EventName = "start_halftime";
     }
@@ -2029,7 +2029,7 @@ public static class SchemaEvents
         public const string EventName = "start_vote";
 
         public const string Type = "type";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string VoteParameter = "vote_parameter";
     }
 
@@ -2049,35 +2049,35 @@ public static class SchemaEvents
     {
         public const string EventName = "survival_no_respawns_final";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SurvivalNoRespawnsWarningEvent
     {
         public const string EventName = "survival_no_respawns_warning";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SurvivalParadropBreakEvent
     {
         public const string EventName = "survival_paradrop_break";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
     }
 
     public static class SurvivalParadropSpawnEvent
     {
         public const string EventName = "survival_paradrop_spawn";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
     }
 
     public static class SurvivalTeammateRespawnEvent
     {
         public const string EventName = "survival_teammate_respawn";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class SwitchTeamEvent
@@ -2095,19 +2095,27 @@ public static class SchemaEvents
     {
         public const string EventName = "tagrenade_detonate";
 
-        public const string Entityid = "entityid";
-        public const string Userid = "userid";
+        public const string EntityId = "entityid";
+        public const string UserId = "userid";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
+    }
+
+    public static class TeamChangePendingEvent
+    {
+        public const string EventName = "teamchange_pending";
+
+        public const string Toteam = "toteam";
+        public const string UserId = "userid";
     }
 
     public static class TeamInfoEvent
     {
         public const string EventName = "team_info";
 
-        public const string Teamid = "teamid";
-        public const string Teamname = "teamname";
+        public const string TeamId = "teamid";
+        public const string TeamName = "teamname";
     }
 
     public static class TeamIntroEndEvent
@@ -2120,23 +2128,7 @@ public static class SchemaEvents
         public const string EventName = "team_intro_start";
     }
 
-    public static class TeamScoreEvent
-    {
-        public const string EventName = "team_score";
-
-        public const string Score = "score";
-        public const string Teamid = "teamid";
-    }
-
-    public static class TeamchangePendingEvent
-    {
-        public const string EventName = "teamchange_pending";
-
-        public const string Toteam = "toteam";
-        public const string Userid = "userid";
-    }
-
-    public static class TeamplayBroadcastAudioEvent
+    public static class TeamPlayBroadcastAudioEvent
     {
         public const string EventName = "teamplay_broadcast_audio";
 
@@ -2144,19 +2136,27 @@ public static class SchemaEvents
         public const string Team = "team";
     }
 
-    public static class TeamplayRoundStartEvent
+    public static class TeamPlayRoundStartEvent
     {
         public const string EventName = "teamplay_round_start";
 
         public const string FullReset = "full_reset";
     }
 
+    public static class TeamScoreEvent
+    {
+        public const string EventName = "team_score";
+
+        public const string Score = "score";
+        public const string TeamId = "teamid";
+    }
+
     public static class TournamentRewardEvent
     {
         public const string EventName = "tournament_reward";
 
-        public const string Accountid = "accountid";
-        public const string Defindex = "defindex";
+        public const string AccountId = "accountid";
+        public const string DefIndex = "defindex";
         public const string Totalrewards = "totalrewards";
     }
 
@@ -2164,7 +2164,7 @@ public static class SchemaEvents
     {
         public const string EventName = "trial_time_expired";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class UgcFileDownloadFinishedEvent
@@ -2218,7 +2218,7 @@ public static class SchemaEvents
     {
         public const string EventName = "vip_escaped";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class VipKilledEvent
@@ -2226,7 +2226,7 @@ public static class SchemaEvents
         public const string EventName = "vip_killed";
 
         public const string Attacker = "attacker";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class VoteCastEvent
@@ -2234,7 +2234,7 @@ public static class SchemaEvents
         public const string EventName = "vote_cast";
 
         public const string Team = "team";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string VoteOption = "vote_option";
     }
 
@@ -2242,7 +2242,7 @@ public static class SchemaEvents
     {
         public const string EventName = "vote_cast_no";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
         public const string Team = "team";
     }
 
@@ -2250,7 +2250,7 @@ public static class SchemaEvents
     {
         public const string EventName = "vote_cast_yes";
 
-        public const string Entityid = "entityid";
+        public const string EntityId = "entityid";
         public const string Team = "team";
     }
 
@@ -2316,7 +2316,7 @@ public static class SchemaEvents
         public const string Issue = "issue";
         public const string Param1 = "param1";
         public const string Team = "team";
-        public const string Votedata = "votedata";
+        public const string VoteData = "votedata";
     }
 
     public static class VoteStartedEvent
@@ -2339,7 +2339,7 @@ public static class SchemaEvents
         public const string EventName = "weapon_fire";
 
         public const string Silenced = "silenced";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
     }
 
@@ -2347,7 +2347,7 @@ public static class SchemaEvents
     {
         public const string EventName = "weapon_fire_on_empty";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
         public const string Weapon = "weapon";
     }
 
@@ -2355,30 +2355,30 @@ public static class SchemaEvents
     {
         public const string EventName = "weapon_reload";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class WeaponZoomEvent
     {
         public const string EventName = "weapon_zoom";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class WeaponZoomRifleEvent
     {
         public const string EventName = "weapon_zoom_rifle";
 
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class WeaponhudSelectionEvent
     {
         public const string EventName = "weaponhud_selection";
 
-        public const string Entindex = "entindex";
+        public const string EntIndex = "entindex";
         public const string Mode = "mode";
-        public const string Userid = "userid";
+        public const string UserId = "userid";
     }
 
     public static class WriteGameTitledataEvent

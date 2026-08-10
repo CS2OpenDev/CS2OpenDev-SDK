@@ -24,14 +24,14 @@ namespace CS2OpenSchema.Animlib;
 public partial class CNmTarget
 {
     /// <summary>
-    ///     Gets or sets BoneID.
+    ///     Gets or sets BoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_boneID</c> at offset <c>0x20</c>.
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_boneID")]
-    public string BoneID { get; set; }
+    public string BoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets HasOffsets.

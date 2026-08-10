@@ -29,14 +29,14 @@ namespace CS2OpenSchema.Common;
 public partial class IntervalTimer
 {
     /// <summary>
-    ///     Gets or sets Timestamp.
+    ///     Gets or sets TimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_timestamp</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_timestamp")]
-    public GameTime Timestamp { get; set; }
+    public GameTime TimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldGroupId.

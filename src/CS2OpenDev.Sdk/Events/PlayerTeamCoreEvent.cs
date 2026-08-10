@@ -57,7 +57,7 @@ public sealed partial record PlayerTeamCoreEvent
     /// </remarks>
     [NativeName("oldteam")]
     [GameEventFieldType("byte")]
-    public required byte Oldteam { get; init; }
+    public required byte OldTeam { get; init; }
 
     /// <summary>
     ///     Silent.
@@ -80,12 +80,12 @@ public sealed partial record PlayerTeamCoreEvent
     public required byte Team { get; init; }
 
     /// <summary>
-    ///     Userid.
+    ///     UserId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>userid</c> — KV1 type <c>player_controller_and_pawn</c>.
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

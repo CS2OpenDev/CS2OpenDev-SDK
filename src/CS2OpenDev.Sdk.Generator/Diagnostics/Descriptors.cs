@@ -53,4 +53,20 @@ internal static class Descriptors
         "CS2_GEN_005",
         GeneratorDiagnosticSeverity.Error,
         "Invalid game-event overrides in {0}: {1}");
+
+    // A run-together lowercase word WordSplitter could not segment, so it was
+    // emitted as-is: `Somenewcompound` rather than `SomeNewCompound`.
+    //
+    // Reported because the failure is invisible otherwise. Not splitting is the
+    // safe outcome by design — an unknown compound must never be guessed at —
+    // but "safe" here means "silently keeps the old shape", and CS2 adds fields
+    // every patch. Without this the vocabulary would rot: each new upstream name
+    // that missed would look exactly like a name deliberately left alone.
+    //
+    // Info, not warning. Every entry is a candidate for the vocabulary, not a
+    // defect — plenty are single words that are already correct.
+    internal static readonly GeneratorDiagnostic UnsegmentedWord = new(
+        "CS2_GEN_006",
+        GeneratorDiagnosticSeverity.Info,
+        "Could not split '{0}' into known words — emitted unsegmented. Add its parts to WordSplitter.Vocabulary if it is a compound, or to Atomic if it is one word.");
 }

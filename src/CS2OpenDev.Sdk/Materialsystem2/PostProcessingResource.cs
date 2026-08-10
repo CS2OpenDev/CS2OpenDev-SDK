@@ -115,14 +115,14 @@ public partial class PostProcessingResource
     public bool HasLocalExposureParams { get; set; }
 
     /// <summary>
-    ///     Gets or sets HasTonemapParams.
+    ///     Gets or sets HasToneMapParams.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bHasTonemapParams</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_bHasTonemapParams")]
-    public bool HasTonemapParams { get; set; }
+    public bool HasToneMapParams { get; set; }
 
     /// <summary>
     ///     Gets or sets HasVignetteParams.
@@ -162,7 +162,7 @@ public partial class PostProcessingResource
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_toneMapParams")]
-    public PostProcessingTonemapParameters ToneMapParams { get; set; }
+    public PostProcessingToneMapParameters ToneMapParams { get; set; }
 
     /// <summary>
     ///     Gets or sets VignetteParams.

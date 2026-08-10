@@ -20,24 +20,24 @@ namespace CS2OpenSchema.Events;
 public sealed partial record TournamentRewardEvent
 {
     /// <summary>
-    ///     Accountid.
+    ///     AccountId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>accountid</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("accountid")]
     [GameEventFieldType("long")]
-    public required int Accountid { get; init; }
+    public required int AccountId { get; init; }
 
     /// <summary>
-    ///     Defindex.
+    ///     DefIndex.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>defindex</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("defindex")]
     [GameEventFieldType("long")]
-    public required int Defindex { get; init; }
+    public required int DefIndex { get; init; }
 
     /// <summary>
     ///     Totalrewards.

@@ -40,5 +40,5 @@ public partial class CAnimGraphDocEmitTagAction : CAnimGraphDocAction
     [NativeName("m_tag")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyFriendlyName", "Tag")]
-    public AnimTagID Tag { get; set; }
+    public AnimTagId Tag { get; set; }
 }

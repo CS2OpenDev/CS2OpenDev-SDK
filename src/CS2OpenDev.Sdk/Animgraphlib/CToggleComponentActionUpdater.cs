@@ -30,14 +30,14 @@ namespace CS2OpenSchema.Animgraphlib;
 public partial class CToggleComponentActionUpdater : CAnimActionUpdater
 {
     /// <summary>
-    ///     Gets or sets ComponentID.
+    ///     Gets or sets ComponentId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_componentID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_componentID")]
-    public AnimComponentID ComponentID { get; set; }
+    public AnimComponentId ComponentId { get; set; }
 
     /// <summary>
     ///     Gets or sets SetEnabled.

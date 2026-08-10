@@ -46,5 +46,5 @@ public partial class CAnimGraphDocSubGraphNode : CAnimGraphDocContainerNodeBase
     [NativeName("m_subGraphFilename")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vsubgrph, *requiredoubleclick  )")]
     [NativeMetadata("MPropertyFriendlyName", "SubGraph File")]
-    public string SubGraphFilename { get; set; }
+    public string SubGraphFileName { get; set; }
 }

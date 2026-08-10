@@ -58,13 +58,13 @@ public enum ItemFlagTypes : byte
     ItemFlagNoautoswitchempty = 4,
 
     /// <summary>
-    ///     ItemFlagLimitinworld.
+    ///     ItemFlagLimitInWorld.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ITEM_FLAG_LIMITINWORLD</c>.
     /// </remarks>
     [NativeName("ITEM_FLAG_LIMITINWORLD")]
-    ItemFlagLimitinworld = 8,
+    ItemFlagLimitInWorld = 8,
 
     /// <summary>
     ///     ItemFlagExhaustible.

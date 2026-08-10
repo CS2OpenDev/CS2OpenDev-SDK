@@ -45,14 +45,14 @@ public partial class DynpitchvolBase
     public int Cspinup { get; set; }
 
     /// <summary>
-    ///     Gets or sets Fadein.
+    ///     Gets or sets FadeIn.
     /// </summary>
     /// <remarks>
     ///     Native field <c>fadein</c> at offset <c>0x1C</c>.
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("fadein")]
-    public int Fadein { get; set; }
+    public int FadeIn { get; set; }
 
     /// <summary>
     ///     Gets or sets Fadeinsav.

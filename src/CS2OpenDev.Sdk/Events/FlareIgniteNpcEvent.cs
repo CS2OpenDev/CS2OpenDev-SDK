@@ -27,5 +27,5 @@ public sealed partial record FlareIgniteNpcEvent
     /// </remarks>
     [NativeName("entindex")]
     [GameEventFieldType("long")]
-    public required int Entindex { get; init; }
+    public required int EntIndex { get; init; }
 }

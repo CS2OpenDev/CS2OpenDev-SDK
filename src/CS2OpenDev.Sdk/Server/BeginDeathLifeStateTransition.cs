@@ -22,20 +22,20 @@ namespace CS2OpenSchema.Server;
 public enum BeginDeathLifeStateTransition : byte
 {
     /// <summary>
-    ///     TransitionToLifestateDying.
+    ///     TransitionToLifeStateDying.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>TRANSITION_TO_LIFESTATE_DYING</c>.
     /// </remarks>
     [NativeName("TRANSITION_TO_LIFESTATE_DYING")]
-    TransitionToLifestateDying = 0,
+    TransitionToLifeStateDying = 0,
 
     /// <summary>
-    ///     TransitionToLifestateDead.
+    ///     TransitionToLifeStateDead.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>TRANSITION_TO_LIFESTATE_DEAD</c>.
     /// </remarks>
     [NativeName("TRANSITION_TO_LIFESTATE_DEAD")]
-    TransitionToLifestateDead = 1
+    TransitionToLifeStateDead = 1
 }

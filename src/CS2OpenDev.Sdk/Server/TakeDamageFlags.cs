@@ -175,13 +175,13 @@ public enum TakeDamageFlags : ulong
     DflagForcePhysicsForce = 32768,
 
     /// <summary>
-    ///     DflagSuppressScreenspaceDamageFx.
+    ///     DflagSuppressScreenSpaceDamageFx.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>DFLAG_SUPPRESS_SCREENSPACE_DAMAGE_FX</c>.
     /// </remarks>
     [NativeName("DFLAG_SUPPRESS_SCREENSPACE_DAMAGE_FX")]
-    DflagSuppressScreenspaceDamageFx = 65536,
+    DflagSuppressScreenSpaceDamageFx = 65536,
 
     /// <summary>
     ///     DflagAllowNonAuthoritative.

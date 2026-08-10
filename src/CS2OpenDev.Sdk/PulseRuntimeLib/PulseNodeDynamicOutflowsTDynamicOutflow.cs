@@ -36,12 +36,12 @@ public partial class PulseNodeDynamicOutflowsTDynamicOutflow
     public CPulseOutflowConnection Connection { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutflowID.
+    ///     Gets or sets OutflowId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_OutflowID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_OutflowID")]
-    public string OutflowID { get; set; }
+    public string OutflowId { get; set; }
 }

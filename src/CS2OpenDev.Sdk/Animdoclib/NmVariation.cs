@@ -41,14 +41,14 @@ public partial class NmVariation
     public string ID { get; set; }
 
     /// <summary>
-    ///     Gets or sets ParentID.
+    ///     Gets or sets ParentId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_parentID</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_parentID")]
-    public string ParentID { get; set; }
+    public string ParentId { get; set; }
 
     /// <summary>
     ///     Gets or sets Skeleton.

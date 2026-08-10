@@ -28,7 +28,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("assistedflash")]
     [GameEventFieldType("bool")]
-    public required bool Assistedflash { get; init; }
+    public required bool AssistedFlash { get; init; }
 
     /// <summary>
     ///     player who assisted in the kill.
@@ -58,7 +58,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("attackerblind")]
     [GameEventFieldType("bool")]
-    public required bool Attackerblind { get; init; }
+    public required bool AttackerBlind { get; init; }
 
     /// <summary>
     ///     attacker was in midair.
@@ -68,7 +68,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("attackerinair")]
     [GameEventFieldType("bool")]
-    public required bool Attackerinair { get; init; }
+    public required bool AttackerInAir { get; init; }
 
     /// <summary>
     ///     distance to victim in meters.
@@ -128,7 +128,17 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("hitgroup")]
     [GameEventFieldType("byte")]
-    public required byte Hitgroup { get; init; }
+    public required byte HitGroup { get; init; }
+
+    /// <summary>
+    ///     kill happened without a scope, used for death notice icon.
+    /// </summary>
+    /// <remarks>
+    ///     Native name: <c>noscope</c> — KV1 type <c>bool</c>.
+    /// </remarks>
+    [NativeName("noscope")]
+    [GameEventFieldType("bool")]
+    public required bool NoScope { get; init; }
 
     /// <summary>
     ///     if replay data is unavailable, this will be present and set to false.
@@ -139,16 +149,6 @@ public sealed partial record PlayerDeathEvent
     [NativeName("noreplay")]
     [GameEventFieldType("bool")]
     public required bool Noreplay { get; init; }
-
-    /// <summary>
-    ///     kill happened without a scope, used for death notice icon.
-    /// </summary>
-    /// <remarks>
-    ///     Native name: <c>noscope</c> — KV1 type <c>bool</c>.
-    /// </remarks>
-    [NativeName("noscope")]
-    [GameEventFieldType("bool")]
-    public required bool Noscope { get; init; }
 
     /// <summary>
     ///     number of objects shot penetrated before killing target.
@@ -178,7 +178,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("thrusmoke")]
     [GameEventFieldType("bool")]
-    public required bool Thrusmoke { get; init; }
+    public required bool ThruSmoke { get; init; }
 
     /// <summary>
     ///     user who died.
@@ -188,7 +188,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     weapon name killer used.
@@ -218,7 +218,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("weapon_itemid")]
     [GameEventFieldType("string")]
-    public required string WeaponItemid { get; init; }
+    public required string WeaponItemId { get; init; }
 
     /// <summary>
     ///     WeaponOriginalownerXuid.

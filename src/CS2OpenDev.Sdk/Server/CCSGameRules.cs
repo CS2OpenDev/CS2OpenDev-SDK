@@ -27,7 +27,7 @@ namespace CS2OpenSchema.Server;
 ///     <para>Many fields here are the ground truth for demo-parsing tools (e.g. demoinfocs-golang).  Round phase transitions are driven by m_gamePhase and m_bFreezePeriod / m_bWarmupPeriod.</para>
 /// </remarks>
 [NativeSize(70728)]
-public partial class CCSGameRules : CTeamplayRules
+public partial class CCSGameRules : CTeamPlayRules
 {
     /// <summary>
     ///     Gets or sets AccountCT.
@@ -290,14 +290,14 @@ public partial class CCSGameRules : CTeamplayRules
     public int CTTimeOuts { get; set; }
 
     /// <summary>
-    ///     Gets or sets CTsAliveAtFreezetimeEnd.
+    ///     Gets or sets CTsAliveAtFreezeTimeEnd.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nCTsAliveAtFreezetimeEnd</c> at offset <c>0xE10</c>.
     /// </remarks>
     [NativeOffset(0xE10)]
     [NativeName("m_nCTsAliveAtFreezetimeEnd")]
-    public int CTsAliveAtFreezetimeEnd { get; set; }
+    public int CTsAliveAtFreezeTimeEnd { get; set; }
 
     /// <summary>
     ///     Gets or sets CanDonateWeapons.
@@ -940,7 +940,7 @@ public partial class CCSGameRules : CTeamplayRules
     /// </remarks>
     [NativeOffset(0xCC4)]
     [NativeName("m_vMinimapMaxs")]
-    public VectorWS MinimapMaxs { get; set; }
+    public VectorWS MiniMapMaxs { get; set; }
 
     /// <summary>
     ///     World-space minimum corner of the minimap bounding box.
@@ -950,7 +950,7 @@ public partial class CCSGameRules : CTeamplayRules
     /// </remarks>
     [NativeOffset(0xCB8)]
     [NativeName("m_vMinimapMins")]
-    public VectorWS MinimapMins { get; set; }
+    public VectorWS MiniMapMins { get; set; }
 
     /// <summary>
     ///     Array of 8 height values dividing the map into vertical sections for the radar's floor-switching feature.
@@ -960,7 +960,7 @@ public partial class CCSGameRules : CTeamplayRules
     /// </remarks>
     [NativeOffset(0xCD0)]
     [NativeName("m_MinimapVerticalSectionHeights")]
-    public float[] MinimapVerticalSectionHeights { get; set; }
+    public float[] MiniMapVerticalSectionHeights { get; set; }
 
     /// <summary>
     ///     Gets or sets NeedToAskPlayersForContinueVote.
@@ -1000,7 +1000,7 @@ public partial class CCSGameRules : CTeamplayRules
     /// </remarks>
     [NativeOffset(0x14C)]
     [NativeName("m_nNextMapInMapgroup")]
-    public int NextMapInMapgroup { get; set; }
+    public int NextMapInMapGroup { get; set; }
 
     /// <summary>
     ///     Gets or sets NextRespawnWave.
@@ -1390,7 +1390,7 @@ public partial class CCSGameRules : CTeamplayRules
     /// </remarks>
     [NativeOffset(0x13D8)]
     [NativeName("m_bRoundEndShowTimerDefend")]
-    public bool RoundEndShowTimerDefend { get; set; }
+    public bool RoundEndShowTimerDefEnd { get; set; }
 
     /// <summary>
     ///     Remaining time in seconds shown in the round-end countdown panel.
@@ -1753,14 +1753,14 @@ public partial class CCSGameRules : CTeamplayRules
     public int TerroristTimeOuts { get; set; }
 
     /// <summary>
-    ///     Gets or sets TerroristsAliveAtFreezetimeEnd.
+    ///     Gets or sets TerroristsAliveAtFreezeTimeEnd.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nTerroristsAliveAtFreezetimeEnd</c> at offset <c>0xE14</c>.
     /// </remarks>
     [NativeOffset(0xE14)]
     [NativeName("m_nTerroristsAliveAtFreezetimeEnd")]
-    public int TerroristsAliveAtFreezetimeEnd { get; set; }
+    public int TerroristsAliveAtFreezeTimeEnd { get; set; }
 
     /// <summary>
     ///     Countdown in seconds until the next phase (round, half, overtime) begins; drives the on-screen timer.
@@ -1833,14 +1833,14 @@ public partial class CCSGameRules : CTeamplayRules
     public string TournamentPredictionsTxt { get; set; }
 
     /// <summary>
-    ///     Gets or sets UllLocalMatchID.
+    ///     Gets or sets UllLocalMatchId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_ullLocalMatchID</c> at offset <c>0xCF0</c>.
     /// </remarks>
     [NativeOffset(0xCF0)]
     [NativeName("m_ullLocalMatchID")]
-    public ulong UllLocalMatchID { get; set; }
+    public ulong UllLocalMatchId { get; set; }
 
     /// <summary>
     ///     Gets or sets UnBalancedRounds.

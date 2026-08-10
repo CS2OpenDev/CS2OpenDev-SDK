@@ -609,6 +609,14 @@ internal static class ModuleEmitter
         {
             sink.ReportDiagnostic(Descriptors.UnknownAtomicType, unknown);
         }
+
+        // Same idea for names: every compound the vocabulary could not segment,
+        // so a gap shows up as a line in the regen output instead of as a
+        // property that quietly kept its run-together spelling.
+        foreach (string run in WordSplitter.UnsegmentedRuns)
+        {
+            sink.ReportDiagnostic(Descriptors.UnsegmentedWord, run);
+        }
     }
 
     private static void AddReferenced(Dictionary<string, string> names, string original)

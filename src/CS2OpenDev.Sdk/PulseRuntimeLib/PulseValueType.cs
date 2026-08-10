@@ -109,7 +109,7 @@ public enum PulseValueType : uint
     /// </remarks>
     [NativeName("PVAL_VEC3_WORLDSPACE")]
     [NativeMetadata("MPropertyFriendlyName", "World Vector")]
-    PvalVec3Worldspace = 7,
+    PvalVec3WorldSpace = 7,
 
     /// <summary>
     ///     Vector4D.
@@ -139,7 +139,7 @@ public enum PulseValueType : uint
     /// </remarks>
     [NativeName("PVAL_TRANSFORM_WORLDSPACE")]
     [NativeMetadata("MPropertyFriendlyName", "World Transform")]
-    PvalTransformWorldspace = 10,
+    PvalTransformWorldSpace = 10,
 
     /// <summary>
     ///     Color.
@@ -159,7 +159,7 @@ public enum PulseValueType : uint
     /// </remarks>
     [NativeName("PVAL_GAMETIME")]
     [NativeMetadata("MPropertyFriendlyName", "Game Time")]
-    PvalGametime = 12,
+    PvalGameTime = 12,
 
     /// <summary>
     ///     Entity Handle.

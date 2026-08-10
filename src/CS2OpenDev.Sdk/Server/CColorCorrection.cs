@@ -89,14 +89,14 @@ public partial class CColorCorrection : CBaseEntity
     public float FadeOutDuration { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookupFilename.
+    ///     Gets or sets LookupFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookupFilename</c> at offset <c>0x6D8</c>.
     /// </remarks>
     [NativeOffset(0x6D8)]
     [NativeName("m_lookupFilename")]
-    public string LookupFilename { get; set; }
+    public string LookupFileName { get; set; }
 
     /// <summary>
     ///     Gets or sets Master.
@@ -140,7 +140,7 @@ public partial class CColorCorrection : CBaseEntity
     public float MinFalloff { get; set; }
 
     /// <summary>
-    ///     Gets or sets NetlookupFilename.
+    ///     Gets or sets NetlookupFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_netlookupFilename</c> at offset <c>0x4D8</c>.
@@ -148,7 +148,7 @@ public partial class CColorCorrection : CBaseEntity
     [NativeOffset(0x4D8)]
     [NativeName("m_netlookupFilename")]
     [NativeMetadata("MNotSaved", "")]
-    public string NetlookupFilename { get; set; }
+    public string NetlookupFileName { get; set; }
 
     /// <summary>
     ///     Gets or sets StartDisabled.

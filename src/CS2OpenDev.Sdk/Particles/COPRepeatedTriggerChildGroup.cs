@@ -39,7 +39,7 @@ public partial class COPRepeatedTriggerChildGroup : CParticleFunctionPreEmission
     [NativeOffset(0x1E0)]
     [NativeName("m_nChildGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "group ID to affect")]
-    public int ChildGroupID { get; set; }
+    public int ChildGroupId { get; set; }
 
     /// <summary>
     ///     Cluster Cooldown Time.

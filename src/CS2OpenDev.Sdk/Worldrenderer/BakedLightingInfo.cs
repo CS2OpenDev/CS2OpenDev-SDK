@@ -75,6 +75,36 @@ public partial class BakedLightingInfo
     public bool HasLightmaps { get; set; }
 
     /// <summary>
+    ///     Gets or sets LightMapGameVersionNumber.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_nLightmapGameVersionNumber</c> at offset <c>0x4</c>.
+    /// </remarks>
+    [NativeOffset(0x4)]
+    [NativeName("m_nLightmapGameVersionNumber")]
+    public uint LightMapGameVersionNumber { get; set; }
+
+    /// <summary>
+    ///     Gets or sets LightMapUvScale.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_vLightmapUvScale</c> at offset <c>0x8</c>.
+    /// </remarks>
+    [NativeOffset(0x8)]
+    [NativeName("m_vLightmapUvScale")]
+    public Vector2D LightMapUvScale { get; set; }
+
+    /// <summary>
+    ///     Gets or sets LightMapVersionNumber.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_nLightmapVersionNumber</c> at offset <c>0x0</c>.
+    /// </remarks>
+    [NativeOffset(0x0)]
+    [NativeName("m_nLightmapVersionNumber")]
+    public uint LightMapVersionNumber { get; set; }
+
+    /// <summary>
     ///     Gets or sets LightMaps.
     /// </summary>
     /// <remarks>
@@ -83,36 +113,6 @@ public partial class BakedLightingInfo
     [NativeOffset(0x18)]
     [NativeName("m_lightMaps")]
     public CUtlVector__CStrongHandle__InfoForResourceTypeCTextureBase____ LightMaps { get; set; }
-
-    /// <summary>
-    ///     Gets or sets LightmapGameVersionNumber.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_nLightmapGameVersionNumber</c> at offset <c>0x4</c>.
-    /// </remarks>
-    [NativeOffset(0x4)]
-    [NativeName("m_nLightmapGameVersionNumber")]
-    public uint LightmapGameVersionNumber { get; set; }
-
-    /// <summary>
-    ///     Gets or sets LightmapUvScale.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_vLightmapUvScale</c> at offset <c>0x8</c>.
-    /// </remarks>
-    [NativeOffset(0x8)]
-    [NativeName("m_vLightmapUvScale")]
-    public Vector2D LightmapUvScale { get; set; }
-
-    /// <summary>
-    ///     Gets or sets LightmapVersionNumber.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_nLightmapVersionNumber</c> at offset <c>0x0</c>.
-    /// </remarks>
-    [NativeOffset(0x0)]
-    [NativeName("m_nLightmapVersionNumber")]
-    public uint LightmapVersionNumber { get; set; }
 
     /// <summary>
     ///     Gets or sets SHLightmaps.

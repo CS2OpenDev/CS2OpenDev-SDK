@@ -29,7 +29,7 @@ namespace CS2OpenSchema.Smartprops;
 public partial class CSmartPropElement
 {
     /// <summary>
-    ///     Gets or sets ElementID.
+    ///     Gets or sets ElementId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nElementID</c> at offset <c>0x8</c>.
@@ -38,7 +38,7 @@ public partial class CSmartPropElement
     [NativeName("m_nElementID")]
     [NativeMetadata("MPropertySuppressField", "")]
     [NativeMetadata("MVDataUniqueMonotonicInt", "_editor/next_element_id")]
-    public int ElementID { get; set; }
+    public int ElementId { get; set; }
 
     /// <summary>
     ///     Is this element enabled? If not enabled, this element will not be evaluted and will have no effect on the result.

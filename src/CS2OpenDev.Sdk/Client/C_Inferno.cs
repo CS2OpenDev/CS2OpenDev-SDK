@@ -88,14 +88,14 @@ public partial class C_Inferno : C_BaseModelEntity
     public bool[] FireIsBurning { get; set; }
 
     /// <summary>
-    ///     Gets or sets FireLifetime.
+    ///     Gets or sets FireLifeTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nFireLifetime</c> at offset <c>0x1968</c>.
     /// </remarks>
     [NativeOffset(0x1968)]
     [NativeName("m_nFireLifetime")]
-    public float FireLifetime { get; set; }
+    public float FireLifeTime { get; set; }
 
     /// <summary>
     ///     Gets or sets FireParentPositions.

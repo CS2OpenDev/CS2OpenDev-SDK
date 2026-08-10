@@ -21,20 +21,20 @@ namespace CS2OpenSchema.Server;
 public enum ESplitScreenMessageType : uint
 {
     /// <summary>
-    ///     MsgSplitscreenAdduser.
+    ///     MsgSplitScreenAddUser.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MSG_SPLITSCREEN_ADDUSER</c>.
     /// </remarks>
     [NativeName("MSG_SPLITSCREEN_ADDUSER")]
-    MsgSplitscreenAdduser = 0,
+    MsgSplitScreenAddUser = 0,
 
     /// <summary>
-    ///     MsgSplitscreenRemoveuser.
+    ///     MsgSplitScreenRemoveuser.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MSG_SPLITSCREEN_REMOVEUSER</c>.
     /// </remarks>
     [NativeName("MSG_SPLITSCREEN_REMOVEUSER")]
-    MsgSplitscreenRemoveuser = 1
+    MsgSplitScreenRemoveuser = 1
 }

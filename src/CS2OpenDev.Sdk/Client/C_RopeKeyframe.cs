@@ -116,7 +116,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     public float CurScroll { get; set; }
 
     /// <summary>
-    ///     Gets or sets CurrentGustLifetime.
+    ///     Gets or sets CurrentGustLifeTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flCurrentGustLifetime</c> at offset <c>0x12C8</c>.
@@ -124,7 +124,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0x12C8)]
     [NativeName("m_flCurrentGustLifetime")]
     [NativeMetadata("MNotSaved", "")]
-    public float CurrentGustLifetime { get; set; }
+    public float CurrentGustLifeTime { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentGustTimer.

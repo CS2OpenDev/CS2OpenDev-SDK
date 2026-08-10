@@ -31,14 +31,14 @@ namespace CS2OpenSchema.Server;
 public partial class PulseScriptedSequenceData
 {
     /// <summary>
-    ///     Gets or sets ActorID.
+    ///     Gets or sets ActorId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nActorID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nActorID")]
-    public int ActorID { get; set; }
+    public int ActorId { get; set; }
 
     /// <summary>
     ///     Gets or sets EntrySequence.

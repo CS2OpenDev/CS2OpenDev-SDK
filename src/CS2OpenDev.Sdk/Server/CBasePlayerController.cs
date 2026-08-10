@@ -184,7 +184,7 @@ public partial class CBasePlayerController : CBaseEntity
     public PlayerConnectedState MostConnected { get; set; }
 
     /// <summary>
-    ///     Gets or sets NetworkIDString.
+    ///     Gets or sets NetworkIdString.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_szNetworkIDString</c> at offset <c>0x598</c>.
@@ -192,7 +192,7 @@ public partial class CBasePlayerController : CBaseEntity
     [NativeOffset(0x598)]
     [NativeName("m_szNetworkIDString")]
     [NativeMetadata("MNotSaved", "")]
-    public string NetworkIDString { get; set; }
+    public string NetworkIdString { get; set; }
 
     /// <summary>
     ///     True when sv_cheats noclip is active for this player.
@@ -280,7 +280,7 @@ public partial class CBasePlayerController : CBaseEntity
     [NativeOffset(0x708)]
     [NativeName("m_steamID")]
     [NativeMetadata("MNotSaved", "")]
-    public ulong SteamID { get; set; }
+    public ulong SteamId { get; set; }
 
     /// <summary>
     ///     Server tick number at the time of the most-recent usercmd from this client.

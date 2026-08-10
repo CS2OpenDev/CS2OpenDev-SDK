@@ -56,14 +56,14 @@ public partial class CNmGraphDocFloatCurveEventNode : CNmGraphDocFlowNode
     public bool LimitSearchToSourceState { get; set; }
 
     /// <summary>
-    ///     Gets or sets MatchID.
+    ///     Gets or sets MatchId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_matchID</c> at offset <c>0x100</c>.
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_matchID")]
-    public string MatchID { get; set; }
+    public string MatchId { get; set; }
 
     /// <summary>
     ///     Gets or sets PriorityRule.

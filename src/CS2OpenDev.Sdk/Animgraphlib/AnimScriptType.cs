@@ -39,11 +39,11 @@ public enum AnimScriptType : ushort
     AnimscriptFuseGeneral = 0,
 
     /// <summary>
-    ///     AnimscriptFuseStatemachine.
+    ///     AnimscriptFuseStateMachine.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMSCRIPT_FUSE_STATEMACHINE</c>.
     /// </remarks>
     [NativeName("ANIMSCRIPT_FUSE_STATEMACHINE")]
-    AnimscriptFuseStatemachine = 1
+    AnimscriptFuseStateMachine = 1
 }

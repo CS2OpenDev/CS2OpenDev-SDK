@@ -61,14 +61,14 @@ public partial class C_BaseModelEntity : C_BaseEntity
     public uint[] BvDisabledHitGroups { get; set; }
 
     /// <summary>
-    ///     Gets or sets CHitboxComponent.
+    ///     Gets or sets CHitBoxComponent.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_CHitboxComponent</c> at offset <c>0xAF8</c>.
     /// </remarks>
     [NativeOffset(0xAF8)]
     [NativeName("m_CHitboxComponent")]
-    public CHitboxComponent CHitboxComponent { get; set; }
+    public CHitBoxComponent CHitBoxComponent { get; set; }
 
     /// <summary>
     ///     Gets or sets CRenderComponent.

@@ -97,7 +97,7 @@ public partial class GeneralOptionsEditableData
     [NativeOffset(0x5)]
     [NativeName("bRenderFullyUnlitAsFullbright")]
     [NativeMetadata("MPropertyFriendlyName", "Render unlit maps as fullbright")]
-    public bool RenderFullyUnlitAsFullbright { get; set; }
+    public bool RenderFullyUnlitAsFullBright { get; set; }
 
     /// <summary>
     ///     Report crashes during map compile.
@@ -196,5 +196,5 @@ public partial class GeneralOptionsEditableData
     [NativeOffset(0x2C)]
     [NativeName("nViewportFontSize")]
     [NativeMetadata("MPropertyFriendlyName", "Font size for text in 2d and 3d viewports")]
-    public int ViewportFontSize { get; set; }
+    public int ViewPortFontSize { get; set; }
 }

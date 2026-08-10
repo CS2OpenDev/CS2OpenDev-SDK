@@ -22,7 +22,7 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 [NativeName("CPulseCell_Inflow_ObservableVariableListener")]
 [NativeMetadata("MGetKV3ClassDefaults",
     "{\n\t\"_class\": \"CPulseCell_Inflow_ObservableVariableListener\",\n\t\"m_nEditorNodeID\": -1,\n\t\"m_EntryChunk\": -1,\n\t\"m_RegisterMap\":\n\t{\n\t\t\"m_Inparams\": null,\n\t\t\"m_Outparams\": null\n\t},\n\t\"m_nBlackboardReference\": -1,\n\t\"m_bSelfReference\": false\n}")]
-public partial class CPulseCellInflowObservableVariableListener : CPulseCellInflowBaseEntrypoint
+public partial class CPulseCellInflowObservableVariableListener : CPulseCellInflowBaseEntryPoint
 {
     /// <summary>
     ///     Gets or sets BlackboardReference.

@@ -30,22 +30,22 @@ public enum EBaseUserMessages : uint
     UM_AchievementEvent = 101,
 
     /// <summary>
-    ///     UM_CurrentTimescale.
+    ///     UM_CurrentTimeScale.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>UM_CurrentTimescale</c>.
     /// </remarks>
     [NativeName("UM_CurrentTimescale")]
-    UM_CurrentTimescale = 104,
+    UM_CurrentTimeScale = 104,
 
     /// <summary>
-    ///     UM_DesiredTimescale.
+    ///     UM_DesiredTimeScale.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>UM_DesiredTimescale</c>.
     /// </remarks>
     [NativeName("UM_DesiredTimescale")]
-    UM_DesiredTimescale = 105,
+    UM_DesiredTimeScale = 105,
 
     /// <summary>
     ///     UM_Fade.

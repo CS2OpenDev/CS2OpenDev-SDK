@@ -129,24 +129,24 @@ public partial class CCSBot : CBot
     public VectorWS ApproachPointViewPosition { get; set; }
 
     /// <summary>
-    ///     Gets or sets AreaEnteredTimestamp.
+    ///     Gets or sets AreaEnteredTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_areaEnteredTimestamp</c> at offset <c>0x4F0C</c>.
     /// </remarks>
     [NativeOffset(0x4F0C)]
     [NativeName("m_areaEnteredTimestamp")]
-    public GameTime AreaEnteredTimestamp { get; set; }
+    public GameTime AreaEnteredTimeStamp { get; set; }
 
     /// <summary>
-    ///     Gets or sets AttackedTimestamp.
+    ///     Gets or sets AttackedTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_attackedTimestamp</c> at offset <c>0x5C64</c>.
     /// </remarks>
     [NativeOffset(0x5C64)]
     [NativeName("m_attackedTimestamp")]
-    public float AttackedTimestamp { get; set; }
+    public float AttackedTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets Attacker.
@@ -219,14 +219,14 @@ public partial class CCSBot : CBot
     public CountdownTimer AvoidFriendTimer { get; set; }
 
     /// <summary>
-    ///     Gets or sets AvoidTimestamp.
+    ///     Gets or sets AvoidTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_avoidTimestamp</c> at offset <c>0x5F8</c>.
     /// </remarks>
     [NativeOffset(0x5F8)]
     [NativeName("m_avoidTimestamp")]
-    public float AvoidTimestamp { get; set; }
+    public float AvoidTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets BendNoisePositionValid.
@@ -319,14 +319,14 @@ public partial class CCSBot : CBot
     public float CombatRange { get; set; }
 
     /// <summary>
-    ///     Gets or sets CurrentEnemyAcquireTimestamp.
+    ///     Gets or sets CurrentEnemyAcquireTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_currentEnemyAcquireTimestamp</c> at offset <c>0x5A24</c>.
     /// </remarks>
     [NativeOffset(0x5A24)]
     [NativeName("m_currentEnemyAcquireTimestamp")]
-    public float CurrentEnemyAcquireTimestamp { get; set; }
+    public float CurrentEnemyAcquireTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets DesiredTeam.
@@ -359,14 +359,14 @@ public partial class CCSBot : CBot
     public CHandle__CCSPlayerPawn__ Enemy { get; set; }
 
     /// <summary>
-    ///     Gets or sets EnemyDeathTimestamp.
+    ///     Gets or sets EnemyDeathTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_enemyDeathTimestamp</c> at offset <c>0x5A28</c>.
     /// </remarks>
     [NativeOffset(0x5A28)]
     [NativeName("m_enemyDeathTimestamp")]
-    public float EnemyDeathTimestamp { get; set; }
+    public float EnemyDeathTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets EnemyQueueAttendIndex.
@@ -429,34 +429,34 @@ public partial class CCSBot : CBot
     public VectorWS EyePosition { get; set; }
 
     /// <summary>
-    ///     Gets or sets FireWeaponTimestamp.
+    ///     Gets or sets FireWeaponTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_fireWeaponTimestamp</c> at offset <c>0x5CA8</c>.
     /// </remarks>
     [NativeOffset(0x5CA8)]
     [NativeName("m_fireWeaponTimestamp")]
-    public GameTime FireWeaponTimestamp { get; set; }
+    public GameTime FireWeaponTimeStamp { get; set; }
 
     /// <summary>
-    ///     Gets or sets FirstSawEnemyTimestamp.
+    ///     Gets or sets FirstSawEnemyTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_firstSawEnemyTimestamp</c> at offset <c>0x5A20</c>.
     /// </remarks>
     [NativeOffset(0x5A20)]
     [NativeName("m_firstSawEnemyTimestamp")]
-    public float FirstSawEnemyTimestamp { get; set; }
+    public float FirstSawEnemyTimeStamp { get; set; }
 
     /// <summary>
-    ///     Gets or sets FollowTimestamp.
+    ///     Gets or sets FollowTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_followTimestamp</c> at offset <c>0x1B0</c>.
     /// </remarks>
     [NativeOffset(0x1B0)]
     [NativeName("m_followTimestamp")]
-    public float FollowTimestamp { get; set; }
+    public float FollowTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets ForwardAngle.
@@ -469,14 +469,14 @@ public partial class CCSBot : CBot
     public float ForwardAngle { get; set; }
 
     /// <summary>
-    ///     Gets or sets FriendDeathTimestamp.
+    ///     Gets or sets FriendDeathTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_friendDeathTimestamp</c> at offset <c>0x5A2C</c>.
     /// </remarks>
     [NativeOffset(0x5A2C)]
     [NativeName("m_friendDeathTimestamp")]
-    public float FriendDeathTimestamp { get; set; }
+    public float FriendDeathTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets GoalEntity.
@@ -529,14 +529,14 @@ public partial class CCSBot : CBot
     public byte HostageEscortCount { get; set; }
 
     /// <summary>
-    ///     Gets or sets HostageEscortCountTimestamp.
+    ///     Gets or sets HostageEscortCountTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hostageEscortCountTimestamp</c> at offset <c>0x52BC</c>.
     /// </remarks>
     [NativeOffset(0x52BC)]
     [NativeName("m_hostageEscortCountTimestamp")]
-    public float HostageEscortCountTimestamp { get; set; }
+    public float HostageEscortCountTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets HurryTimer.
@@ -559,14 +559,14 @@ public partial class CCSBot : CBot
     public CountdownTimer IgnoreEnemiesTimer { get; set; }
 
     /// <summary>
-    ///     Gets or sets InhibitLookAroundTimestamp.
+    ///     Gets or sets InhibitLookAroundTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_inhibitLookAroundTimestamp</c> at offset <c>0x5360</c>.
     /// </remarks>
     [NativeOffset(0x5360)]
     [NativeName("m_inhibitLookAroundTimestamp")]
-    public float InhibitLookAroundTimestamp { get; set; }
+    public float InhibitLookAroundTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets InhibitWaitingForHostageTimer.
@@ -759,34 +759,34 @@ public partial class CCSBot : CBot
     public VectorWS LastOrigin { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastRadioRecievedTimestamp.
+    ///     Gets or sets LastRadioRecievedTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lastRadioRecievedTimestamp</c> at offset <c>0x5E14</c>.
     /// </remarks>
     [NativeOffset(0x5E14)]
     [NativeName("m_lastRadioRecievedTimestamp")]
-    public float LastRadioRecievedTimestamp { get; set; }
+    public float LastRadioRecievedTimeStamp { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastRadioSentTimestamp.
+    ///     Gets or sets LastRadioSentTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lastRadioSentTimestamp</c> at offset <c>0x5E18</c>.
     /// </remarks>
     [NativeOffset(0x5E18)]
     [NativeName("m_lastRadioSentTimestamp")]
-    public float LastRadioSentTimestamp { get; set; }
+    public float LastRadioSentTimeStamp { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastSawEnemyTimestamp.
+    ///     Gets or sets LastSawEnemyTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lastSawEnemyTimestamp</c> at offset <c>0x5A1C</c>.
     /// </remarks>
     [NativeOffset(0x5A1C)]
     [NativeName("m_lastSawEnemyTimestamp")]
-    public float LastSawEnemyTimestamp { get; set; }
+    public float LastSawEnemyTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets LastValidReactionQueueFrame.
@@ -799,14 +799,14 @@ public partial class CCSBot : CBot
     public int LastValidReactionQueueFrame { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastVictimID.
+    ///     Gets or sets LastVictimId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lastVictimID</c> at offset <c>0x5C78</c>.
     /// </remarks>
     [NativeOffset(0x5C78)]
     [NativeName("m_lastVictimID")]
-    public int LastVictimID { get; set; }
+    public int LastVictimId { get; set; }
 
     /// <summary>
     ///     Gets or sets Leader.
@@ -829,14 +829,14 @@ public partial class CCSBot : CBot
     public float LookAheadAngle { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookAroundStateTimestamp.
+    ///     Gets or sets LookAroundStateTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookAroundStateTimestamp</c> at offset <c>0x5350</c>.
     /// </remarks>
     [NativeOffset(0x5350)]
     [NativeName("m_lookAroundStateTimestamp")]
-    public float LookAroundStateTimestamp { get; set; }
+    public float LookAroundStateTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets LookAtDesc.
@@ -899,14 +899,14 @@ public partial class CCSBot : CBot
     public float LookAtSpotDuration { get; set; }
 
     /// <summary>
-    ///     Gets or sets LookAtSpotTimestamp.
+    ///     Gets or sets LookAtSpotTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_lookAtSpotTimestamp</c> at offset <c>0x537C</c>.
     /// </remarks>
     [NativeOffset(0x537C)]
     [NativeName("m_lookAtSpotTimestamp")]
-    public float LookAtSpotTimestamp { get; set; }
+    public float LookAtSpotTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets LookForWeaponsOnGroundTimer.
@@ -1009,14 +1009,14 @@ public partial class CCSBot : CBot
     public int NearbyFriendCount { get; set; }
 
     /// <summary>
-    ///     Gets or sets NextCleanupCheckTimestamp.
+    ///     Gets or sets NextCleanupCheckTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nextCleanupCheckTimestamp</c> at offset <c>0x5DD0</c>.
     /// </remarks>
     [NativeOffset(0x5DD0)]
     [NativeName("m_nextCleanupCheckTimestamp")]
-    public GameTime NextCleanupCheckTimestamp { get; set; }
+    public GameTime NextCleanupCheckTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseBendTimer.
@@ -1049,14 +1049,14 @@ public partial class CCSBot : CBot
     public CCSPlayerPawn? NoiseSource { get; set; }
 
     /// <summary>
-    ///     Gets or sets NoiseTimestamp.
+    ///     Gets or sets NoiseTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_noiseTimestamp</c> at offset <c>0x5308</c>.
     /// </remarks>
     [NativeOffset(0x5308)]
     [NativeName("m_noiseTimestamp")]
-    public float NoiseTimestamp { get; set; }
+    public float NoiseTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseTravelDistance.
@@ -1099,14 +1099,14 @@ public partial class CCSBot : CBot
     public float PathLadderEnd { get; set; }
 
     /// <summary>
-    ///     Gets or sets PeripheralTimestamp.
+    ///     Gets or sets PeripheralTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_peripheralTimestamp</c> at offset <c>0x5390</c>.
     /// </remarks>
     [NativeOffset(0x5390)]
     [NativeName("m_peripheralTimestamp")]
-    public float PeripheralTimestamp { get; set; }
+    public float PeripheralTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerTravelDistance.
@@ -1199,24 +1199,24 @@ public partial class CCSBot : CBot
     public CountdownTimer SneakTimer { get; set; }
 
     /// <summary>
-    ///     Gets or sets SpotCheckTimestamp.
+    ///     Gets or sets SpotCheckTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_spotCheckTimestamp</c> at offset <c>0x5580</c>.
     /// </remarks>
     [NativeOffset(0x5580)]
     [NativeName("m_spotCheckTimestamp")]
-    public float SpotCheckTimestamp { get; set; }
+    public float SpotCheckTimeStamp { get; set; }
 
     /// <summary>
-    ///     Gets or sets StateTimestamp.
+    ///     Gets or sets StateTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_stateTimestamp</c> at offset <c>0x5C8</c>.
     /// </remarks>
     [NativeOffset(0x5C8)]
     [NativeName("m_stateTimestamp")]
-    public float StateTimestamp { get; set; }
+    public float StateTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets StillTimer.
@@ -1249,14 +1249,14 @@ public partial class CCSBot : CBot
     public VectorWS StuckSpot { get; set; }
 
     /// <summary>
-    ///     Gets or sets StuckTimestamp.
+    ///     Gets or sets StuckTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_stuckTimestamp</c> at offset <c>0x5D8C</c>.
     /// </remarks>
     [NativeOffset(0x5D8C)]
     [NativeName("m_stuckTimestamp")]
-    public GameTime StuckTimestamp { get; set; }
+    public GameTime StuckTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets SurpriseTimer.
@@ -1369,14 +1369,14 @@ public partial class CCSBot : CBot
     public byte VisibleEnemyParts { get; set; }
 
     /// <summary>
-    ///     Gets or sets VoiceEndTimestamp.
+    ///     Gets or sets VoiceEndTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_voiceEndTimestamp</c> at offset <c>0x5E2C</c>.
     /// </remarks>
     [NativeOffset(0x5E2C)]
     [NativeName("m_voiceEndTimestamp")]
-    public float VoiceEndTimestamp { get; set; }
+    public float VoiceEndTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets WaitForHostageTimer.

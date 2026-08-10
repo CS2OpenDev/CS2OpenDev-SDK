@@ -39,14 +39,14 @@ public partial class C_CSPlayerPawnBase : C_BasePlayerPawn
     public GameTime ClientDeathTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets ClientHealthFadeChangeTimestamp.
+    ///     Gets or sets ClientHealthFadeChangeTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flClientHealthFadeChangeTimestamp</c> at offset <c>0x142C</c>.
     /// </remarks>
     [NativeOffset(0x142C)]
     [NativeName("m_flClientHealthFadeChangeTimestamp")]
-    public GameTime ClientHealthFadeChangeTimestamp { get; set; }
+    public GameTime ClientHealthFadeChangeTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets ClientHealthFadeParityValue.

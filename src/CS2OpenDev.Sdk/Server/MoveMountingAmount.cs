@@ -49,11 +49,11 @@ public enum MoveMountingAmount : uint
     MoveMountHigh = 2,
 
     /// <summary>
-    ///     MoveMountMaxcount.
+    ///     MoveMountMaxCount.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MOVE_MOUNT_MAXCOUNT</c>.
     /// </remarks>
     [NativeName("MOVE_MOUNT_MAXCOUNT")]
-    MoveMountMaxcount = 3
+    MoveMountMaxCount = 3
 }

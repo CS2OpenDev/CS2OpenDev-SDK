@@ -35,14 +35,14 @@ public partial class CNmTargetWarpNodeCDefinition : CNmPoseNodeCDefinition
     public bool AlignWithTargetAtLastWarpEvent { get; set; }
 
     /// <summary>
-    ///     Gets or sets AlignmentBoneID.
+    ///     Gets or sets AlignmentBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_alignmentBoneID</c> at offset <c>0x30</c>.
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_alignmentBoneID")]
-    public string AlignmentBoneID { get; set; }
+    public string AlignmentBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets ClipReferenceNodeIdx.

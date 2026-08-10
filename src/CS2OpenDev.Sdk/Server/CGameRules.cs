@@ -59,14 +59,14 @@ public abstract partial class CGameRules
     public uint LastMatchTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastMatchTimeMatchID64.
+    ///     Gets or sets LastMatchTimeMatchId64.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nLastMatchTime_MatchID64</c> at offset <c>0xB8</c>.
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_nLastMatchTime_MatchID64")]
-    public ulong LastMatchTimeMatchID64 { get; set; }
+    public ulong LastMatchTimeMatchId64 { get; set; }
 
     /// <summary>
     ///     Gets or sets PauseStartTick.

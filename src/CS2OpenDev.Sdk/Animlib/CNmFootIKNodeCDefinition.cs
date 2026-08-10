@@ -65,14 +65,14 @@ public partial class CNmFootIKNodeCDefinition : CNmPassthroughNodeCDefinition
     public bool IsTargetInWorldSpace { get; set; }
 
     /// <summary>
-    ///     Gets or sets LeftEffectorBoneID.
+    ///     Gets or sets LeftEffectorBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_leftEffectorBoneID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_leftEffectorBoneID")]
-    public string LeftEffectorBoneID { get; set; }
+    public string LeftEffectorBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets LeftTargetNodeIdx.
@@ -85,14 +85,14 @@ public partial class CNmFootIKNodeCDefinition : CNmPassthroughNodeCDefinition
     public short LeftTargetNodeIdx { get; set; }
 
     /// <summary>
-    ///     Gets or sets RightEffectorBoneID.
+    ///     Gets or sets RightEffectorBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_rightEffectorBoneID</c> at offset <c>0x20</c>.
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_rightEffectorBoneID")]
-    public string RightEffectorBoneID { get; set; }
+    public string RightEffectorBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets RightTargetNodeIdx.

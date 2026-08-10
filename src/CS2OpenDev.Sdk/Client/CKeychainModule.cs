@@ -23,14 +23,14 @@ namespace CS2OpenSchema.Client;
 public partial class CKeychainModule : CCS2WeaponModuleBase
 {
     /// <summary>
-    ///     Gets or sets KeychainDefID.
+    ///     Gets or sets KeychainDefId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nKeychainDefID</c> at offset <c>0x1188</c>.
     /// </remarks>
     [NativeOffset(0x1188)]
     [NativeName("m_nKeychainDefID")]
-    public uint KeychainDefID { get; set; }
+    public uint KeychainDefId { get; set; }
 
     /// <summary>
     ///     Gets or sets KeychainSeed.

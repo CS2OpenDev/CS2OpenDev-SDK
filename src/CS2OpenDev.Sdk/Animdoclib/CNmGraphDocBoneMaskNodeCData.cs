@@ -25,7 +25,7 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmGraphDocBoneMaskNodeCData : CNmGraphDocVariationDataNodeCData
 {
     /// <summary>
-    ///     Gets or sets OverrideMaskID.
+    ///     Gets or sets OverrideMaskId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_overrideMaskID</c> at offset <c>0x8</c>.
@@ -33,5 +33,5 @@ public partial class CNmGraphDocBoneMaskNodeCData : CNmGraphDocVariationDataNode
     [NativeOffset(0x8)]
     [NativeName("m_overrideMaskID")]
     [NativeMetadata("MPropertyAttributeEditor", "BoneMaskID()")]
-    public string OverrideMaskID { get; set; }
+    public string OverrideMaskId { get; set; }
 }

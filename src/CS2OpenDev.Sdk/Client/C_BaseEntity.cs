@@ -116,7 +116,7 @@ public partial class C_BaseEntity : CEntityInstance
     public bool AnimatedEveryTick { get; set; }
 
     /// <summary>
-    ///     Gets or sets ApplyLayerMatchIDToModel.
+    ///     Gets or sets ApplyLayerMatchIdToModel.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bApplyLayerMatchIDToModel</c> at offset <c>0x37B</c>.
@@ -124,7 +124,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x37B)]
     [NativeName("m_bApplyLayerMatchIDToModel")]
     [NativeMetadata("MNotSaved", "")]
-    public bool ApplyLayerMatchIDToModel { get; set; }
+    public bool ApplyLayerMatchIdToModel { get; set; }
 
     /// <summary>
     ///     Gets or sets BBoxVisFlags.
@@ -700,7 +700,7 @@ public partial class C_BaseEntity : CEntityInstance
     public bool RenderWithViewModels { get; set; }
 
     /// <summary>
-    ///     Gets or sets SUniqueHammerID.
+    ///     Gets or sets SUniqueHammerId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_sUniqueHammerID</c> at offset <c>0x5F0</c>.
@@ -708,7 +708,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x5F0)]
     [NativeName("m_sUniqueHammerID")]
     [NativeMetadata("MNotSaved", "")]
-    public string SUniqueHammerID { get; set; }
+    public string SUniqueHammerId { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneObjectController.
@@ -785,14 +785,14 @@ public partial class C_BaseEntity : CEntityInstance
     public uint Spawnflags { get; set; }
 
     /// <summary>
-    ///     Gets or sets SubclassID.
+    ///     Gets or sets SubclassId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nSubclassID</c> at offset <c>0x380</c>.
     /// </remarks>
     [NativeOffset(0x380)]
     [NativeName("m_nSubclassID")]
-    public string SubclassID { get; set; }
+    public string SubclassId { get; set; }
 
     /// <summary>
     ///     Gets or sets TakeDamageFlags.
@@ -850,7 +850,7 @@ public partial class C_BaseEntity : CEntityInstance
     public float TimeScale { get; set; }
 
     /// <summary>
-    ///     Gets or sets TokLayerMatchID.
+    ///     Gets or sets TokLayerMatchId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_tokLayerMatchID</c> at offset <c>0x37C</c>.
@@ -858,7 +858,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x37C)]
     [NativeName("m_tokLayerMatchID")]
     [NativeMetadata("MNotSaved", "")]
-    public string TokLayerMatchID { get; set; }
+    public string TokLayerMatchId { get; set; }
 
     /// <summary>
     ///     Gets or sets UbInterpolationFrame.

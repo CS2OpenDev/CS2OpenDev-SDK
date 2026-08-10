@@ -500,13 +500,13 @@ public enum LoadoutSlot : uint
     ClothingCustomhead = 39,
 
     /// <summary>
-    ///     ClothingFacemask.
+    ///     ClothingFaceMask.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LOADOUT_SLOT_CLOTHING_FACEMASK</c>.
     /// </remarks>
     [NativeName("LOADOUT_SLOT_CLOTHING_FACEMASK")]
-    ClothingFacemask = 40,
+    ClothingFaceMask = 40,
 
     /// <summary>
     ///     ClothingHands.
@@ -655,14 +655,14 @@ public enum LoadoutSlot : uint
     FirstAllCharacter = 54,
 
     /// <summary>
-    ///     Musickit.
+    ///     MusicKit.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LOADOUT_SLOT_MUSICKIT</c>.
     /// </remarks>
     [Obsolete("Alias for FirstAllCharacter.")]
     [NativeName("LOADOUT_SLOT_MUSICKIT")]
-    Musickit = 54,
+    MusicKit = 54,
 
     /// <summary>
     ///     Flair0.

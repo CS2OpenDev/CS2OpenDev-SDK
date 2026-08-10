@@ -24,14 +24,14 @@ namespace CS2OpenSchema.Animlib;
 public partial class CNmGraphEventConditionNodeCondition
 {
     /// <summary>
-    ///     Gets or sets EventID.
+    ///     Gets or sets EventId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_eventID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_eventID")]
-    public string EventID { get; set; }
+    public string EventId { get; set; }
 
     /// <summary>
     ///     Gets or sets EventTypeCondition.

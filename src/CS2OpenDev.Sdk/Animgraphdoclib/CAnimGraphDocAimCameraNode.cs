@@ -112,7 +112,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterCameraClearanceDistance")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Clearance Distance")]
-    public AnimParamID ParameterCameraClearanceDistance { get; set; }
+    public AnimParamId ParameterCameraClearanceDistance { get; set; }
 
     /// <summary>
     ///     Camera Only Parameter.
@@ -124,7 +124,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterCameraOnly")]
     [NativeMetadata("MPropertyAttributeChoiceName", "BoolParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Camera Only Parameter")]
-    public AnimParamID ParameterCameraOnly { get; set; }
+    public AnimParamId ParameterCameraOnly { get; set; }
 
     /// <summary>
     ///     Orientation Parameter.
@@ -136,7 +136,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterNameOrientation")]
     [NativeMetadata("MPropertyAttributeChoiceName", "QuaternionParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Orientation Parameter")]
-    public AnimParamID ParameterNameOrientation { get; set; }
+    public AnimParamId ParameterNameOrientation { get; set; }
 
     /// <summary>
     ///     Pelvis Offset Parameter.
@@ -148,7 +148,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterNamePelvisOffset")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Pelvis Offset Parameter")]
-    public AnimParamID ParameterNamePelvisOffset { get; set; }
+    public AnimParamId ParameterNamePelvisOffset { get; set; }
 
     /// <summary>
     ///     Animgraph Position Parameter.
@@ -160,7 +160,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterNamePosition")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Animgraph Position Parameter")]
-    public AnimParamID ParameterNamePosition { get; set; }
+    public AnimParamId ParameterNamePosition { get; set; }
 
     /// <summary>
     ///     Weapon De-Penetration Delta.
@@ -172,7 +172,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterWeaponDepenetrationDelta")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Weapon De-Penetration Delta")]
-    public AnimParamID ParameterWeaponDepenetrationDelta { get; set; }
+    public AnimParamId ParameterWeaponDepenetrationDelta { get; set; }
 
     /// <summary>
     ///     Weapon De-Penetration Distance.
@@ -184,7 +184,7 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_parameterWeaponDepenetrationDistance")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Weapon De-Penetration Distance")]
-    public AnimParamID ParameterWeaponDepenetrationDistance { get; set; }
+    public AnimParamId ParameterWeaponDepenetrationDistance { get; set; }
 
     /// <summary>
     ///     Pelvis Joint.

@@ -423,7 +423,10 @@ internal static class NameHelpers
     // Step 3   — if ALL_CAPS_SNAKE → PascalCase each segment.
     // Step 4   — PascalCase first letter.
 
-    internal static string ToEnumMemberName(string enumCppTypeName, string memberName)
+    internal static string ToEnumMemberName(string enumCppTypeName, string memberName) =>
+        WordSplitter.Split(ToEnumMemberNameCore(enumCppTypeName, memberName));
+
+    private static string ToEnumMemberNameCore(string enumCppTypeName, string memberName)
     {
         string rest = memberName;
 
@@ -508,7 +511,15 @@ internal static class NameHelpers
     //   m_hEntity     →  Entity       m_nSetValue_Value       →  SetValueValue
     //   m_vecPos      →  Pos          m_Movement_type_desired →  MovementTypeDesired
 
-    internal static string ToPropName(string name)
+    // Every identifier the generator emits funnels through one of the five
+    // `To*` entry points below, and each ends by handing its result to
+    // `WordSplitter.Split`. Doing it at the boundary rather than inside the
+    // individual folds means a name cannot reach the output having skipped the
+    // pass — the alternative was patching a dozen `return` sites and hoping.
+    internal static string ToPropName(string name) =>
+        WordSplitter.Split(ToPropNameCore(name));
+
+    private static string ToPropNameCore(string name)
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -531,7 +542,10 @@ internal static class NameHelpers
 
     // Strips only the access prefix (m_, s_, RS_, …) without touching the type-hint
     // code. Used as a fallback when full stripping would produce a duplicate name.
-    internal static string ToPropNameAccessOnly(string name)
+    internal static string ToPropNameAccessOnly(string name) =>
+        WordSplitter.Split(ToPropNameAccessOnlyCore(name));
+
+    private static string ToPropNameAccessOnlyCore(string name)
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -598,7 +612,10 @@ internal static class NameHelpers
     //   CNmClipDocEvent_EntityAttribute (class) → CNmClipDocEventEntity
     //   CompositeMaterial_t           → CompositeMaterial
 
-    internal static string ToTypeName(string cppName, bool isEnum = false, bool isFlags = false)
+    internal static string ToTypeName(string cppName, bool isEnum = false, bool isFlags = false) =>
+        WordSplitter.Split(ToTypeNameCore(cppName, isEnum, isFlags));
+
+    private static string ToTypeNameCore(string cppName, bool isEnum, bool isFlags)
     {
         string s = cppName.Replace("::", "_");
 
@@ -720,7 +737,10 @@ internal static class NameHelpers
     // KV1 source as `player_death` / `weapon_originalowner_xuid` — no Hungarian
     // prefixes, no `_t` suffix, just lowercase-snake. Reuses the same segment
     // logic so the output style matches the rest of the SDK.
-    internal static string ToPascalCaseFromSnake(string s)
+    internal static string ToPascalCaseFromSnake(string s) =>
+        WordSplitter.Split(ToPascalCaseFromSnakeCore(s));
+
+    private static string ToPascalCaseFromSnakeCore(string s)
     {
         string normalised = NormalizeSegments(s);
         if (normalised.Length > 0 && char.IsLower(normalised[0]))

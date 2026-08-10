@@ -133,7 +133,7 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     public CUtlVector__CNmSkeletonDocument_SecondarySkeleton_t__ SecondarySkeletons { get; set; }
 
     /// <summary>
-    ///     Gets or sets SourceFilename.
+    ///     Gets or sets SourceFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_sourceFilename</c> at offset <c>0x70</c>.
@@ -142,5 +142,5 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     [NativeName("m_sourceFilename")]
     [NativeMetadata("MPropertyAttributeEditor",
         "ModelDocAssetBrowse( dmx, fbx, smd, *requiredoubleclick, *ShowRelatedFile )")]
-    public string SourceFilename { get; set; }
+    public string SourceFileName { get; set; }
 }

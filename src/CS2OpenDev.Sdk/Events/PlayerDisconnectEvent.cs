@@ -48,17 +48,17 @@ public sealed partial record PlayerDisconnectEvent
     /// </remarks>
     [NativeName("networkid")]
     [GameEventFieldType("string")]
-    public required string Networkid { get; init; }
+    public required string NetworkId { get; init; }
 
     /// <summary>
-    ///     PlayerID.
+    ///     PlayerId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PlayerID</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("PlayerID")]
     [GameEventFieldType("short")]
-    public required short PlayerID { get; init; }
+    public required short PlayerId { get; init; }
 
     /// <summary>
     ///     see networkdisconnect enum protobuf.
@@ -78,7 +78,7 @@ public sealed partial record PlayerDisconnectEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     steam id.

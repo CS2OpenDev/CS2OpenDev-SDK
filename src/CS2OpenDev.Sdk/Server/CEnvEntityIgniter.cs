@@ -22,12 +22,12 @@ namespace CS2OpenSchema.Server;
 public partial class CEnvEntityIgniter : CBaseEntity
 {
     /// <summary>
-    ///     Gets or sets Lifetime.
+    ///     Gets or sets LifeTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flLifetime</c> at offset <c>0x4A8</c>.
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_flLifetime")]
-    public float Lifetime { get; set; }
+    public float LifeTime { get; set; }
 }

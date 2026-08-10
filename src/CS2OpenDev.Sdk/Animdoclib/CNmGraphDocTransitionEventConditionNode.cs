@@ -52,7 +52,7 @@ public partial class CNmGraphDocTransitionEventConditionNode : CNmGraphDocFlowNo
     public bool LimitSearchToSourceState { get; set; }
 
     /// <summary>
-    ///     Gets or sets MarkerIDToMatch.
+    ///     Gets or sets MarkerIdToMatch.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_markerIDToMatch</c> at offset <c>0x108</c>.
@@ -60,17 +60,17 @@ public partial class CNmGraphDocTransitionEventConditionNode : CNmGraphDocFlowNo
     [NativeOffset(0x108)]
     [NativeName("m_markerIDToMatch")]
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
-    public string MarkerIDToMatch { get; set; }
+    public string MarkerIdToMatch { get; set; }
 
     /// <summary>
-    ///     Gets or sets MatchOnlySpecificMarkerID.
+    ///     Gets or sets MatchOnlySpecificMarkerId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bMatchOnlySpecificMarkerID</c> at offset <c>0x101</c>.
     /// </remarks>
     [NativeOffset(0x101)]
     [NativeName("m_bMatchOnlySpecificMarkerID")]
-    public bool MatchOnlySpecificMarkerID { get; set; }
+    public bool MatchOnlySpecificMarkerId { get; set; }
 
     /// <summary>
     ///     Gets or sets RuleCondition.

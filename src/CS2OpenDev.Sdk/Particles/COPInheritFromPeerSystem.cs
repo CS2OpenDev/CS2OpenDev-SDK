@@ -57,7 +57,7 @@ public partial class COPInheritFromPeerSystem : CParticleFunctionOperator
     [NativeOffset(0x1E4)]
     [NativeName("m_nGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "group id")]
-    public int GroupID { get; set; }
+    public int GroupId { get; set; }
 
     /// <summary>
     ///     particle neighbor increment amount.

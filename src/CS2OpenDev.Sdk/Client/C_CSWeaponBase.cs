@@ -549,14 +549,14 @@ public partial class C_CSWeaponBase : C_BasePlayerWeapon
     public WeaponGameplayAnimState WeaponGameplayAnimState { get; set; }
 
     /// <summary>
-    ///     Gets or sets WeaponGameplayAnimStateTimestamp.
+    ///     Gets or sets WeaponGameplayAnimStateTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flWeaponGameplayAnimStateTimestamp</c> at offset <c>0x177C</c>.
     /// </remarks>
     [NativeOffset(0x177C)]
     [NativeName("m_flWeaponGameplayAnimStateTimestamp")]
-    public GameTime WeaponGameplayAnimStateTimestamp { get; set; }
+    public GameTime WeaponGameplayAnimStateTimeStamp { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponMode.

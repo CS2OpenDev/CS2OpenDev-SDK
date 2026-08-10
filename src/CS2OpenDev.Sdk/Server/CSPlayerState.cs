@@ -84,13 +84,13 @@ public enum CSPlayerState : uint
     StateObserverMode = 6,
 
     /// <summary>
-    ///     StateGungameRespawn.
+    ///     StateGunGameRespawn.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATE_GUNGAME_RESPAWN</c>.
     /// </remarks>
     [NativeName("STATE_GUNGAME_RESPAWN")]
-    StateGungameRespawn = 7,
+    StateGunGameRespawn = 7,
 
     /// <summary>
     ///     Not yet fully in the game (loading / intermission).

@@ -50,14 +50,14 @@ public partial class CSkeletonInstance : CGameSceneNode
     public bool DisableSolidCollisionsForHierarchy { get; set; }
 
     /// <summary>
-    ///     Gets or sets HitboxSet.
+    ///     Gets or sets HitBoxSet.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nHitboxSet</c> at offset <c>0x3FC</c>.
     /// </remarks>
     [NativeOffset(0x3FC)]
     [NativeName("m_nHitboxSet")]
-    public byte HitboxSet { get; set; }
+    public byte HitBoxSet { get; set; }
 
     /// <summary>
     ///     Gets or sets IsGeneratingLatchedParentSpaceState.

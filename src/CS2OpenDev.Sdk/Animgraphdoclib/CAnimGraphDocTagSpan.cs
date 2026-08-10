@@ -48,7 +48,7 @@ public partial class CAnimGraphDocTagSpan
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_id")]
-    public AnimTagID Id { get; set; }
+    public AnimTagId Id { get; set; }
 
     /// <summary>
     ///     Gets or sets StartCycle.

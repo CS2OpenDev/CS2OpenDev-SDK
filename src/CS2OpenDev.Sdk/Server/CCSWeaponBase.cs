@@ -529,14 +529,14 @@ public partial class CCSWeaponBase : CBasePlayerWeapon
     public WeaponGameplayAnimState WeaponGameplayAnimState { get; set; }
 
     /// <summary>
-    ///     Gets or sets WeaponGameplayAnimStateTimestamp.
+    ///     Gets or sets WeaponGameplayAnimStateTimeStamp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flWeaponGameplayAnimStateTimestamp</c> at offset <c>0xCE0</c>.
     /// </remarks>
     [NativeOffset(0xCE0)]
     [NativeName("m_flWeaponGameplayAnimStateTimestamp")]
-    public GameTime WeaponGameplayAnimStateTimestamp { get; set; }
+    public GameTime WeaponGameplayAnimStateTimeStamp { get; set; }
 
     /// <summary>
     ///     CSWeaponMode enum: Primary_Mode = 0, Secondary_Mode = 1. Governs which attack function runs on fire.

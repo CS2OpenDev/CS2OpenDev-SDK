@@ -170,14 +170,14 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public float DeathInfoTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets DelayTargetIDTimer.
+    ///     Gets or sets DelayTargetIdTimer.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_delayTargetIDTimer</c> at offset <c>0x3430</c>.
     /// </remarks>
     [NativeOffset(0x3430)]
     [NativeName("m_delayTargetIDTimer")]
-    public CountdownTimer DelayTargetIDTimer { get; set; }
+    public CountdownTimer DelayTargetIdTimer { get; set; }
 
     /// <summary>
     ///     Gets or sets EconGloves.
@@ -250,14 +250,14 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public float FlinchStack { get; set; }
 
     /// <summary>
-    ///     Gets or sets FreezetimeEndEquipmentValue.
+    ///     Gets or sets FreezeTimeEndEquipmentValue.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_unFreezetimeEndEquipmentValue</c> at offset <c>0x1CAC</c>.
     /// </remarks>
     [NativeOffset(0x1CAC)]
     [NativeName("m_unFreezetimeEndEquipmentValue")]
-    public ushort FreezetimeEndEquipmentValue { get; set; }
+    public ushort FreezeTimeEndEquipmentValue { get; set; }
 
     /// <summary>
     ///     Gets or sets GlowServices.
@@ -340,14 +340,14 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public GameTime HealthShotBoostExpirationTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets HoldTargetIDTimer.
+    ///     Gets or sets HoldTargetIdTimer.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_holdTargetIDTimer</c> at offset <c>0x3450</c>.
     /// </remarks>
     [NativeOffset(0x3450)]
     [NativeName("m_holdTargetIDTimer")]
-    public CountdownTimer HoldTargetIDTimer { get; set; }
+    public CountdownTimer HoldTargetIdTimer { get; set; }
 
     /// <summary>
     ///     Gets or sets HostageServices.
@@ -370,14 +370,14 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public CHandle__C_CS2HudModelArms__ HudModelArms { get; set; }
 
     /// <summary>
-    ///     Gets or sets IDEntIndex.
+    ///     Gets or sets IdEntIndex.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iIDEntIndex</c> at offset <c>0x342C</c>.
     /// </remarks>
     [NativeOffset(0x342C)]
     [NativeName("m_iIDEntIndex")]
-    public int IDEntIndex { get; set; }
+    public int IdEntIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets IgnoreLadderJumpTime.
@@ -640,14 +640,14 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public float OldFallVelocity { get; set; }
 
     /// <summary>
-    ///     Gets or sets OldIDEntIndex.
+    ///     Gets or sets OldIdEntIndex.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iOldIDEntIndex</c> at offset <c>0x344C</c>.
     /// </remarks>
     [NativeOffset(0x344C)]
     [NativeName("m_iOldIDEntIndex")]
-    public int OldIDEntIndex { get; set; }
+    public int OldIdEntIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets OldIsScoped.
@@ -980,44 +980,44 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public float VelocityModifier { get; set; }
 
     /// <summary>
-    ///     Gets or sets ViewmodelFOV.
+    ///     Gets or sets ViewModelFOV.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flViewmodelFOV</c> at offset <c>0x1BA8</c>.
     /// </remarks>
     [NativeOffset(0x1BA8)]
     [NativeName("m_flViewmodelFOV")]
-    public float ViewmodelFOV { get; set; }
+    public float ViewModelFOV { get; set; }
 
     /// <summary>
-    ///     Gets or sets ViewmodelOffsetX.
+    ///     Gets or sets ViewModelOffsetX.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flViewmodelOffsetX</c> at offset <c>0x1B9C</c>.
     /// </remarks>
     [NativeOffset(0x1B9C)]
     [NativeName("m_flViewmodelOffsetX")]
-    public float ViewmodelOffsetX { get; set; }
+    public float ViewModelOffsetX { get; set; }
 
     /// <summary>
-    ///     Gets or sets ViewmodelOffsetY.
+    ///     Gets or sets ViewModelOffsetY.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flViewmodelOffsetY</c> at offset <c>0x1BA0</c>.
     /// </remarks>
     [NativeOffset(0x1BA0)]
     [NativeName("m_flViewmodelOffsetY")]
-    public float ViewmodelOffsetY { get; set; }
+    public float ViewModelOffsetY { get; set; }
 
     /// <summary>
-    ///     Gets or sets ViewmodelOffsetZ.
+    ///     Gets or sets ViewModelOffsetZ.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flViewmodelOffsetZ</c> at offset <c>0x1BA4</c>.
     /// </remarks>
     [NativeOffset(0x1BA4)]
     [NativeName("m_flViewmodelOffsetZ")]
-    public float ViewmodelOffsetZ { get; set; }
+    public float ViewModelOffsetZ { get; set; }
 
     /// <summary>
     ///     Gets or sets WaitForNoAttack.

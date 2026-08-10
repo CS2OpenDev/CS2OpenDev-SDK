@@ -35,7 +35,7 @@ public partial class CNmClipDocument : CNmAnimDocument
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( dmx, fbx, *requiredoubleclick )")]
     [NativeMetadata("MPropertyDescription", "The source file to use as the base of the additive")]
     [NativeMetadata("MPropertyGroupName", "+Additive")]
-    public string AdditiveBaseFilename { get; set; }
+    public string AdditiveBaseFileName { get; set; }
 
     /// <summary>
     ///     The frame to use when generating an additive, if you are generating relative to another animation and this is set to -1, we will extract each frame from it's corresponding frame in the base anim.
@@ -151,7 +151,7 @@ public partial class CNmClipDocument : CNmAnimDocument
     public CUtlVector__CUtlString__ SecondaryAnimationSkeletonNames { get; set; }
 
     /// <summary>
-    ///     Gets or sets SourceFilename.
+    ///     Gets or sets SourceFileName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_sourceFilename</c> at offset <c>0x70</c>.
@@ -160,7 +160,7 @@ public partial class CNmClipDocument : CNmAnimDocument
     [NativeName("m_sourceFilename")]
     [NativeMetadata("MPropertyAttributeEditor",
         "ModelDocAssetBrowse( dmx, fbx, smd, *requiredoubleclick, *ShowRelatedFile )")]
-    public string SourceFilename { get; set; }
+    public string SourceFileName { get; set; }
 
     /// <summary>
     ///     Specify the import start frame (0 or a negative value means use the first frame in the authored animation).

@@ -28,14 +28,14 @@ namespace CS2OpenSchema.Client;
 public partial class C_EconItemView : IEconItemInterface
 {
     /// <summary>
-    ///     Gets or sets AccountID.
+    ///     Gets or sets AccountId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iAccountID</c> at offset <c>0x1D8</c>.
     /// </remarks>
     [NativeOffset(0x1D8)]
     [NativeName("m_iAccountID")]
-    public uint AccountID { get; set; }
+    public uint AccountId { get; set; }
 
     /// <summary>
     ///     Gets or sets AttributeList.
@@ -228,34 +228,34 @@ public partial class C_EconItemView : IEconItemInterface
     public ushort ItemDefinitionIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets ItemID.
+    ///     Gets or sets ItemId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iItemID</c> at offset <c>0x1C8</c>.
     /// </remarks>
     [NativeOffset(0x1C8)]
     [NativeName("m_iItemID")]
-    public ulong ItemID { get; set; }
+    public ulong ItemId { get; set; }
 
     /// <summary>
-    ///     Gets or sets ItemIDHigh.
+    ///     Gets or sets ItemIdHigh.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iItemIDHigh</c> at offset <c>0x1D0</c>.
     /// </remarks>
     [NativeOffset(0x1D0)]
     [NativeName("m_iItemIDHigh")]
-    public uint ItemIDHigh { get; set; }
+    public uint ItemIdHigh { get; set; }
 
     /// <summary>
-    ///     Gets or sets ItemIDLow.
+    ///     Gets or sets ItemIdLow.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iItemIDLow</c> at offset <c>0x1D4</c>.
     /// </remarks>
     [NativeOffset(0x1D4)]
     [NativeName("m_iItemIDLow")]
-    public uint ItemIDLow { get; set; }
+    public uint ItemIdLow { get; set; }
 
     /// <summary>
     ///     Gets or sets NetworkedDynamicAttributes.

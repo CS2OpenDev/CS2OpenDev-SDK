@@ -45,5 +45,5 @@ public partial class CAnimScriptComponent : CAnimGraphDocComponent
     [NativeName("m_scriptFilename")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( as )")]
     [NativeMetadata("MPropertyFriendlyName", "Script File")]
-    public string ScriptFilename { get; set; }
+    public string ScriptFileName { get; set; }
 }

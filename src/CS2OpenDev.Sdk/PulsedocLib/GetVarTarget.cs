@@ -40,12 +40,12 @@ public partial class GetVarTarget
     public string ValueEncoded { get; set; }
 
     /// <summary>
-    ///     Gets or sets VarDefID.
+    ///     Gets or sets VarDefId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>nVarDefID</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("nVarDefID")]
-    public PulseDocNodeID VarDefID { get; set; }
+    public PulseDocNodeId VarDefId { get; set; }
 }

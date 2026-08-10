@@ -40,13 +40,13 @@ public enum BeamType : uint
     BeamPoints = 1,
 
     /// <summary>
-    ///     BeamEntpoint.
+    ///     BeamEntPoint.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>BEAM_ENTPOINT</c>.
     /// </remarks>
     [NativeName("BEAM_ENTPOINT")]
-    BeamEntpoint = 2,
+    BeamEntPoint = 2,
 
     /// <summary>
     ///     BeamEnts.

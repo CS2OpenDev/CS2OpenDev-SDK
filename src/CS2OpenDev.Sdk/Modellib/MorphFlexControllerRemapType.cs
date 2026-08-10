@@ -22,38 +22,38 @@ namespace CS2OpenSchema.Modellib;
 public enum MorphFlexControllerRemapType : uint
 {
     /// <summary>
-    ///     MorphFlexcontrollerRemapPassthru.
+    ///     MorphFlexControllerRemapPassthru.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MORPH_FLEXCONTROLLER_REMAP_PASSTHRU</c>.
     /// </remarks>
     [NativeName("MORPH_FLEXCONTROLLER_REMAP_PASSTHRU")]
-    MorphFlexcontrollerRemapPassthru = 0,
+    MorphFlexControllerRemapPassthru = 0,
 
     /// <summary>
-    ///     MorphFlexcontrollerRemap2way.
+    ///     MorphFlexControllerRemap2way.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MORPH_FLEXCONTROLLER_REMAP_2WAY</c>.
     /// </remarks>
     [NativeName("MORPH_FLEXCONTROLLER_REMAP_2WAY")]
-    MorphFlexcontrollerRemap2way = 1,
+    MorphFlexControllerRemap2way = 1,
 
     /// <summary>
-    ///     MorphFlexcontrollerRemapNway.
+    ///     MorphFlexControllerRemapNway.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MORPH_FLEXCONTROLLER_REMAP_NWAY</c>.
     /// </remarks>
     [NativeName("MORPH_FLEXCONTROLLER_REMAP_NWAY")]
-    MorphFlexcontrollerRemapNway = 2,
+    MorphFlexControllerRemapNway = 2,
 
     /// <summary>
-    ///     MorphFlexcontrollerRemapEyelid.
+    ///     MorphFlexControllerRemapEyelid.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MORPH_FLEXCONTROLLER_REMAP_EYELID</c>.
     /// </remarks>
     [NativeName("MORPH_FLEXCONTROLLER_REMAP_EYELID")]
-    MorphFlexcontrollerRemapEyelid = 3
+    MorphFlexControllerRemapEyelid = 3
 }

@@ -89,7 +89,7 @@ public partial class CFootPinningItem
     [NativeName("m_param")]
     [NativeMetadata("MPropertyAttributeChoiceName", "BoolParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Parameter")]
-    public AnimParamID Param { get; set; }
+    public AnimParamId Param { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamName.
@@ -112,7 +112,7 @@ public partial class CFootPinningItem
     [NativeName("m_tag")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyFriendlyName", "Tag")]
-    public AnimTagID Tag { get; set; }
+    public AnimTagId Tag { get; set; }
 
     /// <summary>
     ///     Target Bone.

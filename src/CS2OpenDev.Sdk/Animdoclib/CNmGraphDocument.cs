@@ -34,14 +34,14 @@ public partial class CNmGraphDocument : CNmAnimDocument
     public CUtlLeanVector__CNmGraphDocument_DebugParameterSet_t__ DebugParameterSets { get; set; }
 
     /// <summary>
-    ///     Gets or sets DictionaryIDSetIDs.
+    ///     Gets or sets DictionaryIdSetIDs.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_dictionaryIDSetIDs</c> at offset <c>0xA0</c>.
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_dictionaryIDSetIDs")]
-    public CUtlVector__V_uuid_t__ DictionaryIDSetIDs { get; set; }
+    public CUtlVector__V_uuid_t__ DictionaryIdSetIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets RootGraph.

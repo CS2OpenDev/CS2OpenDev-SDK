@@ -55,14 +55,14 @@ public partial class CModelConfigElementAttachedModel : CModelConfigElement
     public ModelConfigAttachmentType AttachmentType { get; set; }
 
     /// <summary>
-    ///     Gets or sets BodygroupOnOtherModels.
+    ///     Gets or sets BodyGroupOnOtherModels.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_BodygroupOnOtherModels</c> at offset <c>0x90</c>.
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_BodygroupOnOtherModels")]
-    public string BodygroupOnOtherModels { get; set; }
+    public string BodyGroupOnOtherModels { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneMergeFlex.

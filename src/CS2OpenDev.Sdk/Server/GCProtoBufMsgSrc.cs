@@ -39,13 +39,13 @@ public enum GCProtoBufMsgSrc : uint
     FromSystem = 1,
 
     /// <summary>
-    ///     FromSteamID.
+    ///     FromSteamId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GCProtoBufMsgSrc_FromSteamID</c>.
     /// </remarks>
     [NativeName("GCProtoBufMsgSrc_FromSteamID")]
-    FromSteamID = 2,
+    FromSteamId = 2,
 
     /// <summary>
     ///     FromGC.

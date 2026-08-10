@@ -178,7 +178,7 @@ public partial class CAnimGraphDocBlend2DNode : CAnimGraphDocNode
     [NativeName("m_paramX")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Horizontal Parameter")]
-    public AnimParamID ParamX { get; set; }
+    public AnimParamId ParamX { get; set; }
 
     /// <summary>
     ///     Vertical Parameter.
@@ -190,7 +190,7 @@ public partial class CAnimGraphDocBlend2DNode : CAnimGraphDocNode
     [NativeName("m_paramY")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Vertical Parameter")]
-    public AnimParamID ParamY { get; set; }
+    public AnimParamId ParamY { get; set; }
 
     /// <summary>
     ///     Playback Speed.

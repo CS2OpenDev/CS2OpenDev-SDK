@@ -20,42 +20,42 @@ namespace CS2OpenSchema.Events;
 public sealed partial record BonusUpdatedEvent
 {
     /// <summary>
-    ///     Numadvanced.
+    ///     NumAdvanced.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>numadvanced</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("numadvanced")]
     [GameEventFieldType("short")]
-    public required short Numadvanced { get; init; }
+    public required short NumAdvanced { get; init; }
 
     /// <summary>
-    ///     Numbronze.
+    ///     NumBronze.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>numbronze</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("numbronze")]
     [GameEventFieldType("short")]
-    public required short Numbronze { get; init; }
+    public required short NumBronze { get; init; }
 
     /// <summary>
-    ///     Numgold.
+    ///     NumGold.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>numgold</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("numgold")]
     [GameEventFieldType("short")]
-    public required short Numgold { get; init; }
+    public required short NumGold { get; init; }
 
     /// <summary>
-    ///     Numsilver.
+    ///     NumSilver.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>numsilver</c> — KV1 type <c>short</c>.
     /// </remarks>
     [NativeName("numsilver")]
     [GameEventFieldType("short")]
-    public required short Numsilver { get; init; }
+    public required short NumSilver { get; init; }
 }

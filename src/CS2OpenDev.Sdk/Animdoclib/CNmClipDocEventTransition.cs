@@ -31,14 +31,14 @@ namespace CS2OpenSchema.Animdoclib;
 public partial class CNmClipDocEventTransition : CNmClipDocEvent
 {
     /// <summary>
-    ///     Gets or sets OptionalID.
+    ///     Gets or sets OptionalId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_optionalID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_optionalID")]
-    public string OptionalID { get; set; }
+    public string OptionalId { get; set; }
 
     /// <summary>
     ///     Gets or sets Rule.

@@ -32,14 +32,14 @@ public partial class CEnvGlobal : CLogicalEntity
     public int Counter { get; set; }
 
     /// <summary>
-    ///     Gets or sets Globalstate.
+    ///     Gets or sets GlobalState.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_globalstate</c> at offset <c>0x4C8</c>.
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_globalstate")]
-    public string Globalstate { get; set; }
+    public string GlobalState { get; set; }
 
     /// <summary>
     ///     Gets or sets Initialstate.

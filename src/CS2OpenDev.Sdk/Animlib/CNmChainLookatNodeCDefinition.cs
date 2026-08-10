@@ -65,14 +65,14 @@ public partial class CNmChainLookatNodeCDefinition : CNmPassthroughNodeCDefiniti
     public short EnabledNodeIdx { get; set; }
 
     /// <summary>
-    ///     Gets or sets EndEffectorBoneID.
+    ///     Gets or sets EndEffectorBoneId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_endEffectorBoneID</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_endEffectorBoneID")]
-    public string EndEffectorBoneID { get; set; }
+    public string EndEffectorBoneId { get; set; }
 
     /// <summary>
     ///     Gets or sets EndEffectorForwardAxis.

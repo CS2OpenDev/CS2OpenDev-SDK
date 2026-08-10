@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record BombBegindefuseEvent
 {
     /// <summary>
-    ///     Haskit.
+    ///     HasKit.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>haskit</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("haskit")]
     [GameEventFieldType("bool")]
-    public required bool Haskit { get; init; }
+    public required bool HasKit { get; init; }
 
     /// <summary>
     ///     player who is defusing.
@@ -37,5 +37,5 @@ public sealed partial record BombBegindefuseEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

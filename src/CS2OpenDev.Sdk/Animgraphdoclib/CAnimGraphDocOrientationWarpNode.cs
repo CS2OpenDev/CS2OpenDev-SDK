@@ -69,7 +69,7 @@ public partial class CAnimGraphDocOrientationWarpNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Fallback World Position")]
-    public AnimParamID FallbackTargetPositionParamID { get; set; }
+    public AnimParamId FallbackTargetPositionParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets InputConnection.
@@ -179,7 +179,7 @@ public partial class CAnimGraphDocOrientationWarpNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Offset Parameter")]
-    public AnimParamID TargetOffsetParamID { get; set; }
+    public AnimParamId TargetOffsetParamId { get; set; }
 
     /// <summary>
     ///     Angle Parameter.
@@ -192,7 +192,7 @@ public partial class CAnimGraphDocOrientationWarpNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "FloatParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Angle Parameter")]
-    public AnimParamID TargetParamID { get; set; }
+    public AnimParamId TargetParamId { get; set; }
 
     /// <summary>
     ///     World Position.
@@ -205,5 +205,5 @@ public partial class CAnimGraphDocOrientationWarpNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "World Position")]
-    public AnimParamID TargetPositionParamID { get; set; }
+    public AnimParamId TargetPositionParamId { get; set; }
 }

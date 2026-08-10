@@ -52,12 +52,12 @@ public partial class CTeam : CBaseEntity
     public int Score { get; set; }
 
     /// <summary>
-    ///     Gets or sets Teamname.
+    ///     Gets or sets TeamName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_szTeamname</c> at offset <c>0x4DC</c>.
     /// </remarks>
     [NativeOffset(0x4DC)]
     [NativeName("m_szTeamname")]
-    public string Teamname { get; set; }
+    public string TeamName { get; set; }
 }

@@ -38,7 +38,7 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("hint_activator_userid")]
     [GameEventFieldType("player_controller")]
-    public required int HintActivatorUserid { get; init; }
+    public required int HintActivatorUserId { get; init; }
 
     /// <summary>
     ///     if false, the hint will dissappear if the target entity is invisible.
@@ -218,5 +218,5 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

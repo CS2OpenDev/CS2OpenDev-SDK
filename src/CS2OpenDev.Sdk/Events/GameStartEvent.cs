@@ -28,7 +28,7 @@ public sealed partial record GameStartEvent
     /// </remarks>
     [NativeName("fraglimit")]
     [GameEventFieldType("long")]
-    public required int Fraglimit { get; init; }
+    public required int FragLimit { get; init; }
 
     /// <summary>
     ///     round objective.
@@ -48,7 +48,7 @@ public sealed partial record GameStartEvent
     /// </remarks>
     [NativeName("roundslimit")]
     [GameEventFieldType("long")]
-    public required int Roundslimit { get; init; }
+    public required int RoundsLimit { get; init; }
 
     /// <summary>
     ///     time limit.
@@ -58,5 +58,5 @@ public sealed partial record GameStartEvent
     /// </remarks>
     [NativeName("timelimit")]
     [GameEventFieldType("long")]
-    public required int Timelimit { get; init; }
+    public required int TimeLimit { get; init; }
 }

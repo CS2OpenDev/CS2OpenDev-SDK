@@ -25,14 +25,14 @@ namespace CS2OpenSchema.Toolutils2;
 public partial class ResourceBlockTypeInfo
 {
     /// <summary>
-    ///     Gets or sets BlockID.
+    ///     Gets or sets BlockId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_BlockID</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_BlockID")]
-    public string BlockID { get; set; }
+    public string BlockId { get; set; }
 
     /// <summary>
     ///     Gets or sets Encoding.

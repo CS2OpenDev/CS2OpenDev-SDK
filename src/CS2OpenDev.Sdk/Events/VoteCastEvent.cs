@@ -37,7 +37,7 @@ public sealed partial record VoteCastEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 
     /// <summary>
     ///     which option the player voted on.

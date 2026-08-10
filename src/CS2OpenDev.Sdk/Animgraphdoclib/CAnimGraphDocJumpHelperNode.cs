@@ -86,7 +86,7 @@ public partial class CAnimGraphDocJumpHelperNode : CAnimGraphDocSequenceNode
     [NativeName("m_targetParamID")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Target Parameter")]
-    public AnimParamID TargetParamID { get; set; }
+    public AnimParamId TargetParamId { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetParamName.

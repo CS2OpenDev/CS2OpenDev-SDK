@@ -756,7 +756,7 @@ public abstract partial class CBaseRendererSource2 : CParticleFunctionRenderer
     [NativeMetadata("MPropertyFriendlyName", "stencil test ID")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertyStartGroup", "Stencil")]
-    public string StencilTestID { get; set; }
+    public string StencilTestId { get; set; }
 
     /// <summary>
     ///     stencil write ID.
@@ -768,7 +768,7 @@ public abstract partial class CBaseRendererSource2 : CParticleFunctionRenderer
     [NativeName("m_stencilWriteID")]
     [NativeMetadata("MPropertyFriendlyName", "stencil write ID")]
     [NativeMetadata("MPropertySortPriority", "0")]
-    public string StencilWriteID { get; set; }
+    public string StencilWriteId { get; set; }
 
     /// <summary>
     ///     Textures.

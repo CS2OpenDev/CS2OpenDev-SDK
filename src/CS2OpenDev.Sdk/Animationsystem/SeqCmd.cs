@@ -103,13 +103,13 @@ public enum SeqCmd : uint
     Blend = 8,
 
     /// <summary>
-    ///     Worldspace.
+    ///     WorldSpace.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SeqCmd_Worldspace</c>.
     /// </remarks>
     [NativeName("SeqCmd_Worldspace")]
-    Worldspace = 9,
+    WorldSpace = 9,
 
     /// <summary>
     ///     Sequence.

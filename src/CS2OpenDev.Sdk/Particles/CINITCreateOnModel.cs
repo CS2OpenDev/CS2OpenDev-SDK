@@ -51,7 +51,7 @@ public partial class CINITCreateOnModel : CParticleFunctionInitializer
     [NativeOffset(0x2B0)]
     [NativeName("m_nDesiredHitbox")]
     [NativeMetadata("MPropertyFriendlyName", "desired hitbox")]
-    public CParticleCollectionFloatInput DesiredHitbox { get; set; }
+    public CParticleCollectionFloatInput DesiredHitBox { get; set; }
 
     /// <summary>
     ///     direction bias.
@@ -109,7 +109,7 @@ public partial class CINITCreateOnModel : CParticleFunctionInitializer
     [NativeOffset(0x11A0)]
     [NativeName("m_HitboxSetName")]
     [NativeMetadata("MPropertyFriendlyName", "hitbox set")]
-    public string HitboxSetName { get; set; }
+    public string HitBoxSetName { get; set; }
 
     /// <summary>
     ///     Control Point Providing Hitbox index.
@@ -120,7 +120,7 @@ public partial class CINITCreateOnModel : CParticleFunctionInitializer
     [NativeOffset(0x420)]
     [NativeName("m_nHitboxValueFromControlPointIndex")]
     [NativeMetadata("MPropertyFriendlyName", "Control Point Providing Hitbox index")]
-    public int HitboxValueFromControlPointIndex { get; set; }
+    public int HitBoxValueFromControlPointIndex { get; set; }
 
     /// <summary>
     ///     bias in local space.

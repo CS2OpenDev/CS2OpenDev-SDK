@@ -33,7 +33,7 @@ public partial class COPSetControlPointsToParticle : CParticleFunctionOperator
     [NativeOffset(0x1D8)]
     [NativeName("m_nChildGroupID")]
     [NativeMetadata("MPropertyFriendlyName", "group ID to affect")]
-    public int ChildGroupID { get; set; }
+    public int ChildGroupId { get; set; }
 
     /// <summary>
     ///     first control point to set.

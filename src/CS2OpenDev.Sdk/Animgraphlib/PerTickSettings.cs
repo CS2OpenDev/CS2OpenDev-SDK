@@ -135,12 +135,12 @@ public partial class PerTickSettings
     public bool Teleported { get; set; }
 
     /// <summary>
-    ///     Gets or sets UpdateID.
+    ///     Gets or sets UpdateId.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_updateID</c> at offset <c>0x69C</c>.
     /// </remarks>
     [NativeOffset(0x69C)]
     [NativeName("m_updateID")]
-    public int UpdateID { get; set; }
+    public int UpdateId { get; set; }
 }

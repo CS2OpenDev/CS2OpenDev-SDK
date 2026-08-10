@@ -48,7 +48,7 @@ public sealed partial record PlayerTeamEvent
     /// </remarks>
     [NativeName("oldteam")]
     [GameEventFieldType("byte")]
-    public required byte Oldteam { get; init; }
+    public required byte OldTeam { get; init; }
 
     /// <summary>
     ///     Silent.
@@ -78,5 +78,5 @@ public sealed partial record PlayerTeamEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
-    public required int Userid { get; init; }
+    public required int UserId { get; init; }
 }

@@ -28,7 +28,7 @@ public sealed partial record ServerCvarEvent
     /// </remarks>
     [NativeName("cvarname")]
     [GameEventFieldType("string")]
-    public required string Cvarname { get; init; }
+    public required string CVarName { get; init; }
 
     /// <summary>
     ///     new cvar value.
@@ -38,5 +38,5 @@ public sealed partial record ServerCvarEvent
     /// </remarks>
     [NativeName("cvarvalue")]
     [GameEventFieldType("string")]
-    public required string Cvarvalue { get; init; }
+    public required string CVarValue { get; init; }
 }

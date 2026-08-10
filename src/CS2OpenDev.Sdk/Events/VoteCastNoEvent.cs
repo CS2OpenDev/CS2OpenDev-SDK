@@ -27,7 +27,7 @@ public sealed partial record VoteCastNoEvent
     /// </remarks>
     [NativeName("entityid")]
     [GameEventFieldType("long")]
-    public required int Entityid { get; init; }
+    public required int EntityId { get; init; }
 
     /// <summary>
     ///     Team.

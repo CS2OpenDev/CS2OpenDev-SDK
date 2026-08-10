@@ -28,7 +28,7 @@ public sealed partial record TeamInfoEvent
     /// </remarks>
     [NativeName("teamid")]
     [GameEventFieldType("byte")]
-    public required byte Teamid { get; init; }
+    public required byte TeamId { get; init; }
 
     /// <summary>
     ///     team name eg "Team Blue".
@@ -38,5 +38,5 @@ public sealed partial record TeamInfoEvent
     /// </remarks>
     [NativeName("teamname")]
     [GameEventFieldType("string")]
-    public required string Teamname { get; init; }
+    public required string TeamName { get; init; }
 }
