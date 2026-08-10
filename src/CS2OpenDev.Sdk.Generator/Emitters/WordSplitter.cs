@@ -1,5 +1,6 @@
 #region
 
+using System.Collections.Concurrent;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -392,11 +393,68 @@ internal static class WordSplitter
     // Generator-lifetime state: the exporter drains this once after emitting.
     // Only runs long enough to plausibly be compounds are recorded — a
     // three-letter run that is not in the vocabulary is noise, not a gap.
-    private static readonly SortedSet<string> Unrecognised = new(StringComparer.Ordinal);
+    //
+    // Concurrent because the test runner is parallel. The generator emits on one
+    // thread and would never need it, but every test that touches a name reaches
+    // this class, and plain SortedSet/SortedDictionary under concurrent writes
+    // failed three unrelated tests at random — the kind of flake that gets
+    // re-run rather than diagnosed. Sorting happens at read instead.
+    private static readonly ConcurrentDictionary<string, byte> Unrecognised =
+        new(StringComparer.Ordinal);
 
-    internal static IReadOnlyCollection<string> UnsegmentedRuns => Unrecognised;
+    internal static IReadOnlyCollection<string> UnsegmentedRuns =>
+        Unrecognised.Keys.OrderBy(k => k, StringComparer.Ordinal).ToArray();
 
     internal static void ResetUnsegmentedRuns() => Unrecognised.Clear();
+
+    // ── The name lock ────────────────────────────────────────────────────────
+    //
+    // Previously-decided splits, keyed by the lowercase run. A locked run is
+    // returned verbatim and the vocabulary is never consulted for it again.
+    //
+    // This exists because the vocabulary is RETROACTIVE, which is not obvious
+    // until it bites. Adding a word to segment some new field also changes every
+    // existing name that word can now cut: `base`, `gun` and `light` were added
+    // for three new compounds and silently turned `Database`, `Shotgun` and
+    // `Flashlight` into `DataBase`, `ShotGun` and `FlashLight`. That happened
+    // sixteen times while this vocabulary was being built, caught each time only
+    // by re-reading the generated diff.
+    //
+    // Before the lock, that meant every future vocabulary edit was a potential
+    // breaking rename of already-published API, applied by a scheduled job that
+    // regenerates and publishes unattended. The lock makes the vocabulary safe
+    // to edit: it can only affect runs nobody has shipped yet.
+    //
+    // Keyed on the RUN rather than the native name deliberately. Native names
+    // are not 1:1 with identifiers — `m_flScale` is `Scale` on most classes and
+    // `FlScale` where that collides — so a native-keyed lock would have to
+    // encode collision resolution too. The run is a pure input to a pure
+    // function, so it is the honest key, and prefix stripping and collision
+    // handling stay in the emitters where they already work.
+    private static Dictionary<string, string> _locked = new(StringComparer.Ordinal);
+
+    // Every run resolved this session, locked or freshly computed. The exporter
+    // writes this back so new names join the lock as they appear.
+    private static readonly ConcurrentDictionary<string, string> Decisions =
+        new(StringComparer.Ordinal);
+
+    internal static IReadOnlyDictionary<string, string> ResolvedRuns =>
+        new SortedDictionary<string, string>(Decisions, StringComparer.Ordinal);
+
+    // Runs decided by the vocabulary because the lock had no entry — the review
+    // list for a release. Everything else is by definition unchanged.
+    private static readonly ConcurrentDictionary<string, string> Fresh =
+        new(StringComparer.Ordinal);
+
+    internal static IReadOnlyDictionary<string, string> UnlockedRuns =>
+        new SortedDictionary<string, string>(Fresh, StringComparer.Ordinal);
+
+    internal static void LoadLock(IReadOnlyDictionary<string, string> entries)
+    {
+        _locked = new Dictionary<string, string>(entries, StringComparer.Ordinal);
+        Decisions.Clear();
+        Fresh.Clear();
+    }
 
     // Re-splits the lowercase runs of an already-PascalCase identifier.
     //
@@ -404,7 +462,23 @@ internal static class WordSplitter
     // alone: upstream supplied the boundary and it is authoritative. Only a
     // wholly-lowercase run is a candidate, because only there is the boundary
     // missing.
-    internal static string Split(string identifier)
+    internal static string Split(string identifier) =>
+        Split(identifier, _locked, record: true);
+
+    // Same fold against a caller-supplied lock, recording nothing.
+    //
+    // Exists for tests. The lock, the decision log and the fresh-name list are
+    // process-wide statics — fine for the generator, which emits once on one
+    // thread, but the test runner is parallel, so a test that installed a lock
+    // to assert on it was changing the answer for every other test running at
+    // that moment. Three unrelated name tests failed that way before this
+    // overload existed.
+    internal static string SplitWith(
+        string identifier, IReadOnlyDictionary<string, string> lockEntries) =>
+        Split(identifier, lockEntries, record: false);
+
+    private static string Split(
+        string identifier, IReadOnlyDictionary<string, string> lockEntries, bool record)
     {
         if (string.IsNullOrEmpty(identifier))
         {
@@ -459,17 +533,48 @@ internal static class WordSplitter
             // already capitalised it, so the run to segment is `Userid` and the
             // vocabulary lookup has to happen on its lowercased form. Matching on
             // the raw run instead silently matched nothing at all.
-            if (!IsWordShaped(run) || !TrySegment(run.ToLowerInvariant(), out List<string>? tokens))
+            if (!IsWordShaped(run))
             {
                 sb.Append(PascalFirst(run));
                 continue;
             }
 
-            changed = true;
-            foreach (string t in tokens!)
+            string key = run.ToLowerInvariant();
+            string resolved;
+
+            if (lockEntries.TryGetValue(key, out string? pinned))
             {
-                sb.Append(Casing.TryGetValue(t, out string? cased) ? cased : PascalFirst(t));
+                // Decided in an earlier release. The vocabulary does not get a
+                // vote — that is the entire point of the lock.
+                resolved = pinned;
             }
+            else
+            {
+                resolved = TrySegment(key, out List<string>? tokens)
+                    ? Join(tokens!)
+                    : PascalFirst(run);
+
+                if (record)
+                {
+                    Fresh[key] = resolved;
+                }
+            }
+
+            // Record even the unchanged ones. A run that the vocabulary leaves
+            // alone today is exactly the kind a future token would start
+            // cutting — `database` was correct until `base` existed — so the
+            // lock has to pin "stays whole" just as firmly as it pins a split.
+            if (record)
+            {
+                Decisions[key] = resolved;
+            }
+
+            if (!string.Equals(resolved, PascalFirst(run), StringComparison.Ordinal))
+            {
+                changed = true;
+            }
+
+            sb.Append(resolved);
         }
 
         if (last < identifier.Length)
@@ -529,7 +634,7 @@ internal static class WordSplitter
             // was to do nothing.
             if (found.Count == 0 && run.Length > 6 && TouchesVocabulary(run))
             {
-                Unrecognised.Add(run);
+                Unrecognised.TryAdd(run, 0);
             }
 
             return false;
@@ -537,6 +642,17 @@ internal static class WordSplitter
 
         tokens = found;
         return true;
+    }
+
+    private static string Join(List<string> tokens)
+    {
+        StringBuilder built = new(16);
+        foreach (string t in tokens)
+        {
+            built.Append(Casing.TryGetValue(t, out string? cased) ? cased : PascalFirst(t));
+        }
+
+        return built.ToString();
     }
 
     private static bool Solve(string run, int start, List<string> acc, bool[] failed)

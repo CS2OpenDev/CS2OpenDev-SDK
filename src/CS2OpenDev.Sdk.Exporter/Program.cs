@@ -14,6 +14,7 @@ using CS2OpenDev.SdkExporter;
 using CS2SchemaGen;
 using CS2SchemaGen.Diagnostics;
 using CS2SchemaGen.Emitters;
+using System.Text;
 using System.Text.Json;
 using CS2SchemaGen.Models;
 
@@ -25,13 +26,24 @@ const string namespaceLabel = "CS2OpenSchema";
 // for next to the schema first, then in the working directory.
 const string overridesFileName = "game-event-overrides.json";
 
-string schemaPath = args.Length > 0
-    ? Path.GetFullPath(args[0])
+// Discards every previously locked name and re-derives the whole file from the
+// current vocabulary. A deliberate, reviewed act: it is the only way an already
+// published identifier can change, so it must never be reachable by accident.
+bool rebaselineNames = args.Contains("--rebaseline-names", StringComparer.Ordinal);
+string[] positional = args.Where(a => !a.StartsWith("--", StringComparison.Ordinal)).ToArray();
+
+string schemaPath = positional.Length > 0
+    ? Path.GetFullPath(positional[0])
     : ResolveDefaultSchemaPath();
 
-string outputDir = args.Length > 1
-    ? Path.GetFullPath(args[1])
+string outputDir = positional.Length > 1
+    ? Path.GetFullPath(positional[1])
     : Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "src/CS2OpenDev.Sdk"));
+
+// Lives beside version.json rather than in the generated tree: it is an input
+// to generation, not a product of it, and it must survive the stale-file sweep.
+string namesLockPath = Path.GetFullPath(
+    Path.Combine(Directory.GetCurrentDirectory(), "names.lock.json"));
 
 if (!File.Exists(schemaPath))
 {
@@ -121,7 +133,23 @@ if (Directory.Exists(gameEventsGenerated))
 
 Console.WriteLine($"Schema: {schemaPath}");
 Console.WriteLine($"Output: {outputDir}");
+
+Dictionary<string, string> nameLock = rebaselineNames
+    ? new Dictionary<string, string>(StringComparer.Ordinal)
+    : LoadNameLock(namesLockPath);
+
+if (rebaselineNames)
+{
+    Console.WriteLine("Names: REBASELINING — every identifier re-derived from the vocabulary.");
+}
+else
+{
+    Console.WriteLine($"Names: {nameLock.Count} locked from {Path.GetFileName(namesLockPath)}");
+}
+
 Console.WriteLine();
+
+WordSplitter.LoadLock(nameLock);
 
 ModuleEmitter.EmitAll(sink, schema, namespaceLabel);
 
@@ -261,12 +289,98 @@ if (stale > 0)
     Console.WriteLine($"Pruned {stale} stale file(s).");
 }
 
+// Write the lock back with this run's decisions folded in. Existing entries are
+// never recomputed — WordSplitter returns them verbatim — so the only possible
+// diff on a normal run is new names appended, which is exactly what should
+// happen when upstream adds a field.
+WriteNameLock(namesLockPath, WordSplitter.ResolvedRuns);
+
+IReadOnlyDictionary<string, string> fresh = WordSplitter.UnlockedRuns;
+if (fresh.Count > 0)
+{
+    // Named individually rather than counted. These are the only identifiers
+    // this run could have got wrong; everything else was decided and reviewed
+    // in an earlier release. It is a short list precisely because the lock
+    // holds, and it is the review list for the next release.
+    Console.WriteLine();
+    Console.WriteLine($"{fresh.Count} name(s) not previously locked — review before release:");
+    foreach ((string run, string resolved) in fresh)
+    {
+        Console.WriteLine($"  {run} -> {resolved}");
+    }
+}
+
 foreach ((string id, GeneratorDiagnosticSeverity severity, string message) in sink.Diagnostics)
 {
     WriteDiagnosticRaw(id, severity, message);
 }
 
 return 0;
+
+static Dictionary<string, string> LoadNameLock(string path)
+{
+    Dictionary<string, string> result = new(StringComparer.Ordinal);
+    if (!File.Exists(path))
+    {
+        return result;
+    }
+
+    using JsonDocument doc = JsonDocument.Parse(File.ReadAllText(path));
+    if (!doc.RootElement.TryGetProperty("runs", out JsonElement runs))
+    {
+        return result;
+    }
+
+    foreach (JsonProperty entry in runs.EnumerateObject())
+    {
+        if (entry.Value.ValueKind == JsonValueKind.String)
+        {
+            result[entry.Name] = entry.Value.GetString()!;
+        }
+    }
+
+    return result;
+}
+
+static void WriteNameLock(string path, IReadOnlyDictionary<string, string> runs)
+{
+    StringBuilder sb = new();
+    sb.AppendLine("{");
+    sb.AppendLine("  \"$comment\": [");
+    sb.AppendLine("    \"Generated. Do not hand-edit — regenerate with cs2-sdk-exporter.\",");
+    sb.AppendLine("    \"\",");
+    sb.AppendLine("    \"Every run-together lowercase word the generator has resolved, and what\",");
+    sb.AppendLine("    \"it resolved to. A run listed here is returned verbatim and the word\",");
+    sb.AppendLine("    \"vocabulary is never consulted for it again.\",");
+    sb.AppendLine("    \"\",");
+    sb.AppendLine("    \"This exists because the vocabulary is retroactive: adding a word to\",");
+    sb.AppendLine("    \"split some new field also re-splits every existing name that word can\",");
+    sb.AppendLine("    \"cut. Adding 'base' turned 'Database' into 'DataBase'. Without the lock,\",");
+    sb.AppendLine("    \"every vocabulary edit risks renaming published API from a scheduled job\",");
+    sb.AppendLine("    \"that regenerates and publishes unattended.\",");
+    sb.AppendLine("    \"\",");
+    sb.AppendLine("    \"Entries are added, never rewritten. New upstream fields append here on\",");
+    sb.AppendLine("    \"the next regen; that diff is expected. A CHANGED entry is not, and means\",");
+    sb.AppendLine("    \"someone ran --rebaseline-names, which renames shipped API and needs a\",");
+    sb.AppendLine("    \"major version bump.\"");
+    sb.AppendLine("  ],");
+    sb.AppendLine("  \"runs\": {");
+
+    int i = 0;
+    foreach ((string run, string resolved) in runs)
+    {
+        sb.Append("    ")
+          .Append(JsonSerializer.Serialize(run))
+          .Append(": ")
+          .Append(JsonSerializer.Serialize(resolved))
+          .AppendLine(++i < runs.Count ? "," : string.Empty);
+    }
+
+    sb.AppendLine("  }");
+    sb.AppendLine("}");
+
+    File.WriteAllText(path, sb.ToString().Replace("\r\n", "\n", StringComparison.Ordinal));
+}
 
 static string ResolveDefaultSchemaPath()
 {

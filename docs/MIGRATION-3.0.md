@@ -34,6 +34,14 @@ name it could not segment, and that report is now empty: each one is either
 split, or explicitly declared a single word. `Assister`, `Hostage`, `Database`,
 `Breakable`, `Flashbang`, `Deathmatch` and `Preset` are words, and stay whole.
 
+**And these names are now pinned.** Every one of them is recorded in
+`names.lock.json`, and the generator returns locked names verbatim rather than
+re-deriving them. The word list that produced 3.0 can be extended for future CS2
+fields without any risk of it quietly re-splitting a name you are already
+compiling against — which is a real hazard, not a hypothetical: extending it is
+what turned `Database` into `DataBase` twice during development. Changing a
+shipped name now requires an explicit re-baseline and a new major.
+
 ## What did not change
 
 - **`[NativeName]` still carries the native name**, unchanged, on every member.
