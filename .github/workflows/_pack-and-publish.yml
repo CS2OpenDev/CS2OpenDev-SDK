@@ -443,9 +443,23 @@ jobs:
             EXISTING_SHA=""
           fi
 
+          # Leave it alone and say so — do not fail. A version repeating on a
+          # later commit is the NORMAL case, not an anomaly: pathFilters exist
+          # precisely so a commit that does not touch a package leaves its
+          # version where it was, and every such push reaches this line. The
+          # first version of this guard called that an error and turned every
+          # docs-only push into a red release.
+          #
+          # The invariant worth holding is narrower than "the version must be
+          # new": a published artifact must never be replaced. Skipping holds
+          # it exactly, and cannot be wrong — if the tree really did change
+          # without moving the version, the fix is that package's pathFilters,
+          # and nothing was overwritten in the meantime. The feed already
+          # behaves this way via `--skip-duplicate`; this makes the release
+          # page agree with it instead of drifting.
           if [ -n "$EXISTING_SHA" ] && [ "$EXISTING_SHA" != "$TARGET_SHA" ]; then
-            echo "::error::${PKG_ID} ${TAG#*/v} already exists, released from ${EXISTING_SHA}, but this run built it from ${TARGET_SHA}. The same version now describes two different trees. This means a commit changed what ships without advancing the package's git height — check that its version.json pathFilters cover everything that goes into it. Not overwriting the published release."
-            exit 1
+            echo "::notice::${PKG_ID} ${TAG#*/v} was released from ${EXISTING_SHA}; this run built the same version from ${TARGET_SHA}. Leaving the published release untouched. If this package's contents changed in that range, its version.json pathFilters do not cover everything that ships."
+            exit 0
           fi
 
           if [ -n "$EXISTING_SHA" ]; then
