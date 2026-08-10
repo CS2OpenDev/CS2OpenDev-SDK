@@ -467,6 +467,30 @@ public class GameEventsEmitterTests
         await Assert.That(src).Contains("// Schema revision: 10673343 — May 20 2026 15:25:57");
     }
 
+    /// <summary>Schema 2.0's `version_time` is a full ISO instant that already contains `version_date`; emitting both stamped the date twice into every generated file.</summary>
+    [Test]
+    public async Task Emit_WithIsoInstantStamp_DoesNotRepeatTheDate()
+    {
+        GeneratorHarness.RunResult result = GeneratorHarness.RunGameEvents(
+            eventsJson: """
+                {
+                  "events": [{ "name": "x", "source": "core.gameevents" }]
+                }
+                """,
+            schemaForStampJson: """
+                {
+                  "build_id": 24537688,
+                  "version_date": "2026-08-03",
+                  "version_time": "2026-08-03T18:18:10Z",
+                  "classes": [], "enums": []
+                }
+                """);
+
+        string src = result.Files["Events/XEvent"];
+        await Assert.That(src).Contains("// Schema revision: 24537688 — 2026-08-03T18:18:10Z");
+        await Assert.That(src).DoesNotContain("2026-08-03 2026-08-03T");
+    }
+
     /// <summary>Without a stamp source, the schema-revision line is omitted (test fixtures don't need it).</summary>
     [Test]
     public async Task Emit_WithoutSchemaStamp_OmitsRevisionLine()

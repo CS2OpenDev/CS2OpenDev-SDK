@@ -122,6 +122,35 @@ run_case jq-fallback \
   "{\"schema_format_version\":\"2.0\",\"pad\":\"$PAD\",\"build_id\":24537688,\"version_date\":\"2026-08-03\",\"classes\":[]}" \
   0 24537688
 
+# Every case above is hand-written, which means none of them can catch upstream
+# renaming a key. `version_date` and `build_id` are read by name out of a file
+# this repo does not control, and a rename is a silent-wrong failure again: the
+# action would exit 1 mid-release rather than at desk. So run the same extracted
+# script against the actually-pinned submodule file, unmodified.
+#
+# Skipped rather than failed when the submodule is not materialised, so a
+# checkout without `--recurse-submodules` still runs the other nine.
+PINNED="$HERE/../../../upstream/docs/generated/downstream-codegen-schemas/cs2_schema.json"
+if [ -f "$PINNED" ]; then
+  dir="$WORK/pinned-submodule"
+  mkdir -p "$dir/upstream/docs/generated/downstream-codegen-schemas"
+  cp "$PINNED" "$dir/upstream/docs/generated/downstream-codegen-schemas/cs2_schema.json"
+  : > "$dir/out"
+  ( cd "$dir" && GITHUB_OUTPUT="$dir/out" bash "$WORK/parse.sh" ) > "$dir/log" 2>&1
+  rc=$?
+  rev=$(sed -nE 's/^revision=(.*)$/\1/p' "$dir/out")
+  date=$(sed -nE 's/^date-iso=(.*)$/\1/p' "$dir/out")
+  if [ "$rc" != 0 ]; then
+    echo "FAIL pinned-submodule: exit $rc, want 0 — upstream header shape changed"
+    sed 's/^/       /' "$dir/log"
+    FAILED=1
+  else
+    echo "ok   pinned-submodule (exit $rc, revision '$rev', date '$date')"
+  fi
+else
+  echo "skip pinned-submodule (upstream submodule not initialised)"
+fi
+
 echo
 if [ "$FAILED" = 0 ]; then
   echo "read-schema-metadata: all cases pass"
