@@ -88,7 +88,7 @@ native name, so `SchemaNames` lookups are unaffected.
 
 ## Game events — additive only
 
-`CS2OpenDev.Sdk.GameEvents` ships **2.0.3** alongside the SDK, because it
+`CS2OpenDev.Sdk.GameEvents` ships **2.0.x** alongside the SDK, because it
 project-references `CS2OpenDev.Sdk` and cannot be consumed against a 1.x SDK.
 Nothing in it breaks. Against 1.0.5 the generated surface changed in exactly
 three ways, all additive:
@@ -126,16 +126,21 @@ names carry more than one record, across **31** records, and
 
 ## Versions
 
-| Package | 1.x | 2.0 |
+| Package | last 1.x | first 2.0 |
 |---|---|---|
 | `CS2OpenDev.Sdk` | 1.0.5 | **2.0.3** |
 | `CS2OpenDev.Sdk.GameEvents` | 1.0.5 | **2.0.3** |
-| `CS2OpenDev.Protos` | 1.0.6 | **1.0.7** |
+| `CS2OpenDev.Protos` | 1.0.6 | **1.0.7** (stays 1.x) |
 
 The patch component is Nerdbank.GitVersioning's git height, not a hand-set
-number. `CS2OpenDev.Protos` stays on the protobuf clock — the `.proto` content
-is unchanged and only `protos/PROVENANCE.json` moved, to record the new CS2
-build id.
+number, so it advances on every regen — take the newest `2.0.x`, not `2.0.3`
+specifically. `CS2OpenDev.Protos` stays on the protobuf clock and does not go
+to 2.0; its `.proto` content is unchanged and only `protos/PROVENANCE.json`
+moved, to record the source extraction.
+
+**These are published to GitHub Packages and attached to each GitHub release,
+not to NuGet.org** — the publish credential is not configured. Each release's
+notes state which feeds actually received that version.
 
 ## Unchanged
 
