@@ -136,7 +136,12 @@ All three packages move to major **2**.
 
 The patch component is Nerdbank.GitVersioning's git height, not a hand-set
 number, so it advances on every regen — take the newest `2.0.x`, not `2.0.3`
-specifically.
+specifically. Each package has its own `version.json` and its own height, so
+the three patch numbers differ and are not meant to match.
+
+> **`CS2OpenDev.Sdk.GameEvents` 2.0.4 is unusable — take 2.0.10 or newer.** Its
+> GitHub release asset and its feed copy are different files with different
+> `CS2OpenDev.Protos` dependencies. Cause and fix are on the 2.0.4 release page.
 
 **`CS2OpenDev.Protos` 2.0 contains no breaking change.** Its `.proto` content
 is identical to 1.0.7; the major moved only so the three packages that ship
