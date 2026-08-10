@@ -191,8 +191,14 @@ jobs:
           TRACKER_CHANGED: ${{ steps.bump.outputs.tracker_changed }}
         run: |
           set -euo pipefail
+          # names.lock.json belongs here even though it is not a shipped tree.
+          # A new upstream field is resolved by the word vocabulary and appended
+          # to the lock; leaving it uncommitted throws that away, so the name is
+          # re-derived on every future run and never actually pinned — which is
+          # the one thing the lock exists to do.
           git add upstream schema-tracker src/CS2OpenDev.Sdk/ \
-                  src/CS2OpenDev.Sdk.GameEvents/Generated/ protos/
+                  src/CS2OpenDev.Sdk.GameEvents/Generated/ protos/ \
+                  names.lock.json
 
           # Subject names whichever upstream actually moved, so the log reads as
           # what happened rather than always as a schema regen.

@@ -405,8 +405,6 @@ internal static class WordSplitter
     internal static IReadOnlyCollection<string> UnsegmentedRuns =>
         Unrecognised.Keys.OrderBy(k => k, StringComparer.Ordinal).ToArray();
 
-    internal static void ResetUnsegmentedRuns() => Unrecognised.Clear();
-
     // ── The name lock ────────────────────────────────────────────────────────
     //
     // Previously-decided splits, keyed by the lowercase run. A locked run is

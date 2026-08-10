@@ -29,6 +29,11 @@ on:
       # package's version. Without it here the bump happens and nothing ships
       # until some later push drags it out.
       - 'scripts/normalize-protos.py'
+      # A generation input like the script above. In practice a lock change
+      # arrives alongside the regenerated tree that caused it, so this rarely
+      # fires alone — but a lock-only commit means someone re-baselined names,
+      # which is precisely the change that must not reach a feed unnoticed.
+      - 'names.lock.json'
       # Root version.json only — the per-package ones are already covered by
       # their `src/<id>/**` globs above.
       - 'version.json'

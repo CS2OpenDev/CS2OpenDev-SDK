@@ -68,8 +68,17 @@ jobs:
         # generator (or the schema) without committing the corresponding
         # regeneration. Both output trees are checked: the SDK proper and the
         # generated half of CS2OpenDev.Sdk.GameEvents.
+        #
+        # names.lock.json is checked too, and it is not just tidiness. The lock
+        # is what stops a word-vocabulary edit from renaming published API, and
+        # it only protects a name once that name is IN it. A regen that appends
+        # an entry and does not commit it leaves the name unpinned while looking
+        # entirely green — the protection silently does not exist for exactly
+        # the names most recently added.
         run: |
-          if ! git diff --exit-code -- src/CS2OpenDev.Sdk/ src/CS2OpenDev.Sdk.GameEvents/Generated/; then
+          if ! git diff --exit-code -- src/CS2OpenDev.Sdk/ \
+                                       src/CS2OpenDev.Sdk.GameEvents/Generated/ \
+                                       names.lock.json; then
             echo "::error::Regenerated sources differ from what is committed."
             echo "::error::Run \`dotnet run --project src/CS2OpenDev.Sdk.Exporter\` locally and commit the result."
             exit 1

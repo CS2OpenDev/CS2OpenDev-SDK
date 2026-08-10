@@ -57,6 +57,25 @@ shipped name now requires an explicit re-baseline and a new major.
 - **`CS2OpenDev.Protos`** — no generated protobuf identifier changed. Its major
   moves to 3 only to stay in step with the other two, exactly as it did at 2.0.
 
+## Versions
+
+| Package | last 2.x | first 3.0 |
+|---|---|---|
+| `CS2OpenDev.Sdk` | 2.0.4 | **3.0.x** |
+| `CS2OpenDev.Sdk.GameEvents` | 2.0.11 | **3.0.x** |
+| `CS2OpenDev.Protos` | 2.0.1 | **3.0.x** |
+
+The patch is Nerdbank.GitVersioning's git height and each package has its own,
+so the three numbers agree on major and not below it — take the newest of each.
+
+**`CS2OpenDev.Protos` 3.0 contains no change at all.** No generated protobuf
+identifier moved; its major tracks the other two so the packages that ship
+together read as one product, exactly as at 2.0.
+
+These publish to **GitHub Packages** and the GitHub release page, not
+NuGet.org — the publish credential is not configured. Each release's notes state
+which feeds actually received that version.
+
 ## How to migrate
 
 The rename is mechanical and the compiler finds every site. Build, and for each

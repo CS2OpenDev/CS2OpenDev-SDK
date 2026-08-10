@@ -45,9 +45,9 @@ value becomes `short.MaxValue`, not a plausible-looking negative.
 
 ## Duplicate event names
 
-Native event names are **not unique**. Across 288 declarations there are 272 distinct names: 15
+Native event names are **not unique**. Across 289 declarations there are 273 distinct names: 15
 carry more than one, because the same event is declared in several `.gameevents` files with
-different field sets. `player_death` has two declarations (core: 2 fields, mod: 18);
+different field sets. `player_death` has two declarations (core: 2 fields, mod: 22);
 `round_end` has three.
 
 ```csharp
@@ -62,7 +62,7 @@ foreach (var d in GameEventRegistry.GetAllFactories("player_death"))
 ```
 
 A registry keyed on name alone cannot round-trip. If your dispatcher assumes one record per name,
-that assumption holds for 257 of 272 and silently truncates on the rest.
+that assumption holds for 258 of 273 and silently truncates on the rest.
 
 ## Transport context
 
