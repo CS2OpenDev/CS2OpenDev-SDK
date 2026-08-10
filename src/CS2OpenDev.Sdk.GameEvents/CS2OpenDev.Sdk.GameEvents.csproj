@@ -41,6 +41,43 @@
         <None Include="README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
+    <!-- Schema provenance, in the same three places CS2OpenDev.Sdk puts it.
+
+         The release matrix already marks this package `schema_metadata: true`
+         and passes `-p:CS2SchemaRevision` / `-p:CS2SchemaDate` to pack. Until
+         this block existed nothing consumed them, so the properties were set
+         and silently dropped: CS2OpenDev.Sdk.GameEvents 2.0.10 shipped as a
+         bare `2.0.10` while CS2OpenDev.Sdk 2.0.4 carried
+         `+cs.24537688.dump.2026-08-03`.
+
+         That gap mattered more here than it would have on the SDK. Event
+         records are generated from `gameevents_schema.json`, whose field sets
+         change between CS2 builds — `player_death` gained four fields in this
+         very release — so "which build were these records generated from" is a
+         question a consumer of THIS package has to be able to answer offline.
+
+         See CS2OpenDev.Sdk.csproj for why the same facts are recorded three
+         times: SemVer 2 build metadata is stripped by some feeds, so
+         AssemblyMetadata (inside the DLL) and PackageReleaseNotes (on the
+         listing page) carry it where it cannot be lost. All conditional, so a
+         local `dotnet pack` passing neither property omits them rather than
+         emitting empty values. -->
+    <ItemGroup>
+        <BuildMetadata Include="cs.$(CS2SchemaRevision)"
+                       Condition="'$(CS2SchemaRevision)' != ''"/>
+        <BuildMetadata Include="dump.$(CS2SchemaDate)"
+                       Condition="'$(CS2SchemaDate)' != ''"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyMetadata Include="CS2SchemaRevision"
+                          Value="$(CS2SchemaRevision)"
+                          Condition="'$(CS2SchemaRevision)' != ''"/>
+        <AssemblyMetadata Include="CS2SchemaDumpDate"
+                          Value="$(CS2SchemaDate)"
+                          Condition="'$(CS2SchemaDate)' != ''"/>
+    </ItemGroup>
+
     <ItemGroup>
         <!-- The decoder's input type is a protobuf message, so this package takes
              the Google.Protobuf dependency that CS2OpenDev.Sdk deliberately does
