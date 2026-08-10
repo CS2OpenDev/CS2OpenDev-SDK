@@ -48,13 +48,13 @@ public enum EGCMsgResponse : uint
     EGCMsgResponseServerError = 2,
 
     /// <summary>
-    ///     EGCMsgResponseTimeout.
+    ///     EGCMsgResponseTimeOut.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EGCMsgResponseTimeout</c>.
     /// </remarks>
     [NativeName("k_EGCMsgResponseTimeout")]
-    EGCMsgResponseTimeout = 3,
+    EGCMsgResponseTimeOut = 3,
 
     /// <summary>
     ///     EGCMsgResponseInvalid.

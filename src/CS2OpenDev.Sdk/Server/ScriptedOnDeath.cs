@@ -22,38 +22,38 @@ namespace CS2OpenSchema.Server;
 public enum ScriptedOnDeath : uint
 {
     /// <summary>
-    ///     SsOndeathNotApplicable.
+    ///     SsOnDeathNotApplicable.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SS_ONDEATH_NOT_APPLICABLE</c>.
     /// </remarks>
     [NativeName("SS_ONDEATH_NOT_APPLICABLE")]
-    SsOndeathNotApplicable = 4294967295,
+    SsOnDeathNotApplicable = 4294967295,
 
     /// <summary>
-    ///     SsOndeathUndefined.
+    ///     SsOnDeathUndefined.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SS_ONDEATH_UNDEFINED</c>.
     /// </remarks>
     [NativeName("SS_ONDEATH_UNDEFINED")]
-    SsOndeathUndefined = 0,
+    SsOnDeathUndefined = 0,
 
     /// <summary>
-    ///     SsOndeathRagdoll.
+    ///     SsOnDeathRagdoll.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SS_ONDEATH_RAGDOLL</c>.
     /// </remarks>
     [NativeName("SS_ONDEATH_RAGDOLL")]
-    SsOndeathRagdoll = 1,
+    SsOnDeathRagdoll = 1,
 
     /// <summary>
-    ///     SsOndeathAnimatedDeath.
+    ///     SsOnDeathAnimatedDeath.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SS_ONDEATH_ANIMATED_DEATH</c>.
     /// </remarks>
     [NativeName("SS_ONDEATH_ANIMATED_DEATH")]
-    SsOndeathAnimatedDeath = 2
+    SsOnDeathAnimatedDeath = 2
 }

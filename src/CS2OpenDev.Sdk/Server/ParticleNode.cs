@@ -29,14 +29,14 @@ namespace CS2OpenSchema.Server;
 public partial class ParticleNode
 {
     /// <summary>
-    ///     Gets or sets EndcapTime.
+    ///     Gets or sets EndCapTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flEndcapTime</c> at offset <c>0x1C</c>.
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("m_flEndcapTime")]
-    public float EndcapTime { get; set; }
+    public float EndCapTime { get; set; }
 
     /// <summary>
     ///     Gets or sets Entity.

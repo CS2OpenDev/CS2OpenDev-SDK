@@ -252,7 +252,7 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeOffset(0x4BC)]
     [NativeName("m_flMuzzleSmokeTimeout")]
     [NativeMetadata("MPropertyDescription", "Barrel smoke shot timeout")]
-    public float MuzzleSmokeTimeout { get; set; }
+    public float MuzzleSmokeTimeOut { get; set; }
 
     /// <summary>
     ///     Which 'row' to display this weapon in the HUD.

@@ -29,7 +29,7 @@ public enum SosActionSetParamSortType : uint
     /// </remarks>
     [NativeName("SOS_SETPARAM_SORTTYPE_HIGHEST")]
     [NativeMetadata("MPropertyFriendlyName", "Max = Highest")]
-    SosSetparamSorttypeHighest = 0,
+    SosSetParamSortTypeHighest = 0,
 
     /// <summary>
     ///     Max = Lowest.
@@ -39,5 +39,5 @@ public enum SosActionSetParamSortType : uint
     /// </remarks>
     [NativeName("SOS_SETPARAM_SORTTYPE_LOWEST")]
     [NativeMetadata("MPropertyFriendlyName", "Max = Lowest")]
-    SosSetparamSorttypeLowest = 1
+    SosSetParamSortTypeLowest = 1
 }

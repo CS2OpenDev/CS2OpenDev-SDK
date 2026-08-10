@@ -48,7 +48,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_audio")]
-    public Audioparams Audio { get; set; }
+    public AudioParams Audio { get; set; }
 
     /// <summary>
     ///     Gets or sets BOverrideFogColor.
@@ -108,7 +108,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_CurrentFog")]
-    public Fogparams CurrentFog { get; set; }
+    public FogParams CurrentFog { get; set; }
 
     /// <summary>
     ///     Gets or sets DemoViewAngles.
@@ -198,7 +198,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_PlayerFog")]
-    public CFogplayerparams PlayerFog { get; set; }
+    public CFogPlayerParams PlayerFog { get; set; }
 
     /// <summary>
     ///     Gets or sets PostProcessingVolumes.

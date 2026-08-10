@@ -132,14 +132,14 @@ public partial class CPointTemplate : CLogicalEntity
     public CUtlVector__CEntityHandle__ SpawnedEntityHandles { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutInterval.
+    ///     Gets or sets TimeOutInterval.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flTimeoutInterval</c> at offset <c>0x618</c>.
     /// </remarks>
     [NativeOffset(0x618)]
     [NativeName("m_flTimeoutInterval")]
-    public float TimeoutInterval { get; set; }
+    public float TimeOutInterval { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldName.

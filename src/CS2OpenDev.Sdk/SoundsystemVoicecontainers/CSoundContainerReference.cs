@@ -26,14 +26,14 @@ namespace CS2OpenSchema.SoundsystemVoicecontainers;
 public partial class CSoundContainerReference
 {
     /// <summary>
-    ///     Gets or sets NameSpace.
+    ///     Gets or sets Namespace.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_namespace</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_namespace")]
-    public string NameSpace { get; set; }
+    public string Namespace { get; set; }
 
     /// <summary>
     ///     Vsnd Container.

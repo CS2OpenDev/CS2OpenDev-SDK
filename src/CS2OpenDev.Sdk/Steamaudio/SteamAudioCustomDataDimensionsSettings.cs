@@ -35,14 +35,14 @@ public partial class SteamAudioCustomDataDimensionsSettings
     public int AmbisonicsOrderInsideSizeField { get; set; }
 
     /// <summary>
-    ///     Gets or sets AmbisonicsOrderOutsideField.
+    ///     Gets or sets AmbisonicsOrderOutSideField.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nAmbisonicsOrderOutsideField</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_nAmbisonicsOrderOutsideField")]
-    public int AmbisonicsOrderOutsideField { get; set; }
+    public int AmbisonicsOrderOutSideField { get; set; }
 
     /// <summary>
     ///     Gets or sets InsideThreshold.
@@ -55,14 +55,14 @@ public partial class SteamAudioCustomDataDimensionsSettings
     public float InsideThreshold { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutsideThreshold.
+    ///     Gets or sets OutSideThreshold.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flOutsideThreshold</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_flOutsideThreshold")]
-    public float OutsideThreshold { get; set; }
+    public float OutSideThreshold { get; set; }
 
     /// <summary>
     ///     Gets or sets SizeThreshold.

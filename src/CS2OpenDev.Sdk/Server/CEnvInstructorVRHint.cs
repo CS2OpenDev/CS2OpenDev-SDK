@@ -102,12 +102,12 @@ public partial class CEnvInstructorVRHint : CPointEntity
     public string StartSound { get; set; }
 
     /// <summary>
-    ///     Gets or sets Timeout.
+    ///     Gets or sets TimeOut.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iTimeout</c> at offset <c>0x4B8</c>.
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_iTimeout")]
-    public int Timeout { get; set; }
+    public int TimeOut { get; set; }
 }

@@ -201,7 +201,7 @@ public partial class COPWorldTraceConstraint : CParticleFunctionConstraint
     [NativeOffset(0x851)]
     [NativeName("m_bKillonContact")]
     [NativeMetadata("MPropertyFriendlyName", "kill particle on collision")]
-    public bool KillonContact { get; set; }
+    public bool KillOnContact { get; set; }
 
     /// <summary>
     ///     Max Confirmation Traces Per Fame.

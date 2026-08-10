@@ -108,7 +108,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_forcecaption")]
     [GameEventFieldType("bool")]
-    public required bool HintForcecaption { get; init; }
+    public required bool HintForceCaption { get; init; }
 
     /// <summary>
     ///     the hint icon to use when the hint is offscreen. e.g. "icon_alert".
@@ -118,7 +118,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_icon_offscreen")]
     [GameEventFieldType("string")]
-    public required string HintIconOffscreen { get; init; }
+    public required string HintIconOffScreen { get; init; }
 
     /// <summary>
     ///     how far on the z axis to offset the hint from entity origin.
@@ -138,7 +138,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_icon_onscreen")]
     [GameEventFieldType("string")]
-    public required string HintIconOnscreen { get; init; }
+    public required string HintIconOnScreen { get; init; }
 
     /// <summary>
     ///     Path for Panorama layout file.
@@ -178,7 +178,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_nooffscreen")]
     [GameEventFieldType("bool")]
-    public required bool HintNooffscreen { get; init; }
+    public required bool HintNoOffScreen { get; init; }
 
     /// <summary>
     ///     range before the hint is culled.
@@ -228,7 +228,7 @@ public sealed partial record InstructorServerHintCreateCoreEvent
     /// </remarks>
     [NativeName("hint_timeout")]
     [GameEventFieldType("short")]
-    public required short HintTimeout { get; init; }
+    public required short HintTimeOut { get; init; }
 
     /// <summary>
     ///     Height offset for attached panels.

@@ -22,12 +22,12 @@ namespace CS2OpenSchema.SounddocLib;
 public partial class CControlMeterNodeDesc : CVControlNodeBaseDesc
 {
     /// <summary>
-    ///     Gets or sets IsSubgraph.
+    ///     Gets or sets IsSubGraph.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bIsSubgraph</c> at offset <c>0x88</c>.
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_bIsSubgraph")]
-    public bool IsSubgraph { get; set; }
+    public bool IsSubGraph { get; set; }
 }

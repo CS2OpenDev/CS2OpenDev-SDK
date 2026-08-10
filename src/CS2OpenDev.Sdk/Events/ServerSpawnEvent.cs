@@ -88,7 +88,7 @@ public sealed partial record ServerSpawnEvent
     /// </remarks>
     [NativeName("maxplayers")]
     [GameEventFieldType("long")]
-    public required int Maxplayers { get; init; }
+    public required int MaxPlayers { get; init; }
 
     /// <summary>
     ///     WIN32, LINUX.

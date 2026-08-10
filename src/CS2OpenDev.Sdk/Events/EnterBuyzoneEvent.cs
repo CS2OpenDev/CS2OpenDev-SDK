@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record EnterBuyzoneEvent
 {
     /// <summary>
-    ///     Canbuy.
+    ///     CanBuy.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>canbuy</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("canbuy")]
     [GameEventFieldType("bool")]
-    public required bool Canbuy { get; init; }
+    public required bool CanBuy { get; init; }
 
     /// <summary>
     ///     UserId.

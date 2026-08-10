@@ -21,38 +21,38 @@ namespace CS2OpenSchema.Server;
 public enum ShatterGlassStressType : byte
 {
     /// <summary>
-    ///     ShatterglassBlunt.
+    ///     ShatterGlassBlunt.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERGLASS_BLUNT</c>.
     /// </remarks>
     [NativeName("SHATTERGLASS_BLUNT")]
-    ShatterglassBlunt = 0,
+    ShatterGlassBlunt = 0,
 
     /// <summary>
-    ///     ShatterglassBallistic.
+    ///     ShatterGlassBallistic.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERGLASS_BALLISTIC</c>.
     /// </remarks>
     [NativeName("SHATTERGLASS_BALLISTIC")]
-    ShatterglassBallistic = 1,
+    ShatterGlassBallistic = 1,
 
     /// <summary>
-    ///     ShatterglassPulse.
+    ///     ShatterGlassPulse.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERGLASS_PULSE</c>.
     /// </remarks>
     [NativeName("SHATTERGLASS_PULSE")]
-    ShatterglassPulse = 2,
+    ShatterGlassPulse = 2,
 
     /// <summary>
-    ///     ShatterglassExplosive.
+    ///     ShatterGlassExplosive.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHATTERGLASS_EXPLOSIVE</c>.
     /// </remarks>
     [NativeName("SHATTERGLASS_EXPLOSIVE")]
-    ShatterglassExplosive = 3
+    ShatterGlassExplosive = 3
 }

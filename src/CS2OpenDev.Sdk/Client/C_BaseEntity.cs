@@ -775,14 +775,14 @@ public partial class C_BaseEntity : CEntityInstance
     public bool SimulationTimeChanged { get; set; }
 
     /// <summary>
-    ///     Gets or sets Spawnflags.
+    ///     Gets or sets SpawnFlags.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_spawnflags</c> at offset <c>0x3E8</c>.
     /// </remarks>
     [NativeOffset(0x3E8)]
     [NativeName("m_spawnflags")]
-    public uint Spawnflags { get; set; }
+    public uint SpawnFlags { get; set; }
 
     /// <summary>
     ///     Gets or sets SubclassId.

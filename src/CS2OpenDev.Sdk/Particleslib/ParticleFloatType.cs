@@ -76,13 +76,13 @@ public enum ParticleFloatType : uint
     PfTypeCollectionAge = 4,
 
     /// <summary>
-    ///     PfTypeEndcapAge.
+    ///     PfTypeEndCapAge.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PF_TYPE_ENDCAP_AGE</c>.
     /// </remarks>
     [NativeName("PF_TYPE_ENDCAP_AGE")]
-    PfTypeEndcapAge = 5,
+    PfTypeEndCapAge = 5,
 
     /// <summary>
     ///     PfTypeControlPointComponent.

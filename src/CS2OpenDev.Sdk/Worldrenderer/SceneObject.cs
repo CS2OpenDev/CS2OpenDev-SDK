@@ -25,14 +25,14 @@ namespace CS2OpenSchema.Worldrenderer;
 public partial class SceneObject
 {
     /// <summary>
-    ///     Gets or sets CubeMapPrecomputedHandshake.
+    ///     Gets or sets CubeMapPreComputedHandshake.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nCubeMapPrecomputedHandshake</c> at offset <c>0x6C</c>.
     /// </remarks>
     [NativeOffset(0x6C)]
     [NativeName("m_nCubeMapPrecomputedHandshake")]
-    public int CubeMapPrecomputedHandshake { get; set; }
+    public int CubeMapPreComputedHandshake { get; set; }
 
     /// <summary>
     ///     Gets or sets FadeEndDistance.
@@ -65,14 +65,14 @@ public partial class SceneObject
     public short LODOverride { get; set; }
 
     /// <summary>
-    ///     Gets or sets LightProbeVolumePrecomputedHandshake.
+    ///     Gets or sets LightProbeVolumePreComputedHandshake.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nLightProbeVolumePrecomputedHandshake</c> at offset <c>0x70</c>.
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_nLightProbeVolumePrecomputedHandshake")]
-    public int LightProbeVolumePrecomputedHandshake { get; set; }
+    public int LightProbeVolumePreComputedHandshake { get; set; }
 
     /// <summary>
     ///     Gets or sets LightingOrigin.

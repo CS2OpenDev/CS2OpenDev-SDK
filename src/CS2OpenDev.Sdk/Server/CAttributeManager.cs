@@ -42,14 +42,14 @@ public partial class CAttributeManager
     public CHandle__CBaseEntity__ Outer { get; set; }
 
     /// <summary>
-    ///     Gets or sets PreventLoopback.
+    ///     Gets or sets PreventLoopBack.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bPreventLoopback</c> at offset <c>0x28</c>.
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_bPreventLoopback")]
-    public bool PreventLoopback { get; set; }
+    public bool PreventLoopBack { get; set; }
 
     /// <summary>
     ///     Gets or sets ProviderType.

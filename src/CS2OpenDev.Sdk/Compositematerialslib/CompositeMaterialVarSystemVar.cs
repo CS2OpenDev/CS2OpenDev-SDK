@@ -29,7 +29,7 @@ public enum CompositeMaterialVarSystemVar : uint
     /// </remarks>
     [NativeName("COMPMATSYSVAR_COMPOSITETIME")]
     [NativeMetadata("MPropertyFriendlyName", "Composite Generation Time")]
-    CompmatsysvarCompositetime = 0,
+    CompmatsysvarCompositeTime = 0,
 
     /// <summary>
     ///     Empty Resource Spacer.

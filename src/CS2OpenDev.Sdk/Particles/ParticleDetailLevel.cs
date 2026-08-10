@@ -29,7 +29,7 @@ public enum ParticleDetailLevel : uint
     /// </remarks>
     [NativeName("PARTICLEDETAIL_LOW")]
     [NativeMetadata("MPropertyFriendlyName", "Low")]
-    ParticledetailLow = 0,
+    ParticleDetailLow = 0,
 
     /// <summary>
     ///     Medium.
@@ -39,7 +39,7 @@ public enum ParticleDetailLevel : uint
     /// </remarks>
     [NativeName("PARTICLEDETAIL_MEDIUM")]
     [NativeMetadata("MPropertyFriendlyName", "Medium")]
-    ParticledetailMedium = 1,
+    ParticleDetailMedium = 1,
 
     /// <summary>
     ///     High.
@@ -49,7 +49,7 @@ public enum ParticleDetailLevel : uint
     /// </remarks>
     [NativeName("PARTICLEDETAIL_HIGH")]
     [NativeMetadata("MPropertyFriendlyName", "High")]
-    ParticledetailHigh = 2,
+    ParticleDetailHigh = 2,
 
     /// <summary>
     ///     Ultra.
@@ -59,5 +59,5 @@ public enum ParticleDetailLevel : uint
     /// </remarks>
     [NativeName("PARTICLEDETAIL_ULTRA")]
     [NativeMetadata("MPropertyFriendlyName", "Ultra")]
-    ParticledetailUltra = 3
+    ParticleDetailUltra = 3
 }

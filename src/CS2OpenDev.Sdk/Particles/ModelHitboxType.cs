@@ -40,13 +40,13 @@ public enum ModelHitBoxType : uint
     ModelHitBoxTypeRawBones = 1,
 
     /// <summary>
-    ///     ModelHitBoxTypeRenderbounds.
+    ///     ModelHitBoxTypeRenderBounds.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MODEL_HITBOX_TYPE_RENDERBOUNDS</c>.
     /// </remarks>
     [NativeName("MODEL_HITBOX_TYPE_RENDERBOUNDS")]
-    ModelHitBoxTypeRenderbounds = 2,
+    ModelHitBoxTypeRenderBounds = 2,
 
     /// <summary>
     ///     ModelHitBoxTypeSnapshot.

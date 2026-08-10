@@ -32,32 +32,32 @@ public enum DecalFlags : uint
     None = 0,
 
     /// <summary>
-    ///     CannotClear.
+    ///     CanNotClear.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>eCannotClear</c>.
     /// </remarks>
     [NativeName("eCannotClear")]
-    CannotClear = 1,
+    CanNotClear = 1,
 
     /// <summary>
-    ///     DecalProjectToBackfaces.
+    ///     DecalProjectToBackFaces.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>eDecalProjectToBackfaces</c>.
     /// </remarks>
     [NativeName("eDecalProjectToBackfaces")]
-    DecalProjectToBackfaces = 2,
+    DecalProjectToBackFaces = 2,
 
     /// <summary>
-    ///     AllButCannotClear.
+    ///     AllButCanNotClear.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>eAllButCannotClear</c>.
     /// </remarks>
     [NativeName("eAllButCannotClear")]
     [NativeMetadata("MEnumeratorIsNotAFlag", "")]
-    AllButCannotClear = 4294967294,
+    AllButCanNotClear = 4294967294,
 
     /// <summary>
     ///     All.

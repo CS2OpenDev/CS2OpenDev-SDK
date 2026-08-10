@@ -32,14 +32,14 @@ public partial class C_EnvCubemapFog : C_BaseEntity
     public bool Active { get; set; }
 
     /// <summary>
-    ///     Gets or sets CubemapSourceType.
+    ///     Gets or sets CubeMapSourceType.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nCubemapSourceType</c> at offset <c>0x62C</c>.
     /// </remarks>
     [NativeOffset(0x62C)]
     [NativeName("m_nCubemapSourceType")]
-    public int CubemapSourceType { get; set; }
+    public int CubeMapSourceType { get; set; }
 
     /// <summary>
     ///     Gets or sets DistanceFogCurveString.
@@ -82,14 +82,14 @@ public partial class C_EnvCubemapFog : C_BaseEntity
     public bool FirstTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets FogCubemapTexture.
+    ///     Gets or sets FogCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hFogCubemapTexture</c> at offset <c>0x6F0</c>.
     /// </remarks>
     [NativeOffset(0x6F0)]
     [NativeName("m_hFogCubemapTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ FogCubemapTexture { get; set; }
+    public CStrongHandle__InfoForResourceTypeCTextureBase__ FogCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets FogFalloffExponent.

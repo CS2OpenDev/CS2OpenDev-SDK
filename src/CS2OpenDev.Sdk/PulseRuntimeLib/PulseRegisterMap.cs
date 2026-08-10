@@ -23,32 +23,32 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class PulseRegisterMap
 {
     /// <summary>
-    ///     Gets or sets Inparams.
+    ///     Gets or sets InParams.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Inparams</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Inparams")]
-    public string Inparams { get; set; }
+    public string InParams { get; set; }
 
     /// <summary>
-    ///     Gets or sets InparamsWhichCanBeMoved.
+    ///     Gets or sets InParamsWhichCanBeMoved.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_InparamsWhichCanBeMoved</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_InparamsWhichCanBeMoved")]
-    public string[]? InparamsWhichCanBeMoved { get; set; }
+    public string[]? InParamsWhichCanBeMoved { get; set; }
 
     /// <summary>
-    ///     Gets or sets Outparams.
+    ///     Gets or sets OutParams.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Outparams</c> at offset <c>0x20</c>.
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_Outparams")]
-    public string Outparams { get; set; }
+    public string OutParams { get; set; }
 }

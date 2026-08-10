@@ -48,13 +48,13 @@ public enum GCConnectionStatus : uint
     NoSession = 2,
 
     /// <summary>
-    ///     NoSessionInLogonQueue.
+    ///     NoSessionInLogOnQueue.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GCConnectionStatus_NO_SESSION_IN_LOGON_QUEUE</c>.
     /// </remarks>
     [NativeName("GCConnectionStatus_NO_SESSION_IN_LOGON_QUEUE")]
-    NoSessionInLogonQueue = 3,
+    NoSessionInLogOnQueue = 3,
 
     /// <summary>
     ///     NoSteam.

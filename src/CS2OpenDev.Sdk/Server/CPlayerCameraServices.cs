@@ -37,7 +37,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_audio")]
-    public Audioparams Audio { get; set; }
+    public AudioParams Audio { get; set; }
 
     /// <summary>
     ///     Gets or sets ColorCorrectionCtrl.
@@ -107,7 +107,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_PlayerFog")]
-    public Fogplayerparams PlayerFog { get; set; }
+    public FogPlayerParams PlayerFog { get; set; }
 
     /// <summary>
     ///     Gets or sets PostProcessingVolumes.

@@ -109,7 +109,7 @@ public enum VectorExpressionType : uint
     /// </remarks>
     [NativeName("VECTOR_EXPRESSION_CROSSPRODUCT")]
     [NativeMetadata("MPropertyFriendlyName", "Cross Product")]
-    VectorExpressionCrossproduct = 7,
+    VectorExpressionCrossProduct = 7,
 
     /// <summary>
     ///     Lerp.

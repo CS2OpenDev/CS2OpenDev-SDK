@@ -570,13 +570,13 @@ public enum ECsgoGCMsg : uint
     EMsgGCCStrike15_v2_FantasyUpdateClientData = 9176,
 
     /// <summary>
-    ///     EMsgGCCStrike15_v2_GCToClientSteamdatagramTicket.
+    ///     EMsgGCCStrike15_V2_GCToClientSteamDatagramTicket.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EMsgGCCStrike15_v2_GCToClientSteamdatagramTicket</c>.
     /// </remarks>
     [NativeName("k_EMsgGCCStrike15_v2_GCToClientSteamdatagramTicket")]
-    EMsgGCCStrike15_v2_GCToClientSteamdatagramTicket = 9177,
+    EMsgGCCStrike15_V2_GCToClientSteamDatagramTicket = 9177,
 
     /// <summary>
     ///     EMsgGCCStrike15_v2_ClientToGCRequestTicket.
@@ -651,13 +651,13 @@ public enum ECsgoGCMsg : uint
     EMsgGCCStrike15_v2_ClientPlayerDecalSign = 9185,
 
     /// <summary>
-    ///     EMsgGCCStrike15_v2_ClientLogonFatalError.
+    ///     EMsgGCCStrike15_V2_ClientLogOnFatalError.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EMsgGCCStrike15_v2_ClientLogonFatalError</c>.
     /// </remarks>
     [NativeName("k_EMsgGCCStrike15_v2_ClientLogonFatalError")]
-    EMsgGCCStrike15_v2_ClientLogonFatalError = 9187,
+    EMsgGCCStrike15_V2_ClientLogOnFatalError = 9187,
 
     /// <summary>
     ///     EMsgGCCStrike15_v2_ClientPollState.

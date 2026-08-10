@@ -212,7 +212,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "enable particle outlining")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertyStartGroup", "Outlining")]
-    public bool Outline { get; set; }
+    public bool OutLine { get; set; }
 
     /// <summary>
     ///     outline alpha.
@@ -226,7 +226,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "outline alpha")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bOutline")]
-    public int OutlineAlpha { get; set; }
+    public int OutLineAlpha { get; set; }
 
     /// <summary>
     ///     outline color.
@@ -239,7 +239,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "outline color")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bOutline")]
-    public Color OutlineColor { get; set; }
+    public Color OutLineColor { get; set; }
 
     /// <summary>
     ///     outline end 0.
@@ -252,7 +252,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "outline end 0")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bOutline")]
-    public float OutlineEnd0 { get; set; }
+    public float OutLineEnd0 { get; set; }
 
     /// <summary>
     ///     outline end 1.
@@ -265,7 +265,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "outline end 1")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bOutline")]
-    public float OutlineEnd1 { get; set; }
+    public float OutLineEnd1 { get; set; }
 
     /// <summary>
     ///     outline start 0.
@@ -278,7 +278,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "outline start 0")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bOutline")]
-    public float OutlineStart0 { get; set; }
+    public float OutLineStart0 { get; set; }
 
     /// <summary>
     ///     outline start 1.
@@ -291,7 +291,7 @@ public partial class COPRenderSprites : CBaseRendererSource2
     [NativeMetadata("MPropertyFriendlyName", "outline start 1")]
     [NativeMetadata("MPropertySortPriority", "0")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bOutline")]
-    public float OutlineStart1 { get; set; }
+    public float OutLineStart1 { get; set; }
 
     /// <summary>
     ///     Particle Shadows.

@@ -49,7 +49,7 @@ public enum ParticleTraceSet : uint
     /// </remarks>
     [NativeName("PARTICLE_TRACE_SET_STATIC_AND_KEYFRAMED")]
     [NativeMetadata("MPropertyFriendlyName", "Static World and Kinematic/Keyframed Only")]
-    ParticleTraceSetStaticAndKeyframed = 2,
+    ParticleTraceSetStaticAndKeyFramed = 2,
 
     /// <summary>
     ///     Dynamic Entities Only.

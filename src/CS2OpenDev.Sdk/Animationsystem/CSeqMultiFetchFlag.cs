@@ -74,12 +74,12 @@ public partial class CSeqMultiFetchFlag
     public bool Cylepose { get; set; }
 
     /// <summary>
-    ///     Gets or sets Realtime.
+    ///     Gets or sets RealTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRealtime</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_bRealtime")]
-    public bool Realtime { get; set; }
+    public bool RealTime { get; set; }
 }

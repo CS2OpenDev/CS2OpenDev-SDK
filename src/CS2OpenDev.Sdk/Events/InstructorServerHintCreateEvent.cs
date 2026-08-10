@@ -98,7 +98,7 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("hint_forcecaption")]
     [GameEventFieldType("bool")]
-    public required bool HintForcecaption { get; init; }
+    public required bool HintForceCaption { get; init; }
 
     /// <summary>
     ///     gamepad bindings to use when use_binding is the onscreen icon.
@@ -118,7 +118,7 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("hint_icon_offscreen")]
     [GameEventFieldType("string")]
-    public required string HintIconOffscreen { get; init; }
+    public required string HintIconOffScreen { get; init; }
 
     /// <summary>
     ///     how far on the z axis to offset the hint from entity origin.
@@ -138,7 +138,7 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("hint_icon_onscreen")]
     [GameEventFieldType("string")]
-    public required string HintIconOnscreen { get; init; }
+    public required string HintIconOnScreen { get; init; }
 
     /// <summary>
     ///     if true, only the local player will see the hint.
@@ -168,7 +168,7 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("hint_nooffscreen")]
     [GameEventFieldType("bool")]
-    public required bool HintNooffscreen { get; init; }
+    public required bool HintNoOffScreen { get; init; }
 
     /// <summary>
     ///     range before the hint is culled.
@@ -208,7 +208,7 @@ public sealed partial record InstructorServerHintCreateEvent
     /// </remarks>
     [NativeName("hint_timeout")]
     [GameEventFieldType("short")]
-    public required short HintTimeout { get; init; }
+    public required short HintTimeOut { get; init; }
 
     /// <summary>
     ///     user ID of the player that triggered the hint.

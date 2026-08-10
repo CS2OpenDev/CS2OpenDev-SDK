@@ -109,14 +109,14 @@ public partial class C_EnvVolumetricFogController : C_BaseEntity
     public float DrawDistance { get; set; }
 
     /// <summary>
-    ///     Gets or sets EnableIndirect.
+    ///     Gets or sets EnableInDirect.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bEnableIndirect</c> at offset <c>0x675</c>.
     /// </remarks>
     [NativeOffset(0x675)]
     [NativeName("m_bEnableIndirect")]
-    public bool EnableIndirect { get; set; }
+    public bool EnableInDirect { get; set; }
 
     /// <summary>
     ///     Gets or sets FadeInEnd.
@@ -169,14 +169,14 @@ public partial class C_EnvVolumetricFogController : C_BaseEntity
     public float FirstVolumeSliceThickness { get; set; }
 
     /// <summary>
-    ///     Gets or sets FogIndirectTexture.
+    ///     Gets or sets FogInDirectTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hFogIndirectTexture</c> at offset <c>0x678</c>.
     /// </remarks>
     [NativeOffset(0x678)]
     [NativeName("m_hFogIndirectTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ FogIndirectTexture { get; set; }
+    public CStrongHandle__InfoForResourceTypeCTextureBase__ FogInDirectTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets ForceRefreshCount.
@@ -189,44 +189,44 @@ public partial class C_EnvVolumetricFogController : C_BaseEntity
     public int ForceRefreshCount { get; set; }
 
     /// <summary>
-    ///     Gets or sets IndirectStrength.
+    ///     Gets or sets InDirectStrength.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flIndirectStrength</c> at offset <c>0x61C</c>.
     /// </remarks>
     [NativeOffset(0x61C)]
     [NativeName("m_flIndirectStrength")]
-    public float IndirectStrength { get; set; }
+    public float InDirectStrength { get; set; }
 
     /// <summary>
-    ///     Gets or sets IndirectTextureDimX.
+    ///     Gets or sets InDirectTextureDimX.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nIndirectTextureDimX</c> at offset <c>0x628</c>.
     /// </remarks>
     [NativeOffset(0x628)]
     [NativeName("m_nIndirectTextureDimX")]
-    public int IndirectTextureDimX { get; set; }
+    public int InDirectTextureDimX { get; set; }
 
     /// <summary>
-    ///     Gets or sets IndirectTextureDimY.
+    ///     Gets or sets InDirectTextureDimY.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nIndirectTextureDimY</c> at offset <c>0x62C</c>.
     /// </remarks>
     [NativeOffset(0x62C)]
     [NativeName("m_nIndirectTextureDimY")]
-    public int IndirectTextureDimY { get; set; }
+    public int InDirectTextureDimY { get; set; }
 
     /// <summary>
-    ///     Gets or sets IndirectTextureDimZ.
+    ///     Gets or sets InDirectTextureDimZ.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nIndirectTextureDimZ</c> at offset <c>0x630</c>.
     /// </remarks>
     [NativeOffset(0x630)]
     [NativeName("m_nIndirectTextureDimZ")]
-    public int IndirectTextureDimZ { get; set; }
+    public int InDirectTextureDimZ { get; set; }
 
     /// <summary>
     ///     Gets or sets IsMaster.

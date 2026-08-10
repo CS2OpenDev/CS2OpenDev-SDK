@@ -76,7 +76,7 @@ public abstract partial class CParticleFunction
     [NativeName("m_nOpEndCapState")]
     [NativeMetadata("MPropertyFriendlyName", "operator end cap state")]
     [NativeMetadata("MPropertySortPriority", "-100")]
-    public ParticleEndcapMode OpEndCapState { get; set; }
+    public ParticleEndCapMode OpEndCapState { get; set; }
 
     /// <summary>
     ///     operator end fadein.

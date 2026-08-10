@@ -94,13 +94,13 @@ public enum LayerType : uint
     LayerTypeCurves = 7,
 
     /// <summary>
-    ///     LayerTypeTonemapping.
+    ///     LayerTypeToneMapping.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LAYER_TYPE_TONEMAPPING</c>.
     /// </remarks>
     [NativeName("LAYER_TYPE_TONEMAPPING")]
-    LayerTypeTonemapping = 8,
+    LayerTypeToneMapping = 8,
 
     /// <summary>
     ///     LayerTypeBloom.

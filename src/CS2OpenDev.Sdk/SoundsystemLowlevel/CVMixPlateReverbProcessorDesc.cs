@@ -31,5 +31,5 @@ public partial class CVMixPlateReverbProcessorDesc : CVMixBaseProcessorDesc
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_desc")]
-    public VMixPlateverbDesc Desc { get; set; }
+    public VMixPlateVerbDesc Desc { get; set; }
 }

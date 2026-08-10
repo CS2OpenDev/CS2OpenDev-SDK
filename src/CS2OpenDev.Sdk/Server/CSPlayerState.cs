@@ -45,16 +45,16 @@ public enum CSPlayerState : uint
     ///     Native name: <c>STATE_PICKINGTEAM</c>.
     /// </remarks>
     [NativeName("STATE_PICKINGTEAM")]
-    StatePickingteam = 2,
+    StatePickingTeam = 2,
 
     /// <summary>
-    ///     StatePickingclass.
+    ///     StatePickingClass.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>STATE_PICKINGCLASS</c>.
     /// </remarks>
     [NativeName("STATE_PICKINGCLASS")]
-    StatePickingclass = 3,
+    StatePickingClass = 3,
 
     /// <summary>
     ///     Playing the death animation.

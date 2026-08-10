@@ -22,13 +22,13 @@ namespace CS2OpenSchema.Server;
 public enum Flags : uint
 {
     /// <summary>
-    ///     FlOnground.
+    ///     FlOnGround.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_ONGROUND</c>.
     /// </remarks>
     [NativeName("FL_ONGROUND")]
-    FlOnground = 1,
+    FlOnGround = 1,
 
     /// <summary>
     ///     FlDucking.
@@ -85,13 +85,13 @@ public enum Flags : uint
     FlClient = 128,
 
     /// <summary>
-    ///     FlFakeclient.
+    ///     FlFakeClient.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_FAKECLIENT</c>.
     /// </remarks>
     [NativeName("FL_FAKECLIENT")]
-    FlFakeclient = 256,
+    FlFakeClient = 256,
 
     /// <summary>
     ///     FlFly.
@@ -193,13 +193,13 @@ public enum Flags : uint
     FlObject = 33554432,
 
     /// <summary>
-    ///     FlOnfire.
+    ///     FlOnFire.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_ONFIRE</c>.
     /// </remarks>
     [NativeName("FL_ONFIRE")]
-    FlOnfire = 134217728,
+    FlOnFire = 134217728,
 
     /// <summary>
     ///     FlDissolving.
@@ -211,13 +211,13 @@ public enum Flags : uint
     FlDissolving = 268435456,
 
     /// <summary>
-    ///     FlTransragdoll.
+    ///     FlTransRagdoll.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FL_TRANSRAGDOLL</c>.
     /// </remarks>
     [NativeName("FL_TRANSRAGDOLL")]
-    FlTransragdoll = 536870912,
+    FlTransRagdoll = 536870912,
 
     /// <summary>
     ///     FlUnblockableByPlayer.

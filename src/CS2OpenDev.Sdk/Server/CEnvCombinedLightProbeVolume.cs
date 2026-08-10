@@ -23,14 +23,14 @@ namespace CS2OpenSchema.Server;
 public partial class CEnvCombinedLightProbeVolume : CBaseEntity
 {
     /// <summary>
-    ///     Gets or sets EntityBCustomCubemapTexture.
+    ///     Gets or sets EntityBCustomCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bCustomCubemapTexture</c> at offset <c>0x1530</c>.
     /// </remarks>
     [NativeOffset(0x1530)]
     [NativeName("m_Entity_bCustomCubemapTexture")]
-    public bool EntityBCustomCubemapTexture { get; set; }
+    public bool EntityBCustomCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBEnabled.
@@ -43,14 +43,14 @@ public partial class CEnvCombinedLightProbeVolume : CBaseEntity
     public bool EntityBEnabled { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityBMoveable.
+    ///     Gets or sets EntityBMoveAble.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bMoveable</c> at offset <c>0x1598</c>.
     /// </remarks>
     [NativeOffset(0x1598)]
     [NativeName("m_Entity_bMoveable")]
-    public bool EntityBMoveable { get; set; }
+    public bool EntityBMoveAble { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBStartDisabled.
@@ -93,14 +93,14 @@ public partial class CEnvCombinedLightProbeVolume : CBaseEntity
     public float EntityFlEdgeFadeDist { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityHCubemapTexture.
+    ///     Gets or sets EntityHCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_hCubemapTexture</c> at offset <c>0x1528</c>.
     /// </remarks>
     [NativeOffset(0x1528)]
     [NativeName("m_Entity_hCubemapTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubemapTexture { get; set; }
+    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightIndicesTexture.

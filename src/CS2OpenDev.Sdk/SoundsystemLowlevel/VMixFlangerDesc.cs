@@ -45,6 +45,16 @@ public partial class VMixFlangerDesc
     public float Delay { get; set; }
 
     /// <summary>
+    ///     Gets or sets FeedForwardGain.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_flFeedforwardGain</c> at offset <c>0x14</c>.
+    /// </remarks>
+    [NativeOffset(0x14)]
+    [NativeName("m_flFeedforwardGain")]
+    public float FeedForwardGain { get; set; }
+
+    /// <summary>
     ///     Gets or sets FeedbackGain.
     /// </summary>
     /// <remarks>
@@ -53,16 +63,6 @@ public partial class VMixFlangerDesc
     [NativeOffset(0x10)]
     [NativeName("m_flFeedbackGain")]
     public float FeedbackGain { get; set; }
-
-    /// <summary>
-    ///     Gets or sets FeedforwardGain.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_flFeedforwardGain</c> at offset <c>0x14</c>.
-    /// </remarks>
-    [NativeOffset(0x14)]
-    [NativeName("m_flFeedforwardGain")]
-    public float FeedforwardGain { get; set; }
 
     /// <summary>
     ///     Gets or sets GlideTime.

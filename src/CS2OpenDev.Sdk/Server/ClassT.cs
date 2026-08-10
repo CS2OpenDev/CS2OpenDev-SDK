@@ -85,31 +85,31 @@ public enum ClassT : uint
     ClassWaterSplasher = 6,
 
     /// <summary>
-    ///     ClassHudmodelWeapon.
+    ///     ClassHudModelWeapon.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CLASS_HUDMODEL_WEAPON</c>.
     /// </remarks>
     [NativeName("CLASS_HUDMODEL_WEAPON")]
-    ClassHudmodelWeapon = 7,
+    ClassHudModelWeapon = 7,
 
     /// <summary>
-    ///     ClassHudmodelArms.
+    ///     ClassHudModelArms.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CLASS_HUDMODEL_ARMS</c>.
     /// </remarks>
     [NativeName("CLASS_HUDMODEL_ARMS")]
-    ClassHudmodelArms = 8,
+    ClassHudModelArms = 8,
 
     /// <summary>
-    ///     ClassHudmodelAddon.
+    ///     ClassHudModelAddon.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CLASS_HUDMODEL_ADDON</c>.
     /// </remarks>
     [NativeName("CLASS_HUDMODEL_ADDON")]
-    ClassHudmodelAddon = 9,
+    ClassHudModelAddon = 9,
 
     /// <summary>
     ///     ClassWorldModelGloves.

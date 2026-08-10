@@ -69,7 +69,7 @@ public enum ParticleCollisionMask : ulong
     /// </remarks>
     [NativeName("PARTICLE_MASK_DEFAULTPLAYERSOLID")]
     [NativeMetadata("MPropertyFriendlyName", "Mask Player Solid")]
-    ParticleMaskDefaultplayersolid = 798737,
+    ParticleMaskDefaultPlayerSolid = 798737,
 
     /// <summary>
     ///     Mask NPC Solid.
@@ -79,7 +79,7 @@ public enum ParticleCollisionMask : ulong
     /// </remarks>
     [NativeName("PARTICLE_MASK_NPCSOLID")]
     [NativeMetadata("MPropertyFriendlyName", "Mask NPC Solid")]
-    ParticleMaskNpcsolid = 798753,
+    ParticleMaskNpcSolid = 798753,
 
     /// <summary>
     ///     Mask Solid and Water.
@@ -99,7 +99,7 @@ public enum ParticleCollisionMask : ulong
     /// </remarks>
     [NativeName("PARTICLE_MASK_SHOT_BRUSHONLY")]
     [NativeMetadata("MPropertyFriendlyName", "Mask Shot Brush Only")]
-    ParticleMaskShotBrushonly = 1052673,
+    ParticleMaskShotBrushOnly = 1052673,
 
     /// <summary>
     ///     Mask Shot (raycasted bullets).

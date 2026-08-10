@@ -45,7 +45,7 @@ public partial class CAmbientGeneric : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B4)]
     [NativeName("m_dpv")]
-    public Dynpitchvol Dpv { get; set; }
+    public DynPitchVol Dpv { get; set; }
 
     /// <summary>
     ///     Gets or sets Looping.

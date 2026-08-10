@@ -31,11 +31,11 @@ public enum RsFillMode : byte
     RsFillSolid = 0,
 
     /// <summary>
-    ///     RsFillWireframe.
+    ///     RsFillWireFrame.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RS_FILL_WIREFRAME</c>.
     /// </remarks>
     [NativeName("RS_FILL_WIREFRAME")]
-    RsFillWireframe = 1
+    RsFillWireFrame = 1
 }

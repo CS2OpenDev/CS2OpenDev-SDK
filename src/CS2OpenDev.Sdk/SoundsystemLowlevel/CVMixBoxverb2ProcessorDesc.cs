@@ -31,5 +31,5 @@ public partial class CVMixBoxverb2ProcessorDesc : CVMixBaseProcessorDesc
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_desc")]
-    public VMixBoxverbDesc Desc { get; set; }
+    public VMixBoxVerbDesc Desc { get; set; }
 }

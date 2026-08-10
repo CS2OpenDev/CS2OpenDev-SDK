@@ -62,7 +62,7 @@ public partial class CBaseAnimGraph : C_BaseModelEntity
     public bool BuiltRagdoll { get; set; }
 
     /// <summary>
-    ///     Gets or sets ClientsideRagdoll.
+    ///     Gets or sets ClientSideRagdoll.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pClientsideRagdoll</c> at offset <c>0x10B0</c>.
@@ -70,7 +70,7 @@ public partial class CBaseAnimGraph : C_BaseModelEntity
     [NativeOffset(0x10B0)]
     [NativeName("m_pClientsideRagdoll")]
     [NativeMetadata("MNotSaved", "")]
-    public CBaseAnimGraph? ClientsideRagdoll { get; set; }
+    public CBaseAnimGraph? ClientSideRagdoll { get; set; }
 
     /// <summary>
     ///     Gets or sets Force.

@@ -29,7 +29,7 @@ public enum AnimParamVectorType : uint
     /// </remarks>
     [NativeName("ANIMPARAM_VECTOR_TYPE_NONE")]
     [NativeMetadata("MPropertyFriendlyName", "None Specified")]
-    AnimparamVectorTypeNone = 0,
+    AnimParamVectorTypeNone = 0,
 
     /// <summary>
     ///     World Space Position.
@@ -39,7 +39,7 @@ public enum AnimParamVectorType : uint
     /// </remarks>
     [NativeName("ANIMPARAM_VECTOR_TYPE_POSITION_WS")]
     [NativeMetadata("MPropertyFriendlyName", "World Space Position")]
-    AnimparamVectorTypePositionWs = 1,
+    AnimParamVectorTypePositionWs = 1,
 
     /// <summary>
     ///     Model Space Position.
@@ -49,7 +49,7 @@ public enum AnimParamVectorType : uint
     /// </remarks>
     [NativeName("ANIMPARAM_VECTOR_TYPE_POSITION_LS")]
     [NativeMetadata("MPropertyFriendlyName", "Model Space Position")]
-    AnimparamVectorTypePositionLs = 2,
+    AnimParamVectorTypePositionLs = 2,
 
     /// <summary>
     ///     World Space Direction.
@@ -59,7 +59,7 @@ public enum AnimParamVectorType : uint
     /// </remarks>
     [NativeName("ANIMPARAM_VECTOR_TYPE_DIRECTION_WS")]
     [NativeMetadata("MPropertyFriendlyName", "World Space Direction")]
-    AnimparamVectorTypeDirectionWs = 3,
+    AnimParamVectorTypeDirectionWs = 3,
 
     /// <summary>
     ///     Model Space Direction.
@@ -69,5 +69,5 @@ public enum AnimParamVectorType : uint
     /// </remarks>
     [NativeName("ANIMPARAM_VECTOR_TYPE_DIRECTION_LS")]
     [NativeMetadata("MPropertyFriendlyName", "Model Space Direction")]
-    AnimparamVectorTypeDirectionLs = 4
+    AnimParamVectorTypeDirectionLs = 4
 }

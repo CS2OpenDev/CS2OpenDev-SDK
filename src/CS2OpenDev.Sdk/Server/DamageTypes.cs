@@ -184,13 +184,13 @@ public enum DamageTypes : uint
     DmgRadiation = 65536,
 
     /// <summary>
-    ///     DmgDrownrecover.
+    ///     DmgDrownRecover.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>DMG_DROWNRECOVER</c>.
     /// </remarks>
     [NativeName("DMG_DROWNRECOVER")]
-    DmgDrownrecover = 131072,
+    DmgDrownRecover = 131072,
 
     /// <summary>
     ///     DmgAcid.

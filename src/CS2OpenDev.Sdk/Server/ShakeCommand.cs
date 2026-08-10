@@ -58,22 +58,22 @@ public enum ShakeCommand : uint
     ShakeFrequency = 3,
 
     /// <summary>
-    ///     ShakeStartRumbleonly.
+    ///     ShakeStartRumbleOnly.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHAKE_START_RUMBLEONLY</c>.
     /// </remarks>
     [NativeName("SHAKE_START_RUMBLEONLY")]
-    ShakeStartRumbleonly = 4,
+    ShakeStartRumbleOnly = 4,
 
     /// <summary>
-    ///     ShakeStartNorumble.
+    ///     ShakeStartNoRumble.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SHAKE_START_NORUMBLE</c>.
     /// </remarks>
     [NativeName("SHAKE_START_NORUMBLE")]
-    ShakeStartNorumble = 5,
+    ShakeStartNoRumble = 5,
 
     /// <summary>
     ///     ShakeDuration.

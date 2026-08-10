@@ -34,24 +34,24 @@ public partial class CAnimMovement
     public float Angle { get; set; }
 
     /// <summary>
-    ///     Gets or sets Endframe.
+    ///     Gets or sets EndFrame.
     /// </summary>
     /// <remarks>
     ///     Native field <c>endframe</c> at offset <c>0x0</c>.
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("endframe")]
-    public int Endframe { get; set; }
+    public int EndFrame { get; set; }
 
     /// <summary>
-    ///     Gets or sets Motionflags.
+    ///     Gets or sets MotionFlags.
     /// </summary>
     /// <remarks>
     ///     Native field <c>motionflags</c> at offset <c>0x4</c>.
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("motionflags")]
-    public int Motionflags { get; set; }
+    public int MotionFlags { get; set; }
 
     /// <summary>
     ///     Gets or sets Position.

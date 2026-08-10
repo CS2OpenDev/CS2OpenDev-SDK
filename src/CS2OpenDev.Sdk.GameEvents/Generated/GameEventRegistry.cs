@@ -59,15 +59,15 @@ public static class GameEventRegistry
             ["broken_breakable"] = static (in GameEventReader r) => GameEventFactories.BrokenBreakableEventFrom(r),
             ["bullet_damage"] = static (in GameEventReader r) => GameEventFactories.BulletDamageEventFrom(r),
             ["bullet_impact"] = static (in GameEventReader r) => GameEventFactories.BulletImpactEventFrom(r),
+            ["buytime_ended"] = static (in GameEventReader r) => GameEventFactories.BuyTimeEndedEventFrom(r),
             ["buymenu_close"] = static (in GameEventReader r) => GameEventFactories.BuymenuCloseEventFrom(r),
             ["buymenu_open"] = static (in GameEventReader r) => GameEventFactories.BuymenuOpenEventFrom(r),
-            ["buytime_ended"] = static (in GameEventReader r) => GameEventFactories.BuytimeEndedEventFrom(r),
             ["cart_updated"] = static (in GameEventReader r) => GameEventFactories.CartUpdatedEventFrom(r),
             ["choppers_incoming_warning"] = static (in GameEventReader r) => GameEventFactories.ChoppersIncomingWarningEventFrom(r),
             ["client_disconnect"] = static (in GameEventReader r) => GameEventFactories.ClientDisconnectEventFrom(r),
             ["client_loadout_changed"] = static (in GameEventReader r) => GameEventFactories.ClientLoadoutChangedEventFrom(r),
-            ["clientside_lesson_closed"] = static (in GameEventReader r) => GameEventFactories.ClientsideLessonClosedEventFrom(r),
-            ["clientside_reload_custom_econ"] = static (in GameEventReader r) => GameEventFactories.ClientsideReloadCustomEconEventFrom(r),
+            ["clientside_lesson_closed"] = static (in GameEventReader r) => GameEventFactories.ClientSideLessonClosedEventFrom(r),
+            ["clientside_reload_custom_econ"] = static (in GameEventReader r) => GameEventFactories.ClientSideReloadCustomEconEventFrom(r),
             ["cs_game_disconnected"] = static (in GameEventReader r) => GameEventFactories.CsGameDisconnectedEventFrom(r),
             ["cs_intermission"] = static (in GameEventReader r) => GameEventFactories.CsIntermissionEventFrom(r),
             ["cs_match_end_restart"] = static (in GameEventReader r) => GameEventFactories.CsMatchEndRestartEventFrom(r),
@@ -117,12 +117,12 @@ public static class GameEventRegistry
             ["flashbang_detonate"] = static (in GameEventReader r) => GameEventFactories.FlashbangDetonateEventFrom(r),
             ["game_end"] = static (in GameEventReader r) => GameEventFactories.GameEndEventFrom(r),
             ["game_init"] = static (in GameEventReader r) => GameEventFactories.GameInitEventFrom(r),
+            ["gameinstructor_draw"] = static (in GameEventReader r) => GameEventFactories.GameInstructorDrawEventFrom(r),
+            ["gameinstructor_nodraw"] = static (in GameEventReader r) => GameEventFactories.GameInstructorNodrawEventFrom(r),
             ["game_message"] = static (in GameEventReader r) => GameEventFactories.GameMessageEventFrom(r),
             ["game_newmap"] = static (in GameEventReader r) => GameEventFactories.GameNewMapEventFrom(r),
             ["game_phase_changed"] = static (in GameEventReader r) => GameEventFactories.GamePhaseChangedEventFrom(r),
             ["game_start"] = static (in GameEventReader r) => GameEventFactories.GameStartEventFrom(r),
-            ["gameinstructor_draw"] = static (in GameEventReader r) => GameEventFactories.GameinstructorDrawEventFrom(r),
-            ["gameinstructor_nodraw"] = static (in GameEventReader r) => GameEventFactories.GameinstructorNodrawEventFrom(r),
             ["gameui_hidden"] = static (in GameEventReader r) => GameEventFactories.GameuiHiddenEventFrom(r),
             ["gc_connected"] = static (in GameEventReader r) => GameEventFactories.GcConnectedEventFrom(r),
             ["gg_killed_enemy"] = static (in GameEventReader r) => GameEventFactories.GgKilledEnemyEventFrom(r),
@@ -234,12 +234,12 @@ public static class GameEventRegistry
             ["round_mvp"] = static (in GameEventReader r) => GameEventFactories.RoundMvpEventFrom(r),
             ["round_officially_ended"] = static (in GameEventReader r) => GameEventFactories.RoundOfficiallyEndedEventFrom(r),
             ["round_poststart"] = static (in GameEventReader r) => GameEventFactories.RoundPoststartEventFrom(r),
-            ["round_prestart"] = static (in GameEventReader r) => GameEventFactories.RoundPrestartEventFrom(r),
+            ["round_prestart"] = static (in GameEventReader r) => GameEventFactories.RoundPreStartEventFrom(r),
             ["round_start"] = static (in GameEventReader r) => GameEventFactories.RoundStartEventFrom(r),
             ["round_start_post_nav"] = static (in GameEventReader r) => GameEventFactories.RoundStartPostNavEventFrom(r),
             ["round_start_pre_entity"] = static (in GameEventReader r) => GameEventFactories.RoundStartPreEntityEventFrom(r),
             ["round_time_warning"] = static (in GameEventReader r) => GameEventFactories.RoundTimeWarningEventFrom(r),
-            ["seasoncoin_levelup"] = static (in GameEventReader r) => GameEventFactories.SeasoncoinLevelupEventFrom(r),
+            ["seasoncoin_levelup"] = static (in GameEventReader r) => GameEventFactories.SeasoncoinLevelUpEventFrom(r),
             ["server_cvar"] = static (in GameEventReader r) => GameEventFactories.ServerCvarEventFrom(r),
             ["server_message"] = static (in GameEventReader r) => GameEventFactories.ServerMessageEventFrom(r),
             ["server_pre_shutdown"] = static (in GameEventReader r) => GameEventFactories.ServerPreShutdownEventFrom(r),
@@ -298,10 +298,10 @@ public static class GameEventRegistry
             ["warmup_end"] = static (in GameEventReader r) => GameEventFactories.WarmupEndEventFrom(r),
             ["weapon_fire"] = static (in GameEventReader r) => GameEventFactories.WeaponFireEventFrom(r),
             ["weapon_fire_on_empty"] = static (in GameEventReader r) => GameEventFactories.WeaponFireOnEmptyEventFrom(r),
+            ["weaponhud_selection"] = static (in GameEventReader r) => GameEventFactories.WeaponHudSelectionEventFrom(r),
             ["weapon_reload"] = static (in GameEventReader r) => GameEventFactories.WeaponReloadEventFrom(r),
             ["weapon_zoom"] = static (in GameEventReader r) => GameEventFactories.WeaponZoomEventFrom(r),
             ["weapon_zoom_rifle"] = static (in GameEventReader r) => GameEventFactories.WeaponZoomRifleEventFrom(r),
-            ["weaponhud_selection"] = static (in GameEventReader r) => GameEventFactories.WeaponhudSelectionEventFrom(r),
             ["write_game_titledata"] = static (in GameEventReader r) => GameEventFactories.WriteGameTitledataEventFrom(r),
             ["write_profile_data"] = static (in GameEventReader r) => GameEventFactories.WriteProfileDataEventFrom(r),
         };
@@ -432,7 +432,7 @@ public static class GameEventRegistry
             ],
             ["buytime_ended"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.BuytimeEndedEvent), static (in GameEventReader r) => GameEventFactories.BuytimeEndedEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.BuyTimeEndedEvent), static (in GameEventReader r) => GameEventFactories.BuyTimeEndedEventFrom(r)),
             ],
             ["cart_updated"] =
             [
@@ -452,11 +452,11 @@ public static class GameEventRegistry
             ],
             ["clientside_lesson_closed"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.ClientsideLessonClosedEvent), static (in GameEventReader r) => GameEventFactories.ClientsideLessonClosedEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.ClientSideLessonClosedEvent), static (in GameEventReader r) => GameEventFactories.ClientSideLessonClosedEventFrom(r)),
             ],
             ["clientside_reload_custom_econ"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.ClientsideReloadCustomEconEvent), static (in GameEventReader r) => GameEventFactories.ClientsideReloadCustomEconEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.ClientSideReloadCustomEconEvent), static (in GameEventReader r) => GameEventFactories.ClientSideReloadCustomEconEventFrom(r)),
             ],
             ["cs_game_disconnected"] =
             [
@@ -674,11 +674,11 @@ public static class GameEventRegistry
             ],
             ["gameinstructor_draw"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.GameinstructorDrawEvent), static (in GameEventReader r) => GameEventFactories.GameinstructorDrawEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.GameInstructorDrawEvent), static (in GameEventReader r) => GameEventFactories.GameInstructorDrawEventFrom(r)),
             ],
             ["gameinstructor_nodraw"] =
             [
-                new("core.gameevents", typeof(global::CS2OpenSchema.Events.GameinstructorNodrawEvent), static (in GameEventReader r) => GameEventFactories.GameinstructorNodrawEventFrom(r)),
+                new("core.gameevents", typeof(global::CS2OpenSchema.Events.GameInstructorNodrawEvent), static (in GameEventReader r) => GameEventFactories.GameInstructorNodrawEventFrom(r)),
             ],
             ["gameui_hidden"] =
             [
@@ -1136,7 +1136,7 @@ public static class GameEventRegistry
             ],
             ["round_prestart"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.RoundPrestartEvent), static (in GameEventReader r) => GameEventFactories.RoundPrestartEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.RoundPreStartEvent), static (in GameEventReader r) => GameEventFactories.RoundPreStartEventFrom(r)),
             ],
             ["round_start"] =
             [
@@ -1156,7 +1156,7 @@ public static class GameEventRegistry
             ],
             ["seasoncoin_levelup"] =
             [
-                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.SeasoncoinLevelupEvent), static (in GameEventReader r) => GameEventFactories.SeasoncoinLevelupEventFrom(r)),
+                new("mod.gameevents", typeof(global::CS2OpenSchema.Events.SeasoncoinLevelUpEvent), static (in GameEventReader r) => GameEventFactories.SeasoncoinLevelUpEventFrom(r)),
             ],
             ["server_cvar"] =
             [
@@ -1407,7 +1407,7 @@ public static class GameEventRegistry
             ],
             ["weaponhud_selection"] =
             [
-                new("game.gameevents", typeof(global::CS2OpenSchema.Events.WeaponhudSelectionEvent), static (in GameEventReader r) => GameEventFactories.WeaponhudSelectionEventFrom(r)),
+                new("game.gameevents", typeof(global::CS2OpenSchema.Events.WeaponHudSelectionEvent), static (in GameEventReader r) => GameEventFactories.WeaponHudSelectionEventFrom(r)),
             ],
             ["write_game_titledata"] =
             [

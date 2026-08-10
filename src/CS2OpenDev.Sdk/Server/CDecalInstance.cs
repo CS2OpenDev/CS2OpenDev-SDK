@@ -89,14 +89,14 @@ public partial class CDecalInstance
     public float Depth { get; set; }
 
     /// <summary>
-    ///     Gets or sets DoDecalLightmapping.
+    ///     Gets or sets DoDecalLightMapping.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDoDecalLightmapping</c> at offset <c>0xB7</c>.
     /// </remarks>
     [NativeOffset(0xB7)]
     [NativeName("m_bDoDecalLightmapping")]
-    public bool DoDecalLightmapping { get; set; }
+    public bool DoDecalLightMapping { get; set; }
 
     /// <summary>
     ///     Gets or sets Entity.

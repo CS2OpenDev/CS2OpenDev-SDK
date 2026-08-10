@@ -119,7 +119,7 @@ public partial class CPlantedC4 : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xD10)]
     [NativeName("m_bCannotBeDefused")]
-    public bool CannotBeDefused { get; set; }
+    public bool CanNotBeDefused { get; set; }
 
     /// <summary>
     ///     Gets or sets CatchUpToPlayerEye.

@@ -22,20 +22,20 @@ namespace CS2OpenSchema.Server;
 public enum SceneOnPlayerDeath : uint
 {
     /// <summary>
-    ///     SceneOnplayerdeathDoNothing.
+    ///     SceneOnPlayerDeathDoNothing.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SCENE_ONPLAYERDEATH_DO_NOTHING</c>.
     /// </remarks>
     [NativeName("SCENE_ONPLAYERDEATH_DO_NOTHING")]
-    SceneOnplayerdeathDoNothing = 0,
+    SceneOnPlayerDeathDoNothing = 0,
 
     /// <summary>
-    ///     SceneOnplayerdeathCancel.
+    ///     SceneOnPlayerDeathCancel.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SCENE_ONPLAYERDEATH_CANCEL</c>.
     /// </remarks>
     [NativeName("SCENE_ONPLAYERDEATH_CANCEL")]
-    SceneOnplayerdeathCancel = 1
+    SceneOnPlayerDeathCancel = 1
 }

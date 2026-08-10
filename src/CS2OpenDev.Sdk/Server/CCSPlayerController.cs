@@ -100,14 +100,14 @@ public partial class CCSPlayerController : CBasePlayerController
     public bool CanControlObservedBot { get; set; }
 
     /// <summary>
-    ///     Gets or sets CannotBeKicked.
+    ///     Gets or sets CanNotBeKicked.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bCannotBeKicked</c> at offset <c>0x8C0</c>.
     /// </remarks>
     [NativeOffset(0x8C0)]
     [NativeName("m_bCannotBeKicked")]
-    public bool CannotBeKicked { get; set; }
+    public bool CanNotBeKicked { get; set; }
 
     /// <summary>
     ///     Player's clan tag string, displayed next to the name in the scoreboard.
@@ -217,7 +217,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x810)]
     [NativeName("m_szCrosshairCodes")]
-    public string CrosshairCodes { get; set; }
+    public string CrossHairCodes { get; set; }
 
     /// <summary>
     ///     Gets or sets DamageServices.

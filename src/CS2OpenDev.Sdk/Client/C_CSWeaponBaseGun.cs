@@ -32,14 +32,14 @@ public partial class C_CSWeaponBaseGun : C_CSWeaponBase
     public int BurstShotsRemaining { get; set; }
 
     /// <summary>
-    ///     Gets or sets InPrecache.
+    ///     Gets or sets InPreCache.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_inPrecache</c> at offset <c>0x1CFC</c>.
     /// </remarks>
     [NativeOffset(0x1CFC)]
     [NativeName("m_inPrecache")]
-    public bool InPrecache { get; set; }
+    public bool InPreCache { get; set; }
 
     /// <summary>
     ///     Gets or sets NeedsBoltAction.

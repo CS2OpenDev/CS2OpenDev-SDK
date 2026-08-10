@@ -120,13 +120,13 @@ public enum CSWeaponType : uint
     WeaponTypeEquipment = 10,
 
     /// <summary>
-    ///     WeaponTypeStackableitem.
+    ///     WeaponTypeStackableItem.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WEAPONTYPE_STACKABLEITEM</c>.
     /// </remarks>
     [NativeName("WEAPONTYPE_STACKABLEITEM")]
-    WeaponTypeStackableitem = 11,
+    WeaponTypeStackableItem = 11,
 
     /// <summary>
     ///     WeaponTypeUnknown.

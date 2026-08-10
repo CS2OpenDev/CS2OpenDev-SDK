@@ -44,14 +44,14 @@ public partial class CSimpleAssetTypeInfo
     public int AssetTypeVersion { get; set; }
 
     /// <summary>
-    ///     Gets or sets CannotBeShown.
+    ///     Gets or sets CanNotBeShown.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bCannotBeShown</c> at offset <c>0xE9</c>.
     /// </remarks>
     [NativeOffset(0xE9)]
     [NativeName("m_bCannotBeShown")]
-    public bool CannotBeShown { get; set; }
+    public bool CanNotBeShown { get; set; }
 
     /// <summary>
     ///     Gets or sets ContentFileIsText.
@@ -234,14 +234,14 @@ public partial class CSimpleAssetTypeInfo
     public bool SuppressFullFingerprintCalculation { get; set; }
 
     /// <summary>
-    ///     Gets or sets SuppressSubstrings.
+    ///     Gets or sets SuppressSubStrings.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_SuppressSubstrings</c> at offset <c>0x30</c>.
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_SuppressSubstrings")]
-    public CUtlVector__CUtlString__ SuppressSubstrings { get; set; }
+    public CUtlVector__CUtlString__ SuppressSubStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets TestInjectSearchable.

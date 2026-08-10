@@ -33,7 +33,7 @@ public abstract partial class CParticleFunctionRenderer : CParticleFunction
     [NativeMetadata("MPropertyFriendlyName", "I cannot be refracted through refracting objects like water")]
     [NativeMetadata("MPropertySortPriority", "-1")]
     [NativeMetadata("MPropertyStartGroup", "Rendering filter")]
-    public bool CannotBeRefracted { get; set; }
+    public bool CanNotBeRefracted { get; set; }
 
     /// <summary>
     ///     Skip rendering on mobile.

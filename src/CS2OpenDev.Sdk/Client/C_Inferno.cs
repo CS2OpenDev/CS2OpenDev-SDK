@@ -128,14 +128,14 @@ public partial class C_Inferno : C_BaseModelEntity
     public bool InPostEffectTime { get; set; }
 
     /// <summary>
-    ///     Gets or sets InfernoClimbingOutlinePointsSnapshot.
+    ///     Gets or sets InfernoClimbingOutLinePointsSnapshot.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hInfernoClimbingOutlinePointsSnapshot</c> at offset <c>0x1010</c>.
     /// </remarks>
     [NativeOffset(0x1010)]
     [NativeName("m_hInfernoClimbingOutlinePointsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoClimbingOutlinePointsSnapshot { get; set; }
+    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoClimbingOutLinePointsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoDecalsSnapshot.
@@ -158,14 +158,14 @@ public partial class C_Inferno : C_BaseModelEntity
     public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoFillerPointsSnapshot { get; set; }
 
     /// <summary>
-    ///     Gets or sets InfernoOutlinePointsSnapshot.
+    ///     Gets or sets InfernoOutLinePointsSnapshot.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hInfernoOutlinePointsSnapshot</c> at offset <c>0x1008</c>.
     /// </remarks>
     [NativeOffset(0x1008)]
     [NativeName("m_hInfernoOutlinePointsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoOutlinePointsSnapshot { get; set; }
+    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoOutLinePointsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoPointsSnapshot.

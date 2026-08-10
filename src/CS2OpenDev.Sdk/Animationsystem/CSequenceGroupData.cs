@@ -74,14 +74,14 @@ public partial class CSequenceGroupData
     public CUtlVector__CSeqCmdSeqDesc__ LocalCmdSeqDescArray { get; set; }
 
     /// <summary>
-    ///     Gets or sets LocalIKAutoplayLockArray.
+    ///     Gets or sets LocalIKAutoPlayLockArray.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_localIKAutoplayLockArray</c> at offset <c>0x120</c>.
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_localIKAutoplayLockArray")]
-    public CUtlVector__CSeqIKLock__ LocalIKAutoplayLockArray { get; set; }
+    public CUtlVector__CSeqIKLock__ LocalIKAutoPlayLockArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalMultiSeqDescArray.

@@ -49,14 +49,14 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     public QAngle AnglePrevious { get; set; }
 
     /// <summary>
-    ///     Gets or sets AutoaimServices.
+    ///     Gets or sets AutoAimServices.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pAutoaimServices</c> at offset <c>0x1218</c>.
     /// </remarks>
     [NativeOffset(0x1218)]
     [NativeName("m_pAutoaimServices")]
-    public CPlayerAutoaimServices? AutoaimServices { get; set; }
+    public CPlayerAutoAimServices? AutoAimServices { get; set; }
 
     /// <summary>
     ///     Gets or sets CameraServices.
@@ -151,7 +151,7 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     public CPlayerItemServices? ItemServices { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastCameraSetupLocalOrigin.
+    ///     Gets or sets LastCameraSetUpLocalOrigin.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vecLastCameraSetupLocalOrigin</c> at offset <c>0x13A0</c>.
@@ -159,10 +159,10 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     [NativeOffset(0x13A0)]
     [NativeName("m_vecLastCameraSetupLocalOrigin")]
     [NativeMetadata("MNotSaved", "")]
-    public Vector LastCameraSetupLocalOrigin { get; set; }
+    public Vector LastCameraSetUpLocalOrigin { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastCameraSetupTime.
+    ///     Gets or sets LastCameraSetUpTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flLastCameraSetupTime</c> at offset <c>0x13AC</c>.
@@ -170,7 +170,7 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     [NativeOffset(0x13AC)]
     [NativeName("m_flLastCameraSetupTime")]
     [NativeMetadata("MNotSaved", "")]
-    public GameTime LastCameraSetupTime { get; set; }
+    public GameTime LastCameraSetUpTime { get; set; }
 
     /// <summary>
     ///     Gets or sets LastExecutedCommandNumber.

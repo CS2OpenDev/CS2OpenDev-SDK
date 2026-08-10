@@ -29,7 +29,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_NONE")]
     [NativeMetadata("MPropertyFriendlyName", "None")]
-    AnimparamButtonNone = 0,
+    AnimParamButtonNone = 0,
 
     /// <summary>
     ///     Dpad Up.
@@ -39,7 +39,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_DPAD_UP")]
     [NativeMetadata("MPropertyFriendlyName", "Dpad Up")]
-    AnimparamButtonDpadUp = 1,
+    AnimParamButtonDpadUp = 1,
 
     /// <summary>
     ///     Dpad Right.
@@ -49,7 +49,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_DPAD_RIGHT")]
     [NativeMetadata("MPropertyFriendlyName", "Dpad Right")]
-    AnimparamButtonDpadRight = 2,
+    AnimParamButtonDpadRight = 2,
 
     /// <summary>
     ///     Dpad Down.
@@ -59,7 +59,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_DPAD_DOWN")]
     [NativeMetadata("MPropertyFriendlyName", "Dpad Down")]
-    AnimparamButtonDpadDown = 3,
+    AnimParamButtonDpadDown = 3,
 
     /// <summary>
     ///     Dpad Left.
@@ -69,7 +69,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_DPAD_LEFT")]
     [NativeMetadata("MPropertyFriendlyName", "Dpad Left")]
-    AnimparamButtonDpadLeft = 4,
+    AnimParamButtonDpadLeft = 4,
 
     /// <summary>
     ///     A.
@@ -79,7 +79,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_A")]
     [NativeMetadata("MPropertyFriendlyName", "A")]
-    AnimparamButtonA = 5,
+    AnimParamButtonA = 5,
 
     /// <summary>
     ///     B.
@@ -89,7 +89,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_B")]
     [NativeMetadata("MPropertyFriendlyName", "B")]
-    AnimparamButtonB = 6,
+    AnimParamButtonB = 6,
 
     /// <summary>
     ///     X.
@@ -99,7 +99,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_X")]
     [NativeMetadata("MPropertyFriendlyName", "X")]
-    AnimparamButtonX = 7,
+    AnimParamButtonX = 7,
 
     /// <summary>
     ///     Y.
@@ -109,7 +109,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_Y")]
     [NativeMetadata("MPropertyFriendlyName", "Y")]
-    AnimparamButtonY = 8,
+    AnimParamButtonY = 8,
 
     /// <summary>
     ///     Left Shoulder.
@@ -119,7 +119,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_LEFT_SHOULDER")]
     [NativeMetadata("MPropertyFriendlyName", "Left Shoulder")]
-    AnimparamButtonLeftShoulder = 9,
+    AnimParamButtonLeftShoulder = 9,
 
     /// <summary>
     ///     Right Shoulder.
@@ -129,7 +129,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_RIGHT_SHOULDER")]
     [NativeMetadata("MPropertyFriendlyName", "Right Shoulder")]
-    AnimparamButtonRightShoulder = 10,
+    AnimParamButtonRightShoulder = 10,
 
     /// <summary>
     ///     Left Trigger.
@@ -139,7 +139,7 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_LTRIGGER")]
     [NativeMetadata("MPropertyFriendlyName", "Left Trigger")]
-    AnimparamButtonLtrigger = 11,
+    AnimParamButtonLtrigger = 11,
 
     /// <summary>
     ///     Right Trigger.
@@ -149,5 +149,5 @@ public enum AnimParamButton : uint
     /// </remarks>
     [NativeName("ANIMPARAM_BUTTON_RTRIGGER")]
     [NativeMetadata("MPropertyFriendlyName", "Right Trigger")]
-    AnimparamButtonRtrigger = 12
+    AnimParamButtonRtrigger = 12
 }

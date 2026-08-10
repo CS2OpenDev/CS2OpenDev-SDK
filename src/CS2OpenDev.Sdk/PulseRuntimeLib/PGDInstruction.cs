@@ -25,14 +25,14 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class PGDInstruction
 {
     /// <summary>
-    ///     Gets or sets BlackboardReferenceIdx.
+    ///     Gets or sets BlackBoardReferenceIdx.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nBlackboardReferenceIdx</c> at offset <c>0x24</c>.
     /// </remarks>
     [NativeOffset(0x24)]
     [NativeName("m_nBlackboardReferenceIdx")]
-    public PulseRuntimeBlackboardReferenceIndex BlackboardReferenceIdx { get; set; }
+    public PulseRuntimeBlackBoardReferenceIndex BlackBoardReferenceIdx { get; set; }
 
     /// <summary>
     ///     Gets or sets CallInfoIndex.

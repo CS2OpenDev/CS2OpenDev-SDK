@@ -138,7 +138,7 @@ public partial class CBaseDoor : CBaseToggle
     [NativeOffset(0x818)]
     [NativeName("m_ls")]
     [NativeMetadata("MNotSaved", "")]
-    public Locksound Ls { get; set; }
+    public LockSound Ls { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveDirParentSpace.

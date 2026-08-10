@@ -198,14 +198,14 @@ public partial class CTriggerFan : CBaseTrigger
     public float PlayerForce { get; set; }
 
     /// <summary>
-    ///     Gets or sets PlayerWindblock.
+    ///     Gets or sets PlayerWindBlock.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bPlayerWindblock</c> at offset <c>0x98C</c>.
     /// </remarks>
     [NativeOffset(0x98C)]
     [NativeName("m_bPlayerWindblock")]
-    public bool PlayerWindblock { get; set; }
+    public bool PlayerWindBlock { get; set; }
 
     /// <summary>
     ///     Gets or sets PushAwayFromInfoTarget.

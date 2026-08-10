@@ -22,13 +22,13 @@ namespace CS2OpenSchema.Soundsystem;
 public enum SosEditItemType : uint
 {
     /// <summary>
-    ///     SosEditItemTypeSoundevents.
+    ///     SosEditItemTypeSoundEvents.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SOS_EDIT_ITEM_TYPE_SOUNDEVENTS</c>.
     /// </remarks>
     [NativeName("SOS_EDIT_ITEM_TYPE_SOUNDEVENTS")]
-    SosEditItemTypeSoundevents = 0,
+    SosEditItemTypeSoundEvents = 0,
 
     /// <summary>
     ///     SosEditItemTypeSoundEvent.
@@ -40,13 +40,13 @@ public enum SosEditItemType : uint
     SosEditItemTypeSoundEvent = 1,
 
     /// <summary>
-    ///     SosEditItemTypeLibrarystacks.
+    ///     SosEditItemTypeLibraryStacks.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SOS_EDIT_ITEM_TYPE_LIBRARYSTACKS</c>.
     /// </remarks>
     [NativeName("SOS_EDIT_ITEM_TYPE_LIBRARYSTACKS")]
-    SosEditItemTypeLibrarystacks = 2,
+    SosEditItemTypeLibraryStacks = 2,
 
     /// <summary>
     ///     SosEditItemTypeStack.

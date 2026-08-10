@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum MoveLinearAuthoredPos : uint
 {
     /// <summary>
-    ///     MovelinearAuthoredAtStartPosition.
+    ///     MoveLinearAuthoredAtStartPosition.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MOVELINEAR_AUTHORED_AT_START_POSITION</c>.
     /// </remarks>
     [NativeName("MOVELINEAR_AUTHORED_AT_START_POSITION")]
-    MovelinearAuthoredAtStartPosition = 0,
+    MoveLinearAuthoredAtStartPosition = 0,
 
     /// <summary>
-    ///     MovelinearAuthoredAtOpenPosition.
+    ///     MoveLinearAuthoredAtOpenPosition.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MOVELINEAR_AUTHORED_AT_OPEN_POSITION</c>.
     /// </remarks>
     [NativeName("MOVELINEAR_AUTHORED_AT_OPEN_POSITION")]
-    MovelinearAuthoredAtOpenPosition = 1,
+    MoveLinearAuthoredAtOpenPosition = 1,
 
     /// <summary>
-    ///     MovelinearAuthoredAtClosedPosition.
+    ///     MoveLinearAuthoredAtClosedPosition.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MOVELINEAR_AUTHORED_AT_CLOSED_POSITION</c>.
     /// </remarks>
     [NativeName("MOVELINEAR_AUTHORED_AT_CLOSED_POSITION")]
-    MovelinearAuthoredAtClosedPosition = 2
+    MoveLinearAuthoredAtClosedPosition = 2
 }

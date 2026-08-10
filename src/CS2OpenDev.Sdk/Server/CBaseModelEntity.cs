@@ -111,14 +111,14 @@ public partial class CBaseModelEntity : CBaseEntity
     public HitGroup DestructiblePartInitialStateDestructed0 { get; set; }
 
     /// <summary>
-    ///     Gets or sets DestructiblePartInitialStateDestructed0GenerateBreakpieces.
+    ///     Gets or sets DestructiblePartInitialStateDestructed0GenerateBreakPieces.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces</c> at offset <c>0x4F8</c>.
     /// </remarks>
     [NativeOffset(0x4F8)]
     [NativeName("m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces")]
-    public bool DestructiblePartInitialStateDestructed0GenerateBreakpieces { get; set; }
+    public bool DestructiblePartInitialStateDestructed0GenerateBreakPieces { get; set; }
 
     /// <summary>
     ///     Gets or sets DestructiblePartInitialStateDestructed0PartIndex.
@@ -141,14 +141,14 @@ public partial class CBaseModelEntity : CBaseEntity
     public HitGroup DestructiblePartInitialStateDestructed1 { get; set; }
 
     /// <summary>
-    ///     Gets or sets DestructiblePartInitialStateDestructed1GenerateBreakpieces.
+    ///     Gets or sets DestructiblePartInitialStateDestructed1GenerateBreakPieces.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces</c> at offset <c>0x4F9</c>.
     /// </remarks>
     [NativeOffset(0x4F9)]
     [NativeName("m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces")]
-    public bool DestructiblePartInitialStateDestructed1GenerateBreakpieces { get; set; }
+    public bool DestructiblePartInitialStateDestructed1GenerateBreakPieces { get; set; }
 
     /// <summary>
     ///     Gets or sets DestructiblePartInitialStateDestructed1PartIndex.
@@ -171,14 +171,14 @@ public partial class CBaseModelEntity : CBaseEntity
     public HitGroup DestructiblePartInitialStateDestructed2 { get; set; }
 
     /// <summary>
-    ///     Gets or sets DestructiblePartInitialStateDestructed2GenerateBreakpieces.
+    ///     Gets or sets DestructiblePartInitialStateDestructed2GenerateBreakPieces.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces</c> at offset <c>0x4FA</c>.
     /// </remarks>
     [NativeOffset(0x4FA)]
     [NativeName("m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces")]
-    public bool DestructiblePartInitialStateDestructed2GenerateBreakpieces { get; set; }
+    public bool DestructiblePartInitialStateDestructed2GenerateBreakPieces { get; set; }
 
     /// <summary>
     ///     Gets or sets DestructiblePartInitialStateDestructed2PartIndex.
@@ -201,14 +201,14 @@ public partial class CBaseModelEntity : CBaseEntity
     public HitGroup DestructiblePartInitialStateDestructed3 { get; set; }
 
     /// <summary>
-    ///     Gets or sets DestructiblePartInitialStateDestructed3GenerateBreakpieces.
+    ///     Gets or sets DestructiblePartInitialStateDestructed3GenerateBreakPieces.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces</c> at offset <c>0x4FB</c>.
     /// </remarks>
     [NativeOffset(0x4FB)]
     [NativeName("m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces")]
-    public bool DestructiblePartInitialStateDestructed3GenerateBreakpieces { get; set; }
+    public bool DestructiblePartInitialStateDestructed3GenerateBreakPieces { get; set; }
 
     /// <summary>
     ///     Gets or sets DestructiblePartInitialStateDestructed3PartIndex.
@@ -231,14 +231,14 @@ public partial class CBaseModelEntity : CBaseEntity
     public HitGroup DestructiblePartInitialStateDestructed4 { get; set; }
 
     /// <summary>
-    ///     Gets or sets DestructiblePartInitialStateDestructed4GenerateBreakpieces.
+    ///     Gets or sets DestructiblePartInitialStateDestructed4GenerateBreakPieces.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces</c> at offset <c>0x4FC</c>.
     /// </remarks>
     [NativeOffset(0x4FC)]
     [NativeName("m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces")]
-    public bool DestructiblePartInitialStateDestructed4GenerateBreakpieces { get; set; }
+    public bool DestructiblePartInitialStateDestructed4GenerateBreakPieces { get; set; }
 
     /// <summary>
     ///     Gets or sets DestructiblePartInitialStateDestructed4PartIndex.
@@ -318,7 +318,7 @@ public partial class CBaseModelEntity : CBaseEntity
     /// </remarks>
     [NativeOffset(0x6F8)]
     [NativeName("m_flGlowBackfaceMult")]
-    public float GlowBackfaceMult { get; set; }
+    public float GlowBackFaceMult { get; set; }
 
     /// <summary>
     ///     Gets or sets NoInterpolate.
@@ -401,14 +401,14 @@ public partial class CBaseModelEntity : CBaseEntity
     public RenderMode RenderMode { get; set; }
 
     /// <summary>
-    ///     Gets or sets RenderToCubemaps.
+    ///     Gets or sets RenderToCubeMaps.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRenderToCubemaps</c> at offset <c>0x5E0</c>.
     /// </remarks>
     [NativeOffset(0x5E0)]
     [NativeName("m_bRenderToCubemaps")]
-    public bool RenderToCubemaps { get; set; }
+    public bool RenderToCubeMaps { get; set; }
 
     /// <summary>
     ///     Opacity of this entity's cast shadow (0 = no shadow, 1 = full shadow).

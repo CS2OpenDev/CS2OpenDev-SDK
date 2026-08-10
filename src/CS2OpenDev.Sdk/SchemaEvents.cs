@@ -284,6 +284,11 @@ public static class SchemaEvents
         public const string Z = "z";
     }
 
+    public static class BuyTimeEndedEvent
+    {
+        public const string EventName = "buytime_ended";
+    }
+
     public static class BuymenuCloseEvent
     {
         public const string EventName = "buymenu_close";
@@ -294,11 +299,6 @@ public static class SchemaEvents
     public static class BuymenuOpenEvent
     {
         public const string EventName = "buymenu_open";
-    }
-
-    public static class BuytimeEndedEvent
-    {
-        public const string EventName = "buytime_ended";
     }
 
     public static class CartUpdatedEvent
@@ -323,14 +323,14 @@ public static class SchemaEvents
         public const string EventName = "client_loadout_changed";
     }
 
-    public static class ClientsideLessonClosedEvent
+    public static class ClientSideLessonClosedEvent
     {
         public const string EventName = "clientside_lesson_closed";
 
         public const string LessonName = "lesson_name";
     }
 
-    public static class ClientsideReloadCustomEconEvent
+    public static class ClientSideReloadCustomEconEvent
     {
         public const string EventName = "clientside_reload_custom_econ";
 
@@ -617,7 +617,7 @@ public static class SchemaEvents
     {
         public const string EventName = "enter_buyzone";
 
-        public const string Canbuy = "canbuy";
+        public const string CanBuy = "canbuy";
         public const string UserId = "userid";
     }
 
@@ -676,7 +676,7 @@ public static class SchemaEvents
     {
         public const string EventName = "exit_buyzone";
 
-        public const string Canbuy = "canbuy";
+        public const string CanBuy = "canbuy";
         public const string UserId = "userid";
     }
 
@@ -731,6 +731,16 @@ public static class SchemaEvents
         public const string EventName = "game_init";
     }
 
+    public static class GameInstructorDrawEvent
+    {
+        public const string EventName = "gameinstructor_draw";
+    }
+
+    public static class GameInstructorNodrawEvent
+    {
+        public const string EventName = "gameinstructor_nodraw";
+    }
+
     public static class GameMessageEvent
     {
         public const string EventName = "game_message";
@@ -769,16 +779,6 @@ public static class SchemaEvents
         public const string Objective = "objective";
         public const string RoundsLimit = "roundslimit";
         public const string TimeLimit = "timelimit";
-    }
-
-    public static class GameinstructorDrawEvent
-    {
-        public const string EventName = "gameinstructor_draw";
-    }
-
-    public static class GameinstructorNodrawEvent
-    {
-        public const string EventName = "gameinstructor_nodraw";
     }
 
     public static class GameuiHiddenEvent
@@ -1075,19 +1075,19 @@ public static class SchemaEvents
         public const string HintColor = "hint_color";
         public const string HintEntIndex = "hint_entindex";
         public const string HintFlags = "hint_flags";
-        public const string HintForcecaption = "hint_forcecaption";
-        public const string HintIconOffscreen = "hint_icon_offscreen";
+        public const string HintForceCaption = "hint_forcecaption";
+        public const string HintIconOffScreen = "hint_icon_offscreen";
         public const string HintIconOffset = "hint_icon_offset";
-        public const string HintIconOnscreen = "hint_icon_onscreen";
+        public const string HintIconOnScreen = "hint_icon_onscreen";
         public const string HintLayoutfile = "hint_layoutfile";
         public const string HintLocalPlayerOnly = "hint_local_player_only";
         public const string HintName = "hint_name";
-        public const string HintNooffscreen = "hint_nooffscreen";
+        public const string HintNoOffScreen = "hint_nooffscreen";
         public const string HintRange = "hint_range";
         public const string HintReplaceKey = "hint_replace_key";
         public const string HintStartSound = "hint_start_sound";
         public const string HintTarget = "hint_target";
-        public const string HintTimeout = "hint_timeout";
+        public const string HintTimeOut = "hint_timeout";
         public const string HintVrHeightOffset = "hint_vr_height_offset";
         public const string HintVrOffsetX = "hint_vr_offset_x";
         public const string HintVrOffsetY = "hint_vr_offset_y";
@@ -1107,18 +1107,18 @@ public static class SchemaEvents
         public const string HintCaption = "hint_caption";
         public const string HintColor = "hint_color";
         public const string HintFlags = "hint_flags";
-        public const string HintForcecaption = "hint_forcecaption";
+        public const string HintForceCaption = "hint_forcecaption";
         public const string HintGamepadBinding = "hint_gamepad_binding";
-        public const string HintIconOffscreen = "hint_icon_offscreen";
+        public const string HintIconOffScreen = "hint_icon_offscreen";
         public const string HintIconOffset = "hint_icon_offset";
-        public const string HintIconOnscreen = "hint_icon_onscreen";
+        public const string HintIconOnScreen = "hint_icon_onscreen";
         public const string HintLocalPlayerOnly = "hint_local_player_only";
         public const string HintName = "hint_name";
-        public const string HintNooffscreen = "hint_nooffscreen";
+        public const string HintNoOffScreen = "hint_nooffscreen";
         public const string HintRange = "hint_range";
         public const string HintReplaceKey = "hint_replace_key";
         public const string HintTarget = "hint_target";
-        public const string HintTimeout = "hint_timeout";
+        public const string HintTimeOut = "hint_timeout";
         public const string UserId = "userid";
     }
 
@@ -1361,7 +1361,7 @@ public static class SchemaEvents
         public const string Weapon = "weapon";
         public const string WeaponFauxitemid = "weapon_fauxitemid";
         public const string WeaponItemId = "weapon_itemid";
-        public const string WeaponOriginalownerXuid = "weapon_originalowner_xuid";
+        public const string WeaponOriginalOwnerXuid = "weapon_originalowner_xuid";
     }
 
     public static class ParachuteDeployEvent
@@ -1424,7 +1424,7 @@ public static class SchemaEvents
         public const string EventName = "player_chat";
 
         public const string PlayerId = "playerid";
-        public const string Teamonly = "teamonly";
+        public const string TeamOnly = "teamonly";
         public const string Text = "text";
         public const string UserId = "userid";
     }
@@ -1433,7 +1433,7 @@ public static class SchemaEvents
     {
         public const string EventName = "player_chat";
 
-        public const string Teamonly = "teamonly";
+        public const string TeamOnly = "teamonly";
         public const string Text = "text";
         public const string UserId = "userid";
     }
@@ -1488,7 +1488,7 @@ public static class SchemaEvents
         public const string Weapon = "weapon";
         public const string WeaponFauxitemid = "weapon_fauxitemid";
         public const string WeaponItemId = "weapon_itemid";
-        public const string WeaponOriginalownerXuid = "weapon_originalowner_xuid";
+        public const string WeaponOriginalOwnerXuid = "weapon_originalowner_xuid";
         public const string Wipe = "wipe";
     }
 
@@ -1824,7 +1824,7 @@ public static class SchemaEvents
         public const string EventName = "round_poststart";
     }
 
-    public static class RoundPrestartEvent
+    public static class RoundPreStartEvent
     {
         public const string EventName = "round_prestart";
     }
@@ -1853,7 +1853,7 @@ public static class SchemaEvents
         public const string EventName = "round_time_warning";
     }
 
-    public static class SeasoncoinLevelupEvent
+    public static class SeasoncoinLevelUpEvent
     {
         public const string EventName = "seasoncoin_levelup";
 
@@ -1901,7 +1901,7 @@ public static class SchemaEvents
         public const string Game = "game";
         public const string HostName = "hostname";
         public const string MapName = "mapname";
-        public const string Maxplayers = "maxplayers";
+        public const string MaxPlayers = "maxplayers";
         public const string Os = "os";
         public const string Password = "password";
         public const string Port = "port";
@@ -2351,6 +2351,15 @@ public static class SchemaEvents
         public const string Weapon = "weapon";
     }
 
+    public static class WeaponHudSelectionEvent
+    {
+        public const string EventName = "weaponhud_selection";
+
+        public const string EntIndex = "entindex";
+        public const string Mode = "mode";
+        public const string UserId = "userid";
+    }
+
     public static class WeaponReloadEvent
     {
         public const string EventName = "weapon_reload";
@@ -2369,15 +2378,6 @@ public static class SchemaEvents
     {
         public const string EventName = "weapon_zoom_rifle";
 
-        public const string UserId = "userid";
-    }
-
-    public static class WeaponhudSelectionEvent
-    {
-        public const string EventName = "weaponhud_selection";
-
-        public const string EntIndex = "entindex";
-        public const string Mode = "mode";
         public const string UserId = "userid";
     }
 

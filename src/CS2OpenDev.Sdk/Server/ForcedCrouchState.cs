@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum ForcedCrouchState : uint
 {
     /// <summary>
-    ///     ForcedcrouchNone.
+    ///     ForcedCrouchNone.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FORCEDCROUCH_NONE</c>.
     /// </remarks>
     [NativeName("FORCEDCROUCH_NONE")]
-    ForcedcrouchNone = 0,
+    ForcedCrouchNone = 0,
 
     /// <summary>
-    ///     ForcedcrouchCrouched.
+    ///     ForcedCrouchCrouched.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FORCEDCROUCH_CROUCHED</c>.
     /// </remarks>
     [NativeName("FORCEDCROUCH_CROUCHED")]
-    ForcedcrouchCrouched = 1,
+    ForcedCrouchCrouched = 1,
 
     /// <summary>
-    ///     ForcedcrouchUncrouched.
+    ///     ForcedCrouchUncrouched.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FORCEDCROUCH_UNCROUCHED</c>.
     /// </remarks>
     [NativeName("FORCEDCROUCH_UNCROUCHED")]
-    ForcedcrouchUncrouched = 2
+    ForcedCrouchUncrouched = 2
 }

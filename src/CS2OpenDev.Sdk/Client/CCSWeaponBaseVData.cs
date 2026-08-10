@@ -73,14 +73,14 @@ public partial class CCSWeaponBaseVData : CBasePlayerWeaponVData
     public float ArmorRatio { get; set; }
 
     /// <summary>
-    ///     Gets or sets AttackMovespeedFactor.
+    ///     Gets or sets AttackMoveSpeedFactor.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flAttackMovespeedFactor</c> at offset <c>0x7E4</c>.
     /// </remarks>
     [NativeOffset(0x7E4)]
     [NativeName("m_flAttackMovespeedFactor")]
-    public float AttackMovespeedFactor { get; set; }
+    public float AttackMoveSpeedFactor { get; set; }
 
     /// <summary>
     ///     Gets or sets BurstShotCount.
@@ -93,34 +93,34 @@ public partial class CCSWeaponBaseVData : CBasePlayerWeaponVData
     public int BurstShotCount { get; set; }
 
     /// <summary>
-    ///     Gets or sets CannotShootUnderwater.
+    ///     Gets or sets CanNotShootUnderwater.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bCannotShootUnderwater</c> at offset <c>0x71F</c>.
     /// </remarks>
     [NativeOffset(0x71F)]
     [NativeName("m_bCannotShootUnderwater")]
-    public bool CannotShootUnderwater { get; set; }
+    public bool CanNotShootUnderwater { get; set; }
 
     /// <summary>
-    ///     Gets or sets CrosshairDeltaDistance.
+    ///     Gets or sets CrossHairDeltaDistance.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nCrosshairDeltaDistance</c> at offset <c>0x730</c>.
     /// </remarks>
     [NativeOffset(0x730)]
     [NativeName("m_nCrosshairDeltaDistance")]
-    public int CrosshairDeltaDistance { get; set; }
+    public int CrossHairDeltaDistance { get; set; }
 
     /// <summary>
-    ///     Gets or sets CrosshairMinDistance.
+    ///     Gets or sets CrossHairMinDistance.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nCrosshairMinDistance</c> at offset <c>0x72C</c>.
     /// </remarks>
     [NativeOffset(0x72C)]
     [NativeName("m_nCrosshairMinDistance")]
-    public int CrosshairMinDistance { get; set; }
+    public int CrossHairMinDistance { get; set; }
 
     /// <summary>
     ///     Gets or sets CycleTime.

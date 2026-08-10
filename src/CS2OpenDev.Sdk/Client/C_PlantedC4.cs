@@ -131,14 +131,14 @@ public partial class C_PlantedC4 : CBaseAnimGraph
     public VectorWS C4ExplodeSpectatePos { get; set; }
 
     /// <summary>
-    ///     Gets or sets CannotBeDefused.
+    ///     Gets or sets CanNotBeDefused.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bCannotBeDefused</c> at offset <c>0x11D4</c>.
     /// </remarks>
     [NativeOffset(0x11D4)]
     [NativeName("m_bCannotBeDefused")]
-    public bool CannotBeDefused { get; set; }
+    public bool CanNotBeDefused { get; set; }
 
     /// <summary>
     ///     Gets or sets DefuseCountDown.
@@ -161,14 +161,14 @@ public partial class C_PlantedC4 : CBaseAnimGraph
     public float DefuseLength { get; set; }
 
     /// <summary>
-    ///     Gets or sets DefuserMultimeter.
+    ///     Gets or sets DefuserMultiMeter.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hDefuserMultimeter</c> at offset <c>0x16D0</c>.
     /// </remarks>
     [NativeOffset(0x16D0)]
     [NativeName("m_hDefuserMultimeter")]
-    public CHandle__C_Multimeter__ DefuserMultimeter { get; set; }
+    public CHandle__C_Multimeter__ DefuserMultiMeter { get; set; }
 
     /// <summary>
     ///     Gets or sets EntitySpottedState.

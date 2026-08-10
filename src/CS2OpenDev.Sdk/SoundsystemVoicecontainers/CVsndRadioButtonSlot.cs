@@ -33,7 +33,7 @@ public partial class CVsndRadioButtonSlot
     [NativeName("m_bEnableEndcap")]
     [NativeMetadata("MPropertyFriendlyName", "Enable Endcap")]
     [NativeMetadata("MPropertyGroupName", "Endcap")]
-    public bool EnableEndcap { get; set; }
+    public bool EnableEndCap { get; set; }
 
     /// <summary>
     ///     Enable Loopcap.
@@ -45,7 +45,7 @@ public partial class CVsndRadioButtonSlot
     [NativeName("m_bEnableLoopcap")]
     [NativeMetadata("MPropertyFriendlyName", "Enable Loopcap")]
     [NativeMetadata("MPropertyGroupName", "Loopcap")]
-    public bool EnableLoopcap { get; set; }
+    public bool EnableLoopCap { get; set; }
 
     /// <summary>
     ///     Enable Vsnd.
@@ -69,7 +69,7 @@ public partial class CVsndRadioButtonSlot
     [NativeName("m_endcapVsnd")]
     [NativeMetadata("MPropertyFriendlyName", "Endcap Vsnd (Stop)")]
     [NativeMetadata("MPropertyGroupName", "Endcap")]
-    public CSoundContainerReference EndcapVsnd { get; set; }
+    public CSoundContainerReference EndCapVsnd { get; set; }
 
     /// <summary>
     ///     Fade Out (sec).
@@ -103,7 +103,7 @@ public partial class CVsndRadioButtonSlot
     [NativeName("m_loopcapVsnd")]
     [NativeMetadata("MPropertyFriendlyName", "Loopcap Vsnd (Loop)")]
     [NativeMetadata("MPropertyGroupName", "Loopcap")]
-    public CSoundContainerReference LoopcapVsnd { get; set; }
+    public CSoundContainerReference LoopCapVsnd { get; set; }
 
     /// <summary>
     ///     Mode.

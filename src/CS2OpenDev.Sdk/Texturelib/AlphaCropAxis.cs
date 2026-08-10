@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Texturelib;
 public enum AlphaCropAxis : uint
 {
     /// <summary>
-    ///     AlphacropUv.
+    ///     AlphaCropUv.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ALPHACROP_UV</c>.
     /// </remarks>
     [NativeName("ALPHACROP_UV")]
-    AlphacropUv = 0,
+    AlphaCropUv = 0,
 
     /// <summary>
-    ///     AlphacropU.
+    ///     AlphaCropU.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ALPHACROP_U</c>.
     /// </remarks>
     [NativeName("ALPHACROP_U")]
-    AlphacropU = 1,
+    AlphaCropU = 1,
 
     /// <summary>
-    ///     AlphacropV.
+    ///     AlphaCropV.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ALPHACROP_V</c>.
     /// </remarks>
     [NativeName("ALPHACROP_V")]
-    AlphacropV = 2
+    AlphaCropV = 2
 }

@@ -98,7 +98,7 @@ public partial class CDestructiblePart
     [NativeName("m_nOtherHitgroupsToDestroyWhenFullyDestructed")]
     [NativeMetadata("MPropertyDescription",
         "Other hitgroups to destroy when this one is fully destroyed.  Useful for chaining destructibles like blowing up the lower arm when the upper arm dies.")]
-    public CUtlVector__HitGroup_t__ OtherHitgroupsToDestroyWhenFullyDestructed { get; set; }
+    public CUtlVector__HitGroup_t__ OtherHitGroupsToDestroyWhenFullyDestructed { get; set; }
 
     /// <summary>
     ///     Body group to set when this damage level is broken.

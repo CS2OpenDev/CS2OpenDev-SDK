@@ -31,13 +31,13 @@ public enum ModelSkeletonDataTBoneFlags : uint
     FlagNoBoneFlags = 0,
 
     /// <summary>
-    ///     FlagBoneflexdriver.
+    ///     FlagBoneFlexDriver.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FLAG_BONEFLEXDRIVER</c>.
     /// </remarks>
     [NativeName("FLAG_BONEFLEXDRIVER")]
-    FlagBoneflexdriver = 4,
+    FlagBoneFlexDriver = 4,
 
     /// <summary>
     ///     FlagCloth.
@@ -193,13 +193,13 @@ public enum ModelSkeletonDataTBoneFlags : uint
     FlagAllBoneFlags = 1048575,
 
     /// <summary>
-    ///     BlendPrealigned.
+    ///     BlendPreAligned.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>BLEND_PREALIGNED</c>.
     /// </remarks>
     [NativeName("BLEND_PREALIGNED")]
-    BlendPrealigned = 1048576,
+    BlendPreAligned = 1048576,
 
     /// <summary>
     ///     FlagRigidlength.

@@ -58,13 +58,13 @@ public enum LatchDirtyPermission : uint
     LatchDirtyPrediction = 3,
 
     /// <summary>
-    ///     LatchDirtyFramesimulate.
+    ///     LatchDirtyFrameSimulate.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LATCH_DIRTY_FRAMESIMULATE</c>.
     /// </remarks>
     [NativeName("LATCH_DIRTY_FRAMESIMULATE")]
-    LatchDirtyFramesimulate = 4,
+    LatchDirtyFrameSimulate = 4,
 
     /// <summary>
     ///     LatchDirtyParticleSimulate.

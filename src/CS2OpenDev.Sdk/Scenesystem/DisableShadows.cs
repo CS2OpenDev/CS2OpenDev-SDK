@@ -49,13 +49,13 @@ public enum DisableShadows : byte
     KDisableShadows_Baked = 2,
 
     /// <summary>
-    ///     KDisableShadows_Realtime.
+    ///     KDisableShadows_RealTime.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>kDisableShadows_Realtime</c>.
     /// </remarks>
     [NativeName("kDisableShadows_Realtime")]
-    KDisableShadows_Realtime = 3,
+    KDisableShadows_RealTime = 3,
 
     /// <summary>
     ///     KDisableShadows_ReallyNone.

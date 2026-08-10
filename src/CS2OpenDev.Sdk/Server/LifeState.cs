@@ -67,11 +67,11 @@ public enum LifeState : uint
     LifeRespawning = 4,
 
     /// <summary>
-    ///     NumLifestates.
+    ///     NumLifeStates.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NUM_LIFESTATES</c>.
     /// </remarks>
     [NativeName("NUM_LIFESTATES")]
-    NumLifestates = 5
+    NumLifeStates = 5
 }

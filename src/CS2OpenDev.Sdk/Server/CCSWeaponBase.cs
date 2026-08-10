@@ -389,14 +389,14 @@ public partial class CCSWeaponBase : CBasePlayerWeapon
     public CHandle__CCSPlayerPawn__ PrevOwner { get; set; }
 
     /// <summary>
-    ///     Gets or sets Removeable.
+    ///     Gets or sets RemoveAble.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRemoveable</c> at offset <c>0xCD8</c>.
     /// </remarks>
     [NativeOffset(0xCD8)]
     [NativeName("m_bRemoveable")]
-    public bool Removeable { get; set; }
+    public bool RemoveAble { get; set; }
 
     /// <summary>
     ///     Gets or sets RequireUseToTouch.

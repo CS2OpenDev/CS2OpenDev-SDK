@@ -359,14 +359,14 @@ public partial class CScriptedSequence : CBaseEntity
     public bool IsTeleportingDueToMoveTo { get; set; }
 
     /// <summary>
-    ///     Gets or sets KeepAnimgraphLockedPost.
+    ///     Gets or sets KeepAnimGraphLockedPost.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bKeepAnimgraphLockedPost</c> at offset <c>0x50D</c>.
     /// </remarks>
     [NativeOffset(0x50D)]
     [NativeName("m_bKeepAnimgraphLockedPost")]
-    public bool KeepAnimgraphLockedPost { get; set; }
+    public bool KeepAnimGraphLockedPost { get; set; }
 
     /// <summary>
     ///     Gets or sets LoopActionSequence.

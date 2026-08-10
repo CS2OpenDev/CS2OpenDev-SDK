@@ -36,14 +36,14 @@ public partial class AIBaseNPCDebugSnapshotData : DebugSnapshotBaseStructuredDat
     public CUtlVector__CGlobalSymbol__ AnimEvents { get; set; }
 
     /// <summary>
-    ///     Gets or sets Animgraph.
+    ///     Gets or sets AnimGraph.
     /// </summary>
     /// <remarks>
     ///     Native field <c>animgraph</c> at offset <c>0x70</c>.
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("animgraph")]
-    public AIBaseNPCAnimGraphDebugSnapshotData Animgraph { get; set; }
+    public AIBaseNPCAnimGraphDebugSnapshotData AnimGraph { get; set; }
 
     /// <summary>
     ///     Gets or sets Conditions.

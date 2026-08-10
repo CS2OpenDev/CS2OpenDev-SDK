@@ -49,14 +49,14 @@ public partial class CBasePlayerPawn : CBaseCombatCharacter
     public QAngle AnglePrevious { get; set; }
 
     /// <summary>
-    ///     Gets or sets AutoaimServices.
+    ///     Gets or sets AutoAimServices.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pAutoaimServices</c> at offset <c>0xA40</c>.
     /// </remarks>
     [NativeOffset(0xA40)]
     [NativeName("m_pAutoaimServices")]
-    public CPlayerAutoaimServices? AutoaimServices { get; set; }
+    public CPlayerAutoAimServices? AutoAimServices { get; set; }
 
     /// <summary>
     ///     View / camera component.

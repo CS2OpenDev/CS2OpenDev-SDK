@@ -69,5 +69,5 @@ public enum NPCFollowFormation : uint
     /// </remarks>
     [NativeName("Sidekick")]
     [NativeMetadata("MPropertyFriendlyName", "Sidekick")]
-    Sidekick = 6
+    SideKick = 6
 }

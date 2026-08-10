@@ -21,29 +21,29 @@ namespace CS2OpenSchema.Animgraphlib;
 public enum AnimScriptType : ushort
 {
     /// <summary>
-    ///     AnimscriptTypeInvalid.
+    ///     AnimScriptTypeInvalid.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMSCRIPT_TYPE_INVALID</c>.
     /// </remarks>
     [NativeName("ANIMSCRIPT_TYPE_INVALID")]
-    AnimscriptTypeInvalid = 65535,
+    AnimScriptTypeInvalid = 65535,
 
     /// <summary>
-    ///     AnimscriptFuseGeneral.
+    ///     AnimScriptFuseGeneral.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMSCRIPT_FUSE_GENERAL</c>.
     /// </remarks>
     [NativeName("ANIMSCRIPT_FUSE_GENERAL")]
-    AnimscriptFuseGeneral = 0,
+    AnimScriptFuseGeneral = 0,
 
     /// <summary>
-    ///     AnimscriptFuseStateMachine.
+    ///     AnimScriptFuseStateMachine.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMSCRIPT_FUSE_STATEMACHINE</c>.
     /// </remarks>
     [NativeName("ANIMSCRIPT_FUSE_STATEMACHINE")]
-    AnimscriptFuseStateMachine = 1
+    AnimScriptFuseStateMachine = 1
 }

@@ -62,34 +62,34 @@ public partial class ResponseFollowup
     public float FollowupDelay { get; set; }
 
     /// <summary>
-    ///     Gets or sets FollowupEntityiodelay.
+    ///     Gets or sets FollowupEntityIoDelay.
     /// </summary>
     /// <remarks>
     ///     Native field <c>followup_entityiodelay</c> at offset <c>0x2C</c>.
     /// </remarks>
     [NativeOffset(0x2C)]
     [NativeName("followup_entityiodelay")]
-    public float FollowupEntityiodelay { get; set; }
+    public float FollowupEntityIoDelay { get; set; }
 
     /// <summary>
-    ///     Gets or sets FollowupEntityioinput.
+    ///     Gets or sets FollowupEntityIoInput.
     /// </summary>
     /// <remarks>
     ///     Native field <c>followup_entityioinput</c> at offset <c>0x24</c>.
     /// </remarks>
     [NativeOffset(0x24)]
     [NativeName("followup_entityioinput")]
-    public string? FollowupEntityioinput { get; set; }
+    public string? FollowupEntityIoInput { get; set; }
 
     /// <summary>
-    ///     Gets or sets FollowupEntityiotarget.
+    ///     Gets or sets FollowupEntityIoTarget.
     /// </summary>
     /// <remarks>
     ///     Native field <c>followup_entityiotarget</c> at offset <c>0x1C</c>.
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("followup_entityiotarget")]
-    public string? FollowupEntityiotarget { get; set; }
+    public string? FollowupEntityIoTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets FollowupTarget.

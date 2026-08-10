@@ -25,14 +25,14 @@ namespace CS2OpenSchema.Animationsystem;
 public partial class AnimationSnapshotBase
 {
     /// <summary>
-    ///     Gets or sets BoneSetupMask.
+    ///     Gets or sets BoneSetUpMask.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_boneSetupMask</c> at offset <c>0x48</c>.
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_boneSetupMask")]
-    public CUtlVector__uint32__ BoneSetupMask { get; set; }
+    public CUtlVector__uint32__ BoneSetUpMask { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneTransforms.

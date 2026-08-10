@@ -44,14 +44,14 @@ public partial class CExternalToolInfo : CBaseToolInfo
     public string ArgsWithLineColumn { get; set; }
 
     /// <summary>
-    ///     Gets or sets DebugCommandline.
+    ///     Gets or sets DebugCommandLine.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bDebugCommandline</c> at offset <c>0x78</c>.
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_bDebugCommandline")]
-    public bool DebugCommandline { get; set; }
+    public bool DebugCommandLine { get; set; }
 
     /// <summary>
     ///     Gets or sets Executable.

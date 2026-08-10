@@ -29,7 +29,7 @@ public enum ParticleReplicationMode : uint
     /// </remarks>
     [NativeName("PARTICLE_REPLICATIONMODE_NONE")]
     [NativeMetadata("MPropertyFriendlyName", "Off")]
-    ParticleReplicationmodeNone = 0,
+    ParticleReplicationModeNone = 0,
 
     /// <summary>
     ///     Replicate for each parent particle.
@@ -39,5 +39,5 @@ public enum ParticleReplicationMode : uint
     /// </remarks>
     [NativeName("PARTICLE_REPLICATIONMODE_REPLICATE_FOR_EACH_PARENT_PARTICLE")]
     [NativeMetadata("MPropertyFriendlyName", "Replicate for each parent particle")]
-    ParticleReplicationmodeReplicateForEachParentParticle = 1
+    ParticleReplicationModeReplicateForEachParentParticle = 1
 }

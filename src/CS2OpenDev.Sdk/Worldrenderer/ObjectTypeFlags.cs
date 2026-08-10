@@ -85,13 +85,13 @@ public enum ObjectTypeFlags : uint
     ObjectTypeRenderWithDynamic = 512,
 
     /// <summary>
-    ///     ObjectTypeRenderToCubemaps.
+    ///     ObjectTypeRenderToCubeMaps.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>OBJECT_TYPE_RENDER_TO_CUBEMAPS</c>.
     /// </remarks>
     [NativeName("OBJECT_TYPE_RENDER_TO_CUBEMAPS")]
-    ObjectTypeRenderToCubemaps = 1024,
+    ObjectTypeRenderToCubeMaps = 1024,
 
     /// <summary>
     ///     ObjectTypeModelHasLods.
@@ -112,13 +112,13 @@ public enum ObjectTypeFlags : uint
     ObjectTypeOverlay = 8192,
 
     /// <summary>
-    ///     ObjectTypePrecomputedVismembers.
+    ///     ObjectTypePreComputedVismembers.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>OBJECT_TYPE_PRECOMPUTED_VISMEMBERS</c>.
     /// </remarks>
     [NativeName("OBJECT_TYPE_PRECOMPUTED_VISMEMBERS")]
-    ObjectTypePrecomputedVismembers = 16384,
+    ObjectTypePreComputedVismembers = 16384,
 
     /// <summary>
     ///     ObjectTypeStaticCubeMap.

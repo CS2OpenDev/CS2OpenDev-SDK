@@ -102,13 +102,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectSteamTicket = 8,
 
     /// <summary>
-    ///     NetworkDisconnectSteamLogon.
+    ///     NetworkDisconnectSteamLogOn.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_STEAM_LOGON</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_STEAM_LOGON")]
-    NetworkDisconnectSteamLogon = 9,
+    NetworkDisconnectSteamLogOn = 9,
 
     /// <summary>
     ///     NetworkDisconnectSteamAuthcancelled.
@@ -156,13 +156,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectSteamLoggedInElsewhere = 14,
 
     /// <summary>
-    ///     NetworkDisconnectSteamVacCheckTimedout.
+    ///     NetworkDisconnectSteamVacCheckTimedOut.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_STEAM_VAC_CHECK_TIMEDOUT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_STEAM_VAC_CHECK_TIMEDOUT")]
-    NetworkDisconnectSteamVacCheckTimedout = 15,
+    NetworkDisconnectSteamVacCheckTimedOut = 15,
 
     /// <summary>
     ///     NetworkDisconnectSteamDropped.
@@ -192,22 +192,22 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectServerInfoOverflow = 18,
 
     /// <summary>
-    ///     NetworkDisconnectTickmsgOverflow.
+    ///     NetworkDisconnectTickMsgOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_TICKMSG_OVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_TICKMSG_OVERFLOW")]
-    NetworkDisconnectTickmsgOverflow = 19,
+    NetworkDisconnectTickMsgOverflow = 19,
 
     /// <summary>
-    ///     NetworkDisconnectStringtablemsgOverflow.
+    ///     NetworkDisconnectStringTableMsgOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_STRINGTABLEMSG_OVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_STRINGTABLEMSG_OVERFLOW")]
-    NetworkDisconnectStringtablemsgOverflow = 20,
+    NetworkDisconnectStringTableMsgOverflow = 20,
 
     /// <summary>
     ///     NetworkDisconnectDeltaentmsgOverflow.
@@ -219,58 +219,58 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectDeltaentmsgOverflow = 21,
 
     /// <summary>
-    ///     NetworkDisconnectTempentmsgOverflow.
+    ///     NetworkDisconnectTempEntMsgOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_TEMPENTMSG_OVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_TEMPENTMSG_OVERFLOW")]
-    NetworkDisconnectTempentmsgOverflow = 22,
+    NetworkDisconnectTempEntMsgOverflow = 22,
 
     /// <summary>
-    ///     NetworkDisconnectSoundsmsgOverflow.
+    ///     NetworkDisconnectSoundsMsgOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_SOUNDSMSG_OVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_SOUNDSMSG_OVERFLOW")]
-    NetworkDisconnectSoundsmsgOverflow = 23,
+    NetworkDisconnectSoundsMsgOverflow = 23,
 
     /// <summary>
-    ///     NetworkDisconnectSnapshotoverflow.
+    ///     NetworkDisconnectSnapshotOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_SNAPSHOTOVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_SNAPSHOTOVERFLOW")]
-    NetworkDisconnectSnapshotoverflow = 24,
+    NetworkDisconnectSnapshotOverflow = 24,
 
     /// <summary>
-    ///     NetworkDisconnectSnapshoterror.
+    ///     NetworkDisconnectSnapshotError.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_SNAPSHOTERROR</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_SNAPSHOTERROR")]
-    NetworkDisconnectSnapshoterror = 25,
+    NetworkDisconnectSnapshotError = 25,
 
     /// <summary>
-    ///     NetworkDisconnectReliableoverflow.
+    ///     NetworkDisconnectReliableOverflow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_RELIABLEOVERFLOW</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_RELIABLEOVERFLOW")]
-    NetworkDisconnectReliableoverflow = 26,
+    NetworkDisconnectReliableOverflow = 26,
 
     /// <summary>
-    ///     NetworkDisconnectBaddeltatick.
+    ///     NetworkDisconnectBadDeltaTick.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_BADDELTATICK</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_BADDELTATICK")]
-    NetworkDisconnectBaddeltatick = 27,
+    NetworkDisconnectBadDeltaTick = 27,
 
     /// <summary>
     ///     NetworkDisconnectNomoresplits.
@@ -282,13 +282,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectNomoresplits = 28,
 
     /// <summary>
-    ///     NetworkDisconnectTimedout.
+    ///     NetworkDisconnectTimedOut.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_TIMEDOUT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_TIMEDOUT")]
-    NetworkDisconnectTimedout = 29,
+    NetworkDisconnectTimedOut = 29,
 
     /// <summary>
     ///     NetworkDisconnectDisconnected.
@@ -300,76 +300,76 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectDisconnected = 30,
 
     /// <summary>
-    ///     NetworkDisconnectLeavingsplit.
+    ///     NetworkDisconnectLeavingSplit.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LEAVINGSPLIT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LEAVINGSPLIT")]
-    NetworkDisconnectLeavingsplit = 31,
+    NetworkDisconnectLeavingSplit = 31,
 
     /// <summary>
-    ///     NetworkDisconnectDifferentclasstables.
+    ///     NetworkDisconnectDifferentClassTables.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_DIFFERENTCLASSTABLES</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_DIFFERENTCLASSTABLES")]
-    NetworkDisconnectDifferentclasstables = 32,
+    NetworkDisconnectDifferentClassTables = 32,
 
     /// <summary>
-    ///     NetworkDisconnectBadrelaypassword.
+    ///     NetworkDisconnectBadRelayPassword.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_BADRELAYPASSWORD</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_BADRELAYPASSWORD")]
-    NetworkDisconnectBadrelaypassword = 33,
+    NetworkDisconnectBadRelayPassword = 33,
 
     /// <summary>
-    ///     NetworkDisconnectBadspectatorpassword.
+    ///     NetworkDisconnectBadSpectatorPassword.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_BADSPECTATORPASSWORD</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_BADSPECTATORPASSWORD")]
-    NetworkDisconnectBadspectatorpassword = 34,
+    NetworkDisconnectBadSpectatorPassword = 34,
 
     /// <summary>
-    ///     NetworkDisconnectHltvrestricted.
+    ///     NetworkDisconnectHltvRestricted.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_HLTVRESTRICTED</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_HLTVRESTRICTED")]
-    NetworkDisconnectHltvrestricted = 35,
+    NetworkDisconnectHltvRestricted = 35,
 
     /// <summary>
-    ///     NetworkDisconnectNospectators.
+    ///     NetworkDisconnectNoSpectators.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_NOSPECTATORS</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_NOSPECTATORS")]
-    NetworkDisconnectNospectators = 36,
+    NetworkDisconnectNoSpectators = 36,
 
     /// <summary>
-    ///     NetworkDisconnectHltvunavailable.
+    ///     NetworkDisconnectHltvUnavailable.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_HLTVUNAVAILABLE</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_HLTVUNAVAILABLE")]
-    NetworkDisconnectHltvunavailable = 37,
+    NetworkDisconnectHltvUnavailable = 37,
 
     /// <summary>
-    ///     NetworkDisconnectHltvstop.
+    ///     NetworkDisconnectHltvStop.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_HLTVSTOP</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_HLTVSTOP")]
-    NetworkDisconnectHltvstop = 38,
+    NetworkDisconnectHltvStop = 38,
 
     /// <summary>
     ///     NetworkDisconnectKicked.
@@ -381,49 +381,49 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectKicked = 39,
 
     /// <summary>
-    ///     NetworkDisconnectBanadded.
+    ///     NetworkDisconnectBanAdded.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_BANADDED</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_BANADDED")]
-    NetworkDisconnectBanadded = 40,
+    NetworkDisconnectBanAdded = 40,
 
     /// <summary>
-    ///     NetworkDisconnectKickbanadded.
+    ///     NetworkDisconnectKickBanAdded.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKBANADDED</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKBANADDED")]
-    NetworkDisconnectKickbanadded = 41,
+    NetworkDisconnectKickBanAdded = 41,
 
     /// <summary>
-    ///     NetworkDisconnectHltvdirect.
+    ///     NetworkDisconnectHltvDirect.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_HLTVDIRECT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_HLTVDIRECT")]
-    NetworkDisconnectHltvdirect = 42,
+    NetworkDisconnectHltvDirect = 42,
 
     /// <summary>
-    ///     NetworkDisconnectPureserverClientextra.
+    ///     NetworkDisconnectPureServerClientExtra.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_PURESERVER_CLIENTEXTRA</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_PURESERVER_CLIENTEXTRA")]
-    NetworkDisconnectPureserverClientextra = 43,
+    NetworkDisconnectPureServerClientExtra = 43,
 
     /// <summary>
-    ///     NetworkDisconnectPureserverMismatch.
+    ///     NetworkDisconnectPureServerMismatch.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_PURESERVER_MISMATCH</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_PURESERVER_MISMATCH")]
-    NetworkDisconnectPureserverMismatch = 44,
+    NetworkDisconnectPureServerMismatch = 44,
 
     /// <summary>
     ///     NetworkDisconnectUserCmd.
@@ -507,22 +507,22 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectReconnection = 53,
 
     /// <summary>
-    ///     NetworkDisconnectLoopshutdown.
+    ///     NetworkDisconnectLoopShutdown.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOOPSHUTDOWN</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOOPSHUTDOWN")]
-    NetworkDisconnectLoopshutdown = 54,
+    NetworkDisconnectLoopShutdown = 54,
 
     /// <summary>
-    ///     NetworkDisconnectLoopdeactivate.
+    ///     NetworkDisconnectLoopDeactivate.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOOPDEACTIVATE</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOOPDEACTIVATE")]
-    NetworkDisconnectLoopdeactivate = 55,
+    NetworkDisconnectLoopDeactivate = 55,
 
     /// <summary>
     ///     NetworkDisconnectHostEndGame.
@@ -570,13 +570,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectRequestHostStateIdle = 60,
 
     /// <summary>
-    ///     NetworkDisconnectRequestHostStateHltvrelay.
+    ///     NetworkDisconnectRequestHostStateHltvRelay.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REQUEST_HOSTSTATE_HLTVRELAY</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REQUEST_HOSTSTATE_HLTVRELAY")]
-    NetworkDisconnectRequestHostStateHltvrelay = 61,
+    NetworkDisconnectRequestHostStateHltvRelay = 61,
 
     /// <summary>
     ///     NetworkDisconnectClientConsistencyFail.
@@ -660,13 +660,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectReplayIncompatible = 71,
 
     /// <summary>
-    ///     NetworkDisconnectConnectRequestTimedout.
+    ///     NetworkDisconnectConnectRequestTimedOut.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_CONNECT_REQUEST_TIMEDOUT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_CONNECT_REQUEST_TIMEDOUT")]
-    NetworkDisconnectConnectRequestTimedout = 72,
+    NetworkDisconnectConnectRequestTimedOut = 72,
 
     /// <summary>
     ///     NetworkDisconnectServerIncompatible.
@@ -678,58 +678,58 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectServerIncompatible = 73,
 
     /// <summary>
-    ///     NetworkDisconnectLocalproblemManyrelays.
+    ///     NetworkDisconnectLocalProblemManyrelays.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOCALPROBLEM_MANYRELAYS</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOCALPROBLEM_MANYRELAYS")]
-    NetworkDisconnectLocalproblemManyrelays = 74,
+    NetworkDisconnectLocalProblemManyrelays = 74,
 
     /// <summary>
-    ///     NetworkDisconnectLocalproblemHostedserverprimaryrelay.
+    ///     NetworkDisconnectLocalProblemHostedserverprimaryrelay.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOCALPROBLEM_HOSTEDSERVERPRIMARYRELAY</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOCALPROBLEM_HOSTEDSERVERPRIMARYRELAY")]
-    NetworkDisconnectLocalproblemHostedserverprimaryrelay = 75,
+    NetworkDisconnectLocalProblemHostedserverprimaryrelay = 75,
 
     /// <summary>
-    ///     NetworkDisconnectLocalproblemNetworkconfig.
+    ///     NetworkDisconnectLocalProblemNetworkConfig.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOCALPROBLEM_NETWORKCONFIG</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOCALPROBLEM_NETWORKCONFIG")]
-    NetworkDisconnectLocalproblemNetworkconfig = 76,
+    NetworkDisconnectLocalProblemNetworkConfig = 76,
 
     /// <summary>
-    ///     NetworkDisconnectLocalproblemOther.
+    ///     NetworkDisconnectLocalProblemOther.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_LOCALPROBLEM_OTHER</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_LOCALPROBLEM_OTHER")]
-    NetworkDisconnectLocalproblemOther = 77,
+    NetworkDisconnectLocalProblemOther = 77,
 
     /// <summary>
-    ///     NetworkDisconnectRemoteTimeout.
+    ///     NetworkDisconnectRemoteTimeOut.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REMOTE_TIMEOUT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REMOTE_TIMEOUT")]
-    NetworkDisconnectRemoteTimeout = 79,
+    NetworkDisconnectRemoteTimeOut = 79,
 
     /// <summary>
-    ///     NetworkDisconnectRemoteTimeoutConnecting.
+    ///     NetworkDisconnectRemoteTimeOutConnecting.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REMOTE_TIMEOUT_CONNECTING</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REMOTE_TIMEOUT_CONNECTING")]
-    NetworkDisconnectRemoteTimeoutConnecting = 80,
+    NetworkDisconnectRemoteTimeOutConnecting = 80,
 
     /// <summary>
     ///     NetworkDisconnectRemoteOther.
@@ -741,13 +741,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectRemoteOther = 81,
 
     /// <summary>
-    ///     NetworkDisconnectRemoteBadcrypt.
+    ///     NetworkDisconnectRemoteBadCrypt.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REMOTE_BADCRYPT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REMOTE_BADCRYPT")]
-    NetworkDisconnectRemoteBadcrypt = 82,
+    NetworkDisconnectRemoteBadCrypt = 82,
 
     /// <summary>
     ///     NetworkDisconnectRemoteCertnottrusted.
@@ -777,13 +777,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectInternalError = 85,
 
     /// <summary>
-    ///     NetworkDisconnectRejectBadchallenge.
+    ///     NetworkDisconnectRejectBadChallenge.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REJECT_BADCHALLENGE</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REJECT_BADCHALLENGE")]
-    NetworkDisconnectRejectBadchallenge = 128,
+    NetworkDisconnectRejectBadChallenge = 128,
 
     /// <summary>
     ///     NetworkDisconnectRejectNolobby.
@@ -831,13 +831,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectRejectLanrestrict = 133,
 
     /// <summary>
-    ///     NetworkDisconnectRejectBadpassword.
+    ///     NetworkDisconnectRejectBadPassword.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REJECT_BADPASSWORD</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REJECT_BADPASSWORD")]
-    NetworkDisconnectRejectBadpassword = 134,
+    NetworkDisconnectRejectBadPassword = 134,
 
     /// <summary>
     ///     NetworkDisconnectRejectServerFull.
@@ -894,22 +894,22 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectRejectInvalidkeylength = 140,
 
     /// <summary>
-    ///     NetworkDisconnectRejectOldprotocol.
+    ///     NetworkDisconnectRejectOldProtocol.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REJECT_OLDPROTOCOL</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REJECT_OLDPROTOCOL")]
-    NetworkDisconnectRejectOldprotocol = 141,
+    NetworkDisconnectRejectOldProtocol = 141,
 
     /// <summary>
-    ///     NetworkDisconnectRejectNewprotocol.
+    ///     NetworkDisconnectRejectNewProtocol.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_REJECT_NEWPROTOCOL</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_REJECT_NEWPROTOCOL")]
-    NetworkDisconnectRejectNewprotocol = 142,
+    NetworkDisconnectRejectNewProtocol = 142,
 
     /// <summary>
     ///     NetworkDisconnectRejectInvalidconnection.
@@ -975,13 +975,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectRejectBanned = 149,
 
     /// <summary>
-    ///     NetworkDisconnectKickedTeamkilling.
+    ///     NetworkDisconnectKickedTeamKilling.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_TEAMKILLING</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_TEAMKILLING")]
-    NetworkDisconnectKickedTeamkilling = 150,
+    NetworkDisconnectKickedTeamKilling = 150,
 
     /// <summary>
     ///     NetworkDisconnectKickedTkStart.
@@ -993,58 +993,58 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectKickedTkStart = 151,
 
     /// <summary>
-    ///     NetworkDisconnectKickedUntrustedaccount.
+    ///     NetworkDisconnectKickedUntrustedAccount.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_UNTRUSTEDACCOUNT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_UNTRUSTEDACCOUNT")]
-    NetworkDisconnectKickedUntrustedaccount = 152,
+    NetworkDisconnectKickedUntrustedAccount = 152,
 
     /// <summary>
-    ///     NetworkDisconnectKickedConvictedaccount.
+    ///     NetworkDisconnectKickedConvictedAccount.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_CONVICTEDACCOUNT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_CONVICTEDACCOUNT")]
-    NetworkDisconnectKickedConvictedaccount = 153,
+    NetworkDisconnectKickedConvictedAccount = 153,
 
     /// <summary>
-    ///     NetworkDisconnectKickedCompetitivecooldown.
+    ///     NetworkDisconnectKickedCompetitiveCooldown.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_COMPETITIVECOOLDOWN</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_COMPETITIVECOOLDOWN")]
-    NetworkDisconnectKickedCompetitivecooldown = 154,
+    NetworkDisconnectKickedCompetitiveCooldown = 154,
 
     /// <summary>
-    ///     NetworkDisconnectKickedTeamhurting.
+    ///     NetworkDisconnectKickedTeamHurting.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_TEAMHURTING</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_TEAMHURTING")]
-    NetworkDisconnectKickedTeamhurting = 155,
+    NetworkDisconnectKickedTeamHurting = 155,
 
     /// <summary>
-    ///     NetworkDisconnectKickedHostagekilling.
+    ///     NetworkDisconnectKickedHostageKilling.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_HOSTAGEKILLING</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_HOSTAGEKILLING")]
-    NetworkDisconnectKickedHostagekilling = 156,
+    NetworkDisconnectKickedHostageKilling = 156,
 
     /// <summary>
-    ///     NetworkDisconnectKickedVotedoff.
+    ///     NetworkDisconnectKickedVotedOff.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_VOTEDOFF</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_VOTEDOFF")]
-    NetworkDisconnectKickedVotedoff = 157,
+    NetworkDisconnectKickedVotedOff = 157,
 
     /// <summary>
     ///     NetworkDisconnectKickedIdle.
@@ -1065,13 +1065,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectKickedSuicide = 159,
 
     /// <summary>
-    ///     NetworkDisconnectKickedNosteamlogin.
+    ///     NetworkDisconnectKickedNoSteamLogIn.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_NOSTEAMLOGIN</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_NOSTEAMLOGIN")]
-    NetworkDisconnectKickedNosteamlogin = 160,
+    NetworkDisconnectKickedNoSteamLogIn = 160,
 
     /// <summary>
     ///     NetworkDisconnectKickedNosteamticket.
@@ -1083,13 +1083,13 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectKickedNosteamticket = 161,
 
     /// <summary>
-    ///     NetworkDisconnectKickedInputautomation.
+    ///     NetworkDisconnectKickedInputAutomation.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_INPUTAUTOMATION</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_INPUTAUTOMATION")]
-    NetworkDisconnectKickedInputautomation = 162,
+    NetworkDisconnectKickedInputAutomation = 162,
 
     /// <summary>
     ///     NetworkDisconnectKickedVacnetabnormalbehavior.
@@ -1101,11 +1101,11 @@ public enum ENetworkDisconnectionReason : uint
     NetworkDisconnectKickedVacnetabnormalbehavior = 163,
 
     /// <summary>
-    ///     NetworkDisconnectKickedInsecureclient.
+    ///     NetworkDisconnectKickedInsecureClient.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>NETWORK_DISCONNECT_KICKED_INSECURECLIENT</c>.
     /// </remarks>
     [NativeName("NETWORK_DISCONNECT_KICKED_INSECURECLIENT")]
-    NetworkDisconnectKickedInsecureclient = 164
+    NetworkDisconnectKickedInsecureClient = 164
 }

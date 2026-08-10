@@ -31,13 +31,13 @@ public enum AggregateInstanceStream : byte
     AggregateInstanceStreamNone = 0,
 
     /// <summary>
-    ///     AggregateInstanceStreamLightmapuvUnorm16.
+    ///     AggregateInstanceStreamLightMapUvUnorm16.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AGGREGATE_INSTANCE_STREAM_LIGHTMAPUV_UNORM16</c>.
     /// </remarks>
     [NativeName("AGGREGATE_INSTANCE_STREAM_LIGHTMAPUV_UNORM16")]
-    AggregateInstanceStreamLightmapuvUnorm16 = 1,
+    AggregateInstanceStreamLightMapUvUnorm16 = 1,
 
     /// <summary>
     ///     AggregateInstanceStreamVertextintUnorm8.
@@ -49,11 +49,11 @@ public enum AggregateInstanceStream : byte
     AggregateInstanceStreamVertextintUnorm8 = 2,
 
     /// <summary>
-    ///     AggregateInstanceStreamVertexblendUnorm8.
+    ///     AggregateInstanceStreamVertexBlendUnorm8.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>AGGREGATE_INSTANCE_STREAM_VERTEXBLEND_UNORM8</c>.
     /// </remarks>
     [NativeName("AGGREGATE_INSTANCE_STREAM_VERTEXBLEND_UNORM8")]
-    AggregateInstanceStreamVertexblendUnorm8 = 4
+    AggregateInstanceStreamVertexBlendUnorm8 = 4
 }

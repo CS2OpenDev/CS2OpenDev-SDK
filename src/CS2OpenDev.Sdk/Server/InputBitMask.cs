@@ -96,40 +96,40 @@ public enum InputBitMask : ulong
     InUse = 32,
 
     /// <summary>
-    ///     InTurnleft.
+    ///     InTurnLeft.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>IN_TURNLEFT</c>.
     /// </remarks>
     [NativeName("IN_TURNLEFT")]
-    InTurnleft = 128,
+    InTurnLeft = 128,
 
     /// <summary>
-    ///     InTurnright.
+    ///     InTurnRight.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>IN_TURNRIGHT</c>.
     /// </remarks>
     [NativeName("IN_TURNRIGHT")]
-    InTurnright = 256,
+    InTurnRight = 256,
 
     /// <summary>
-    ///     InMoveleft.
+    ///     InMoveLeft.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>IN_MOVELEFT</c>.
     /// </remarks>
     [NativeName("IN_MOVELEFT")]
-    InMoveleft = 512,
+    InMoveLeft = 512,
 
     /// <summary>
-    ///     InMoveright.
+    ///     InMoveRight.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>IN_MOVERIGHT</c>.
     /// </remarks>
     [NativeName("IN_MOVERIGHT")]
-    InMoveright = 1024,
+    InMoveRight = 1024,
 
     /// <summary>
     ///     InAttack2.

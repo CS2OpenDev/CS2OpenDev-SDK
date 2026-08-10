@@ -30,13 +30,13 @@ public enum PreviewCharacterBannerAnimation : uint
     Invalid = 4294967295,
 
     /// <summary>
-    ///     IdleOffscreen.
+    ///     IdleOffScreen.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>IDLE_OFFSCREEN</c>.
     /// </remarks>
     [NativeName("IDLE_OFFSCREEN")]
-    IdleOffscreen = 0,
+    IdleOffScreen = 0,
 
     /// <summary>
     ///     BannerAwpAceGun.

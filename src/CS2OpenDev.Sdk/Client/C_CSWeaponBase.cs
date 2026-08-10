@@ -89,14 +89,14 @@ public partial class C_CSWeaponBase : C_BasePlayerWeapon
     public bool ClearWeaponIdentifyingUGC { get; set; }
 
     /// <summary>
-    ///     Gets or sets CrosshairDistance.
+    ///     Gets or sets CrossHairDistance.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flCrosshairDistance</c> at offset <c>0x17B0</c>.
     /// </remarks>
     [NativeOffset(0x17B0)]
     [NativeName("m_flCrosshairDistance")]
-    public float CrosshairDistance { get; set; }
+    public float CrossHairDistance { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomEconReloadEventId.

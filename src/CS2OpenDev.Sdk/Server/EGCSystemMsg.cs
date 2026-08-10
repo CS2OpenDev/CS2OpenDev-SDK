@@ -219,13 +219,13 @@ public enum EGCSystemMsg : uint
     EGCMsgSendHTTPRequestResponse = 68,
 
     /// <summary>
-    ///     EGCMsgPreTestSetup.
+    ///     EGCMsgPreTestSetUp.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EGCMsgPreTestSetup</c>.
     /// </remarks>
     [NativeName("k_EGCMsgPreTestSetup")]
-    EGCMsgPreTestSetup = 69,
+    EGCMsgPreTestSetUp = 69,
 
     /// <summary>
     ///     EGCMsgRecordSupportAction.

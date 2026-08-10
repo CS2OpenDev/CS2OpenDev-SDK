@@ -39,5 +39,5 @@ public partial class CGameText : CRulePointEntity
     /// </remarks>
     [NativeOffset(0x788)]
     [NativeName("m_textParms")]
-    public Hudtextparms TextParms { get; set; }
+    public HudTextParms TextParms { get; set; }
 }

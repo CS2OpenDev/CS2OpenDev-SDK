@@ -73,7 +73,7 @@ public partial class CINITDistanceToNeighborCull : CParticleFunctionInitializer
     [NativeOffset(0x358)]
     [NativeName("m_flLifespanOverlap")]
     [NativeMetadata("MPropertyFriendlyName", "lifespan overlap percentage")]
-    public CPerParticleFloatInput LifespanOverlap { get; set; }
+    public CPerParticleFloatInput LifeSpanOverlap { get; set; }
 
     /// <summary>
     ///     modify amount.

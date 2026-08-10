@@ -35,14 +35,14 @@ public partial class CPulseCellStepCallExternalMethod : CPulseCellBaseYieldingIn
     public PulseMethodCallMode AsyncCallMode { get; set; }
 
     /// <summary>
-    ///     Gets or sets BlackboardIndex.
+    ///     Gets or sets BlackBoardIndex.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nBlackboardIndex</c> at offset <c>0xE8</c>.
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_nBlackboardIndex")]
-    public PulseRuntimeBlackboardReferenceIndex BlackboardIndex { get; set; }
+    public PulseRuntimeBlackBoardReferenceIndex BlackBoardIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets ExpectedArgs.

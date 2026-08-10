@@ -31,11 +31,11 @@ public enum RotatorTargetSpace : uint
     RotatorTargetWorldSpace = 0,
 
     /// <summary>
-    ///     RotatorTargetLocalspace.
+    ///     RotatorTargetLocalSpace.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ROTATOR_TARGET_LOCALSPACE</c>.
     /// </remarks>
     [NativeName("ROTATOR_TARGET_LOCALSPACE")]
-    RotatorTargetLocalspace = 1
+    RotatorTargetLocalSpace = 1
 }

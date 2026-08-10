@@ -126,7 +126,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x2C4)]
     [NativeName("m_flConstantLifespan")]
     [NativeMetadata("MPropertyFriendlyName", "lifetime")]
-    public float ConstantLifespan { get; set; }
+    public float ConstantLifeSpan { get; set; }
 
     /// <summary>
     ///     normal.

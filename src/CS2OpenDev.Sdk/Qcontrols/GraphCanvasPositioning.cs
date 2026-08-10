@@ -40,13 +40,13 @@ public enum GraphCanvasPositioning : uint
     InsideParent = 1,
 
     /// <summary>
-    ///     OutsideParent.
+    ///     OutSideParent.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>OUTSIDE_PARENT</c>.
     /// </remarks>
     [NativeName("OUTSIDE_PARENT")]
-    OutsideParent = 2,
+    OutSideParent = 2,
 
     /// <summary>
     ///     OnParentBorder.

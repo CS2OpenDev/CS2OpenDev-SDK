@@ -382,74 +382,74 @@ public partial class CLightComponent : CEntityComponent
     public float Phi { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedBoundsMaxs.
+    ///     Gets or sets PreComputedBoundsMaxs.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedBoundsMaxs</c> at offset <c>0x150</c>.
     /// </remarks>
     [NativeOffset(0x150)]
     [NativeName("m_vPrecomputedBoundsMaxs")]
-    public Vector PrecomputedBoundsMaxs { get; set; }
+    public Vector PreComputedBoundsMaxs { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedBoundsMins.
+    ///     Gets or sets PreComputedBoundsMins.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedBoundsMins</c> at offset <c>0x144</c>.
     /// </remarks>
     [NativeOffset(0x144)]
     [NativeName("m_vPrecomputedBoundsMins")]
-    public Vector PrecomputedBoundsMins { get; set; }
+    public Vector PreComputedBoundsMins { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedFieldsValid.
+    ///     Gets or sets PreComputedFieldsValid.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bPrecomputedFieldsValid</c> at offset <c>0x142</c>.
     /// </remarks>
     [NativeOffset(0x142)]
     [NativeName("m_bPrecomputedFieldsValid")]
-    public bool PrecomputedFieldsValid { get; set; }
+    public bool PreComputedFieldsValid { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedMaxRange.
+    ///     Gets or sets PreComputedMaxRange.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flPrecomputedMaxRange</c> at offset <c>0x180</c>.
     /// </remarks>
     [NativeOffset(0x180)]
     [NativeName("m_flPrecomputedMaxRange")]
-    public float PrecomputedMaxRange { get; set; }
+    public float PreComputedMaxRange { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles.
+    ///     Gets or sets PreComputedOBBAngles.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles</c> at offset <c>0x168</c>.
     /// </remarks>
     [NativeOffset(0x168)]
     [NativeName("m_vPrecomputedOBBAngles")]
-    public QAngle PrecomputedOBBAngles { get; set; }
+    public QAngle PreComputedOBBAngles { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent.
+    ///     Gets or sets PreComputedOBBExtent.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent</c> at offset <c>0x174</c>.
     /// </remarks>
     [NativeOffset(0x174)]
     [NativeName("m_vPrecomputedOBBExtent")]
-    public Vector PrecomputedOBBExtent { get; set; }
+    public Vector PreComputedOBBExtent { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin.
+    ///     Gets or sets PreComputedOBBOrigin.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin</c> at offset <c>0x15C</c>.
     /// </remarks>
     [NativeOffset(0x15C)]
     [NativeName("m_vPrecomputedOBBOrigin")]
-    public Vector PrecomputedOBBOrigin { get; set; }
+    public Vector PreComputedOBBOrigin { get; set; }
 
     /// <summary>
     ///     Gets or sets PvsModifyEntity.
@@ -492,14 +492,14 @@ public partial class CLightComponent : CEntityComponent
     public int RenderSpecular { get; set; }
 
     /// <summary>
-    ///     Gets or sets RenderToCubemaps.
+    ///     Gets or sets RenderToCubeMaps.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRenderToCubemaps</c> at offset <c>0x120</c>.
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_bRenderToCubemaps")]
-    public bool RenderToCubemaps { get; set; }
+    public bool RenderToCubeMaps { get; set; }
 
     /// <summary>
     ///     Gets or sets RenderTransmissive.

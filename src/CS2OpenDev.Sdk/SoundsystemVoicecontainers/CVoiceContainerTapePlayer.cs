@@ -25,14 +25,14 @@ namespace CS2OpenSchema.SoundsystemVoicecontainers;
 public partial class CVoiceContainerTapePlayer : CVoiceContainerAsyncGenerator
 {
     /// <summary>
-    ///     Gets or sets ShouldWraparound.
+    ///     Gets or sets ShouldWrapAround.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bShouldWraparound</c> at offset <c>0x80</c>.
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_bShouldWraparound")]
-    public bool ShouldWraparound { get; set; }
+    public bool ShouldWrapAround { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceAudio.

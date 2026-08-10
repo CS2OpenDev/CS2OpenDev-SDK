@@ -175,7 +175,7 @@ public partial class CSosSoundEventGroupSchema
     public string MatchSoundEventSubString { get; set; }
 
     /// <summary>
-    ///     Gets or sets MemberLifespanTime.
+    ///     Gets or sets MemberLifeSpanTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flMemberLifespanTime</c> at offset <c>0x14</c>.
@@ -183,7 +183,7 @@ public partial class CSosSoundEventGroupSchema
     [NativeOffset(0x14)]
     [NativeName("m_flMemberLifespanTime")]
     [NativeMetadata("MPropertyStartGroup", "")]
-    public float MemberLifespanTime { get; set; }
+    public float MemberLifeSpanTime { get; set; }
 
     /// <summary>
     ///     Gets or sets Opvar.

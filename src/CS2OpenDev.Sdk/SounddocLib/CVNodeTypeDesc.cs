@@ -122,14 +122,14 @@ public abstract partial class CVNodeTypeDesc
     public bool IsGroup { get; set; }
 
     /// <summary>
-    ///     Gets or sets IsSubgraphNode.
+    ///     Gets or sets IsSubGraphNode.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bIsSubgraphNode</c> at offset <c>0x87</c>.
     /// </remarks>
     [NativeOffset(0x87)]
     [NativeName("m_bIsSubgraphNode")]
-    public bool IsSubgraphNode { get; set; }
+    public bool IsSubGraphNode { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

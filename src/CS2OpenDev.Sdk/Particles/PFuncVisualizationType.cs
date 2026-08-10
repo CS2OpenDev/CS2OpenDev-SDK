@@ -29,7 +29,7 @@ public enum PFuncVisualizationType : uint
     /// </remarks>
     [NativeName("PFUNC_VISUALIZATION_SPHERE_WIREFRAME")]
     [NativeMetadata("MPropertyFriendlyName", "Visualization Sphere Wireframe")]
-    PfuncVisualizationSphereWireframe = 0,
+    PfuncVisualizationSphereWireFrame = 0,
 
     /// <summary>
     ///     Visualization Sphere Solid.

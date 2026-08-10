@@ -126,14 +126,14 @@ public partial class CItemGeneric : CItem
     public CEntityIOOutput OnPickup { get; set; }
 
     /// <summary>
-    ///     Gets or sets OnTimeout.
+    ///     Gets or sets OnTimeOut.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_OnTimeout</c> at offset <c>0xAA0</c>.
     /// </remarks>
     [NativeOffset(0xAA0)]
     [NativeName("m_OnTimeout")]
-    public CEntityIOOutput OnTimeout { get; set; }
+    public CEntityIOOutput OnTimeOut { get; set; }
 
     /// <summary>
     ///     Gets or sets OnTriggerEndTouch.
@@ -287,7 +287,7 @@ public partial class CItemGeneric : CItem
     public string SpawnScriptFunction { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutParticleEffect.
+    ///     Gets or sets TimeOutParticleEffect.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_hTimeoutParticleEffect</c> at offset <c>0xA60</c>.
@@ -295,10 +295,10 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA60)]
     [NativeName("m_hTimeoutParticleEffect")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ TimeoutParticleEffect { get; set; }
+    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ TimeOutParticleEffect { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutScriptFunction.
+    ///     Gets or sets TimeOutScriptFunction.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pTimeoutScriptFunction</c> at offset <c>0xA70</c>.
@@ -306,10 +306,10 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA70)]
     [NativeName("m_pTimeoutScriptFunction")]
     [NativeMetadata("MNotSaved", "")]
-    public string TimeoutScriptFunction { get; set; }
+    public string TimeOutScriptFunction { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutSoundEffect.
+    ///     Gets or sets TimeOutSoundEffect.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pTimeoutSoundEffect</c> at offset <c>0xA68</c>.
@@ -317,7 +317,7 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA68)]
     [NativeName("m_pTimeoutSoundEffect")]
     [NativeMetadata("MNotSaved", "")]
-    public string TimeoutSoundEffect { get; set; }
+    public string TimeOutSoundEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerHelper.

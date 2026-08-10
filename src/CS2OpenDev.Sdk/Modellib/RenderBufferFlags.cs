@@ -67,13 +67,13 @@ public enum RenderBufferFlags : uint
     RenderBufferUsageUnorderedAccess = 8,
 
     /// <summary>
-    ///     RenderBufferByteaddressBuffer.
+    ///     RenderBufferByteAddressBuffer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RENDER_BUFFER_BYTEADDRESS_BUFFER</c>.
     /// </remarks>
     [NativeName("RENDER_BUFFER_BYTEADDRESS_BUFFER")]
-    RenderBufferByteaddressBuffer = 16,
+    RenderBufferByteAddressBuffer = 16,
 
     /// <summary>
     ///     RenderBufferStructuredBuffer.
@@ -85,13 +85,13 @@ public enum RenderBufferFlags : uint
     RenderBufferStructuredBuffer = 32,
 
     /// <summary>
-    ///     RenderBufferUavDrawIndirectArgs.
+    ///     RenderBufferUavDrawInDirectArgs.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RENDER_BUFFER_UAV_DRAW_INDIRECT_ARGS</c>.
     /// </remarks>
     [NativeName("RENDER_BUFFER_UAV_DRAW_INDIRECT_ARGS")]
-    RenderBufferUavDrawIndirectArgs = 256,
+    RenderBufferUavDrawInDirectArgs = 256,
 
     /// <summary>
     ///     RenderBufferAccelerationStructure.

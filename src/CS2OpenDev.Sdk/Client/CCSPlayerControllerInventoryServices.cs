@@ -46,7 +46,7 @@ public partial class CCSPlayerControllerInventoryServices : CPlayerControllerCom
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_vecNetworkableLoadout")]
-    public CUtlVector__CCSPlayerController_InventoryServices_NetworkedLoadoutSlot_t__ NetworkableLoadout { get; set; }
+    public CUtlVector__CCSPlayerController_InventoryServices_NetworkedLoadoutSlot_t__ NetworkAbleLoadout { get; set; }
 
     /// <summary>
     ///     Gets or sets PersonaDataPublicCommendsFriendly.

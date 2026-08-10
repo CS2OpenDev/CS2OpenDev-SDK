@@ -152,7 +152,7 @@ public partial class COPContinuousEmitter : CParticleFunctionEmitter
     [NativeName("m_strSnapshotSubset")]
     [NativeMetadata("MPropertyFriendlyName", "snapshot subset")]
     [NativeMetadata("MPropertySuppressExpr", "m_nSnapshotControlPoint < 0")]
-    public string SnapshotSubset { get; set; }
+    public string SnapshotSubSet { get; set; }
 
     /// <summary>
     ///     emission start time.

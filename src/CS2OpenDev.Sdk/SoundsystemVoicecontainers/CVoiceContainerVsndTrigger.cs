@@ -34,7 +34,7 @@ public partial class CVoiceContainerVsndTrigger : CVoiceContainerBase
     [NativeOffset(0x70)]
     [NativeName("m_namespace")]
     [NativeMetadata("MPropertyFriendlyName", "Namespace")]
-    public string NameSpace { get; set; }
+    public string Namespace { get; set; }
 
     /// <summary>
     ///     Vsnd 01.

@@ -25,14 +25,14 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class CPulseCellInflowObservableVariableListener : CPulseCellInflowBaseEntryPoint
 {
     /// <summary>
-    ///     Gets or sets BlackboardReference.
+    ///     Gets or sets BlackBoardReference.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nBlackboardReference</c> at offset <c>0x80</c>.
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_nBlackboardReference")]
-    public PulseRuntimeBlackboardReferenceIndex BlackboardReference { get; set; }
+    public PulseRuntimeBlackBoardReferenceIndex BlackBoardReference { get; set; }
 
     /// <summary>
     ///     Gets or sets SelfReference.

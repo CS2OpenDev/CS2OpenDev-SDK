@@ -36,5 +36,5 @@ public partial class CFogTrigger : CBaseTrigger
     [NativeOffset(0x8E8)]
     [NativeName("m_fog")]
     [NativeMetadata("MNotSaved", "")]
-    public Fogparams Fog { get; set; }
+    public FogParams Fog { get; set; }
 }

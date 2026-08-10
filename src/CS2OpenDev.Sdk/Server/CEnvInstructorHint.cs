@@ -122,14 +122,14 @@ public partial class CEnvInstructorHint : CPointEntity
     public string HintTargetEntity { get; set; }
 
     /// <summary>
-    ///     Gets or sets IconOffscreen.
+    ///     Gets or sets IconOffScreen.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iszIcon_Offscreen</c> at offset <c>0x4D0</c>.
     /// </remarks>
     [NativeOffset(0x4D0)]
     [NativeName("m_iszIcon_Offscreen")]
-    public string IconOffscreen { get; set; }
+    public string IconOffScreen { get; set; }
 
     /// <summary>
     ///     Gets or sets IconOffset.
@@ -142,14 +142,14 @@ public partial class CEnvInstructorHint : CPointEntity
     public float IconOffset { get; set; }
 
     /// <summary>
-    ///     Gets or sets IconOnscreen.
+    ///     Gets or sets IconOnScreen.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iszIcon_Onscreen</c> at offset <c>0x4C8</c>.
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_iszIcon_Onscreen")]
-    public string IconOnscreen { get; set; }
+    public string IconOnScreen { get; set; }
 
     /// <summary>
     ///     Gets or sets InstanceType.
@@ -182,14 +182,14 @@ public partial class CEnvInstructorHint : CPointEntity
     public string Name { get; set; }
 
     /// <summary>
-    ///     Gets or sets NoOffscreen.
+    ///     Gets or sets NoOffScreen.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bNoOffscreen</c> at offset <c>0x4F8</c>.
     /// </remarks>
     [NativeOffset(0x4F8)]
     [NativeName("m_bNoOffscreen")]
-    public bool NoOffscreen { get; set; }
+    public bool NoOffScreen { get; set; }
 
     /// <summary>
     ///     Gets or sets PulseOption.
@@ -252,12 +252,12 @@ public partial class CEnvInstructorHint : CPointEntity
     public bool SuppressRest { get; set; }
 
     /// <summary>
-    ///     Gets or sets Timeout.
+    ///     Gets or sets TimeOut.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_iTimeout</c> at offset <c>0x4C0</c>.
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_iTimeout")]
-    public int Timeout { get; set; }
+    public int TimeOut { get; set; }
 }

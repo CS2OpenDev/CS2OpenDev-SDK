@@ -33,5 +33,5 @@ public partial class CINITSequenceLifeTime : CParticleFunctionInitializer
     [NativeOffset(0x1E0)]
     [NativeName("m_flFramerate")]
     [NativeMetadata("MPropertyFriendlyName", "frames per second")]
-    public float Framerate { get; set; }
+    public float FrameRate { get; set; }
 }

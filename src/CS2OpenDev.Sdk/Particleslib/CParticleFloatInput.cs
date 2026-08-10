@@ -352,14 +352,14 @@ public partial class CParticleFloatInput : CParticleInput
     public float NotchedOutputInside { get; set; }
 
     /// <summary>
-    ///     Gets or sets NotchedOutputOutside.
+    ///     Gets or sets NotchedOutputOutSide.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flNotchedOutputOutside</c> at offset <c>0x118</c>.
     /// </remarks>
     [NativeOffset(0x118)]
     [NativeName("m_flNotchedOutputOutside")]
-    public float NotchedOutputOutside { get; set; }
+    public float NotchedOutputOutSide { get; set; }
 
     /// <summary>
     ///     Gets or sets NotchedRangeMax.
@@ -472,14 +472,14 @@ public partial class CParticleFloatInput : CParticleInput
     public ParticleAttributeIndex ScalarAttribute { get; set; }
 
     /// <summary>
-    ///     Gets or sets SnapshotSubset.
+    ///     Gets or sets SnapshotSubSet.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_strSnapshotSubset</c> at offset <c>0x90</c>.
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_strSnapshotSubset")]
-    public string SnapshotSubset { get; set; }
+    public string SnapshotSubSet { get; set; }
 
     /// <summary>
     ///     Gets or sets Type.

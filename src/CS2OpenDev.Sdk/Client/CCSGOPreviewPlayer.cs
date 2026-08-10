@@ -23,14 +23,14 @@ namespace CS2OpenSchema.Client;
 public partial class CCSGOPreviewPlayer : C_CSPlayerPawn
 {
     /// <summary>
-    ///     Gets or sets AnimgraphCharacterModeString.
+    ///     Gets or sets AnimGraphCharacterModeString.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_animgraphCharacterModeString</c> at offset <c>0x3470</c>.
     /// </remarks>
     [NativeOffset(0x3470)]
     [NativeName("m_animgraphCharacterModeString")]
-    public string AnimgraphCharacterModeString { get; set; }
+    public string AnimGraphCharacterModeString { get; set; }
 
     /// <summary>
     ///     Gets or sets InitialModelScale.

@@ -23,24 +23,24 @@ namespace CS2OpenSchema.Client;
 public partial class C_EnvCubemap : C_BaseEntity
 {
     /// <summary>
-    ///     Gets or sets EntityBCopyDiffuseFromDefaultCubemap.
+    ///     Gets or sets EntityBCopyDiffuseFromDefaultCubeMap.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bCopyDiffuseFromDefaultCubemap</c> at offset <c>0x6D0</c>.
     /// </remarks>
     [NativeOffset(0x6D0)]
     [NativeName("m_Entity_bCopyDiffuseFromDefaultCubemap")]
-    public bool EntityBCopyDiffuseFromDefaultCubemap { get; set; }
+    public bool EntityBCopyDiffuseFromDefaultCubeMap { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityBCustomCubemapTexture.
+    ///     Gets or sets EntityBCustomCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bCustomCubemapTexture</c> at offset <c>0x688</c>.
     /// </remarks>
     [NativeOffset(0x688)]
     [NativeName("m_Entity_bCustomCubemapTexture")]
-    public bool EntityBCustomCubemapTexture { get; set; }
+    public bool EntityBCustomCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBDefaultEnvMap.
@@ -83,14 +83,14 @@ public partial class C_EnvCubemap : C_BaseEntity
     public bool EntityBIndoorCubeMap { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityBMoveable.
+    ///     Gets or sets EntityBMoveAble.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bMoveable</c> at offset <c>0x6A8</c>.
     /// </remarks>
     [NativeOffset(0x6A8)]
     [NativeName("m_Entity_bMoveable")]
-    public bool EntityBMoveable { get; set; }
+    public bool EntityBMoveAble { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBStartDisabled.
@@ -133,14 +133,14 @@ public partial class C_EnvCubemap : C_BaseEntity
     public float EntityFlInfluenceRadius { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityHCubemapTexture.
+    ///     Gets or sets EntityHCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_hCubemapTexture</c> at offset <c>0x680</c>.
     /// </remarks>
     [NativeOffset(0x680)]
     [NativeName("m_Entity_hCubemapTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubemapTexture { get; set; }
+    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityNEnvCubeMapArrayIndex.

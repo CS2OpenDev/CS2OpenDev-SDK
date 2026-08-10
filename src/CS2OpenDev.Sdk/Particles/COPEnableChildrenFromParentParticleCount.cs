@@ -96,5 +96,5 @@ public partial class COPEnableChildrenFromParentParticleCount : CParticleFunctio
     [NativeName("m_bPlayEndcapOnStop")]
     [NativeMetadata("MPropertyFriendlyName", "play endcap when children are removed")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bDisableChildren")]
-    public bool PlayEndcapOnStop { get; set; }
+    public bool PlayEndCapOnStop { get; set; }
 }

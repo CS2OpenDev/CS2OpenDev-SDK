@@ -84,13 +84,13 @@ public enum WeaponGameplayAnimState : ushort
     WpnAnimstateShootSecondary = 101,
 
     /// <summary>
-    ///     WpnAnimstateShootDryfire.
+    ///     WpnAnimstateShootDryFire.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WPN_ANIMSTATE_SHOOT_DRYFIRE</c>.
     /// </remarks>
     [NativeName("WPN_ANIMSTATE_SHOOT_DRYFIRE")]
-    WpnAnimstateShootDryfire = 102,
+    WpnAnimstateShootDryFire = 102,
 
     /// <summary>
     ///     WpnAnimstateCharge.
@@ -264,13 +264,13 @@ public enum WeaponGameplayAnimState : ushort
     WpnAnimstateInventoryUiTumble = 1500,
 
     /// <summary>
-    ///     WpnAnimstateInventoryUiKeychainApply.
+    ///     WpnAnimstateInventoryUiKeyChainApply.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>WPN_ANIMSTATE_INVENTORY_UI_KEYCHAIN_APPLY</c>.
     /// </remarks>
     [NativeName("WPN_ANIMSTATE_INVENTORY_UI_KEYCHAIN_APPLY")]
-    WpnAnimstateInventoryUiKeychainApply = 1501,
+    WpnAnimstateInventoryUiKeyChainApply = 1501,
 
     /// <summary>
     ///     WpnAnimstateEndValid.

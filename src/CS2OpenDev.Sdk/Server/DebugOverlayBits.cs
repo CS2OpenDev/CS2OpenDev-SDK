@@ -206,7 +206,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_AUTOAIM_BIT")]
     [NativeMetadata("MPropertyDescription", "TODO Display autoaim radius")]
     [NativeMetadata("MPropertyFriendlyName", "Autoaim Radius")]
-    OverlayAutoaimBit = 65536,
+    OverlayAutoAimBit = 65536,
 
     /// <summary>
     ///     TODO the npc is current selected SOURCE2_UNSUPPORTED?
@@ -303,7 +303,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_NPC_BODYLOCATIONS")]
     [NativeMetadata("MPropertyDescription", "show npc body locations")]
     [NativeMetadata("MPropertyFriendlyName", "NPC Body Locations")]
-    OverlayNpcBodylocations = 67108864,
+    OverlayNpcBodyLocations = 67108864,
 
     /// <summary>
     ///     show npc's viewcone.
@@ -314,7 +314,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_NPC_VIEWCONE_BIT")]
     [NativeMetadata("MPropertyDescription", "show npc's viewcone")]
     [NativeMetadata("MPropertyFriendlyName", "NPC View Cone")]
-    OverlayNpcViewconeBit = 134217728,
+    OverlayNpcViewConeBit = 134217728,
 
     /// <summary>
     ///     kill the NPC, running all appropriate AI.
@@ -391,7 +391,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_VIEWOFFSET")]
     [NativeMetadata("MPropertyDescription", "TODO show view offset")]
     [NativeMetadata("MPropertyFriendlyName", "View Offset")]
-    OverlayViewoffset = 34359738368,
+    OverlayViewOffset = 34359738368,
 
     /// <summary>
     ///     show collision wireframe.
@@ -402,7 +402,7 @@ public enum DebugOverlayBits : ulong
     [NativeName("OVERLAY_VCOLLIDE_WIREFRAME_BIT")]
     [NativeMetadata("MPropertyDescription", "show collision wireframe")]
     [NativeMetadata("MPropertyFriendlyName", "Collision Wireframe")]
-    OverlayVcollideWireframeBit = 68719476736,
+    OverlayVcollideWireFrameBit = 68719476736,
 
     /// <summary>
     ///     show the state of scripted commands.

@@ -156,7 +156,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC00)]
     [NativeName("m_ls")]
-    public Locksound Ls { get; set; }
+    public LockSound Ls { get; set; }
 
     /// <summary>
     ///     Gets or sets Master.

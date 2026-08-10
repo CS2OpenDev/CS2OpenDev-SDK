@@ -43,7 +43,7 @@ public static class SchemaNames
     public static class AIBaseNPCDebugSnapshotData
     {
         public const string AnimEvents = "anim_events";
-        public const string Animgraph = "animgraph";
+        public const string AnimGraph = "animgraph";
         public const string Conditions = "conditions";
         public const string CurrentEnemy = "current_enemy";
         public const string CurrentSchedule = "s_current_schedule";
@@ -123,7 +123,7 @@ public static class SchemaNames
         public const string MotorVelocity = "motor_velocity";
     }
 
-    public static class AIMotorServicesDebugSnapshotDataTMotorPathWaypoint
+    public static class AIMotorServicesDebugSnapshotDataTMotorPathWayPoint
     {
         public const string Flags = "flags";
         public const string NavType = "nav_type";
@@ -135,13 +135,13 @@ public static class SchemaNames
         public const string ArrivalMovementGaitSet = "s_arrival_movement_gait_set";
         public const string GoalLocation = "goal_location";
         public const string GoalSourceLocation = "s_goal_source_location";
-        public const string LastWaypointPos = "last_waypoint_pos";
+        public const string LastWayPointPos = "last_waypoint_pos";
         public const string MovementId = "s_movement_id";
         public const string MovementSerialNumber = "s_movement_serial_number";
-        public const string Waypoints = "waypoints";
+        public const string WayPoints = "waypoints";
     }
 
-    public static class AINavigatorDebugSnapshotDataTWaypoint
+    public static class AINavigatorDebugSnapshotDataTWayPoint
     {
         public const string Flags = "flags";
         public const string IsPathCorner = "is_pathcorner";
@@ -169,7 +169,7 @@ public static class SchemaNames
         public const string DecodedSize = "m_DecodedSize";
     }
 
-    public static class AggregateLODSetup
+    public static class AggregateLODSetUp
     {
         public const string LODOrigin = "m_vLODOrigin";
         public const string MaxObjectScale = "m_fMaxObjectScale";
@@ -184,8 +184,8 @@ public static class SchemaNames
         public const string InstanceStreamOffset = "m_nInstanceStreamOffset";
         public const string InstanceStreams = "m_instanceStreams";
         public const string LODGroupMask = "m_nLODGroupMask";
-        public const string LODSetupIndex = "m_nLODSetupIndex";
-        public const string LightProbeVolumePrecomputedHandshake = "m_nLightProbeVolumePrecomputedHandshake";
+        public const string LODSetUpIndex = "m_nLODSetupIndex";
+        public const string LightProbeVolumePreComputedHandshake = "m_nLightProbeVolumePrecomputedHandshake";
         public const string ObjectFlags = "m_objectFlags";
         public const string TintColor = "m_vTintColor";
         public const string VertexAlbedoStreamOffset = "m_nVertexAlbedoStreamOffset";
@@ -336,7 +336,7 @@ public static class SchemaNames
 
     public static class AnimationSnapshotBase
     {
-        public const string BoneSetupMask = "m_boneSetupMask";
+        public const string BoneSetUpMask = "m_boneSetupMask";
         public const string BoneTransforms = "m_boneTransforms";
         public const string BonesInWorldSpace = "m_bBonesInWorldSpace";
         public const string DecodeDump = "m_DecodeDump";
@@ -360,7 +360,7 @@ public static class SchemaNames
         public const string Value = "m_Value";
     }
 
-    public static class Audioparams
+    public static class AudioParams
     {
         public const string LocalBits = "localBits";
         public const string LocalSound = "localSound";
@@ -389,12 +389,12 @@ public static class SchemaNames
         public const string BakedShadowsGamma20 = "m_bBakedShadowsGamma20";
         public const string ChartPackIterations = "m_nChartPackIterations";
         public const string CompressionEnabled = "m_bCompressionEnabled";
-        public const string HasLightmaps = "m_bHasLightmaps";
+        public const string HasLightMaps = "m_bHasLightmaps";
         public const string LightMapGameVersionNumber = "m_nLightmapGameVersionNumber";
         public const string LightMapUvScale = "m_vLightmapUvScale";
         public const string LightMapVersionNumber = "m_nLightmapVersionNumber";
         public const string LightMaps = "m_lightMaps";
-        public const string SHLightmaps = "m_bSHLightmaps";
+        public const string SHLightMaps = "m_bSHLightmaps";
         public const string VradQuality = "m_nVradQuality";
     }
 
@@ -576,7 +576,7 @@ public static class SchemaNames
         public const string GroupName = "m_groupName";
         public const string Id = "m_id";
         public const string Name = "m_name";
-        public const string SubgraphName = "m_subgraphName";
+        public const string SubGraphName = "m_subgraphName";
     }
 
     public static class CAnimData
@@ -636,7 +636,7 @@ public static class SchemaNames
         public const string EventArray = "m_eventArray";
         public const string Flags = "m_flags";
         public const string Fps = "fps";
-        public const string Framestalltime = "framestalltime";
+        public const string FrameStallTime = "framestalltime";
         public const string HierarchyArray = "m_hierarchyArray";
         public const string MovementArray = "m_movementArray";
         public const string Name = "m_name";
@@ -672,7 +672,7 @@ public static class SchemaNames
     public static class CAnimEncodedFrames
     {
         public const string FileName = "m_fileName";
-        public const string FrameblockArray = "m_frameblockArray";
+        public const string FrameBlockArray = "m_frameblockArray";
         public const string Frames = "m_nFrames";
         public const string FramesPerBlock = "m_nFramesPerBlock";
         public const string UsageDifferences = "m_usageDifferences";
@@ -1885,8 +1885,8 @@ public static class SchemaNames
     public static class CAnimMovement
     {
         public const string Angle = "angle";
-        public const string Endframe = "endframe";
-        public const string Motionflags = "motionflags";
+        public const string EndFrame = "endframe";
+        public const string MotionFlags = "motionflags";
         public const string Position = "position";
         public const string V0 = "v0";
         public const string V1 = "v1";
@@ -2131,7 +2131,7 @@ public static class SchemaNames
     {
         public const string AssetTypes = "m_AssetTypes";
         public const string AssetWarnings = "m_AssetWarnings";
-        public const string SubassetTypes = "m_SubassetTypes";
+        public const string SubAssetTypes = "m_SubassetTypes";
     }
 
     public static class CAssetWarning
@@ -2181,7 +2181,7 @@ public static class SchemaNames
     {
         public const string CachedResults = "m_CachedResults";
         public const string Outer = "m_hOuter";
-        public const string PreventLoopback = "m_bPreventLoopback";
+        public const string PreventLoopBack = "m_bPreventLoopback";
         public const string ProviderType = "m_ProviderType";
         public const string Providers = "m_Providers";
         public const string ReapplyProvisionParity = "m_iReapplyProvisionParity";
@@ -2240,9 +2240,9 @@ public static class SchemaNames
     {
         public const string AlternateColor = "m_vAlternateColor";
         public const string AlternateColorBrightness = "m_fAlternateColorBrightness";
-        public const string BakeSpecularToCubemaps = "m_nBakeSpecularToCubemaps";
-        public const string BakeSpecularToCubemapsScale = "m_flBakeSpecularToCubemapsScale";
-        public const string BakeSpecularToCubemapsSize = "m_vBakeSpecularToCubemapsSize";
+        public const string BakeSpecularToCubeMaps = "m_nBakeSpecularToCubemaps";
+        public const string BakeSpecularToCubeMapsScale = "m_flBakeSpecularToCubemapsScale";
+        public const string BakeSpecularToCubeMapsSize = "m_vBakeSpecularToCubemapsSize";
         public const string BakedShadowIndex = "m_nBakedShadowIndex";
         public const string BounceLight = "m_nBounceLight";
         public const string BounceScale = "m_flBounceScale";
@@ -2273,31 +2273,31 @@ public static class SchemaNames
         public const string LuminaireShape = "m_nLuminaireShape";
         public const string LuminaireSize = "m_flLuminaireSize";
         public const string MinRoughness = "m_flMinRoughness";
-        public const string PrecomputedBoundsMaxs = "m_vPrecomputedBoundsMaxs";
-        public const string PrecomputedBoundsMins = "m_vPrecomputedBoundsMins";
-        public const string PrecomputedFieldsValid = "m_bPrecomputedFieldsValid";
-        public const string PrecomputedOBBAngles = "m_vPrecomputedOBBAngles";
-        public const string PrecomputedOBBAngles0 = "m_vPrecomputedOBBAngles0";
-        public const string PrecomputedOBBAngles1 = "m_vPrecomputedOBBAngles1";
-        public const string PrecomputedOBBAngles2 = "m_vPrecomputedOBBAngles2";
-        public const string PrecomputedOBBAngles3 = "m_vPrecomputedOBBAngles3";
-        public const string PrecomputedOBBAngles4 = "m_vPrecomputedOBBAngles4";
-        public const string PrecomputedOBBAngles5 = "m_vPrecomputedOBBAngles5";
-        public const string PrecomputedOBBExtent = "m_vPrecomputedOBBExtent";
-        public const string PrecomputedOBBExtent0 = "m_vPrecomputedOBBExtent0";
-        public const string PrecomputedOBBExtent1 = "m_vPrecomputedOBBExtent1";
-        public const string PrecomputedOBBExtent2 = "m_vPrecomputedOBBExtent2";
-        public const string PrecomputedOBBExtent3 = "m_vPrecomputedOBBExtent3";
-        public const string PrecomputedOBBExtent4 = "m_vPrecomputedOBBExtent4";
-        public const string PrecomputedOBBExtent5 = "m_vPrecomputedOBBExtent5";
-        public const string PrecomputedOBBOrigin = "m_vPrecomputedOBBOrigin";
-        public const string PrecomputedOBBOrigin0 = "m_vPrecomputedOBBOrigin0";
-        public const string PrecomputedOBBOrigin1 = "m_vPrecomputedOBBOrigin1";
-        public const string PrecomputedOBBOrigin2 = "m_vPrecomputedOBBOrigin2";
-        public const string PrecomputedOBBOrigin3 = "m_vPrecomputedOBBOrigin3";
-        public const string PrecomputedOBBOrigin4 = "m_vPrecomputedOBBOrigin4";
-        public const string PrecomputedOBBOrigin5 = "m_vPrecomputedOBBOrigin5";
-        public const string PrecomputedSubFrusta = "m_nPrecomputedSubFrusta";
+        public const string PreComputedBoundsMaxs = "m_vPrecomputedBoundsMaxs";
+        public const string PreComputedBoundsMins = "m_vPrecomputedBoundsMins";
+        public const string PreComputedFieldsValid = "m_bPrecomputedFieldsValid";
+        public const string PreComputedOBBAngles = "m_vPrecomputedOBBAngles";
+        public const string PreComputedOBBAngles0 = "m_vPrecomputedOBBAngles0";
+        public const string PreComputedOBBAngles1 = "m_vPrecomputedOBBAngles1";
+        public const string PreComputedOBBAngles2 = "m_vPrecomputedOBBAngles2";
+        public const string PreComputedOBBAngles3 = "m_vPrecomputedOBBAngles3";
+        public const string PreComputedOBBAngles4 = "m_vPrecomputedOBBAngles4";
+        public const string PreComputedOBBAngles5 = "m_vPrecomputedOBBAngles5";
+        public const string PreComputedOBBExtent = "m_vPrecomputedOBBExtent";
+        public const string PreComputedOBBExtent0 = "m_vPrecomputedOBBExtent0";
+        public const string PreComputedOBBExtent1 = "m_vPrecomputedOBBExtent1";
+        public const string PreComputedOBBExtent2 = "m_vPrecomputedOBBExtent2";
+        public const string PreComputedOBBExtent3 = "m_vPrecomputedOBBExtent3";
+        public const string PreComputedOBBExtent4 = "m_vPrecomputedOBBExtent4";
+        public const string PreComputedOBBExtent5 = "m_vPrecomputedOBBExtent5";
+        public const string PreComputedOBBOrigin = "m_vPrecomputedOBBOrigin";
+        public const string PreComputedOBBOrigin0 = "m_vPrecomputedOBBOrigin0";
+        public const string PreComputedOBBOrigin1 = "m_vPrecomputedOBBOrigin1";
+        public const string PreComputedOBBOrigin2 = "m_vPrecomputedOBBOrigin2";
+        public const string PreComputedOBBOrigin3 = "m_vPrecomputedOBBOrigin3";
+        public const string PreComputedOBBOrigin4 = "m_vPrecomputedOBBOrigin4";
+        public const string PreComputedOBBOrigin5 = "m_vPrecomputedOBBOrigin5";
+        public const string PreComputedSubFrusta = "m_nPrecomputedSubFrusta";
         public const string PvsModifyEntity = "m_bPvsModifyEntity";
         public const string QueuedLightStyleStrings = "m_QueuedLightStyleStrings";
         public const string Range = "m_flRange";
@@ -2322,7 +2322,7 @@ public static class SchemaNames
         public const string AnimGraphUpdateEnabled = "m_bAnimGraphUpdateEnabled";
         public const string AnimationUpdateScheduled = "m_bAnimationUpdateScheduled";
         public const string BuiltRagdoll = "m_bBuiltRagdoll";
-        public const string ClientsideRagdoll = "m_pClientsideRagdoll";
+        public const string ClientSideRagdoll = "m_pClientsideRagdoll";
         public const string Force = "m_vecForce";
         public const string ForceBone = "m_nForceBone";
         public const string GraphControllerManager = "m_graphControllerManager";
@@ -2592,7 +2592,7 @@ public static class SchemaNames
         public const string SimulationTick = "m_nSimulationTick";
         public const string SimulationTime = "m_flSimulationTime";
         public const string SlimeTouch = "m_nSlimeTouch";
-        public const string Spawnflags = "m_spawnflags";
+        public const string SpawnFlags = "m_spawnflags";
         public const string SubclassId = "m_nSubclassID";
         public const string TakeDamageFlags = "m_nTakeDamageFlags";
         public const string TakesDamage = "m_bTakesDamage";
@@ -2654,19 +2654,19 @@ public static class SchemaNames
         public const string ChoreoComponent = "m_pChoreoComponent";
         public const string Collision = "m_Collision";
         public const string DestructiblePartInitialStateDestructed0 = "m_nDestructiblePartInitialStateDestructed0";
-        public const string DestructiblePartInitialStateDestructed0GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed0GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed0PartIndex = "m_nDestructiblePartInitialStateDestructed0_PartIndex";
         public const string DestructiblePartInitialStateDestructed1 = "m_nDestructiblePartInitialStateDestructed1";
-        public const string DestructiblePartInitialStateDestructed1GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed1GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed1PartIndex = "m_nDestructiblePartInitialStateDestructed1_PartIndex";
         public const string DestructiblePartInitialStateDestructed2 = "m_nDestructiblePartInitialStateDestructed2";
-        public const string DestructiblePartInitialStateDestructed2GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed2GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed2PartIndex = "m_nDestructiblePartInitialStateDestructed2_PartIndex";
         public const string DestructiblePartInitialStateDestructed3 = "m_nDestructiblePartInitialStateDestructed3";
-        public const string DestructiblePartInitialStateDestructed3GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed3GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed3PartIndex = "m_nDestructiblePartInitialStateDestructed3_PartIndex";
         public const string DestructiblePartInitialStateDestructed4 = "m_nDestructiblePartInitialStateDestructed4";
-        public const string DestructiblePartInitialStateDestructed4GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed4GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed4PartIndex = "m_nDestructiblePartInitialStateDestructed4_PartIndex";
         public const string DestructiblePartsSystemComponent = "m_pDestructiblePartsSystemComponent";
         public const string DissolveStartTime = "m_flDissolveStartTime";
@@ -2674,7 +2674,7 @@ public static class SchemaNames
         public const string FadeMinDist = "m_fadeMinDist";
         public const string FadeScale = "m_flFadeScale";
         public const string Glow = "m_Glow";
-        public const string GlowBackfaceMult = "m_flGlowBackfaceMult";
+        public const string GlowBackFaceMult = "m_flGlowBackfaceMult";
         public const string NoInterpolate = "m_bNoInterpolate";
         public const string ObjectCulling = "m_nObjectCulling";
         public const string OnDestructibleHitGroupDamageLevelChanged = "m_OnDestructibleHitGroupDamageLevelChanged";
@@ -2683,7 +2683,7 @@ public static class SchemaNames
         public const string RenderAttributes = "m_vecRenderAttributes";
         public const string RenderFX = "m_nRenderFX";
         public const string RenderMode = "m_nRenderMode";
-        public const string RenderToCubemaps = "m_bRenderToCubemaps";
+        public const string RenderToCubeMaps = "m_bRenderToCubemaps";
         public const string ShadowStrength = "m_flShadowStrength";
         public const string ViewOffset = "m_vecViewOffset";
     }
@@ -2691,7 +2691,7 @@ public static class SchemaNames
     public static class CBaseModelEntityEmphasizedPhoneme
     {
         public const string Amount = "m_flAmount";
-        public const string Basechecked = "m_bBasechecked";
+        public const string BaseChecked = "m_bBasechecked";
         public const string Required = "m_bRequired";
         public const string SClassName = "m_sClassName";
         public const string Valid = "m_bValid";
@@ -2754,7 +2754,7 @@ public static class SchemaNames
     {
         public const string Angle = "v_angle";
         public const string AnglePrevious = "v_anglePrevious";
-        public const string AutoaimServices = "m_pAutoaimServices";
+        public const string AutoAimServices = "m_pAutoaimServices";
         public const string CameraServices = "m_pCameraServices";
         public const string Controller = "m_hController";
         public const string DeathTime = "m_flDeathTime";
@@ -2831,7 +2831,7 @@ public static class SchemaNames
         public const string MuzzleFlashParticleConfig = "m_szMuzzleFlashParticleConfig";
         public const string MuzzleSmokeDecrementRate = "m_flMuzzleSmokeDecrementRate";
         public const string MuzzleSmokeShotThreshold = "m_nMuzzleSmokeShotThreshold";
-        public const string MuzzleSmokeTimeout = "m_flMuzzleSmokeTimeout";
+        public const string MuzzleSmokeTimeOut = "m_flMuzzleSmokeTimeout";
         public const string Position = "m_iPosition";
         public const string PrimaryAmmoType = "m_nPrimaryAmmoType";
         public const string ReserveAmmoAsClips = "m_bReserveAmmoAsClips";
@@ -3717,7 +3717,7 @@ public static class SchemaNames
 
     public static class CCSGOPreviewPlayer
     {
-        public const string AnimgraphCharacterModeString = "m_animgraphCharacterModeString";
+        public const string AnimGraphCharacterModeString = "m_animgraphCharacterModeString";
         public const string InitialModelScale = "m_flInitialModelScale";
     }
 
@@ -3766,12 +3766,12 @@ public static class SchemaNames
         public const string ArrSelectedHostageSpawnIndices = "m_arrSelectedHostageSpawnIndices";
         public const string ArrTeamUniqueKillWeaponsMatch = "m_arrTeamUniqueKillWeaponsMatch";
         public const string ArrTournamentActiveCasterAccounts = "m_arrTournamentActiveCasterAccounts";
-        public const string AutobalanceDisplayTime = "m_fAutobalanceDisplayTime";
+        public const string AutoBalanceDisplayTime = "m_fAutobalanceDisplayTime";
         public const string AvgPlayerRank = "m_fAvgPlayerRank";
         public const string BombDefused = "m_bBombDefused";
         public const string BombDropped = "m_bBombDropped";
         public const string BombPlanted = "m_bBombPlanted";
-        public const string BtGlobalBlackboard = "m_BtGlobalBlackboard";
+        public const string BtGlobalBlackBoard = "m_BtGlobalBlackboard";
         public const string BuyTimeEnded = "m_bBuyTimeEnded";
         public const string CMMItemDropRevealEndTime = "m_flCMMItemDropRevealEndTime";
         public const string CMMItemDropRevealStartTime = "m_flCMMItemDropRevealStartTime";
@@ -3824,7 +3824,7 @@ public static class SchemaNames
         public const string LastPerfSampleTime = "m_flLastPerfSampleTime";
         public const string LastThinkTime = "m_flLastThinkTime";
         public const string LevelInitialized = "m_bLevelInitialized";
-        public const string LoadingRoundBackupData = "m_bLoadingRoundBackupData";
+        public const string LoadingRoundBackUpData = "m_bLoadingRoundBackupData";
         public const string LogoMap = "m_bLogoMap";
         public const string LoserBonusMostRecentTeam = "m_iLoserBonusMostRecentTeam";
         public const string MTeamDMLastThinkTime = "mTeamDMLastThinkTime";
@@ -4023,7 +4023,7 @@ public static class SchemaNames
 
     public static class CCSPlayerBuyServices
     {
-        public const string SellbackPurchaseEntries = "m_vecSellbackPurchaseEntries";
+        public const string SellBackPurchaseEntries = "m_vecSellbackPurchaseEntries";
     }
 
     public static class CCSPlayerCameraServices
@@ -4040,7 +4040,7 @@ public static class SchemaNames
         public const string ActiveQuestId = "m_unActiveQuestId";
         public const string BotsControlledThisRound = "m_nBotsControlledThisRound";
         public const string CanControlObservedBot = "m_bCanControlObservedBot";
-        public const string CannotBeKicked = "m_bCannotBeKicked";
+        public const string CanNotBeKicked = "m_bCannotBeKicked";
         public const string Clan = "m_szClan";
         public const string CoachingTeam = "m_iCoachingTeam";
         public const string CompTeammateColor = "m_iCompTeammateColor";
@@ -4051,7 +4051,7 @@ public static class SchemaNames
         public const string CompetitiveRankingPredictedWin = "m_iCompetitiveRankingPredicted_Win";
         public const string CompetitiveWins = "m_iCompetitiveWins";
         public const string ControllingBot = "m_bControllingBot";
-        public const string CrosshairCodes = "m_szCrosshairCodes";
+        public const string CrossHairCodes = "m_szCrosshairCodes";
         public const string DamageServices = "m_pDamageServices";
         public const string Disconnection1MinWarningPrinted = "m_bDisconnection1MinWarningPrinted";
         public const string DisconnectionTick = "m_nDisconnectionTick";
@@ -4130,7 +4130,7 @@ public static class SchemaNames
     public static class CCSPlayerControllerInventoryServices
     {
         public const string MusicId = "m_unMusicID";
-        public const string NetworkableLoadout = "m_vecNetworkableLoadout";
+        public const string NetworkAbleLoadout = "m_vecNetworkableLoadout";
         public const string PersonaDataPublicCommendsFriendly = "m_nPersonaDataPublicCommendsFriendly";
         public const string PersonaDataPublicCommendsLeader = "m_nPersonaDataPublicCommendsLeader";
         public const string PersonaDataPublicCommendsTeacher = "m_nPersonaDataPublicCommendsTeacher";
@@ -4459,7 +4459,7 @@ public static class SchemaNames
         public const string PostponeFireReadyFrac = "m_flPostponeFireReadyFrac";
         public const string PostponeFireReadyTicks = "m_nPostponeFireReadyTicks";
         public const string PrevOwner = "m_hPrevOwner";
-        public const string Removeable = "m_bRemoveable";
+        public const string RemoveAble = "m_bRemoveable";
         public const string RequireUseToTouch = "m_bRequireUseToTouch";
         public const string SilencerOn = "m_bSilencerOn";
         public const string TimeSilencerSwitchComplete = "m_flTimeSilencerSwitchComplete";
@@ -4480,7 +4480,7 @@ public static class SchemaNames
     public static class CCSWeaponBaseGun
     {
         public const string BurstShotsRemaining = "m_iBurstShotsRemaining";
-        public const string InPrecache = "m_inPrecache";
+        public const string InPreCache = "m_inPrecache";
         public const string NeedsBoltAction = "m_bNeedsBoltAction";
         public const string RevolverCylinderIdx = "m_nRevolverCylinderIdx";
         public const string SilencedModelIndex = "m_silencedModelIndex";
@@ -4497,11 +4497,11 @@ public static class SchemaNames
         public const string AnimClass = "m_szAnimClass";
         public const string AnimSkeleton = "m_szAnimSkeleton";
         public const string ArmorRatio = "m_flArmorRatio";
-        public const string AttackMovespeedFactor = "m_flAttackMovespeedFactor";
+        public const string AttackMoveSpeedFactor = "m_flAttackMovespeedFactor";
         public const string BurstShotCount = "m_nBurstShotCount";
-        public const string CannotShootUnderwater = "m_bCannotShootUnderwater";
-        public const string CrosshairDeltaDistance = "m_nCrosshairDeltaDistance";
-        public const string CrosshairMinDistance = "m_nCrosshairMinDistance";
+        public const string CanNotShootUnderwater = "m_bCannotShootUnderwater";
+        public const string CrossHairDeltaDistance = "m_nCrosshairDeltaDistance";
+        public const string CrossHairMinDistance = "m_nCrosshairMinDistance";
         public const string CycleTime = "m_flCycleTime";
         public const string CycleTimeWhenInBurstMode = "m_flCycleTimeWhenInBurstMode";
         public const string Damage = "m_nDamage";
@@ -4912,7 +4912,7 @@ public static class SchemaNames
 
     public static class CControlMeterNodeDesc
     {
-        public const string IsSubgraph = "m_bIsSubgraph";
+        public const string IsSubGraph = "m_bIsSubgraph";
     }
 
     public static class CCopyRecipientFilter
@@ -5098,7 +5098,7 @@ public static class SchemaNames
         public const string BoundingRadiusSqr = "m_flBoundingRadiusSqr";
         public const string Color = "m_Color";
         public const string Depth = "m_flDepth";
-        public const string DoDecalLightmapping = "m_bDoDecalLightmapping";
+        public const string DoDecalLightMapping = "m_bDoDecalLightmapping";
         public const string Entity = "m_hEntity";
         public const string FadeDuration = "m_flFadeDuration";
         public const string FadeStartTime = "m_flFadeStartTime";
@@ -5146,7 +5146,7 @@ public static class SchemaNames
         public const string DisableHitGroupWhenDestroyed = "m_bDisableHitGroupWhenDestroyed";
         public const string HitGroup = "m_nHitGroup";
         public const string OnlyDestroyWhenGibbing = "m_bOnlyDestroyWhenGibbing";
-        public const string OtherHitgroupsToDestroyWhenFullyDestructed = "m_nOtherHitgroupsToDestroyWhenFullyDestructed";
+        public const string OtherHitGroupsToDestroyWhenFullyDestructed = "m_nOtherHitgroupsToDestroyWhenFullyDestructed";
         public const string SBodyGroupName = "m_sBodyGroupName";
     }
 
@@ -5425,7 +5425,7 @@ public static class SchemaNames
     public static class CEngineToolInfo
     {
         public const string AssetTypes = "m_AssetTypes";
-        public const string CanHighlightSubassets = "m_bCanHighlightSubassets";
+        public const string CanHighlightSubAssets = "m_bCanHighlightSubassets";
         public const string DoNotWarnAboutLargeAssetBatches = "m_bDoNotWarnAboutLargeAssetBatches";
         public const string ExcludeFromMods = "m_ExcludeFromMods";
         public const string InterfaceName = "m_InterfaceName";
@@ -5540,14 +5540,14 @@ public static class SchemaNames
 
     public static class CEnvCombinedLightProbeVolume
     {
-        public const string EntityBCustomCubemapTexture = "m_Entity_bCustomCubemapTexture";
+        public const string EntityBCustomCubeMapTexture = "m_Entity_bCustomCubemapTexture";
         public const string EntityBEnabled = "m_Entity_bEnabled";
-        public const string EntityBMoveable = "m_Entity_bMoveable";
+        public const string EntityBMoveAble = "m_Entity_bMoveable";
         public const string EntityBStartDisabled = "m_Entity_bStartDisabled";
         public const string EntityColor = "m_Entity_Color";
         public const string EntityFlBrightness = "m_Entity_flBrightness";
         public const string EntityFlEdgeFadeDist = "m_Entity_flEdgeFadeDist";
-        public const string EntityHCubemapTexture = "m_Entity_hCubemapTexture";
+        public const string EntityHCubeMapTexture = "m_Entity_hCubemapTexture";
         public const string EntityHLightProbeDirectLightIndicesTexture = "m_Entity_hLightProbeDirectLightIndicesTexture";
         public const string EntityHLightProbeDirectLightScalarsTexture = "m_Entity_hLightProbeDirectLightScalarsTexture";
         public const string EntityHLightProbeDirectLightShadowsTexture = "m_Entity_hLightProbeDirectLightShadowsTexture";
@@ -5571,20 +5571,20 @@ public static class SchemaNames
         public const string EntityVEdgeFadeDists = "m_Entity_vEdgeFadeDists";
     }
 
-    public static class CEnvCubemap
+    public static class CEnvCubeMap
     {
-        public const string EntityBCopyDiffuseFromDefaultCubemap = "m_Entity_bCopyDiffuseFromDefaultCubemap";
-        public const string EntityBCustomCubemapTexture = "m_Entity_bCustomCubemapTexture";
+        public const string EntityBCopyDiffuseFromDefaultCubeMap = "m_Entity_bCopyDiffuseFromDefaultCubemap";
+        public const string EntityBCustomCubeMapTexture = "m_Entity_bCustomCubemapTexture";
         public const string EntityBDefaultEnvMap = "m_Entity_bDefaultEnvMap";
         public const string EntityBDefaultSpecEnvMap = "m_Entity_bDefaultSpecEnvMap";
         public const string EntityBEnabled = "m_Entity_bEnabled";
         public const string EntityBIndoorCubeMap = "m_Entity_bIndoorCubeMap";
-        public const string EntityBMoveable = "m_Entity_bMoveable";
+        public const string EntityBMoveAble = "m_Entity_bMoveable";
         public const string EntityBStartDisabled = "m_Entity_bStartDisabled";
         public const string EntityFlDiffuseScale = "m_Entity_flDiffuseScale";
         public const string EntityFlEdgeFadeDist = "m_Entity_flEdgeFadeDist";
         public const string EntityFlInfluenceRadius = "m_Entity_flInfluenceRadius";
-        public const string EntityHCubemapTexture = "m_Entity_hCubemapTexture";
+        public const string EntityHCubeMapTexture = "m_Entity_hCubemapTexture";
         public const string EntityNEnvCubeMapArrayIndex = "m_Entity_nEnvCubeMapArrayIndex";
         public const string EntityNHandshake = "m_Entity_nHandshake";
         public const string EntityNPriority = "m_Entity_nPriority";
@@ -5593,15 +5593,15 @@ public static class SchemaNames
         public const string EntityVEdgeFadeDists = "m_Entity_vEdgeFadeDists";
     }
 
-    public static class CEnvCubemapFog
+    public static class CEnvCubeMapFog
     {
         public const string Active = "m_bActive";
-        public const string CubemapSourceType = "m_nCubemapSourceType";
+        public const string CubeMapSourceType = "m_nCubemapSourceType";
         public const string DistanceFogCurveString = "m_DistanceFogCurveString";
         public const string DistanceFogType = "m_nDistanceFogType";
         public const string EndDistance = "m_flEndDistance";
         public const string FirstTime = "m_bFirstTime";
-        public const string FogCubemapTexture = "m_hFogCubemapTexture";
+        public const string FogCubeMapTexture = "m_hFogCubemapTexture";
         public const string FogFalloffExponent = "m_flFogFalloffExponent";
         public const string FogHeightBlendMode = "m_nFogHeightBlendMode";
         public const string FogHeightCoordinateSpace = "m_nFogHeightCoordinateSpace";
@@ -5692,9 +5692,9 @@ public static class SchemaNames
     {
         public const string Counter = "m_counter";
         public const string GlobalState = "m_globalstate";
-        public const string Initialstate = "m_initialstate";
+        public const string InitialState = "m_initialstate";
         public const string OutCounter = "m_outCounter";
-        public const string Triggermode = "m_triggermode";
+        public const string TriggerMode = "m_triggermode";
     }
 
     public static class CEnvHudHint
@@ -5714,20 +5714,20 @@ public static class SchemaNames
         public const string DisplayLimit = "m_iDisplayLimit";
         public const string ForceCaption = "m_bForceCaption";
         public const string HintTargetEntity = "m_iszHintTargetEntity";
-        public const string IconOffscreen = "m_iszIcon_Offscreen";
+        public const string IconOffScreen = "m_iszIcon_Offscreen";
         public const string IconOffset = "m_fIconOffset";
-        public const string IconOnscreen = "m_iszIcon_Onscreen";
+        public const string IconOnScreen = "m_iszIcon_Onscreen";
         public const string InstanceType = "m_iInstanceType";
         public const string LocalPlayerOnly = "m_bLocalPlayerOnly";
         public const string Name = "m_iszName";
-        public const string NoOffscreen = "m_bNoOffscreen";
+        public const string NoOffScreen = "m_bNoOffscreen";
         public const string PulseOption = "m_iPulseOption";
         public const string Range = "m_fRange";
         public const string ReplaceKey = "m_iszReplace_Key";
         public const string ShakeOption = "m_iShakeOption";
         public const string Static = "m_bStatic";
         public const string SuppressRest = "m_bSuppressRest";
-        public const string Timeout = "m_iTimeout";
+        public const string TimeOut = "m_iTimeout";
     }
 
     public static class CEnvInstructorVRHint
@@ -5740,7 +5740,7 @@ public static class SchemaNames
         public const string LayoutFileType = "m_iLayoutFileType";
         public const string Name = "m_iszName";
         public const string StartSound = "m_iszStartSound";
-        public const string Timeout = "m_iTimeout";
+        public const string TimeOut = "m_iTimeout";
     }
 
     public static class CEnvLaser
@@ -5755,7 +5755,7 @@ public static class SchemaNames
     public static class CEnvLightProbeVolume
     {
         public const string EntityBEnabled = "m_Entity_bEnabled";
-        public const string EntityBMoveable = "m_Entity_bMoveable";
+        public const string EntityBMoveAble = "m_Entity_bMoveable";
         public const string EntityBStartDisabled = "m_Entity_bStartDisabled";
         public const string EntityHLightProbeDirectLightIndicesTexture = "m_Entity_hLightProbeDirectLightIndicesTexture";
         public const string EntityHLightProbeDirectLightScalarsTexture = "m_Entity_hLightProbeDirectLightScalarsTexture";
@@ -5882,18 +5882,18 @@ public static class SchemaNames
         public const string DefaultDrawDistance = "m_flDefaultDrawDistance";
         public const string DefaultScattering = "m_flDefaultScattering";
         public const string DrawDistance = "m_flDrawDistance";
-        public const string EnableIndirect = "m_bEnableIndirect";
+        public const string EnableInDirect = "m_bEnableIndirect";
         public const string FadeInEnd = "m_flFadeInEnd";
         public const string FadeInStart = "m_flFadeInStart";
         public const string FadeSpeed = "m_flFadeSpeed";
         public const string FirstTime = "m_bFirstTime";
         public const string FirstVolumeSliceThickness = "m_fFirstVolumeSliceThickness";
-        public const string FogIndirectTexture = "m_hFogIndirectTexture";
+        public const string FogInDirectTexture = "m_hFogIndirectTexture";
         public const string ForceRefreshCount = "m_nForceRefreshCount";
-        public const string IndirectStrength = "m_flIndirectStrength";
-        public const string IndirectTextureDimX = "m_nIndirectTextureDimX";
-        public const string IndirectTextureDimY = "m_nIndirectTextureDimY";
-        public const string IndirectTextureDimZ = "m_nIndirectTextureDimZ";
+        public const string InDirectStrength = "m_flIndirectStrength";
+        public const string InDirectTextureDimX = "m_nIndirectTextureDimX";
+        public const string InDirectTextureDimY = "m_nIndirectTextureDimY";
+        public const string InDirectTextureDimZ = "m_nIndirectTextureDimZ";
         public const string IsMaster = "m_bIsMaster";
         public const string NoiseScale = "m_vNoiseScale";
         public const string NoiseSpeed = "m_fNoiseSpeed";
@@ -5921,10 +5921,10 @@ public static class SchemaNames
         public const string FalloffShape = "m_nFalloffShape";
         public const string HeightFogDepth = "m_flHeightFogDepth";
         public const string HeightFogEdgeWidth = "m_fHeightFogEdgeWidth";
-        public const string IndirectLightStrength = "m_fIndirectLightStrength";
-        public const string IndirectUseLPVs = "m_bIndirectUseLPVs";
+        public const string InDirectLightStrength = "m_fIndirectLightStrength";
+        public const string InDirectUseLPVs = "m_bIndirectUseLPVs";
         public const string NoiseStrength = "m_fNoiseStrength";
-        public const string OverrideIndirectLightStrength = "m_bOverrideIndirectLightStrength";
+        public const string OverrideInDirectLightStrength = "m_bOverrideIndirectLightStrength";
         public const string OverrideNoiseStrength = "m_bOverrideNoiseStrength";
         public const string OverrideSunLightStrength = "m_bOverrideSunLightStrength";
         public const string OverrideTintColor = "m_bOverrideTintColor";
@@ -5939,7 +5939,7 @@ public static class SchemaNames
         public const string EnvWindShared = "m_EnvWindShared";
     }
 
-    public static class CEnvWindClientside
+    public static class CEnvWindClientSide
     {
         public const string EnvWindShared = "m_EnvWindShared";
     }
@@ -6034,7 +6034,7 @@ public static class SchemaNames
     {
         public const string Args = "m_Args";
         public const string ArgsWithLineColumn = "m_ArgsWithLineColumn";
-        public const string DebugCommandline = "m_bDebugCommandline";
+        public const string DebugCommandLine = "m_bDebugCommandline";
         public const string Executable = "m_Executable";
         public const string MatchSystemExecutable = "m_MatchSystemExecutable";
         public const string PriorityExts = "m_PriorityExts";
@@ -6299,6 +6299,24 @@ public static class SchemaNames
         public const string UseAngles = "m_bUseAngles";
     }
 
+    public static class CFogPlayerParams
+    {
+        public const string Ctrl = "m_hCtrl";
+        public const string NewColor = "m_NewColor";
+        public const string NewEnd = "m_flNewEnd";
+        public const string NewFarZ = "m_flNewFarZ";
+        public const string NewHDRColorScale = "m_flNewHDRColorScale";
+        public const string NewMaxDensity = "m_flNewMaxDensity";
+        public const string NewStart = "m_flNewStart";
+        public const string OldColor = "m_OldColor";
+        public const string OldEnd = "m_flOldEnd";
+        public const string OldFarZ = "m_flOldFarZ";
+        public const string OldHDRColorScale = "m_flOldHDRColorScale";
+        public const string OldMaxDensity = "m_flOldMaxDensity";
+        public const string OldStart = "m_flOldStart";
+        public const string TransitionTime = "m_flTransitionTime";
+    }
+
     public static class CFogScatteringLayer
     {
         public const string Params = "m_params";
@@ -6316,24 +6334,6 @@ public static class SchemaNames
         public const string FogName = "m_fogName";
         public const string InFogVolumesList = "m_bInFogVolumesList";
         public const string PostProcessName = "m_postProcessName";
-    }
-
-    public static class CFogplayerparams
-    {
-        public const string Ctrl = "m_hCtrl";
-        public const string NewColor = "m_NewColor";
-        public const string NewEnd = "m_flNewEnd";
-        public const string NewFarZ = "m_flNewFarZ";
-        public const string NewHDRColorScale = "m_flNewHDRColorScale";
-        public const string NewMaxDensity = "m_flNewMaxDensity";
-        public const string NewStart = "m_flNewStart";
-        public const string OldColor = "m_OldColor";
-        public const string OldEnd = "m_flOldEnd";
-        public const string OldFarZ = "m_flOldFarZ";
-        public const string OldHDRColorScale = "m_flOldHDRColorScale";
-        public const string OldMaxDensity = "m_flOldMaxDensity";
-        public const string OldStart = "m_flOldStart";
-        public const string TransitionTime = "m_flTransitionTime";
     }
 
     public static class CFollowAttachmentUpdateNode
@@ -6400,7 +6400,7 @@ public static class SchemaNames
         public const string FootLiftCycle = "m_footLiftCycle";
         public const string FootOffCycle = "m_footOffCycle";
         public const string FootStrikeCycle = "m_footStrikeCycle";
-        public const string MidpointPositionMS = "m_vMidpointPositionMS";
+        public const string MidPointPositionMS = "m_vMidpointPositionMS";
         public const string StanceCycle = "m_stanceCycle";
         public const string StanceDirectionMS = "m_flStanceDirectionMS";
         public const string StancePositionMS = "m_vStancePositionMS";
@@ -6704,7 +6704,7 @@ public static class SchemaNames
         public const string PathRebuildStrategy = "m_ePathRebuildStrategy";
         public const string PrevPathMover = "m_hPrevPathMover";
         public const string PreviousNodeIndex = "m_nPreviousNodeIndex";
-        public const string QueueSetupPathMover = "m_bQueueSetupPathMover";
+        public const string QueueSetUpPathMover = "m_bQueueSetupPathMover";
         public const string QueueStop = "m_bQueueStop";
         public const string QueueStopMoving = "m_bQueueStopMoving";
         public const string SolidType = "m_eSolidType";
@@ -6832,7 +6832,7 @@ public static class SchemaNames
         public const string TimeToReachZeroSpeed = "m_flTimeToReachZeroSpeed";
     }
 
-    public static class CFuncShatterglass
+    public static class CFuncShatterGlass
     {
         public const string BreakShardless = "m_bBreakShardless";
         public const string BreakSilent = "m_bBreakSilent";
@@ -7749,7 +7749,7 @@ public static class SchemaNames
         public const string Distance = "m_flDistance";
         public const string FieldModify = "m_nFieldModify";
         public const string IncludeRadii = "m_bIncludeRadii";
-        public const string LifespanOverlap = "m_flLifespanOverlap";
+        public const string LifeSpanOverlap = "m_flLifespanOverlap";
         public const string Modify = "m_flModify";
         public const string SetMethod = "m_nSetMethod";
         public const string UseNeighbor = "m_bUseNeighbor";
@@ -7806,7 +7806,7 @@ public static class SchemaNames
         public const string RandomSeed = "m_nRandomSeed";
         public const string Reverse = "m_bReverse";
         public const string SnapShotIncrement = "m_nSnapShotIncrement";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
     }
 
     public static class CINITInitFromParentKilled
@@ -7914,7 +7914,7 @@ public static class SchemaNames
         public const string TransformInput = "m_TransformInput";
     }
 
-    public static class CINITLifespanFromVelocity
+    public static class CINITLifeSpanFromVelocity
     {
         public const string CollisionGroupName = "m_CollisionGroupName";
         public const string ComponentScale = "m_vecComponentScale";
@@ -7930,7 +7930,7 @@ public static class SchemaNames
     {
         public const string BoundBox = "m_bBoundBox";
         public const string ControlPointNumber = "m_nControlPointNumber";
-        public const string CullOutside = "m_bCullOutside";
+        public const string CullOutSide = "m_bCullOutside";
         public const string HitBoxSetName = "m_HitboxSetName";
         public const string UseBones = "m_bUseBones";
     }
@@ -8333,7 +8333,7 @@ public static class SchemaNames
 
     public static class CINITSequenceLifeTime
     {
-        public const string Framerate = "m_flFramerate";
+        public const string FrameRate = "m_flFramerate";
     }
 
     public static class CINITSetAttributeToScalarExpression
@@ -8572,7 +8572,7 @@ public static class SchemaNames
         public const string Range = "m_flRange";
     }
 
-    public static class CInfoOffscreenPanoramaTexture
+    public static class CInfoOffScreenPanoramaTexture
     {
         public const string AdditionalTargetEntities = "m_AdditionalTargetEntities";
         public const string CSSClasses = "m_vecCSSClasses";
@@ -8608,7 +8608,7 @@ public static class SchemaNames
         public const string SFixedSpawnGroupName = "m_sFixedSpawnGroupName";
         public const string SpawnGroupFilterName = "m_iszSpawnGroupFilterName";
         public const string SpawnGroupName = "m_iszSpawnGroupName";
-        public const string TimeoutInterval = "m_flTimeoutInterval";
+        public const string TimeOutInterval = "m_flTimeoutInterval";
         public const string UnloadingStarted = "m_bUnloadingStarted";
     }
 
@@ -8715,7 +8715,7 @@ public static class SchemaNames
         public const string HasTriggerRadius = "m_bHasTriggerRadius";
         public const string LastPickupCheck = "m_flLastPickupCheck";
         public const string OnPickup = "m_OnPickup";
-        public const string OnTimeout = "m_OnTimeout";
+        public const string OnTimeOut = "m_OnTimeout";
         public const string OnTriggerEndTouch = "m_OnTriggerEndTouch";
         public const string OnTriggerStartTouch = "m_OnTriggerStartTouch";
         public const string OnTriggerTouch = "m_OnTriggerTouch";
@@ -8730,9 +8730,9 @@ public static class SchemaNames
         public const string PlayerInTriggerRadius = "m_bPlayerInTriggerRadius";
         public const string SpawnParticleEffect = "m_hSpawnParticleEffect";
         public const string SpawnScriptFunction = "m_pSpawnScriptFunction";
-        public const string TimeoutParticleEffect = "m_hTimeoutParticleEffect";
-        public const string TimeoutScriptFunction = "m_pTimeoutScriptFunction";
-        public const string TimeoutSoundEffect = "m_pTimeoutSoundEffect";
+        public const string TimeOutParticleEffect = "m_hTimeoutParticleEffect";
+        public const string TimeOutScriptFunction = "m_pTimeoutScriptFunction";
+        public const string TimeOutSoundEffect = "m_pTimeoutSoundEffect";
         public const string TriggerHelper = "m_hTriggerHelper";
         public const string TriggerRadius = "m_flTriggerRadius";
         public const string TriggerRadiusSqr = "m_flTriggerRadiusSqr";
@@ -8785,10 +8785,10 @@ public static class SchemaNames
         public const string WorldGoalAxis = "m_worldGoalAxis";
     }
 
-    public static class CKeychainModule
+    public static class CKeyChainModule
     {
-        public const string KeychainDefId = "m_nKeychainDefID";
-        public const string KeychainSeed = "m_nKeychainSeed";
+        public const string KeyChainDefId = "m_nKeychainDefID";
+        public const string KeyChainSeed = "m_nKeychainSeed";
     }
 
     public static class CKnife
@@ -8895,17 +8895,17 @@ public static class SchemaNames
         public const string OrthoLightWidth = "m_flOrthoLightWidth";
         public const string Pattern = "m_Pattern";
         public const string Phi = "m_flPhi";
-        public const string PrecomputedBoundsMaxs = "m_vPrecomputedBoundsMaxs";
-        public const string PrecomputedBoundsMins = "m_vPrecomputedBoundsMins";
-        public const string PrecomputedFieldsValid = "m_bPrecomputedFieldsValid";
-        public const string PrecomputedMaxRange = "m_flPrecomputedMaxRange";
-        public const string PrecomputedOBBAngles = "m_vPrecomputedOBBAngles";
-        public const string PrecomputedOBBExtent = "m_vPrecomputedOBBExtent";
-        public const string PrecomputedOBBOrigin = "m_vPrecomputedOBBOrigin";
+        public const string PreComputedBoundsMaxs = "m_vPrecomputedBoundsMaxs";
+        public const string PreComputedBoundsMins = "m_vPrecomputedBoundsMins";
+        public const string PreComputedFieldsValid = "m_bPrecomputedFieldsValid";
+        public const string PreComputedMaxRange = "m_flPrecomputedMaxRange";
+        public const string PreComputedOBBAngles = "m_vPrecomputedOBBAngles";
+        public const string PreComputedOBBExtent = "m_vPrecomputedOBBExtent";
+        public const string PreComputedOBBOrigin = "m_vPrecomputedOBBOrigin";
         public const string Range = "m_flRange";
         public const string RenderDiffuse = "m_bRenderDiffuse";
         public const string RenderSpecular = "m_nRenderSpecular";
-        public const string RenderToCubemaps = "m_bRenderToCubemaps";
+        public const string RenderToCubeMaps = "m_bRenderToCubemaps";
         public const string RenderTransmissive = "m_bRenderTransmissive";
         public const string SecondaryColor = "m_SecondaryColor";
         public const string ShadowCascadeCrossFade = "m_flShadowCascadeCrossFade";
@@ -9036,8 +9036,8 @@ public static class SchemaNames
         public const string SpriteScale = "m_flSpriteScale";
         public const string TempEntAcceleration = "m_vecTempEntAcceleration";
         public const string TempEntAngVelocity = "m_vecTempEntAngVelocity";
+        public const string TempEntRenderamt = "tempent_renderamt";
         public const string TempEntVelocity = "m_vecTempEntVelocity";
-        public const string TempentRenderamt = "tempent_renderamt";
         public const string TentOffset = "tentOffset";
         public const string X = "x";
         public const string Y = "y";
@@ -9050,7 +9050,7 @@ public static class SchemaNames
         public const string OnFired = "m_OnFired";
     }
 
-    public static class CLogicActiveAutosave
+    public static class CLogicActiveAutoSave
     {
         public const string DangerousTime = "m_flDangerousTime";
         public const string StartTime = "m_flStartTime";
@@ -9081,7 +9081,7 @@ public static class SchemaNames
         public const string OnVRNotEnabled = "m_OnVRNotEnabled";
     }
 
-    public static class CLogicAutosave
+    public static class CLogicAutoSave
     {
         public const string ForceNewLevelUnit = "m_bForceNewLevelUnit";
         public const string MinHitPoints = "m_minHitPoints";
@@ -9137,7 +9137,7 @@ public static class SchemaNames
         public const string OnNotEqualTo = "m_OnNotEqualTo";
     }
 
-    public static class CLogicDistanceAutosave
+    public static class CLogicDistanceAutoSave
     {
         public const string CheckCough = "m_bCheckCough";
         public const string DangerousTime = "m_flDangerousTime";
@@ -9596,7 +9596,7 @@ public static class SchemaNames
         public const string Weight7 = "m_flWeight7";
     }
 
-    public static class CMixBoxverb
+    public static class CMixBoxVerb
     {
         public const string Complexity = "m_flComplexity";
         public const string Depth = "m_flDepth";
@@ -9637,7 +9637,7 @@ public static class SchemaNames
         public const string Width = "m_flWidth";
     }
 
-    public static class CMixControlCrossfade
+    public static class CMixControlCrossFade
     {
         public const string FadeEnd = "m_flFadeEnd";
         public const string FadeStart = "m_flFadeStart";
@@ -9829,7 +9829,7 @@ public static class SchemaNames
         public const string PhaseInvert = "m_bPhaseInvert";
     }
 
-    public static class CMixFreeverb
+    public static class CMixFreeVerb
     {
         public const string Damp = "m_flDamp";
         public const string LateReflections = "m_flLateReflections";
@@ -9891,7 +9891,7 @@ public static class SchemaNames
         public const string Quality = "m_nQuality";
     }
 
-    public static class CMixPlateverb
+    public static class CMixPlateVerb
     {
         public const string Damp = "m_flDamp";
         public const string Decay = "m_flDecay";
@@ -9991,19 +9991,19 @@ public static class SchemaNames
         public const string DelayRight = "m_flDelayRight";
     }
 
-    public static class CMixSubgraph
+    public static class CMixSubGraph
     {
-        public const string SubgraphFile = "subgraphFile";
-        public const string SubgraphName = "subgraphName";
+        public const string SubGraphFile = "subgraphFile";
+        public const string SubGraphName = "subgraphName";
     }
 
-    public static class CMixSubgraphSwitch
+    public static class CMixSubGraphSwitch
     {
         public const string Channels = "nChannels";
-        public const string DefaultSubgraph = "defaultSubgraph";
+        public const string DefaultSubGraph = "defaultSubgraph";
         public const string InterpolationMode = "interpolationMode";
         public const string OnlyTailsOnFadeOut = "bOnlyTailsOnFadeOut";
-        public const string Subgraphs = "subgraphs";
+        public const string SubGraphs = "subgraphs";
         public const string TransitionTime = "flTransitionTime";
         public const string UseDetailedPlugNames = "bUseDetailedPlugNames";
     }
@@ -10450,6 +10450,11 @@ public static class SchemaNames
         public const string TargetBrightnessMultiplier = "m_flTargetBrightnessMultiplier";
     }
 
+    public static class CMultiMeter
+    {
+        public const string TargetC4 = "m_hTargetC4";
+    }
+
     public static class CMultiSource
     {
         public const string GlobalState = "m_globalstate";
@@ -10457,11 +10462,6 @@ public static class SchemaNames
         public const string RgEntities = "m_rgEntities";
         public const string RgTriggered = "m_rgTriggered";
         public const string Total = "m_iTotal";
-    }
-
-    public static class CMultimeter
-    {
-        public const string TargetC4 = "m_hTargetC4";
     }
 
     public static class CMultiplayerExpresser
@@ -10563,7 +10563,7 @@ public static class SchemaNames
         public const string CellX = "m_cellX";
         public const string CellY = "m_cellY";
         public const string CellZ = "m_cellZ";
-        public const string OutsideWorld = "m_nOutsideWorld";
+        public const string OutSideWorld = "m_nOutsideWorld";
         public const string X = "m_vecX";
         public const string Y = "m_vecY";
         public const string Z = "m_vecZ";
@@ -10574,7 +10574,7 @@ public static class SchemaNames
         public const string CellX = "m_cellX";
         public const string CellY = "m_cellY";
         public const string CellZ = "m_cellZ";
-        public const string OutsideWorld = "m_nOutsideWorld";
+        public const string OutSideWorld = "m_nOutsideWorld";
         public const string X = "m_vecX";
         public const string Y = "m_vecY";
         public const string Z = "m_vecZ";
@@ -12830,20 +12830,11 @@ public static class SchemaNames
         public const string LimitPerUpdate = "m_nLimitPerUpdate";
         public const string ScalePerParentParticle = "m_flScalePerParentParticle";
         public const string SnapshotControlPoint = "m_nSnapshotControlPoint";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
         public const string StartTime = "m_flStartTime";
     }
 
-    public static class COPControlPointToRadialScreenSpace
-    {
-        public const string CP1Pos = "m_vecCP1Pos";
-        public const string CPIn = "m_nCPIn";
-        public const string CPOut = "m_nCPOut";
-        public const string CPOutField = "m_nCPOutField";
-        public const string CPSSPosOut = "m_nCPSSPosOut";
-    }
-
-    public static class COPControlpointLight
+    public static class COPControlPointLight
     {
         public const string CPOffset1 = "m_vecCPOffset1";
         public const string CPOffset2 = "m_vecCPOffset2";
@@ -12878,6 +12869,15 @@ public static class SchemaNames
         public const string Scale = "m_flScale";
         public const string UseHLambert = "m_bUseHLambert";
         public const string UseNormal = "m_bUseNormal";
+    }
+
+    public static class COPControlPointToRadialScreenSpace
+    {
+        public const string CP1Pos = "m_vecCP1Pos";
+        public const string CPIn = "m_nCPIn";
+        public const string CPOut = "m_nCPOut";
+        public const string CPOutField = "m_nCPOutField";
+        public const string CPSSPosOut = "m_nCPSSPosOut";
     }
 
     public static class COPCreateParticleSystemRenderer
@@ -12959,16 +12959,16 @@ public static class SchemaNames
     {
         public const string DecayDelay = "m_flDecayDelay";
         public const string KillNewest = "m_bKillNewest";
-        public const string LifespanDecay = "m_bLifespanDecay";
+        public const string LifeSpanDecay = "m_bLifespanDecay";
         public const string ParticlesToMaintain = "m_nParticlesToMaintain";
         public const string Scale = "m_flScale";
         public const string SnapshotControlPoint = "m_nSnapshotControlPoint";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
     }
 
-    public static class COPDecayOffscreen
+    public static class COPDecayOffScreen
     {
-        public const string OffscreenTime = "m_flOffscreenTime";
+        public const string OffScreenTime = "m_flOffscreenTime";
     }
 
     public static class COPDensityForce
@@ -13111,7 +13111,7 @@ public static class SchemaNames
         public const string DisableChildren = "m_bDisableChildren";
         public const string FirstChild = "m_nFirstChild";
         public const string NumChildrenToEnable = "m_nNumChildrenToEnable";
-        public const string PlayEndcapOnStop = "m_bPlayEndcapOnStop";
+        public const string PlayEndCapOnStop = "m_bPlayEndcapOnStop";
     }
 
     public static class COPEndCapTimedDecay
@@ -13295,7 +13295,7 @@ public static class SchemaNames
         public const string ParentParticleScale = "m_flParentParticleScale";
         public const string ParticlesToEmit = "m_nParticlesToEmit";
         public const string SnapshotControlPoint = "m_nSnapshotControlPoint";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
         public const string StartTime = "m_flStartTime";
     }
 
@@ -13477,7 +13477,7 @@ public static class SchemaNames
         public const string ParticlesToMaintain = "m_nParticlesToMaintain";
         public const string Scale = "m_flScale";
         public const string SnapshotControlPoint = "m_nSnapshotControlPoint";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
         public const string StartTime = "m_flStartTime";
     }
 
@@ -13502,7 +13502,7 @@ public static class SchemaNames
     {
         public const string BoundBox = "m_bBoundBox";
         public const string ControlPointNumber = "m_nControlPointNumber";
-        public const string CullOutside = "m_bCullOutside";
+        public const string CullOutSide = "m_bCullOutside";
         public const string HitBoxSetName = "m_HitboxSetName";
         public const string UseBones = "m_bUseBones";
     }
@@ -13513,7 +13513,7 @@ public static class SchemaNames
         public const string ControlPointNumber = "m_nControlPointNumber";
         public const string Drag = "m_fDrag";
         public const string HitBoxSetName = "m_HitboxSetName";
-        public const string Outside = "m_bOutside";
+        public const string OutSide = "m_bOutside";
         public const string PosOffset = "m_vecPosOffset";
         public const string UseBones = "m_bUseBones";
     }
@@ -14479,7 +14479,7 @@ public static class SchemaNames
     {
         public const string GridSize = "m_fGridSize";
         public const string IndexCountKb = "m_nIndexCountKb";
-        public const string IsosurfaceThreshold = "m_fIsosurfaceThreshold";
+        public const string IsoSurfaceThreshold = "m_fIsosurfaceThreshold";
         public const string Material = "m_hMaterial";
         public const string RadiusScale = "m_fRadiusScale";
         public const string ScaleCP = "m_nScaleCP";
@@ -14552,7 +14552,7 @@ public static class SchemaNames
         public const string ColorScale = "m_vecColorScale";
         public const string ComponentScale = "m_vecComponentScale";
         public const string DisableClothGroundCollision = "m_bDisableClothGroundCollision";
-        public const string DisableDepthPrepass = "m_bDisableDepthPrepass";
+        public const string DisableDepthPrePass = "m_bDisableDepthPrepass";
         public const string DisableShadows = "m_bDisableShadows";
         public const string DoNotDrawInParticlePass = "m_bDoNotDrawInParticlePass";
         public const string EconSlotName = "m_EconSlotName";
@@ -14755,13 +14755,13 @@ public static class SchemaNames
         public const string MinSize = "m_flMinSize";
         public const string OrientationControlPoint = "m_nOrientationControlPoint";
         public const string OrientationType = "m_nOrientationType";
-        public const string Outline = "m_bOutline";
-        public const string OutlineAlpha = "m_nOutlineAlpha";
-        public const string OutlineColor = "m_OutlineColor";
-        public const string OutlineEnd0 = "m_flOutlineEnd0";
-        public const string OutlineEnd1 = "m_flOutlineEnd1";
-        public const string OutlineStart0 = "m_flOutlineStart0";
-        public const string OutlineStart1 = "m_flOutlineStart1";
+        public const string OutLine = "m_bOutline";
+        public const string OutLineAlpha = "m_nOutlineAlpha";
+        public const string OutLineColor = "m_OutlineColor";
+        public const string OutLineEnd0 = "m_flOutlineEnd0";
+        public const string OutLineEnd1 = "m_flOutlineEnd1";
+        public const string OutLineStart0 = "m_flOutlineStart0";
+        public const string OutLineStart1 = "m_flOutlineStart1";
         public const string ParticleShadows = "m_bParticleShadows";
         public const string ReplicationParameters = "m_replicationParameters";
         public const string SequenceNumbersAreRawSequenceIndices = "m_bSequenceNumbersAreRawSequenceIndices";
@@ -14836,7 +14836,7 @@ public static class SchemaNames
     public static class COPRenderText
     {
         public const string DefaultText = "m_DefaultText";
-        public const string OutlineColor = "m_OutlineColor";
+        public const string OutLineColor = "m_OutlineColor";
     }
 
     public static class COPRenderTrails
@@ -14985,7 +14985,7 @@ public static class SchemaNames
         public const string DestroyImmediately = "m_bDestroyImmediately";
         public const string FirstChild = "m_nFirstChild";
         public const string NumChildrenToEnable = "m_nNumChildrenToEnable";
-        public const string PlayEndcapOnStop = "m_bPlayEndcapOnStop";
+        public const string PlayEndCapOnStop = "m_bPlayEndcapOnStop";
     }
 
     public static class COPSequenceFromModel
@@ -15290,7 +15290,7 @@ public static class SchemaNames
         public const string Reverse = "m_bReverse";
         public const string SnapShotIncrement = "m_nSnapShotIncrement";
         public const string SnapShotStartPoint = "m_nSnapShotStartPoint";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
         public const string SubSample = "m_bSubSample";
     }
 
@@ -15572,7 +15572,7 @@ public static class SchemaNames
         public const string EntityStickNormalField = "m_nEntityStickNormalField";
         public const string IgnoreCP = "m_nIgnoreCP";
         public const string IncludeWater = "m_bIncludeWater";
-        public const string KillonContact = "m_bKillonContact";
+        public const string KillOnContact = "m_bKillonContact";
         public const string MaxTracesPerFrame = "m_nMaxTracesPerFrame";
         public const string MinSpeed = "m_flMinSpeed";
         public const string RadiusScale = "m_flRadiusScale";
@@ -15682,7 +15682,7 @@ public static class SchemaNames
         public const string NoiseTurbulenceScale = "m_flNoiseTurbulenceScale";
         public const string NoiseType = "m_nNoiseType";
         public const string NotchedOutputInside = "m_flNotchedOutputInside";
-        public const string NotchedOutputOutside = "m_flNotchedOutputOutside";
+        public const string NotchedOutputOutSide = "m_flNotchedOutputOutside";
         public const string NotchedRangeMax = "m_flNotchedRangeMax";
         public const string NotchedRangeMin = "m_flNotchedRangeMin";
         public const string Output0 = "m_flOutput0";
@@ -15694,7 +15694,7 @@ public static class SchemaNames
         public const string ReverseOrder = "m_bReverseOrder";
         public const string RoundType = "m_nRoundType";
         public const string ScalarAttribute = "m_nScalarAttribute";
-        public const string SnapshotSubset = "m_strSnapshotSubset";
+        public const string SnapshotSubSet = "m_strSnapshotSubset";
         public const string Type = "m_nType";
         public const string UseBoundsCenter = "m_bUseBoundsCenter";
         public const string VectorAttribute = "m_nVectorAttribute";
@@ -15739,7 +15739,7 @@ public static class SchemaNames
 
     public static class CParticleFunctionRenderer
     {
-        public const string CannotBeRefracted = "m_bCannotBeRefracted";
+        public const string CanNotBeRefracted = "m_bCannotBeRefracted";
         public const string SkipRenderingOnMobile = "m_bSkipRenderingOnMobile";
         public const string VisibilityInputs = "VisibilityInputs";
     }
@@ -15797,7 +15797,7 @@ public static class SchemaNames
         public const string BoundingBoxMin = "m_BoundingBoxMin";
         public const string Children = "m_Children";
         public const string ConstantColor = "m_ConstantColor";
-        public const string ConstantLifespan = "m_flConstantLifespan";
+        public const string ConstantLifeSpan = "m_flConstantLifespan";
         public const string ConstantNormal = "m_ConstantNormal";
         public const string ConstantRadius = "m_flConstantRadius";
         public const string ConstantRotation = "m_flConstantRotation";
@@ -15985,7 +15985,7 @@ public static class SchemaNames
         public const string OnTemplateSpawned = "m_OnTemplateSpawned";
         public const string PathMover = "m_hPathMover";
         public const string PathMoverName = "m_iszPathMoverName";
-        public const string PrepopulateOnSpawn = "m_bPrepopulateOnSpawn";
+        public const string PrePopulateOnSpawn = "m_bPrepopulateOnSpawn";
         public const string QueuedRemovals = "m_vecQueuedRemovals";
         public const string SpawnFrequencyDistToNearestMover = "m_flSpawnFrequencyDistToNearestMover";
         public const string SpawnFrequencySeconds = "m_flSpawnFrequencySeconds";
@@ -16234,7 +16234,7 @@ public static class SchemaNames
         public const string TorqueScale = "m_flTorqueScale";
     }
 
-    public static class CPhysPropClientside
+    public static class CPhysPropClientSide
     {
         public const string DamageDirection = "m_vecDamageDirection";
         public const string DamagePosition = "m_vecDamagePosition";
@@ -16455,7 +16455,7 @@ public static class SchemaNames
         public const string BombSite = "m_nBombSite";
         public const string BombTicking = "m_bBombTicking";
         public const string C4Blow = "m_flC4Blow";
-        public const string CannotBeDefused = "m_bCannotBeDefused";
+        public const string CanNotBeDefused = "m_bCannotBeDefused";
         public const string CatchUpToPlayerEye = "m_angCatchUpToPlayerEye";
         public const string DefuseCountDown = "m_flDefuseCountDown";
         public const string DefuseLength = "m_flDefuseLength";
@@ -16546,8 +16546,8 @@ public static class SchemaNames
     {
         public const string FallVelocity = "m_flFallVelocity";
         public const string GroundNormal = "m_groundNormal";
+        public const string StepSide = "m_nStepside";
         public const string StepSoundTime = "m_flStepSoundTime";
-        public const string Stepside = "m_nStepside";
         public const string SurfaceFriction = "m_flSurfaceFriction";
         public const string SurfaceProps = "m_surfaceProps";
     }
@@ -16735,7 +16735,7 @@ public static class SchemaNames
         public const string Opaque = "m_bOpaque";
         public const string Orientation = "m_unOrientation";
         public const string OwnerContext = "m_unOwnerContext";
-        public const string RenderBackface = "m_bRenderBackface";
+        public const string RenderBackFace = "m_bRenderBackface";
         public const string UseOffScreenIndicator = "m_bUseOffScreenIndicator";
         public const string VerticalAlign = "m_unVerticalAlign";
         public const string VisibleWhenParentNoDraw = "m_bVisibleWhenParentNoDraw";
@@ -16775,7 +16775,7 @@ public static class SchemaNames
         public const string StartTimeInCommentary = "m_flStartTimeInCommentary";
         public const string TeleportOrigin = "m_vecTeleportOrigin";
         public const string Title = "m_iszTitle";
-        public const string UnderCrosshair = "m_bUnderCrosshair";
+        public const string UnderCrossHair = "m_bUnderCrosshair";
         public const string Unstoppable = "m_bUnstoppable";
         public const string ViewPositionMover = "m_hViewPositionMover";
         public const string ViewTargetAngles = "m_hViewTargetAngles";
@@ -16792,7 +16792,7 @@ public static class SchemaNames
         public const string Reference = "m_hReference";
     }
 
-    public static class CPointGamestatsCounter
+    public static class CPointGameStatsCounter
     {
         public const string Disabled = "m_bDisabled";
         public const string StatisticName = "m_strStatisticName";
@@ -16881,7 +16881,7 @@ public static class SchemaNames
         public const string ScriptSpawnCallback = "m_ScriptSpawnCallback";
         public const string Source2EntityLumpName = "m_iszSource2EntityLumpName";
         public const string SpawnedEntityHandles = "m_SpawnedEntityHandles";
-        public const string TimeoutInterval = "m_flTimeoutInterval";
+        public const string TimeOutInterval = "m_flTimeoutInterval";
         public const string WorldName = "m_iszWorldName";
     }
 
@@ -17068,15 +17068,15 @@ public static class SchemaNames
         public const string IsAbleToCloseAreaPortals = "m_isAbleToCloseAreaPortals";
     }
 
-    public static class CPulseBlackboardReference
+    public static class CPulseBlackBoardReference
     {
-        public const string BlackboardResource = "m_BlackboardResource";
-        public const string HBlackboardResource = "m_hBlackboardResource";
+        public const string BlackBoardResource = "m_BlackboardResource";
+        public const string HBlackBoardResource = "m_hBlackboardResource";
         public const string NodeId = "m_nNodeID";
         public const string NodeName = "m_NodeName";
     }
 
-    public static class CPulseBreakpointLocation
+    public static class CPulseBreakPointLocation
     {
         public const string NodeId = "m_NodeID";
         public const string PortName = "m_PortName";
@@ -17180,7 +17180,7 @@ public static class SchemaNames
 
     public static class CPulseCellInflowObservableVariableListener
     {
-        public const string BlackboardReference = "m_nBlackboardReference";
+        public const string BlackBoardReference = "m_nBlackboardReference";
         public const string SelfReference = "m_bSelfReference";
     }
 
@@ -17277,7 +17277,7 @@ public static class SchemaNames
         public const string Shuffle = "m_Shuffle";
     }
 
-    public static class CPulseCellOutflowListenForAnimgraphTag
+    public static class CPulseCellOutflowListenForAnimGraphTag
     {
         public const string OnEnd = "m_OnEnd";
         public const string OnStart = "m_OnStart";
@@ -17395,7 +17395,7 @@ public static class SchemaNames
     public static class CPulseCellStepCallExternalMethod
     {
         public const string AsyncCallMode = "m_nAsyncCallMode";
-        public const string BlackboardIndex = "m_nBlackboardIndex";
+        public const string BlackBoardIndex = "m_nBlackboardIndex";
         public const string ExpectedArgs = "m_ExpectedArgs";
         public const string MethodName = "m_MethodName";
         public const string OnFinished = "m_OnFinished";
@@ -17453,7 +17453,7 @@ public static class SchemaNames
         public const string TestStep = "nTestStep";
     }
 
-    public static class CPulseCellTestWaitWithAutoTracepoints
+    public static class CPulseCellTestWaitWithAutoTracePoints
     {
         public const string TracePrefix = "m_TracePrefix";
         public const string WakeResume = "m_WakeResume";
@@ -17605,12 +17605,12 @@ public static class SchemaNames
         public const string ConnectionColorLerpPercentageStart = "m_flConnectionColorLerpPercentageStart";
         public const string ConnectionCurveSpacing = "m_flConnectionCurveSpacing";
         public const string ConnectionDeltaLimitScale = "m_flConnectionDeltaLimitScale";
+        public const string ConnectionInParamOffset = "m_flConnectionInparamOffset";
+        public const string ConnectionInParamOffsetArray = "m_flConnectionInparamOffsetArray";
         public const string ConnectionInflowOffset = "m_flConnectionInflowOffset";
-        public const string ConnectionInparamOffset = "m_flConnectionInparamOffset";
-        public const string ConnectionInparamOffsetArray = "m_flConnectionInparamOffsetArray";
         public const string ConnectionTangentStrength = "m_flConnectionTangentStrength";
-        public const string DebuggerBreakpointDisabledImg = "m_DebuggerBreakpointDisabledImg";
-        public const string DebuggerBreakpointImg = "m_DebuggerBreakpointImg";
+        public const string DebuggerBreakPointDisabledImg = "m_DebuggerBreakpointDisabledImg";
+        public const string DebuggerBreakPointImg = "m_DebuggerBreakpointImg";
         public const string DebuggerBrokenImg = "m_DebuggerBrokenImg";
         public const string DebuggerBrokenMarkerOffset = "m_flDebuggerBrokenMarkerOffset";
         public const string DebuggerBrokenMarkerSize = "m_flDebuggerBrokenMarkerSize";
@@ -17642,7 +17642,7 @@ public static class SchemaNames
         public const string RecentExecEndOffset = "m_flRecentExecEndOffset";
         public const string RecentExecLineWidth = "m_flRecentExecLineWidth";
         public const string RecentExecStartOffset = "m_flRecentExecStartOffset";
-        public const string RecentExecTimeoutSec = "m_flRecentExecTimeoutSec";
+        public const string RecentExecTimeOutSec = "m_flRecentExecTimeoutSec";
         public const string SequencePointLinkWidth = "m_flSequencePointLinkWidth";
         public const string SequencePointRadius = "m_flSequencePointRadius";
         public const string ShowExecutionHistory = "m_bShowExecutionHistory";
@@ -17659,7 +17659,7 @@ public static class SchemaNames
         public const string YieldedCursorStackOffset = "m_flYieldedCursorStackOffset";
     }
 
-    public static class CPulseGameBlackboard
+    public static class CPulseGameBlackBoard
     {
         public const string GraphName = "m_strGraphName";
         public const string StateBlob = "m_strStateBlob";
@@ -17667,7 +17667,7 @@ public static class SchemaNames
 
     public static class CPulseGraphDef
     {
-        public const string BlackboardReferences = "m_BlackboardReferences";
+        public const string BlackBoardReferences = "m_BlackboardReferences";
         public const string CallInfos = "m_CallInfos";
         public const string Cells = "m_Cells";
         public const string Chunks = "m_Chunks";
@@ -17707,12 +17707,12 @@ public static class SchemaNames
         public const string CursorsTerminatedDueToMaxInstructions = "m_nCursorsTerminatedDueToMaxInstructions";
         public const string ExpectingCursorTerminatedDueToMaxInstructions = "m_bExpectingCursorTerminatedDueToMaxInstructions";
         public const string ExpectingToDestroyWithYieldedCursors = "m_bExpectingToDestroyWithYieldedCursors";
-        public const string ExplicitTimeStepping = "m_bExplicitTimeStepping";
+        public const string ExplicitTimeStepPing = "m_bExplicitTimeStepping";
         public const string IsRunningUnitTests = "m_bIsRunningUnitTests";
         public const string NextValidateIndex = "m_nNextValidateIndex";
-        public const string QuietTracepoints = "m_bQuietTracepoints";
+        public const string QuietTracePoints = "m_bQuietTracepoints";
         public const string TestYesOrNoPath = "m_bTestYesOrNoPath";
-        public const string Tracepoints = "m_Tracepoints";
+        public const string TracePoints = "m_Tracepoints";
     }
 
     public static class CPulseGraphInstanceTestDomainDerived
@@ -17795,7 +17795,7 @@ public static class SchemaNames
         public const string Description = "m_Description";
         public const string EditorNodeId = "m_nEditorNodeID";
         public const string IsObservable = "m_bIsObservable";
-        public const string IsPublicBlackboardVariable = "m_bIsPublicBlackboardVariable";
+        public const string IsPublicBlackBoardVariable = "m_bIsPublicBlackboardVariable";
         public const string KeysSource = "m_nKeysSource";
         public const string Metadata = "m_Metadata";
         public const string Name = "m_Name";
@@ -18103,7 +18103,7 @@ public static class SchemaNames
     {
         public const string AllowedToCompileInTestMode = "m_bAllowedToCompileInTestMode";
         public const string Blocks = "m_Blocks";
-        public const string CannotBeAMultiParentChildCompile = "m_bCannotBeAMultiParentChildCompile";
+        public const string CanNotBeAMultiParentChildCompile = "m_bCannotBeAMultiParentChildCompile";
         public const string CompileDependsOnResourceTypes = "m_CompileDependsOnResourceTypes";
         public const string CompilerIdentifier = "m_CompilerIdentifier";
         public const string PrefersIconForThumbnail = "m_bPrefersIconForThumbnail";
@@ -18152,10 +18152,10 @@ public static class SchemaNames
         public const string VelocityMS = "m_vVelocityMS";
     }
 
-    public static class CRopeKeyframe
+    public static class CRopeKeyFrame
     {
         public const string ChangeCount = "m_nChangeCount";
-        public const string ConstrainBetweenEndpoints = "m_bConstrainBetweenEndpoints";
+        public const string ConstrainBetweenEndPoints = "m_bConstrainBetweenEndpoints";
         public const string CreatedFromMapFile = "m_bCreatedFromMapFile";
         public const string EndAttachment = "m_iEndAttachment";
         public const string EndPoint = "m_hEndPoint";
@@ -18177,9 +18177,9 @@ public static class SchemaNames
         public const string Width = "m_Width";
     }
 
-    public static class CRopeKeyframeCPhysicsDelegate
+    public static class CRopeKeyFrameCPhysicsDelegate
     {
-        public const string Keyframe = "m_pKeyframe";
+        public const string KeyFrame = "m_pKeyframe";
     }
 
     public static class CRopeOverlapHit
@@ -18298,7 +18298,7 @@ public static class SchemaNames
         public const string Depth = "m_nDepth";
         public const string Format = "m_nFormat";
         public const string Height = "m_nHeight";
-        public const string MultisampleNumSamples = "m_nMultisampleNumSamples";
+        public const string MultiSampleNumSamples = "m_nMultisampleNumSamples";
         public const string Name = "m_Name";
         public const string NumMipLevels = "m_nNumMipLevels";
         public const string RequestedHeight = "m_nRequestedHeight";
@@ -18320,7 +18320,7 @@ public static class SchemaNames
         public const string Actor = "m_hActor";
         public const string ActorList = "m_hActorList";
         public const string ActorMap = "m_ActorMap";
-        public const string Autogenerated = "m_bAutogenerated";
+        public const string AutoGenerated = "m_bAutogenerated";
         public const string Automated = "m_bAutomated";
         public const string AutomatedAction = "m_nAutomatedAction";
         public const string AutomationDelay = "m_flAutomationDelay";
@@ -18550,7 +18550,7 @@ public static class SchemaNames
         public const string IsPlayingPreIdle = "m_bIsPlayingPreIdle";
         public const string IsRepeatable = "m_bIsRepeatable";
         public const string IsTeleportingDueToMoveTo = "m_bIsTeleportingDueToMoveTo";
-        public const string KeepAnimgraphLockedPost = "m_bKeepAnimgraphLockedPost";
+        public const string KeepAnimGraphLockedPost = "m_bKeepAnimgraphLockedPost";
         public const string LoopActionSequence = "m_bLoopActionSequence";
         public const string LoopPostIdleSequence = "m_bLoopPostIdleSequence";
         public const string LoopPreIdleSequence = "m_bLoopPreIdleSequence";
@@ -18596,10 +18596,10 @@ public static class SchemaNames
         public const string WaitUntilMoveCompletesToStartAnimation = "m_bWaitUntilMoveCompletesToStartAnimation";
     }
 
-    public static class CSelectableSubgraph
+    public static class CSelectableSubGraph
     {
         public const string File = "file";
-        public const string SubgraphName = "subgraphName";
+        public const string SubGraphName = "subgraphName";
     }
 
     public static class CSelectorUpdateNode
@@ -18653,7 +18653,7 @@ public static class SchemaNames
         public const string Cmd = "m_cmd";
         public const string DstResult = "m_nDstResult";
         public const string LineNumber = "m_nLineNumber";
-        public const string LocalBonemask = "m_nLocalBonemask";
+        public const string LocalBoneMask = "m_nLocalBonemask";
         public const string LocalReference = "m_nLocalReference";
         public const string Spline = "m_bSpline";
         public const string SrcResult = "m_nSrcResult";
@@ -18706,7 +18706,7 @@ public static class SchemaNames
         public const string B2D = "m_b2D";
         public const string B2DTRI = "m_b2D_TRI";
         public const string Cylepose = "m_bCylepose";
-        public const string Realtime = "m_bRealtime";
+        public const string RealTime = "m_bRealtime";
     }
 
     public static class CSeqPoseParamDesc
@@ -18739,7 +18739,7 @@ public static class SchemaNames
         public const string FootMotion = "m_footMotion";
         public const string IKLockArray = "m_IKLockArray";
         public const string LegacyKeyValueText = "m_LegacyKeyValueText";
-        public const string LocalWeightlist = "m_nLocalWeightlist";
+        public const string LocalWeightList = "m_nLocalWeightlist";
         public const string SName = "m_sName";
         public const string SequenceKeys = "m_SequenceKeys";
         public const string Transition = "m_transition";
@@ -18756,11 +18756,11 @@ public static class SchemaNames
 
     public static class CSeqSeqDescFlag
     {
-        public const string Autoplay = "m_bAutoplay";
+        public const string AutoPlay = "m_bAutoplay";
         public const string Hidden = "m_bHidden";
         public const string LegacyCyclepose = "m_bLegacyCyclepose";
         public const string LegacyDelta = "m_bLegacyDelta";
-        public const string LegacyRealtime = "m_bLegacyRealtime";
+        public const string LegacyRealTime = "m_bLegacyRealtime";
         public const string LegacyWorldSpace = "m_bLegacyWorldspace";
         public const string Looping = "m_bLooping";
         public const string ModelDoc = "m_bModelDoc";
@@ -18797,7 +18797,7 @@ public static class SchemaNames
         public const string LocalBoneMaskArray = "m_localBoneMaskArray";
         public const string LocalBoneNameArray = "m_localBoneNameArray";
         public const string LocalCmdSeqDescArray = "m_localCmdSeqDescArray";
-        public const string LocalIKAutoplayLockArray = "m_localIKAutoplayLockArray";
+        public const string LocalIKAutoPlayLockArray = "m_localIKAutoplayLockArray";
         public const string LocalMultiSeqDescArray = "m_localMultiSeqDescArray";
         public const string LocalNodeName = "m_localNodeName";
         public const string LocalPoseParamArray = "m_localPoseParamArray";
@@ -18888,7 +18888,7 @@ public static class SchemaNames
     {
         public const string AdditionalExtensions = "m_AdditionalExtensions";
         public const string AssetTypeVersion = "m_nAssetTypeVersion";
-        public const string CannotBeShown = "m_bCannotBeShown";
+        public const string CanNotBeShown = "m_bCannotBeShown";
         public const string ContentFileIsText = "m_bContentFileIsText";
         public const string EngineCommands = "m_EngineCommands";
         public const string ErrorOnUnrecognizedOutboundRefs = "m_bErrorOnUnrecognizedOutboundRefs";
@@ -18907,7 +18907,7 @@ public static class SchemaNames
         public const string PreviewThumbnailOverlayIcon = "m_PreviewThumbnailOverlayIcon";
         public const string ShouldCompileErrorFallbackToDisk = "m_bShouldCompileErrorFallbackToDisk";
         public const string SuppressFullFingerprintCalculation = "m_bSuppressFullFingerprintCalculation";
-        public const string SuppressSubstrings = "m_SuppressSubstrings";
+        public const string SuppressSubStrings = "m_SuppressSubstrings";
         public const string TestInjectSearchable = "m_Test_InjectSearchable";
         public const string UnrecognizedOutboundRefsErrorTypeExceptions = "m_UnrecognizedOutboundRefsErrorTypeExceptions";
     }
@@ -19073,7 +19073,7 @@ public static class SchemaNames
         public const string Width = "m_flWidth";
     }
 
-    public static class CSmartPropElementMidpointDeformer
+    public static class CSmartPropElementMidPointDeformer
     {
         public const string Angles = "m_vAngles";
         public const string ContinuousSpline = "m_bContinuousSpline";
@@ -20046,7 +20046,7 @@ public static class SchemaNames
         public const string MatchEventSubString = "m_bMatchEventSubString";
         public const string MatchSoundEventName = "m_matchSoundEventName";
         public const string MatchSoundEventSubString = "m_matchSoundEventSubString";
-        public const string MemberLifespanTime = "m_flMemberLifespanTime";
+        public const string MemberLifeSpanTime = "m_flMemberLifespanTime";
         public const string Opvar = "m_flOpvar";
         public const string OpvarString = "m_opvarString";
     }
@@ -20071,7 +20071,7 @@ public static class SchemaNames
 
     public static class CSoundContainerReference
     {
-        public const string NameSpace = "m_namespace";
+        public const string Namespace = "m_namespace";
         public const string PSound = "m_pSound";
         public const string Sound = "m_sound";
         public const string UseReference = "m_bUseReference";
@@ -20352,7 +20352,7 @@ public static class SchemaNames
         public const string ScaleDuration = "m_flScaleDuration";
         public const string ScaleTimeStart = "m_flScaleTimeStart";
         public const string Speed = "m_flSpeed";
-        public const string SpriteFramerate = "m_flSpriteFramerate";
+        public const string SpriteFrameRate = "m_flSpriteFramerate";
         public const string SpriteHeight = "m_nSpriteHeight";
         public const string SpriteMaterial = "m_hSpriteMaterial";
         public const string SpriteScale = "m_flSpriteScale";
@@ -20475,7 +20475,7 @@ public static class SchemaNames
         public const string InOut = "m_vecInOut";
         public const string InsideSmallSizeField = "m_vecInsideSmallSizeField";
         public const string Movables = "m_movables";
-        public const string OutsideField = "m_vecOutsideField";
+        public const string OutSideField = "m_vecOutsideField";
         public const string Probes = "m_probes";
         public const string Settings = "m_settings";
         public const string Size = "m_vecSize";
@@ -20587,7 +20587,7 @@ public static class SchemaNames
         public const string IsRunning = "m_bIsRunning";
     }
 
-    public static class CSubassetTypeInfo
+    public static class CSubAssetTypeInfo
     {
         public const string AllowDefinitions = "m_bAllowDefinitions";
         public const string AllowReferences = "m_bAllowReferences";
@@ -21019,7 +21019,7 @@ public static class SchemaNames
         public const string Magnitude = "m_flMagnitude";
         public const string Noise = "m_flNoise";
         public const string OutputForce = "m_pOutputForce";
-        public const string Viewkick = "m_flViewkick";
+        public const string ViewKick = "m_flViewkick";
     }
 
     public static class CTriggerLerpObject
@@ -21053,11 +21053,11 @@ public static class SchemaNames
         public const string LookTimeTotal = "m_flLookTimeTotal";
         public const string OnEndLook = "m_OnEndLook";
         public const string OnStartLook = "m_OnStartLook";
-        public const string OnTimeout = "m_OnTimeout";
+        public const string OnTimeOut = "m_OnTimeout";
         public const string TestAllVisibleOcclusion = "m_bTestAllVisibleOcclusion";
         public const string TestOcclusion = "m_bTestOcclusion";
-        public const string TimeoutDuration = "m_flTimeoutDuration";
-        public const string TimeoutFired = "m_bTimeoutFired";
+        public const string TimeOutDuration = "m_flTimeoutDuration";
+        public const string TimeOutFired = "m_bTimeoutFired";
         public const string UseVelocity = "m_bUseVelocity";
     }
 
@@ -21222,12 +21222,12 @@ public static class SchemaNames
         public const string Name = "m_name";
     }
 
-    public static class CVMixBoxverb2ProcessorDesc
+    public static class CVMixBoxVerbProcessorDesc
     {
         public const string Desc = "m_desc";
     }
 
-    public static class CVMixBoxverbProcessorDesc
+    public static class CVMixBoxverb2ProcessorDesc
     {
         public const string Desc = "m_desc";
     }
@@ -21346,7 +21346,7 @@ public static class SchemaNames
         public const string Desc = "m_desc";
     }
 
-    public static class CVMixFreeverbProcessorDesc
+    public static class CVMixFreeVerbProcessorDesc
     {
         public const string Desc = "m_desc";
     }
@@ -21408,7 +21408,7 @@ public static class SchemaNames
         public const string Desc = "m_desc";
     }
 
-    public static class CVMixSubgraphSwitchProcessorDesc
+    public static class CVMixSubGraphSwitchProcessorDesc
     {
         public const string Desc = "m_desc";
     }
@@ -21462,7 +21462,7 @@ public static class SchemaNames
         public const string IsControlInput = "m_bIsControlInput";
         public const string IsControlOutput = "m_bIsControlOutput";
         public const string IsGroup = "m_bIsGroup";
-        public const string IsSubgraphNode = "m_bIsSubgraphNode";
+        public const string IsSubGraphNode = "m_bIsSubgraphNode";
         public const string Name = "m_name";
         public const string OutputNames = "m_outputNames";
         public const string OutputTypeIds = "m_outputTypeIds";
@@ -21549,7 +21549,7 @@ public static class SchemaNames
 
     public static class CVoiceContainerEnum
     {
-        public const string CrossfadeTime = "m_flCrossfadeTime";
+        public const string CrossFadeTime = "m_flCrossfadeTime";
         public const string Selection = "m_iSelection";
         public const string SoundsToPlay = "m_soundsToPlay";
     }
@@ -21563,10 +21563,10 @@ public static class SchemaNames
 
     public static class CVoiceContainerGranulator
     {
-        public const string GrainCrossfadeAmount = "m_flGrainCrossfadeAmount";
+        public const string GrainCrossFadeAmount = "m_flGrainCrossfadeAmount";
         public const string GrainLength = "m_flGrainLength";
         public const string PlaybackJitter = "m_flPlaybackJitter";
-        public const string ShouldWraparound = "m_bShouldWraparound";
+        public const string ShouldWrapAround = "m_bShouldWraparound";
         public const string SourceAudio = "m_sourceAudio";
         public const string StartJitter = "m_flStartJitter";
     }
@@ -21626,7 +21626,7 @@ public static class SchemaNames
         public const string TimeJitter = "m_flTimeJitter";
     }
 
-    public static class CVoiceContainerRealtimeFMSineWave
+    public static class CVoiceContainerRealTimeFMSineWave
     {
         public const string CarrierFrequency = "m_flCarrierFrequency";
         public const string ModulatorAmount = "m_flModulatorAmount";
@@ -21702,7 +21702,7 @@ public static class SchemaNames
 
     public static class CVoiceContainerTapePlayer
     {
-        public const string ShouldWraparound = "m_bShouldWraparound";
+        public const string ShouldWrapAround = "m_bShouldWraparound";
         public const string SourceAudio = "m_sourceAudio";
         public const string TapeSpeedAttackTime = "m_flTapeSpeedAttackTime";
         public const string TapeSpeedReleaseTime = "m_flTapeSpeedReleaseTime";
@@ -21710,7 +21710,7 @@ public static class SchemaNames
 
     public static class CVoiceContainerVsndRadioButton
     {
-        public const string NameSpace = "m_namespace";
+        public const string Namespace = "m_namespace";
         public const string Slot1 = "m_slot1";
         public const string Slot10 = "m_slot10";
         public const string Slot11 = "m_slot11";
@@ -21731,7 +21731,7 @@ public static class SchemaNames
 
     public static class CVoiceContainerVsndTrigger
     {
-        public const string NameSpace = "m_namespace";
+        public const string Namespace = "m_namespace";
         public const string Slot1 = "m_slot1";
         public const string Slot10 = "m_slot10";
         public const string Slot11 = "m_slot11";
@@ -21787,13 +21787,13 @@ public static class SchemaNames
 
     public static class CVsndRadioButtonSlot
     {
-        public const string EnableEndcap = "m_bEnableEndcap";
-        public const string EnableLoopcap = "m_bEnableLoopcap";
+        public const string EnableEndCap = "m_bEnableEndcap";
+        public const string EnableLoopCap = "m_bEnableLoopcap";
         public const string EnableVsnd = "m_bEnableVsnd";
-        public const string EndcapVsnd = "m_endcapVsnd";
+        public const string EndCapVsnd = "m_endcapVsnd";
         public const string FadeOut = "m_fadeOut";
         public const string Group = "m_group";
-        public const string LoopcapVsnd = "m_loopcapVsnd";
+        public const string LoopCapVsnd = "m_loopcapVsnd";
         public const string Mode = "m_mode";
         public const string Volume = "m_volume";
         public const string Vsnd = "m_vsnd";
@@ -21801,12 +21801,12 @@ public static class SchemaNames
 
     public static class CVsndTriggerSlot
     {
-        public const string EnableEndcap = "m_bEnableEndcap";
-        public const string EnableLoopcap = "m_bEnableLoopcap";
+        public const string EnableEndCap = "m_bEnableEndcap";
+        public const string EnableLoopCap = "m_bEnableLoopcap";
         public const string EnableVsnd = "m_bEnableVsnd";
-        public const string EndcapVsnd = "m_endcapVsnd";
+        public const string EndCapVsnd = "m_endcapVsnd";
         public const string FadeOut = "m_fadeOut";
-        public const string LoopcapVsnd = "m_loopcapVsnd";
+        public const string LoopCapVsnd = "m_loopcapVsnd";
         public const string Mode = "m_mode";
         public const string Volume = "m_volume";
         public const string Vsnd = "m_vsnd";
@@ -21822,8 +21822,8 @@ public static class SchemaNames
     {
         public const string Movement = "m_vMovement";
         public const string Rotation = "m_vRotation";
-        public const string StopUpdatingWaypointPos = "m_bStopUpdatingWaypointPos";
-        public const string WaypointPosWS = "m_vWaypointPosWS";
+        public const string StopUpdatingWayPointPos = "m_bStopUpdatingWaypointPos";
+        public const string WayPointPosWS = "m_vWaypointPosWS";
     }
 
     public static class CWayPointHelperUpdateNode
@@ -21869,9 +21869,9 @@ public static class SchemaNames
     {
         public const string AlternateColor = "m_vAlternateColor";
         public const string AlternateColorBrightness = "m_fAlternateColorBrightness";
-        public const string BakeSpecularToCubemaps = "m_nBakeSpecularToCubemaps";
-        public const string BakeSpecularToCubemapsScale = "m_flBakeSpecularToCubemapsScale";
-        public const string BakeSpecularToCubemapsSize = "m_vBakeSpecularToCubemapsSize";
+        public const string BakeSpecularToCubeMaps = "m_nBakeSpecularToCubemaps";
+        public const string BakeSpecularToCubeMapsScale = "m_flBakeSpecularToCubemapsScale";
+        public const string BakeSpecularToCubeMapsSize = "m_vBakeSpecularToCubemapsSize";
         public const string BakedShadowIndex = "m_nBakedShadowIndex";
         public const string BounceLight = "m_nBounceLight";
         public const string BounceScale = "m_flBounceScale";
@@ -21891,7 +21891,7 @@ public static class SchemaNames
         public const string FogShadows = "m_nFogShadows";
         public const string FogStrength = "m_flFogStrength";
         public const string ForceShadowsEnabled = "m_bForceShadowsEnabled";
-        public const string InitialBoneSetup = "m_bInitialBoneSetup";
+        public const string InitialBoneSetUp = "m_bInitialBoneSetup";
         public const string LightCookie = "m_hLightCookie";
         public const string LightMapUniqueId = "m_nLightMapUniqueId";
         public const string LightPathUniqueId = "m_nLightPathUniqueId";
@@ -21903,31 +21903,31 @@ public static class SchemaNames
         public const string LuminaireShape = "m_nLuminaireShape";
         public const string LuminaireSize = "m_flLuminaireSize";
         public const string MinRoughness = "m_flMinRoughness";
-        public const string PrecomputedBoundsMaxs = "m_vPrecomputedBoundsMaxs";
-        public const string PrecomputedBoundsMins = "m_vPrecomputedBoundsMins";
-        public const string PrecomputedFieldsValid = "m_bPrecomputedFieldsValid";
-        public const string PrecomputedOBBAngles = "m_vPrecomputedOBBAngles";
-        public const string PrecomputedOBBAngles0 = "m_vPrecomputedOBBAngles0";
-        public const string PrecomputedOBBAngles1 = "m_vPrecomputedOBBAngles1";
-        public const string PrecomputedOBBAngles2 = "m_vPrecomputedOBBAngles2";
-        public const string PrecomputedOBBAngles3 = "m_vPrecomputedOBBAngles3";
-        public const string PrecomputedOBBAngles4 = "m_vPrecomputedOBBAngles4";
-        public const string PrecomputedOBBAngles5 = "m_vPrecomputedOBBAngles5";
-        public const string PrecomputedOBBExtent = "m_vPrecomputedOBBExtent";
-        public const string PrecomputedOBBExtent0 = "m_vPrecomputedOBBExtent0";
-        public const string PrecomputedOBBExtent1 = "m_vPrecomputedOBBExtent1";
-        public const string PrecomputedOBBExtent2 = "m_vPrecomputedOBBExtent2";
-        public const string PrecomputedOBBExtent3 = "m_vPrecomputedOBBExtent3";
-        public const string PrecomputedOBBExtent4 = "m_vPrecomputedOBBExtent4";
-        public const string PrecomputedOBBExtent5 = "m_vPrecomputedOBBExtent5";
-        public const string PrecomputedOBBOrigin = "m_vPrecomputedOBBOrigin";
-        public const string PrecomputedOBBOrigin0 = "m_vPrecomputedOBBOrigin0";
-        public const string PrecomputedOBBOrigin1 = "m_vPrecomputedOBBOrigin1";
-        public const string PrecomputedOBBOrigin2 = "m_vPrecomputedOBBOrigin2";
-        public const string PrecomputedOBBOrigin3 = "m_vPrecomputedOBBOrigin3";
-        public const string PrecomputedOBBOrigin4 = "m_vPrecomputedOBBOrigin4";
-        public const string PrecomputedOBBOrigin5 = "m_vPrecomputedOBBOrigin5";
-        public const string PrecomputedSubFrusta = "m_nPrecomputedSubFrusta";
+        public const string PreComputedBoundsMaxs = "m_vPrecomputedBoundsMaxs";
+        public const string PreComputedBoundsMins = "m_vPrecomputedBoundsMins";
+        public const string PreComputedFieldsValid = "m_bPrecomputedFieldsValid";
+        public const string PreComputedOBBAngles = "m_vPrecomputedOBBAngles";
+        public const string PreComputedOBBAngles0 = "m_vPrecomputedOBBAngles0";
+        public const string PreComputedOBBAngles1 = "m_vPrecomputedOBBAngles1";
+        public const string PreComputedOBBAngles2 = "m_vPrecomputedOBBAngles2";
+        public const string PreComputedOBBAngles3 = "m_vPrecomputedOBBAngles3";
+        public const string PreComputedOBBAngles4 = "m_vPrecomputedOBBAngles4";
+        public const string PreComputedOBBAngles5 = "m_vPrecomputedOBBAngles5";
+        public const string PreComputedOBBExtent = "m_vPrecomputedOBBExtent";
+        public const string PreComputedOBBExtent0 = "m_vPrecomputedOBBExtent0";
+        public const string PreComputedOBBExtent1 = "m_vPrecomputedOBBExtent1";
+        public const string PreComputedOBBExtent2 = "m_vPrecomputedOBBExtent2";
+        public const string PreComputedOBBExtent3 = "m_vPrecomputedOBBExtent3";
+        public const string PreComputedOBBExtent4 = "m_vPrecomputedOBBExtent4";
+        public const string PreComputedOBBExtent5 = "m_vPrecomputedOBBExtent5";
+        public const string PreComputedOBBOrigin = "m_vPrecomputedOBBOrigin";
+        public const string PreComputedOBBOrigin0 = "m_vPrecomputedOBBOrigin0";
+        public const string PreComputedOBBOrigin1 = "m_vPrecomputedOBBOrigin1";
+        public const string PreComputedOBBOrigin2 = "m_vPrecomputedOBBOrigin2";
+        public const string PreComputedOBBOrigin3 = "m_vPrecomputedOBBOrigin3";
+        public const string PreComputedOBBOrigin4 = "m_vPrecomputedOBBOrigin4";
+        public const string PreComputedOBBOrigin5 = "m_vPrecomputedOBBOrigin5";
+        public const string PreComputedSubFrusta = "m_nPrecomputedSubFrusta";
         public const string QueuedLightStyleStrings = "m_QueuedLightStyleStrings";
         public const string Range = "m_flRange";
         public const string ShadowFadeSizeEnd = "m_flShadowFadeSizeEnd";
@@ -22084,7 +22084,7 @@ public static class SchemaNames
         public const string SimulationTick = "m_nSimulationTick";
         public const string SimulationTime = "m_flSimulationTime";
         public const string SimulationTimeChanged = "m_bSimulationTimeChanged";
-        public const string Spawnflags = "m_spawnflags";
+        public const string SpawnFlags = "m_spawnflags";
         public const string SubclassId = "m_nSubclassID";
         public const string TakeDamageFlags = "m_nTakeDamageFlags";
         public const string TakesDamage = "m_bTakesDamage";
@@ -22127,19 +22127,19 @@ public static class SchemaNames
         public const string ClientOverrideTint = "m_ClientOverrideTint";
         public const string Collision = "m_Collision";
         public const string DestructiblePartInitialStateDestructed0 = "m_nDestructiblePartInitialStateDestructed0";
-        public const string DestructiblePartInitialStateDestructed0GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed0GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed0PartIndex = "m_nDestructiblePartInitialStateDestructed0_PartIndex";
         public const string DestructiblePartInitialStateDestructed1 = "m_nDestructiblePartInitialStateDestructed1";
-        public const string DestructiblePartInitialStateDestructed1GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed1GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed1PartIndex = "m_nDestructiblePartInitialStateDestructed1_PartIndex";
         public const string DestructiblePartInitialStateDestructed2 = "m_nDestructiblePartInitialStateDestructed2";
-        public const string DestructiblePartInitialStateDestructed2GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed2GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed2PartIndex = "m_nDestructiblePartInitialStateDestructed2_PartIndex";
         public const string DestructiblePartInitialStateDestructed3 = "m_nDestructiblePartInitialStateDestructed3";
-        public const string DestructiblePartInitialStateDestructed3GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed3GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed3PartIndex = "m_nDestructiblePartInitialStateDestructed3_PartIndex";
         public const string DestructiblePartInitialStateDestructed4 = "m_nDestructiblePartInitialStateDestructed4";
-        public const string DestructiblePartInitialStateDestructed4GenerateBreakpieces = "m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces";
+        public const string DestructiblePartInitialStateDestructed4GenerateBreakPieces = "m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces";
         public const string DestructiblePartInitialStateDestructed4PartIndex = "m_nDestructiblePartInitialStateDestructed4_PartIndex";
         public const string DestructiblePartsSystemComponent = "m_pDestructiblePartsSystemComponent";
         public const string DoingModelEffects = "m_bDoingModelEffects";
@@ -22147,7 +22147,7 @@ public static class SchemaNames
         public const string FadeMinDist = "m_fadeMinDist";
         public const string FadeScale = "m_flFadeScale";
         public const string Glow = "m_Glow";
-        public const string GlowBackfaceMult = "m_flGlowBackfaceMult";
+        public const string GlowBackFaceMult = "m_flGlowBackfaceMult";
         public const string InitModelEffects = "m_bInitModelEffects";
         public const string NoInterpolate = "m_bNoInterpolate";
         public const string ObjectCulling = "m_nObjectCulling";
@@ -22156,7 +22156,7 @@ public static class SchemaNames
         public const string RenderAttributes = "m_vecRenderAttributes";
         public const string RenderFX = "m_nRenderFX";
         public const string RenderMode = "m_nRenderMode";
-        public const string RenderToCubemaps = "m_bRenderToCubemaps";
+        public const string RenderToCubeMaps = "m_bRenderToCubemaps";
         public const string RequiredDecalRtEncoding = "m_nRequiredDecalRtEncoding";
         public const string ShadowStrength = "m_flShadowStrength";
         public const string UseClientOverrideTint = "m_bUseClientOverrideTint";
@@ -22167,7 +22167,7 @@ public static class SchemaNames
     {
         public const string Angle = "v_angle";
         public const string AnglePrevious = "v_anglePrevious";
-        public const string AutoaimServices = "m_pAutoaimServices";
+        public const string AutoAimServices = "m_pAutoaimServices";
         public const string CameraServices = "m_pCameraServices";
         public const string Controller = "m_hController";
         public const string DeathTime = "m_flDeathTime";
@@ -22177,8 +22177,8 @@ public static class SchemaNames
         public const string HideHUD = "m_iHideHUD";
         public const string IsSwappingToPredictableController = "m_bIsSwappingToPredictableController";
         public const string ItemServices = "m_pItemServices";
-        public const string LastCameraSetupLocalOrigin = "m_vecLastCameraSetupLocalOrigin";
-        public const string LastCameraSetupTime = "m_flLastCameraSetupTime";
+        public const string LastCameraSetUpLocalOrigin = "m_vecLastCameraSetupLocalOrigin";
+        public const string LastCameraSetUpTime = "m_flLastCameraSetupTime";
         public const string LastExecutedCommandNumber = "m_nLastExecutedCommandNumber";
         public const string LastExecutedCommandTick = "m_nLastExecutedCommandTick";
         public const string MouseSensitivity = "m_flMouseSensitivity";
@@ -22520,7 +22520,7 @@ public static class SchemaNames
         public const string RetakesOfferingCard = "m_iRetakesOfferingCard";
         public const string RoundStartEquipmentValue = "m_unRoundStartEquipmentValue";
         public const string ShotsFired = "m_iShotsFired";
-        public const string ShouldAutobuyDMWeapons = "m_bShouldAutobuyDMWeapons";
+        public const string ShouldAutoBuyDMWeapons = "m_bShouldAutobuyDMWeapons";
         public const string StashedGrenadeThrowPawnCenter = "m_vecStashedGrenadeThrowPawnCenter";
         public const string StashedGrenadeThrowPosition = "m_vecStashedGrenadeThrowPosition";
         public const string StashedShootAngles = "m_angStashedShootAngles";
@@ -22604,7 +22604,7 @@ public static class SchemaNames
         public const string BurstMode = "m_bBurstMode";
         public const string CanBePickedUp = "m_bCanBePickedUp";
         public const string ClearWeaponIdentifyingUGC = "m_bClearWeaponIdentifyingUGC";
-        public const string CrosshairDistance = "m_flCrosshairDistance";
+        public const string CrossHairDistance = "m_flCrosshairDistance";
         public const string CustomEconReloadEventId = "m_nCustomEconReloadEventId";
         public const string DeployTick = "m_nDeployTick";
         public const string Donated = "m_donated";
@@ -22657,7 +22657,7 @@ public static class SchemaNames
     public static class C_CSWeaponBaseGun
     {
         public const string BurstShotsRemaining = "m_iBurstShotsRemaining";
-        public const string InPrecache = "m_inPrecache";
+        public const string InPreCache = "m_inPrecache";
         public const string NeedsBoltAction = "m_bNeedsBoltAction";
         public const string RevolverCylinderIdx = "m_nRevolverCylinderIdx";
         public const string SilencedModelIndex = "m_silencedModelIndex";
@@ -22762,7 +22762,7 @@ public static class SchemaNames
         public const string AttachmentDirty = "m_bAttachmentDirty";
         public const string AttributeManager = "m_AttributeManager";
         public const string AttributesInitialized = "m_bAttributesInitialized";
-        public const string Clientside = "m_bClientside";
+        public const string ClientSide = "m_bClientside";
         public const string FallbackPaintKit = "m_nFallbackPaintKit";
         public const string FallbackSeed = "m_nFallbackSeed";
         public const string FallbackStatTrak = "m_nFallbackStatTrak";
@@ -22808,7 +22808,7 @@ public static class SchemaNames
         public const string OriginOverride = "m_iOriginOverride";
         public const string QualityOverride = "m_iQualityOverride";
         public const string RarityOverride = "m_iRarityOverride";
-        public const string RestoreCustomMaterialAfterPrecache = "m_bRestoreCustomMaterialAfterPrecache";
+        public const string RestoreCustomMaterialAfterPreCache = "m_bRestoreCustomMaterialAfterPrecache";
         public const string UbStyleOverride = "m_ubStyleOverride";
     }
 
@@ -22844,14 +22844,14 @@ public static class SchemaNames
 
     public static class C_EnvCombinedLightProbeVolume
     {
-        public const string EntityBCustomCubemapTexture = "m_Entity_bCustomCubemapTexture";
+        public const string EntityBCustomCubeMapTexture = "m_Entity_bCustomCubemapTexture";
         public const string EntityBEnabled = "m_Entity_bEnabled";
-        public const string EntityBMoveable = "m_Entity_bMoveable";
+        public const string EntityBMoveAble = "m_Entity_bMoveable";
         public const string EntityBStartDisabled = "m_Entity_bStartDisabled";
         public const string EntityColor = "m_Entity_Color";
         public const string EntityFlBrightness = "m_Entity_flBrightness";
         public const string EntityFlEdgeFadeDist = "m_Entity_flEdgeFadeDist";
-        public const string EntityHCubemapTexture = "m_Entity_hCubemapTexture";
+        public const string EntityHCubeMapTexture = "m_Entity_hCubemapTexture";
         public const string EntityHLightProbeDirectLightIndicesTexture = "m_Entity_hLightProbeDirectLightIndicesTexture";
         public const string EntityHLightProbeDirectLightScalarsTexture = "m_Entity_hLightProbeDirectLightScalarsTexture";
         public const string EntityHLightProbeDirectLightShadowsTexture = "m_Entity_hLightProbeDirectLightShadowsTexture";
@@ -22877,18 +22877,18 @@ public static class SchemaNames
 
     public static class C_EnvCubemap
     {
-        public const string EntityBCopyDiffuseFromDefaultCubemap = "m_Entity_bCopyDiffuseFromDefaultCubemap";
-        public const string EntityBCustomCubemapTexture = "m_Entity_bCustomCubemapTexture";
+        public const string EntityBCopyDiffuseFromDefaultCubeMap = "m_Entity_bCopyDiffuseFromDefaultCubemap";
+        public const string EntityBCustomCubeMapTexture = "m_Entity_bCustomCubemapTexture";
         public const string EntityBDefaultEnvMap = "m_Entity_bDefaultEnvMap";
         public const string EntityBDefaultSpecEnvMap = "m_Entity_bDefaultSpecEnvMap";
         public const string EntityBEnabled = "m_Entity_bEnabled";
         public const string EntityBIndoorCubeMap = "m_Entity_bIndoorCubeMap";
-        public const string EntityBMoveable = "m_Entity_bMoveable";
+        public const string EntityBMoveAble = "m_Entity_bMoveable";
         public const string EntityBStartDisabled = "m_Entity_bStartDisabled";
         public const string EntityFlDiffuseScale = "m_Entity_flDiffuseScale";
         public const string EntityFlEdgeFadeDist = "m_Entity_flEdgeFadeDist";
         public const string EntityFlInfluenceRadius = "m_Entity_flInfluenceRadius";
-        public const string EntityHCubemapTexture = "m_Entity_hCubemapTexture";
+        public const string EntityHCubeMapTexture = "m_Entity_hCubemapTexture";
         public const string EntityNEnvCubeMapArrayIndex = "m_Entity_nEnvCubeMapArrayIndex";
         public const string EntityNHandshake = "m_Entity_nHandshake";
         public const string EntityNPriority = "m_Entity_nPriority";
@@ -22900,12 +22900,12 @@ public static class SchemaNames
     public static class C_EnvCubemapFog
     {
         public const string Active = "m_bActive";
-        public const string CubemapSourceType = "m_nCubemapSourceType";
+        public const string CubeMapSourceType = "m_nCubemapSourceType";
         public const string DistanceFogCurveString = "m_DistanceFogCurveString";
         public const string DistanceFogType = "m_nDistanceFogType";
         public const string EndDistance = "m_flEndDistance";
         public const string FirstTime = "m_bFirstTime";
-        public const string FogCubemapTexture = "m_hFogCubemapTexture";
+        public const string FogCubeMapTexture = "m_hFogCubemapTexture";
         public const string FogFalloffExponent = "m_flFogFalloffExponent";
         public const string FogHeightBlendMode = "m_nFogHeightBlendMode";
         public const string FogHeightCoordinateSpace = "m_nFogHeightCoordinateSpace";
@@ -22947,7 +22947,7 @@ public static class SchemaNames
     public static class C_EnvLightProbeVolume
     {
         public const string EntityBEnabled = "m_Entity_bEnabled";
-        public const string EntityBMoveable = "m_Entity_bMoveable";
+        public const string EntityBMoveAble = "m_Entity_bMoveable";
         public const string EntityBStartDisabled = "m_Entity_bStartDisabled";
         public const string EntityHLightProbeDirectLightIndicesTexture = "m_Entity_hLightProbeDirectLightIndicesTexture";
         public const string EntityHLightProbeDirectLightScalarsTexture = "m_Entity_hLightProbeDirectLightScalarsTexture";
@@ -23005,18 +23005,18 @@ public static class SchemaNames
         public const string DefaultDrawDistance = "m_flDefaultDrawDistance";
         public const string DefaultScattering = "m_flDefaultScattering";
         public const string DrawDistance = "m_flDrawDistance";
-        public const string EnableIndirect = "m_bEnableIndirect";
+        public const string EnableInDirect = "m_bEnableIndirect";
         public const string FadeInEnd = "m_flFadeInEnd";
         public const string FadeInStart = "m_flFadeInStart";
         public const string FadeSpeed = "m_flFadeSpeed";
         public const string FirstTime = "m_bFirstTime";
         public const string FirstVolumeSliceThickness = "m_fFirstVolumeSliceThickness";
-        public const string FogIndirectTexture = "m_hFogIndirectTexture";
+        public const string FogInDirectTexture = "m_hFogIndirectTexture";
         public const string ForceRefreshCount = "m_nForceRefreshCount";
-        public const string IndirectStrength = "m_flIndirectStrength";
-        public const string IndirectTextureDimX = "m_nIndirectTextureDimX";
-        public const string IndirectTextureDimY = "m_nIndirectTextureDimY";
-        public const string IndirectTextureDimZ = "m_nIndirectTextureDimZ";
+        public const string InDirectStrength = "m_flIndirectStrength";
+        public const string InDirectTextureDimX = "m_nIndirectTextureDimX";
+        public const string InDirectTextureDimY = "m_nIndirectTextureDimY";
+        public const string InDirectTextureDimZ = "m_nIndirectTextureDimZ";
         public const string IsMaster = "m_bIsMaster";
         public const string NoiseScale = "m_vNoiseScale";
         public const string NoiseSpeed = "m_fNoiseSpeed";
@@ -23044,10 +23044,10 @@ public static class SchemaNames
         public const string FalloffShape = "m_nFalloffShape";
         public const string HeightFogDepth = "m_flHeightFogDepth";
         public const string HeightFogEdgeWidth = "m_fHeightFogEdgeWidth";
-        public const string IndirectLightStrength = "m_fIndirectLightStrength";
-        public const string IndirectUseLPVs = "m_bIndirectUseLPVs";
+        public const string InDirectLightStrength = "m_fIndirectLightStrength";
+        public const string InDirectUseLPVs = "m_bIndirectUseLPVs";
         public const string NoiseStrength = "m_fNoiseStrength";
-        public const string OverrideIndirectLightStrength = "m_bOverrideIndirectLightStrength";
+        public const string OverrideInDirectLightStrength = "m_bOverrideIndirectLightStrength";
         public const string OverrideNoiseStrength = "m_bOverrideNoiseStrength";
         public const string OverrideSunLightStrength = "m_bOverrideSunLightStrength";
         public const string OverrideTintColor = "m_bOverrideTintColor";
@@ -23273,10 +23273,10 @@ public static class SchemaNames
         public const string FireParentPositions = "m_fireParentPositions";
         public const string FirePositions = "m_firePositions";
         public const string InPostEffectTime = "m_bInPostEffectTime";
-        public const string InfernoClimbingOutlinePointsSnapshot = "m_hInfernoClimbingOutlinePointsSnapshot";
+        public const string InfernoClimbingOutLinePointsSnapshot = "m_hInfernoClimbingOutlinePointsSnapshot";
         public const string InfernoDecalsSnapshot = "m_hInfernoDecalsSnapshot";
         public const string InfernoFillerPointsSnapshot = "m_hInfernoFillerPointsSnapshot";
-        public const string InfernoOutlinePointsSnapshot = "m_hInfernoOutlinePointsSnapshot";
+        public const string InfernoOutLinePointsSnapshot = "m_hInfernoOutlinePointsSnapshot";
         public const string InfernoPointsSnapshot = "m_hInfernoPointsSnapshot";
         public const string InfernoType = "m_nInfernoType";
         public const string LastFireCount = "m_lastFireCount";
@@ -23440,10 +23440,10 @@ public static class SchemaNames
         public const string C4ExplodeSpectateAng = "m_vecC4ExplodeSpectateAng";
         public const string C4ExplodeSpectateDuration = "m_flC4ExplodeSpectateDuration";
         public const string C4ExplodeSpectatePos = "m_vecC4ExplodeSpectatePos";
-        public const string CannotBeDefused = "m_bCannotBeDefused";
+        public const string CanNotBeDefused = "m_bCannotBeDefused";
         public const string DefuseCountDown = "m_flDefuseCountDown";
         public const string DefuseLength = "m_flDefuseLength";
-        public const string DefuserMultimeter = "m_hDefuserMultimeter";
+        public const string DefuserMultiMeter = "m_hDefuserMultimeter";
         public const string EntitySpottedState = "m_entitySpottedState";
         public const string ExplodeWarning = "m_bExplodeWarning";
         public const string HBombDefuser = "m_hBombDefuser";
@@ -23568,7 +23568,7 @@ public static class SchemaNames
         public const string Opaque = "m_bOpaque";
         public const string Orientation = "m_unOrientation";
         public const string OwnerContext = "m_unOwnerContext";
-        public const string RenderBackface = "m_bRenderBackface";
+        public const string RenderBackFace = "m_bRenderBackface";
         public const string UseOffScreenIndicator = "m_bUseOffScreenIndicator";
         public const string VerticalAlign = "m_unVerticalAlign";
         public const string VisibleWhenParentNoDraw = "m_bVisibleWhenParentNoDraw";
@@ -23725,7 +23725,7 @@ public static class SchemaNames
         public const string CachedEndPointAttachmentPos = "m_vCachedEndPointAttachmentPos";
         public const string ChangeCount = "m_nChangeCount";
         public const string ColorMod = "m_vColorMod";
-        public const string ConstrainBetweenEndpoints = "m_bConstrainBetweenEndpoints";
+        public const string ConstrainBetweenEndPoints = "m_bConstrainBetweenEndpoints";
         public const string CurScroll = "m_flCurScroll";
         public const string CurrentGustLifeTime = "m_flCurrentGustLifetime";
         public const string CurrentGustTimer = "m_flCurrentGustTimer";
@@ -23765,7 +23765,7 @@ public static class SchemaNames
     {
         public const string ActorList = "m_hActorList";
         public const string AllRequirementsComplete = "m_bAllRequirementsComplete";
-        public const string Autogenerated = "m_bAutogenerated";
+        public const string AutoGenerated = "m_bAutogenerated";
         public const string ClientOnly = "m_bClientOnly";
         public const string CurrentTime = "m_flCurrentTime";
         public const string ForceClientTime = "m_flForceClientTime";
@@ -23908,7 +23908,7 @@ public static class SchemaNames
         public const string ScaleDuration = "m_flScaleDuration";
         public const string ScaleTimeStart = "m_flScaleTimeStart";
         public const string Speed = "m_flSpeed";
-        public const string SpriteFramerate = "m_flSpriteFramerate";
+        public const string SpriteFrameRate = "m_flSpriteFramerate";
         public const string SpriteHeight = "m_nSpriteHeight";
         public const string SpriteMaterial = "m_hSpriteMaterial";
         public const string SpriteScale = "m_flSpriteScale";
@@ -24336,7 +24336,7 @@ public static class SchemaNames
         public const string MotorTargetAngSpeed = "flMotorTargetAngSpeed";
     }
 
-    public static class ConstraintBreakableparams
+    public static class ConstraintBreakableParams
     {
         public const string BodyMassScale = "bodyMassScale";
         public const string ForceLimit = "forceLimit";
@@ -24345,7 +24345,7 @@ public static class SchemaNames
         public const string TorqueLimit = "torqueLimit";
     }
 
-    public static class ConstraintHingeparams
+    public static class ConstraintHingeParams
     {
         public const string Constraint = "constraint";
         public const string HingeAxis = "hingeAxis";
@@ -24441,6 +24441,35 @@ public static class SchemaNames
         public const string SwapLeftRightParentBones = "m_bSwapLeftRightParentBones";
     }
 
+    public static class DynPitchVolBase
+    {
+        public const string Cspincount = "cspincount";
+        public const string Cspinup = "cspinup";
+        public const string FadeIn = "fadein";
+        public const string FadeOut = "fadeout";
+        public const string Fadeinsav = "fadeinsav";
+        public const string Fadeoutsav = "fadeoutsav";
+        public const string LfoFrac = "lfofrac";
+        public const string LfoModPitch = "lfomodpitch";
+        public const string LfoModVol = "lfomodvol";
+        public const string LfoMult = "lfomult";
+        public const string LfoRate = "lforate";
+        public const string Lfotype = "lfotype";
+        public const string Pitch = "pitch";
+        public const string PitchFrac = "pitchfrac";
+        public const string PitchRun = "pitchrun";
+        public const string PitchStart = "pitchstart";
+        public const string Preset = "preset";
+        public const string SpinDown = "spindown";
+        public const string SpinDownSav = "spindownsav";
+        public const string SpinUp = "spinup";
+        public const string SpinUpSav = "spinupsav";
+        public const string Vol = "vol";
+        public const string VolFrac = "volfrac";
+        public const string VolRun = "volrun";
+        public const string VolStart = "volstart";
+    }
+
     public static class DynamicMeshDeformParams
     {
         public const string ComputeDynamicMeshTensionAfterAnimation = "m_bComputeDynamicMeshTensionAfterAnimation";
@@ -24461,35 +24490,6 @@ public static class SchemaNames
         public const string SourceAnchorPos = "m_vSourceAnchorPos";
         public const string Target = "m_target";
         public const string TargetAnchorPos = "m_vTargetAnchorPos";
-    }
-
-    public static class DynpitchvolBase
-    {
-        public const string Cspincount = "cspincount";
-        public const string Cspinup = "cspinup";
-        public const string FadeIn = "fadein";
-        public const string Fadeinsav = "fadeinsav";
-        public const string Fadeout = "fadeout";
-        public const string Fadeoutsav = "fadeoutsav";
-        public const string Lfofrac = "lfofrac";
-        public const string Lfomodpitch = "lfomodpitch";
-        public const string Lfomodvol = "lfomodvol";
-        public const string Lfomult = "lfomult";
-        public const string Lforate = "lforate";
-        public const string Lfotype = "lfotype";
-        public const string Pitch = "pitch";
-        public const string Pitchfrac = "pitchfrac";
-        public const string Pitchrun = "pitchrun";
-        public const string Pitchstart = "pitchstart";
-        public const string Preset = "preset";
-        public const string Spindown = "spindown";
-        public const string Spindownsav = "spindownsav";
-        public const string Spinup = "spinup";
-        public const string Spinupsav = "spinupsav";
-        public const string Vol = "vol";
-        public const string Volfrac = "volfrac";
-        public const string Volrun = "volrun";
-        public const string Volstart = "volstart";
     }
 
     public static class EMaterialLayer
@@ -24624,17 +24624,17 @@ public static class SchemaNames
         public const string SpottedByMask = "m_bSpottedByMask";
     }
 
-    public static class Entitytable
+    public static class EntityTable
     {
         public const string ClassName = "classname";
-        public const string Edictindex = "edictindex";
+        public const string EdictIndex = "edictindex";
         public const string EntityName = "entityname";
         public const string Flags = "flags";
         public const string GlobalName = "globalname";
         public const string Id = "id";
         public const string LandmarkModelSpace = "landmarkModelSpace";
-        public const string PrecacheEntityKeys = "m_pPrecacheEntityKeys";
-        public const string Saveentityindex = "saveentityindex";
+        public const string PreCacheEntityKeys = "m_pPrecacheEntityKeys";
+        public const string SaveEntityIndex = "saveentityindex";
         public const string WasSaved = "bWasSaved";
     }
 
@@ -25326,7 +25326,7 @@ public static class SchemaNames
         public const string Variable = "m_strVariable";
     }
 
-    public static class Fogparams
+    public static class FogParams
     {
         public const string Blend = "blend";
         public const string Blendtobackground = "blendtobackground";
@@ -25342,10 +25342,10 @@ public static class SchemaNames
         public const string Exponent = "exponent";
         public const string Farz = "farz";
         public const string HDRColorScale = "HDRColorScale";
-        public const string Lerptime = "lerptime";
-        public const string Locallightscale = "locallightscale";
-        public const string Maxdensity = "maxdensity";
-        public const string MaxdensityLerpTo = "maxdensityLerpTo";
+        public const string LerpTime = "lerptime";
+        public const string LocalLightScale = "locallightscale";
+        public const string MaxDensity = "maxdensity";
+        public const string MaxDensityLerpTo = "maxdensityLerpTo";
         public const string Padding = "m_bPadding";
         public const string Padding2 = "m_bPadding2";
         public const string Scattering = "scattering";
@@ -25355,7 +25355,7 @@ public static class SchemaNames
         public const string StartLerpTo = "startLerpTo";
     }
 
-    public static class Fogplayerparams
+    public static class FogPlayerParams
     {
         public const string Ctrl = "m_hCtrl";
         public const string NewColor = "m_NewColor";
@@ -25619,7 +25619,7 @@ public static class SchemaNames
         public const string WhipSpringStrength = "m_flWhipSpringStrength";
     }
 
-    public static class Hudtextparms
+    public static class HudTextParms
     {
         public const string Channel = "channel";
         public const string Color1 = "color1";
@@ -25666,8 +25666,8 @@ public static class SchemaNames
 
     public static class IKTargetSettings
     {
-        public const string AnimgraphParameterNameOrientation = "m_AnimgraphParameterNameOrientation";
-        public const string AnimgraphParameterNamePosition = "m_AnimgraphParameterNamePosition";
+        public const string AnimGraphParameterNameOrientation = "m_AnimgraphParameterNameOrientation";
+        public const string AnimGraphParameterNamePosition = "m_AnimgraphParameterNamePosition";
         public const string Bone = "m_Bone";
         public const string TargetCoordSystem = "m_TargetCoordSystem";
         public const string TargetSource = "m_TargetSource";
@@ -25728,8 +25728,8 @@ public static class SchemaNames
         public const string Item = "item";
         public const string Light0 = "light0";
         public const string Light1 = "light1";
-        public const string Lightfill = "lightfill";
-        public const string Lightsun = "lightsun";
+        public const string LightFill = "lightfill";
+        public const string LightSun = "lightsun";
         public const string Map = "map";
     }
 
@@ -25793,7 +25793,7 @@ public static class SchemaNames
         public const string VelocityZones = "pVelocityZones";
     }
 
-    public static class Lerpdata
+    public static class LerpData
     {
         public const string Ent = "m_hEnt";
         public const string FXIndex = "m_nFXIndex";
@@ -25812,7 +25812,7 @@ public static class SchemaNames
         public const string SMapName = "m_sMapName";
     }
 
-    public static class Locksound
+    public static class LockSound
     {
         public const string FlwaitSound = "flwaitSound";
         public const string SLockedSound = "sLockedSound";
@@ -26010,7 +26010,7 @@ public static class SchemaNames
         public const string Parent = "m_nParent";
     }
 
-    public static class Modifiedconvars
+    public static class ModifiedConvars
     {
         public const string Convar = "pszConvar";
         public const string CurrentValue = "pszCurrentValue";
@@ -26217,7 +26217,7 @@ public static class SchemaNames
 
     public static class PGDInstruction
     {
-        public const string BlackboardReferenceIdx = "m_nBlackboardReferenceIdx";
+        public const string BlackBoardReferenceIdx = "m_nBlackboardReferenceIdx";
         public const string CallInfoIndex = "m_nCallInfoIndex";
         public const string Chunk = "m_nChunk";
         public const string Code = "m_nCode";
@@ -26320,7 +26320,7 @@ public static class SchemaNames
 
     public static class ParticleNode
     {
-        public const string EndcapTime = "m_flEndcapTime";
+        public const string EndCapTime = "m_flEndcapTime";
         public const string Entity = "m_hEntity";
         public const string GrowthDuration = "m_flGrowthDuration";
         public const string GrowthOrigin = "m_vecGrowthOrigin";
@@ -26505,7 +26505,7 @@ public static class SchemaNames
         public const string MorphLayers = "m_MorphLayers";
         public const string MorphSetData = "m_MorphSetData";
         public const string MotionSmoothCDT = "m_flMotionSmoothCDT";
-        public const string NodeBaseJiggleboneDependsCount = "m_nNodeBaseJiggleboneDependsCount";
+        public const string NodeBaseJiggleBoneDependsCount = "m_nNodeBaseJiggleboneDependsCount";
         public const string NodeBases = "m_NodeBases";
         public const string NodeCollisionRadii = "m_NodeCollisionRadii";
         public const string NodeCount = "m_nNodeCount";
@@ -26583,7 +26583,7 @@ public static class SchemaNames
         public const string ShapeInBody = "m_nShapeInBody";
     }
 
-    public static class PhysSoftbodyDesc
+    public static class PhysSoftBodyDesc
     {
         public const string Capsules = "m_Capsules";
         public const string InitPose = "m_InitPose";
@@ -26659,7 +26659,7 @@ public static class SchemaNames
 
     public static class PostProcessingFogScatteringParameters
     {
-        public const string CubemapScale = "m_fCubemapScale";
+        public const string CubeMapScale = "m_fCubemapScale";
         public const string GradientScale = "m_fGradientScale";
         public const string Radius = "m_fRadius";
         public const string Scale = "m_fScale";
@@ -26797,12 +26797,12 @@ public static class SchemaNames
 
     public static class PulseRegisterMap
     {
-        public const string Inparams = "m_Inparams";
-        public const string InparamsWhichCanBeMoved = "m_InparamsWhichCanBeMoved";
-        public const string Outparams = "m_Outparams";
+        public const string InParams = "m_Inparams";
+        public const string InParamsWhichCanBeMoved = "m_InparamsWhichCanBeMoved";
+        public const string OutParams = "m_Outparams";
     }
 
-    public static class PulseRuntimeBlackboardReferenceIndex
+    public static class PulseRuntimeBlackBoardReferenceIndex
     {
         public const string Value = "m_Value";
     }
@@ -26927,7 +26927,7 @@ public static class SchemaNames
         public const string UseLRURetirement = "m_bUseLRURetirement";
     }
 
-    public static class Ragdollelement
+    public static class RagdollElement
     {
         public const string Height = "m_nHeight";
         public const string OriginParentSpace = "originParentSpace";
@@ -26935,7 +26935,7 @@ public static class SchemaNames
         public const string Radius = "m_flRadius";
     }
 
-    public static class Ragdollhierarchyjoint
+    public static class RagdollHierarchyJoint
     {
         public const string ChildIndex = "childIndex";
         public const string ParentIndex = "parentIndex";
@@ -27014,9 +27014,9 @@ public static class SchemaNames
         public const string FollowupConcept = "followup_concept";
         public const string FollowupContexts = "followup_contexts";
         public const string FollowupDelay = "followup_delay";
-        public const string FollowupEntityiodelay = "followup_entityiodelay";
-        public const string FollowupEntityioinput = "followup_entityioinput";
-        public const string FollowupEntityiotarget = "followup_entityiotarget";
+        public const string FollowupEntityIoDelay = "followup_entityiodelay";
+        public const string FollowupEntityIoInput = "followup_entityioinput";
+        public const string FollowupEntityIoTarget = "followup_entityiotarget";
         public const string FollowupTarget = "followup_target";
     }
 
@@ -27187,19 +27187,19 @@ public static class SchemaNames
         public const string UserFriendlyNameSealed = "m_bUserFriendlyNameSealed";
     }
 
-    public static class RnSoftbodyCapsule
+    public static class RnSoftBodyCapsule
     {
         public const string Center = "m_vCenter";
         public const string Particle = "m_nParticle";
         public const string Radius = "m_flRadius";
     }
 
-    public static class RnSoftbodyParticle
+    public static class RnSoftBodyParticle
     {
         public const string MassInv = "m_flMassInv";
     }
 
-    public static class RnSoftbodySpring
+    public static class RnSoftBodySpring
     {
         public const string Length = "m_flLength";
         public const string Particle = "m_nParticle";
@@ -27267,7 +27267,7 @@ public static class SchemaNames
         public const string DepthBiasClamp = "m_flDepthBiasClamp";
         public const string DepthClipEnable = "m_bDepthClipEnable";
         public const string FillMode = "m_nFillMode";
-        public const string MultisampleEnable = "m_bMultisampleEnable";
+        public const string MultiSampleEnable = "m_bMultisampleEnable";
         public const string SlopeScaledDepthBias = "m_flSlopeScaledDepthBias";
     }
 
@@ -27323,11 +27323,11 @@ public static class SchemaNames
 
     public static class SceneObject
     {
-        public const string CubeMapPrecomputedHandshake = "m_nCubeMapPrecomputedHandshake";
+        public const string CubeMapPreComputedHandshake = "m_nCubeMapPrecomputedHandshake";
         public const string FadeEndDistance = "m_flFadeEndDistance";
         public const string FadeStartDistance = "m_flFadeStartDistance";
         public const string LODOverride = "m_nLODOverride";
-        public const string LightProbeVolumePrecomputedHandshake = "m_nLightProbeVolumePrecomputedHandshake";
+        public const string LightProbeVolumePreComputedHandshake = "m_nLightProbeVolumePrecomputedHandshake";
         public const string LightingOrigin = "m_vLightingOrigin";
         public const string ObjectId = "m_nObjectID";
         public const string ObjectTypeFlags = "m_nObjectTypeFlags";
@@ -27389,7 +27389,7 @@ public static class SchemaNames
         public const string Weights = "m_weights";
     }
 
-    public static class SellbackPurchaseEntry
+    public static class SellBackPurchaseEntry
     {
         public const string Cost = "m_nCost";
         public const string DefIdx = "m_unDefIdx";
@@ -27635,9 +27635,9 @@ public static class SchemaNames
     public static class SteamAudioCustomDataDimensionsSettings
     {
         public const string AmbisonicsOrderInsideSizeField = "m_nAmbisonicsOrderInsideSizeField";
-        public const string AmbisonicsOrderOutsideField = "m_nAmbisonicsOrderOutsideField";
+        public const string AmbisonicsOrderOutSideField = "m_nAmbisonicsOrderOutsideField";
         public const string InsideThreshold = "m_flInsideThreshold";
-        public const string OutsideThreshold = "m_flOutsideThreshold";
+        public const string OutSideThreshold = "m_flOutsideThreshold";
         public const string SizeThreshold = "m_flSizeThreshold";
     }
 
@@ -27814,7 +27814,7 @@ public static class SchemaNames
         public const string ReleaseTimeMS = "m_flReleaseTimeMS";
     }
 
-    public static class VMixBoxverbDesc
+    public static class VMixBoxVerbDesc
     {
         public const string Complexity = "m_flComplexity";
         public const string Depth = "m_flDepth";
@@ -27963,8 +27963,8 @@ public static class SchemaNames
     {
         public const string ApplyAntialiasing = "m_bApplyAntialiasing";
         public const string Delay = "m_flDelay";
+        public const string FeedForwardGain = "m_flFeedforwardGain";
         public const string FeedbackGain = "m_flFeedbackGain";
-        public const string FeedforwardGain = "m_flFeedforwardGain";
         public const string GlideTime = "m_flGlideTime";
         public const string ModDepth = "m_flModDepth";
         public const string ModRate = "m_flModRate";
@@ -27972,7 +27972,7 @@ public static class SchemaNames
         public const string PhaseInvert = "m_bPhaseInvert";
     }
 
-    public static class VMixFreeverbDesc
+    public static class VMixFreeVerbDesc
     {
         public const string Damp = "m_flDamp";
         public const string LateReflections = "m_flLateReflections";
@@ -28014,7 +28014,7 @@ public static class SchemaNames
         public const string Quality = "m_nQuality";
     }
 
-    public static class VMixPlateverbDesc
+    public static class VMixPlateVerbDesc
     {
         public const string Damp = "m_flDamp";
         public const string Decay = "m_flDecay";
@@ -28034,19 +28034,19 @@ public static class SchemaNames
     {
         public const string FldbDrive = "m_fldbDrive";
         public const string FldbOutputGain = "m_fldbOutputGain";
-        public const string OversampleFactor = "m_nOversampleFactor";
+        public const string OverSampleFactor = "m_nOversampleFactor";
         public const string Shape = "m_nShape";
         public const string WetMix = "m_flWetMix";
     }
 
-    public static class VMixSubgraphSwitchDesc
+    public static class VMixSubGraphSwitchDesc
     {
         public const string EffectName = "m_effectName";
         public const string InterpolationMode = "m_interpolationMode";
         public const string InterpolationTime = "m_flInterpolationTime";
         public const string Name = "m_name";
         public const string OnlyTailsOnFadeOut = "m_bOnlyTailsOnFadeOut";
-        public const string Subgraphs = "m_subgraphs";
+        public const string SubGraphs = "m_subgraphs";
     }
 
     public static class VMixUtilityDesc
@@ -28087,7 +28087,7 @@ public static class SchemaNames
         public const string CollisionAttributes = "m_collisionAttributes";
         public const string Constraints2 = "m_constraints2";
         public const string DebugPartNames = "m_debugPartNames";
-        public const string EmbeddedKeyvalues = "m_embeddedKeyvalues";
+        public const string EmbeddedKeyValues = "m_embeddedKeyvalues";
         public const string FeModel = "m_pFeModel";
         public const string Flags = "m_nFlags";
         public const string IndexHash = "m_indexHash";
@@ -28318,10 +28318,10 @@ public static class SchemaNames
         public const string ResolutionGate = "szResolutionGate";
         public const string ReverseY = "bReverseY";
         public const string RotationScale = "flRotationScale";
-        public const string SelectionOutlineDepth = "bSelectionOutlineDepth";
+        public const string SelectionOutLineDepth = "bSelectionOutlineDepth";
         public const string SelectionOverlayAlpha = "fSelectionOverlayAlpha";
         public const string ShadowFarPlane = "flShadowFarPlane";
-        public const string ShowSelectionOutline = "bShowSelectionOutline";
+        public const string ShowSelectionOutLine = "bShowSelectionOutline";
         public const string TimeToMaxSpeed = "nTimeToMaxSpeed";
         public const string ToolsVisSSAOPowerScale = "fToolsVisSSAOPowerScale";
         public const string ToolsVisSSAORadiusScale = "fToolsVisSSAORadiusScale";

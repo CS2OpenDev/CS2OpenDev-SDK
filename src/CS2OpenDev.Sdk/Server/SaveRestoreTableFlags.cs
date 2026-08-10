@@ -175,13 +175,13 @@ public enum SaveRestoreTableFlags : uint
     LevelMaskBit15 = 32768,
 
     /// <summary>
-    ///     FenttablePlayerchild.
+    ///     FenttablePlayerChild.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FENTTABLE_PLAYERCHILD</c>.
     /// </remarks>
     [NativeName("FENTTABLE_PLAYERCHILD")]
-    FenttablePlayerchild = 134217728,
+    FenttablePlayerChild = 134217728,
 
     /// <summary>
     ///     FenttableGlobal.
@@ -193,13 +193,13 @@ public enum SaveRestoreTableFlags : uint
     FenttableGlobal = 268435456,
 
     /// <summary>
-    ///     FenttableMoveable.
+    ///     FenttableMoveAble.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FENTTABLE_MOVEABLE</c>.
     /// </remarks>
     [NativeName("FENTTABLE_MOVEABLE")]
-    FenttableMoveable = 536870912,
+    FenttableMoveAble = 536870912,
 
     /// <summary>
     ///     FenttableRemoved.

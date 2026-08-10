@@ -66,22 +66,22 @@ public enum EStyleNodeType : uint
     Import = 4,
 
     /// <summary>
-    ///     Keyframes.
+    ///     KeyFrames.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>KEYFRAMES</c>.
     /// </remarks>
     [NativeName("KEYFRAMES")]
-    Keyframes = 5,
+    KeyFrames = 5,
 
     /// <summary>
-    ///     KeyframeSelector.
+    ///     KeyFrameSelector.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>KEYFRAME_SELECTOR</c>.
     /// </remarks>
     [NativeName("KEYFRAME_SELECTOR")]
-    KeyframeSelector = 6,
+    KeyFrameSelector = 6,
 
     /// <summary>
     ///     StyleSelector.

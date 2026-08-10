@@ -44,12 +44,12 @@ public partial class CAssetTypeConfig
     public CUtlVector__CAssetWarning___ AssetWarnings { get; set; }
 
     /// <summary>
-    ///     Gets or sets SubassetTypes.
+    ///     Gets or sets SubAssetTypes.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_SubassetTypes</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_SubassetTypes")]
-    public CUtlVector__CSubassetTypeInfo___ SubassetTypes { get; set; }
+    public CUtlVector__CSubassetTypeInfo___ SubAssetTypes { get; set; }
 }

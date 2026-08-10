@@ -29,7 +29,7 @@ public enum ParticleColorBlendMode : uint
     /// </remarks>
     [NativeName("PARTICLEBLEND_DEFAULT")]
     [NativeMetadata("MPropertyFriendlyName", "Replace")]
-    ParticleblendDefault = 0,
+    ParticleBlendDefault = 0,
 
     /// <summary>
     ///     Overlay.
@@ -39,7 +39,7 @@ public enum ParticleColorBlendMode : uint
     /// </remarks>
     [NativeName("PARTICLEBLEND_OVERLAY")]
     [NativeMetadata("MPropertyFriendlyName", "Overlay")]
-    ParticleblendOverlay = 1,
+    ParticleBlendOverlay = 1,
 
     /// <summary>
     ///     Darken.
@@ -49,7 +49,7 @@ public enum ParticleColorBlendMode : uint
     /// </remarks>
     [NativeName("PARTICLEBLEND_DARKEN")]
     [NativeMetadata("MPropertyFriendlyName", "Darken")]
-    ParticleblendDarken = 2,
+    ParticleBlendDarken = 2,
 
     /// <summary>
     ///     Lighten.
@@ -59,7 +59,7 @@ public enum ParticleColorBlendMode : uint
     /// </remarks>
     [NativeName("PARTICLEBLEND_LIGHTEN")]
     [NativeMetadata("MPropertyFriendlyName", "Lighten")]
-    ParticleblendLighten = 3,
+    ParticleBlendLighten = 3,
 
     /// <summary>
     ///     Multiply.
@@ -69,5 +69,5 @@ public enum ParticleColorBlendMode : uint
     /// </remarks>
     [NativeName("PARTICLEBLEND_MULTIPLY")]
     [NativeMetadata("MPropertyFriendlyName", "Multiply")]
-    ParticleblendMultiply = 4
+    ParticleBlendMultiply = 4
 }

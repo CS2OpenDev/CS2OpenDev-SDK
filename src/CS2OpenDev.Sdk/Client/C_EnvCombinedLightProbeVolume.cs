@@ -23,14 +23,14 @@ namespace CS2OpenSchema.Client;
 public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
 {
     /// <summary>
-    ///     Gets or sets EntityBCustomCubemapTexture.
+    ///     Gets or sets EntityBCustomCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bCustomCubemapTexture</c> at offset <c>0x1688</c>.
     /// </remarks>
     [NativeOffset(0x1688)]
     [NativeName("m_Entity_bCustomCubemapTexture")]
-    public bool EntityBCustomCubemapTexture { get; set; }
+    public bool EntityBCustomCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBEnabled.
@@ -43,14 +43,14 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     public bool EntityBEnabled { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityBMoveable.
+    ///     Gets or sets EntityBMoveAble.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bMoveable</c> at offset <c>0x16F0</c>.
     /// </remarks>
     [NativeOffset(0x16F0)]
     [NativeName("m_Entity_bMoveable")]
-    public bool EntityBMoveable { get; set; }
+    public bool EntityBMoveAble { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBStartDisabled.
@@ -93,14 +93,14 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     public float EntityFlEdgeFadeDist { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityHCubemapTexture.
+    ///     Gets or sets EntityHCubeMapTexture.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_hCubemapTexture</c> at offset <c>0x1680</c>.
     /// </remarks>
     [NativeOffset(0x1680)]
     [NativeName("m_Entity_hCubemapTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubemapTexture { get; set; }
+    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightIndicesTexture.

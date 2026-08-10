@@ -49,22 +49,22 @@ public enum ParticleAttachment : uint
     PattachAbsOriginFollow = 1,
 
     /// <summary>
-    ///     PattachCustomorigin.
+    ///     PattachCustomOrigin.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_CUSTOMORIGIN</c>.
     /// </remarks>
     [NativeName("PATTACH_CUSTOMORIGIN")]
-    PattachCustomorigin = 2,
+    PattachCustomOrigin = 2,
 
     /// <summary>
-    ///     PattachCustomoriginFollow.
+    ///     PattachCustomOriginFollow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_CUSTOMORIGIN_FOLLOW</c>.
     /// </remarks>
     [NativeName("PATTACH_CUSTOMORIGIN_FOLLOW")]
-    PattachCustomoriginFollow = 3,
+    PattachCustomOriginFollow = 3,
 
     /// <summary>
     ///     PattachPoint.
@@ -112,13 +112,13 @@ public enum ParticleAttachment : uint
     PattachWorldOrigin = 8,
 
     /// <summary>
-    ///     PattachRootboneFollow.
+    ///     PattachRootBoneFollow.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>PATTACH_ROOTBONE_FOLLOW</c>.
     /// </remarks>
     [NativeName("PATTACH_ROOTBONE_FOLLOW")]
-    PattachRootboneFollow = 9,
+    PattachRootBoneFollow = 9,
 
     /// <summary>
     ///     PattachRenderOriginFollow.

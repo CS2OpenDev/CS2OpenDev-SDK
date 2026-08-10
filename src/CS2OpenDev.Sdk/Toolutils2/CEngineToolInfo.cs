@@ -34,14 +34,14 @@ public partial class CEngineToolInfo : CBaseToolInfo
     public CUtlVector__CUtlString__ AssetTypes { get; set; }
 
     /// <summary>
-    ///     Gets or sets CanHighlightSubassets.
+    ///     Gets or sets CanHighlightSubAssets.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bCanHighlightSubassets</c> at offset <c>0x35</c>.
     /// </remarks>
     [NativeOffset(0x35)]
     [NativeName("m_bCanHighlightSubassets")]
-    public bool CanHighlightSubassets { get; set; }
+    public bool CanHighlightSubAssets { get; set; }
 
     /// <summary>
     ///     Gets or sets DoNotWarnAboutLargeAssetBatches.

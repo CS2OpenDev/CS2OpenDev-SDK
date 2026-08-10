@@ -49,34 +49,34 @@ public partial class C_BarnLight : C_BaseModelEntity
     public float AlternateColorBrightness { get; set; }
 
     /// <summary>
-    ///     Gets or sets BakeSpecularToCubemaps.
+    ///     Gets or sets BakeSpecularToCubeMaps.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nBakeSpecularToCubemaps</c> at offset <c>0x10D8</c>.
     /// </remarks>
     [NativeOffset(0x10D8)]
     [NativeName("m_nBakeSpecularToCubemaps")]
-    public int BakeSpecularToCubemaps { get; set; }
+    public int BakeSpecularToCubeMaps { get; set; }
 
     /// <summary>
-    ///     Gets or sets BakeSpecularToCubemapsScale.
+    ///     Gets or sets BakeSpecularToCubeMapsScale.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flBakeSpecularToCubemapsScale</c> at offset <c>0x10E8</c>.
     /// </remarks>
     [NativeOffset(0x10E8)]
     [NativeName("m_flBakeSpecularToCubemapsScale")]
-    public float BakeSpecularToCubemapsScale { get; set; }
+    public float BakeSpecularToCubeMapsScale { get; set; }
 
     /// <summary>
-    ///     Gets or sets BakeSpecularToCubemapsSize.
+    ///     Gets or sets BakeSpecularToCubeMapsSize.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vBakeSpecularToCubemapsSize</c> at offset <c>0x10DC</c>.
     /// </remarks>
     [NativeOffset(0x10DC)]
     [NativeName("m_vBakeSpecularToCubemapsSize")]
-    public Vector BakeSpecularToCubemapsSize { get; set; }
+    public Vector BakeSpecularToCubeMapsSize { get; set; }
 
     /// <summary>
     ///     Gets or sets BakedShadowIndex.
@@ -269,7 +269,7 @@ public partial class C_BarnLight : C_BaseModelEntity
     public bool ForceShadowsEnabled { get; set; }
 
     /// <summary>
-    ///     Gets or sets InitialBoneSetup.
+    ///     Gets or sets InitialBoneSetUp.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bInitialBoneSetup</c> at offset <c>0x1298</c>.
@@ -277,7 +277,7 @@ public partial class C_BarnLight : C_BaseModelEntity
     [NativeOffset(0x1298)]
     [NativeName("m_bInitialBoneSetup")]
     [NativeMetadata("MNotSaved", "")]
-    public bool InitialBoneSetup { get; set; }
+    public bool InitialBoneSetUp { get; set; }
 
     /// <summary>
     ///     Gets or sets LightCookie.
@@ -390,254 +390,254 @@ public partial class C_BarnLight : C_BaseModelEntity
     public float MinRoughness { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedBoundsMaxs.
+    ///     Gets or sets PreComputedBoundsMaxs.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedBoundsMaxs</c> at offset <c>0x1148</c>.
     /// </remarks>
     [NativeOffset(0x1148)]
     [NativeName("m_vPrecomputedBoundsMaxs")]
-    public Vector PrecomputedBoundsMaxs { get; set; }
+    public Vector PreComputedBoundsMaxs { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedBoundsMins.
+    ///     Gets or sets PreComputedBoundsMins.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedBoundsMins</c> at offset <c>0x113C</c>.
     /// </remarks>
     [NativeOffset(0x113C)]
     [NativeName("m_vPrecomputedBoundsMins")]
-    public Vector PrecomputedBoundsMins { get; set; }
+    public Vector PreComputedBoundsMins { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedFieldsValid.
+    ///     Gets or sets PreComputedFieldsValid.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bPrecomputedFieldsValid</c> at offset <c>0x1138</c>.
     /// </remarks>
     [NativeOffset(0x1138)]
     [NativeName("m_bPrecomputedFieldsValid")]
-    public bool PrecomputedFieldsValid { get; set; }
+    public bool PreComputedFieldsValid { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles.
+    ///     Gets or sets PreComputedOBBAngles.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles</c> at offset <c>0x1160</c>.
     /// </remarks>
     [NativeOffset(0x1160)]
     [NativeName("m_vPrecomputedOBBAngles")]
-    public QAngle PrecomputedOBBAngles { get; set; }
+    public QAngle PreComputedOBBAngles { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles0.
+    ///     Gets or sets PreComputedOBBAngles0.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles0</c> at offset <c>0x1188</c>.
     /// </remarks>
     [NativeOffset(0x1188)]
     [NativeName("m_vPrecomputedOBBAngles0")]
-    public QAngle PrecomputedOBBAngles0 { get; set; }
+    public QAngle PreComputedOBBAngles0 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles1.
+    ///     Gets or sets PreComputedOBBAngles1.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles1</c> at offset <c>0x11AC</c>.
     /// </remarks>
     [NativeOffset(0x11AC)]
     [NativeName("m_vPrecomputedOBBAngles1")]
-    public QAngle PrecomputedOBBAngles1 { get; set; }
+    public QAngle PreComputedOBBAngles1 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles2.
+    ///     Gets or sets PreComputedOBBAngles2.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles2</c> at offset <c>0x11D0</c>.
     /// </remarks>
     [NativeOffset(0x11D0)]
     [NativeName("m_vPrecomputedOBBAngles2")]
-    public QAngle PrecomputedOBBAngles2 { get; set; }
+    public QAngle PreComputedOBBAngles2 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles3.
+    ///     Gets or sets PreComputedOBBAngles3.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles3</c> at offset <c>0x11F4</c>.
     /// </remarks>
     [NativeOffset(0x11F4)]
     [NativeName("m_vPrecomputedOBBAngles3")]
-    public QAngle PrecomputedOBBAngles3 { get; set; }
+    public QAngle PreComputedOBBAngles3 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles4.
+    ///     Gets or sets PreComputedOBBAngles4.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles4</c> at offset <c>0x1218</c>.
     /// </remarks>
     [NativeOffset(0x1218)]
     [NativeName("m_vPrecomputedOBBAngles4")]
-    public QAngle PrecomputedOBBAngles4 { get; set; }
+    public QAngle PreComputedOBBAngles4 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBAngles5.
+    ///     Gets or sets PreComputedOBBAngles5.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBAngles5</c> at offset <c>0x123C</c>.
     /// </remarks>
     [NativeOffset(0x123C)]
     [NativeName("m_vPrecomputedOBBAngles5")]
-    public QAngle PrecomputedOBBAngles5 { get; set; }
+    public QAngle PreComputedOBBAngles5 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent.
+    ///     Gets or sets PreComputedOBBExtent.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent</c> at offset <c>0x116C</c>.
     /// </remarks>
     [NativeOffset(0x116C)]
     [NativeName("m_vPrecomputedOBBExtent")]
-    public Vector PrecomputedOBBExtent { get; set; }
+    public Vector PreComputedOBBExtent { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent0.
+    ///     Gets or sets PreComputedOBBExtent0.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent0</c> at offset <c>0x1194</c>.
     /// </remarks>
     [NativeOffset(0x1194)]
     [NativeName("m_vPrecomputedOBBExtent0")]
-    public Vector PrecomputedOBBExtent0 { get; set; }
+    public Vector PreComputedOBBExtent0 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent1.
+    ///     Gets or sets PreComputedOBBExtent1.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent1</c> at offset <c>0x11B8</c>.
     /// </remarks>
     [NativeOffset(0x11B8)]
     [NativeName("m_vPrecomputedOBBExtent1")]
-    public Vector PrecomputedOBBExtent1 { get; set; }
+    public Vector PreComputedOBBExtent1 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent2.
+    ///     Gets or sets PreComputedOBBExtent2.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent2</c> at offset <c>0x11DC</c>.
     /// </remarks>
     [NativeOffset(0x11DC)]
     [NativeName("m_vPrecomputedOBBExtent2")]
-    public Vector PrecomputedOBBExtent2 { get; set; }
+    public Vector PreComputedOBBExtent2 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent3.
+    ///     Gets or sets PreComputedOBBExtent3.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent3</c> at offset <c>0x1200</c>.
     /// </remarks>
     [NativeOffset(0x1200)]
     [NativeName("m_vPrecomputedOBBExtent3")]
-    public Vector PrecomputedOBBExtent3 { get; set; }
+    public Vector PreComputedOBBExtent3 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent4.
+    ///     Gets or sets PreComputedOBBExtent4.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent4</c> at offset <c>0x1224</c>.
     /// </remarks>
     [NativeOffset(0x1224)]
     [NativeName("m_vPrecomputedOBBExtent4")]
-    public Vector PrecomputedOBBExtent4 { get; set; }
+    public Vector PreComputedOBBExtent4 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBExtent5.
+    ///     Gets or sets PreComputedOBBExtent5.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBExtent5</c> at offset <c>0x1248</c>.
     /// </remarks>
     [NativeOffset(0x1248)]
     [NativeName("m_vPrecomputedOBBExtent5")]
-    public Vector PrecomputedOBBExtent5 { get; set; }
+    public Vector PreComputedOBBExtent5 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin.
+    ///     Gets or sets PreComputedOBBOrigin.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin</c> at offset <c>0x1154</c>.
     /// </remarks>
     [NativeOffset(0x1154)]
     [NativeName("m_vPrecomputedOBBOrigin")]
-    public Vector PrecomputedOBBOrigin { get; set; }
+    public Vector PreComputedOBBOrigin { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin0.
+    ///     Gets or sets PreComputedOBBOrigin0.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin0</c> at offset <c>0x117C</c>.
     /// </remarks>
     [NativeOffset(0x117C)]
     [NativeName("m_vPrecomputedOBBOrigin0")]
-    public Vector PrecomputedOBBOrigin0 { get; set; }
+    public Vector PreComputedOBBOrigin0 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin1.
+    ///     Gets or sets PreComputedOBBOrigin1.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin1</c> at offset <c>0x11A0</c>.
     /// </remarks>
     [NativeOffset(0x11A0)]
     [NativeName("m_vPrecomputedOBBOrigin1")]
-    public Vector PrecomputedOBBOrigin1 { get; set; }
+    public Vector PreComputedOBBOrigin1 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin2.
+    ///     Gets or sets PreComputedOBBOrigin2.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin2</c> at offset <c>0x11C4</c>.
     /// </remarks>
     [NativeOffset(0x11C4)]
     [NativeName("m_vPrecomputedOBBOrigin2")]
-    public Vector PrecomputedOBBOrigin2 { get; set; }
+    public Vector PreComputedOBBOrigin2 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin3.
+    ///     Gets or sets PreComputedOBBOrigin3.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin3</c> at offset <c>0x11E8</c>.
     /// </remarks>
     [NativeOffset(0x11E8)]
     [NativeName("m_vPrecomputedOBBOrigin3")]
-    public Vector PrecomputedOBBOrigin3 { get; set; }
+    public Vector PreComputedOBBOrigin3 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin4.
+    ///     Gets or sets PreComputedOBBOrigin4.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin4</c> at offset <c>0x120C</c>.
     /// </remarks>
     [NativeOffset(0x120C)]
     [NativeName("m_vPrecomputedOBBOrigin4")]
-    public Vector PrecomputedOBBOrigin4 { get; set; }
+    public Vector PreComputedOBBOrigin4 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedOBBOrigin5.
+    ///     Gets or sets PreComputedOBBOrigin5.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vPrecomputedOBBOrigin5</c> at offset <c>0x1230</c>.
     /// </remarks>
     [NativeOffset(0x1230)]
     [NativeName("m_vPrecomputedOBBOrigin5")]
-    public Vector PrecomputedOBBOrigin5 { get; set; }
+    public Vector PreComputedOBBOrigin5 { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrecomputedSubFrusta.
+    ///     Gets or sets PreComputedSubFrusta.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nPrecomputedSubFrusta</c> at offset <c>0x1178</c>.
     /// </remarks>
     [NativeOffset(0x1178)]
     [NativeName("m_nPrecomputedSubFrusta")]
-    public int PrecomputedSubFrusta { get; set; }
+    public int PreComputedSubFrusta { get; set; }
 
     /// <summary>
     ///     Gets or sets QueuedLightStyleStrings.

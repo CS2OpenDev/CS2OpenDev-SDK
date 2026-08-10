@@ -49,7 +49,7 @@ public enum ParticleCollisionMode : uint
     /// </remarks>
     [NativeName("COLLISION_MODE_PER_FRAME_PLANESET")]
     [NativeMetadata("MPropertyFriendlyName", "Per-Frame Planeset")]
-    CollisionModePerFramePlaneset = 1,
+    CollisionModePerFramePlaneSet = 1,
 
     /// <summary>
     ///     Trace Caching.

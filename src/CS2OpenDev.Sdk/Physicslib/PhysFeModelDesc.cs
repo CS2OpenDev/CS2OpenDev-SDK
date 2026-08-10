@@ -565,14 +565,14 @@ public partial class PhysFeModelDesc
     public float MotionSmoothCDT { get; set; }
 
     /// <summary>
-    ///     Gets or sets NodeBaseJiggleboneDependsCount.
+    ///     Gets or sets NodeBaseJiggleBoneDependsCount.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nNodeBaseJiggleboneDependsCount</c> at offset <c>0x56</c>.
     /// </remarks>
     [NativeOffset(0x56)]
     [NativeName("m_nNodeBaseJiggleboneDependsCount")]
-    public ushort NodeBaseJiggleboneDependsCount { get; set; }
+    public ushort NodeBaseJiggleBoneDependsCount { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeBases.

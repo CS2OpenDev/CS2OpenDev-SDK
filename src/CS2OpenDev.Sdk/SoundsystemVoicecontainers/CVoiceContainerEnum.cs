@@ -34,7 +34,7 @@ public partial class CVoiceContainerEnum : CVoiceContainerBase
     [NativeOffset(0xAC)]
     [NativeName("m_flCrossfadeTime")]
     [NativeMetadata("MPropertyFriendlyName", "Crossfade Time")]
-    public float CrossfadeTime { get; set; }
+    public float CrossFadeTime { get; set; }
 
     /// <summary>
     ///     Index.

@@ -101,14 +101,14 @@ public partial class VPhysXAggregateData
     public CUtlVector__CUtlString__ DebugPartNames { get; set; }
 
     /// <summary>
-    ///     Gets or sets EmbeddedKeyvalues.
+    ///     Gets or sets EmbeddedKeyValues.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_embeddedKeyvalues</c> at offset <c>0x148</c>.
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_embeddedKeyvalues")]
-    public string EmbeddedKeyvalues { get; set; }
+    public string EmbeddedKeyValues { get; set; }
 
     /// <summary>
     ///     Gets or sets FeModel.

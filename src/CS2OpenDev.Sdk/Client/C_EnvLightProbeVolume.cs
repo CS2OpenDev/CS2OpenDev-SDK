@@ -32,14 +32,14 @@ public partial class C_EnvLightProbeVolume : C_BaseEntity
     public bool EntityBEnabled { get; set; }
 
     /// <summary>
-    ///     Gets or sets EntityBMoveable.
+    ///     Gets or sets EntityBMoveAble.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Entity_bMoveable</c> at offset <c>0x1658</c>.
     /// </remarks>
     [NativeOffset(0x1658)]
     [NativeName("m_Entity_bMoveable")]
-    public bool EntityBMoveable { get; set; }
+    public bool EntityBMoveAble { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityBStartDisabled.

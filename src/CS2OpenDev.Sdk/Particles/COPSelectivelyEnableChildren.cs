@@ -83,5 +83,5 @@ public partial class COPSelectivelyEnableChildren : CParticleFunctionPreEmission
     [NativeOffset(0x630)]
     [NativeName("m_bPlayEndcapOnStop")]
     [NativeMetadata("MPropertyFriendlyName", "play endcap when children are removed")]
-    public bool PlayEndcapOnStop { get; set; }
+    public bool PlayEndCapOnStop { get; set; }
 }

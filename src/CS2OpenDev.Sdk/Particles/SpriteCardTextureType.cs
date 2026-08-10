@@ -89,7 +89,7 @@ public enum SpriteCardTextureType : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_ANIMMOTIONVEC")]
     [NativeMetadata("MPropertyFriendlyName", "Animation Smoothing Motion Vector")]
-    SpritecardTextureAnimmotionvec = 6,
+    SpritecardTextureAnimMotionVec = 6,
 
     /// <summary>
     ///     Spherical Harmonics A.

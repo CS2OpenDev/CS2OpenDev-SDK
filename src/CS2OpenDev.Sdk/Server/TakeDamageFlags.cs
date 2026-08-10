@@ -130,13 +130,13 @@ public enum TakeDamageFlags : ulong
     DflagRadiusDmg = 1024,
 
     /// <summary>
-    ///     DflagForcereducearmorDmg.
+    ///     DflagForceReduceArmorDmg.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>DFLAG_FORCEREDUCEARMOR_DMG</c>.
     /// </remarks>
     [NativeName("DFLAG_FORCEREDUCEARMOR_DMG")]
-    DflagForcereducearmorDmg = 2048,
+    DflagForceReduceArmorDmg = 2048,
 
     /// <summary>
     ///     DflagSuppressInterruptFlinch.
@@ -214,11 +214,11 @@ public enum TakeDamageFlags : ulong
     DflagIgnoreArmor = 262144,
 
     /// <summary>
-    ///     DflagSuppressUtilremove.
+    ///     DflagSuppressUtilRemove.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>DFLAG_SUPPRESS_UTILREMOVE</c>.
     /// </remarks>
     [NativeName("DFLAG_SUPPRESS_UTILREMOVE")]
-    DflagSuppressUtilremove = 524288
+    DflagSuppressUtilRemove = 524288
 }

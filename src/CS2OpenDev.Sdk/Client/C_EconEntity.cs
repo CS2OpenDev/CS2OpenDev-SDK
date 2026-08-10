@@ -74,14 +74,14 @@ public partial class C_EconEntity : CBaseAnimGraph
     public bool AttributesInitialized { get; set; }
 
     /// <summary>
-    ///     Gets or sets Clientside.
+    ///     Gets or sets ClientSide.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bClientside</c> at offset <c>0x1690</c>.
     /// </remarks>
     [NativeOffset(0x1690)]
     [NativeName("m_bClientside")]
-    public bool Clientside { get; set; }
+    public bool ClientSide { get; set; }
 
     /// <summary>
     ///     Gets or sets FallbackPaintKit.

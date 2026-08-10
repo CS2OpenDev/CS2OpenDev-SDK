@@ -39,7 +39,7 @@ public enum VectorFloatExpressionType : uint
     /// </remarks>
     [NativeName("VECTOR_FLOAT_EXPRESSION_DOTPRODUCT")]
     [NativeMetadata("MPropertyFriendlyName", "Dot Product")]
-    VectorFloatExpressionDotproduct = 0,
+    VectorFloatExpressionDotProduct = 0,
 
     /// <summary>
     ///     Distance Between.

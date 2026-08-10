@@ -718,14 +718,14 @@ public partial class CFuncMover : CBaseModelEntity
     public int PreviousNodeIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets QueueSetupPathMover.
+    ///     Gets or sets QueueSetUpPathMover.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bQueueSetupPathMover</c> at offset <c>0xA23</c>.
     /// </remarks>
     [NativeOffset(0xA23)]
     [NativeName("m_bQueueSetupPathMover")]
-    public bool QueueSetupPathMover { get; set; }
+    public bool QueueSetUpPathMover { get; set; }
 
     /// <summary>
     ///     Gets or sets QueueStop.

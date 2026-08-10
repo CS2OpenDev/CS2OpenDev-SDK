@@ -30,11 +30,11 @@ public enum ESplitScreenMessageType : uint
     MsgSplitScreenAddUser = 0,
 
     /// <summary>
-    ///     MsgSplitScreenRemoveuser.
+    ///     MsgSplitScreenRemoveUser.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MSG_SPLITSCREEN_REMOVEUSER</c>.
     /// </remarks>
     [NativeName("MSG_SPLITSCREEN_REMOVEUSER")]
-    MsgSplitScreenRemoveuser = 1
+    MsgSplitScreenRemoveUser = 1
 }

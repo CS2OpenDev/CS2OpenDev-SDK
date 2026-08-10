@@ -482,22 +482,22 @@ public enum LoadoutSlot : uint
     LastWheelEquipment = 37,
 
     /// <summary>
-    ///     ClothingCustomplayer.
+    ///     ClothingCustomPlayer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LOADOUT_SLOT_CLOTHING_CUSTOMPLAYER</c>.
     /// </remarks>
     [NativeName("LOADOUT_SLOT_CLOTHING_CUSTOMPLAYER")]
-    ClothingCustomplayer = 38,
+    ClothingCustomPlayer = 38,
 
     /// <summary>
-    ///     ClothingCustomhead.
+    ///     ClothingCustomHead.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LOADOUT_SLOT_CLOTHING_CUSTOMHEAD</c>.
     /// </remarks>
     [NativeName("LOADOUT_SLOT_CLOTHING_CUSTOMHEAD")]
-    ClothingCustomhead = 39,
+    ClothingCustomHead = 39,
 
     /// <summary>
     ///     ClothingFaceMask.
@@ -556,13 +556,13 @@ public enum LoadoutSlot : uint
     ClothingHat = 43,
 
     /// <summary>
-    ///     ClothingLowerbody.
+    ///     ClothingLowerBody.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>LOADOUT_SLOT_CLOTHING_LOWERBODY</c>.
     /// </remarks>
     [NativeName("LOADOUT_SLOT_CLOTHING_LOWERBODY")]
-    ClothingLowerbody = 44,
+    ClothingLowerBody = 44,
 
     /// <summary>
     ///     ClothingTorso.

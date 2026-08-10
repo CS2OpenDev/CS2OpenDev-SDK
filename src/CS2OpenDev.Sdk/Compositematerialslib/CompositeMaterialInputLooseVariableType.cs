@@ -139,7 +139,7 @@ public enum CompositeMaterialInputLooseVariableType : uint
     /// </remarks>
     [NativeName("LOOSE_VARIABLE_TYPE_SYSTEMVAR")]
     [NativeMetadata("MPropertyFriendlyName", "System Variable")]
-    LooseVariableTypeSystemvar = 11,
+    LooseVariableTypeSystemVar = 11,
 
     /// <summary>
     ///     Material.

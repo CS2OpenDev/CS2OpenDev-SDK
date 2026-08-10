@@ -120,14 +120,14 @@ public partial class CCSGameRules : CTeamPlayRules
     public uint[] ArrTournamentActiveCasterAccounts { get; set; }
 
     /// <summary>
-    ///     Gets or sets AutobalanceDisplayTime.
+    ///     Gets or sets AutoBalanceDisplayTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_fAutobalanceDisplayTime</c> at offset <c>0xFDC</c>.
     /// </remarks>
     [NativeOffset(0xFDC)]
     [NativeName("m_fAutobalanceDisplayTime")]
-    public float AutobalanceDisplayTime { get; set; }
+    public float AutoBalanceDisplayTime { get; set; }
 
     /// <summary>
     ///     Gets or sets AvgPlayerRank.
@@ -170,14 +170,14 @@ public partial class CCSGameRules : CTeamPlayRules
     public bool BombPlanted { get; set; }
 
     /// <summary>
-    ///     Gets or sets BtGlobalBlackboard.
+    ///     Gets or sets BtGlobalBlackBoard.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_BtGlobalBlackboard</c> at offset <c>0x10A0</c>.
     /// </remarks>
     [NativeOffset(0x10A0)]
     [NativeName("m_BtGlobalBlackboard")]
-    public string BtGlobalBlackboard { get; set; }
+    public string BtGlobalBlackBoard { get; set; }
 
     /// <summary>
     ///     Gets or sets BuyTimeEnded.
@@ -703,14 +703,14 @@ public partial class CCSGameRules : CTeamPlayRules
     public bool LevelInitialized { get; set; }
 
     /// <summary>
-    ///     Gets or sets LoadingRoundBackupData.
+    ///     Gets or sets LoadingRoundBackUpData.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bLoadingRoundBackupData</c> at offset <c>0xE19</c>.
     /// </remarks>
     [NativeOffset(0xE19)]
     [NativeName("m_bLoadingRoundBackupData")]
-    public bool LoadingRoundBackupData { get; set; }
+    public bool LoadingRoundBackUpData { get; set; }
 
     /// <summary>
     ///     True when the server is running a workshop or demo map that does not count for match records.

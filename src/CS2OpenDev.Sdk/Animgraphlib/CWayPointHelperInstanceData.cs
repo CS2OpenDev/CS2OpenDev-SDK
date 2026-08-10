@@ -44,22 +44,22 @@ public partial class CWayPointHelperInstanceData
     public QAngle Rotation { get; set; }
 
     /// <summary>
-    ///     Gets or sets StopUpdatingWaypointPos.
+    ///     Gets or sets StopUpdatingWayPointPos.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bStopUpdatingWaypointPos</c> at offset <c>0x24</c>.
     /// </remarks>
     [NativeOffset(0x24)]
     [NativeName("m_bStopUpdatingWaypointPos")]
-    public bool StopUpdatingWaypointPos { get; set; }
+    public bool StopUpdatingWayPointPos { get; set; }
 
     /// <summary>
-    ///     Gets or sets WaypointPosWS.
+    ///     Gets or sets WayPointPosWS.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vWaypointPosWS</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_vWaypointPosWS")]
-    public Vector WaypointPosWS { get; set; }
+    public Vector WayPointPosWS { get; set; }
 }

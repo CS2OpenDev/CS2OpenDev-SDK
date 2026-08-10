@@ -49,13 +49,13 @@ public enum ModelConfigAttachmentType : uint
     ModelConfigAttachmentRootRelative = 1,
 
     /// <summary>
-    ///     ModelConfigAttachmentBonemerge.
+    ///     ModelConfigAttachmentBoneMerge.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MODEL_CONFIG_ATTACHMENT_BONEMERGE</c>.
     /// </remarks>
     [NativeName("MODEL_CONFIG_ATTACHMENT_BONEMERGE")]
-    ModelConfigAttachmentBonemerge = 2,
+    ModelConfigAttachmentBoneMerge = 2,
 
     /// <summary>
     ///     ModelConfigAttachmentCount.

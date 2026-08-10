@@ -399,13 +399,13 @@ public enum ECstrike15UserMessages : uint
     CS_UM_VoteFailed = 348,
 
     /// <summary>
-    ///     CS_UM_VoteSetup.
+    ///     CS_UM_VoteSetUp.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CS_UM_VoteSetup</c>.
     /// </remarks>
     [NativeName("CS_UM_VoteSetup")]
-    CS_UM_VoteSetup = 349,
+    CS_UM_VoteSetUp = 349,
 
     /// <summary>
     ///     CS_UM_ServerRankRevealAll.
@@ -507,13 +507,13 @@ public enum ECstrike15UserMessages : uint
     CS_UM_SendPlayerItemDrops = 361,
 
     /// <summary>
-    ///     CS_UM_RoundBackupFilenames.
+    ///     CS_UM_RoundBackUpFileNames.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CS_UM_RoundBackupFilenames</c>.
     /// </remarks>
     [NativeName("CS_UM_RoundBackupFilenames")]
-    CS_UM_RoundBackupFilenames = 362,
+    CS_UM_RoundBackUpFileNames = 362,
 
     /// <summary>
     ///     CS_UM_SendPlayerItemFound.
@@ -588,13 +588,13 @@ public enum ECstrike15UserMessages : uint
     CS_UM_UpdateScreenHealthBar = 370,
 
     /// <summary>
-    ///     CS_UM_EntityOutlineHighlight.
+    ///     CS_UM_EntityOutLineHighlight.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CS_UM_EntityOutlineHighlight</c>.
     /// </remarks>
     [NativeName("CS_UM_EntityOutlineHighlight")]
-    CS_UM_EntityOutlineHighlight = 371,
+    CS_UM_EntityOutLineHighlight = 371,
 
     /// <summary>
     ///     CsUmSsui.

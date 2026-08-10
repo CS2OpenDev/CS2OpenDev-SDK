@@ -52,14 +52,14 @@ public partial class CNetworkOriginCellCoordQuantizedVector
     public ushort CellZ { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutsideWorld.
+    ///     Gets or sets OutSideWorld.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nOutsideWorld</c> at offset <c>0x16</c>.
     /// </remarks>
     [NativeOffset(0x16)]
     [NativeName("m_nOutsideWorld")]
-    public ushort OutsideWorld { get; set; }
+    public ushort OutSideWorld { get; set; }
 
     /// <summary>
     ///     Gets or sets X.

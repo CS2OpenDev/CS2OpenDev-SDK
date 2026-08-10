@@ -29,7 +29,7 @@ public enum SosActionLimitSortType : uint
     /// </remarks>
     [NativeName("SOS_LIMIT_SORTTYPE_HIGHEST")]
     [NativeMetadata("MPropertyFriendlyName", "Stop Highest")]
-    SosLimitSorttypeHighest = 0,
+    SosLimitSortTypeHighest = 0,
 
     /// <summary>
     ///     Stop Lowest.
@@ -39,5 +39,5 @@ public enum SosActionLimitSortType : uint
     /// </remarks>
     [NativeName("SOS_LIMIT_SORTTYPE_LOWEST")]
     [NativeMetadata("MPropertyFriendlyName", "Stop Lowest")]
-    SosLimitSorttypeLowest = 1
+    SosLimitSortTypeLowest = 1
 }

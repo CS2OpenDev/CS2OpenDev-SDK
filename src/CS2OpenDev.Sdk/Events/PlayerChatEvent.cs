@@ -28,7 +28,7 @@ public sealed partial record PlayerChatEvent
     /// </remarks>
     [NativeName("teamonly")]
     [GameEventFieldType("bool")]
-    public required bool Teamonly { get; init; }
+    public required bool TeamOnly { get; init; }
 
     /// <summary>
     ///     chat text.

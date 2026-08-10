@@ -25,14 +25,14 @@ namespace CS2OpenSchema.SoundsystemVoicecontainers;
 public partial class CVoiceContainerGranulator : CVoiceContainerAsyncGenerator
 {
     /// <summary>
-    ///     Gets or sets GrainCrossfadeAmount.
+    ///     Gets or sets GrainCrossFadeAmount.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flGrainCrossfadeAmount</c> at offset <c>0x84</c>.
     /// </remarks>
     [NativeOffset(0x84)]
     [NativeName("m_flGrainCrossfadeAmount")]
-    public float GrainCrossfadeAmount { get; set; }
+    public float GrainCrossFadeAmount { get; set; }
 
     /// <summary>
     ///     Gets or sets GrainLength.
@@ -55,14 +55,14 @@ public partial class CVoiceContainerGranulator : CVoiceContainerAsyncGenerator
     public float PlaybackJitter { get; set; }
 
     /// <summary>
-    ///     Gets or sets ShouldWraparound.
+    ///     Gets or sets ShouldWrapAround.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bShouldWraparound</c> at offset <c>0x90</c>.
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_bShouldWraparound")]
-    public bool ShouldWraparound { get; set; }
+    public bool ShouldWrapAround { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceAudio.

@@ -93,24 +93,24 @@ public partial class C_EnvVolumetricFogVolume : C_BaseEntity
     public float HeightFogEdgeWidth { get; set; }
 
     /// <summary>
-    ///     Gets or sets IndirectLightStrength.
+    ///     Gets or sets InDirectLightStrength.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_fIndirectLightStrength</c> at offset <c>0x634</c>.
     /// </remarks>
     [NativeOffset(0x634)]
     [NativeName("m_fIndirectLightStrength")]
-    public float IndirectLightStrength { get; set; }
+    public float InDirectLightStrength { get; set; }
 
     /// <summary>
-    ///     Gets or sets IndirectUseLPVs.
+    ///     Gets or sets InDirectUseLPVs.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bIndirectUseLPVs</c> at offset <c>0x61D</c>.
     /// </remarks>
     [NativeOffset(0x61D)]
     [NativeName("m_bIndirectUseLPVs")]
-    public bool IndirectUseLPVs { get; set; }
+    public bool InDirectUseLPVs { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseStrength.
@@ -123,14 +123,14 @@ public partial class C_EnvVolumetricFogVolume : C_BaseEntity
     public float NoiseStrength { get; set; }
 
     /// <summary>
-    ///     Gets or sets OverrideIndirectLightStrength.
+    ///     Gets or sets OverrideInDirectLightStrength.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bOverrideIndirectLightStrength</c> at offset <c>0x645</c>.
     /// </remarks>
     [NativeOffset(0x645)]
     [NativeName("m_bOverrideIndirectLightStrength")]
-    public bool OverrideIndirectLightStrength { get; set; }
+    public bool OverrideInDirectLightStrength { get; set; }
 
     /// <summary>
     ///     Gets or sets OverrideNoiseStrength.

@@ -31,31 +31,31 @@ public enum VMixFilterType : ushort
     FilterUnknown = 65535,
 
     /// <summary>
-    ///     FilterLowpass.
+    ///     FilterLowPass.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FILTER_LOWPASS</c>.
     /// </remarks>
     [NativeName("FILTER_LOWPASS")]
-    FilterLowpass = 0,
+    FilterLowPass = 0,
 
     /// <summary>
-    ///     FilterHighpass.
+    ///     FilterHighPass.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FILTER_HIGHPASS</c>.
     /// </remarks>
     [NativeName("FILTER_HIGHPASS")]
-    FilterHighpass = 1,
+    FilterHighPass = 1,
 
     /// <summary>
-    ///     FilterBandpass.
+    ///     FilterBandPass.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FILTER_BANDPASS</c>.
     /// </remarks>
     [NativeName("FILTER_BANDPASS")]
-    FilterBandpass = 2,
+    FilterBandPass = 2,
 
     /// <summary>
     ///     FilterNotch.
@@ -94,13 +94,13 @@ public enum VMixFilterType : ushort
     FilterHighShelf = 6,
 
     /// <summary>
-    ///     FilterAllpass.
+    ///     FilterAllPass.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FILTER_ALLPASS</c>.
     /// </remarks>
     [NativeName("FILTER_ALLPASS")]
-    FilterAllpass = 7,
+    FilterAllPass = 7,
 
     /// <summary>
     ///     FilterPassthrough.

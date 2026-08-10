@@ -42,14 +42,14 @@ public partial class CEnvGlobal : CLogicalEntity
     public string GlobalState { get; set; }
 
     /// <summary>
-    ///     Gets or sets Initialstate.
+    ///     Gets or sets InitialState.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_initialstate</c> at offset <c>0x4D4</c>.
     /// </remarks>
     [NativeOffset(0x4D4)]
     [NativeName("m_initialstate")]
-    public int Initialstate { get; set; }
+    public int InitialState { get; set; }
 
     /// <summary>
     ///     Gets or sets OutCounter.
@@ -62,12 +62,12 @@ public partial class CEnvGlobal : CLogicalEntity
     public CEntityOutputTemplate__int32__ OutCounter { get; set; }
 
     /// <summary>
-    ///     Gets or sets Triggermode.
+    ///     Gets or sets TriggerMode.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_triggermode</c> at offset <c>0x4D0</c>.
     /// </remarks>
     [NativeOffset(0x4D0)]
     [NativeName("m_triggermode")]
-    public int Triggermode { get; set; }
+    public int TriggerMode { get; set; }
 }

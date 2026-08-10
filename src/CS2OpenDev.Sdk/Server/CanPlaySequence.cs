@@ -22,13 +22,13 @@ namespace CS2OpenSchema.Server;
 public enum CanPlaySequence : uint
 {
     /// <summary>
-    ///     CannotPlay.
+    ///     CanNotPlay.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CANNOT_PLAY</c>.
     /// </remarks>
     [NativeName("CANNOT_PLAY")]
-    CannotPlay = 0,
+    CanNotPlay = 0,
 
     /// <summary>
     ///     CanPlayNow.

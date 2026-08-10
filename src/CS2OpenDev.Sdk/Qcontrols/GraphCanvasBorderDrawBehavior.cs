@@ -40,11 +40,11 @@ public enum GraphCanvasBorderDrawBehavior : uint
     Inside = 1,
 
     /// <summary>
-    ///     Outside.
+    ///     OutSide.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>Outside</c>.
     /// </remarks>
     [NativeName("Outside")]
-    Outside = 2
+    OutSide = 2
 }

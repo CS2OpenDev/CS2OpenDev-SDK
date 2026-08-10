@@ -118,14 +118,14 @@ public partial class CPathMoverEntitySpawner : CLogicalEntity
     public string PathMoverName { get; set; }
 
     /// <summary>
-    ///     Gets or sets PrepopulateOnSpawn.
+    ///     Gets or sets PrePopulateOnSpawn.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bPrepopulateOnSpawn</c> at offset <c>0x558</c>.
     /// </remarks>
     [NativeOffset(0x558)]
     [NativeName("m_bPrepopulateOnSpawn")]
-    public bool PrepopulateOnSpawn { get; set; }
+    public bool PrePopulateOnSpawn { get; set; }
 
     /// <summary>
     ///     Gets or sets QueuedRemovals.

@@ -76,7 +76,7 @@ public partial class CPhysHinge : CPhysConstraint
     /// </remarks>
     [NativeOffset(0x5DC)]
     [NativeName("m_hinge")]
-    public ConstraintHingeparams Hinge { get; set; }
+    public ConstraintHingeParams Hinge { get; set; }
 
     /// <summary>
     ///     Gets or sets HingeFriction.

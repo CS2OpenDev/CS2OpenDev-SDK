@@ -44,14 +44,14 @@ public partial class CResourceAssetTypeInfo : CSimpleAssetTypeInfo
     public CUtlVector__ResourceBlockTypeInfo_t__ Blocks { get; set; }
 
     /// <summary>
-    ///     Gets or sets CannotBeAMultiParentChildCompile.
+    ///     Gets or sets CanNotBeAMultiParentChildCompile.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bCannotBeAMultiParentChildCompile</c> at offset <c>0x141</c>.
     /// </remarks>
     [NativeOffset(0x141)]
     [NativeName("m_bCannotBeAMultiParentChildCompile")]
-    public bool CannotBeAMultiParentChildCompile { get; set; }
+    public bool CanNotBeAMultiParentChildCompile { get; set; }
 
     /// <summary>
     ///     Gets or sets CompileDependsOnResourceTypes.

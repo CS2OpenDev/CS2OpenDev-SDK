@@ -61,7 +61,7 @@ public partial class COPDecayMaintainCount : CParticleFunctionOperator
     [NativeOffset(0x1F0)]
     [NativeName("m_bLifespanDecay")]
     [NativeMetadata("MPropertyFriendlyName", "decay on lifespan")]
-    public bool LifespanDecay { get; set; }
+    public bool LifeSpanDecay { get; set; }
 
     /// <summary>
     ///     count to maintain.
@@ -106,5 +106,5 @@ public partial class COPDecayMaintainCount : CParticleFunctionOperator
     [NativeName("m_strSnapshotSubset")]
     [NativeMetadata("MPropertyFriendlyName", "snapshot subset")]
     [NativeMetadata("MPropertySuppressExpr", "m_nSnapshotControlPoint < 0")]
-    public string SnapshotSubset { get; set; }
+    public string SnapshotSubSet { get; set; }
 }

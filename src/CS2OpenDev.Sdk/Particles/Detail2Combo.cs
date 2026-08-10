@@ -89,5 +89,5 @@ public enum Detail2Combo : uint
     /// </remarks>
     [NativeName("DETAIL_2_COMBO_CROSSFADE")]
     [NativeMetadata("MPropertyFriendlyName", "Crossfade")]
-    Detail2ComboCrossfade = 5
+    Detail2ComboCrossFade = 5
 }

@@ -29,7 +29,7 @@ public enum ParticleMassMode : uint
     /// </remarks>
     [NativeName("PARTICLE_MASSMODE_RADIUS_CUBED")]
     [NativeMetadata("MPropertyFriendlyName", "Radius cubed")]
-    ParticleMassmodeRadiusCubed = 0,
+    ParticleMassModeRadiusCubed = 0,
 
     /// <summary>
     ///     Radius squared.
@@ -39,5 +39,5 @@ public enum ParticleMassMode : uint
     /// </remarks>
     [NativeName("PARTICLE_MASSMODE_RADIUS_SQUARED")]
     [NativeMetadata("MPropertyFriendlyName", "Radius squared")]
-    ParticleMassmodeRadiusSquared = 2
+    ParticleMassModeRadiusSquared = 2
 }

@@ -52,12 +52,12 @@ public partial class CTriggerImpact : CTriggerMultiple
     public CEntityOutputTemplate__Vector__ OutputForce { get; set; }
 
     /// <summary>
-    ///     Gets or sets Viewkick.
+    ///     Gets or sets ViewKick.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flViewkick</c> at offset <c>0x908</c>.
     /// </remarks>
     [NativeOffset(0x908)]
     [NativeName("m_flViewkick")]
-    public float Viewkick { get; set; }
+    public float ViewKick { get; set; }
 }

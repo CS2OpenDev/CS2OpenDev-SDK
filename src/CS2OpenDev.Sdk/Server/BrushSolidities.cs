@@ -22,29 +22,29 @@ namespace CS2OpenSchema.Server;
 public enum BrushSolidities : uint
 {
     /// <summary>
-    ///     BrushsolidToggle.
+    ///     BrushSolidToggle.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>BRUSHSOLID_TOGGLE</c>.
     /// </remarks>
     [NativeName("BRUSHSOLID_TOGGLE")]
-    BrushsolidToggle = 0,
+    BrushSolidToggle = 0,
 
     /// <summary>
-    ///     BrushsolidNever.
+    ///     BrushSolidNever.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>BRUSHSOLID_NEVER</c>.
     /// </remarks>
     [NativeName("BRUSHSOLID_NEVER")]
-    BrushsolidNever = 1,
+    BrushSolidNever = 1,
 
     /// <summary>
-    ///     BrushsolidAlways.
+    ///     BrushSolidAlways.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>BRUSHSOLID_ALWAYS</c>.
     /// </remarks>
     [NativeName("BRUSHSOLID_ALWAYS")]
-    BrushsolidAlways = 2
+    BrushSolidAlways = 2
 }

@@ -54,14 +54,14 @@ public partial class CSteamAudioBakedDimensionsData
     public CSteamAudioMovableBakedData__CSteamAudioBakedDimensionsData__ Movables { get; set; }
 
     /// <summary>
-    ///     Gets or sets OutsideField.
+    ///     Gets or sets OutSideField.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vecOutsideField</c> at offset <c>0x50</c>.
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_vecOutsideField")]
-    public CUtlVector__CSteamAudioAmbisonicsField__ OutsideField { get; set; }
+    public CUtlVector__CSteamAudioAmbisonicsField__ OutSideField { get; set; }
 
     /// <summary>
     ///     Gets or sets Probes.

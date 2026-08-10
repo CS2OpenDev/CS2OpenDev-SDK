@@ -400,22 +400,22 @@ public enum PulseInstructionCode : ushort
     ReinterpretInstance = 41,
 
     /// <summary>
-    ///     GetBlackboardReference.
+    ///     GetBlackBoardReference.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GET_BLACKBOARD_REFERENCE</c>.
     /// </remarks>
     [NativeName("GET_BLACKBOARD_REFERENCE")]
-    GetBlackboardReference = 42,
+    GetBlackBoardReference = 42,
 
     /// <summary>
-    ///     SetBlackboardReference.
+    ///     SetBlackBoardReference.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SET_BLACKBOARD_REFERENCE</c>.
     /// </remarks>
     [NativeName("SET_BLACKBOARD_REFERENCE")]
-    SetBlackboardReference = 43,
+    SetBlackBoardReference = 43,
 
     /// <summary>
     ///     LastSerializedCode.

@@ -32,7 +32,7 @@ public partial class SoundCommand
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_command")]
-    public Soundcommands Command { get; set; }
+    public SoundCommands Command { get; set; }
 
     /// <summary>
     ///     Gets or sets DeltaTime.

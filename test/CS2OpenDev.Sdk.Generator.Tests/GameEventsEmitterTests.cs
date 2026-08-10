@@ -96,7 +96,7 @@ public class GameEventsEmitterTests
     [Test]
     [Arguments("userid", "UserId")]
     [Arguments("dmg_health", "DmgHealth")]
-    [Arguments("weapon_originalowner_xuid", "WeaponOriginalownerXuid")]
+    [Arguments("weapon_originalowner_xuid", "WeaponOriginalOwnerXuid")]
     public async Task Emit_FieldName_FoldsSnakeToPascal(string rawName, string propName)
     {
         GeneratorHarness.RunResult result = GeneratorHarness.RunGameEvents($$"""

@@ -183,22 +183,22 @@ public enum EGCItemCustomizationNotification : uint
     ApplyPatch = 1090,
 
     /// <summary>
-    ///     ApplyKeychain.
+    ///     ApplyKeyChain.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EGCItemCustomizationNotification_ApplyKeychain</c>.
     /// </remarks>
     [NativeName("k_EGCItemCustomizationNotification_ApplyKeychain")]
-    ApplyKeychain = 1091,
+    ApplyKeyChain = 1091,
 
     /// <summary>
-    ///     RemoveKeychain.
+    ///     RemoveKeyChain.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EGCItemCustomizationNotification_RemoveKeychain</c>.
     /// </remarks>
     [NativeName("k_EGCItemCustomizationNotification_RemoveKeychain")]
-    RemoveKeychain = 1092,
+    RemoveKeyChain = 1092,
 
     /// <summary>
     ///     ActivateFanToken.

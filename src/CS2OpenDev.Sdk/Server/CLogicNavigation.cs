@@ -39,5 +39,5 @@ public partial class CLogicNavigation : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B4)]
     [NativeName("m_navProperty")]
-    public Navproperties NavProperty { get; set; }
+    public NavProperties NavProperty { get; set; }
 }

@@ -54,14 +54,14 @@ public partial class CSeqCmdLayer
     public short LineNumber { get; set; }
 
     /// <summary>
-    ///     Gets or sets LocalBonemask.
+    ///     Gets or sets LocalBoneMask.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nLocalBonemask</c> at offset <c>0x4</c>.
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_nLocalBonemask")]
-    public short LocalBonemask { get; set; }
+    public short LocalBoneMask { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalReference.

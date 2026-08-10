@@ -95,14 +95,14 @@ public partial class CAnimDesc
     public float Fps { get; set; }
 
     /// <summary>
-    ///     Gets or sets Framestalltime.
+    ///     Gets or sets FrameStallTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>framestalltime</c> at offset <c>0x178</c>.
     /// </remarks>
     [NativeOffset(0x178)]
     [NativeName("framestalltime")]
-    public float Framestalltime { get; set; }
+    public float FrameStallTime { get; set; }
 
     /// <summary>
     ///     Gets or sets HierarchyArray.

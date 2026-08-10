@@ -121,13 +121,13 @@ public enum VMixGraphCommandId : uint
     CmdControlRemapSine = 10,
 
     /// <summary>
-    ///     CmdControlRemapLoglinear.
+    ///     CmdControlRemapLogLinear.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CMD_CONTROL_REMAP_LOGLINEAR</c>.
     /// </remarks>
     [NativeName("CMD_CONTROL_REMAP_LOGLINEAR")]
-    CmdControlRemapLoglinear = 11,
+    CmdControlRemapLogLinear = 11,
 
     /// <summary>
     ///     CmdControlMax.
@@ -193,13 +193,13 @@ public enum VMixGraphCommandId : uint
     CmdProcessorSetNameInput = 18,
 
     /// <summary>
-    ///     CmdProcessorSetControlArrayvalue.
+    ///     CmdProcessorSetControlArrayValue.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CMD_PROCESSOR_SET_CONTROL_ARRAYVALUE</c>.
     /// </remarks>
     [NativeName("CMD_PROCESSOR_SET_CONTROL_ARRAYVALUE")]
-    CmdProcessorSetControlArrayvalue = 19,
+    CmdProcessorSetControlArrayValue = 19,
 
     /// <summary>
     ///     CmdProcessorStoreControlValue.
@@ -238,22 +238,22 @@ public enum VMixGraphCommandId : uint
     CmdSubMixGenerate = 23,
 
     /// <summary>
-    ///     CmdSubMixGenerateSidechain.
+    ///     CmdSubMixGenerateSideChain.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CMD_SUBMIX_GENERATE_SIDECHAIN</c>.
     /// </remarks>
     [NativeName("CMD_SUBMIX_GENERATE_SIDECHAIN")]
-    CmdSubMixGenerateSidechain = 24,
+    CmdSubMixGenerateSideChain = 24,
 
     /// <summary>
-    ///     CmdSubMixExtractcontainer.
+    ///     CmdSubMixExtractContainer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CMD_SUBMIX_EXTRACTCONTAINER</c>.
     /// </remarks>
     [NativeName("CMD_SUBMIX_EXTRACTCONTAINER")]
-    CmdSubMixExtractcontainer = 25,
+    CmdSubMixExtractContainer = 25,
 
     /// <summary>
     ///     CmdSubMixDebug.

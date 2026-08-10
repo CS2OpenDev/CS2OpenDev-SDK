@@ -29,7 +29,7 @@ public enum SteamAudioOcclusionModeType : uint
     /// </remarks>
     [NativeName("SA_OCCLUSIONMODE_NONE")]
     [NativeMetadata("MPropertyFriendlyName", "Off")]
-    SaOcclusionmodeNone = 0,
+    SaOcclusionModeNone = 0,
 
     /// <summary>
     ///     On, No Transmission.
@@ -39,7 +39,7 @@ public enum SteamAudioOcclusionModeType : uint
     /// </remarks>
     [NativeName("SA_OCCLUSIONMODE_NOTRANSMISSION")]
     [NativeMetadata("MPropertyFriendlyName", "On, No Transmission")]
-    SaOcclusionmodeNotransmission = 1,
+    SaOcclusionModeNoTransmission = 1,
 
     /// <summary>
     ///     On, Frequency Independent Transmission.
@@ -49,7 +49,7 @@ public enum SteamAudioOcclusionModeType : uint
     /// </remarks>
     [NativeName("SA_OCCLUSIONMODE_FREQINDEPENDENT")]
     [NativeMetadata("MPropertyFriendlyName", "On, Frequency Independent Transmission")]
-    SaOcclusionmodeFreqindependent = 2,
+    SaOcclusionModeFreqindependent = 2,
 
     /// <summary>
     ///     On, Frequency Dependent Transmission.
@@ -59,5 +59,5 @@ public enum SteamAudioOcclusionModeType : uint
     /// </remarks>
     [NativeName("SA_OCCLUSIONMODE_FREQDEPENDENT")]
     [NativeMetadata("MPropertyFriendlyName", "On, Frequency Dependent Transmission")]
-    SaOcclusionmodeFreqdependent = 3
+    SaOcclusionModeFreqdependent = 3
 }

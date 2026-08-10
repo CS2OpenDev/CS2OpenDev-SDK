@@ -96,6 +96,59 @@ internal static class WordSplitter
         "shake", "shatter", "shot", "sound", "space", "speed", "stamp", "start",
         "stop", "tag", "text", "tone", "tree", "update", "view", "voice",
         "world",
+
+        // Third pass. Same source as the second — the CS2_GEN_006 report,
+        // read rather than guessed. Short entries here are the risky ones and
+        // each is paid for by a correspondingly larger Atomic list below.
+        "able", "abs", "address", "align", "alpha", "amt", "animating", "arm",
+        "armor", "around", "array", "asset", "assets", "auto", "back", "bad",
+        "bang", "binding", "black", "blend", "block", "board", "boat", "bone",
+        "bounds", "box", "break", "byte", "checked", "child", "china", "commands",
+        "composite", "cone", "config", "control", "count", "cross", "crouch",
+        "crowbar", "cube", "custom", "datagram", "death", "delay", "density",
+        "doll", "down", "edict", "events", "fill", "fire", "forced", "found",
+        "frame", "free", "glass", "graph", "graphs", "groups", "gun", "hair",
+        "hud", "initial", "input", "insecure", "integer", "io", "iso", "kick",
+        "killing", "leaving", "lerp", "light", "line", "list", "local",
+        "location", "locations", "lock", "lower", "maps", "mask", "mass", "match",
+        "meta", "mid", "move", "msg", "names", "network", "not", "off", "offset",
+        "origin", "out", "particle", "pass", "password", "pay", "perfect",
+        "picking", "ping", "pitch", "point", "points", "positive", "protocol",
+        "ptr", "pure", "ragdoll", "real", "reduce", "relay", "remove",
+        "replication", "safe", "save", "scape", "side", "single", "soft", "solid",
+        "sort", "sound", "sounds", "space", "span", "spectator", "stackable",
+        "stall", "states", "steam", "string", "strings", "sun", "surface",
+        "symbol", "table", "thru", "tick", "timed", "trace", "type", "unknown",
+        "untrusted", "verb", "vertex", "view", "vol", "voted", "watch", "way",
+        "weight", "wind", "wrap",
+
+        // Fourth pass.
+        "added", "all", "anim", "balance", "ban", "band", "brush", "buy", "chain",
+        "challenge", "client", "command", "competitive", "crop", "crypt",
+        "default", "definition", "detail", "different", "driver", "dry", "dyn",
+        "error", "faces", "for", "frac", "generated", "graph", "head",
+        "hierarchy", "high", "hltv", "jiggle", "joint", "key", "left", "lfo",
+        "lib", "linear", "loop", "los", "low", "merge", "mod", "npc", "occlusion",
+        "overflow", "params", "parms", "pieces", "players", "pre", "problem",
+        "product", "rate", "rgb", "right", "root", "run", "sell", "shutdown",
+        "simulate", "spin", "stats", "step", "system", "tables", "temp",
+        "texture", "through", "trans", "transmission", "trigger", "unavailable",
+        "util", "utl", "uv", "waiting", "wire",
+
+        // Fifth pass.
+        "audio", "cache", "cap", "computed", "controls", "convars", "convicted",
+        "deactivate", "direct", "dot", "enum", "extra", "feed", "fetch", "fog",
+        "forward", "hinge", "hurting", "ladder", "leg", "library", "log", "math",
+        "motion", "mult", "nav", "on", "only", "param", "plate", "populate",
+        "restricted", "sav", "script", "spawn", "stacks", "token", "transform",
+        "turn", "up", "values", "var", "vec",
+
+        // Sixth pass — the tail of the report.
+        "container", "extract", "flags", "framed", "frames", "meter", "modified",
+        "multi", "rumble", "sample", "set", "vector",
+
+        // Seventh pass — the last three the report named.
+        "containers", "over", "plane", "drown", "recover"
     ];
 
     // Single words a greedy match would otherwise split. Every entry here is a
@@ -104,6 +157,77 @@ internal static class WordSplitter
     // Para|Drop is the reading we want.
     private static readonly HashSet<string> Atomic = new(StringComparer.Ordinal)
     {
+        // `pre` as a token makes these two splittable, and both are one word.
+        "preset", "prefetch",
+
+        "drowning", "recovery",
+
+        "overlaid", "overlap", "overlay", "overlays", "overridden", "override",
+        "overrides", "overrode", "overshoot",
+
+        "respawning", "returning", "sampler", "samples", "setting", "settings",
+        "settling",
+
+        "bandwidth", "callbacks", "cmotiontransform", "compmatsysvar",
+        "cooldowns", "cropped", "ctransform", "despawn", "feedfoward", "hscript",
+        "respawn", "vectorto", "vectorws",
+
+        "capability", "capsule", "capsules", "caption", "capture", "captures",
+        "extract", "extraction", "extrapolate", "extrapolation", "ladders",
+        "logging", "logical", "motions", "multiple", "multiplex", "multiplier",
+        "multiply", "navigation", "navigator", "scripted", "scripts", "spawned",
+        "spawner", "spawners", "spawning", "turning", "variance", "variant",
+        "variation", "variations", "varying", "vectors",
+
+        "atcontrols", "iphysicsjoint", "ltrigger", "modifer", "noninitialized",
+        "pprevious", "retrigger", "rtrigger", "uncrouched", "uninitialized",
+
+        "compressed", "disabled", "disallowed", "footsteps", "movables",
+        "observables", "orthographic", "separately", "suppressed", "uncompressed",
+        "unpressed", "variables", "wearables",
+
+        "accelerate", "accurate", "adrenaline", "aligned", "allocated",
+        "allocation", "allocator", "allowed", "animate", "animated", "animates",
+        "animation", "animations", "announcements", "applicable", "assignments",
+        "attachable", "attachments", "automated", "automatic", "available",
+        "backward", "backwards", "balanced", "bidirectional", "bilinear",
+        "bindings", "blended", "blender", "blending", "blocker", "blockers",
+        "blocking", "bookkeeping", "breakables", "breaker", "breaking",
+        "carriable", "celebrate", "centered", "chainer", "chaining", "children",
+        "clamping", "commends", "commentary", "comments", "components",
+        "composition", "configuration", "configurations", "consumable",
+        "contents", "contexts", "controls", "crossover", "crouched", "crouching",
+        "currently", "damping", "defuser", "delayed", "detachable", "detailed",
+        "disable", "disallow", "disposition", "doorway", "drawable", "drivers",
+        "dropping", "dynamic", "dynamically", "dynamics", "elements",
+        "executable", "exponential", "exportable", "fallback", "feedback",
+        "footstep", "forever", "forgiveness", "formation", "forward", "fraction",
+        "fractional", "generate", "grabbable", "graphic", "graphics",
+        "handshakes", "heading", "highest", "immovable", "inheritable",
+        "initialized", "initializer", "initially", "interfaces", "interpenetrate",
+        "invulnerable", "iterate", "jumping", "lerping", "library", "linearity",
+        "localized", "looping", "modification", "modifier", "modifiers",
+        "modulate", "modulation", "modulator", "modules", "movable", "notched",
+        "nothing", "notification", "notified", "observable", "offering",
+        "offsets", "outbound", "outdoor", "outflow", "outflows", "outputs",
+        "overall", "overhead", "overwatch", "particles", "passing", "penetrate",
+        "percentage", "pickable", "precipitation", "precise", "precision",
+        "predict", "predictable", "predicted", "prediction", "predictions",
+        "preferred", "prefers", "prefilter", "premier", "preserve", "preserving",
+        "pressed", "pressure", "prestige", "previous", "previously", "recipients",
+        "reliable", "reloading", "removable", "removed", "repeatable",
+        "replacements", "repredict", "requirements", "running", "saturate",
+        "searchable", "segments", "selectable", "separate", "simulated",
+        "sleeping", "snapping", "softness", "solidity", "sorting", "supported",
+        "supports", "surrendered", "surrounding", "swapping", "systems",
+        "temperature", "template", "templates", "temporal", "tradable",
+        "transform", "transforms", "translate", "translation", "transmissive",
+        "transmit", "transpose", "triangles", "triggered", "triggers",
+        "unbreakable", "unloading", "unpredictable", "unstoppable",
+        "unsubscribed", "updater", "upright", "utility", "variable", "volatile",
+        "volumes", "volumetric", "walkable", "wearable", "weighted", "weights",
+        "without", "wrapped", "writable",
+
         "achievement", "address", "assister", "attacker", "behavior", "blocked",
         "category", "checkpoint", "clients", "dedicated", "delivered", "details",
         "disconnect", "distance", "dominated", "duration", "enabled", "hostage",
@@ -126,6 +250,102 @@ internal static class WordSplitter
         // why each pass ends by re-reading the rename diff.
         "database", "shotgun", "flashlight", "submachinegun", "spotlight",
         "highlight", "daylight", "lightning", "baseline", "gameplay",
+
+        // Third batch, and the pattern is now predictable enough to state: each
+        // widening of the vocabulary newly exposes single words built from the
+        // tokens just added. `break`+`able` gave BreakAble across six types,
+        // `down`+`load` gave DownLoad, `in`+`side` gave InSide. None of these
+        // were reachable before the token that enabled them existed.
+        //
+        // `deathmatch`, `flashbang` and `timeline` are judgement calls rather
+        // than dictionary facts — all three are established single terms in this
+        // domain, and DeathMatch reads as a mistake to anyone who plays the game.
+        "breakable", "countdown", "deathmatch", "download", "flashbang",
+        "inline", "inside", "stopwatch", "timeline",
+
+        // Fourth pass: the -able/-ing/-ed family mostly, which the fourth
+        // token batch would otherwise have made splittable.
+        "animatable", "automation", "backpack", "blockslos", "bytecode",
+        "callback", "classify", "configs", "configurable", "controlled",
+        "controlling", "cooldown", "cstring", "customization", "customize",
+        "defusal", "directionality", "dropdown", "editable", "entities",
+        "entries", "falloff", "fenttable", "flipping", "headshots",
+        "hnmgraphdefinition", "hparticlesystemdefinition", "hrendertexture",
+        "initializers", "interruptable", "iphysicsragdollcontrol", "leaderboard",
+        "mappings", "metalness", "namespace", "offseton", "overlapping",
+        "passthough", "passthrough", "payouts", "properties", "pushable",
+        "queryable", "refundable", "remapping", "respawnable", "sawedoff",
+        "solidities", "soundscape", "spawnable", "teleported", "teleporting",
+        "triggerable", "unblockable", "unsubscribe", "useable", "vertextint",
+        "volumeto",
+
+        // Every run CS2_GEN_006 reported that is a real English word, plus the
+        // upstream abbreviations and typos (`paramater`, `lightnint`,
+        // `sndopvarlatchdata`) that no vocabulary should try to interpret.
+        //
+        // Machine-classified against the system dictionary, then reviewed. A
+        // word list is dangerous for DECIDING a split and safe for forbidding
+        // one, which is the only thing it is used for here. These also enter
+        // the match table, so they protect themselves inside longer runs.
+        "absolute", "absorption", "accounts", "additional", "additive",
+        "additives", "adjacent", "adjustment", "agreement", "alignment",
+        "ambient", "animstate", "announcement", "archetype", "arrangement",
+        "assignment", "assists", "attachment", "attacked", "attacking",
+        "attractor", "background", "barrier", "blendtobackground", "brightness",
+        "buckshot", "canceled", "candelas", "candidate", "changed", "changes",
+        "classes", "classptr", "commend", "comment", "component", "composite",
+        "concurrent", "content", "context", "controllers", "corners", "counter",
+        "counterterrorist", "cphysicsbody", "crowbar", "cspincount", "current",
+        "damaged", "damager", "decrement", "default", "deferred", "definition",
+        "definitions", "deflection", "deformable", "deformation", "deformer",
+        "defusing", "deltaentmsg", "different", "directed", "direction",
+        "directional", "directions", "directivity", "directory", "disconnected",
+        "disconnecting", "disconnection", "displacement", "display", "distances",
+        "distancesqr", "docking", "document", "dohitlocationdmg", "ehandle",
+        "element", "enforce", "enrollment", "entered", "entitlement",
+        "environment", "equipment", "exponent", "fadeinsav", "fadeoutsav",
+        "flashed", "flashing", "flxfade", "foreground", "fragment",
+        "freqdependent", "freqindependent", "gradient", "grenades", "grouping",
+        "gunfire", "handler", "handlers", "handles", "handshake", "hegrenade",
+        "highlights", "hitting", "hmaterial", "hostages",
+        "hostedserverprimaryrelay", "incgrenade", "increment", "independent",
+        "indexed", "instanced", "instances", "instruction", "instructions",
+        "instructor", "instrument", "instruments", "interface", "involvement",
+        "iphysicsbody", "iphysicsmotioncontroller", "killing", "lfotype",
+        "lighten", "lighting", "lightness", "lightnint", "limiter", "listened",
+        "listener", "listeners", "listening", "loading", "mapping", "matched",
+        "matches", "matching", "matchmaking", "materials", "maximize", "maximum",
+        "meshlet", "meshlets", "meshopt", "messages", "metadata", "minimal",
+        "minimum", "mismatch", "modelling", "movement", "multiplay",
+        "multiplayer", "multisegment", "navmesh", "networked", "networking",
+        "noautoreload", "normalize", "normalized", "normals", "numbers",
+        "numerator", "observer", "optional", "options", "original", "originating",
+        "ornament", "overbright", "overtime", "ownership", "paltpath",
+        "parachute", "parallel", "paramater", "parameter", "parameterization",
+        "parameterized", "parameters", "passport", "pathfinding", "pathfinds",
+        "pathing", "payload", "percent", "persistent", "phyllotaxis", "placement",
+        "playback", "players", "playing", "pointer", "portals", "portrait",
+        "position", "positioning", "positions", "positive", "possible",
+        "postpone", "posture", "prefixed", "prepend", "present", "prevent",
+        "profile", "propagate", "propagation", "property", "proportional",
+        "punching", "ranking", "recipient", "rematch", "renderable", "renderamt",
+        "rendered", "renderer", "renderers", "rendering", "reorient",
+        "replacement", "requirement", "retirement", "rotations", "roundness",
+        "runtime", "segment", "serverauthdisabled", "servercdkeyauthinvalid",
+        "singleplay", "snapshot", "sndopvarlatchdata", "soundctrl", "spectators",
+        "speedto", "splitter", "started", "starting", "startle", "startup",
+        "stopped", "stopping", "strafing", "straight", "strange", "strategy",
+        "streaming", "streams", "strength", "stretch", "stretches", "stretching",
+        "strides", "stringlib", "strings", "structure", "structured", "submerged",
+        "subscribe", "subscribed", "subscription", "subtitle", "subtract",
+        "successes", "successfully", "support", "surface", "surrender",
+        "surround", "tangent", "targets", "teammate", "teammates", "teleport",
+        "texture", "textures", "threshold", "thruster", "ticking", "totalled",
+        "tournament", "transient", "transitioned", "transitioning", "transitions",
+        "translucent", "triangle", "typesafe", "unblocked", "updated", "updates",
+        "uploaded", "useorreload", "vacbanstate", "vacnetabnormalbehavior",
+        "valueto", "vphysics", "weapons", "whitespace", "windage", "wingman",
+        "winning"
     };
 
     // Tokens whose idiomatic .NET form is not `char.ToUpper(first) + rest`.
@@ -260,9 +480,22 @@ internal static class WordSplitter
         return changed ? sb.ToString() : identifier;
     }
 
-    // Greedy longest-match. Succeeds only if the whole run is consumed by known
-    // tokens AND the result is more than one token — a run that IS a single
-    // vocabulary word is not a split, it is the word.
+    // Finds a complete segmentation of the run, or reports that none exists.
+    // Succeeds only when every character is consumed by known tokens AND the
+    // result is more than one token — a run that IS a single vocabulary word is
+    // not a split, it is the word.
+    //
+    // This backtracks; the first version did not, and greedy longest-match alone
+    // is wrong here rather than merely weaker. `clientside` has a perfectly good
+    // reading, but greedy takes `clients` at position 0 because it is longer,
+    // hits `ide`, and reports the whole run as unsegmentable — never trying
+    // `client`. Same for `weaponsilencer` (`weapons` first) and `notarget`
+    // (`not` first). Those looked like missing words and were not; no amount of
+    // vocabulary fixes a search that cannot reconsider.
+    //
+    // Longest-first ordering is kept as the preference, so `player` still beats
+    // `play` when both complete. Backtracking only changes what happens when the
+    // preferred choice leads to a dead end.
     private static bool TrySegment(string run, out List<string>? tokens)
     {
         tokens = null;
@@ -272,53 +505,71 @@ internal static class WordSplitter
             return false;
         }
 
+        // Memo of start offsets already proven unsegmentable, so a run with many
+        // dead ends stays linear rather than exponential.
+        bool[] failed = new bool[run.Length + 1];
         List<string> found = [];
-        int i = 0;
 
-        while (i < run.Length)
+        if (!Solve(run, 0, found, failed) || found.Count < 2)
         {
-            string? match = null;
-            foreach (string t in ByLength)
+            // Report only a NEAR miss — a run that starts or ends with a known
+            // word but could not be finished.
+            //
+            // Reporting every failure was the obvious first cut and it was
+            // useless: ~2,000 entries, almost all ordinary English
+            // (`acceleration`, `dictionary`, `parachute`) that is already
+            // correct and must never be split. A list nobody can read is the
+            // same as no list. A near miss is different — `issilenced` matched
+            // `is` and died on the tail, `actorname` ends in `name` — and that
+            // is exactly the shape of a genuine vocabulary gap.
+            // `found.Count == 1` means the run was consumed entirely by ONE
+            // token — it is a vocabulary word standing alone, which is already
+            // correct and needs no split. Reporting those put `headshot`,
+            // `loadout` and `ragdoll` on a list of things to fix, where the fix
+            // was to do nothing.
+            if (found.Count == 0 && run.Length > 6 && TouchesVocabulary(run))
             {
-                if (t.Length <= run.Length - i &&
-                    string.CompareOrdinal(run, i, t, 0, t.Length) == 0)
-                {
-                    match = t;
-                    break;
-                }
+                Unrecognised.Add(run);
             }
 
-            if (match is null)
-            {
-                // Report only a NEAR miss — a run that starts or ends with a
-                // known word but could not be finished.
-                //
-                // Reporting every failure was the obvious first cut and it was
-                // useless: ~2,000 entries, almost all ordinary English
-                // (`acceleration`, `dictionary`, `parachute`) that is already
-                // correct and must never be split. A list nobody can read is
-                // the same as no list. A near miss is different — `issilenced`
-                // matched `is` and died on the tail, `actorname` ends in `name`
-                // — and that is exactly the shape of a genuine vocabulary gap.
-                if (run.Length > 6 && TouchesVocabulary(run))
-                {
-                    Unrecognised.Add(run);
-                }
-
-                return false;
-            }
-
-            found.Add(match);
-            i += match.Length;
-        }
-
-        if (found.Count < 2)
-        {
             return false;
         }
 
         tokens = found;
         return true;
+    }
+
+    private static bool Solve(string run, int start, List<string> acc, bool[] failed)
+    {
+        if (start == run.Length)
+        {
+            return true;
+        }
+
+        if (failed[start])
+        {
+            return false;
+        }
+
+        foreach (string t in ByLength)
+        {
+            if (t.Length > run.Length - start ||
+                string.CompareOrdinal(run, start, t, 0, t.Length) != 0)
+            {
+                continue;
+            }
+
+            acc.Add(t);
+            if (Solve(run, start + t.Length, acc, failed))
+            {
+                return true;
+            }
+
+            acc.RemoveAt(acc.Count - 1);
+        }
+
+        failed[start] = true;
+        return false;
     }
 
     // True when a vocabulary word of 3+ characters sits at either end of the

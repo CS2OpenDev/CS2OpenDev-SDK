@@ -85,24 +85,24 @@ public partial class AggregateMeshInfo
     public byte LODGroupMask { get; set; }
 
     /// <summary>
-    ///     Gets or sets LODSetupIndex.
+    ///     Gets or sets LODSetUpIndex.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nLODSetupIndex</c> at offset <c>0xA</c>.
     /// </remarks>
     [NativeOffset(0xA)]
     [NativeName("m_nLODSetupIndex")]
-    public short LODSetupIndex { get; set; }
+    public short LODSetUpIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets LightProbeVolumePrecomputedHandshake.
+    ///     Gets or sets LightProbeVolumePreComputedHandshake.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nLightProbeVolumePrecomputedHandshake</c> at offset <c>0x14</c>.
     /// </remarks>
     [NativeOffset(0x14)]
     [NativeName("m_nLightProbeVolumePrecomputedHandshake")]
-    public int LightProbeVolumePrecomputedHandshake { get; set; }
+    public int LightProbeVolumePreComputedHandshake { get; set; }
 
     /// <summary>
     ///     Gets or sets ObjectFlags.

@@ -44,5 +44,5 @@ public partial class COPRenderText : CParticleFunctionRenderer
     [NativeOffset(0x228)]
     [NativeName("m_OutlineColor")]
     [NativeMetadata("MPropertyFriendlyName", "outline color")]
-    public Color OutlineColor { get; set; }
+    public Color OutLineColor { get; set; }
 }

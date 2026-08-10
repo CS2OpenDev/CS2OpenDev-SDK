@@ -58,13 +58,13 @@ public enum SignonState : uint
     New = 3,
 
     /// <summary>
-    ///     Prespawn.
+    ///     PreSpawn.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>SIGNONSTATE_PRESPAWN</c>.
     /// </remarks>
     [NativeName("SIGNONSTATE_PRESPAWN")]
-    Prespawn = 4,
+    PreSpawn = 4,
 
     /// <summary>
     ///     Spawn.

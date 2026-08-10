@@ -65,14 +65,14 @@ public partial class CPulseVariable
     public bool IsObservable { get; set; }
 
     /// <summary>
-    ///     Gets or sets IsPublicBlackboardVariable.
+    ///     Gets or sets IsPublicBlackBoardVariable.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bIsPublicBlackboardVariable</c> at offset <c>0x48</c>.
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_bIsPublicBlackboardVariable")]
-    public bool IsPublicBlackboardVariable { get; set; }
+    public bool IsPublicBlackBoardVariable { get; set; }
 
     /// <summary>
     ///     Gets or sets KeysSource.

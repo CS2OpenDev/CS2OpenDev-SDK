@@ -47,7 +47,7 @@ public partial class C_FogController : C_BaseEntity
     [NativeOffset(0x600)]
     [NativeName("m_fog")]
     [NativeMetadata("MNotSaved", "")]
-    public Fogparams Fog { get; set; }
+    public FogParams Fog { get; set; }
 
     /// <summary>
     ///     Gets or sets UseAngles.

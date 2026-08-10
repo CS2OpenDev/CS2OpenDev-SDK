@@ -38,7 +38,7 @@ public enum IKTargetSource : uint
     /// </remarks>
     [NativeName("IKTARGETSOURCE_AnimgraphParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Animgraph Parameter")]
-    AnimgraphParameter = 1,
+    AnimGraphParameter = 1,
 
     /// <summary>
     ///     Count.

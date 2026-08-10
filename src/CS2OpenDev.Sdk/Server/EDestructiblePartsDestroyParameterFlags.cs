@@ -32,13 +32,13 @@ public enum EDestructiblePartsDestroyParameterFlags : uint
     None = 0,
 
     /// <summary>
-    ///     GenerateBreakpieces.
+    ///     GenerateBreakPieces.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GenerateBreakpieces</c>.
     /// </remarks>
     [NativeName("GenerateBreakpieces")]
-    GenerateBreakpieces = 1,
+    GenerateBreakPieces = 1,
 
     /// <summary>
     ///     SetBodyGroupAndCollisionState.

@@ -298,14 +298,14 @@ public partial class C_EconItemView : IEconItemInterface
     public int RarityOverride { get; set; }
 
     /// <summary>
-    ///     Gets or sets RestoreCustomMaterialAfterPrecache.
+    ///     Gets or sets RestoreCustomMaterialAfterPreCache.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRestoreCustomMaterialAfterPrecache</c> at offset <c>0x1B8</c>.
     /// </remarks>
     [NativeOffset(0x1B8)]
     [NativeName("m_bRestoreCustomMaterialAfterPrecache")]
-    public bool RestoreCustomMaterialAfterPrecache { get; set; }
+    public bool RestoreCustomMaterialAfterPreCache { get; set; }
 
     /// <summary>
     ///     Gets or sets UbStyleOverride.

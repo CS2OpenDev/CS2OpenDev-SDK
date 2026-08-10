@@ -528,6 +528,28 @@ public partial class CPulseEditorSettings
     public float ConnectionDeltaLimitScale { get; set; }
 
     /// <summary>
+    ///     Gets or sets ConnectionInParamOffset.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_flConnectionInparamOffset</c> at offset <c>0x178</c>.
+    /// </remarks>
+    [NativeOffset(0x178)]
+    [NativeName("m_flConnectionInparamOffset")]
+    [NativeMetadata("MPropertyAttributeRange", "0 32")]
+    public float ConnectionInParamOffset { get; set; }
+
+    /// <summary>
+    ///     Gets or sets ConnectionInParamOffsetArray.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_flConnectionInparamOffsetArray</c> at offset <c>0x17C</c>.
+    /// </remarks>
+    [NativeOffset(0x17C)]
+    [NativeName("m_flConnectionInparamOffsetArray")]
+    [NativeMetadata("MPropertyAttributeRange", "0 32")]
+    public float ConnectionInParamOffsetArray { get; set; }
+
+    /// <summary>
     ///     Gets or sets ConnectionInflowOffset.
     /// </summary>
     /// <remarks>
@@ -537,28 +559,6 @@ public partial class CPulseEditorSettings
     [NativeName("m_flConnectionInflowOffset")]
     [NativeMetadata("MPropertyAttributeRange", "0 32")]
     public float ConnectionInflowOffset { get; set; }
-
-    /// <summary>
-    ///     Gets or sets ConnectionInparamOffset.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_flConnectionInparamOffset</c> at offset <c>0x178</c>.
-    /// </remarks>
-    [NativeOffset(0x178)]
-    [NativeName("m_flConnectionInparamOffset")]
-    [NativeMetadata("MPropertyAttributeRange", "0 32")]
-    public float ConnectionInparamOffset { get; set; }
-
-    /// <summary>
-    ///     Gets or sets ConnectionInparamOffsetArray.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_flConnectionInparamOffsetArray</c> at offset <c>0x17C</c>.
-    /// </remarks>
-    [NativeOffset(0x17C)]
-    [NativeName("m_flConnectionInparamOffsetArray")]
-    [NativeMetadata("MPropertyAttributeRange", "0 32")]
-    public float ConnectionInparamOffsetArray { get; set; }
 
     /// <summary>
     ///     Gets or sets ConnectionTangentStrength.
@@ -573,24 +573,24 @@ public partial class CPulseEditorSettings
     public float ConnectionTangentStrength { get; set; }
 
     /// <summary>
-    ///     Gets or sets DebuggerBreakpointDisabledImg.
+    ///     Gets or sets DebuggerBreakPointDisabledImg.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_DebuggerBreakpointDisabledImg</c> at offset <c>0xE8</c>.
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_DebuggerBreakpointDisabledImg")]
-    public string DebuggerBreakpointDisabledImg { get; set; }
+    public string DebuggerBreakPointDisabledImg { get; set; }
 
     /// <summary>
-    ///     Gets or sets DebuggerBreakpointImg.
+    ///     Gets or sets DebuggerBreakPointImg.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_DebuggerBreakpointImg</c> at offset <c>0xE0</c>.
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_DebuggerBreakpointImg")]
-    public string DebuggerBreakpointImg { get; set; }
+    public string DebuggerBreakPointImg { get; set; }
 
     /// <summary>
     ///     Gets or sets DebuggerBrokenImg.
@@ -926,7 +926,7 @@ public partial class CPulseEditorSettings
     public float RecentExecStartOffset { get; set; }
 
     /// <summary>
-    ///     Gets or sets RecentExecTimeoutSec.
+    ///     Gets or sets RecentExecTimeOutSec.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flRecentExecTimeoutSec</c> at offset <c>0x100</c>.
@@ -934,7 +934,7 @@ public partial class CPulseEditorSettings
     [NativeOffset(0x100)]
     [NativeName("m_flRecentExecTimeoutSec")]
     [NativeMetadata("MPropertyAttributeRange", "0 32")]
-    public float RecentExecTimeoutSec { get; set; }
+    public float RecentExecTimeOutSec { get; set; }
 
     /// <summary>
     ///     Gets or sets SequencePointLinkWidth.

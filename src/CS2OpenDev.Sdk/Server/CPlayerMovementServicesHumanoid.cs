@@ -54,6 +54,16 @@ public partial class CPlayerMovementServicesHumanoid : CPlayerMovementServices
     public Vector SmoothedVelocity { get; set; }
 
     /// <summary>
+    ///     Gets or sets StepSide.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>m_nStepside</c> at offset <c>0x280</c>.
+    /// </remarks>
+    [NativeOffset(0x280)]
+    [NativeName("m_nStepside")]
+    public int StepSide { get; set; }
+
+    /// <summary>
     ///     Gets or sets StepSoundTime.
     /// </summary>
     /// <remarks>
@@ -62,16 +72,6 @@ public partial class CPlayerMovementServicesHumanoid : CPlayerMovementServices
     [NativeOffset(0x258)]
     [NativeName("m_flStepSoundTime")]
     public float StepSoundTime { get; set; }
-
-    /// <summary>
-    ///     Gets or sets Stepside.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>m_nStepside</c> at offset <c>0x280</c>.
-    /// </remarks>
-    [NativeOffset(0x280)]
-    [NativeName("m_nStepside")]
-    public int Stepside { get; set; }
 
     /// <summary>
     ///     Gets or sets SurfaceFriction.

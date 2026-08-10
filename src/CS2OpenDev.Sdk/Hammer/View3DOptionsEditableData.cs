@@ -185,7 +185,7 @@ public partial class View3DOptionsEditableData
     [NativeOffset(0x45)]
     [NativeName("bSelectionOutlineDepth")]
     [NativeMetadata("MPropertyFriendlyName", "Use depth for selection outline")]
-    public bool SelectionOutlineDepth { get; set; }
+    public bool SelectionOutLineDepth { get; set; }
 
     /// <summary>
     ///     Alpha of selection mask (0..1).
@@ -218,7 +218,7 @@ public partial class View3DOptionsEditableData
     [NativeOffset(0x44)]
     [NativeName("bShowSelectionOutline")]
     [NativeMetadata("MPropertyFriendlyName", "Outline selected objects")]
-    public bool ShowSelectionOutline { get; set; }
+    public bool ShowSelectionOutLine { get; set; }
 
     /// <summary>
     ///     Time to max speed (ms).

@@ -59,14 +59,14 @@ public partial class CPulseGraphInstanceTestDomain : CBasePulseGraphInstance
     public bool ExpectingToDestroyWithYieldedCursors { get; set; }
 
     /// <summary>
-    ///     Gets or sets ExplicitTimeStepping.
+    ///     Gets or sets ExplicitTimeStepPing.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bExplicitTimeStepping</c> at offset <c>0x129</c>.
     /// </remarks>
     [NativeOffset(0x129)]
     [NativeName("m_bExplicitTimeStepping")]
-    public bool ExplicitTimeStepping { get; set; }
+    public bool ExplicitTimeStepPing { get; set; }
 
     /// <summary>
     ///     Gets or sets IsRunningUnitTests.
@@ -89,14 +89,14 @@ public partial class CPulseGraphInstanceTestDomain : CBasePulseGraphInstance
     public int NextValidateIndex { get; set; }
 
     /// <summary>
-    ///     Gets or sets QuietTracepoints.
+    ///     Gets or sets QuietTracePoints.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bQuietTracepoints</c> at offset <c>0x12B</c>.
     /// </remarks>
     [NativeOffset(0x12B)]
     [NativeName("m_bQuietTracepoints")]
-    public bool QuietTracepoints { get; set; }
+    public bool QuietTracePoints { get; set; }
 
     /// <summary>
     ///     Gets or sets TestYesOrNoPath.
@@ -109,12 +109,12 @@ public partial class CPulseGraphInstanceTestDomain : CBasePulseGraphInstance
     public bool TestYesOrNoPath { get; set; }
 
     /// <summary>
-    ///     Gets or sets Tracepoints.
+    ///     Gets or sets TracePoints.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_Tracepoints</c> at offset <c>0x138</c>.
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_Tracepoints")]
-    public CUtlVector__CUtlString__ Tracepoints { get; set; }
+    public CUtlVector__CUtlString__ TracePoints { get; set; }
 }

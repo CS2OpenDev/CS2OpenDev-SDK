@@ -25,14 +25,14 @@ namespace CS2OpenSchema.Materialsystem2;
 public partial class PostProcessingFogScatteringParameters
 {
     /// <summary>
-    ///     Gets or sets CubemapScale.
+    ///     Gets or sets CubeMapScale.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_fCubemapScale</c> at offset <c>0x8</c>.
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_fCubemapScale")]
-    public float CubemapScale { get; set; }
+    public float CubeMapScale { get; set; }
 
     /// <summary>
     ///     Gets or sets GradientScale.

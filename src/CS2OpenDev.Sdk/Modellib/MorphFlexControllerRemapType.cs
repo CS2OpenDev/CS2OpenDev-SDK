@@ -22,13 +22,13 @@ namespace CS2OpenSchema.Modellib;
 public enum MorphFlexControllerRemapType : uint
 {
     /// <summary>
-    ///     MorphFlexControllerRemapPassthru.
+    ///     MorphFlexControllerRemapPassThru.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>MORPH_FLEXCONTROLLER_REMAP_PASSTHRU</c>.
     /// </remarks>
     [NativeName("MORPH_FLEXCONTROLLER_REMAP_PASSTHRU")]
-    MorphFlexControllerRemapPassthru = 0,
+    MorphFlexControllerRemapPassThru = 0,
 
     /// <summary>
     ///     MorphFlexControllerRemap2way.

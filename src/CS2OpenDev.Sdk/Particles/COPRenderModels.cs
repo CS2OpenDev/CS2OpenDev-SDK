@@ -236,7 +236,7 @@ public partial class COPRenderModels : CParticleFunctionRenderer
     [NativeOffset(0x2045)]
     [NativeName("m_bDisableDepthPrepass")]
     [NativeMetadata("MPropertyFriendlyName", "disable depth prepass")]
-    public bool DisableDepthPrepass { get; set; }
+    public bool DisableDepthPrePass { get; set; }
 
     /// <summary>
     ///     disable shadows.

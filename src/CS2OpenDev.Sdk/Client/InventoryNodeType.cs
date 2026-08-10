@@ -58,13 +58,13 @@ public enum InventoryNodeType : uint
     VirtualNodeSchemaSticker = 3,
 
     /// <summary>
-    ///     VirtualNodeSchemaKeychain.
+    ///     VirtualNodeSchemaKeyChain.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VIRTUAL_NODE_SCHEMA_KEYCHAIN</c>.
     /// </remarks>
     [NativeName("VIRTUAL_NODE_SCHEMA_KEYCHAIN")]
-    VirtualNodeSchemaKeychain = 4,
+    VirtualNodeSchemaKeyChain = 4,
 
     /// <summary>
     ///     ConcreteNodeSchemaPrefab.
@@ -94,11 +94,11 @@ public enum InventoryNodeType : uint
     ConcreteNodeSchemaSticker = 7,
 
     /// <summary>
-    ///     ConcreteNodeSchemaKeychain.
+    ///     ConcreteNodeSchemaKeyChain.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>CONCRETE_NODE_SCHEMA_KEYCHAIN</c>.
     /// </remarks>
     [NativeName("CONCRETE_NODE_SCHEMA_KEYCHAIN")]
-    ConcreteNodeSchemaKeychain = 8
+    ConcreteNodeSchemaKeyChain = 8
 }

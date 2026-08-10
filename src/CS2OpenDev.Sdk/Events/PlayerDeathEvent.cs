@@ -221,14 +221,14 @@ public sealed partial record PlayerDeathEvent
     public required string WeaponItemId { get; init; }
 
     /// <summary>
-    ///     WeaponOriginalownerXuid.
+    ///     WeaponOriginalOwnerXuid.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>weapon_originalowner_xuid</c> — KV1 type <c>string</c>.
     /// </remarks>
     [NativeName("weapon_originalowner_xuid")]
     [GameEventFieldType("string")]
-    public required string WeaponOriginalownerXuid { get; init; }
+    public required string WeaponOriginalOwnerXuid { get; init; }
 
     /// <summary>
     ///     is the kill resulting in squad wipe.

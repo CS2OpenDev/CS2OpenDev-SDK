@@ -69,7 +69,7 @@ public enum ParticleOrientationChoiceList : uint
     /// </remarks>
     [NativeName("PARTICLE_ORIENTATION_SCREENALIGN_TO_PARTICLE_NORMAL")]
     [NativeMetadata("MPropertyFriendlyName", "Screen & Particle Normal Align")]
-    ParticleOrientationScreenalignToParticleNormal = 4,
+    ParticleOrientationScreenAlignToParticleNormal = 4,
 
     /// <summary>
     ///     Full 3-Axis Rotation.

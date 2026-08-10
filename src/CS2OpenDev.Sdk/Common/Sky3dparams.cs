@@ -54,7 +54,7 @@ public partial class Sky3dparams
     [NativeOffset(0x20)]
     [NativeName("fog")]
     [NativeMetadata("MNotSaved", "")]
-    public Fogparams Fog { get; set; }
+    public FogParams Fog { get; set; }
 
     /// <summary>
     ///     Gets or sets Origin.

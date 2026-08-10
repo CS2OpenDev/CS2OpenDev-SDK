@@ -84,7 +84,7 @@ public partial class COPModelDampenMovement : CParticleFunctionOperator
     [NativeOffset(0x1DD)]
     [NativeName("m_bOutside")]
     [NativeMetadata("MPropertyFriendlyName", "dampen outside instead of inside")]
-    public bool Outside { get; set; }
+    public bool OutSide { get; set; }
 
     /// <summary>
     ///     test position offset.

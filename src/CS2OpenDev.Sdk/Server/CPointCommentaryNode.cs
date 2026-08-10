@@ -288,14 +288,14 @@ public partial class CPointCommentaryNode : CBaseAnimGraph
     public string Title { get; set; }
 
     /// <summary>
-    ///     Gets or sets UnderCrosshair.
+    ///     Gets or sets UnderCrossHair.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bUnderCrosshair</c> at offset <c>0x999</c>.
     /// </remarks>
     [NativeOffset(0x999)]
     [NativeName("m_bUnderCrosshair")]
-    public bool UnderCrosshair { get; set; }
+    public bool UnderCrossHair { get; set; }
 
     /// <summary>
     ///     Gets or sets Unstoppable.

@@ -122,13 +122,13 @@ public enum RumbleEffect : uint
     RumbleCrowbarSwing = 9,
 
     /// <summary>
-    ///     RumbleAirboatGun.
+    ///     RumbleAirBoatGun.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>RUMBLE_AIRBOAT_GUN</c>.
     /// </remarks>
     [NativeName("RUMBLE_AIRBOAT_GUN")]
-    RumbleAirboatGun = 10,
+    RumbleAirBoatGun = 10,
 
     /// <summary>
     ///     RumbleJeepEngineLoop.

@@ -795,13 +795,13 @@ public enum EGCItemMsg : uint
     EMsgGCServerBrowser_FavoriteServer = 1601,
 
     /// <summary>
-    ///     EMsgGCServerBrowser_BlacklistServer.
+    ///     EMsgGCServerBrowser_BlackListServer.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>k_EMsgGCServerBrowser_BlacklistServer</c>.
     /// </remarks>
     [NativeName("k_EMsgGCServerBrowser_BlacklistServer")]
-    EMsgGCServerBrowser_BlacklistServer = 1602,
+    EMsgGCServerBrowser_BlackListServer = 1602,
 
     /// <summary>
     ///     EMsgGCServerRentalsBase.

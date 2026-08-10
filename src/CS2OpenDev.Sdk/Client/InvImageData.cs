@@ -98,7 +98,7 @@ public partial class InvImageData
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyDescription", "No Shadows.")]
     [NativeMetadata("MPropertyFriendlyName", "Fill light")]
-    public InvImageLightFill Lightfill { get; set; }
+    public InvImageLightFill LightFill { get; set; }
 
     /// <summary>
     ///     Shadowed.
@@ -111,7 +111,7 @@ public partial class InvImageData
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyDescription", "Shadowed.")]
     [NativeMetadata("MPropertyFriendlyName", "Sun light")]
-    public InvImageLightSun Lightsun { get; set; }
+    public InvImageLightSun LightSun { get; set; }
 
     /// <summary>
     ///     Map.

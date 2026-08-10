@@ -39,7 +39,7 @@ public partial class IKTargetSettings
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "QuaternionParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Animgraph Orientation Parameter")]
-    public AnimParamId AnimgraphParameterNameOrientation { get; set; }
+    public AnimParamId AnimGraphParameterNameOrientation { get; set; }
 
     /// <summary>
     ///     Animgraph Position Parameter.
@@ -52,7 +52,7 @@ public partial class IKTargetSettings
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAttributeChoiceName", "VectorParameter")]
     [NativeMetadata("MPropertyFriendlyName", "Animgraph Position Parameter")]
-    public AnimParamId AnimgraphParameterNamePosition { get; set; }
+    public AnimParamId AnimGraphParameterNamePosition { get; set; }
 
     /// <summary>
     ///     Bone.

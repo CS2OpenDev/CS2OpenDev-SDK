@@ -55,7 +55,7 @@ public partial class CINITModelCull : CParticleFunctionInitializer
     [NativeOffset(0x1E5)]
     [NativeName("m_bCullOutside")]
     [NativeMetadata("MPropertyFriendlyName", "cull outside instead of inside")]
-    public bool CullOutside { get; set; }
+    public bool CullOutSide { get; set; }
 
     /// <summary>
     ///     hitbox set.

@@ -55,14 +55,14 @@ public partial class CSSDSMsgViewTarget
     public int Height { get; set; }
 
     /// <summary>
-    ///     Gets or sets MultisampleNumSamples.
+    ///     Gets or sets MultiSampleNumSamples.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nMultisampleNumSamples</c> at offset <c>0x28</c>.
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_nMultisampleNumSamples")]
-    public int MultisampleNumSamples { get; set; }
+    public int MultiSampleNumSamples { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

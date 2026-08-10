@@ -249,6 +249,17 @@ public partial class CLocalTempEntity : CBaseAnimGraph
     public QAngle TempEntAngVelocity { get; set; }
 
     /// <summary>
+    ///     Gets or sets TempEntRenderamt.
+    /// </summary>
+    /// <remarks>
+    ///     Native field <c>tempent_renderamt</c> at offset <c>0x11BC</c>.
+    /// </remarks>
+    [NativeOffset(0x11BC)]
+    [NativeName("tempent_renderamt")]
+    [NativeMetadata("MNotSaved", "")]
+    public int TempEntRenderamt { get; set; }
+
+    /// <summary>
     ///     Gets or sets TempEntVelocity.
     /// </summary>
     /// <remarks>
@@ -258,17 +269,6 @@ public partial class CLocalTempEntity : CBaseAnimGraph
     [NativeName("m_vecTempEntVelocity")]
     [NativeMetadata("MNotSaved", "")]
     public Vector TempEntVelocity { get; set; }
-
-    /// <summary>
-    ///     Gets or sets TempentRenderamt.
-    /// </summary>
-    /// <remarks>
-    ///     Native field <c>tempent_renderamt</c> at offset <c>0x11BC</c>.
-    /// </remarks>
-    [NativeOffset(0x11BC)]
-    [NativeName("tempent_renderamt")]
-    [NativeMetadata("MNotSaved", "")]
-    public int TempentRenderamt { get; set; }
 
     /// <summary>
     ///     Gets or sets TentOffset.

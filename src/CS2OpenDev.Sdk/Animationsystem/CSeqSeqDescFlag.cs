@@ -24,14 +24,14 @@ namespace CS2OpenSchema.Animationsystem;
 public partial class CSeqSeqDescFlag
 {
     /// <summary>
-    ///     Gets or sets Autoplay.
+    ///     Gets or sets AutoPlay.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bAutoplay</c> at offset <c>0x2</c>.
     /// </remarks>
     [NativeOffset(0x2)]
     [NativeName("m_bAutoplay")]
-    public bool Autoplay { get; set; }
+    public bool AutoPlay { get; set; }
 
     /// <summary>
     ///     Gets or sets Hidden.
@@ -64,14 +64,14 @@ public partial class CSeqSeqDescFlag
     public bool LegacyDelta { get; set; }
 
     /// <summary>
-    ///     Gets or sets LegacyRealtime.
+    ///     Gets or sets LegacyRealTime.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bLegacyRealtime</c> at offset <c>0x9</c>.
     /// </remarks>
     [NativeOffset(0x9)]
     [NativeName("m_bLegacyRealtime")]
-    public bool LegacyRealtime { get; set; }
+    public bool LegacyRealTime { get; set; }
 
     /// <summary>
     ///     Gets or sets LegacyWorldSpace.

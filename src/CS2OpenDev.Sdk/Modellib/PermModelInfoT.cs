@@ -103,13 +103,13 @@ public enum PermModelInfoT : uint
     FlagNoForcedFade = 2048,
 
     /// <summary>
-    ///     FlagForcePhonemeCrossfade.
+    ///     FlagForcePhonemeCrossFade.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FLAG_FORCE_PHONEME_CROSSFADE</c>.
     /// </remarks>
     [NativeName("FLAG_FORCE_PHONEME_CROSSFADE")]
-    FlagForcePhonemeCrossfade = 4096,
+    FlagForcePhonemeCrossFade = 4096,
 
     /// <summary>
     ///     FlagDoNotCastShadows.

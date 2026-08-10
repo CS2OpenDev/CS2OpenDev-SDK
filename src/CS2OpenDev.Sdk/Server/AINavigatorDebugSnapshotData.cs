@@ -57,14 +57,14 @@ public partial class AINavigatorDebugSnapshotData
     public string GoalSourceLocation { get; set; }
 
     /// <summary>
-    ///     Gets or sets LastWaypointPos.
+    ///     Gets or sets LastWayPointPos.
     /// </summary>
     /// <remarks>
     ///     Native field <c>last_waypoint_pos</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("last_waypoint_pos")]
-    public VectorWS LastWaypointPos { get; set; }
+    public VectorWS LastWayPointPos { get; set; }
 
     /// <summary>
     ///     Gets or sets MovementId.
@@ -87,12 +87,12 @@ public partial class AINavigatorDebugSnapshotData
     public uint MovementSerialNumber { get; set; }
 
     /// <summary>
-    ///     Gets or sets Waypoints.
+    ///     Gets or sets WayPoints.
     /// </summary>
     /// <remarks>
     ///     Native field <c>waypoints</c> at offset <c>0x30</c>.
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("waypoints")]
-    public CUtlVector__AI_Navigator_DebugSnapshotData_t_Waypoint_t__ Waypoints { get; set; }
+    public CUtlVector__AI_Navigator_DebugSnapshotData_t_Waypoint_t__ WayPoints { get; set; }
 }

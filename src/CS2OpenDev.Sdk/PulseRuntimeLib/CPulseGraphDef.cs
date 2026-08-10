@@ -24,14 +24,14 @@ namespace CS2OpenSchema.PulseRuntimeLib;
 public partial class CPulseGraphDef
 {
     /// <summary>
-    ///     Gets or sets BlackboardReferences.
+    ///     Gets or sets BlackBoardReferences.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_BlackboardReferences</c> at offset <c>0x110</c>.
     /// </remarks>
     [NativeOffset(0x110)]
     [NativeName("m_BlackboardReferences")]
-    public CUtlVector__CPulse_BlackboardReference__ BlackboardReferences { get; set; }
+    public CUtlVector__CPulse_BlackboardReference__ BlackBoardReferences { get; set; }
 
     /// <summary>
     ///     Gets or sets CallInfos.

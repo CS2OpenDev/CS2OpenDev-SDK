@@ -34,14 +34,14 @@ public partial class CAnimEncodedFrames
     public string FileName { get; set; }
 
     /// <summary>
-    ///     Gets or sets FrameblockArray.
+    ///     Gets or sets FrameBlockArray.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_frameblockArray</c> at offset <c>0x18</c>.
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_frameblockArray")]
-    public CUtlVector__CAnimFrameBlockAnim__ FrameblockArray { get; set; }
+    public CUtlVector__CAnimFrameBlockAnim__ FrameBlockArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Frames.

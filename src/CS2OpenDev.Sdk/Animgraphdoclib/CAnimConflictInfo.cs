@@ -55,12 +55,12 @@ public partial class CAnimConflictInfo
     public string Name { get; set; }
 
     /// <summary>
-    ///     Gets or sets SubgraphName.
+    ///     Gets or sets SubGraphName.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_subgraphName</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_subgraphName")]
-    public string SubgraphName { get; set; }
+    public string SubGraphName { get; set; }
 }

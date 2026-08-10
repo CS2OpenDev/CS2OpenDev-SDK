@@ -57,7 +57,7 @@ public partial class VMixShaperDesc
     [NativeOffset(0x10)]
     [NativeName("m_nOversampleFactor")]
     [NativeMetadata("MPropertyFriendlyName", "Oversampling")]
-    public int OversampleFactor { get; set; }
+    public int OverSampleFactor { get; set; }
 
     /// <summary>
     ///     Shape.

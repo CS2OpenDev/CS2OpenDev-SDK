@@ -278,14 +278,14 @@ public partial class C_PointClientUIWorldPanel : C_BaseClientUIEntity
     public uint OwnerContext { get; set; }
 
     /// <summary>
-    ///     Gets or sets RenderBackface.
+    ///     Gets or sets RenderBackFace.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bRenderBackface</c> at offset <c>0x11F3</c>.
     /// </remarks>
     [NativeOffset(0x11F3)]
     [NativeName("m_bRenderBackface")]
-    public bool RenderBackface { get; set; }
+    public bool RenderBackFace { get; set; }
 
     /// <summary>
     ///     Gets or sets UseOffScreenIndicator.

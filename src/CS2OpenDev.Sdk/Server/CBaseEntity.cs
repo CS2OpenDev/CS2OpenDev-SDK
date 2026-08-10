@@ -751,14 +751,14 @@ public partial class CBaseEntity : CEntityInstance
     public byte SlimeTouch { get; set; }
 
     /// <summary>
-    ///     Gets or sets Spawnflags.
+    ///     Gets or sets SpawnFlags.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_spawnflags</c> at offset <c>0x360</c>.
     /// </remarks>
     [NativeOffset(0x360)]
     [NativeName("m_spawnflags")]
-    public uint Spawnflags { get; set; }
+    public uint SpawnFlags { get; set; }
 
     /// <summary>
     ///     Gets or sets SubclassId.

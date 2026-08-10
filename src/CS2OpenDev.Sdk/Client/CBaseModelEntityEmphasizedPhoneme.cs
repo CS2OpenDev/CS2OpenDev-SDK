@@ -35,14 +35,14 @@ public partial class CBaseModelEntityEmphasizedPhoneme
     public float Amount { get; set; }
 
     /// <summary>
-    ///     Gets or sets Basechecked.
+    ///     Gets or sets BaseChecked.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bBasechecked</c> at offset <c>0x1D</c>.
     /// </remarks>
     [NativeOffset(0x1D)]
     [NativeName("m_bBasechecked")]
-    public bool Basechecked { get; set; }
+    public bool BaseChecked { get; set; }
 
     /// <summary>
     ///     Gets or sets Required.

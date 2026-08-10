@@ -30,22 +30,22 @@ public enum GCClientLauncherType : uint
     Default = 0,
 
     /// <summary>
-    ///     Perfectworld.
+    ///     PerfectWorld.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GCClientLauncherType_PERFECTWORLD</c>.
     /// </remarks>
     [NativeName("GCClientLauncherType_PERFECTWORLD")]
-    Perfectworld = 1,
+    PerfectWorld = 1,
 
     /// <summary>
-    ///     Steamchina.
+    ///     SteamChina.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>GCClientLauncherType_STEAMCHINA</c>.
     /// </remarks>
     [NativeName("GCClientLauncherType_STEAMCHINA")]
-    Steamchina = 2,
+    SteamChina = 2,
 
     /// <summary>
     ///     Source2.

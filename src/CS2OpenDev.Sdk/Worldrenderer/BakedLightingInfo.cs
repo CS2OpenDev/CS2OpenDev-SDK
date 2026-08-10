@@ -65,14 +65,14 @@ public partial class BakedLightingInfo
     public bool CompressionEnabled { get; set; }
 
     /// <summary>
-    ///     Gets or sets HasLightmaps.
+    ///     Gets or sets HasLightMaps.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bHasLightmaps</c> at offset <c>0x10</c>.
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_bHasLightmaps")]
-    public bool HasLightmaps { get; set; }
+    public bool HasLightMaps { get; set; }
 
     /// <summary>
     ///     Gets or sets LightMapGameVersionNumber.
@@ -115,14 +115,14 @@ public partial class BakedLightingInfo
     public CUtlVector__CStrongHandle__InfoForResourceTypeCTextureBase____ LightMaps { get; set; }
 
     /// <summary>
-    ///     Gets or sets SHLightmaps.
+    ///     Gets or sets SHLightMaps.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bSHLightmaps</c> at offset <c>0x13</c>.
     /// </remarks>
     [NativeOffset(0x13)]
     [NativeName("m_bSHLightmaps")]
-    public bool SHLightmaps { get; set; }
+    public bool SHLightMaps { get; set; }
 
     /// <summary>
     ///     Gets or sets VradQuality.

@@ -53,7 +53,7 @@ public partial class COPRenderGpuImplicit : CParticleFunctionRenderer
     public uint IndexCountKb { get; set; }
 
     /// <summary>
-    ///     Gets or sets IsosurfaceThreshold.
+    ///     Gets or sets IsoSurfaceThreshold.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_fIsosurfaceThreshold</c> at offset <c>0x518</c>.
@@ -61,7 +61,7 @@ public partial class COPRenderGpuImplicit : CParticleFunctionRenderer
     [NativeOffset(0x518)]
     [NativeName("m_fIsosurfaceThreshold")]
     [NativeMetadata("MPropertyAttributeRange", ".1 .95")]
-    public CParticleCollectionRendererFloatInput IsosurfaceThreshold { get; set; }
+    public CParticleCollectionRendererFloatInput IsoSurfaceThreshold { get; set; }
 
     /// <summary>
     ///     Gets or sets Material.

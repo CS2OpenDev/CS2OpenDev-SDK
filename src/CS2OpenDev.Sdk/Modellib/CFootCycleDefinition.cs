@@ -64,14 +64,14 @@ public partial class CFootCycleDefinition
     public CFootCycle FootStrikeCycle { get; set; }
 
     /// <summary>
-    ///     Gets or sets MidpointPositionMS.
+    ///     Gets or sets MidPointPositionMS.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_vMidpointPositionMS</c> at offset <c>0xC</c>.
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_vMidpointPositionMS")]
-    public Vector MidpointPositionMS { get; set; }
+    public Vector MidPointPositionMS { get; set; }
 
     /// <summary>
     ///     Gets or sets StanceCycle.

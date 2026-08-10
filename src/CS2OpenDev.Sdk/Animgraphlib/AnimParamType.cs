@@ -22,83 +22,83 @@ namespace CS2OpenSchema.Animgraphlib;
 public enum AnimParamType : byte
 {
     /// <summary>
-    ///     AnimparamUnknown.
+    ///     AnimParamUnknown.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_UNKNOWN</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_UNKNOWN")]
-    AnimparamUnknown = 0,
+    AnimParamUnknown = 0,
 
     /// <summary>
-    ///     AnimparamBool.
+    ///     AnimParamBool.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_BOOL</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_BOOL")]
-    AnimparamBool = 1,
+    AnimParamBool = 1,
 
     /// <summary>
-    ///     AnimparamEnum.
+    ///     AnimParamEnum.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_ENUM</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_ENUM")]
-    AnimparamEnum = 2,
+    AnimParamEnum = 2,
 
     /// <summary>
-    ///     AnimparamInt.
+    ///     AnimParamInt.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_INT</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_INT")]
-    AnimparamInt = 3,
+    AnimParamInt = 3,
 
     /// <summary>
-    ///     AnimparamFloat.
+    ///     AnimParamFloat.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_FLOAT</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_FLOAT")]
-    AnimparamFloat = 4,
+    AnimParamFloat = 4,
 
     /// <summary>
-    ///     AnimparamVector.
+    ///     AnimParamVector.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_VECTOR</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_VECTOR")]
-    AnimparamVector = 5,
+    AnimParamVector = 5,
 
     /// <summary>
-    ///     AnimparamQuaternion.
+    ///     AnimParamQuaternion.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_QUATERNION</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_QUATERNION")]
-    AnimparamQuaternion = 6,
+    AnimParamQuaternion = 6,
 
     /// <summary>
-    ///     AnimparamGlobalsymbol.
+    ///     AnimParamGlobalSymbol.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_GLOBALSYMBOL</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_GLOBALSYMBOL")]
-    AnimparamGlobalsymbol = 7,
+    AnimParamGlobalSymbol = 7,
 
     /// <summary>
-    ///     AnimparamCount.
+    ///     AnimParamCount.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>ANIMPARAM_COUNT</c>.
     /// </remarks>
     [NativeName("ANIMPARAM_COUNT")]
-    AnimparamCount = 8
+    AnimParamCount = 8
 }

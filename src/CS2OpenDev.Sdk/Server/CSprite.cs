@@ -189,14 +189,14 @@ public partial class CSprite : CBaseModelEntity
     public float Speed { get; set; }
 
     /// <summary>
-    ///     Gets or sets SpriteFramerate.
+    ///     Gets or sets SpriteFrameRate.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flSpriteFramerate</c> at offset <c>0x780</c>.
     /// </remarks>
     [NativeOffset(0x780)]
     [NativeName("m_flSpriteFramerate")]
-    public float SpriteFramerate { get; set; }
+    public float SpriteFrameRate { get; set; }
 
     /// <summary>
     ///     Gets or sets SpriteHeight.

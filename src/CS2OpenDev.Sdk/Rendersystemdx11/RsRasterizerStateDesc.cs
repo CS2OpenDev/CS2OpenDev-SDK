@@ -73,14 +73,14 @@ public partial class RsRasterizerStateDesc
     public RsFillMode FillMode { get; set; }
 
     /// <summary>
-    ///     Gets or sets MultisampleEnable.
+    ///     Gets or sets MultiSampleEnable.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bMultisampleEnable</c> at offset <c>0x3</c>.
     /// </remarks>
     [NativeOffset(0x3)]
     [NativeName("m_bMultisampleEnable")]
-    public bool MultisampleEnable { get; set; }
+    public bool MultiSampleEnable { get; set; }
 
     /// <summary>
     ///     Gets or sets SlopeScaledDepthBias.

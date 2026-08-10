@@ -157,5 +157,5 @@ public partial class CINITInitFromCPSnapshot : CParticleFunctionInitializer
     [NativeName("m_strSnapshotSubset")]
     [NativeMetadata("MPropertyFriendlyName", "snapshot subset")]
     [NativeMetadata("MPropertySuppressExpr", "m_nControlPointNumber < 0")]
-    public string SnapshotSubset { get; set; }
+    public string SnapshotSubSet { get; set; }
 }

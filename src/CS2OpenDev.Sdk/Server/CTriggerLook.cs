@@ -118,14 +118,14 @@ public partial class CTriggerLook : CTriggerOnce
     public CEntityIOOutput OnStartLook { get; set; }
 
     /// <summary>
-    ///     Gets or sets OnTimeout.
+    ///     Gets or sets OnTimeOut.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_OnTimeout</c> at offset <c>0x920</c>.
     /// </remarks>
     [NativeOffset(0x920)]
     [NativeName("m_OnTimeout")]
-    public CEntityIOOutput OnTimeout { get; set; }
+    public CEntityIOOutput OnTimeOut { get; set; }
 
     /// <summary>
     ///     Gets or sets TestAllVisibleOcclusion.
@@ -148,24 +148,24 @@ public partial class CTriggerLook : CTriggerOnce
     public bool TestOcclusion { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutDuration.
+    ///     Gets or sets TimeOutDuration.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flTimeoutDuration</c> at offset <c>0x914</c>.
     /// </remarks>
     [NativeOffset(0x914)]
     [NativeName("m_flTimeoutDuration")]
-    public float TimeoutDuration { get; set; }
+    public float TimeOutDuration { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutFired.
+    ///     Gets or sets TimeOutFired.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bTimeoutFired</c> at offset <c>0x918</c>.
     /// </remarks>
     [NativeOffset(0x918)]
     [NativeName("m_bTimeoutFired")]
-    public bool TimeoutFired { get; set; }
+    public bool TimeOutFired { get; set; }
 
     /// <summary>
     ///     Gets or sets UseVelocity.

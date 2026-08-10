@@ -94,7 +94,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     public Vector ColorMod { get; set; }
 
     /// <summary>
-    ///     Gets or sets ConstrainBetweenEndpoints.
+    ///     Gets or sets ConstrainBetweenEndPoints.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bConstrainBetweenEndpoints</c> at offset <c>0x1318</c>.
@@ -102,7 +102,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0x1318)]
     [NativeName("m_bConstrainBetweenEndpoints")]
     [NativeMetadata("MNotSaved", "")]
-    public bool ConstrainBetweenEndpoints { get; set; }
+    public bool ConstrainBetweenEndPoints { get; set; }
 
     /// <summary>
     ///     Gets or sets CurScroll.
@@ -267,7 +267,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0x1290)]
     [NativeName("m_PhysicsDelegate")]
     [NativeMetadata("MNotSaved", "")]
-    public CRopeKeyframeCPhysicsDelegate PhysicsDelegate { get; set; }
+    public CRopeKeyFrameCPhysicsDelegate PhysicsDelegate { get; set; }
 
     /// <summary>
     ///     Gets or sets PhysicsInitted.

@@ -890,14 +890,14 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     public int ShotsFired { get; set; }
 
     /// <summary>
-    ///     Gets or sets ShouldAutobuyDMWeapons.
+    ///     Gets or sets ShouldAutoBuyDMWeapons.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_bShouldAutobuyDMWeapons</c> at offset <c>0x3260</c>.
     /// </remarks>
     [NativeOffset(0x3260)]
     [NativeName("m_bShouldAutobuyDMWeapons")]
-    public bool ShouldAutobuyDMWeapons { get; set; }
+    public bool ShouldAutoBuyDMWeapons { get; set; }
 
     /// <summary>
     ///     Gets or sets StashedGrenadeThrowPawnCenter.

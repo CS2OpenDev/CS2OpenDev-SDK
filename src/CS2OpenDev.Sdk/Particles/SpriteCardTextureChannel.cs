@@ -69,7 +69,7 @@ public enum SpriteCardTextureChannel : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_CHANNEL_MIX_RGB_ALPHAMASK")]
     [NativeMetadata("MPropertyFriendlyName", "RGB with Alpha Mask")]
-    SpritecardTextureChannelMixRgbAlphamask = 4,
+    SpritecardTextureChannelMixRgbAlphaMask = 4,
 
     /// <summary>
     ///     RGB with RGB as Alpha Mask.
@@ -79,7 +79,7 @@ public enum SpriteCardTextureChannel : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_CHANNEL_MIX_RGB_RGBMASK")]
     [NativeMetadata("MPropertyFriendlyName", "RGB with RGB as Alpha Mask")]
-    SpritecardTextureChannelMixRgbRgbmask = 5,
+    SpritecardTextureChannelMixRgbRgbMask = 5,
 
     /// <summary>
     ///     RGBA with RGB as Alpha.
@@ -89,7 +89,7 @@ public enum SpriteCardTextureChannel : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_CHANNEL_MIX_RGBA_RGBALPHA")]
     [NativeMetadata("MPropertyFriendlyName", "RGBA with RGB as Alpha")]
-    SpritecardTextureChannelMixRgbaRgbalpha = 6,
+    SpritecardTextureChannelMixRgbaRgbAlpha = 6,
 
     /// <summary>
     ///     Alpha with RGB as Alpha.
@@ -99,7 +99,7 @@ public enum SpriteCardTextureChannel : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_CHANNEL_MIX_A_RGBALPHA")]
     [NativeMetadata("MPropertyFriendlyName", "Alpha with RGB as Alpha")]
-    SpritecardTextureChannelMixARgbalpha = 7,
+    SpritecardTextureChannelMixARgbAlpha = 7,
 
     /// <summary>
     ///     RGB with RGB as Alpha Passthrough.
@@ -109,7 +109,7 @@ public enum SpriteCardTextureChannel : uint
     /// </remarks>
     [NativeName("SPRITECARD_TEXTURE_CHANNEL_MIX_RGB_A_RGBALPHA")]
     [NativeMetadata("MPropertyFriendlyName", "RGB with RGB as Alpha Passthrough")]
-    SpritecardTextureChannelMixRgbARgbalpha_SPRITECARD_TEXTURE_CHANNEL_MIX_RGB_A_RGBALPHA = 8,
+    SpritecardTextureChannelMixRgbARgbAlpha_SPRITECARD_TEXTURE_CHANNEL_MIX_RGB_A_RGBALPHA = 8,
 
     /// <summary>
     ///     Red Channel.

@@ -283,13 +283,13 @@ public enum FieldType : byte
     FieldResource = 28,
 
     /// <summary>
-    ///     FieldTypeunknown.
+    ///     FieldTypeUnknown.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_TYPEUNKNOWN</c>.
     /// </remarks>
     [NativeName("FIELD_TYPEUNKNOWN")]
-    FieldTypeunknown = 29,
+    FieldTypeUnknown = 29,
 
     /// <summary>
     ///     FieldCstring.
@@ -337,13 +337,13 @@ public enum FieldType : byte
     FieldFloat64 = 34,
 
     /// <summary>
-    ///     FieldPositiveintegerOrNull.
+    ///     FieldPositiveIntegerOrNull.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_POSITIVEINTEGER_OR_NULL</c>.
     /// </remarks>
     [NativeName("FIELD_POSITIVEINTEGER_OR_NULL")]
-    FieldPositiveintegerOrNull = 35,
+    FieldPositiveIntegerOrNull = 35,
 
     /// <summary>
     ///     FieldHscriptNewInstance.
@@ -364,13 +364,13 @@ public enum FieldType : byte
     FieldUint32 = 37,
 
     /// <summary>
-    ///     FieldUtlstringtoken.
+    ///     FieldUtlStringToken.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_UTLSTRINGTOKEN</c>.
     /// </remarks>
     [NativeName("FIELD_UTLSTRINGTOKEN")]
-    FieldUtlstringtoken = 38,
+    FieldUtlStringToken = 38,
 
     /// <summary>
     ///     FieldQangle.
@@ -454,13 +454,13 @@ public enum FieldType : byte
     FieldQuaternionWorldSpace = 47,
 
     /// <summary>
-    ///     FieldHscriptLightbinding.
+    ///     FieldHscriptLightBinding.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_HSCRIPT_LIGHTBINDING</c>.
     /// </remarks>
     [NativeName("FIELD_HSCRIPT_LIGHTBINDING")]
-    FieldHscriptLightbinding = 48,
+    FieldHscriptLightBinding = 48,
 
     /// <summary>
     ///     FieldV8Value.
@@ -499,13 +499,13 @@ public enum FieldType : byte
     FieldV8CallbackInfo = 52,
 
     /// <summary>
-    ///     FieldUtlstring.
+    ///     FieldUtlString.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_UTLSTRING</c>.
     /// </remarks>
     [NativeName("FIELD_UTLSTRING")]
-    FieldUtlstring = 53,
+    FieldUtlString = 53,
 
     /// <summary>
     ///     FieldNetworkOriginCellQuantizedPositionVector.
@@ -733,13 +733,13 @@ public enum FieldType : byte
     FieldWorldGroupId = 78,
 
     /// <summary>
-    ///     FieldGlobalsymbol.
+    ///     FieldGlobalSymbol.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_GLOBALSYMBOL</c>.
     /// </remarks>
     [NativeName("FIELD_GLOBALSYMBOL")]
-    FieldGlobalsymbol = 79,
+    FieldGlobalSymbol = 79,
 
     /// <summary>
     ///     FieldHnmgraphdefinition.

@@ -67,40 +67,40 @@ public enum HitGroup : uint
     Stomach = 3,
 
     /// <summary>
-    ///     Leftarm.
+    ///     LeftArm.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HITGROUP_LEFTARM</c>.
     /// </remarks>
     [NativeName("HITGROUP_LEFTARM")]
-    Leftarm = 4,
+    LeftArm = 4,
 
     /// <summary>
-    ///     Rightarm.
+    ///     RightArm.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HITGROUP_RIGHTARM</c>.
     /// </remarks>
     [NativeName("HITGROUP_RIGHTARM")]
-    Rightarm = 5,
+    RightArm = 5,
 
     /// <summary>
-    ///     Leftleg.
+    ///     LeftLeg.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HITGROUP_LEFTLEG</c>.
     /// </remarks>
     [NativeName("HITGROUP_LEFTLEG")]
-    Leftleg = 6,
+    LeftLeg = 6,
 
     /// <summary>
-    ///     Rightleg.
+    ///     RightLeg.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HITGROUP_RIGHTLEG</c>.
     /// </remarks>
     [NativeName("HITGROUP_RIGHTLEG")]
-    Rightleg = 7,
+    RightLeg = 7,
 
     /// <summary>
     ///     Neck.

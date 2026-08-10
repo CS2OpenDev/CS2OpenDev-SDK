@@ -36,5 +36,5 @@ public partial class CCSPlayerBuyServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_vecSellbackPurchaseEntries")]
-    public C_UtlVectorEmbeddedNetworkVar__SellbackPurchaseEntry_t__ SellbackPurchaseEntries { get; set; }
+    public C_UtlVectorEmbeddedNetworkVar__SellbackPurchaseEntry_t__ SellBackPurchaseEntries { get; set; }
 }

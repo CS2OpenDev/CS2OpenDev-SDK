@@ -189,14 +189,14 @@ public partial class C_Sprite : C_BaseModelEntity
     public float Speed { get; set; }
 
     /// <summary>
-    ///     Gets or sets SpriteFramerate.
+    ///     Gets or sets SpriteFrameRate.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flSpriteFramerate</c> at offset <c>0xFC0</c>.
     /// </remarks>
     [NativeOffset(0xFC0)]
     [NativeName("m_flSpriteFramerate")]
-    public float SpriteFramerate { get; set; }
+    public float SpriteFrameRate { get; set; }
 
     /// <summary>
     ///     Gets or sets SpriteHeight.

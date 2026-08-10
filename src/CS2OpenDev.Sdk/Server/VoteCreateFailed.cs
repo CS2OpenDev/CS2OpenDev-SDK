@@ -112,31 +112,31 @@ public enum VoteCreateFailed : uint
     VoteFailedTeamCantCall = 9,
 
     /// <summary>
-    ///     VoteFailedWaitingforplayers.
+    ///     VoteFailedWaitingForPlayers.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_WAITINGFORPLAYERS</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_WAITINGFORPLAYERS")]
-    VoteFailedWaitingforplayers = 10,
+    VoteFailedWaitingForPlayers = 10,
 
     /// <summary>
-    ///     VoteFailedPlayernotfound.
+    ///     VoteFailedPlayerNotFound.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_PLAYERNOTFOUND</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_PLAYERNOTFOUND")]
-    VoteFailedPlayernotfound = 11,
+    VoteFailedPlayerNotFound = 11,
 
     /// <summary>
-    ///     VoteFailedCannotKickAdmin.
+    ///     VoteFailedCanNotKickAdmin.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_CANNOT_KICK_ADMIN</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_CANNOT_KICK_ADMIN")]
-    VoteFailedCannotKickAdmin = 12,
+    VoteFailedCanNotKickAdmin = 12,
 
     /// <summary>
     ///     VoteFailedScrambleInProgress.
@@ -274,31 +274,31 @@ public enum VoteCreateFailed : uint
     VoteFailedNot10Players = 27,
 
     /// <summary>
-    ///     VoteFailedTimeoutActive.
+    ///     VoteFailedTimeOutActive.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_TIMEOUT_ACTIVE</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_TIMEOUT_ACTIVE")]
-    VoteFailedTimeoutActive = 28,
+    VoteFailedTimeOutActive = 28,
 
     /// <summary>
-    ///     VoteFailedTimeoutInactive.
+    ///     VoteFailedTimeOutInactive.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_TIMEOUT_INACTIVE</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_TIMEOUT_INACTIVE")]
-    VoteFailedTimeoutInactive = 29,
+    VoteFailedTimeOutInactive = 29,
 
     /// <summary>
-    ///     VoteFailedTimeoutExhausted.
+    ///     VoteFailedTimeOutExhausted.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>VOTE_FAILED_TIMEOUT_EXHAUSTED</c>.
     /// </remarks>
     [NativeName("VOTE_FAILED_TIMEOUT_EXHAUSTED")]
-    VoteFailedTimeoutExhausted = 30,
+    VoteFailedTimeOutExhausted = 30,
 
     /// <summary>
     ///     VoteFailedCantRoundEnd.

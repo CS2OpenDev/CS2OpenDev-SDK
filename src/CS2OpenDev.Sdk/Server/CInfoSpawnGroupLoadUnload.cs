@@ -140,14 +140,14 @@ public partial class CInfoSpawnGroupLoadUnload : CLogicalEntity
     public string SpawnGroupName { get; set; }
 
     /// <summary>
-    ///     Gets or sets TimeoutInterval.
+    ///     Gets or sets TimeOutInterval.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_flTimeoutInterval</c> at offset <c>0x528</c>.
     /// </remarks>
     [NativeOffset(0x528)]
     [NativeName("m_flTimeoutInterval")]
-    public float TimeoutInterval { get; set; }
+    public float TimeOutInterval { get; set; }
 
     /// <summary>
     ///     Gets or sets UnloadingStarted.

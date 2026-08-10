@@ -95,14 +95,14 @@ public partial class CSeqS1SeqDesc
     public string LegacyKeyValueText { get; set; }
 
     /// <summary>
-    ///     Gets or sets LocalWeightlist.
+    ///     Gets or sets LocalWeightList.
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_nLocalWeightlist</c> at offset <c>0x90</c>.
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_nLocalWeightlist")]
-    public int LocalWeightlist { get; set; }
+    public int LocalWeightList { get; set; }
 
     /// <summary>
     ///     Gets or sets SName.
