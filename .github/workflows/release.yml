@@ -25,6 +25,12 @@ on:
       - 'src/CS2OpenDev.Sdk.GameEvents/**'
       - 'src/CS2OpenDev.Protos/**'
       - 'protos/**'
+      # In CS2OpenDev.Protos' version.json pathFilters, so editing it moves that
+      # package's version. Without it here the bump happens and nothing ships
+      # until some later push drags it out.
+      - 'scripts/normalize-protos.py'
+      # Root version.json only — the per-package ones are already covered by
+      # their `src/<id>/**` globs above.
       - 'version.json'
   workflow_dispatch: {}
 

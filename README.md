@@ -210,6 +210,8 @@ The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header
 
 `pathFilters` in `version.json` scopes the patch-bumping commits to `src/CS2OpenDev.Sdk/` only, so every regen produces a monotonically newer version, while contributions to tests / docs / generator code that don't change the SDK content don't churn the version. Build metadata is informational — NuGet shows it in the package details, but ordering is determined by `MAJOR.MINOR.PATCH` alone, which is exactly what we want (every regen advances the SortKey).
 
+**Each package has its own `version.json`**, so each has its own git height and the three patch numbers differ. `CS2OpenDev.Sdk.GameEvents` gained one late — until then it inherited the root file, whose `pathFilters` are `:/src/CS2OpenDev.Sdk/` and do not prefix-match `src/CS2OpenDev.Sdk.GameEvents/`, so a commit touching only that project produced no version change and could not be released at all. Its `versionHeightOffset` exists to clear the versions already published from the inherited clock; the file says why.
+
 **`CS2OpenDev.Protos` has its own `version.json`, and it is a patch clock, not a major one.** Its `pathFilters` cover `protos/`, `src/CS2OpenDev.Protos/` and `scripts/normalize-protos.py`, so a schema regen that leaves the `.proto` files alone does not bump it — that is the point, and it stays. But the `MAJOR` is kept in step with the SDK by hand, so the three packages that ship from this repo read as one product rather than three unrelated ones. A major bump is therefore a two-file edit; the version numbers will agree on major and differ on patch, which is intended.
 
 ### Continuous integration

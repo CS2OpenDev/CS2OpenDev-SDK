@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
+  "version": "2.0",
+  "// pathFilters": [
+    "Until this file existed, CS2OpenDev.Sdk.GameEvents inherited the root",
+    "version.json, whose pathFilters are `:/src/CS2OpenDev.Sdk/` — which does",
+    "not prefix-match `src/CS2OpenDev.Sdk.GameEvents/`. A commit touching only",
+    "this project therefore produced no version change, so a GameEvents-only",
+    "fix could be built, tagged and pushed and the feed would reject it as a",
+    "duplicate. It only ever moved when a schema regen happened to touch the",
+    "SDK in the same commit.",
+    "",
+    "Generated/ lives under this directory, so a regen that changes the event",
+    "records is caught here without naming the generator or the schema."
+  ],
+  "pathFilters": [
+    ":/src/CS2OpenDev.Sdk.GameEvents/"
+  ],
+  "// versionHeightOffset": [
+    "2.0.4 is already published, from the inherited clock. Switching clocks",
+    "restarts the height, and a version below 2.0.4 would leave NuGet serving",
+    "2.0.4 as newest forever — the new clock has to clear the old one.",
+    "",
+    "The natural height on this path is 5, so 2.0.5 would technically clear",
+    "2.0.4 by one. That is too little margin for a number nothing else",
+    "guards: the height is a function of which commits touched this",
+    "directory, and a history rewrite or a squashed merge can lower it. The",
+    "offset buys headroom, putting the first version off this clock at",
+    "2.0.10.",
+    "",
+    "Remove it only if this package's published history is ever reset."
+  ],
+  "versionHeightOffset": 5,
+  "publicReleaseRefSpec": [
+    "^refs/heads/main$"
+  ],
+  "nugetPackageVersion": {
+    "semVer": 2
+  }
+}

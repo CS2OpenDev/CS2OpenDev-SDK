@@ -412,8 +412,44 @@ jobs:
           # commit — exactly what happens when NUGET_API_KEY is added later and
           # the release is dispatched again to push the same version to
           # NuGet.org. Update the existing release's assets instead.
+          #
+          # Only when it really is the same commit. The refresh above was
+          # written for a re-run and applied to any re-encounter of the tag,
+          # which is not the same thing: a version can repeat on a NEW commit
+          # whenever that commit does not advance this package's git height.
+          # It happened — CS2OpenDev.Sdk.GameEvents 2.0.4 was tagged at one
+          # commit and its release asset later replaced by a build from a
+          # later one, whose nuspec named a different CS2OpenDev.Protos. The
+          # feed rejected that push as a duplicate (NuGet versions are
+          # immutable, correctly), so the release page and the feed then
+          # served different artifacts under one version.
+          #
+          # Refuse rather than pick a side. Two artifacts for one version is a
+          # bug wherever it is resolved, and the feed is the copy that cannot
+          # be corrected — so the release page must not silently drift from
+          # it. A green run that overwrote a published artifact is worse than
+          # a red one that explains why.
+          # Resolve the tag itself rather than reading `targetCommitish`, which
+          # holds whatever was passed at creation and is a branch name ("main")
+          # as often as a SHA — comparing that against a commit would fail every
+          # legitimate re-run. `git rev-list -n 1` dereferences annotated and
+          # lightweight tags alike, and the checkout above is fetch-depth: 0 so
+          # the tag is local. Fall back to the API field only if it is not.
           if gh release view "$TAG" >/dev/null 2>&1; then
-            echo "::notice::Release $TAG already exists — refreshing its assets and notes."
+            EXISTING_SHA=$(git rev-list -n 1 "$TAG" 2>/dev/null \
+                           || gh release view "$TAG" --json targetCommitish \
+                                --jq '.targetCommitish')
+          else
+            EXISTING_SHA=""
+          fi
+
+          if [ -n "$EXISTING_SHA" ] && [ "$EXISTING_SHA" != "$TARGET_SHA" ]; then
+            echo "::error::${PKG_ID} ${TAG#*/v} already exists, released from ${EXISTING_SHA}, but this run built it from ${TARGET_SHA}. The same version now describes two different trees. This means a commit changed what ships without advancing the package's git height — check that its version.json pathFilters cover everything that goes into it. Not overwriting the published release."
+            exit 1
+          fi
+
+          if [ -n "$EXISTING_SHA" ]; then
+            echo "::notice::Release $TAG already exists at the same commit — refreshing its assets and notes."
             gh release upload "$TAG" "${ASSETS[@]}" --clobber
             gh release edit "$TAG" --notes "$NOTES"
           else
