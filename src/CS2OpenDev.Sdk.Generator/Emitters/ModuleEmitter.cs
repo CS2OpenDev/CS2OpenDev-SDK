@@ -62,7 +62,17 @@ internal static class ModuleEmitter
             sb.Append("(unknown)");
         }
 
-        if (schema.VersionDate is not null)
+        // The two fields do not compose the same way in both formats. 1.x split
+        // them ("May 21 2026" + "17:11:59"), so both were needed. 2.0's
+        // `version_time` is a full ISO 8601 instant ("2026-08-03T18:18:10Z")
+        // that already contains `version_date`, and concatenating gave
+        // "2026-08-03 2026-08-03T18:18:10Z" in the header of every emitted file.
+        // A 'T' separator is what distinguishes a whole timestamp from a
+        // time-of-day, so prefer it alone when present.
+        bool timeIsFullInstant = schema.VersionTime is not null
+            && schema.VersionTime.Contains('T', StringComparison.Ordinal);
+
+        if (schema.VersionDate is not null && !timeIsFullInstant)
         {
             sb.Append(" — ");
             sb.Append(schema.VersionDate);
@@ -70,7 +80,7 @@ internal static class ModuleEmitter
 
         if (schema.VersionTime is not null)
         {
-            sb.Append(' ');
+            sb.Append(timeIsFullInstant ? " — " : " ");
             sb.Append(schema.VersionTime);
         }
 

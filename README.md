@@ -2,7 +2,7 @@
 
 A strongly-typed C# SDK for the Counter-Strike 2 schema system. Every class, struct, and enum that CS2 reflects through its schema runtime is exposed as a C# type, with the original C++ field names and byte offsets preserved as attributes for native interop work.
 
-The SDK is built from the community-enriched [CS2OpenDev-Docs](https://github.com/CS2OpenDev/CS2OpenDev-Docs) mirror of the [DumpSource2](https://github.com/ValveResourceFormat/DumpSource2) schema, pulled in via the `upstream/` git submodule. The committed source under `src/CS2OpenDev.Sdk/` is the canonical artifact — every file is auto-generated, but the regeneration pipeline lives in this repo so contributors can review what changed when CS2 patches the schema.
+The SDK is built from [CS2OpenDev-Docs](https://github.com/CS2OpenDev/CS2OpenDev-Docs), pulled in via the `upstream/` git submodule. Docs enriches the schema extracted per CS2 build by [CS2OpenDev-SchemaTracker](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker), which reads the shipped game binaries directly; the SteamDatabase/GameTracking-CS2 and DumpSource2 chain the SDK originally sat on is no longer in the pipeline. The committed source under `src/CS2OpenDev.Sdk/` is the canonical artifact — every file is auto-generated, but the regeneration pipeline lives in this repo so contributors can review what changed when CS2 patches the schema.
 
 ---
 
@@ -19,6 +19,8 @@ Three packages ship from this repo. They are layered so that taking the schema t
 `CS2OpenDev.Sdk`'s **zero dependencies are a deliberate, load-bearing property**, not an accident of the current implementation. A decoder's input type is a protobuf message, so putting one in the SDK would drag `Google.Protobuf` onto every consumer who only wanted to name a schema type. That is the entire reason the decoder is a separate package, and CI fails the build if the SDK's nuspec ever grows a `<dependency>`.
 
 The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
+
+> **Upgrading from 1.x?** `CS2OpenDev.Sdk` 2.0 moves 297 types to a different namespace and removes 40. Read **[docs/MIGRATION-2.0.md](docs/MIGRATION-2.0.md)** first — it lists every removed type in full and names the `using` lines to change.
 
 ### Upstreams
 
@@ -194,7 +196,7 @@ The Exporter also prunes orphan generated files — classes that disappeared fro
 Package versions follow SemVer 2 with build metadata identifying the upstream schema:
 
 ```
-{Generator-MAJOR}.{Generator-MINOR}.{git-height}+cs.{cs2-revision}.dump.{yyyy-MM-dd}
+{Generator-MAJOR}.{Generator-MINOR}.{git-height}+cs.{cs2-build-id}.dump.{yyyy-MM-dd}
 ```
 
 | Segment | Where it comes from | Who bumps it |
@@ -202,7 +204,9 @@ Package versions follow SemVer 2 with build metadata identifying the upstream sc
 | `MAJOR` | `version.json` | Human — reserved for breaking SDK API changes |
 | `MINOR` | `version.json` | Human — new emitter features |
 | `PATCH` | Git commit height since the last `MAJOR.MINOR` bump | Automatic via Nerdbank.GitVersioning |
-| Build metadata | `cs2_schema.json` | Automatic from CI at pack-time |
+| Build metadata | `cs2_schema.json` → `build_id`, `version_date` | Automatic from CI at pack-time |
+
+The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header's `revision` field. In schema 2.0 `revision` is a slash-bearing walker identity (`hl2sdk-cs2/5f891c90…/v1/3d1200e3…`) which is not a legal SemVer 2 build-metadata identifier; `.github/actions/read-schema-metadata` reads `build_id` and fails closed if it is missing rather than falling back to it.
 
 `pathFilters` in `version.json` scopes the patch-bumping commits to `src/CS2OpenDev.Sdk/` only, so every regen produces a monotonically newer version, while contributions to tests / docs / generator code that don't change the SDK content don't churn the version. Build metadata is informational — NuGet shows it in the package details, but ordering is determined by `MAJOR.MINOR.PATCH` alone, which is exactly what we want (every regen advances the SortKey).
 
