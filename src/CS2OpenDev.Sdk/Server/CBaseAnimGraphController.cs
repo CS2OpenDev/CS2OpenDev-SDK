@@ -14,7 +14,6 @@
 
 using CS2OpenSchema.Animationsystem;
 using CS2OpenSchema.Entity2;
-using CS2OpenSchema.GlobalTypes;
 using CS2OpenSchema.Resourcefile;
 
 #endregion

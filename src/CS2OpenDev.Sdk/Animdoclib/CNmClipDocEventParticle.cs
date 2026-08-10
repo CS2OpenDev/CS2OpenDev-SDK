@@ -12,7 +12,8 @@
 
 #region
 
-using CS2OpenSchema.GlobalTypes;
+using CS2OpenSchema.Animationsystem;
+using CS2OpenSchema.Animlib;
 
 #endregion
 

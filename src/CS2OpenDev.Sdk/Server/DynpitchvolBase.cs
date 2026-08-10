@@ -21,7 +21,7 @@ namespace CS2OpenSchema.Server;
 [NativeSize(100)]
 [NativeName("dynpitchvol_base_t")]
 [NativeMetadata("MGetKV3ClassDefaults",
-    "{\n\t\"preset\": 0,\n\t\"pitchrun\": 0,\n\t\"pitchstart\": 0,\n\t\"spinup\": 0,\n\t\"spindown\": 0,\n\t\"volrun\": 0,\n\t\"volstart\": 0,\n\t\"fadein\": 0,\n\t\"fadeout\": 0,\n\t\"lfotype\": 0,\n\t\"lforate\": 0,\n\t\"lfomodpitch\": 0,\n\t\"lfomodvol\": 0,\n\t\"cspinup\": 0,\n\t\"cspincount\": 0,\n\t\"pitch\": 0,\n\t\"spinupsav\": 0,\n\t\"spindownsav\": 0,\n\t\"pitchfrac\": <HIDDEN FOR DIFF>,\n\t\"vol\": 32760,\n\t\"fadeinsav\": 0,\n\t\"fadeoutsav\": 0,\n\t\"volfrac\": 0,\n\t\"lfofrac\": 0,\n\t\"lfomult\": 0\n}")]
+    "{\n\t\"preset\": 0,\n\t\"pitchrun\": 0,\n\t\"pitchstart\": 0,\n\t\"spinup\": 0,\n\t\"spindown\": 0,\n\t\"volrun\": 0,\n\t\"volstart\": 0,\n\t\"fadein\": 0,\n\t\"fadeout\": 0,\n\t\"lfotype\": 0,\n\t\"lforate\": 0,\n\t\"lfomodpitch\": 0,\n\t\"lfomodvol\": 0,\n\t\"cspinup\": 0,\n\t\"cspincount\": 0,\n\t\"pitch\": 0,\n\t\"spinupsav\": 0,\n\t\"spindownsav\": 0,\n\t\"pitchfrac\": <HIDDEN FOR DIFF>,\n\t\"vol\": 32767,\n\t\"fadeinsav\": 0,\n\t\"fadeoutsav\": 0,\n\t\"volfrac\": 0,\n\t\"lfofrac\": 0,\n\t\"lfomult\": 0\n}")]
 public partial class DynpitchvolBase
 {
     /// <summary>

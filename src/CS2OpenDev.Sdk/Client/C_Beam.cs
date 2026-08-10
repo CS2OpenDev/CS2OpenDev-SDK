@@ -13,8 +13,8 @@
 #region
 
 using CS2OpenSchema.Entity2;
-using CS2OpenSchema.GlobalTypes;
 using CS2OpenSchema.Modellib;
+using CS2OpenSchema.Server;
 
 #endregion
 

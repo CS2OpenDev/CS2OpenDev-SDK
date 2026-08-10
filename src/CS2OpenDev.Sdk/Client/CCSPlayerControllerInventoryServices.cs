@@ -12,7 +12,6 @@
 
 #region
 
-using CS2OpenSchema.GlobalTypes;
 using CS2OpenSchema.Server;
 
 #endregion

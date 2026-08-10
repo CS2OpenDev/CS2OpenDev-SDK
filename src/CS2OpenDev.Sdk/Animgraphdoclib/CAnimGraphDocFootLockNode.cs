@@ -13,7 +13,6 @@
 #region
 
 using CS2OpenSchema.Animgraphlib;
-using CS2OpenSchema.GlobalTypes;
 
 #endregion
 

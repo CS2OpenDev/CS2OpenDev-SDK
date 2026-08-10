@@ -12,9 +12,7 @@
 
 #region
 
-using CS2OpenSchema.Common;
 using CS2OpenSchema.Entity2;
-using CS2OpenSchema.GlobalTypes;
 
 #endregion
 

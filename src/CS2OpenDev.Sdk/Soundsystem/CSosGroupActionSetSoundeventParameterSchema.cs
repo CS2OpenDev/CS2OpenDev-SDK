@@ -10,12 +10,6 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
-#region
-
-using CS2OpenSchema.GlobalTypes;
-
-#endregion
-
 namespace CS2OpenSchema.Soundsystem;
 
 /// <summary>

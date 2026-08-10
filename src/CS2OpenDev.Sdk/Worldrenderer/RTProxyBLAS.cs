@@ -12,8 +12,8 @@
 
 #region
 
-using CS2OpenSchema.GlobalTypes;
 using CS2OpenSchema.MathlibExtended;
+using CS2OpenSchema.Modellib;
 
 #endregion
 

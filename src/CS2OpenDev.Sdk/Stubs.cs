@@ -796,6 +796,20 @@ public partial class CNetworkUtlVectorBase__SoundeventPathCornerPairNetworked_t_
 {
 }
 
+/// <summary>CNetworkUtlVectorBase&lt; Vector2D &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+[NativeName("CNetworkUtlVectorBase< Vector2D >")]
+[EditorBrowsable(EditorBrowsableState.Never)]
+public partial class CNetworkUtlVectorBase__Vector2D__
+{
+}
+
+/// <summary>CNetworkUtlVectorBase&lt; Vector4D &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+[NativeName("CNetworkUtlVectorBase< Vector4D >")]
+[EditorBrowsable(EditorBrowsableState.Never)]
+public partial class CNetworkUtlVectorBase__Vector4D__
+{
+}
+
 /// <summary>CNetworkUtlVectorBase&lt; Vector &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
 [NativeName("CNetworkUtlVectorBase< Vector >")]
 [EditorBrowsable(EditorBrowsableState.Never)]

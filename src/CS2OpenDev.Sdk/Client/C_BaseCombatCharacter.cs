@@ -12,7 +12,6 @@
 
 #region
 
-using CS2OpenSchema.Clientdll;
 using CS2OpenSchema.Modellib;
 
 #endregion

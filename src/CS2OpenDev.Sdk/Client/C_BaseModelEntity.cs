@@ -13,7 +13,7 @@
 #region
 
 using CS2OpenSchema.Common;
-using CS2OpenSchema.GlobalTypes;
+using CS2OpenSchema.Scenesystem;
 using CS2OpenSchema.Server;
 
 #endregion
