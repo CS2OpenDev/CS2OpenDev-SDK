@@ -91,6 +91,16 @@ The reverse lookup — given a generated C# property name, recover the raw C++ f
 string nativeName = SchemaNames.CCSPlayerPawn.ArmorValue; // "m_iArmor"
 ```
 
+### Entity and resource handles
+
+Six atomic type names carry entity and resource references, and the schema has no
+discriminator field for them — every consumer identifies them by string-matching
+the type name. **[docs/HANDLES.md](docs/HANDLES.md)** is the canonical list: what
+each of the six means, the typed/untyped split, the C# struct and invalid
+sentinel each projects to, the template-argument spellings to strip, and the
+prefix-ordering trap (a naive `StartsWith("CStrongHandle")` matches three
+different types, one of them untyped).
+
 ### Game events
 
 Every `.gameevents` entry in the upstream registry is emitted as a `public sealed record` under `CS2OpenSchema.Events`. Each property's KV1 type tag (`string`, `short`, `ehandle`, `player_controller_and_pawn`, …) is preserved via `[GameEventFieldType("...")]` so demo parsers and dispatchers can recover the original wire shape; the C# property type is the SDK's projection of that tag.
