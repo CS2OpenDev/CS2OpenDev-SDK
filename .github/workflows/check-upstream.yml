@@ -196,9 +196,25 @@ jobs:
           # to the lock; leaving it uncommitted throws that away, so the name is
           # re-derived on every future run and never actually pinned — which is
           # the one thing the lock exists to do.
+          #
+          # schema-lens/ is here for exactly the same reason, and it is not
+          # optional. The exporter rewrites state.json on every run and stamps
+          # `schemaBuild` from the schema it just read, so EVERY bump changes
+          # the file — not only the patches with Lens consequences. Leaving it
+          # unstaged pushes a commit whose src/ advanced while state.json did
+          # not, and ci.yml's regen fixed-point gate covers schema-lens/, so the
+          # next CI run on main fails with "Regenerated sources differ from what
+          # is committed". This is not hypothetical: it happened the moment the
+          # Lens landed, because that PR was built at 24537688 and main was
+          # already at 24662694.
+          #
+          # It also keeps CS2_GEN_012 honest. observedFields in the committed
+          # state IS the previous-build memory the gate compares against, so a
+          # state file that never advances leaves the gate checking an ever
+          # staler baseline while looking green.
           git add upstream schema-tracker src/CS2OpenDev.Sdk/ \
                   src/CS2OpenDev.Sdk.GameEvents/Generated/ protos/ \
-                  names.lock.json
+                  names.lock.json schema-lens/
 
           # Subject names whichever upstream actually moved, so the log reads as
           # what happened rather than always as a schema regen.
