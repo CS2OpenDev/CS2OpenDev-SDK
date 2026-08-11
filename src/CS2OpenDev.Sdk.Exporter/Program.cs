@@ -301,6 +301,32 @@ else
     }
 }
 
+// ── Name diagnostics ─────────────────────────────────────────────────────────
+//
+// Drained here rather than inside ModuleEmitter, which is where they used to
+// live and where they could not work. WordSplitter accumulates over the whole
+// process, but ModuleEmitter.EmitAll is only the first of the two emitters above
+// — and the second one, GameEventsEmitter, handles exactly the flat KV1 names
+// (`userid`, `attackerinair`) the splitter was written for. Reporting from
+// inside the first emitter emptied the bucket before any of those had been
+// folded, so every game-event run landed in it afterwards and was never seen.
+// A full rebaseline printed zero CS2_GEN_006 lines while genuine near-misses
+// were sitting in the bucket unread.
+//
+// This is the only point that is after all emission and before exit, so it is
+// the only correct place for it.
+foreach (string run in WordSplitter.UnsegmentedRuns)
+{
+    sink.ReportDiagnostic(Descriptors.UnsegmentedWord, run);
+}
+
+// Locked runs the vocabulary now disagrees with. Reported, never applied: the
+// names written above already used the pinned spelling.
+foreach ((string run, (string locked, string vocabulary)) in WordSplitter.StaleLockedRuns)
+{
+    sink.ReportDiagnostic(Descriptors.StaleLockedName, run, locked, vocabulary);
+}
+
 // Delete any generator-owned file we tracked before emission that this run did
 // not produce — classes that disappeared from the schema since the last regen.
 int stale = 0;

@@ -89,4 +89,29 @@ internal static class Descriptors
         "CS2_GEN_008",
         GeneratorDiagnosticSeverity.Error,
         "Game-event supplement in {0} is superseded: {1}");
+
+    // A run pinned in names.lock.json to a spelling the current vocabulary no
+    // longer agrees with. The lock still wins — the emitted name is exactly what
+    // it was — so this reports a divergence, never a change.
+    //
+    // Exists because the lock made CS2_GEN_006 structurally blind to anything
+    // already shipped. A locked run short-circuits before segmentation, so once
+    // a bad split is pinned it is pinned silently and forever; `isbot` shipped as
+    // `Isbot` in 3.0.3 and no amount of vocabulary work could have surfaced it,
+    // because the vocabulary was never consulted for that run again. A downstream
+    // consumer reported it instead.
+    //
+    // Warning rather than Info, unlike CS2_GEN_006. That one lists candidates —
+    // most entries are single words already spelled correctly. This one is a
+    // concrete claim that a published identifier is wrong by the project's own
+    // current rules, and it self-clears: it goes quiet the moment someone either
+    // rebaselines (`--rebaseline-names`, a major version bump) or decides the
+    // shipped spelling was right after all and adds the run to Atomic.
+    internal static readonly GeneratorDiagnostic StaleLockedName = new(
+        "CS2_GEN_009",
+        GeneratorDiagnosticSeverity.Warning,
+        "Locked name '{0}' is pinned as '{1}' but the vocabulary now reads it as '{2}'. "
+        + "The lock wins and the emitted name is unchanged. Rebaseline with --rebaseline-names "
+        + "(renames published API — major version bump) to adopt it, or add '{0}' to "
+        + "WordSplitter.Atomic if the pinned spelling is the correct one.");
 }

@@ -610,13 +610,20 @@ internal static class ModuleEmitter
             sink.ReportDiagnostic(Descriptors.UnknownAtomicType, unknown);
         }
 
-        // Same idea for names: every compound the vocabulary could not segment,
-        // so a gap shows up as a line in the regen output instead of as a
-        // property that quietly kept its run-together spelling.
-        foreach (string run in WordSplitter.UnsegmentedRuns)
-        {
-            sink.ReportDiagnostic(Descriptors.UnsegmentedWord, run);
-        }
+        // The name diagnostics (CS2_GEN_006 / CS2_GEN_009) used to be drained
+        // here and no longer are — see the end of the exporter's Program.cs.
+        //
+        // WordSplitter accumulates across the WHOLE run, but this method is only
+        // the first half of one: GameEventsEmitter runs after it, and the
+        // game-event names are the flat KV1 ones (`userid`, `thrusmoke`) that the
+        // splitter exists for in the first place. Draining here emptied the
+        // bucket before a single one of them had been folded, so the entire
+        // game-event vocabulary was unreportable — the report was not quiet
+        // because there was nothing to say, it was quiet because it was taken
+        // before the interesting half of the work happened.
+        //
+        // The drain therefore belongs to whoever owns the full sequence, which is
+        // the host, not an emitter.
     }
 
     private static void AddReferenced(Dictionary<string, string> names, string original)

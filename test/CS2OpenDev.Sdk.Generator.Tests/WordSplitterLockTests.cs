@@ -79,4 +79,29 @@ public class WordSplitterLockTests
     {
         await Assert.That(WordSplitter.SplitWith("AnimParamID", Lock())).IsEqualTo("AnimParamId");
     }
+
+    /// <summary>
+    ///     The runs from GitHub issue #2 stay pinned. This is the acceptance test for the lock audit: the vocabulary now
+    ///     disagrees with every one of these, the disagreement is what CS2_GEN_009 reports, and the emitted name still
+    ///     does not move. An audit that changed an output would be strictly worse than no audit.
+    /// </summary>
+    [Test]
+    [Arguments("Isbot", "isbot")]
+    [Arguments("Noreplay", "noreplay")]
+    [Arguments("Damagebits", "damagebits")]
+    [Arguments("Totalrewards", "totalrewards")]
+    [Arguments("Fauxitemid", "fauxitemid")]
+    [Arguments("Hcontent", "hcontent")]
+    public async Task Split_RunTheVocabularyNowSplits_StaysPinnedToItsShippedSpelling(
+        string shipped, string run)
+    {
+        await Assert.That(WordSplitter.SplitWith(shipped, Lock((run, shipped)))).IsEqualTo(shipped);
+    }
+
+    /// <summary>A short run with a leading capital is locked like any other. Before the fast-path guard was fixed it never reached the lock at all when it stood alone.</summary>
+    [Test]
+    public async Task Split_ShortRunStandingAlone_IsSubjectToTheLock()
+    {
+        await Assert.That(WordSplitter.SplitWith("Hbox", Lock(("hbox", "Hbox")))).IsEqualTo("Hbox");
+    }
 }
