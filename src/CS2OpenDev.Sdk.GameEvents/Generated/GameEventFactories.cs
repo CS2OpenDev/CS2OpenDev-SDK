@@ -105,13 +105,15 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="BombAbortdefuseEvent"/> from a decoded <c>bomb_abortdefuse</c> event.</summary>
     public static BombAbortdefuseEvent BombAbortdefuseEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="BombAbortplantEvent"/> from a decoded <c>bomb_abortplant</c> event.</summary>
     public static BombAbortplantEvent BombAbortplantEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Site = reader.GetInt16("site")
     };
 
@@ -125,6 +127,7 @@ public static class GameEventFactories
     public static BombBegindefuseEvent BombBegindefuseEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         HasKit = reader.GetBool("haskit")
     };
 
@@ -132,6 +135,7 @@ public static class GameEventFactories
     public static BombBeginplantEvent BombBeginplantEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Site = reader.GetInt16("site")
     };
 
@@ -139,6 +143,7 @@ public static class GameEventFactories
     public static BombDefusedEvent BombDefusedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Site = reader.GetInt16("site"),
         C4 = reader.GetInt16("c4")
     };
@@ -147,6 +152,7 @@ public static class GameEventFactories
     public static BombDroppedEvent BombDroppedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntIndex = reader.GetInt32("entindex")
     };
 
@@ -154,6 +160,7 @@ public static class GameEventFactories
     public static BombExplodedEvent BombExplodedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Site = reader.GetInt16("site"),
         C4 = reader.GetInt16("c4")
     };
@@ -161,13 +168,14 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="BombPickupEvent"/> from a decoded <c>bomb_pickup</c> event.</summary>
     public static BombPickupEvent BombPickupEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="BombPlantedEvent"/> from a decoded <c>bomb_planted</c> event.</summary>
     public static BombPlantedEvent BombPlantedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Site = reader.GetInt16("site"),
         C4 = reader.GetInt16("c4")
     };
@@ -185,6 +193,7 @@ public static class GameEventFactories
     public static BotTakeoverEvent BotTakeoverEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         BotId = reader.GetInt32("botid"),
         P = reader.GetFloat("p"),
         Y = reader.GetFloat("y"),
@@ -195,7 +204,7 @@ public static class GameEventFactories
     public static BreakBreakableEvent BreakBreakableEventFrom(in GameEventReader reader) => new()
     {
         EntIndex = reader.GetInt32("entindex"),
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         Material = reader.GetByte("material")
     };
 
@@ -203,7 +212,7 @@ public static class GameEventFactories
     public static BreakPropCoreEvent BreakPropCoreEventFrom(in GameEventReader reader) => new()
     {
         EntIndex = reader.GetInt32("entindex"),
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         PlayerHeld = reader.GetBool("player_held"),
         PlayerThrown = reader.GetBool("player_thrown"),
         PlayerDropped = reader.GetBool("player_dropped")
@@ -213,14 +222,14 @@ public static class GameEventFactories
     public static BreakPropEvent BreakPropEventFrom(in GameEventReader reader) => new()
     {
         EntIndex = reader.GetInt32("entindex"),
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="BrokenBreakableEvent"/> from a decoded <c>broken_breakable</c> event.</summary>
     public static BrokenBreakableEvent BrokenBreakableEventFrom(in GameEventReader reader) => new()
     {
         EntIndex = reader.GetInt32("entindex"),
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         Material = reader.GetByte("material")
     };
 
@@ -228,7 +237,9 @@ public static class GameEventFactories
     public static BulletDamageEvent BulletDamageEventFrom(in GameEventReader reader) => new()
     {
         Victim = reader.GetInt32("victim"),
+        VictimPawn = reader.GetHandle("victim_pawn"),
         Attacker = reader.GetInt32("attacker"),
+        AttackerPawn = reader.GetHandle("attacker_pawn"),
         Distance = reader.GetFloat("distance"),
         DamageDirX = reader.GetFloat("damage_dir_x"),
         DamageDirY = reader.GetFloat("damage_dir_y"),
@@ -257,6 +268,7 @@ public static class GameEventFactories
     public static BulletImpactEvent BulletImpactEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
         Z = reader.GetFloat("z")
@@ -370,6 +382,7 @@ public static class GameEventFactories
     public static DecoyDetonateEvent DecoyDetonateEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -380,6 +393,7 @@ public static class GameEventFactories
     public static DecoyFiringEvent DecoyFiringEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -389,7 +403,7 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="DecoyStartedEvent"/> from a decoded <c>decoy_started</c> event.</summary>
     public static DecoyStartedEvent DecoyStartedEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -406,7 +420,8 @@ public static class GameEventFactories
     public static DefuserPickupEvent DefuserPickupEventFrom(in GameEventReader reader) => new()
     {
         EntityId = reader.GetInt32("entityid"),
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="DemoSkipEvent"/> from a decoded <c>demo_skip</c> event.</summary>
@@ -456,14 +471,14 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="DoorCloseEvent"/> from a decoded <c>door_close</c> event.</summary>
     public static DoorCloseEvent DoorCloseEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         Checkpoint = reader.GetBool("checkpoint")
     };
 
     /// <summary>Builds a <see cref="DoorClosedEvent"/> from a decoded <c>door_closed</c> event.</summary>
     public static DoorClosedEvent DoorClosedEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         EntIndex = reader.GetInt32("entindex")
     };
 
@@ -471,13 +486,14 @@ public static class GameEventFactories
     public static DoorMovingEvent DoorMovingEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntIndex = reader.GetInt32("entindex")
     };
 
     /// <summary>Builds a <see cref="DoorOpenEvent"/> from a decoded <c>door_open</c> event.</summary>
     public static DoorOpenEvent DoorOpenEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid"),
+        UserId = reader.GetHandle("userid_pawn"),
         EntIndex = reader.GetInt32("entindex")
     };
 
@@ -651,6 +667,7 @@ public static class GameEventFactories
     public static FlashbangDetonateEvent FlashbangDetonateEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -741,13 +758,15 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="GrenadeBounceEvent"/> from a decoded <c>grenade_bounce</c> event.</summary>
     public static GrenadeBounceEvent GrenadeBounceEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="GrenadeThrownEvent"/> from a decoded <c>grenade_thrown</c> event.</summary>
     public static GrenadeThrownEvent GrenadeThrownEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Weapon = reader.GetString("weapon")
     };
 
@@ -765,6 +784,7 @@ public static class GameEventFactories
     public static HegrenadeDetonateEvent HegrenadeDetonateEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -899,6 +919,7 @@ public static class GameEventFactories
     public static HostageFollowsEvent HostageFollowsEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Hostage = reader.GetInt16("hostage")
     };
 
@@ -906,6 +927,7 @@ public static class GameEventFactories
     public static HostageHurtEvent HostageHurtEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Hostage = reader.GetInt16("hostage")
     };
 
@@ -913,6 +935,7 @@ public static class GameEventFactories
     public static HostageKilledEvent HostageKilledEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Hostage = reader.GetInt16("hostage")
     };
 
@@ -925,6 +948,7 @@ public static class GameEventFactories
     public static HostageRescuedEvent HostageRescuedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Hostage = reader.GetInt16("hostage"),
         Site = reader.GetInt16("site")
     };
@@ -933,6 +957,7 @@ public static class GameEventFactories
     public static HostageStopsFollowingEvent HostageStopsFollowingEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Hostage = reader.GetInt16("hostage")
     };
 
@@ -966,7 +991,8 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="InspectWeaponEvent"/> from a decoded <c>inspect_weapon</c> event.</summary>
     public static InspectWeaponEvent InspectWeaponEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="InstructorCloseLessonEvent"/> from a decoded <c>instructor_close_lesson</c> event.</summary>
@@ -1213,6 +1239,7 @@ public static class GameEventFactories
     public static MolotovDetonateEvent MolotovDetonateEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
         Z = reader.GetFloat("z")
@@ -1348,15 +1375,20 @@ public static class GameEventFactories
     public static PlayerDeathCoreEvent PlayerDeathCoreEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
-        Attacker = reader.GetInt32("attacker")
+        UserIdPawn = reader.GetHandle("userid_pawn"),
+        Attacker = reader.GetInt32("attacker"),
+        AttackerPawn = reader.GetHandle("attacker_pawn")
     };
 
     /// <summary>Builds a <see cref="PlayerDeathEvent"/> from a decoded <c>player_death</c> event.</summary>
     public static PlayerDeathEvent PlayerDeathEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Attacker = reader.GetInt32("attacker"),
+        AttackerPawn = reader.GetHandle("attacker_pawn"),
         Assister = reader.GetInt32("assister"),
+        AssisterPawn = reader.GetHandle("assister_pawn"),
         AssistedFlash = reader.GetBool("assistedflash"),
         Weapon = reader.GetString("weapon"),
         WeaponItemId = reader.GetString("weapon_itemid"),
@@ -1381,7 +1413,7 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="PlayerDecalEvent"/> from a decoded <c>player_decal</c> event.</summary>
     public static PlayerDecalEvent PlayerDecalEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="PlayerDisconnectEvent"/> from a decoded <c>player_disconnect</c> event.</summary>
@@ -1400,19 +1432,21 @@ public static class GameEventFactories
     public static PlayerFalldamageEvent PlayerFalldamageEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Damage = reader.GetFloat("damage")
     };
 
     /// <summary>Builds a <see cref="PlayerFootstepCoreEvent"/> from a decoded <c>player_footstep</c> event.</summary>
     public static PlayerFootstepCoreEvent PlayerFootstepCoreEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="PlayerFootstepEvent"/> from a decoded <c>player_footstep</c> event.</summary>
     public static PlayerFootstepEvent PlayerFootstepEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="PlayerFullUpdateEvent"/> from a decoded <c>player_full_update</c> event.</summary>
@@ -1438,7 +1472,9 @@ public static class GameEventFactories
     public static PlayerHurtCoreEvent PlayerHurtCoreEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Attacker = reader.GetInt32("attacker"),
+        AttackerPawn = reader.GetHandle("attacker_pawn"),
         Health = reader.GetByte("health")
     };
 
@@ -1446,7 +1482,9 @@ public static class GameEventFactories
     public static PlayerHurtEvent PlayerHurtEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Attacker = reader.GetInt32("attacker"),
+        AttackerPawn = reader.GetHandle("attacker_pawn"),
         Health = reader.GetByte("health"),
         Armor = reader.GetByte("armor"),
         Weapon = reader.GetString("weapon"),
@@ -1474,6 +1512,7 @@ public static class GameEventFactories
     public static PlayerPingEvent PlayerPingEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -1491,6 +1530,7 @@ public static class GameEventFactories
     public static PlayerRadioEvent PlayerRadioEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Slot = reader.GetInt16("slot")
     };
 
@@ -1514,6 +1554,7 @@ public static class GameEventFactories
     public static PlayerShootEvent PlayerShootEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Weapon = reader.GetByte("weapon"),
         Mode = reader.GetByte("mode")
     };
@@ -1522,6 +1563,7 @@ public static class GameEventFactories
     public static PlayerSoundEvent PlayerSoundEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Radius = reader.GetInt32("radius"),
         Duration = reader.GetFloat("duration"),
         Step = reader.GetBool("step")
@@ -1530,13 +1572,15 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="PlayerSpawnEvent"/> from a decoded <c>player_spawn</c> event.</summary>
     public static PlayerSpawnEvent PlayerSpawnEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="PlayerSpawnedEvent"/> from a decoded <c>player_spawned</c> event.</summary>
     public static PlayerSpawnedEvent PlayerSpawnedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         InRestart = reader.GetBool("inrestart")
     };
 
@@ -1550,6 +1594,7 @@ public static class GameEventFactories
     public static PlayerTeamCoreEvent PlayerTeamCoreEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Team = reader.GetByte("team"),
         OldTeam = reader.GetByte("oldteam"),
         Disconnect = reader.GetBool("disconnect"),
@@ -1562,6 +1607,7 @@ public static class GameEventFactories
     public static PlayerTeamEvent PlayerTeamEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Team = reader.GetByte("team"),
         OldTeam = reader.GetByte("oldteam"),
         Disconnect = reader.GetBool("disconnect"),
@@ -1773,6 +1819,7 @@ public static class GameEventFactories
     public static ShowDeathpanelEvent ShowDeathpanelEventFrom(in GameEventReader reader) => new()
     {
         Victim = reader.GetInt32("victim"),
+        VictimPawn = reader.GetHandle("victim_pawn"),
         Killer = reader.GetHandle("killer"),
         KillerController = reader.GetInt32("killer_controller"),
         HitsTaken = reader.GetInt16("hits_taken"),
@@ -1786,13 +1833,15 @@ public static class GameEventFactories
     {
         LocToken = reader.GetString("loc_token"),
         Duration = reader.GetInt32("duration"),
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="SilencerDetachEvent"/> from a decoded <c>silencer_detach</c> event.</summary>
     public static SilencerDetachEvent SilencerDetachEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="SilencerOffEvent"/> from a decoded <c>silencer_off</c> event.</summary>
@@ -1818,6 +1867,7 @@ public static class GameEventFactories
     public static SmokeGrenadeDetonateEvent SmokeGrenadeDetonateEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -1828,6 +1878,7 @@ public static class GameEventFactories
     public static SmokeGrenadeExpiredEvent SmokeGrenadeExpiredEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         EntityId = reader.GetInt16("entityid"),
         X = reader.GetFloat("x"),
         Y = reader.GetFloat("y"),
@@ -1837,7 +1888,8 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="SpecModeUpdatedCoreEvent"/> from a decoded <c>spec_mode_updated</c> event.</summary>
     public static SpecModeUpdatedCoreEvent SpecModeUpdatedCoreEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="SpecModeUpdatedEvent"/> from a decoded <c>spec_mode_updated</c> event.</summary>
@@ -1850,6 +1902,7 @@ public static class GameEventFactories
     public static SpecTargetUpdatedEvent SpecTargetUpdatedEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Target = reader.GetHandle("target")
     };
 
@@ -2139,6 +2192,7 @@ public static class GameEventFactories
     public static WeaponFireEvent WeaponFireEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Weapon = reader.GetString("weapon"),
         Silenced = reader.GetBool("silenced")
     };
@@ -2147,6 +2201,7 @@ public static class GameEventFactories
     public static WeaponFireOnEmptyEvent WeaponFireOnEmptyEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Weapon = reader.GetString("weapon")
     };
 
@@ -2154,6 +2209,7 @@ public static class GameEventFactories
     public static WeaponHudSelectionEvent WeaponHudSelectionEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn"),
         Mode = reader.GetByte("mode"),
         EntIndex = reader.GetInt32("entindex")
     };
@@ -2161,19 +2217,22 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="WeaponReloadEvent"/> from a decoded <c>weapon_reload</c> event.</summary>
     public static WeaponReloadEvent WeaponReloadEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="WeaponZoomEvent"/> from a decoded <c>weapon_zoom</c> event.</summary>
     public static WeaponZoomEvent WeaponZoomEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="WeaponZoomRifleEvent"/> from a decoded <c>weapon_zoom_rifle</c> event.</summary>
     public static WeaponZoomRifleEvent WeaponZoomRifleEventFrom(in GameEventReader reader) => new()
     {
-        UserId = reader.GetInt32("userid")
+        UserId = reader.GetInt32("userid"),
+        UserIdPawn = reader.GetHandle("userid_pawn")
     };
 
     /// <summary>Builds a <see cref="WriteGameTitledataEvent"/> from a decoded <c>write_game_titledata</c> event.</summary>

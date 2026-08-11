@@ -37,5 +37,5 @@ public sealed partial record BreakPropEvent
     /// </remarks>
     [NativeName("userid")]
     [GameEventFieldType("player_pawn")]
-    public required int UserId { get; init; }
+    public required uint UserId { get; init; }
 }

@@ -41,6 +41,16 @@ public sealed partial record PlayerDeathEvent
     public required int Assister { get; init; }
 
     /// <summary>
+    ///     Entity handle of the pawn for `assister`. Companion wire key `assister_pawn`, emitted by the engine alongside `assister` for the player_controller_and_pawn type.
+    /// </summary>
+    /// <remarks>
+    ///     Wire key: <c>assister_pawn</c>, derived by the engine from the <c>player_controller_and_pawn</c> type rather than declared as a field.
+    /// </remarks>
+    [NativeName("assister_pawn")]
+    [GameEventFieldType("player_controller_and_pawn")]
+    public required uint AssisterPawn { get; init; }
+
+    /// <summary>
     ///     player who killed.
     /// </summary>
     /// <remarks>
@@ -69,6 +79,16 @@ public sealed partial record PlayerDeathEvent
     [NativeName("attackerinair")]
     [GameEventFieldType("bool")]
     public required bool AttackerInAir { get; init; }
+
+    /// <summary>
+    ///     Entity handle of the pawn for `attacker`. Companion wire key `attacker_pawn`, emitted by the engine alongside `attacker` for the player_controller_and_pawn type.
+    /// </summary>
+    /// <remarks>
+    ///     Wire key: <c>attacker_pawn</c>, derived by the engine from the <c>player_controller_and_pawn</c> type rather than declared as a field.
+    /// </remarks>
+    [NativeName("attacker_pawn")]
+    [GameEventFieldType("player_controller_and_pawn")]
+    public required uint AttackerPawn { get; init; }
 
     /// <summary>
     ///     distance to victim in meters.
@@ -189,6 +209,16 @@ public sealed partial record PlayerDeathEvent
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
     public required int UserId { get; init; }
+
+    /// <summary>
+    ///     Entity handle of the pawn for `userid`. Companion wire key `userid_pawn`, emitted by the engine alongside `userid` for the player_controller_and_pawn type.
+    /// </summary>
+    /// <remarks>
+    ///     Wire key: <c>userid_pawn</c>, derived by the engine from the <c>player_controller_and_pawn</c> type rather than declared as a field.
+    /// </remarks>
+    [NativeName("userid_pawn")]
+    [GameEventFieldType("player_controller_and_pawn")]
+    public required uint UserIdPawn { get; init; }
 
     /// <summary>
     ///     weapon name killer used.

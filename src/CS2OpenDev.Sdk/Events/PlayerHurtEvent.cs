@@ -40,6 +40,16 @@ public sealed partial record PlayerHurtEvent
     public required int Attacker { get; init; }
 
     /// <summary>
+    ///     Entity handle of the pawn for `attacker`. Companion wire key `attacker_pawn`, emitted by the engine alongside `attacker` for the player_controller_and_pawn type.
+    /// </summary>
+    /// <remarks>
+    ///     Wire key: <c>attacker_pawn</c>, derived by the engine from the <c>player_controller_and_pawn</c> type rather than declared as a field.
+    /// </remarks>
+    [NativeName("attacker_pawn")]
+    [GameEventFieldType("player_controller_and_pawn")]
+    public required uint AttackerPawn { get; init; }
+
+    /// <summary>
     ///     damage done to armor.
     /// </summary>
     /// <remarks>
@@ -88,6 +98,16 @@ public sealed partial record PlayerHurtEvent
     [NativeName("userid")]
     [GameEventFieldType("player_controller_and_pawn")]
     public required int UserId { get; init; }
+
+    /// <summary>
+    ///     Entity handle of the pawn for `userid`. Companion wire key `userid_pawn`, emitted by the engine alongside `userid` for the player_controller_and_pawn type.
+    /// </summary>
+    /// <remarks>
+    ///     Wire key: <c>userid_pawn</c>, derived by the engine from the <c>player_controller_and_pawn</c> type rather than declared as a field.
+    /// </remarks>
+    [NativeName("userid_pawn")]
+    [GameEventFieldType("player_controller_and_pawn")]
+    public required uint UserIdPawn { get; init; }
 
     /// <summary>
     ///     weapon name attacker used, if not the world.

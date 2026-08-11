@@ -20,8 +20,9 @@ Three packages ship from this repo. They are layered so that taking the schema t
 
 The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
 
-> **Upgrading?** Three breaking releases, each with a migration guide listing every affected name:
+> **Upgrading?** Four releases carry migration guides listing every affected name:
 >
+> - **[4.1](docs/MIGRATION-4.1.md)** — the player-reference game-event fields decoded the wrong wire key. Adds 59 `*Pawn` companion properties and retypes 11 that had silently decoded as `0` since 1.0. Breaking on paper only: no working code can have depended on a constant zero.
 > - **[4.0](docs/MIGRATION-4.0.md)** — ten identifiers the 3.0 pass left run-together (`Isbot` → `IsBot`, `WeaponFauxitemid` → `WeaponFauxItemId`). Also adds three curated event records (`item_drop`, `halftime`, `game_restart`) that fire on the wire but are declared nowhere the extractor can see.
 > - **[3.0](docs/MIGRATION-3.0.md)** — generated identifiers move to idiomatic .NET casing (`Userid` → `UserId`, `...ID` → `...Id`). Renames only: nothing moved namespace, nothing was added or removed, no behaviour changed. **Its tables were incomplete — see the correction note and [the 534 omitted enum members](docs/MIGRATION-3.0-enum-members.md).**
 > - **[2.0](docs/MIGRATION-2.0.md)** — 297 types moved namespace and 40 were removed, when the schema's namespace key changed from `module` to `projectName`.

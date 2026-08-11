@@ -88,4 +88,14 @@ public sealed partial record ShowDeathpanelEvent
     [NativeName("victim")]
     [GameEventFieldType("player_controller_and_pawn")]
     public required int Victim { get; init; }
+
+    /// <summary>
+    ///     Entity handle of the pawn for `victim`. Companion wire key `victim_pawn`, emitted by the engine alongside `victim` for the player_controller_and_pawn type.
+    /// </summary>
+    /// <remarks>
+    ///     Wire key: <c>victim_pawn</c>, derived by the engine from the <c>player_controller_and_pawn</c> type rather than declared as a field.
+    /// </remarks>
+    [NativeName("victim_pawn")]
+    [GameEventFieldType("player_controller_and_pawn")]
+    public required uint VictimPawn { get; init; }
 }
