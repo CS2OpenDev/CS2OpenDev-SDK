@@ -38,7 +38,22 @@ internal record GameEventFieldModel(
     string Name,
     string Type, // raw KV1 type tag — projected via GameEventTypeMapper
     string? Comment,
-    Annotations? Annotations);
+    Annotations? Annotations,
+    // The key this field actually occupies in CMsgSource1LegacyGameEvent, when
+    // that differs from the declared name. Null for every field the extractor
+    // reports verbatim; set only by GameEventPawnExpansion, for the
+    // `player_pawn` fields whose declared name is `userid` but whose sole wire
+    // key is `userid_pawn`. Read through WireKey rather than directly.
+    string? WireKeyOverride = null,
+    // True when the value is an entity handle rather than a userid: the
+    // `player_pawn` fields, and the `*_pawn` companions synthesised for
+    // `player_controller_and_pawn`. Drives both the C# projection (`uint`) and
+    // the reader call (`GetHandle`), which must not disagree.
+    bool IsPawnHandle = false)
+{
+    // Where to look on the wire. Declared name unless the expansion overrode it.
+    internal string WireKey => WireKeyOverride ?? Name;
+}
 
 internal static class GameEventsModel
 {

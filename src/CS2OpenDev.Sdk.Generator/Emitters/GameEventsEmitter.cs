@@ -260,7 +260,7 @@ internal static class GameEventsEmitter
             int i = order[k];
             GameEventFieldModel field = ev.Fields[i];
             string propName = propNames[i];
-            string csType = GameEventTypeMapper.Map(field.Type, overrides);
+            string csType = GameEventTypeMapper.Map(field, overrides);
 
             if (k > 0)
             {
@@ -276,8 +276,31 @@ internal static class GameEventsEmitter
             sb.Append("    ///     ").AppendLine(NameHelpers.ResolveSummaryText(fallback, field.Annotations));
             sb.AppendLine("    /// </summary>");
             sb.AppendLine("    /// <remarks>");
-            sb.Append("    ///     Native name: <c>").Append(NameHelpers.XmlEscape(field.Name))
-                .Append("</c> — KV1 type <c>").Append(NameHelpers.XmlEscape(field.Type)).AppendLine("</c>.");
+
+            // A synthesised `*_pawn` companion has no declared field behind it —
+            // the engine derives the key from the type (GameEventPawnExpansion).
+            // Say "wire key" rather than "native name" so the prose does not
+            // claim a schema declaration that does not exist. [NativeName] still
+            // carries the identifier, because it is the real key on the wire and
+            // the value a reverse lookup needs; only the claim about where it
+            // comes from changes.
+            //
+            // The 11 `player_pawn` fields are NOT in this branch: those are
+            // declared, and keep the ordinary wording plus their declared name.
+            bool synthesisedCompanion = field.IsPawnHandle && field.Type == "player_controller_and_pawn";
+            if (synthesisedCompanion)
+            {
+                sb.Append("    ///     Wire key: <c>").Append(NameHelpers.XmlEscape(field.Name))
+                    .Append("</c>, derived by the engine from the <c>")
+                    .Append(NameHelpers.XmlEscape(field.Type))
+                    .AppendLine("</c> type rather than declared as a field.");
+            }
+            else
+            {
+                sb.Append("    ///     Native name: <c>").Append(NameHelpers.XmlEscape(field.Name))
+                    .Append("</c> — KV1 type <c>").Append(NameHelpers.XmlEscape(field.Type)).AppendLine("</c>.");
+            }
+
             NameHelpers.AppendAnnotationRemarks(sb, "    ", field.Annotations);
             sb.AppendLine("    /// </remarks>");
             sb.AppendLine($"    [NativeName(\"{NameHelpers.EscAttrString(field.Name)}\")]");
@@ -409,7 +432,13 @@ internal static class GameEventsEmitter
                 Array.Sort(order, (a, b) => StringComparer.Ordinal.Compare(propNames[a], propNames[b]));
                 foreach (int i in order)
                 {
-                    sb.AppendLine($"        public const string {propNames[i]} = \"{NameHelpers.EscAttrString(ev.Fields[i].Name)}\";");
+                    // WireKey, not Name. This table exists so a consumer can go
+                    // from a C# property to the identifier to look up on the
+                    // wire; for the `player_pawn` fields those differ, and
+                    // emitting the declared name would hand back a key that is
+                    // never present. [NativeName] on the property still records
+                    // what the schema declared.
+                    sb.AppendLine($"        public const string {propNames[i]} = \"{NameHelpers.EscAttrString(ev.Fields[i].WireKey)}\";");
                 }
             }
 
