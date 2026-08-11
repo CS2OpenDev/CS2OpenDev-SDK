@@ -111,6 +111,7 @@ public static class SchemaEvents
         public const string EventName = "bomb_abortdefuse";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombAbortplantEvent
@@ -119,6 +120,7 @@ public static class SchemaEvents
 
         public const string Site = "site";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombBeepEvent
@@ -134,6 +136,7 @@ public static class SchemaEvents
 
         public const string HasKit = "haskit";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombBeginplantEvent
@@ -142,6 +145,7 @@ public static class SchemaEvents
 
         public const string Site = "site";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombDefusedEvent
@@ -151,6 +155,7 @@ public static class SchemaEvents
         public const string C4 = "c4";
         public const string Site = "site";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombDroppedEvent
@@ -159,6 +164,7 @@ public static class SchemaEvents
 
         public const string EntIndex = "entindex";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombExplodedEvent
@@ -168,13 +174,14 @@ public static class SchemaEvents
         public const string C4 = "c4";
         public const string Site = "site";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BombPickupEvent
     {
         public const string EventName = "bomb_pickup";
 
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class BombPlantedEvent
@@ -184,6 +191,7 @@ public static class SchemaEvents
         public const string C4 = "c4";
         public const string Site = "site";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class BonusUpdatedEvent
@@ -204,6 +212,7 @@ public static class SchemaEvents
         public const string P = "p";
         public const string R = "r";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Y = "y";
     }
 
@@ -213,7 +222,7 @@ public static class SchemaEvents
 
         public const string EntIndex = "entindex";
         public const string Material = "material";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class BreakPropCoreEvent
@@ -224,7 +233,7 @@ public static class SchemaEvents
         public const string PlayerDropped = "player_dropped";
         public const string PlayerHeld = "player_held";
         public const string PlayerThrown = "player_thrown";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class BreakPropEvent
@@ -232,7 +241,7 @@ public static class SchemaEvents
         public const string EventName = "break_prop";
 
         public const string EntIndex = "entindex";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class BrokenBreakableEvent
@@ -241,7 +250,7 @@ public static class SchemaEvents
 
         public const string EntIndex = "entindex";
         public const string Material = "material";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class BulletDamageEvent
@@ -254,6 +263,7 @@ public static class SchemaEvents
         public const string AttackTickCount = "attack_tick_count";
         public const string AttackTickFrac = "attack_tick_frac";
         public const string Attacker = "attacker";
+        public const string AttackerPawn = "attacker_pawn";
         public const string DamageDirX = "damage_dir_x";
         public const string DamageDirY = "damage_dir_y";
         public const string DamageDirZ = "damage_dir_z";
@@ -272,6 +282,7 @@ public static class SchemaEvents
         public const string ShootAngZ = "shoot_ang_z";
         public const string Type = "type";
         public const string Victim = "victim";
+        public const string VictimPawn = "victim_pawn";
     }
 
     public static class BulletImpactEvent
@@ -279,6 +290,7 @@ public static class SchemaEvents
         public const string EventName = "bullet_impact";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -400,6 +412,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -411,6 +424,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -421,7 +435,7 @@ public static class SchemaEvents
         public const string EventName = "decoy_started";
 
         public const string EntityId = "entityid";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -440,6 +454,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class DemoSkipEvent
@@ -496,7 +511,7 @@ public static class SchemaEvents
         public const string EventName = "door_close";
 
         public const string Checkpoint = "checkpoint";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class DoorClosedEvent
@@ -504,7 +519,7 @@ public static class SchemaEvents
         public const string EventName = "door_closed";
 
         public const string EntIndex = "entindex";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class DoorMovingEvent
@@ -513,6 +528,7 @@ public static class SchemaEvents
 
         public const string EntIndex = "entindex";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class DoorOpenEvent
@@ -520,7 +536,7 @@ public static class SchemaEvents
         public const string EventName = "door_open";
 
         public const string EntIndex = "entindex";
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class DroneAboveRoofEvent
@@ -714,6 +730,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -812,6 +829,7 @@ public static class SchemaEvents
         public const string EventName = "grenade_bounce";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class GrenadeThrownEvent
@@ -819,6 +837,7 @@ public static class SchemaEvents
         public const string EventName = "grenade_thrown";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Weapon = "weapon";
     }
 
@@ -838,6 +857,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -988,6 +1008,7 @@ public static class SchemaEvents
 
         public const string Hostage = "hostage";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class HostageHurtEvent
@@ -996,6 +1017,7 @@ public static class SchemaEvents
 
         public const string Hostage = "hostage";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class HostageKilledEvent
@@ -1004,6 +1026,7 @@ public static class SchemaEvents
 
         public const string Hostage = "hostage";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class HostageRescuedAllEvent
@@ -1018,6 +1041,7 @@ public static class SchemaEvents
         public const string Hostage = "hostage";
         public const string Site = "site";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class HostageStopsFollowingEvent
@@ -1026,6 +1050,7 @@ public static class SchemaEvents
 
         public const string Hostage = "hostage";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class InfernoExpireEvent
@@ -1063,6 +1088,7 @@ public static class SchemaEvents
         public const string EventName = "inspect_weapon";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class InstructorCloseLessonEvent
@@ -1328,6 +1354,7 @@ public static class SchemaEvents
         public const string EventName = "molotov_detonate";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1479,7 +1506,9 @@ public static class SchemaEvents
         public const string EventName = "player_death";
 
         public const string Attacker = "attacker";
+        public const string AttackerPawn = "attacker_pawn";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerDeathEvent
@@ -1488,9 +1517,11 @@ public static class SchemaEvents
 
         public const string AssistedFlash = "assistedflash";
         public const string Assister = "assister";
+        public const string AssisterPawn = "assister_pawn";
         public const string Attacker = "attacker";
         public const string AttackerBlind = "attackerblind";
         public const string AttackerInAir = "attackerinair";
+        public const string AttackerPawn = "attacker_pawn";
         public const string Distance = "distance";
         public const string DmgArmor = "dmg_armor";
         public const string DmgHealth = "dmg_health";
@@ -1503,6 +1534,7 @@ public static class SchemaEvents
         public const string Revenge = "revenge";
         public const string ThruSmoke = "thrusmoke";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Weapon = "weapon";
         public const string WeaponFauxItemId = "weapon_fauxitemid";
         public const string WeaponItemId = "weapon_itemid";
@@ -1514,7 +1546,7 @@ public static class SchemaEvents
     {
         public const string EventName = "player_decal";
 
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class PlayerDisconnectEvent
@@ -1536,13 +1568,14 @@ public static class SchemaEvents
 
         public const string Damage = "damage";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerFootstepCoreEvent
     {
         public const string EventName = "player_footstep";
 
-        public const string UserId = "userid";
+        public const string UserId = "userid_pawn";
     }
 
     public static class PlayerFootstepEvent
@@ -1550,6 +1583,7 @@ public static class SchemaEvents
         public const string EventName = "player_footstep";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerFullUpdateEvent
@@ -1579,8 +1613,10 @@ public static class SchemaEvents
         public const string EventName = "player_hurt";
 
         public const string Attacker = "attacker";
+        public const string AttackerPawn = "attacker_pawn";
         public const string Health = "health";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerHurtEvent
@@ -1589,11 +1625,13 @@ public static class SchemaEvents
 
         public const string Armor = "armor";
         public const string Attacker = "attacker";
+        public const string AttackerPawn = "attacker_pawn";
         public const string DmgArmor = "dmg_armor";
         public const string DmgHealth = "dmg_health";
         public const string Health = "health";
         public const string HitGroup = "hitgroup";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Weapon = "weapon";
     }
 
@@ -1621,6 +1659,7 @@ public static class SchemaEvents
         public const string EntityId = "entityid";
         public const string Urgent = "urgent";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -1639,6 +1678,7 @@ public static class SchemaEvents
 
         public const string Slot = "slot";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerResetVoteEvent
@@ -1665,6 +1705,7 @@ public static class SchemaEvents
 
         public const string Mode = "mode";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Weapon = "weapon";
     }
 
@@ -1676,6 +1717,7 @@ public static class SchemaEvents
         public const string Radius = "radius";
         public const string Step = "step";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerSpawnEvent
@@ -1683,6 +1725,7 @@ public static class SchemaEvents
         public const string EventName = "player_spawn";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerSpawnedEvent
@@ -1691,6 +1734,7 @@ public static class SchemaEvents
 
         public const string InRestart = "inrestart";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerStatsUpdatedEvent
@@ -1711,6 +1755,7 @@ public static class SchemaEvents
         public const string Silent = "silent";
         public const string Team = "team";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class PlayerTeamEvent
@@ -1723,6 +1768,7 @@ public static class SchemaEvents
         public const string Silent = "silent";
         public const string Team = "team";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class RagdollDissolvedEvent
@@ -1953,6 +1999,7 @@ public static class SchemaEvents
         public const string Killer = "killer";
         public const string KillerController = "killer_controller";
         public const string Victim = "victim";
+        public const string VictimPawn = "victim_pawn";
     }
 
     public static class ShowSurvivalRespawnStatusEvent
@@ -1962,6 +2009,7 @@ public static class SchemaEvents
         public const string Duration = "duration";
         public const string LocToken = "loc_token";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class SilencerDetachEvent
@@ -1969,6 +2017,7 @@ public static class SchemaEvents
         public const string EventName = "silencer_detach";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class SilencerOffEvent
@@ -1999,6 +2048,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -2010,6 +2060,7 @@ public static class SchemaEvents
 
         public const string EntityId = "entityid";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string X = "x";
         public const string Y = "y";
         public const string Z = "z";
@@ -2020,6 +2071,7 @@ public static class SchemaEvents
         public const string EventName = "spec_mode_updated";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class SpecModeUpdatedEvent
@@ -2035,6 +2087,7 @@ public static class SchemaEvents
 
         public const string Target = "target";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class StartHalfTimeEvent
@@ -2358,6 +2411,7 @@ public static class SchemaEvents
 
         public const string Silenced = "silenced";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Weapon = "weapon";
     }
 
@@ -2366,6 +2420,7 @@ public static class SchemaEvents
         public const string EventName = "weapon_fire_on_empty";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
         public const string Weapon = "weapon";
     }
 
@@ -2376,6 +2431,7 @@ public static class SchemaEvents
         public const string EntIndex = "entindex";
         public const string Mode = "mode";
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class WeaponReloadEvent
@@ -2383,6 +2439,7 @@ public static class SchemaEvents
         public const string EventName = "weapon_reload";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class WeaponZoomEvent
@@ -2390,6 +2447,7 @@ public static class SchemaEvents
         public const string EventName = "weapon_zoom";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class WeaponZoomRifleEvent
@@ -2397,6 +2455,7 @@ public static class SchemaEvents
         public const string EventName = "weapon_zoom_rifle";
 
         public const string UserId = "userid";
+        public const string UserIdPawn = "userid_pawn";
     }
 
     public static class WriteGameTitledataEvent

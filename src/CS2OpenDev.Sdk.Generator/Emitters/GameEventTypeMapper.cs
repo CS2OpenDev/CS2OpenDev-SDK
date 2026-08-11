@@ -6,12 +6,17 @@ using CS2SchemaGen.Models;
 
 namespace CS2SchemaGen.Emitters;
 
-// Maps a KV1 .gameevents type tag to its C# projection. Per the agreement in the
-// design discussion, all three player-reference tags
-// (`player_controller`, `player_pawn`, `player_controller_and_pawn`) project to
-// `int` — the raw userid the engine emits — with the original tag preserved via
-// [GameEventFieldType] so demo parsers / dispatchers can resolve to the right
-// entity flavour. Layering typed wrappers on top is a non-breaking future change.
+// Maps a KV1 .gameevents type tag to its C# projection. The original tag is
+// preserved via [GameEventFieldType] so demo parsers / dispatchers can resolve
+// to the right entity flavour.
+//
+// The player-reference tags do NOT all project to `int`. Only the half of a
+// player reference that carries a userid does; the half that carries a pawn
+// handle projects to `uint`, like the plain `ehandle` tag. Which half a given
+// field is comes from GameEventPawnExpansion, not from the tag — see
+// GameEventFieldModel.IsPawnHandle and the Map(GameEventFieldModel, …) overload
+// below. Projecting `player_pawn` to `int` was wrong on both counts: the value
+// is a handle, and it lives under a different wire key.
 //
 // Tag inventory (288 events × N fields) drawn from gameevents_schema.json:
 //   string                           111
@@ -38,6 +43,14 @@ internal static class GameEventTypeMapper
         return o is not null ? o.CSharpType : Map(typeTag);
     }
 
+    // Field-aware projection. Pawn handles are `uint` by construction rather
+    // than by projection choice — GameEventPawnExpansion only sets the flag on
+    // keys the engine emits as an ehandle — so the flag wins over a tag
+    // override, which would otherwise retype the synthesised `*_pawn` companion
+    // to match its controller half.
+    internal static string Map(GameEventFieldModel field, GameEventOverrides? overrides) =>
+        field.IsPawnHandle ? "uint" : Map(field.Type, overrides);
+
     internal static string Map(string typeTag) => typeTag switch
     {
         "string" => "string",
@@ -53,9 +66,20 @@ internal static class GameEventTypeMapper
         "float" => "float",
         "uint64" => "ulong",
         "ehandle" => "uint",
+        // The userid-carrying halves.
         "player_controller" => "int",
-        "player_pawn" => "int",
         "player_controller_and_pawn" => "int",
+        // `player_pawn` has no userid half — every one of its fields is a pawn
+        // handle, projected through the field-aware overload above. Reaching
+        // here means GameEventPawnExpansion did not run, which would otherwise
+        // emit a compiling SDK whose 11 `player_pawn` properties have the wrong
+        // type and read a key that is not on the wire. That is precisely the
+        // bug this expansion fixes, so fail rather than fall through to the
+        // `object?` default and reintroduce it silently.
+        "player_pawn" => throw new InvalidOperationException(
+            "player_pawn reached the tag-only projection. Every player_pawn field "
+            + "is a pawn handle and must be projected via "
+            + "Map(GameEventFieldModel, …) after GameEventPawnExpansion.Expand()."),
         // `local` appears once in the schema today (demo_start.dota_combatlog_list,
         // typed as a CSVCMsgList_GameEvents protobuf blob). The proto plumbing is
         // outside the SDK's scope, so model it as opaque bytes for now.

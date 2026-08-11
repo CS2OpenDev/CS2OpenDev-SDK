@@ -1,4 +1,5 @@
 using CS2SchemaGen.Emitters;
+using CS2SchemaGen.Models;
 
 namespace CS2_OpenDev.Sdk.Generator.Tests;
 
@@ -27,14 +28,42 @@ public class GameEventTypeMapperTests
         await Assert.That(GameEventTypeMapper.Map(tag)).IsEqualTo(expected);
     }
 
-    /// <summary>Projects all three player-reference tags to <c>int</c> (the raw userid), per the SDK design decision.</summary>
+    /// <summary>Projects the userid-carrying player-reference tags to <c>int</c>.</summary>
     [Test]
     [Arguments("player_controller")]
-    [Arguments("player_pawn")]
     [Arguments("player_controller_and_pawn")]
-    public async Task Map_PlayerRefTags_ProjectToInt(string tag)
+    public async Task Map_UseridBearingPlayerRefTags_ProjectToInt(string tag)
     {
         await Assert.That(GameEventTypeMapper.Map(tag)).IsEqualTo("int");
+    }
+
+    /// <summary>
+    ///     <c>player_pawn</c> has no userid half, so the tag-only projection refuses it rather than
+    ///     falling through to <c>object?</c> — reaching it means the pawn expansion was skipped.
+    /// </summary>
+    [Test]
+    public async Task Map_PlayerPawnTag_WithoutExpansion_Throws()
+    {
+        await Assert.That(() => GameEventTypeMapper.Map("player_pawn"))
+            .Throws<InvalidOperationException>();
+    }
+
+    /// <summary>A field flagged as a pawn handle projects to <c>uint</c>, matching the <c>ehandle</c> tag.</summary>
+    [Test]
+    [Arguments("player_pawn")]
+    [Arguments("player_controller_and_pawn")]
+    public async Task Map_PawnHandleField_ProjectsToUint(string tag)
+    {
+        GameEventFieldModel field = new("userid_pawn", tag, null, null, IsPawnHandle: true);
+        await Assert.That(GameEventTypeMapper.Map(field, null)).IsEqualTo("uint");
+    }
+
+    /// <summary>The controller half of a split reference keeps the userid projection.</summary>
+    [Test]
+    public async Task Map_ControllerHalfField_ProjectsToInt()
+    {
+        GameEventFieldModel field = new("userid", "player_controller_and_pawn", null, null);
+        await Assert.That(GameEventTypeMapper.Map(field, null)).IsEqualTo("int");
     }
 
     /// <summary>Maps KV1 <c>long</c> to .NET <c>int</c>: Valve's <c>long</c> is 32-bit, not Int64.</summary>

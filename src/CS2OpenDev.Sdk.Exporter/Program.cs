@@ -256,7 +256,18 @@ if (eventsPath is not null && File.Exists(eventsPath))
             $"Supplement: {supplementPath} ({supplement.Events.Length} curated event(s) not in the schema)");
     }
 
+    // Expand the pawn-bearing player-reference types into the wire keys the
+    // engine actually emits. After the supplement merge, so curated events get
+    // the same treatment — the rule follows the type tag, not the record's
+    // provenance — and before both emitters, so the record properties and the
+    // factory that fills them are built from one field list.
+    int beforeExpansion = eventsRoot.Events.Sum(e => e.Fields.Length);
+    eventsRoot = GameEventPawnExpansion.Expand(eventsRoot);
+    int afterExpansion = eventsRoot.Events.Sum(e => e.Fields.Length);
+
     Console.WriteLine($"GameEvents: {eventsPath} ({eventsRoot.Events.Length} events)");
+    Console.WriteLine(
+        $"GameEvents: pawn expansion added {afterExpansion - beforeExpansion} companion field(s)");
     GameEventsEmitter.EmitAll(sink, eventsRoot, namespaceLabel, schema, overrides);
 
     // The decoder's factory table and name registry go to a *different* package.

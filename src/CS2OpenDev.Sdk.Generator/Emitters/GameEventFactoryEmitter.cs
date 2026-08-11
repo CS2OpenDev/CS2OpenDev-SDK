@@ -105,7 +105,7 @@ internal static class GameEventFactoryEmitter
             {
                 GameEventFieldModel field = ev.Fields[i];
                 string prop = NameHelpers.ToPascalCaseFromSnake(field.Name);
-                string accessor = ReaderCall(field.Type, field.Name, overrides);
+                string accessor = ReaderCall(field, overrides);
                 sb.Append("        ").Append(prop).Append(" = ").Append(accessor);
                 sb.AppendLine(i == ev.Fields.Length - 1 ? "" : ",");
             }
@@ -128,9 +128,22 @@ internal static class GameEventFactoryEmitter
     // Must stay in lockstep with GameEventTypeMapper, which decides the property
     // type. A mismatch here is a compile error in the generated factories rather
     // than a silent wrong value, which is the intended failure mode.
-    private static string ReaderCall(string typeTag, string key, GameEventOverrides? overrides)
+    private static string ReaderCall(GameEventFieldModel field, GameEventOverrides? overrides)
     {
-        string k = "\"" + NameHelpers.EscAttrString(key) + "\"";
+        // WireKey, not Name: the `player_pawn` fields keep their declared
+        // identifier as the property name but are only ever present on the wire
+        // under `<name>_pawn`. Reading Name there is what made them decode as 0.
+        string k = "\"" + NameHelpers.EscAttrString(field.WireKey) + "\"";
+        string typeTag = field.Type;
+
+        // Pawn handles first, and ahead of the override lookup, for the reason
+        // GameEventTypeMapper states: the flag marks keys the engine emits as an
+        // ehandle, so it is not a projection preference to be overridden. Kept
+        // in lockstep with that mapper's `uint`.
+        if (field.IsPawnHandle)
+        {
+            return $"reader.GetHandle({k})";
+        }
 
         // A consumer override replaces both the property type (via
         // GameEventTypeMapper) and the expression that fills it. Both come from
@@ -150,11 +163,14 @@ internal static class GameEventFactoryEmitter
             "float" => $"reader.GetFloat({k})",
             "uint64" => $"reader.GetUInt64({k})",
             "ehandle" => $"reader.GetHandle({k})",
-            // All three player-reference tags carry the raw userid the engine
-            // emits; the distinction is preserved on the record via
-            // [GameEventFieldType] so a consumer can resolve to the right entity
-            // flavour without the decoder guessing for them.
-            "player_controller" or "player_pawn" or "player_controller_and_pawn" => $"reader.GetInt32({k})",
+            // These carry the raw userid the engine emits; the declared tag is
+            // preserved on the record via [GameEventFieldType] so a consumer can
+            // resolve to the right entity flavour without the decoder guessing.
+            //
+            // Only the userid-carrying halves reach here — the pawn halves took
+            // the IsPawnHandle branch above. `player_pawn` has no such half, so
+            // seeing it here means the expansion did not run.
+            "player_controller" or "player_controller_and_pawn" => $"reader.GetInt32({k})",
             "local" => $"reader.GetBytes({k})",
             // Unknown tag — GameEventTypeMapper projects these to `object?`, so
             // hand back the raw key and let the consumer decide.
