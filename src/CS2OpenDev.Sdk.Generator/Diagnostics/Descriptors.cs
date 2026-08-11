@@ -114,4 +114,86 @@ internal static class Descriptors
         + "The lock wins and the emitted name is unchanged. Rebaseline with --rebaseline-names "
         + "(renames published API — major version bump) to adopt it, or add '{0}' to "
         + "WordSplitter.Atomic if the pinned spelling is the correct one.");
+
+    // A name the Schema Lens tracks — a covered class, or a tracked field path
+    // — no longer resolves against the current schema, or no longer resolves
+    // uniquely.
+    //
+    // Error, and the load-bearing kind: this is the staleness gate issue #6 §1
+    // asked for. The Lens serves names to consumers who key runtime lookups on
+    // them, so a tracked name the schema has dropped is not a cosmetic drift —
+    // it is a lookup that will silently miss on every entity of that class.
+    // The one thing the Lens must never do is keep serving it. The fix is
+    // always a migration: `rename` when the member moved, `removeField` /
+    // `removeClass` when it is gone, a `module` pin when a bare class name
+    // stopped being unique. The message carries the case-specific story in {1}
+    // because the three cases have three different remedies.
+    internal static readonly GeneratorDiagnostic UnresolvedLensField = new(
+        "CS2_GEN_010",
+        GeneratorDiagnosticSeverity.Error,
+        "Schema Lens tracks '{0}', which does not resolve in the current schema: {1}");
+
+    // A rename (or moveSubService) retired a path that the current schema
+    // declares AGAIN.
+    //
+    // Its own id rather than folding into CS2_GEN_010, for the same reason
+    // CS2_GEN_008 is not CS2_GEN_007: this is the self-retiring shape. The
+    // migration was correct when written — upstream dropped the old name, the
+    // rename recorded it — and now upstream has re-grown that name, so the
+    // recorded history no longer describes the world. Nothing is "wrong" in
+    // the file; it has been overtaken, and the response is to revisit the
+    // migration (usually: the re-grown field is a NEW field that needs its own
+    // addField, and the old-name alias must go). A distinct id lets tooling
+    // and maintainers recognise the case on sight.
+    internal static readonly GeneratorDiagnostic LensRenameSuperseded = new(
+        "CS2_GEN_011",
+        GeneratorDiagnosticSeverity.Error,
+        "Schema Lens migration '{0}' is superseded: {1}");
+
+    // A covered class gained a schema field that no migration has either
+    // tracked (addField) or acknowledged (ignoreField).
+    //
+    // This is the tripwire that makes a Valve patch touching a covered class
+    // FAIL CI instead of shipping a stale Lens. Without it, staleness is
+    // one-sided: CS2_GEN_010 catches names the schema dropped, but a field the
+    // schema ADDED simply doesn't exist as far as the Lens is concerned, and
+    // "we never looked at it" is indistinguishable from "we chose not to track
+    // it". The gate forces every new field through a human decision, and
+    // ignoreField exists precisely so that decision can be "no, deliberately".
+    // Removals of untracked fields are not errors — nothing a consumer reads
+    // broke — they just update observedFields, and the regen diff surfaces
+    // them in review.
+    internal static readonly GeneratorDiagnostic UnmigratedSchemaChange = new(
+        "CS2_GEN_012",
+        GeneratorDiagnosticSeverity.Error,
+        "Schema change not covered by a Lens migration: class '{0}' gained field '{1}'. "
+        + "Track it with addField or acknowledge it with ignoreField — a covered class "
+        + "must never drift past the Lens unremarked.");
+
+    // A `schema-lens/` migration file is present but unusable — malformed
+    // JSON, an unknown op, a key from the consumer's side of the §3 split, an
+    // id that disagrees with its filename, or an op that does not apply
+    // cleanly during replay. Same reasoning as CS2_GEN_007: continuing would
+    // emit a state.json that quietly disagrees with what the maintainer wrote,
+    // which is precisely the invisible failure the Lens exists to prevent.
+    internal static readonly GeneratorDiagnostic InvalidLensMigration = new(
+        "CS2_GEN_013",
+        GeneratorDiagnosticSeverity.Error,
+        "Invalid schema-lens migration in {0}: {1}");
+
+    // A migration's declared stateHash does not match the hash of the replayed
+    // state at that point in history.
+    //
+    // The hash is the author's signature over the curated content, so a
+    // mismatch means the file changed after it was signed — hand-edited,
+    // merge-mangled, or replayed by an implementation that disagrees about the
+    // canonical form. All are worth stopping the build for. The deliberate
+    // exception is the authoring flow: a brand-new migration declares the
+    // literal placeholder, and this diagnostic is how the computed hash
+    // reaches the author to be pasted in. That flow fails the run too — a
+    // placeholder must never survive into a green build.
+    internal static readonly GeneratorDiagnostic LensHashMismatch = new(
+        "CS2_GEN_014",
+        GeneratorDiagnosticSeverity.Error,
+        "Schema Lens state hash for '{0}': {1}");
 }

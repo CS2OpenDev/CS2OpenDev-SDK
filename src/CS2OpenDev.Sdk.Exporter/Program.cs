@@ -17,6 +17,7 @@ using CS2SchemaGen.Emitters;
 using System.Text;
 using System.Text.Json;
 using CS2SchemaGen.Models;
+using CS2SchemaGen.SchemaLens;
 
 #endregion
 
@@ -299,6 +300,92 @@ else
         // the Events/ directory is empty.
         Console.WriteLine("GameEvents: schema not found alongside class schema — skipping events emission.");
     }
+}
+
+// ── Schema Lens ──────────────────────────────────────────────────────────────
+//
+// The curated class/field registry (issue #6): replay the migrations under
+// schema-lens/, gate the result against the schema just parsed, and rewrite
+// state.json. Like the events file, an absent directory is a silent skip —
+// a contributor running against a scratch schema dump owes the Lens nothing.
+// Runs before the name-diagnostics drain because targetProperty derivation
+// goes through WordSplitter, and any run it resolves must reach both the
+// CS2_GEN_006 report and the name lock like every other identifier.
+string lensDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "schema-lens"));
+if (Directory.Exists(lensDirectory))
+{
+    IReadOnlyList<LensMigration> lensMigrations;
+    LensReplayResult lensReplay;
+    try
+    {
+        lensMigrations = LensMigrationLoader.LoadDirectory(lensDirectory);
+        lensReplay = LensReplay.Replay(lensMigrations);
+    }
+    catch (Exception ex) when (ex is JsonException or InvalidOperationException)
+    {
+        WriteDiagnosticRaw(
+            Descriptors.InvalidLensMigration.Id,
+            GeneratorDiagnosticSeverity.Error,
+            Descriptors.InvalidLensMigration.Format(lensDirectory, ex.Message));
+        return 1;
+    }
+
+    bool lensFailed = false;
+
+    // Hash checks first: a placeholder is the authoring flow, and the computed
+    // value it prints is what the author is here for. Gates still run below so
+    // one authoring cycle surfaces everything at once.
+    foreach (LensHashCheck check in lensReplay.HashChecks)
+    {
+        if (check.IsPlaceholder)
+        {
+            WriteDiagnosticRaw(
+                Descriptors.LensHashMismatch.Id,
+                GeneratorDiagnosticSeverity.Error,
+                Descriptors.LensHashMismatch.Format(check.MigrationId,
+                    $"stateHash is the authoring placeholder. Computed: {check.ComputedHash} — paste it "
+                    + "into the migration's stateHash and re-run."));
+            lensFailed = true;
+        }
+        else if (!check.Matches)
+        {
+            WriteDiagnosticRaw(
+                Descriptors.LensHashMismatch.Id,
+                GeneratorDiagnosticSeverity.Error,
+                Descriptors.LensHashMismatch.Format(check.MigrationId,
+                    $"declared {check.DeclaredHash} but replay computes {check.ComputedHash}. The migration "
+                    + "(or one before it) changed after its hash was signed; re-verify the content, then re-sign."));
+            lensFailed = true;
+        }
+    }
+
+    // The committed state.json is read BEFORE it is rewritten — it is the
+    // baseline the CS2_GEN_012 gate diffs freshly-observed fields against.
+    string lensStatePath = Path.Combine(lensDirectory, LensMigrationLoader.StateFileName);
+    string? committedLensState = File.Exists(lensStatePath) ? File.ReadAllText(lensStatePath) : null;
+
+    LensGateReport lensGates = LensGates.Run(lensReplay.State, lensReplay.Renames, schema, committedLensState);
+    foreach (LensGateFailure failure in lensGates.Failures)
+    {
+        WriteDiagnosticRaw(failure.Descriptor.Id, failure.Descriptor.Severity, failure.Message);
+        lensFailed = true;
+    }
+
+    if (lensFailed)
+    {
+        return 1;
+    }
+
+    string lensHash = lensReplay.HashChecks.Count > 0
+        ? lensReplay.HashChecks[^1].ComputedHash
+        : LensCanonicalForm.Hash(lensReplay.State);
+    File.WriteAllText(lensStatePath,
+        LensStateWriter.Render(lensReplay.State, lensHash, schema, lensGates.Resolution));
+
+    int lensFieldCount = lensReplay.State.Classes.Values.Sum(c => c.Fields.Count);
+    Console.WriteLine(
+        $"Lens: {lensMigrations.Count} migration(s), {lensReplay.State.Classes.Count} classes, "
+        + $"{lensFieldCount} fields tracked");
 }
 
 // ── Name diagnostics ─────────────────────────────────────────────────────────
