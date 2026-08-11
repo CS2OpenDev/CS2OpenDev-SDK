@@ -30,6 +30,22 @@ C# namespace is added. Tools that match on message short names or descriptor fil
 working — including SchemaTracker's own `network_messages.json` and `demo_messages.json`, which join
 wire-IDs to message types by short name.
 
+## Where to get it
+
+**Not NuGet.org.** Publishing there is gated on a `NUGET_API_KEY` repository secret that is not
+configured, so the release job pushes to **GitHub Packages** and attaches the `.nupkg` and `.snupkg`
+to the GitHub release. Each release's notes name the feeds that version actually reached, so this is
+checkable rather than something you have to take on trust.
+
+Two ways to consume it: a `nuget.config` source pointing at
+`https://nuget.pkg.github.com/CS2OpenDev/index.json`, or the `.nupkg` off the release page into a
+local folder source. GitHub Packages requires an authenticated token even for public packages, which
+is reason enough for some consumers to prefer the second.
+
+NuGet.org is a gap rather than a decision — it is a credential, not a design question. It is not
+purely cosmetic, though: a package published on NuGet.org cannot declare a dependency on one that is
+not there, so the missing credential blocks downstream *publishers*, not just convenience.
+
 ## Which CS2 build?
 
 Every assembly carries it, readable without unpacking anything:
@@ -100,6 +116,39 @@ hand-maintained and silently reverted by the next refresh.
 domains above, so covering them means additional packages split along those domains — never one
 assembly.
 
+## The change of source, measured
+
+These descriptors used to come from Valve's published GameTracking-CS2 tree and are now recovered
+from the shipped binaries. That is the kind of change a compile cannot check for you: the compiler
+proves that names resolve, and a field whose number, declared type or label differs still resolves,
+still compiles, and then misparses in silence.
+
+Cs2DemoKit / DemoViewer.NET diffed the two sources field-by-field before trusting the swap, and
+[reported the result to us](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/4). It is their
+measurement, not ours:
+
+- **2,753 fields are present in both sources, and zero of them differ in field number, declared type
+  or label.**
+- Separately, 47 fields dropped and 50 added. The drops are GC / close-caption cruft and
+  `descriptor.proto` internals, none of which their parser reads.
+
+The two figures are complementary bookkeeping, not a headline and a footnote. "Present in both" is
+keyed on name, so a rename lands as one drop plus one add rather than as a difference — the counts
+are where renames and genuine additions and removals show up. The asymmetry is why the first number
+is the load-bearing one: a field that disappeared out from under you is a compile error, a field you
+never knew about is inert, and a field that quietly changed number or type is neither. That last
+case is the one that was measured, and it is empty.
+
+**Scope: the 13 `.proto` files that project compiles, not all 18 shipped here.** Our closure adds
+`clientmessages`, `valveextensions` and the three GC-chain files — `steammessages`,
+`engine_gcmessages`, `gcsdk_gcmessages` — and those five were not part of the comparison. Their full
+parser suite and analysis suite stayed green across the swap, and their accuracy suite ran 5/5 with
+no demo regressing against its recorded baseline.
+
+It measures that one transition, once. The descriptors are re-derived on every CS2 build, so each
+build is still its own diff — which is why the `.proto` sources are committed here rather than
+fetched at build time.
+
 ## `Google.Protobuf` floor policy
 
 The package exposes generated `IMessage` types on its public surface, so the `Google.Protobuf`
@@ -149,7 +198,10 @@ committed — protoc produces it at build time from the committed sources.
 
 ## Related
 
-- [`CS2OpenDev.Sdk`](https://www.nuget.org/packages/CS2OpenDev.Sdk) — strongly-typed schema classes,
+Both ship from the same repository and the same feeds as this package — GitHub Packages and the
+GitHub release page, not NuGet.org.
+
+- [`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK) — strongly-typed schema classes,
   enums and game-event records. Zero dependencies.
-- [`CS2OpenDev.Sdk.GameEvents`](https://www.nuget.org/packages/CS2OpenDev.Sdk.GameEvents) — decodes
-  `CMsgSource1LegacyGameEvent` into those typed records. Depends on this package.
+- [`CS2OpenDev.Sdk.GameEvents`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Sdk.GameEvents)
+  — decodes `CMsgSource1LegacyGameEvent` into those typed records. Depends on this package.
