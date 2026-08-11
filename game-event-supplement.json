@@ -1,0 +1,57 @@
+{
+  "$comment": [
+    "Curated game events the extractor cannot see.",
+    "",
+    "Every entry here fires in real GOTV demos and appears in the",
+    "CMsgSource1LegacyGameEventList descriptor, but is declared nowhere in",
+    "gameevents_schema.json or the SchemaTracker artifact it derives from. See",
+    "GitHub issue #3 and src/CS2OpenDev.Sdk.GameEvents/README.md.",
+    "",
+    "This file is ADDITIVE ONLY. If the extracted schema gains one of these",
+    "names, generation fails with CS2_GEN_008 and the entry must be DELETED —",
+    "the real declaration wins, and a curated guess must never shadow it.",
+    "",
+    "The field lists are OBSERVED, not declared. Type tags are copied from the",
+    "nearest extracted neighbour (item_pickup / item_equip / item_remove) so the",
+    "generated factory emits the same reader call the sibling events use.",
+    "",
+    "'source' is not settable: the generator stamps sdk.supplement."
+  ],
+  "events": [
+    {
+      "name": "item_drop",
+      "fields": [
+        {
+          "name": "userid",
+          "type": "player_controller",
+          "comment": "the player who dropped the item"
+        },
+        {
+          "name": "item",
+          "type": "string",
+          "comment": "either a weapon such as 'tmp' or 'hegrenade', or an item such as 'nvgs'"
+        }
+      ],
+      "annotations": {
+        "description": "Fired when a player drops a weapon or item.",
+        "notes": "Field shapes mirror `item_pickup`, `item_equip` and `item_remove`, which the schema does declare: `userid` is a controller slot and `item` is the classname / definition string. The descriptor may carry keys beyond these two; only the observed pair is modelled."
+      }
+    },
+    {
+      "name": "halftime",
+      "fields": [],
+      "annotations": {
+        "description": "Fired at the half-time side switch.",
+        "notes": "A separate native name from `start_halftime`, which the schema does declare. No keys were observed on it, so the record is empty — an empty record is still worth having, because it is what lets a dispatcher see the fire at all."
+      }
+    },
+    {
+      "name": "game_restart",
+      "fields": [],
+      "annotations": {
+        "description": "Fired when the game restarts.",
+        "notes": "No keys were observed on it, so the record is empty. Distinct from `round_start`, which marks a new round within an ongoing game."
+      }
+    }
+  ]
+}

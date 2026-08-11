@@ -45,7 +45,7 @@ value becomes `short.MaxValue`, not a plausible-looking negative.
 
 ## Duplicate event names
 
-Native event names are **not unique**. Across 289 declarations there are 273 distinct names: 15
+Native event names are **not unique**. Across 292 declarations there are 276 distinct names: 15
 carry more than one, because the same event is declared in several `.gameevents` files with
 different field sets. `player_death` has two declarations (core: 2 fields, mod: 22);
 `round_end` has three.
@@ -62,7 +62,58 @@ foreach (var d in GameEventRegistry.GetAllFactories("player_death"))
 ```
 
 A registry keyed on name alone cannot round-trip. If your dispatcher assumes one record per name,
-that assumption holds for 258 of 273 and silently truncates on the rest.
+that assumption holds for 261 of 276 and silently truncates on the rest.
+
+## Curated events the schema doesn't declare
+
+Three of those 276 names — `item_drop`, `halftime`, `game_restart` — are **not** in the extracted
+schema. They appear in the `CMsgSource1LegacyGameEventList` descriptor real GOTV demos carry, and
+they fire, but nothing upstream of this repo declares them: not `gameevents_schema.json`, not the
+SchemaTracker artifact it derives from.
+
+That gap is worth naming because of how it fails. A missing *field* is loud — the record is there,
+the property isn't, your code doesn't compile. A missing *record* is silent at every layer that
+compiles: your rule bound to `item_drop` just never fires, and nothing logs. That's how this was
+found (issue #3), and finding it took a demo.
+
+So they ship as records, generated from a `game-event-supplement.json` in the repo root and marked
+in their own XML docs:
+
+```csharp
+[NativeName("item_drop")]
+[GameEventSource("sdk.supplement")]      // not a .gameevents file — nothing extracted this
+public sealed partial record ItemDropEvent { … }
+```
+
+`GameEventRegistry` and `GameEventFactories` treat them like any other declaration, so
+`TryGetFactory("item_drop", …)` works and the reader calls are the same ones `item_pickup` gets. The
+difference is provenance, and provenance is the thing to act on: **the field lists are observed, not
+declared.** `item_drop` carries `userid` and `item` because that is what the descriptor table shows,
+with the KV1 tags copied from `item_pickup`. `halftime` and `game_restart` are empty records — no
+keys were observed on them. Treat all three as a floor, not a contract; an extracted record is a
+promise about shape, and these are not.
+
+They are also temporary, and enforced to be. The supplement is **additive only**: it can introduce a
+native name, never replace one. The moment upstream declares any of these, generation fails with
+`CS2_GEN_008` naming the event, and the entry has to be deleted before the build goes green again.
+That's deliberate — the alternative is a curated guess quietly outliving the real declaration and
+shipping forever under a slightly different type name.
+
+If you build the SDK from source and hit an event of your own with the same problem, add it there —
+same shape as `gameevents_schema.json`'s `events` array, minus `source`, which the generator stamps:
+
+```json
+{
+  "events": [{
+    "name": "some_undeclared_event",
+    "fields": [{ "name": "userid", "type": "player_controller" }],
+    "annotations": { "description": "What you observed." }
+  }]
+}
+```
+
+Resolved next to the schema first, then the working directory — same search as
+`game-event-overrides.json` below. Absent, it changes nothing.
 
 ## Transport context
 

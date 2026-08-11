@@ -69,4 +69,24 @@ internal static class Descriptors
         "CS2_GEN_006",
         GeneratorDiagnosticSeverity.Info,
         "Could not split '{0}' into known words — emitted unsegmented. Add its parts to WordSplitter.Vocabulary if it is a compound, or to Atomic if it is one word.");
+
+    // A `game-event-supplement.json` is present but unusable. Same reasoning as
+    // InvalidOverrides: continuing would emit an SDK that compiles and quietly
+    // omits the events the maintainer asked for — which is precisely the invisible
+    // failure the supplement exists to prevent.
+    internal static readonly GeneratorDiagnostic InvalidSupplement = new(
+        "CS2_GEN_007",
+        GeneratorDiagnosticSeverity.Error,
+        "Invalid game-event supplement in {0}: {1}");
+
+    // The supplement declares an event the extracted schema now declares too.
+    //
+    // Its own id rather than folding into CS2_GEN_007, because this is not a
+    // maintainer mistake — it is the success condition. Upstream caught up, and
+    // the fix is to delete the entry, not to correct it. A distinct id lets the
+    // scheduled upstream-tracking workflow recognise the case on sight.
+    internal static readonly GeneratorDiagnostic SupplementSuperseded = new(
+        "CS2_GEN_008",
+        GeneratorDiagnosticSeverity.Error,
+        "Game-event supplement in {0} is superseded: {1}");
 }

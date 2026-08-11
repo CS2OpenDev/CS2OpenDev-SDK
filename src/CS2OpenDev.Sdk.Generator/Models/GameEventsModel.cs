@@ -27,7 +27,12 @@ internal record GameEventModel(
     bool Local, // properties.local == 1
     bool Reliable, // properties.reliable == 1
     GameEventFieldModel[] Fields,
-    Annotations? Annotations);
+    Annotations? Annotations,
+    // True only for events folded in from `game-event-supplement.json` — events
+    // observed on the wire that the extractor never saw. Carried as a flag rather
+    // than inferred from `Source` so the emitters don't string-match a magic
+    // source value to decide whether a record is curated. See GameEventSupplement.
+    bool Supplemented = false);
 
 internal record GameEventFieldModel(
     string Name,

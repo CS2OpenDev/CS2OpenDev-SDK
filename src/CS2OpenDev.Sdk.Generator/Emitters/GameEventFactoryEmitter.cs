@@ -87,7 +87,16 @@ internal static class GameEventFactoryEmitter
             string typeName = csNames[ev];
             sb.Append("    /// <summary>Builds a <see cref=\"").Append(typeName)
                 .Append("\"/> from a decoded <c>").Append(NameHelpers.XmlEscape(ev.Name))
-                .AppendLine("</c> event.</summary>");
+                .Append("</c> event.");
+            if (ev.Supplemented)
+            {
+                // Same warning as the record's own remarks, repeated here because
+                // this is the surface a decoder author reads. The key names below
+                // come from wire observation, not from a schema declaration.
+                sb.Append(" Curated supplement — key names observed, not declared.");
+            }
+
+            sb.AppendLine("</summary>");
             sb.Append("    public static ").Append(typeName).Append(' ').Append(typeName)
                 .AppendLine("From(in GameEventReader reader) => new()");
             sb.AppendLine("    {");

@@ -25,11 +25,18 @@ internal static class GameEventsEmitter
 
     // mod overrides game overrides core (CS2-specific layering). Anything else
     // gets a default low priority so unrecognised sources still emit, just last.
+    //
+    // `sdk.supplement` is listed explicitly at 0 to record the intent: a curated
+    // event must never outrank an extracted one. It is the same number an
+    // unlisted source would get by default, and it is deliberately unreachable —
+    // a supplement sharing a name with an extracted event is rejected before
+    // emission (GameEventSupplement.Apply), so a group can never mix the two.
     private static readonly Dictionary<string, int> SourcePriority = new(StringComparer.OrdinalIgnoreCase)
     {
         ["mod.gameevents"] = 3,
         ["game.gameevents"] = 2,
-        ["core.gameevents"] = 1
+        ["core.gameevents"] = 1,
+        [GameEventSupplement.SupplementSource] = 0
     };
 
     // `schemaForStamp` is the parsed cs2_schema.json — gameevents_schema.json
@@ -202,6 +209,13 @@ internal static class GameEventsEmitter
             sb.Append("///     <para>").Append(NameHelpers.XmlEscape(ev.Comment!)).AppendLine("</para>");
         }
 
+        // Curated records say so, in the doc a consumer actually reads. Everything
+        // else in this file is derived from the shipped binaries; this handful is
+        // derived from watching the wire, and a consumer deciding whether to trust
+        // the field list needs to know which they are looking at without going and
+        // reading the generator.
+        AppendSupplementProvenance(sb, ev);
+
         NameHelpers.AppendAnnotationRemarks(sb, "", ev.Annotations);
         sb.AppendLine("/// </remarks>");
 
@@ -273,6 +287,43 @@ internal static class GameEventsEmitter
 
         sb.AppendLine("}");
         return sb.ToString();
+    }
+
+    // The provenance block on a supplemented record. No-op for extracted events,
+    // so the 289 normal records are byte-identical to what they were before the
+    // supplement hook existed.
+    //
+    // Two paragraphs because they answer two different questions: "where did this
+    // come from" (not the schema — observation), and "why is it still here"
+    // (because upstream hasn't caught up, and the build will say so when it does).
+    private static void AppendSupplementProvenance(StringBuilder sb, GameEventModel ev)
+    {
+        if (!ev.Supplemented)
+        {
+            return;
+        }
+
+        string native = NameHelpers.XmlEscape(ev.Name);
+
+        sb.AppendLine("///     <para>");
+        sb.Append("///         CURATED SUPPLEMENT — <c>").Append(native)
+            .AppendLine("</c> is not present in the extracted CS2");
+        sb.AppendLine("///         schema. It is absent from <c>gameevents_schema.json</c> and from the");
+        sb.AppendLine("///         SchemaTracker artifact that file derives from, yet it appears in the");
+        sb.AppendLine("///         <c>CMsgSource1LegacyGameEventList</c> descriptor real GOTV demos carry, and it");
+        sb.AppendLine("///         fires on the wire. This record exists because without one a name-driven");
+        sb.AppendLine("///         dispatcher drops every fire in silence: unlike a missing field, a missing");
+        sb.AppendLine("///         record breaks nothing that compiles.");
+        sb.AppendLine("///     </para>");
+
+        sb.AppendLine("///     <para>");
+        sb.AppendLine("///         The properties below are observed rather than declared — what the descriptor");
+        sb.AppendLine("///         table carries in practice — so treat them as a floor, not a contract. The");
+        sb.Append("///         record is temporary: when upstream starts declaring <c>").Append(native)
+            .AppendLine("</c>, generation");
+        sb.AppendLine("///         fails until the supplement entry is deleted and the extracted declaration");
+        sb.AppendLine("///         takes over. A supplement can add a name; it can never shadow one.");
+        sb.AppendLine("///     </para>");
     }
 
     private static string BuildRegistrySource(GameEventModel[] events, Dictionary<GameEventModel, string> csNames,

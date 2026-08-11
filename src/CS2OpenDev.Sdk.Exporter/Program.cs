@@ -192,14 +192,12 @@ if (eventsPath is not null && File.Exists(eventsPath))
     // Optional consumer overrides (B4). Absent by default; when present it can
     // re-point a KV1 type tag at a consumer's own type. Applied to the records
     // and the factories from the same source, so the two cannot disagree.
-    GameEventOverrides overrides = GameEventOverrides.Empty;
-    string overridesPath = Path.Combine(Path.GetDirectoryName(schemaPath) ?? ".", overridesFileName);
-    if (!File.Exists(overridesPath))
-    {
-        overridesPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), overridesFileName));
-    }
+    string? schemaDir = Path.GetDirectoryName(schemaPath);
+    string workingDir = Directory.GetCurrentDirectory();
 
-    if (File.Exists(overridesPath))
+    GameEventOverrides overrides = GameEventOverrides.Empty;
+    string? overridesPath = SideCarFile.Resolve(overridesFileName, schemaDir, workingDir);
+    if (overridesPath is not null)
     {
         try
         {
@@ -216,6 +214,46 @@ if (eventsPath is not null && File.Exists(eventsPath))
 
         Console.WriteLine(
             $"Overrides: {overridesPath} ({overrides.FieldTypes.Count} field-type override(s))");
+    }
+
+    // Curated events the extractor cannot see (issue #3). Merged here, inside the
+    // "events schema was found" branch, so a supplement can only ever *extend* a
+    // real extraction — never stand in for one. A run whose events schema is
+    // missing preserves the previously emitted records untouched (see the else
+    // branch below); letting a supplement emit on its own would turn that
+    // preservation into a three-record tree.
+    string? supplementPath = GameEventSupplement.ResolvePath(schemaDir, workingDir);
+    if (supplementPath is not null)
+    {
+        GameEventsRoot supplement;
+        try
+        {
+            supplement = GameEventSupplement.Parse(File.ReadAllText(supplementPath));
+        }
+        catch (Exception ex) when (ex is JsonException or InvalidOperationException or NotSupportedException)
+        {
+            WriteDiagnosticRaw(
+                Descriptors.InvalidSupplement.Id,
+                GeneratorDiagnosticSeverity.Error,
+                Descriptors.InvalidSupplement.Format(supplementPath, ex.Message));
+            return 1;
+        }
+
+        try
+        {
+            eventsRoot = GameEventSupplement.Apply(eventsRoot, supplement);
+        }
+        catch (InvalidOperationException ex)
+        {
+            WriteDiagnosticRaw(
+                Descriptors.SupplementSuperseded.Id,
+                GeneratorDiagnosticSeverity.Error,
+                Descriptors.SupplementSuperseded.Format(supplementPath, ex.Message));
+            return 1;
+        }
+
+        Console.WriteLine(
+            $"Supplement: {supplementPath} ({supplement.Events.Length} curated event(s) not in the schema)");
     }
 
     Console.WriteLine($"GameEvents: {eventsPath} ({eventsRoot.Events.Length} events)");

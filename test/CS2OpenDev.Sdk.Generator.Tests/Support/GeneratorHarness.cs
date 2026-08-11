@@ -34,9 +34,10 @@ internal static class GeneratorHarness
         string eventsJson,
         string? schemaForStampJson = null,
         string? customNamespace = null,
-        GameEventOverrides? overrides = null)
+        GameEventOverrides? overrides = null,
+        string? supplementJson = null)
     {
-        GameEventsRoot events = GameEventsModel.Parse(eventsJson);
+        GameEventsRoot events = ParseEvents(eventsJson, supplementJson);
         SchemaRoot? stamp = schemaForStampJson is null ? null : SchemaModel.Parse(schemaForStampJson);
         string ns = customNamespace ?? "CS2Schema";
 
@@ -52,15 +53,28 @@ internal static class GeneratorHarness
     internal static RunResult RunGameEventFactories(
         string eventsJson,
         string? schemaForStampJson = null,
-        GameEventOverrides? overrides = null)
+        GameEventOverrides? overrides = null,
+        string? supplementJson = null)
     {
-        GameEventsRoot events = GameEventsModel.Parse(eventsJson);
+        GameEventsRoot events = ParseEvents(eventsJson, supplementJson);
         SchemaRoot? stamp = schemaForStampJson is null ? null : SchemaModel.Parse(schemaForStampJson);
 
         CapturingSink sink = new();
         GameEventFactoryEmitter.EmitAll(sink, events, stamp, overrides);
 
         return new RunResult(sink.Files, sink.Diagnostics);
+    }
+
+    // Runs the extracted schema and the optional curated supplement through the
+    // same parse-then-merge the Exporter does, so a test asserting on emitted
+    // output is looking at what a real run would produce — including the
+    // supersede check, which throws from here rather than being bypassed.
+    private static GameEventsRoot ParseEvents(string eventsJson, string? supplementJson)
+    {
+        GameEventsRoot events = GameEventsModel.Parse(eventsJson);
+        return supplementJson is null
+            ? events
+            : GameEventSupplement.Apply(events, GameEventSupplement.Parse(supplementJson));
     }
 
     internal sealed record TestDiagnostic(string Id, GeneratorDiagnosticSeverity Severity, string Message);
