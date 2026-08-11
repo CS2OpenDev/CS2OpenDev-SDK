@@ -1,9 +1,23 @@
 # Migrating to CS2OpenDev.Sdk 4.0
 
-4.0 renames **ten generated identifiers**. That is the only breaking change — no
-type moved namespace, none was added or removed, no signature or projected type
-changed, and the schema pin is the same as 3.1's. If your code compiles after the
-renames, it behaves exactly as it did.
+The previous release was **3.0.3**; there is no 3.1 on any feed. 4.0 carries what
+was staged as 3.1 as well, so this document covers both.
+
+4.0 renames **ten generated identifiers** and **adds three event records**. The
+renames are the only breaking change — no type moved namespace, none was removed,
+no signature or projected type changed, and the schema pin is the same as 3.0.3's.
+If your code compiles after the renames, it behaves exactly as it did.
+
+The additions are `ItemDropEvent`, `HalfTimeEvent` and `GameRestartEvent`:
+`item_drop`, `halftime` and `game_restart` fire in real GOTV demos and appear in
+the `CMsgSource1LegacyGameEventList` descriptor, but are declared nowhere the
+schema extractor can see, so 3.0.3 had no record for them and a name-driven
+dispatcher dropped every fire in silence. They are carried in a root
+`game-event-supplement.json`, stamped `[GameEventSource("sdk.supplement")]` to
+mark them curated rather than extracted, and they retire themselves: when upstream
+starts declaring one, generation fails (`CS2_GEN_008`) until the entry is deleted.
+Their field lists are observed rather than declared — treat them as a floor.
+Reported in [issue #3](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/3).
 
 Regenerate the table below with:
 
@@ -76,7 +90,7 @@ what a working report looks like.
 
 `scripts/rename-diff.py` had a matching blind spot — it required `public ` before
 the identifier, so it never matched a bare enum member and reported 7 of these 10.
-Fixed in 3.1; its coverage went from 11,539 members to 15,920.
+Fixed here; its coverage went from 11,539 members to 15,920.
 
 That one was not free. **`MIGRATION-3.0.md` was generated with the blind version
 and shipped listing 574 of 3.0's 1,108 renames.** The 534 it omitted are all enum
@@ -96,4 +110,5 @@ the only ones that can appear in a decode path. The three enum members and
 or `FieldType` will fail to build rather than misbehave.
 
 Nothing else moved. `SchemaNames`, every namespace, every projected type, and the
-schema revision are identical to 3.1.
+schema revision are identical to 3.0.3. The only additions are the three event
+records described at the top, and adding a record breaks nothing.

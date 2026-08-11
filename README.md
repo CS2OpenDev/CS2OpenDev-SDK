@@ -20,9 +20,10 @@ Three packages ship from this repo. They are layered so that taking the schema t
 
 The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
 
-> **Upgrading?** Two breaking releases, each with a migration guide listing every affected name:
+> **Upgrading?** Three breaking releases, each with a migration guide listing every affected name:
 >
-> - **[3.0](docs/MIGRATION-3.0.md)** — generated identifiers move to idiomatic .NET casing (`Userid` → `UserId`, `...ID` → `...Id`). Renames only: nothing moved namespace, nothing was added or removed, no behaviour changed.
+> - **[4.0](docs/MIGRATION-4.0.md)** — ten identifiers the 3.0 pass left run-together (`Isbot` → `IsBot`, `WeaponFauxitemid` → `WeaponFauxItemId`). Also adds three curated event records (`item_drop`, `halftime`, `game_restart`) that fire on the wire but are declared nowhere the extractor can see.
+> - **[3.0](docs/MIGRATION-3.0.md)** — generated identifiers move to idiomatic .NET casing (`Userid` → `UserId`, `...ID` → `...Id`). Renames only: nothing moved namespace, nothing was added or removed, no behaviour changed. **Its tables were incomplete — see the correction note and [the 534 omitted enum members](docs/MIGRATION-3.0-enum-members.md).**
 > - **[2.0](docs/MIGRATION-2.0.md)** — 297 types moved namespace and 40 were removed, when the schema's namespace key changed from `module` to `projectName`.
 
 ### Upstreams

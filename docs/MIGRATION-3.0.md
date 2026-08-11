@@ -24,7 +24,7 @@ python3 scripts/rename-diff.py OLD_SDK_DIR NEW_SDK_DIR --markdown
 > `AeClPlaysoundAttachment` → `AeClPlaySoundAttachment`, `AddFloatGametime` →
 > `AddFloatGameTime`.
 >
-> The script is fixed as of 3.1, so re-running the command above against a 2.x
+> The script is fixed as of 4.0, so re-running the command above against a 2.x
 > and a 3.x tree now produces the complete list.
 >
 > This was found while fixing a related blind spot in the generator's own
