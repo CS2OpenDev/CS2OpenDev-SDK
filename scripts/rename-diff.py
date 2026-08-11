@@ -30,6 +30,24 @@ MEMBER = re.compile(
     r"public [\w<>?\[\], ]*?(\w+)\s*(?:\{ get;|=)",
     re.M,
 )
+# [NativeName("HBOX")] ... HBox = 3,
+#
+# Enum members are not `public` — they are bare `Name = value` inside the enum
+# body — so MEMBER above has never matched one, and this script has been
+# reporting zero enum-member renames since it was written. They carry
+# [NativeName] exactly like properties do, they are just as public to a
+# consumer, and renaming one is just as breaking: MIGRATION-3.0.md's tables were
+# generated with this script and are missing every enum member 3.0 renamed.
+#
+# Kept as a separate pattern rather than making `public …` optional in MEMBER.
+# Optional there would let `(\w+)` capture the word `public` itself on a
+# property whose type failed the character class, turning a missed rename into a
+# wrong one — and a release gate that lies is worse than one that is silent.
+ENUM_MEMBER = re.compile(
+    r'\[NativeName\("([^"]+)"\)\][^\n]*\n(?:\s*\[[^\n]*\]\n)*'
+    r"[ \t]*(\w+)\s*=\s*-?\w+\s*,?\s*$",
+    re.M,
+)
 TYPE = re.compile(
     r"^public (?:sealed |abstract |partial |static )*"
     r"(?:partial )?(?:class|record|enum|struct) (\w+)",
@@ -50,6 +68,11 @@ def scan(root: str) -> tuple[dict[str, str], set[str]]:
                 continue
             for native, cs in MEMBER.findall(text):
                 members[native] = cs
+            for native, cs in ENUM_MEMBER.findall(text):
+                # MEMBER wins on the rare native name carried by both a property
+                # and an enum member: a property rename is the more disruptive
+                # of the two, so it is the one worth surfacing under that key.
+                members.setdefault(native, cs)
             types.update(TYPE.findall(text))
     return members, types
 

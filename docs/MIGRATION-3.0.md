@@ -11,6 +11,27 @@ Regenerate the tables below with:
 python3 scripts/rename-diff.py OLD_SDK_DIR NEW_SDK_DIR --markdown
 ```
 
+> ## Correction — this document listed 574 of 1,108 renames
+>
+> **The tables below are missing 534 renamed enum members.** They are listed in
+> full in [`MIGRATION-3.0-enum-members.md`](MIGRATION-3.0-enum-members.md).
+>
+> `scripts/rename-diff.py`, which generated these tables, matched a member only
+> when the line began with `public `. Enum members are bare `Name = value` inside
+> the enum body, so it never matched one — it reported 574 renames of 11,539
+> members it could see, when the real figures were 1,108 of 15,920. Everything it
+> did report is correct; it was blind, not wrong. Examples of what it missed:
+> `AeClPlaysoundAttachment` → `AeClPlaySoundAttachment`, `AddFloatGametime` →
+> `AddFloatGameTime`.
+>
+> The script is fixed as of 3.1, so re-running the command above against a 2.x
+> and a 3.x tree now produces the complete list.
+>
+> This was found while fixing a related blind spot in the generator's own
+> `CS2_GEN_006` diagnostic (see `MIGRATION-4.0.md`), which is to say: it was found
+> because a downstream consumer reported six identifiers our tooling had told us
+> did not exist.
+
 ## Why
 
 Native CS2 names are run-together lowercase — `userid`, `thrusmoke`,
