@@ -40,12 +40,12 @@ public sealed partial record TournamentRewardEvent
     public required int DefIndex { get; init; }
 
     /// <summary>
-    ///     Totalrewards.
+    ///     TotalRewards.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>totalrewards</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("totalrewards")]
     [GameEventFieldType("long")]
-    public required int Totalrewards { get; init; }
+    public required int TotalRewards { get; init; }
 }

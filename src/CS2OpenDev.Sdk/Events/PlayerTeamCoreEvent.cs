@@ -30,14 +30,14 @@ public sealed partial record PlayerTeamCoreEvent
     public required bool Disconnect { get; init; }
 
     /// <summary>
-    ///     Isbot.
+    ///     IsBot.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>isbot</c> — KV1 type <c>bool</c>.
     /// </remarks>
     [NativeName("isbot")]
     [GameEventFieldType("bool")]
-    public required bool Isbot { get; init; }
+    public required bool IsBot { get; init; }
 
     /// <summary>
     ///     Name.

@@ -131,6 +131,16 @@ public sealed partial record PlayerDeathEvent
     public required byte HitGroup { get; init; }
 
     /// <summary>
+    ///     if replay data is unavailable, this will be present and set to false.
+    /// </summary>
+    /// <remarks>
+    ///     Native name: <c>noreplay</c> — KV1 type <c>bool</c>.
+    /// </remarks>
+    [NativeName("noreplay")]
+    [GameEventFieldType("bool")]
+    public required bool NoReplay { get; init; }
+
+    /// <summary>
     ///     kill happened without a scope, used for death notice icon.
     /// </summary>
     /// <remarks>
@@ -139,16 +149,6 @@ public sealed partial record PlayerDeathEvent
     [NativeName("noscope")]
     [GameEventFieldType("bool")]
     public required bool NoScope { get; init; }
-
-    /// <summary>
-    ///     if replay data is unavailable, this will be present and set to false.
-    /// </summary>
-    /// <remarks>
-    ///     Native name: <c>noreplay</c> — KV1 type <c>bool</c>.
-    /// </remarks>
-    [NativeName("noreplay")]
-    [GameEventFieldType("bool")]
-    public required bool Noreplay { get; init; }
 
     /// <summary>
     ///     number of objects shot penetrated before killing target.
@@ -208,7 +208,7 @@ public sealed partial record PlayerDeathEvent
     /// </remarks>
     [NativeName("weapon_fauxitemid")]
     [GameEventFieldType("string")]
-    public required string WeaponFauxitemid { get; init; }
+    public required string WeaponFauxItemId { get; init; }
 
     /// <summary>
     ///     inventory item id of weapon killer used.

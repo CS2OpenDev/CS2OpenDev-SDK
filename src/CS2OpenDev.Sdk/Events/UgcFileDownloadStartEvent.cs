@@ -27,7 +27,7 @@ public sealed partial record UgcFileDownloadStartEvent
     /// </remarks>
     [NativeName("hcontent")]
     [GameEventFieldType("uint64")]
-    public required ulong Hcontent { get; init; }
+    public required ulong HContent { get; init; }
 
     /// <summary>
     ///     id of the associated content package.

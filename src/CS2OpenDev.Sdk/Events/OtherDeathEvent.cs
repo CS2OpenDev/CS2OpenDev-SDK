@@ -117,7 +117,7 @@ public sealed partial record OtherDeathEvent
     /// </remarks>
     [NativeName("weapon_fauxitemid")]
     [GameEventFieldType("string")]
-    public required string WeaponFauxitemid { get; init; }
+    public required string WeaponFauxItemId { get; init; }
 
     /// <summary>
     ///     inventory item id of weapon killer used.

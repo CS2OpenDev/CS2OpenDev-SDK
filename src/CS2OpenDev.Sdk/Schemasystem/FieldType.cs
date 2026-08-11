@@ -400,13 +400,13 @@ public enum FieldType : byte
     FieldHmaterial = 41,
 
     /// <summary>
-    ///     FieldHmodel.
+    ///     FieldHModel.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>FIELD_HMODEL</c>.
     /// </remarks>
     [NativeName("FIELD_HMODEL")]
-    FieldHmodel = 42,
+    FieldHModel = 42,
 
     /// <summary>
     ///     FieldNetworkQuantizedVector.

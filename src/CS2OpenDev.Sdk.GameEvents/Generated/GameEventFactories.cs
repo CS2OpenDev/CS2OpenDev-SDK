@@ -185,7 +185,7 @@ public static class GameEventFactories
     public static BotTakeoverEvent BotTakeoverEventFrom(in GameEventReader reader) => new()
     {
         UserId = reader.GetInt32("userid"),
-        Botid = reader.GetInt32("botid"),
+        BotId = reader.GetInt32("botid"),
         P = reader.GetFloat("p"),
         Y = reader.GetFloat("y"),
         R = reader.GetFloat("r")
@@ -582,7 +582,7 @@ public static class GameEventFactories
         EntIndexKilled = reader.GetInt32("entindex_killed"),
         EntIndexAttacker = reader.GetInt32("entindex_attacker"),
         EntIndexInflictor = reader.GetInt32("entindex_inflictor"),
-        Damagebits = reader.GetInt32("damagebits")
+        DamageBits = reader.GetInt32("damagebits")
     };
 
     /// <summary>Builds a <see cref="EntityVisibleCoreEvent"/> from a decoded <c>entity_visible</c> event.</summary>
@@ -1254,7 +1254,7 @@ public static class GameEventFactories
         Attacker = reader.GetInt16("attacker"),
         Weapon = reader.GetString("weapon"),
         WeaponItemId = reader.GetString("weapon_itemid"),
-        WeaponFauxitemid = reader.GetString("weapon_fauxitemid"),
+        WeaponFauxItemId = reader.GetString("weapon_fauxitemid"),
         WeaponOriginalOwnerXuid = reader.GetString("weapon_originalowner_xuid"),
         Headshot = reader.GetBool("headshot"),
         Penetrated = reader.GetInt16("penetrated"),
@@ -1360,14 +1360,14 @@ public static class GameEventFactories
         AssistedFlash = reader.GetBool("assistedflash"),
         Weapon = reader.GetString("weapon"),
         WeaponItemId = reader.GetString("weapon_itemid"),
-        WeaponFauxitemid = reader.GetString("weapon_fauxitemid"),
+        WeaponFauxItemId = reader.GetString("weapon_fauxitemid"),
         WeaponOriginalOwnerXuid = reader.GetString("weapon_originalowner_xuid"),
         Headshot = reader.GetBool("headshot"),
         Dominated = reader.GetInt16("dominated"),
         Revenge = reader.GetInt16("revenge"),
         Wipe = reader.GetInt16("wipe"),
         Penetrated = reader.GetInt16("penetrated"),
-        Noreplay = reader.GetBool("noreplay"),
+        NoReplay = reader.GetBool("noreplay"),
         NoScope = reader.GetBool("noscope"),
         ThruSmoke = reader.GetBool("thrusmoke"),
         AttackerBlind = reader.GetBool("attackerblind"),
@@ -1555,7 +1555,7 @@ public static class GameEventFactories
         Disconnect = reader.GetBool("disconnect"),
         Silent = reader.GetBool("silent"),
         Name = reader.GetString("name"),
-        Isbot = reader.GetBool("isbot")
+        IsBot = reader.GetBool("isbot")
     };
 
     /// <summary>Builds a <see cref="PlayerTeamEvent"/> from a decoded <c>player_team</c> event.</summary>
@@ -1566,7 +1566,7 @@ public static class GameEventFactories
         OldTeam = reader.GetByte("oldteam"),
         Disconnect = reader.GetBool("disconnect"),
         Silent = reader.GetBool("silent"),
-        Isbot = reader.GetBool("isbot")
+        IsBot = reader.GetBool("isbot")
     };
 
     /// <summary>Builds a <see cref="RagdollDissolvedEvent"/> from a decoded <c>ragdoll_dissolved</c> event.</summary>
@@ -1975,7 +1975,7 @@ public static class GameEventFactories
     public static TournamentRewardEvent TournamentRewardEventFrom(in GameEventReader reader) => new()
     {
         DefIndex = reader.GetInt32("defindex"),
-        Totalrewards = reader.GetInt32("totalrewards"),
+        TotalRewards = reader.GetInt32("totalrewards"),
         AccountId = reader.GetInt32("accountid")
     };
 
@@ -1988,13 +1988,13 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="UgcFileDownloadFinishedEvent"/> from a decoded <c>ugc_file_download_finished</c> event.</summary>
     public static UgcFileDownloadFinishedEvent UgcFileDownloadFinishedEventFrom(in GameEventReader reader) => new()
     {
-        Hcontent = reader.GetUInt64("hcontent")
+        HContent = reader.GetUInt64("hcontent")
     };
 
     /// <summary>Builds a <see cref="UgcFileDownloadStartEvent"/> from a decoded <c>ugc_file_download_start</c> event.</summary>
     public static UgcFileDownloadStartEvent UgcFileDownloadStartEventFrom(in GameEventReader reader) => new()
     {
-        Hcontent = reader.GetUInt64("hcontent"),
+        HContent = reader.GetUInt64("hcontent"),
         PublishedFileId = reader.GetUInt64("published_file_id")
     };
 

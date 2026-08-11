@@ -38,7 +38,7 @@ public sealed partial record PlayerTeamEvent
     /// </remarks>
     [NativeName("isbot")]
     [GameEventFieldType("bool")]
-    public required bool Isbot { get; init; }
+    public required bool IsBot { get; init; }
 
     /// <summary>
     ///     old team id.

@@ -200,7 +200,7 @@ public static class SchemaEvents
     {
         public const string EventName = "bot_takeover";
 
-        public const string Botid = "botid";
+        public const string BotId = "botid";
         public const string P = "p";
         public const string R = "r";
         public const string UserId = "userid";
@@ -632,7 +632,7 @@ public static class SchemaEvents
     {
         public const string EventName = "entity_killed";
 
-        public const string Damagebits = "damagebits";
+        public const string DamageBits = "damagebits";
         public const string EntIndexAttacker = "entindex_attacker";
         public const string EntIndexInflictor = "entindex_inflictor";
         public const string EntIndexKilled = "entindex_killed";
@@ -1377,7 +1377,7 @@ public static class SchemaEvents
         public const string Penetrated = "penetrated";
         public const string ThruSmoke = "thrusmoke";
         public const string Weapon = "weapon";
-        public const string WeaponFauxitemid = "weapon_fauxitemid";
+        public const string WeaponFauxItemId = "weapon_fauxitemid";
         public const string WeaponItemId = "weapon_itemid";
         public const string WeaponOriginalOwnerXuid = "weapon_originalowner_xuid";
     }
@@ -1497,14 +1497,14 @@ public static class SchemaEvents
         public const string Dominated = "dominated";
         public const string Headshot = "headshot";
         public const string HitGroup = "hitgroup";
+        public const string NoReplay = "noreplay";
         public const string NoScope = "noscope";
-        public const string Noreplay = "noreplay";
         public const string Penetrated = "penetrated";
         public const string Revenge = "revenge";
         public const string ThruSmoke = "thrusmoke";
         public const string UserId = "userid";
         public const string Weapon = "weapon";
-        public const string WeaponFauxitemid = "weapon_fauxitemid";
+        public const string WeaponFauxItemId = "weapon_fauxitemid";
         public const string WeaponItemId = "weapon_itemid";
         public const string WeaponOriginalOwnerXuid = "weapon_originalowner_xuid";
         public const string Wipe = "wipe";
@@ -1705,7 +1705,7 @@ public static class SchemaEvents
         public const string EventName = "player_team";
 
         public const string Disconnect = "disconnect";
-        public const string Isbot = "isbot";
+        public const string IsBot = "isbot";
         public const string Name = "name";
         public const string OldTeam = "oldteam";
         public const string Silent = "silent";
@@ -1718,7 +1718,7 @@ public static class SchemaEvents
         public const string EventName = "player_team";
 
         public const string Disconnect = "disconnect";
-        public const string Isbot = "isbot";
+        public const string IsBot = "isbot";
         public const string OldTeam = "oldteam";
         public const string Silent = "silent";
         public const string Team = "team";
@@ -2175,7 +2175,7 @@ public static class SchemaEvents
 
         public const string AccountId = "accountid";
         public const string DefIndex = "defindex";
-        public const string Totalrewards = "totalrewards";
+        public const string TotalRewards = "totalrewards";
     }
 
     public static class TrialTimeExpiredEvent
@@ -2189,14 +2189,14 @@ public static class SchemaEvents
     {
         public const string EventName = "ugc_file_download_finished";
 
-        public const string Hcontent = "hcontent";
+        public const string HContent = "hcontent";
     }
 
     public static class UgcFileDownloadStartEvent
     {
         public const string EventName = "ugc_file_download_start";
 
-        public const string Hcontent = "hcontent";
+        public const string HContent = "hcontent";
         public const string PublishedFileId = "published_file_id";
     }
 

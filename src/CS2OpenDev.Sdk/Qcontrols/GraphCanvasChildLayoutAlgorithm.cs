@@ -49,20 +49,20 @@ public enum GraphCanvasChildLayoutAlgorithm : uint
     VboxReverse = 2,
 
     /// <summary>
-    ///     Hbox.
+    ///     HBox.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HBOX</c>.
     /// </remarks>
     [NativeName("HBOX")]
-    Hbox = 3,
+    HBox = 3,
 
     /// <summary>
-    ///     HboxReverse.
+    ///     HBoxReverse.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>HBOX_REVERSE</c>.
     /// </remarks>
     [NativeName("HBOX_REVERSE")]
-    HboxReverse = 4
+    HBoxReverse = 4
 }

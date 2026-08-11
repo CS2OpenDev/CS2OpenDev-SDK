@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record BotTakeoverEvent
 {
     /// <summary>
-    ///     Botid.
+    ///     BotId.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>botid</c> — KV1 type <c>player_controller</c>.
     /// </remarks>
     [NativeName("botid")]
     [GameEventFieldType("player_controller")]
-    public required int Botid { get; init; }
+    public required int BotId { get; init; }
 
     /// <summary>
     ///     P.

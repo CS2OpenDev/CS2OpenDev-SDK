@@ -20,14 +20,14 @@ namespace CS2OpenSchema.Events;
 public sealed partial record EntityKilledEvent
 {
     /// <summary>
-    ///     Damagebits.
+    ///     DamageBits.
     /// </summary>
     /// <remarks>
     ///     Native name: <c>damagebits</c> — KV1 type <c>long</c>.
     /// </remarks>
     [NativeName("damagebits")]
     [GameEventFieldType("long")]
-    public required int Damagebits { get; init; }
+    public required int DamageBits { get; init; }
 
     /// <summary>
     ///     EntIndexAttacker.
