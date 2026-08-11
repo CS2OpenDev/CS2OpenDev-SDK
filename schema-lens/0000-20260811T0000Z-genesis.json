@@ -1,0 +1,1124 @@
+{
+  "id": "0000-20260811T0000Z-genesis",
+  "build": "genesis",
+  "appliedAt": "2026-08-11T00:00:00Z",
+  "notes": "Genesis baseline, seeded from the DemoViewer.NET Schema Lens V1.1 genesis (0000-20260602T0000Z-genesis: 58 classes, 144 fields, curated for demo analysis). Class and field coverage plus every targetProperty are carried over verbatim as curated names; the consumer-side keys DVN carries (wireType, transform, fallbackDefault) are read semantics and stay downstream per the issue #6 section-3 split. Two adaptations to this repo's schema source: CCSPlayerController is pinned to the client module, because the bare name exists in both client and server and only the client class declares the full demo-networked field set (m_sSanitizedPlayerName, m_bIsLocalPlayerController); and DVN's serializer-flattened m_vecOrigin is recorded under its schema-true path m_CBodyComponent.m_pSceneNode.m_vecOrigin, with m_vecOrigin kept as an alias so the wire-facing name still answers lookups.",
+  "stateHash": "sha256:3e491c3b2d2f72e672b561a4959c67f44b82d3141c566d30e5050554f7120c20",
+  "changes": [
+    {
+      "op": "addClass",
+      "class": "CCSPlayerController",
+      "module": "client"
+    },
+    {
+      "op": "addClass",
+      "class": "CCSPlayerPawn"
+    },
+    {
+      "op": "addClass",
+      "class": "CCSPlayerPawnBase"
+    },
+    {
+      "op": "addClass",
+      "class": "CBasePlayerWeapon"
+    },
+    {
+      "op": "addClass",
+      "class": "CCSWeaponBaseGun"
+    },
+    {
+      "op": "addClass",
+      "class": "CCSGameRulesProxy"
+    },
+    {
+      "op": "addClass",
+      "class": "CCSGameRules"
+    },
+    {
+      "op": "addClass",
+      "class": "CBaseCSGrenadeProjectile"
+    },
+    {
+      "op": "addClass",
+      "class": "CSmokeGrenadeProjectile"
+    },
+    {
+      "op": "addClass",
+      "class": "CMolotovProjectile"
+    },
+    {
+      "op": "addClass",
+      "class": "CFlashbangProjectile"
+    },
+    {
+      "op": "addClass",
+      "class": "CHEGrenadeProjectile"
+    },
+    {
+      "op": "addClass",
+      "class": "CDecoyProjectile"
+    },
+    {
+      "op": "addClass",
+      "class": "CPlantedC4"
+    },
+    {
+      "op": "addClass",
+      "class": "CAK47"
+    },
+    {
+      "op": "addClass",
+      "class": "CC4"
+    },
+    {
+      "op": "addClass",
+      "class": "CBaseCSGrenade"
+    },
+    {
+      "op": "addClass",
+      "class": "CCSWeaponBaseShotgun"
+    },
+    {
+      "op": "addClass",
+      "class": "CDEagle"
+    },
+    {
+      "op": "addClass",
+      "class": "CDecoyGrenade"
+    },
+    {
+      "op": "addClass",
+      "class": "CFlashbang"
+    },
+    {
+      "op": "addClass",
+      "class": "CHEGrenade"
+    },
+    {
+      "op": "addClass",
+      "class": "CKnife"
+    },
+    {
+      "op": "addClass",
+      "class": "CMolotovGrenade"
+    },
+    {
+      "op": "addClass",
+      "class": "CSmokeGrenade"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponAWP"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponAug"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponBizon"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponCZ75a"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponElite"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponFamas"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponFiveSeven"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponG3SG1"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponGalilAR"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponGlock"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponHKP2000"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponM249"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponM4A1"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponM4A1Silencer"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponMAC10"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponMP5SD"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponMP7"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponMP9"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponMag7"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponNOVA"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponNegev"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponP250"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponP90"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponRevolver"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponSCAR20"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponSG556"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponSSG08"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponSawedoff"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponTaser"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponTec9"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponUMP45"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponUSPSilencer"
+    },
+    {
+      "op": "addClass",
+      "class": "CWeaponXM1014"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_hPawn",
+      "targetProperty": "PawnHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_hPlayerPawn",
+      "targetProperty": "PlayerPawnHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iszPlayerName",
+      "targetProperty": "PlayerName"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_sSanitizedPlayerName",
+      "targetProperty": "SanitizedPlayerName"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_steamID",
+      "targetProperty": "SteamID"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iTeamNum",
+      "targetProperty": "TeamNum"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iPawnHealth",
+      "targetProperty": "PawnHealth"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iPawnArmor",
+      "targetProperty": "PawnArmor"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_bPawnIsAlive",
+      "targetProperty": "PawnIsAlive"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_bPawnHasDefuser",
+      "targetProperty": "PawnHasDefuser"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_bPawnHasHelmet",
+      "targetProperty": "PawnHasHelmet"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iScore",
+      "targetProperty": "Score"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iMVPs",
+      "targetProperty": "MVPs"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iPing",
+      "targetProperty": "Ping"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iConnected",
+      "targetProperty": "ConnectedState"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iCompetitiveRanking",
+      "targetProperty": "CompetitiveRanking"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iCompetitiveWins",
+      "targetProperty": "CompetitiveWins"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_bIsLocalPlayerController",
+      "targetProperty": "IsLocalPlayerController"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_bIsHLTV",
+      "targetProperty": "IsHLTV"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pInGameMoneyServices.m_iAccount",
+      "targetProperty": "Account"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pInGameMoneyServices.m_iCashSpentThisRound",
+      "targetProperty": "CashSpentThisRound"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pInGameMoneyServices.m_iStartAccount",
+      "targetProperty": "StartAccount"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pInGameMoneyServices.m_iTotalCashSpent",
+      "targetProperty": "TotalCashSpent"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_iNumRoundKills",
+      "targetProperty": "NumRoundKills"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_iNumRoundKillsHeadshots",
+      "targetProperty": "NumRoundKillsHeadshots"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_flTotalRoundDamageDealt",
+      "targetProperty": "TotalRoundDamageDealt"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_iHealth",
+      "targetProperty": "Health"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_iMaxHealth",
+      "targetProperty": "MaxHealth"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_iTeamNum",
+      "targetProperty": "TeamNum"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_lifeState",
+      "targetProperty": "LifeState"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_hController",
+      "targetProperty": "ControllerHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_hOwnerEntity",
+      "targetProperty": "OwnerEntityHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+      "targetProperty": "Origin"
+    },
+    {
+      "op": "addAlias",
+      "class": "CCSPlayerPawn",
+      "canonical": "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+      "alias": "m_vecOrigin"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_vecVelocity",
+      "targetProperty": "Velocity"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_angEyeAngles",
+      "targetProperty": "EyeAngles"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "v_angle",
+      "targetProperty": "ViewAngle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_flDeathTime",
+      "targetProperty": "DeathTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_ArmorValue",
+      "targetProperty": "ArmorValue"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_iShotsFired",
+      "targetProperty": "ShotsFired"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_iDeathFlags",
+      "targetProperty": "DeathFlags"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_bIsDefusing",
+      "targetProperty": "IsDefusing"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_bIsScoped",
+      "targetProperty": "IsScoped"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_bIsWalking",
+      "targetProperty": "IsWalking"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_bInBuyZone",
+      "targetProperty": "InBuyZone"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_bInBombZone",
+      "targetProperty": "InBombZone"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_bKilledByHeadshot",
+      "targetProperty": "KilledByHeadshot"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_unCurrentEquipmentValue",
+      "targetProperty": "CurrentEquipmentValue"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_unFreezetimeEndEquipmentValue",
+      "targetProperty": "FreezetimeEndEquipmentValue"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_unRoundStartEquipmentValue",
+      "targetProperty": "RoundStartEquipmentValue"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pItemServices.m_bHasDefuser",
+      "targetProperty": "HasDefuser"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pItemServices.m_bHasHelmet",
+      "targetProperty": "HasHelmet"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pWeaponServices.m_hActiveWeapon",
+      "targetProperty": "ActiveWeaponHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pWeaponServices.m_hLastWeapon",
+      "targetProperty": "LastWeaponHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pWeaponServices.m_hMyWeapons",
+      "targetProperty": "MyWeapons"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pMovementServices.m_nButtons",
+      "targetProperty": "Buttons"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pMovementServices.m_flStamina",
+      "targetProperty": "Stamina"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pObserverServices.m_iObserverMode",
+      "targetProperty": "ObserverMode"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pObserverServices.m_hObserverTarget",
+      "targetProperty": "ObserverTargetHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawnBase",
+      "field": "m_flFlashDuration",
+      "targetProperty": "FlashDuration"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawnBase",
+      "field": "m_flFlashMaxAlpha",
+      "targetProperty": "FlashMaxAlpha"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawnBase",
+      "field": "m_blindStartTime",
+      "targetProperty": "BlindStartTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawnBase",
+      "field": "m_blindUntilTime",
+      "targetProperty": "BlindUntilTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawnBase",
+      "field": "m_iPlayerState",
+      "targetProperty": "PlayerState"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawnBase",
+      "field": "m_hOriginalController",
+      "targetProperty": "OriginalControllerHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_iClip1",
+      "targetProperty": "Clip1"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_iClip2",
+      "targetProperty": "Clip2"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_pReserveAmmo",
+      "targetProperty": "ReserveAmmo"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_nNextPrimaryAttackTick",
+      "targetProperty": "NextPrimaryAttackTick"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_flNextPrimaryAttackTickRatio",
+      "targetProperty": "NextPrimaryAttackTickRatio"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_nNextSecondaryAttackTick",
+      "targetProperty": "NextSecondaryAttackTick"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_hOwnerEntity",
+      "targetProperty": "OwnerEntityHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CBasePlayerWeapon",
+      "field": "m_iTeamNum",
+      "targetProperty": "TeamNum"
+    },
+    {
+      "op": "addField",
+      "class": "CCSWeaponBaseGun",
+      "field": "m_iBurstShotsRemaining",
+      "targetProperty": "BurstShotsRemaining"
+    },
+    {
+      "op": "addField",
+      "class": "CCSWeaponBaseGun",
+      "field": "m_bNeedsBoltAction",
+      "targetProperty": "NeedsBoltAction"
+    },
+    {
+      "op": "addField",
+      "class": "CCSWeaponBaseGun",
+      "field": "m_zoomLevel",
+      "targetProperty": "ZoomLevel"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules",
+      "targetProperty": "GameRules"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bFreezePeriod",
+      "targetProperty": "FreezePeriod"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bWarmupPeriod",
+      "targetProperty": "WarmupPeriod"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_totalRoundsPlayed",
+      "targetProperty": "TotalRoundsPlayed"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_gamePhase",
+      "targetProperty": "GamePhase"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bBombPlanted",
+      "targetProperty": "BombPlanted"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bBombDropped",
+      "targetProperty": "BombDropped"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bBombDefused",
+      "targetProperty": "BombDefused"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bTargetBombed",
+      "targetProperty": "TargetBombed"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_fRoundStartTime",
+      "targetProperty": "RoundStartTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_flGameStartTime",
+      "targetProperty": "GameStartTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_iRoundTime",
+      "targetProperty": "RoundTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_eRoundWinReason",
+      "targetProperty": "RoundWinReason"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_iRoundWinStatus",
+      "targetProperty": "RoundWinStatus"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_bHasMatchStarted",
+      "targetProperty": "HasMatchStarted"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_iAccountCT",
+      "targetProperty": "AccountCT"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_iAccountTerrorist",
+      "targetProperty": "AccountTerrorist"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_nCTsAliveAtFreezetimeEnd",
+      "targetProperty": "CTsAliveAtFreezetimeEnd"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_nTerroristsAliveAtFreezetimeEnd",
+      "targetProperty": "TerroristsAliveAtFreezetimeEnd"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_bFreezePeriod",
+      "targetProperty": "FreezePeriod"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_bWarmupPeriod",
+      "targetProperty": "WarmupPeriod"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_totalRoundsPlayed",
+      "targetProperty": "TotalRoundsPlayed"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_gamePhase",
+      "targetProperty": "GamePhase"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_bBombPlanted",
+      "targetProperty": "BombPlanted"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_bBombDropped",
+      "targetProperty": "BombDropped"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_bBombDefused",
+      "targetProperty": "BombDefused"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_fRoundStartTime",
+      "targetProperty": "RoundStartTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_iRoundTime",
+      "targetProperty": "RoundTime"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_iRoundWinStatus",
+      "targetProperty": "RoundWinStatus"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_eRoundWinReason",
+      "targetProperty": "RoundWinReason"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_bBombTicking",
+      "targetProperty": "BombTicking"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_bBombDefused",
+      "targetProperty": "BombDefused"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_bHasExploded",
+      "targetProperty": "HasExploded"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_bBeingDefused",
+      "targetProperty": "BeingDefused"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_bCannotBeDefused",
+      "targetProperty": "CannotBeDefused"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_nBombSite",
+      "targetProperty": "BombSite"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_hBombDefuser",
+      "targetProperty": "BombDefuserHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_flTimerLength",
+      "targetProperty": "TimerLength"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_flC4Blow",
+      "targetProperty": "C4Blow"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_flDefuseLength",
+      "targetProperty": "DefuseLength"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_flDefuseCountDown",
+      "targetProperty": "DefuseCountDown"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+      "targetProperty": "Origin"
+    },
+    {
+      "op": "addAlias",
+      "class": "CPlantedC4",
+      "canonical": "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+      "alias": "m_vecOrigin"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_hThrower",
+      "targetProperty": "ThrowerHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_hOriginalThrower",
+      "targetProperty": "OriginalThrowerHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_hOwnerEntity",
+      "targetProperty": "OwnerEntityHandle"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+      "targetProperty": "Origin"
+    },
+    {
+      "op": "addAlias",
+      "class": "CBaseCSGrenadeProjectile",
+      "canonical": "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+      "alias": "m_vecOrigin"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_vecVelocity",
+      "targetProperty": "Velocity"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_vInitialPosition",
+      "targetProperty": "InitialPosition"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_vInitialVelocity",
+      "targetProperty": "InitialVelocity"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_nBounces",
+      "targetProperty": "Bounces"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_iTeamNum",
+      "targetProperty": "TeamNum"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_nItemIndex",
+      "targetProperty": "ItemIndex"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_flSpawnTime",
+      "targetProperty": "SpawnTime"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_bDetonationRecorded",
+      "targetProperty": "DetonationRecorded"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_bDidSmokeEffect",
+      "targetProperty": "DidSmokeEffect"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_bDidGroundScorch",
+      "targetProperty": "DidGroundScorch"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_bExplodeFromInferno",
+      "targetProperty": "ExplodeFromInferno"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_vSmokeColor",
+      "targetProperty": "SmokeColor"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_vSmokeDetonationPos",
+      "targetProperty": "SmokeDetonationPos"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_nSmokeEffectTickBegin",
+      "targetProperty": "SmokeEffectTickBegin"
+    },
+    {
+      "op": "addField",
+      "class": "CMolotovProjectile",
+      "field": "m_bIsIncGrenade",
+      "targetProperty": "IsIncGrenade"
+    },
+    {
+      "op": "addField",
+      "class": "CMolotovProjectile",
+      "field": "m_bDetonated",
+      "targetProperty": "Detonated"
+    },
+    {
+      "op": "addField",
+      "class": "CFlashbangProjectile",
+      "field": "m_numOpponentsHit",
+      "targetProperty": "NumOpponentsHit"
+    },
+    {
+      "op": "addField",
+      "class": "CFlashbangProjectile",
+      "field": "m_numTeammatesHit",
+      "targetProperty": "NumTeammatesHit"
+    },
+    {
+      "op": "addField",
+      "class": "CFlashbangProjectile",
+      "field": "m_flTimeToDetonate",
+      "targetProperty": "TimeToDetonate"
+    },
+    {
+      "op": "addField",
+      "class": "CDecoyProjectile",
+      "field": "m_nDecoyShotTick",
+      "targetProperty": "DecoyShotTick"
+    },
+    {
+      "op": "addField",
+      "class": "CDecoyProjectile",
+      "field": "m_decoyWeaponDefIndex",
+      "targetProperty": "DecoyWeaponDefIndex"
+    },
+    {
+      "op": "addField",
+      "class": "CDecoyProjectile",
+      "field": "m_fExpireTime",
+      "targetProperty": "ExpireTime"
+    },
+    {
+      "op": "addField",
+      "class": "CDecoyProjectile",
+      "field": "m_shotsRemaining",
+      "targetProperty": "ShotsRemaining"
+    }
+  ]
+}
