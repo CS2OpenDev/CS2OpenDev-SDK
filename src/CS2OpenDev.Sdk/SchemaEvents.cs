@@ -771,6 +771,11 @@ public static class SchemaEvents
         public const string NewPhase = "new_phase";
     }
 
+    public static class GameRestartEvent
+    {
+        public const string EventName = "game_restart";
+    }
+
     public static class GameStartEvent
     {
         public const string EventName = "game_start";
@@ -820,6 +825,11 @@ public static class SchemaEvents
     public static class GuardianWaveRestartEvent
     {
         public const string EventName = "guardian_wave_restart";
+    }
+
+    public static class HalfTimeEvent
+    {
+        public const string EventName = "halftime";
     }
 
     public static class HegrenadeDetonateEvent
@@ -1160,6 +1170,14 @@ public static class SchemaEvents
     public static class InventoryUpdatedEvent
     {
         public const string EventName = "inventory_updated";
+    }
+
+    public static class ItemDropEvent
+    {
+        public const string EventName = "item_drop";
+
+        public const string Item = "item";
+        public const string UserId = "userid";
     }
 
     public static class ItemEquipEvent

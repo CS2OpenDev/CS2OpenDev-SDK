@@ -84,16 +84,20 @@ public sealed class NativeMetadataAttribute : Attribute
 }
 
 /// <summary>
-///     Records the originating <c>.gameevents</c> file basename for an event record
-///     (e.g. <c>core.gameevents</c>, <c>game.gameevents</c>, <c>mod.gameevents</c>).
+///     Records where an event record came from: the originating <c>.gameevents</c> file
+///     basename (<c>core.gameevents</c>, <c>game.gameevents</c>, <c>mod.gameevents</c>), or
+///     <c>sdk.supplement</c> for a curated event the extracted schema does not declare.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class GameEventSourceAttribute : Attribute
 {
-    /// <summary>Initializes a new instance with the given source file basename.</summary>
+    /// <summary>Initializes a new instance with the given source.</summary>
     public GameEventSourceAttribute(string source) => Source = source;
 
-    /// <summary>Basename of the <c>.gameevents</c> file the event was declared in.</summary>
+    /// <summary>
+    ///     Basename of the <c>.gameevents</c> file the event was declared in, or
+    ///     <c>sdk.supplement</c> when the event is curated rather than extracted.
+    /// </summary>
     public string Source { get; }
 }
 

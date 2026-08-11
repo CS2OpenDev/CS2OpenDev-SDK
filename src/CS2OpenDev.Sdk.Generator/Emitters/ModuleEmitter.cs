@@ -752,17 +752,27 @@ internal static class ModuleEmitter
         sb.AppendLine("    public string? Value { get; }");
         sb.AppendLine("}");
         sb.AppendLine();
+        // Both doc lines below name `sdk.supplement` alongside the three real
+        // files. It is not a `.gameevents` basename and never was — it marks a
+        // record carried in `game-event-supplement.json` because the extractor
+        // cannot see the event at all. A consumer switching on this value has to
+        // know that fourth case exists, and the enumeration is the only place
+        // that tells them.
         sb.AppendLine("/// <summary>");
-        sb.AppendLine("///     Records the originating <c>.gameevents</c> file basename for an event record");
-        sb.AppendLine("///     (e.g. <c>core.gameevents</c>, <c>game.gameevents</c>, <c>mod.gameevents</c>).");
+        sb.AppendLine("///     Records where an event record came from: the originating <c>.gameevents</c> file");
+        sb.AppendLine("///     basename (<c>core.gameevents</c>, <c>game.gameevents</c>, <c>mod.gameevents</c>), or");
+        sb.AppendLine("///     <c>sdk.supplement</c> for a curated event the extracted schema does not declare.");
         sb.AppendLine("/// </summary>");
         sb.AppendLine("[AttributeUsage(AttributeTargets.Class)]");
         sb.AppendLine("public sealed class GameEventSourceAttribute : Attribute");
         sb.AppendLine("{");
-        sb.AppendLine("    /// <summary>Initializes a new instance with the given source file basename.</summary>");
+        sb.AppendLine("    /// <summary>Initializes a new instance with the given source.</summary>");
         sb.AppendLine("    public GameEventSourceAttribute(string source) => Source = source;");
         sb.AppendLine();
-        sb.AppendLine("    /// <summary>Basename of the <c>.gameevents</c> file the event was declared in.</summary>");
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    ///     Basename of the <c>.gameevents</c> file the event was declared in, or");
+        sb.AppendLine("    ///     <c>sdk.supplement</c> when the event is curated rather than extracted.");
+        sb.AppendLine("    /// </summary>");
         sb.AppendLine("    public string Source { get; }");
         sb.AppendLine("}");
         sb.AppendLine();

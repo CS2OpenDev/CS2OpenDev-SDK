@@ -122,6 +122,7 @@ public static class GameEventRegistry
             ["game_message"] = static (in GameEventReader r) => GameEventFactories.GameMessageEventFrom(r),
             ["game_newmap"] = static (in GameEventReader r) => GameEventFactories.GameNewMapEventFrom(r),
             ["game_phase_changed"] = static (in GameEventReader r) => GameEventFactories.GamePhaseChangedEventFrom(r),
+            ["game_restart"] = static (in GameEventReader r) => GameEventFactories.GameRestartEventFrom(r),
             ["game_start"] = static (in GameEventReader r) => GameEventFactories.GameStartEventFrom(r),
             ["gameui_hidden"] = static (in GameEventReader r) => GameEventFactories.GameuiHiddenEventFrom(r),
             ["gc_connected"] = static (in GameEventReader r) => GameEventFactories.GcConnectedEventFrom(r),
@@ -129,6 +130,7 @@ public static class GameEventRegistry
             ["grenade_bounce"] = static (in GameEventReader r) => GameEventFactories.GrenadeBounceEventFrom(r),
             ["grenade_thrown"] = static (in GameEventReader r) => GameEventFactories.GrenadeThrownEventFrom(r),
             ["guardian_wave_restart"] = static (in GameEventReader r) => GameEventFactories.GuardianWaveRestartEventFrom(r),
+            ["halftime"] = static (in GameEventReader r) => GameEventFactories.HalfTimeEventFrom(r),
             ["hegrenade_detonate"] = static (in GameEventReader r) => GameEventFactories.HegrenadeDetonateEventFrom(r),
             ["helicopter_grenade_punt_miss"] = static (in GameEventReader r) => GameEventFactories.HelicopterGrenadePuntMissEventFrom(r),
             ["hide_deathpanel"] = static (in GameEventReader r) => GameEventFactories.HideDeathpanelEventFrom(r),
@@ -162,6 +164,7 @@ public static class GameEventRegistry
             ["instructor_server_hint_stop"] = static (in GameEventReader r) => GameEventFactories.InstructorServerHintStopEventFrom(r),
             ["instructor_start_lesson"] = static (in GameEventReader r) => GameEventFactories.InstructorStartLessonEventFrom(r),
             ["inventory_updated"] = static (in GameEventReader r) => GameEventFactories.InventoryUpdatedEventFrom(r),
+            ["item_drop"] = static (in GameEventReader r) => GameEventFactories.ItemDropEventFrom(r),
             ["item_equip"] = static (in GameEventReader r) => GameEventFactories.ItemEquipEventFrom(r),
             ["item_pickup"] = static (in GameEventReader r) => GameEventFactories.ItemPickupEventFrom(r),
             ["item_pickup_failed"] = static (in GameEventReader r) => GameEventFactories.ItemPickupFailedEventFrom(r),
@@ -668,6 +671,10 @@ public static class GameEventRegistry
             [
                 new("mod.gameevents", typeof(global::CS2OpenSchema.Events.GamePhaseChangedEvent), static (in GameEventReader r) => GameEventFactories.GamePhaseChangedEventFrom(r)),
             ],
+            ["game_restart"] =
+            [
+                new("sdk.supplement", typeof(global::CS2OpenSchema.Events.GameRestartEvent), static (in GameEventReader r) => GameEventFactories.GameRestartEventFrom(r)),
+            ],
             ["game_start"] =
             [
                 new("game.gameevents", typeof(global::CS2OpenSchema.Events.GameStartEvent), static (in GameEventReader r) => GameEventFactories.GameStartEventFrom(r)),
@@ -703,6 +710,10 @@ public static class GameEventRegistry
             ["guardian_wave_restart"] =
             [
                 new("mod.gameevents", typeof(global::CS2OpenSchema.Events.GuardianWaveRestartEvent), static (in GameEventReader r) => GameEventFactories.GuardianWaveRestartEventFrom(r)),
+            ],
+            ["halftime"] =
+            [
+                new("sdk.supplement", typeof(global::CS2OpenSchema.Events.HalfTimeEvent), static (in GameEventReader r) => GameEventFactories.HalfTimeEventFrom(r)),
             ],
             ["hegrenade_detonate"] =
             [
@@ -838,6 +849,10 @@ public static class GameEventRegistry
             [
                 new("core.gameevents", typeof(global::CS2OpenSchema.Events.InventoryUpdatedCoreEvent), static (in GameEventReader r) => GameEventFactories.InventoryUpdatedCoreEventFrom(r)),
                 new("game.gameevents", typeof(global::CS2OpenSchema.Events.InventoryUpdatedEvent), static (in GameEventReader r) => GameEventFactories.InventoryUpdatedEventFrom(r)),
+            ],
+            ["item_drop"] =
+            [
+                new("sdk.supplement", typeof(global::CS2OpenSchema.Events.ItemDropEvent), static (in GameEventReader r) => GameEventFactories.ItemDropEventFrom(r)),
             ],
             ["item_equip"] =
             [
@@ -1423,10 +1438,10 @@ public static class GameEventRegistry
     public static IReadOnlyCollection<string> EventNames => AllByName.Keys;
 
     /// <summary>Number of distinct native event names.</summary>
-    public const int NameCount = 273;
+    public const int NameCount = 276;
 
     /// <summary>Number of event declarations, counting duplicates across source files.</summary>
-    public const int DeclarationCount = 289;
+    public const int DeclarationCount = 292;
 
     /// <summary>
     ///     Resolves the factory for the declaration CS2 fires for this name.

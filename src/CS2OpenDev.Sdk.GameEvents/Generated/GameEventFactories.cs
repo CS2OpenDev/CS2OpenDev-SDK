@@ -704,6 +704,11 @@ public static class GameEventFactories
         NewPhase = reader.GetInt16("new_phase")
     };
 
+    /// <summary>Builds a <see cref="GameRestartEvent"/> from a decoded <c>game_restart</c> event. Curated supplement — key names observed, not declared.</summary>
+    public static GameRestartEvent GameRestartEventFrom(in GameEventReader reader) => new()
+    {
+    };
+
     /// <summary>Builds a <see cref="GameStartEvent"/> from a decoded <c>game_start</c> event.</summary>
     public static GameStartEvent GameStartEventFrom(in GameEventReader reader) => new()
     {
@@ -748,6 +753,11 @@ public static class GameEventFactories
 
     /// <summary>Builds a <see cref="GuardianWaveRestartEvent"/> from a decoded <c>guardian_wave_restart</c> event.</summary>
     public static GuardianWaveRestartEvent GuardianWaveRestartEventFrom(in GameEventReader reader) => new()
+    {
+    };
+
+    /// <summary>Builds a <see cref="HalfTimeEvent"/> from a decoded <c>halftime</c> event. Curated supplement — key names observed, not declared.</summary>
+    public static HalfTimeEvent HalfTimeEventFrom(in GameEventReader reader) => new()
     {
     };
 
@@ -1057,6 +1067,13 @@ public static class GameEventFactories
     /// <summary>Builds a <see cref="InventoryUpdatedEvent"/> from a decoded <c>inventory_updated</c> event.</summary>
     public static InventoryUpdatedEvent InventoryUpdatedEventFrom(in GameEventReader reader) => new()
     {
+    };
+
+    /// <summary>Builds a <see cref="ItemDropEvent"/> from a decoded <c>item_drop</c> event. Curated supplement — key names observed, not declared.</summary>
+    public static ItemDropEvent ItemDropEventFrom(in GameEventReader reader) => new()
+    {
+        UserId = reader.GetInt32("userid"),
+        Item = reader.GetString("item")
     };
 
     /// <summary>Builds a <see cref="ItemEquipEvent"/> from a decoded <c>item_equip</c> event.</summary>

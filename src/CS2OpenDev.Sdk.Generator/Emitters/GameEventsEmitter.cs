@@ -317,12 +317,29 @@ internal static class GameEventsEmitter
         sb.AppendLine("///     </para>");
 
         sb.AppendLine("///     <para>");
-        sb.AppendLine("///         The properties below are observed rather than declared — what the descriptor");
-        sb.AppendLine("///         table carries in practice — so treat them as a floor, not a contract. The");
-        sb.Append("///         record is temporary: when upstream starts declaring <c>").Append(native)
-            .AppendLine("</c>, generation");
-        sb.AppendLine("///         fails until the supplement entry is deleted and the extracted declaration");
-        sb.AppendLine("///         takes over. A supplement can add a name; it can never shadow one.");
+
+        // `halftime` and `game_restart` carry no keys we have observed, so their
+        // records are empty — and "the properties below" pointing at nothing reads
+        // as a generator bug rather than as the accurate statement it is. The
+        // observed-not-declared caveat still has to be made either way: an empty
+        // record is a claim about the wire too, and a weaker one than a populated
+        // record, since keys may exist that we simply have not seen.
+        if (ev.Fields.Length > 0)
+        {
+            sb.AppendLine("///         The properties below are observed rather than declared — what the descriptor");
+            sb.AppendLine("///         table carries in practice — so treat them as a floor, not a contract.");
+        }
+        else
+        {
+            sb.AppendLine("///         No keys have been observed on this event, so the record is empty. That is an");
+            sb.AppendLine("///         observation rather than a declaration: keys may exist that we have not seen.");
+            sb.AppendLine("///         The record still earns its place — it is what lets a dispatcher see the fire.");
+        }
+
+        sb.Append("///         The record is temporary: when upstream starts declaring <c>").Append(native)
+            .AppendLine("</c>,");
+        sb.AppendLine("///         generation fails until the supplement entry is deleted and the extracted");
+        sb.AppendLine("///         declaration takes over. A supplement can add a name; it can never shadow one.");
         sb.AppendLine("///     </para>");
     }
 

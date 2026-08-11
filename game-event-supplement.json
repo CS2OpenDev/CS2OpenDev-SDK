@@ -42,7 +42,7 @@
       "fields": [],
       "annotations": {
         "description": "Fired at the half-time side switch.",
-        "notes": "A separate native name from `start_halftime`, which the schema does declare. No keys were observed on it, so the record is empty — an empty record is still worth having, because it is what lets a dispatcher see the fire at all."
+        "notes": "A separate native name from `start_halftime`, which the schema does declare and which fires at a different point."
       }
     },
     {
@@ -50,7 +50,7 @@
       "fields": [],
       "annotations": {
         "description": "Fired when the game restarts.",
-        "notes": "No keys were observed on it, so the record is empty. Distinct from `round_start`, which marks a new round within an ongoing game."
+        "notes": "Distinct from `round_start`, which marks a new round within an ongoing game."
       }
     }
   ]
