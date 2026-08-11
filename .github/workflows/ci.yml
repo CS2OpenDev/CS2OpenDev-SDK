@@ -75,10 +75,18 @@ jobs:
         # an entry and does not commit it leaves the name unpinned while looking
         # entirely green — the protection silently does not exist for exactly
         # the names most recently added.
+        #
+        # schema-lens/ rides in the same gate: the exporter rewrites state.json
+        # from the migrations plus the current schema, so a diff here means a
+        # schema bump (or migration edit) whose Lens consequences were never
+        # reviewed. This is also where the CS2_GEN_012 baseline gets its teeth —
+        # observedFields only protects a class once the file recording it is
+        # committed.
         run: |
           if ! git diff --exit-code -- src/CS2OpenDev.Sdk/ \
                                        src/CS2OpenDev.Sdk.GameEvents/Generated/ \
-                                       names.lock.json; then
+                                       names.lock.json \
+                                       schema-lens/; then
             echo "::error::Regenerated sources differ from what is committed."
             echo "::error::Run \`dotnet run --project src/CS2OpenDev.Sdk.Exporter\` locally and commit the result."
             exit 1
