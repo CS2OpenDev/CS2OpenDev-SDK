@@ -1,0 +1,1860 @@
+{
+  "lensHash": "sha256:3e491c3b2d2f72e672b561a4959c67f44b82d3141c566d30e5050554f7120c20",
+  "schemaBuild": "24537688",
+  "classes": {
+    "CAK47": {
+      "netName": "AK47",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CBaseCSGrenade": {
+      "netName": "BaseCSGrenade",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bIsHeldByPlayer",
+        "m_bJumpThrow",
+        "m_bJustPulledPin",
+        "m_bPinPulled",
+        "m_bRedraw",
+        "m_bThrowAnimating",
+        "m_fDropTime",
+        "m_fPinPullTime",
+        "m_fThrowTime",
+        "m_flNextHoldFrac",
+        "m_flThrowStrength",
+        "m_hSwitchToWeaponAfterThrow",
+        "m_nNextHoldTick"
+      ]
+    },
+    "CBaseCSGrenadeProjectile": {
+      "netName": "BaseCSGrenadeProjectile",
+      "module": "server",
+      "fields": {
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin": {
+          "targetProperty": "Origin",
+          "schemaType": "CNetworkOriginCellCoordQuantizedVector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bDetonationRecorded": {
+          "targetProperty": "DetonationRecorded",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flSpawnTime": {
+          "targetProperty": "SpawnTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hOriginalThrower": {
+          "targetProperty": "OriginalThrowerHandle",
+          "schemaType": "CHandle< CCSPlayerPawn >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hOwnerEntity": {
+          "targetProperty": "OwnerEntityHandle",
+          "schemaType": "CHandle< CBaseEntity >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hThrower": {
+          "targetProperty": "ThrowerHandle",
+          "schemaType": "CHandle< CCSPlayerPawn >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iTeamNum": {
+          "targetProperty": "TeamNum",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nBounces": {
+          "targetProperty": "Bounces",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nItemIndex": {
+          "targetProperty": "ItemIndex",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "genesis"
+        },
+        "m_vInitialPosition": {
+          "targetProperty": "InitialPosition",
+          "schemaType": "VectorWS",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_vInitialVelocity": {
+          "targetProperty": "InitialVelocity",
+          "schemaType": "Vector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_vecVelocity": {
+          "targetProperty": "Velocity",
+          "schemaType": "CNetworkVelocityVector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {
+        "m_vecOrigin": "m_CBodyComponent.m_pSceneNode.m_vecOrigin"
+      },
+      "ignored": [],
+      "observedFields": [
+        "m_bDetonationRecorded",
+        "m_bHasEverHitEnemy",
+        "m_flLastBounceSoundTime",
+        "m_flSpawnTime",
+        "m_nBounces",
+        "m_nExplodeEffectIndex",
+        "m_nExplodeEffectTickBegin",
+        "m_nItemIndex",
+        "m_nTicksAtZeroVelocity",
+        "m_unOGSExtraFlags",
+        "m_vInitialPosition",
+        "m_vInitialVelocity",
+        "m_vecExplodeEffectOrigin",
+        "m_vecGrenadeSpin",
+        "m_vecLastHitSurfaceNormal",
+        "m_vecOriginalSpawnLocation"
+      ]
+    },
+    "CBasePlayerWeapon": {
+      "netName": "BasePlayerWeapon",
+      "module": "server",
+      "fields": {
+        "m_flNextPrimaryAttackTickRatio": {
+          "targetProperty": "NextPrimaryAttackTickRatio",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hOwnerEntity": {
+          "targetProperty": "OwnerEntityHandle",
+          "schemaType": "CHandle< CBaseEntity >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iClip1": {
+          "targetProperty": "Clip1",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iClip2": {
+          "targetProperty": "Clip2",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iTeamNum": {
+          "targetProperty": "TeamNum",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nNextPrimaryAttackTick": {
+          "targetProperty": "NextPrimaryAttackTick",
+          "schemaType": "GameTick_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nNextSecondaryAttackTick": {
+          "targetProperty": "NextSecondaryAttackTick",
+          "schemaType": "GameTick_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pReserveAmmo": {
+          "targetProperty": "ReserveAmmo",
+          "schemaType": "int32[2]",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_OnPlayerUse",
+        "m_flNextPrimaryAttackTickRatio",
+        "m_flNextSecondaryAttackTickRatio",
+        "m_iClip1",
+        "m_iClip2",
+        "m_nNextPrimaryAttackTick",
+        "m_nNextSecondaryAttackTick",
+        "m_pReserveAmmo"
+      ]
+    },
+    "CC4": {
+      "netName": "C4",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bBombPlacedAnimation",
+        "m_bBombPlanted",
+        "m_bDoValidDroppedPositionCheck",
+        "m_bIsPlantingViaUse",
+        "m_bPlayedArmingBeeps",
+        "m_bStartedArming",
+        "m_entitySpottedState",
+        "m_fArmedTime",
+        "m_nSpotRules",
+        "m_vecLastValidDroppedPosition",
+        "m_vecLastValidPlayerHeldPosition"
+      ]
+    },
+    "CCSGameRules": {
+      "netName": "CSGameRules",
+      "module": "server",
+      "fields": {
+        "m_bBombDefused": {
+          "targetProperty": "BombDefused",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bBombDropped": {
+          "targetProperty": "BombDropped",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bBombPlanted": {
+          "targetProperty": "BombPlanted",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bFreezePeriod": {
+          "targetProperty": "FreezePeriod",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bWarmupPeriod": {
+          "targetProperty": "WarmupPeriod",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_eRoundWinReason": {
+          "targetProperty": "RoundWinReason",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_fRoundStartTime": {
+          "targetProperty": "RoundStartTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_gamePhase": {
+          "targetProperty": "GamePhase",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iRoundTime": {
+          "targetProperty": "RoundTime",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iRoundWinStatus": {
+          "targetProperty": "RoundWinStatus",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_totalRoundsPlayed": {
+          "targetProperty": "TotalRoundsPlayed",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "mTeamDMLastThinkTime",
+        "mTeamDMLastWinningTeamNumber",
+        "m_BtGlobalBlackboard",
+        "m_CTSpawnPoints",
+        "m_CTSpawnPointsMasterList",
+        "m_MatchDevice",
+        "m_MinimapVerticalSectionHeights",
+        "m_RetakeRules",
+        "m_TeamRespawnWaveTimes",
+        "m_TerroristSpawnPoints",
+        "m_TerroristSpawnPointsMasterList",
+        "m_arrProhibitedItemIndices",
+        "m_arrSelectedHostageSpawnIndices",
+        "m_arrTeamUniqueKillWeaponsMatch",
+        "m_arrTournamentActiveCasterAccounts",
+        "m_bAllowWeaponSwitch",
+        "m_bAnyHostageReached",
+        "m_bBombDefused",
+        "m_bBombDropped",
+        "m_bBombPlanted",
+        "m_bBuyTimeEnded",
+        "m_bCTCantBuy",
+        "m_bCTTimeOutActive",
+        "m_bCanDonateWeapons",
+        "m_bCompleteReset",
+        "m_bFirstConnected",
+        "m_bForceTeamChangeSilent",
+        "m_bFreezePeriod",
+        "m_bGameRestart",
+        "m_bHasHostageBeenTouched",
+        "m_bHasMatchStarted",
+        "m_bHasTriggeredRoundStartMusic",
+        "m_bIsDroppingItems",
+        "m_bIsHltvActive",
+        "m_bIsQuestEligible",
+        "m_bIsQueuedMatchmaking",
+        "m_bIsUnreservedGameServer",
+        "m_bIsValveDS",
+        "m_bLevelInitialized",
+        "m_bLoadingRoundBackupData",
+        "m_bLogoMap",
+        "m_bMapHasBombTarget",
+        "m_bMapHasBombZone",
+        "m_bMapHasBuyZone",
+        "m_bMapHasRescueZone",
+        "m_bMatchWaitingForResume",
+        "m_bNeedToAskPlayersForContinueVote",
+        "m_bNoCTsKilled",
+        "m_bNoEnemiesKilled",
+        "m_bNoTerroristsKilled",
+        "m_bPickNewTeamsOnReset",
+        "m_bPlayAllStepSoundsOnServer",
+        "m_bPlayedTeamIntroVO",
+        "m_bRespawningAllRespawnablePlayers",
+        "m_bRoundEndNoMusic",
+        "m_bRoundEndShowTimerDefend",
+        "m_bRoundTimeWarningTriggered",
+        "m_bScrambleTeamsOnRestart",
+        "m_bServerVoteOnReset",
+        "m_bSwapTeamsOnRestart",
+        "m_bSwitchingTeamsAtRoundReset",
+        "m_bTCantBuy",
+        "m_bTargetBombed",
+        "m_bTeamIntroPeriod",
+        "m_bTeamLastKillUsedUniqueWeaponMatch",
+        "m_bTechnicalTimeOut",
+        "m_bTerroristTimeOutActive",
+        "m_bVoiceWonMatchBragFired",
+        "m_bVoteCalled",
+        "m_bWarmupPeriod",
+        "m_eRoundEndReason",
+        "m_eRoundWinReason",
+        "m_endMatchOnRoundReset",
+        "m_endMatchOnThink",
+        "m_fAccumulatedRoundOffDamage",
+        "m_fAutobalanceDisplayTime",
+        "m_fAvgPlayerRank",
+        "m_fMatchStartTime",
+        "m_fNextUpdateTeamClanNamesTime",
+        "m_fRoundStartTime",
+        "m_fTeamIntroPeriodEnd",
+        "m_fWarmupNextChatNoticeTime",
+        "m_fWarmupPeriodEnd",
+        "m_fWarmupPeriodStart",
+        "m_firstBloodTime",
+        "m_firstKillTime",
+        "m_flCMMItemDropRevealEndTime",
+        "m_flCMMItemDropRevealStartTime",
+        "m_flCTSpawnPointUsedTime",
+        "m_flCTTimeOutRemaining",
+        "m_flGameStartTime",
+        "m_flIntermissionEndTime",
+        "m_flIntermissionStartTime",
+        "m_flLastPerfSampleTime",
+        "m_flLastThinkTime",
+        "m_flMatchInfoDecidedTime",
+        "m_flNextHostageAnnouncement",
+        "m_flNextRespawnWave",
+        "m_flRestartRoundTime",
+        "m_flTeamDMLastAnnouncementTime",
+        "m_flTerroristSpawnPointUsedTime",
+        "m_flTerroristTimeOutRemaining",
+        "m_flVoteCheckThrottle",
+        "m_gamePhase",
+        "m_hPlayerResource",
+        "m_hostageWasInjured",
+        "m_hostageWasKilled",
+        "m_iAccountCT",
+        "m_iAccountTerrorist",
+        "m_iFreezeTime",
+        "m_iHostagesRemaining",
+        "m_iHostagesRescued",
+        "m_iHostagesTouched",
+        "m_iLoserBonusMostRecentTeam",
+        "m_iMatchStats_PlayersAlive_CT",
+        "m_iMatchStats_PlayersAlive_T",
+        "m_iMatchStats_RoundResults",
+        "m_iMaxNumCTs",
+        "m_iMaxNumTerrorists",
+        "m_iNextCTSpawnPoint",
+        "m_iNextTerroristSpawnPoint",
+        "m_iNumCT",
+        "m_iNumConsecutiveCTLoses",
+        "m_iNumConsecutiveTerroristLoses",
+        "m_iNumSpawnableCT",
+        "m_iNumSpawnableTerrorist",
+        "m_iNumTerrorist",
+        "m_iRoundEndFunFactData1",
+        "m_iRoundEndFunFactData2",
+        "m_iRoundEndFunFactData3",
+        "m_iRoundEndFunFactPlayerSlot",
+        "m_iRoundEndLegacy",
+        "m_iRoundEndPlayerCount",
+        "m_iRoundEndTimerTime",
+        "m_iRoundEndWinnerTeam",
+        "m_iRoundStartRoundNumber",
+        "m_iRoundTime",
+        "m_iRoundWinStatus",
+        "m_iSpawnPointCount_CT",
+        "m_iSpawnPointCount_Terrorist",
+        "m_iSpectatorSlotCount",
+        "m_iTotalRoundsPlayed",
+        "m_iUnBalancedRounds",
+        "m_nCTTeamIntroVariant",
+        "m_nCTTimeOuts",
+        "m_nCTsAliveAtFreezetimeEnd",
+        "m_nEndMatchMapGroupVoteOptions",
+        "m_nEndMatchMapGroupVoteTypes",
+        "m_nEndMatchMapVoteWinner",
+        "m_nEndMatchTiedVotes",
+        "m_nHalloweenMaskListSeed",
+        "m_nLastFreezeEndBeep",
+        "m_nMatchAbortedEarlyReason",
+        "m_nMatchEndCount",
+        "m_nMatchInfoShowType",
+        "m_nNextMapInMapgroup",
+        "m_nOvertimePlaying",
+        "m_nQueuedMatchmakingMode",
+        "m_nRoundEndCount",
+        "m_nRoundStartCount",
+        "m_nRoundsPlayedThisPhase",
+        "m_nShorthandedBonusLastEvalRound",
+        "m_nSpawnPointsRandomSeed",
+        "m_nTTeamIntroVariant",
+        "m_nTerroristTimeOuts",
+        "m_nTerroristsAliveAtFreezetimeEnd",
+        "m_nTournamentPredictionsPct",
+        "m_numBestOfMaps",
+        "m_numQueuedMatchmakingAccounts",
+        "m_numSpectatorsCountMax",
+        "m_numSpectatorsCountMaxLnk",
+        "m_numSpectatorsCountMaxTV",
+        "m_numTotalTournamentDrops",
+        "m_pGameModeRules",
+        "m_pQueuedMatchmakingReservationString",
+        "m_phaseChangeAnnouncementTime",
+        "m_sRoundEndFunFactToken",
+        "m_sRoundEndMessage",
+        "m_szMatchStatTxt",
+        "m_szTournamentEventName",
+        "m_szTournamentEventStage",
+        "m_szTournamentPredictionsTxt",
+        "m_timeUntilNextPhaseStarts",
+        "m_tmNextPeriodicThink",
+        "m_totalRoundsPlayed",
+        "m_ullLocalMatchID",
+        "m_vMinimapMaxs",
+        "m_vMinimapMins",
+        "m_vecMainCTSpawnPos"
+      ]
+    },
+    "CCSGameRulesProxy": {
+      "netName": "CSGameRulesProxy",
+      "module": "server",
+      "fields": {
+        "m_pGameRules": {
+          "targetProperty": "GameRules",
+          "schemaType": "CCSGameRules*",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bBombDefused": {
+          "targetProperty": "BombDefused",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bBombDropped": {
+          "targetProperty": "BombDropped",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bBombPlanted": {
+          "targetProperty": "BombPlanted",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bFreezePeriod": {
+          "targetProperty": "FreezePeriod",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bHasMatchStarted": {
+          "targetProperty": "HasMatchStarted",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bTargetBombed": {
+          "targetProperty": "TargetBombed",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_bWarmupPeriod": {
+          "targetProperty": "WarmupPeriod",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_eRoundWinReason": {
+          "targetProperty": "RoundWinReason",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_fRoundStartTime": {
+          "targetProperty": "RoundStartTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_flGameStartTime": {
+          "targetProperty": "GameStartTime",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_gamePhase": {
+          "targetProperty": "GamePhase",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_iAccountCT": {
+          "targetProperty": "AccountCT",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_iAccountTerrorist": {
+          "targetProperty": "AccountTerrorist",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_iRoundTime": {
+          "targetProperty": "RoundTime",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_iRoundWinStatus": {
+          "targetProperty": "RoundWinStatus",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_nCTsAliveAtFreezetimeEnd": {
+          "targetProperty": "CTsAliveAtFreezetimeEnd",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_nTerroristsAliveAtFreezetimeEnd": {
+          "targetProperty": "TerroristsAliveAtFreezetimeEnd",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_totalRoundsPlayed": {
+          "targetProperty": "TotalRoundsPlayed",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_pGameRules"
+      ]
+    },
+    "CCSPlayerController": {
+      "netName": "CSPlayerController",
+      "module": "client",
+      "fields": {
+        "m_bIsHLTV": {
+          "targetProperty": "IsHLTV",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bIsLocalPlayerController": {
+          "targetProperty": "IsLocalPlayerController",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bPawnHasDefuser": {
+          "targetProperty": "PawnHasDefuser",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bPawnHasHelmet": {
+          "targetProperty": "PawnHasHelmet",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bPawnIsAlive": {
+          "targetProperty": "PawnIsAlive",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hPawn": {
+          "targetProperty": "PawnHandle",
+          "schemaType": "CHandle< C_BasePlayerPawn >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hPlayerPawn": {
+          "targetProperty": "PlayerPawnHandle",
+          "schemaType": "CHandle< C_CSPlayerPawn >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iCompetitiveRanking": {
+          "targetProperty": "CompetitiveRanking",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iCompetitiveWins": {
+          "targetProperty": "CompetitiveWins",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iConnected": {
+          "targetProperty": "ConnectedState",
+          "schemaType": "PlayerConnectedState",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iMVPs": {
+          "targetProperty": "MVPs",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iPawnArmor": {
+          "targetProperty": "PawnArmor",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iPawnHealth": {
+          "targetProperty": "PawnHealth",
+          "schemaType": "uint32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iPing": {
+          "targetProperty": "Ping",
+          "schemaType": "uint32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iScore": {
+          "targetProperty": "Score",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iTeamNum": {
+          "targetProperty": "TeamNum",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iszPlayerName": {
+          "targetProperty": "PlayerName",
+          "schemaType": "char[128]",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pActionTrackingServices.m_flTotalRoundDamageDealt": {
+          "targetProperty": "TotalRoundDamageDealt",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pActionTrackingServices.m_iNumRoundKills": {
+          "targetProperty": "NumRoundKills",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pActionTrackingServices.m_iNumRoundKillsHeadshots": {
+          "targetProperty": "NumRoundKillsHeadshots",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pInGameMoneyServices.m_iAccount": {
+          "targetProperty": "Account",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pInGameMoneyServices.m_iCashSpentThisRound": {
+          "targetProperty": "CashSpentThisRound",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pInGameMoneyServices.m_iStartAccount": {
+          "targetProperty": "StartAccount",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pInGameMoneyServices.m_iTotalCashSpent": {
+          "targetProperty": "TotalCashSpent",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_sSanitizedPlayerName": {
+          "targetProperty": "SanitizedPlayerName",
+          "schemaType": "CUtlString",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_steamID": {
+          "targetProperty": "SteamID",
+          "schemaType": "uint64",
+          "widthBytes": 8,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bAbandonAllowsSurrender",
+        "m_bAbandonOffersInstantSurrender",
+        "m_bCanControlObservedBot",
+        "m_bCannotBeKicked",
+        "m_bControllingBot",
+        "m_bDisconnection1MinWarningPrinted",
+        "m_bEverFullyConnected",
+        "m_bEverPlayedOnTeam",
+        "m_bFireBulletsSeedSynchronized",
+        "m_bHasBeenControlledByPlayerThisRound",
+        "m_bHasCommunicationAbuseMute",
+        "m_bHasControlledBotThisRound",
+        "m_bIsPlayerNameDirty",
+        "m_bMvpNoMusic",
+        "m_bPawnHasDefuser",
+        "m_bPawnHasHelmet",
+        "m_bPawnIsAlive",
+        "m_bScoreReported",
+        "m_eMvpReason",
+        "m_eNetworkDisconnectionReason",
+        "m_flForceTeamTime",
+        "m_flPreviousForceJoinTeamTime",
+        "m_hObserverPawn",
+        "m_hOriginalControllerOfCurrentPawn",
+        "m_hPlayerPawn",
+        "m_iCoachingTeam",
+        "m_iCompTeammateColor",
+        "m_iCompetitiveRankType",
+        "m_iCompetitiveRanking",
+        "m_iCompetitiveRankingPredicted_Loss",
+        "m_iCompetitiveRankingPredicted_Tie",
+        "m_iCompetitiveRankingPredicted_Win",
+        "m_iCompetitiveWins",
+        "m_iDraftIndex",
+        "m_iMVPs",
+        "m_iMusicKitID",
+        "m_iMusicKitMVPs",
+        "m_iPawnArmor",
+        "m_iPawnBotDifficulty",
+        "m_iPawnHealth",
+        "m_iPawnLifetimeEnd",
+        "m_iPawnLifetimeStart",
+        "m_iPendingTeamNum",
+        "m_iPing",
+        "m_iScore",
+        "m_msQueuedModeDisconnectionTimestamp",
+        "m_nBotsControlledThisRound",
+        "m_nDisconnectionTick",
+        "m_nEndMatchNextMapVote",
+        "m_nFirstKill",
+        "m_nKillCount",
+        "m_nPawnCharacterDefIndex",
+        "m_nPlayerDominated",
+        "m_nPlayerDominatingMe",
+        "m_nQuestProgressReason",
+        "m_pActionTrackingServices",
+        "m_pDamageServices",
+        "m_pInGameMoneyServices",
+        "m_pInventoryServices",
+        "m_recentKillQueue",
+        "m_rtActiveMissionPeriod",
+        "m_sSanitizedPlayerName",
+        "m_szClan",
+        "m_szCrosshairCodes",
+        "m_uiAbandonRecordedReason",
+        "m_uiCommunicationMuteFlags",
+        "m_unActiveQuestId",
+        "m_unPlayerTvControlFlags"
+      ]
+    },
+    "CCSPlayerPawn": {
+      "netName": "CSPlayerPawn",
+      "module": "server",
+      "fields": {
+        "m_ArmorValue": {
+          "targetProperty": "ArmorValue",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin": {
+          "targetProperty": "Origin",
+          "schemaType": "CNetworkOriginCellCoordQuantizedVector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_angEyeAngles": {
+          "targetProperty": "EyeAngles",
+          "schemaType": "QAngle",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bInBombZone": {
+          "targetProperty": "InBombZone",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bInBuyZone": {
+          "targetProperty": "InBuyZone",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bIsDefusing": {
+          "targetProperty": "IsDefusing",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bIsScoped": {
+          "targetProperty": "IsScoped",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bIsWalking": {
+          "targetProperty": "IsWalking",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bKilledByHeadshot": {
+          "targetProperty": "KilledByHeadshot",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flDeathTime": {
+          "targetProperty": "DeathTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hController": {
+          "targetProperty": "ControllerHandle",
+          "schemaType": "CHandle< CBasePlayerController >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hOwnerEntity": {
+          "targetProperty": "OwnerEntityHandle",
+          "schemaType": "CHandle< CBaseEntity >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iDeathFlags": {
+          "targetProperty": "DeathFlags",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iHealth": {
+          "targetProperty": "Health",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iMaxHealth": {
+          "targetProperty": "MaxHealth",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iShotsFired": {
+          "targetProperty": "ShotsFired",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iTeamNum": {
+          "targetProperty": "TeamNum",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_lifeState": {
+          "targetProperty": "LifeState",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pItemServices.m_bHasDefuser": {
+          "targetProperty": "HasDefuser",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pItemServices.m_bHasHelmet": {
+          "targetProperty": "HasHelmet",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pMovementServices.m_flStamina": {
+          "targetProperty": "Stamina",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pMovementServices.m_nButtons": {
+          "targetProperty": "Buttons",
+          "schemaType": "CInButtonState",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pObserverServices.m_hObserverTarget": {
+          "targetProperty": "ObserverTargetHandle",
+          "schemaType": "CHandle< CBaseEntity >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pObserverServices.m_iObserverMode": {
+          "targetProperty": "ObserverMode",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pWeaponServices.m_hActiveWeapon": {
+          "targetProperty": "ActiveWeaponHandle",
+          "schemaType": "CHandle< CBasePlayerWeapon >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pWeaponServices.m_hLastWeapon": {
+          "targetProperty": "LastWeaponHandle",
+          "schemaType": "CHandle< CBasePlayerWeapon >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_pWeaponServices.m_hMyWeapons": {
+          "targetProperty": "MyWeapons",
+          "schemaType": "CNetworkUtlVectorBase< CHandle< CBasePlayerWeapon > >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_unCurrentEquipmentValue": {
+          "targetProperty": "CurrentEquipmentValue",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "genesis"
+        },
+        "m_unFreezetimeEndEquipmentValue": {
+          "targetProperty": "FreezetimeEndEquipmentValue",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "genesis"
+        },
+        "m_unRoundStartEquipmentValue": {
+          "targetProperty": "RoundStartEquipmentValue",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "genesis"
+        },
+        "m_vecVelocity": {
+          "targetProperty": "Velocity",
+          "schemaType": "CNetworkVelocityVector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "v_angle": {
+          "targetProperty": "ViewAngle",
+          "schemaType": "QAngle",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {
+        "m_vecOrigin": "m_CBodyComponent.m_pSceneNode.m_vecOrigin"
+      },
+      "ignored": [],
+      "observedFields": [
+        "m_ArmorValue",
+        "m_EconGloves",
+        "m_GunGameImmunityColor",
+        "m_LastHitBox",
+        "m_RetakesMVPBoostExtraUtility",
+        "m_TouchingBuyZones",
+        "m_allowAutoFollowTime",
+        "m_angEyeAngles",
+        "m_angStashedShootAngles",
+        "m_bBotAllowActive",
+        "m_bCommittingSuicideOnTeamChange",
+        "m_bGrenadeParametersStashed",
+        "m_bGunGameImmunity",
+        "m_bHasDeathInfo",
+        "m_bHasFemaleVoice",
+        "m_bInBombZone",
+        "m_bInBombZoneTrigger",
+        "m_bInBuyZone",
+        "m_bInHostageRescueZone",
+        "m_bInHostageResetZone",
+        "m_bInNoDefuseArea",
+        "m_bIsBuyMenuOpen",
+        "m_bIsDefusing",
+        "m_bIsGrabbingHostage",
+        "m_bIsScoped",
+        "m_bIsSpawning",
+        "m_bIsWalking",
+        "m_bKilledByHeadshot",
+        "m_bLeftHanded",
+        "m_bNextSprayDecalTimeExpedited",
+        "m_bOnGroundLastTick",
+        "m_bRagdollDamageHeadshot",
+        "m_bResetArmorNextSpawn",
+        "m_bResumeZoom",
+        "m_bRetakesHasDefuseKit",
+        "m_bRetakesMVPLastRound",
+        "m_bWaitForNoAttack",
+        "m_bWasInBombZoneTrigger",
+        "m_bWasInBuyZone",
+        "m_bWasInHostageRescueZone",
+        "m_entitySpottedState",
+        "m_fImmuneToGunGameDamageTime",
+        "m_fLastGivenBombTime",
+        "m_fLastGivenDefuserTime",
+        "m_fMolotovDamageTime",
+        "m_fSwitchedHandednessTime",
+        "m_flDealtDamageToEnemyMostRecentTimestamp",
+        "m_flDeathInfoTime",
+        "m_flEmitSoundTime",
+        "m_flFlinchStack",
+        "m_flHealthShotBoostExpirationTime",
+        "m_flLandingTimeSeconds",
+        "m_flLastAttackedTeammate",
+        "m_flLastPickupPriorityTime",
+        "m_flNextSprayDecalTime",
+        "m_flTimeOfLastInjury",
+        "m_flVelocityModifier",
+        "m_flViewmodelFOV",
+        "m_flViewmodelOffsetX",
+        "m_flViewmodelOffsetY",
+        "m_flViewmodelOffsetZ",
+        "m_grenadeParameterStashTime",
+        "m_iBlockingUseActionInProgress",
+        "m_iBombSiteIndex",
+        "m_iDeathFlags",
+        "m_iDisplayHistoryBits",
+        "m_iLastWeaponFireUsercmd",
+        "m_iPlayerLocked",
+        "m_iRetakesMVPBoostItem",
+        "m_iRetakesOffering",
+        "m_iRetakesOfferingCard",
+        "m_iShotsFired",
+        "m_ignoreLadderJumpTime",
+        "m_lastLandTime",
+        "m_nCharacterDefIndex",
+        "m_nEconGlovesChanged",
+        "m_nLastKillerIndex",
+        "m_nLastPickupPriority",
+        "m_nRagdollDamageBone",
+        "m_nSpotRules",
+        "m_nWhichBombZone",
+        "m_pActionTrackingServices",
+        "m_pAimPunchServices",
+        "m_pBot",
+        "m_pBulletServices",
+        "m_pBuyServices",
+        "m_pDamageReactServices",
+        "m_pHostageServices",
+        "m_pRadioServices",
+        "m_qDeathEyeAngles",
+        "m_strVOPrefix",
+        "m_szLastPlaceName",
+        "m_szRagdollDamageWeaponName",
+        "m_unCurrentEquipmentValue",
+        "m_unFreezetimeEndEquipmentValue",
+        "m_unRoundStartEquipmentValue",
+        "m_vRagdollDamageForce",
+        "m_vRagdollServerOrigin",
+        "m_vecDeathInfoOrigin",
+        "m_vecPlayerPatchEconIndices",
+        "m_vecStashedGrenadeThrowPawnCenter",
+        "m_vecStashedGrenadeThrowPosition",
+        "m_vecStashedVelocity",
+        "m_vecTotalBulletForce",
+        "m_wasNotKilledNaturally"
+      ]
+    },
+    "CCSPlayerPawnBase": {
+      "netName": "CSPlayerPawnBase",
+      "module": "server",
+      "fields": {
+        "m_blindStartTime": {
+          "targetProperty": "BlindStartTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_blindUntilTime": {
+          "targetProperty": "BlindUntilTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flFlashDuration": {
+          "targetProperty": "FlashDuration",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flFlashMaxAlpha": {
+          "targetProperty": "FlashMaxAlpha",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hOriginalController": {
+          "targetProperty": "OriginalControllerHandle",
+          "schemaType": "CHandle< CCSPlayerController >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iPlayerState": {
+          "targetProperty": "PlayerState",
+          "schemaType": "CSPlayerState",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_CTouchExpansionComponent",
+        "m_bHasMovedSinceSpawn",
+        "m_bRespawning",
+        "m_blindStartTime",
+        "m_blindUntilTime",
+        "m_fNextRadarUpdateTime",
+        "m_flFlashDuration",
+        "m_flFlashMaxAlpha",
+        "m_flIdleTimeSinceLastAction",
+        "m_flProgressBarStartTime",
+        "m_hOriginalController",
+        "m_iNumSpawns",
+        "m_iPlayerState",
+        "m_iProgressBarDuration",
+        "m_pPingServices"
+      ]
+    },
+    "CCSWeaponBaseGun": {
+      "netName": "CSWeaponBaseGun",
+      "module": "server",
+      "fields": {
+        "m_bNeedsBoltAction": {
+          "targetProperty": "NeedsBoltAction",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_iBurstShotsRemaining": {
+          "targetProperty": "BurstShotsRemaining",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_zoomLevel": {
+          "targetProperty": "ZoomLevel",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bNeedsBoltAction",
+        "m_bSkillBoltInterruptAvailable",
+        "m_bSkillBoltLiftedFireKey",
+        "m_bSkillReloadAvailable",
+        "m_bSkillReloadLiftedReloadKey",
+        "m_iBurstShotsRemaining",
+        "m_inPrecache",
+        "m_nRevolverCylinderIdx",
+        "m_silencedModelIndex",
+        "m_zoomLevel"
+      ]
+    },
+    "CCSWeaponBaseShotgun": {
+      "netName": "CSWeaponBaseShotgun",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CDEagle": {
+      "netName": "DEagle",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CDecoyGrenade": {
+      "netName": "DecoyGrenade",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CDecoyProjectile": {
+      "netName": "DecoyProjectile",
+      "module": "server",
+      "fields": {
+        "m_decoyWeaponDefIndex": {
+          "targetProperty": "DecoyWeaponDefIndex",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "genesis"
+        },
+        "m_fExpireTime": {
+          "targetProperty": "ExpireTime",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nDecoyShotTick": {
+          "targetProperty": "DecoyShotTick",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_shotsRemaining": {
+          "targetProperty": "ShotsRemaining",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_decoyWeaponDefIndex",
+        "m_fExpireTime",
+        "m_nDecoyShotTick",
+        "m_shotsRemaining"
+      ]
+    },
+    "CFlashbang": {
+      "netName": "Flashbang",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CFlashbangProjectile": {
+      "netName": "FlashbangProjectile",
+      "module": "server",
+      "fields": {
+        "m_flTimeToDetonate": {
+          "targetProperty": "TimeToDetonate",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_numOpponentsHit": {
+          "targetProperty": "NumOpponentsHit",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_numTeammatesHit": {
+          "targetProperty": "NumTeammatesHit",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_flTimeToDetonate",
+        "m_numOpponentsHit",
+        "m_numTeammatesHit"
+      ]
+    },
+    "CHEGrenade": {
+      "netName": "HEGrenade",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CHEGrenadeProjectile": {
+      "netName": "HEGrenadeProjectile",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CKnife": {
+      "netName": "Knife",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bFirstAttack"
+      ]
+    },
+    "CMolotovGrenade": {
+      "netName": "MolotovGrenade",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CMolotovProjectile": {
+      "netName": "MolotovProjectile",
+      "module": "server",
+      "fields": {
+        "m_bDetonated": {
+          "targetProperty": "Detonated",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bIsIncGrenade": {
+          "targetProperty": "IsIncGrenade",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bDetonated",
+        "m_bIsIncGrenade",
+        "m_stillTimer"
+      ]
+    },
+    "CPlantedC4": {
+      "netName": "PlantedC4",
+      "module": "server",
+      "fields": {
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin": {
+          "targetProperty": "Origin",
+          "schemaType": "CNetworkOriginCellCoordQuantizedVector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bBeingDefused": {
+          "targetProperty": "BeingDefused",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bBombDefused": {
+          "targetProperty": "BombDefused",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bBombTicking": {
+          "targetProperty": "BombTicking",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bCannotBeDefused": {
+          "targetProperty": "CannotBeDefused",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bHasExploded": {
+          "targetProperty": "HasExploded",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flC4Blow": {
+          "targetProperty": "C4Blow",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flDefuseCountDown": {
+          "targetProperty": "DefuseCountDown",
+          "schemaType": "GameTime_t",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flDefuseLength": {
+          "targetProperty": "DefuseLength",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_flTimerLength": {
+          "targetProperty": "TimerLength",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_hBombDefuser": {
+          "targetProperty": "BombDefuserHandle",
+          "schemaType": "CHandle< CCSPlayerPawn >",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nBombSite": {
+          "targetProperty": "BombSite",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {
+        "m_vecOrigin": "m_CBodyComponent.m_pSceneNode.m_vecOrigin"
+      },
+      "ignored": [],
+      "observedFields": [
+        "m_AttributeManager",
+        "m_OnBombBeginDefuse",
+        "m_OnBombDefuseAborted",
+        "m_OnBombDefused",
+        "m_angCatchUpToPlayerEye",
+        "m_bAbortDetonationBecauseWorldIsFrozen",
+        "m_bBeingDefused",
+        "m_bBombDefused",
+        "m_bBombTicking",
+        "m_bCannotBeDefused",
+        "m_bHasExploded",
+        "m_bTrainingPlacedByPlayer",
+        "m_bVoiceAlertFired",
+        "m_bVoiceAlertPlayed",
+        "m_entitySpottedState",
+        "m_fLastDefuseTime",
+        "m_flC4Blow",
+        "m_flDefuseCountDown",
+        "m_flDefuseLength",
+        "m_flLastSpinDetectionTime",
+        "m_flNextBotBeepTime",
+        "m_flTimerLength",
+        "m_hBombDefuser",
+        "m_iProgressBarTime",
+        "m_nBombSite",
+        "m_nSourceSoundscapeHash",
+        "m_nSpotRules"
+      ]
+    },
+    "CSmokeGrenade": {
+      "netName": "SmokeGrenade",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CSmokeGrenadeProjectile": {
+      "netName": "SmokeGrenadeProjectile",
+      "module": "server",
+      "fields": {
+        "m_bDidGroundScorch": {
+          "targetProperty": "DidGroundScorch",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bDidSmokeEffect": {
+          "targetProperty": "DidSmokeEffect",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_bExplodeFromInferno": {
+          "targetProperty": "ExplodeFromInferno",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "genesis"
+        },
+        "m_nSmokeEffectTickBegin": {
+          "targetProperty": "SmokeEffectTickBegin",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "genesis"
+        },
+        "m_vSmokeColor": {
+          "targetProperty": "SmokeColor",
+          "schemaType": "Vector",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        },
+        "m_vSmokeDetonationPos": {
+          "targetProperty": "SmokeDetonationPos",
+          "schemaType": "VectorWS",
+          "widthBytes": null,
+          "firstSeenBuild": "genesis"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_VoxelFrameData",
+        "m_bDidGroundScorch",
+        "m_bDidSmokeEffect",
+        "m_bExplodeFromInferno",
+        "m_flLastBounce",
+        "m_fllastSimulationTime",
+        "m_nRandomSeed",
+        "m_nSmokeEffectTickBegin",
+        "m_nVoxelFrameDataSize",
+        "m_nVoxelUpdate",
+        "m_vSmokeColor",
+        "m_vSmokeDetonationPos"
+      ]
+    },
+    "CWeaponAWP": {
+      "netName": "WeaponAWP",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponAug": {
+      "netName": "WeaponAug",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponBizon": {
+      "netName": "WeaponBizon",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponCZ75a": {
+      "netName": "WeaponCZ75a",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bMagazineRemoved"
+      ]
+    },
+    "CWeaponElite": {
+      "netName": "WeaponElite",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponFamas": {
+      "netName": "WeaponFamas",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponFiveSeven": {
+      "netName": "WeaponFiveSeven",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponG3SG1": {
+      "netName": "WeaponG3SG1",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponGalilAR": {
+      "netName": "WeaponGalilAR",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponGlock": {
+      "netName": "WeaponGlock",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponHKP2000": {
+      "netName": "WeaponHKP2000",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponM249": {
+      "netName": "WeaponM249",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponM4A1": {
+      "netName": "WeaponM4A1",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponM4A1Silencer": {
+      "netName": "WeaponM4A1Silencer",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponMAC10": {
+      "netName": "WeaponMAC10",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponMP5SD": {
+      "netName": "WeaponMP5SD",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponMP7": {
+      "netName": "WeaponMP7",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponMP9": {
+      "netName": "WeaponMP9",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponMag7": {
+      "netName": "WeaponMag7",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponNOVA": {
+      "netName": "WeaponNOVA",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponNegev": {
+      "netName": "WeaponNegev",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponP250": {
+      "netName": "WeaponP250",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponP90": {
+      "netName": "WeaponP90",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponRevolver": {
+      "netName": "WeaponRevolver",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponSCAR20": {
+      "netName": "WeaponSCAR20",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponSG556": {
+      "netName": "WeaponSG556",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponSSG08": {
+      "netName": "WeaponSSG08",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponSawedoff": {
+      "netName": "WeaponSawedoff",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponTaser": {
+      "netName": "WeaponTaser",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_fFireTime",
+        "m_nLastAttackTick"
+      ]
+    },
+    "CWeaponTec9": {
+      "netName": "WeaponTec9",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponUMP45": {
+      "netName": "WeaponUMP45",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponUSPSilencer": {
+      "netName": "WeaponUSPSilencer",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CWeaponXM1014": {
+      "netName": "WeaponXM1014",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    }
+  }
+}
