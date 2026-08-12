@@ -185,6 +185,38 @@ Running the exporter then:
 Paste the printed value in, re-run, commit the migration together with the
 rewritten `state.json`. The regen-diff gate in CI enforces that pairing.
 
+### Drafting a rename from the evidence
+
+`CS2_GEN_010` says a tracked path stopped resolving. It does not say what to
+write, because choosing between `rename`, `removeField` and a `module` pin is
+the judgement this layer exists to record. The evidence is in SchemaTracker's
+`schema_evolution/<platform>.json`; nothing joins it to the failure.
+
+```sh
+python3 scripts/lens-rename-candidates.py <EngineClass> <m_vanishedField>
+```
+
+It finds the transition where the field left, ranks the successors by signal
+strength, cross-checks whole-class and cross-class moves, and prints a draft
+migration with the evidence recorded in `notes`. Add `--write` to save it, then
+follow the placeholder-hash flow above.
+
+**It refuses to draft when the pick would be arbitrary** — when two or more
+candidates tie at the top tier, or when the only candidate lacks `offsetExact`.
+Offset is the signal that makes a candidate near-unique; without it ties are
+normal, and 1,343 of the corpus's 2,315 candidates sit in the
+`sizeMatch + typeMatch` tier alone. In those cases it prints the ranked list and
+stops, and you re-run with `--to <name>` once you have decided.
+
+That refusal matters. `CCSPlayerPawn.m_flLandseconds` has **18** tied
+candidates, and `m_flLandingTimeSeconds` — the one a human reads as obviously
+right — is not the one the artifact happens to list first. Auto-picking would
+have laundered arbitrary ordering into an assertion about Valve's history, which
+is exactly what SchemaTracker avoided by publishing these candidates unselected.
+
+A `rename` op is an empirical claim that can be false. The script proposes; the
+migration is still yours to sign.
+
 ## state.json
 
 ```json
