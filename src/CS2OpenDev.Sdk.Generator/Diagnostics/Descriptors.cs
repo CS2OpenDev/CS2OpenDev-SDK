@@ -196,4 +196,48 @@ internal static class Descriptors
         "CS2_GEN_014",
         GeneratorDiagnosticSeverity.Error,
         "Schema Lens state hash for '{0}': {1}");
+
+    // Upstream's own `atomicCategory` says this atomic is a container shape --
+    // ATOMIC_COLLECTION_OF_T or ATOMIC_TT -- and TypeMapper does not project it as
+    // one. Available from schema_format_version 2.1; before that the field is
+    // absent and this can never fire.
+    //
+    // Deliberately one-directional. The reverse case, where this repo projects a
+    // collection that upstream calls ATOMIC_T or ATOMIC_PLAIN, is not drift and is
+    // not reported: CResourceArray and CRelativeArray are arrays by intent,
+    // CUtlStringMap is a map with an implied string key, CUtlVectorSIMDPaddedVector
+    // ships without an `inner` at all. Those are C# projection decisions, and the
+    // discriminator only describes C++ template arity. Reporting them would train
+    // people to ignore this id.
+    //
+    // It is not, at the time of writing, a forward-looking alarm. It fires on a
+    // live defect: schema 2.0 made an atomic's `name` fully templated
+    // (`CUtlVector< CGlobalSymbol >`) while TypeMapper's classification sets are
+    // still keyed on the bare template name, so no templated atomic matches any of
+    // them. 1,931 of 5,013 field-level atomics are templated and every one falls
+    // through to a stub -- 880 CUtlVector, 331 CHandle, 173 CStrongHandle. The
+    // CHandle<T> and CStrongHandle<T> value structs this generator emits are
+    // referenced by exactly zero generated properties as a result.
+    //
+    // CS2_GEN_003 has been reporting the individual names all along, 770 per regen
+    // at Info severity, which is a volume nobody reads. This one is deliberately
+    // aggregated to the bare name and carries the field count, so the size of the
+    // problem is legible: eight lines instead of eight hundred.
+    //
+    // Reported, not fixed. Correcting the match changes ~1,931 property types and
+    // is a major-version event -- tracked separately rather than smuggled in with
+    // the measurement.
+    //
+    // Warning rather than Info, for the same reason CS2_GEN_009 is: this names a
+    // specific type that is probably being projected wrong, where CS2_GEN_003
+    // lists everything the mapper has never heard of. It cannot fail a build --
+    // the exporter drains diagnostics and returns 0 regardless of severity -- so
+    // the unattended cron is unaffected.
+    internal static readonly GeneratorDiagnostic AtomicCategoryDrift = new(
+        "CS2_GEN_015",
+        GeneratorDiagnosticSeverity.Warning,
+        "Upstream declares atomic '{0}' as {1} on {2} field(s), but TypeMapper stubs it "
+        + "instead of projecting a collection or map. Its sets are keyed on the bare "
+        + "template name and schema 2.0 names are fully templated, so the lookup cannot "
+        + "match. See the tracking issue before changing the projection — it is breaking.");
 }

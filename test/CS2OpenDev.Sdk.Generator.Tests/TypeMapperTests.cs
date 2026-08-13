@@ -646,4 +646,58 @@ public class TypeMapperTests
         string actual = TypeMapper.FormatEnumValue(value, storage);
         await Assert.That(actual).IsEqualTo(expected);
     }
+
+    // ── BareAtomName / CS2_GEN_015 category drift ─────────────────────────────
+
+    /// <summary>Strips template arguments so a schema 2.0 name (<c>CUtlVector&lt; CGlobalSymbol &gt;</c>) reduces to the bare name <c>TypeMapper</c>'s classification sets are keyed on.</summary>
+    [Test]
+    [Arguments("CUtlVector< CGlobalSymbol >", "CUtlVector")]
+    [Arguments("CUtlHashtable< CUtlString, int32 >", "CUtlHashtable")]
+    [Arguments("CHandle< CBaseEntity >", "CHandle")]
+    [Arguments("CUtlString", "CUtlString")]
+    [Arguments("std::pair< CGlobalSymbol, bool >", "std::pair")]
+    public async Task BareAtomName_StripsTemplateArguments(string full, string expected)
+    {
+        await Assert.That(TypeMapper.BareAtomName(full)).IsEqualTo(expected);
+    }
+
+    /// <summary>Records a container-category atomic that fell through to a stub, aggregated by bare name with a field count — the CS2_GEN_015 measurement.</summary>
+    [Test]
+    [NotInParallel("AtomicDrift")]
+    public async Task CategoryDrift_AggregatesContainerAtomicsByBareName()
+    {
+        TypeMapper.BeginEmission();
+
+        // Two instantiations of the same template: one entry, count 2.
+        TypeMapper.Map(new AtomicType("CUtlVector< CGlobalSymbol >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+        TypeMapper.Map(new AtomicType("CUtlVector< int32 >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+        TypeMapper.Map(new AtomicType("CUtlHashtable< CUtlString, int32 >", null, false, null, null, "ATOMIC_TT"));
+
+        // Not a container category, and an artifact with no discriminator at all
+        // (pre-2.1). Both are ordinary CS2_GEN_003 material and must not appear.
+        TypeMapper.Map(new AtomicType("CAnimGraph2ParamOptionalRef< CTransform >", null, false, null, null, "ATOMIC_T"));
+        TypeMapper.Map(new AtomicType("CSomethingUnknown< int32 >", null, false, null, null, null));
+
+        IReadOnlyDictionary<string, (string Category, int Count)> drift = TypeMapper.GetAtomicCategoryDrift();
+
+        await Assert.That(drift.Count).IsEqualTo(2);
+        await Assert.That(drift["CUtlVector"].Category).IsEqualTo("ATOMIC_COLLECTION_OF_T");
+        await Assert.That(drift["CUtlVector"].Count).IsEqualTo(2);
+        await Assert.That(drift["CUtlHashtable"].Category).IsEqualTo("ATOMIC_TT");
+        await Assert.That(drift["CUtlHashtable"].Count).IsEqualTo(1);
+    }
+
+    /// <summary>An atomic the mapper already projects properly never counts as drift, however upstream categorises it.</summary>
+    [Test]
+    [NotInParallel("AtomicDrift")]
+    public async Task CategoryDrift_IgnoresAtomicsThatAlreadyResolve()
+    {
+        TypeMapper.BeginEmission();
+
+        // CUtlString resolves through StringAtoms, so it never reaches the
+        // unresolved path where drift is recorded — even labelled a container.
+        TypeMapper.Map(new AtomicType("CUtlString", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+
+        await Assert.That(TypeMapper.GetAtomicCategoryDrift().Count).IsEqualTo(0);
+    }
 }

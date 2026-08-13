@@ -63,7 +63,20 @@ internal record AtomicType(
     string? HandleKind, // "entity" | "weak" | "strong" | null
     bool Nullable,
     TypeModel? Inner,
-    TypeModel? Inner2 // non-null only for TT (two-arg) types
+    TypeModel? Inner2, // non-null only for TT (two-arg) types
+    // The engine's own SchemaAtomicCategory_t discriminator, verbatim:
+    // ATOMIC_PLAIN / ATOMIC_T / ATOMIC_COLLECTION_OF_T / ATOMIC_TT / ATOMIC_I.
+    // Present from schema_format_version 2.1 (SchemaTracker 0.9.0 walkers) and
+    // null before it, so every use has to tolerate absence. Trailing with a
+    // default so the existing construction sites and fixtures are unaffected.
+    //
+    // Read for drift detection only (CS2_GEN_015), NOT to pick a projection. The
+    // discriminator describes C++ template arity; the projection is a C# design
+    // decision, and the two deliberately disagree in places — CResourceArray and
+    // CRelativeArray are ATOMIC_T upstream and collections here, CUtlStringMap is
+    // ATOMIC_T upstream and a string-keyed map here. Those are not bugs to
+    // reconcile; see TypeMapper.
+    string? AtomicCategory = null
 ) : TypeModel;
 
 internal record DeclaredClassType(string Name, string Module) : TypeModel;
@@ -401,7 +414,12 @@ internal static class SchemaModel
                 bool nullable = e.TryGetProperty("nullable", out JsonElement nbEl) && nbEl.GetBoolean();
                 TypeModel? inner = e.TryGetProperty("inner", out JsonElement iEl) ? ParseType(iEl) : null;
                 TypeModel? inner2 = e.TryGetProperty("inner2", out JsonElement i2El) ? ParseType(i2El) : null;
-                return new AtomicType(name, handleKind, nullable, inner, inner2);
+                string? atomicCategory =
+                    e.TryGetProperty("atomicCategory", out JsonElement acEl)
+                    && acEl.ValueKind == JsonValueKind.String
+                        ? acEl.GetString()
+                        : null;
+                return new AtomicType(name, handleKind, nullable, inner, inner2, atomicCategory);
             }
             case "declared_class":
                 return new DeclaredClassType(Str(e, "name"), Str(e, "module"));

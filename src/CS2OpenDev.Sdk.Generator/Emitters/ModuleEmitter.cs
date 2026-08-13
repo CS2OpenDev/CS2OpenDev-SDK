@@ -610,6 +610,18 @@ internal static class ModuleEmitter
             sink.ReportDiagnostic(Descriptors.UnknownAtomicType, unknown);
         }
 
+        // CS2_GEN_015: the subset of the above that upstream's own atomicCategory
+        // calls a container. Ordered by field count so the largest offender leads —
+        // this is a measurement, and the reader wants the scale first.
+        foreach ((string bare, (string category, int count)) in
+                 TypeMapper.GetAtomicCategoryDrift()
+                     .OrderByDescending(kv => kv.Value.Count)
+                     .ThenBy(kv => kv.Key, StringComparer.Ordinal)
+                     .Select(kv => (kv.Key, kv.Value)))
+        {
+            sink.ReportDiagnostic(Descriptors.AtomicCategoryDrift, bare, category, count);
+        }
+
         // The name diagnostics (CS2_GEN_006 / CS2_GEN_009) used to be drained
         // here and no longer are — see the end of the exporter's Program.cs.
         //

@@ -260,6 +260,26 @@ internal static class TypeMapper
     // and (b) report a CS2_GEN_003 diagnostic per unknown name.
     private static HashSet<string>? _unresolvedAtomics;
 
+    // Atomics that fell through to a stub while upstream's own `atomicCategory`
+    // says they are a container shape. Keyed by the BARE template name with the
+    // arguments stripped, because that is the unit a fix would act on: one entry
+    // in CollectionAtoms covers every instantiation of it. Carries the category
+    // and an occurrence count so the diagnostic can say how much is riding on it.
+    //
+    // Deliberately not keyed by `at.Name` like _unresolvedAtomics is. That set is
+    // per stub emitted, which is the right unit for CS2_GEN_003 (one stub, one
+    // name); this is per decision a maintainer would make, which is the bare name.
+    private static Dictionary<string, (string Category, int Count)>? _categoryDrift;
+
+    // The template name with its arguments removed: `CUtlVector< CGlobalSymbol >`
+    // -> `CUtlVector`. Schema 2.0 made atomic `name` fully templated; the sets in
+    // this file are still keyed bare, which is the whole subject of the diagnostic.
+    internal static string BareAtomName(string name)
+    {
+        int lt = name.IndexOf('<');
+        return lt < 0 ? name : name[..lt].TrimEnd();
+    }
+
     // Whether an atomic's C# projection surfaces its `Inner` type. Categories that
     // collapse to a primitive (string, int, Guid, byte[], synthetic structs, …) do
     // NOT surface Inner — `CResourceNameTyped<MDLName_t>` projects to plain `string`,
@@ -284,6 +304,7 @@ internal static class TypeMapper
     internal static void BeginEmission()
     {
         _unresolvedAtomics = new HashSet<string>(StringComparer.Ordinal);
+        _categoryDrift = new Dictionary<string, (string, int)>(StringComparer.Ordinal);
     }
 
     internal static string FormatEnumValue(long value, int? storageSize)
@@ -305,6 +326,11 @@ internal static class TypeMapper
 
     internal static IReadOnlyCollection<string> GetUnresolvedAtomics() =>
         _unresolvedAtomics ?? (IReadOnlyCollection<string>)Array.Empty<string>();
+
+    // Bare template names that upstream calls a container and this repo stubs.
+    internal static IReadOnlyDictionary<string, (string Category, int Count)> GetAtomicCategoryDrift() =>
+        _categoryDrift
+        ?? (IReadOnlyDictionary<string, (string, int)>)new Dictionary<string, (string, int)>();
 
     // Whether an atomic name resolves to a built-in C# projection (string, int,
     // Dictionary, etc.). Used by ModuleEmitter to decide which atomic references
@@ -583,6 +609,18 @@ internal static class TypeMapper
         // emitted by ModuleEmitter will use the same SanitizeName, so the reference
         // resolves at compile time.
         _unresolvedAtomics?.Add(at.Name);
+
+        // CS2_GEN_015: upstream classified this as a container and we stubbed it.
+        // Only the container categories are reported — ATOMIC_PLAIN and ATOMIC_T
+        // stubs are ordinary unresolved atomics and CS2_GEN_003 already has them.
+        if (at.AtomicCategory is "ATOMIC_COLLECTION_OF_T" or "ATOMIC_TT"
+            && _categoryDrift is not null)
+        {
+            string bare = BareAtomName(at.Name);
+            _categoryDrift[bare] = _categoryDrift.TryGetValue(bare, out (string Category, int Count) prev)
+                ? (prev.Category, prev.Count + 1)
+                : (at.AtomicCategory, 1);
+        }
         return NameHelpers.SanitizeName(at.Name);
     }
 
