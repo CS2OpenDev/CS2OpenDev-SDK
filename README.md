@@ -20,8 +20,9 @@ Three packages ship from this repo. They are layered so that taking the schema t
 
 The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
 
-> **Upgrading?** Four releases carry migration guides listing every affected name:
+> **Upgrading?** Five releases carry migration guides listing every affected name:
 >
+> - **[4.1 — `CS2OpenDev.Protos`](docs/MIGRATION-4.1-protos.md)** — 188 Game-Coordinator types removed and three `.proto` files dropped, when SchemaTracker v1.3.0 began emitting `cstrike15_gcmessages.proto` as a derived closure. Demo and network wire paths are untouched; only this package's major moves.
 > - **[4.1](docs/MIGRATION-4.1.md)** — the player-reference game-event fields decoded the wrong wire key. Adds 59 `*Pawn` companion properties and retypes 11 that had silently decoded as `0` since 1.0. Breaking on paper only: no working code can have depended on a constant zero.
 > - **[4.0](docs/MIGRATION-4.0.md)** — ten identifiers the 3.0 pass left run-together (`Isbot` → `IsBot`, `WeaponFauxitemid` → `WeaponFauxItemId`). Also adds three curated event records (`item_drop`, `halftime`, `game_restart`) that fire on the wire but are declared nowhere the extractor can see.
 > - **[3.0](docs/MIGRATION-3.0.md)** — generated identifiers move to idiomatic .NET casing (`Userid` → `UserId`, `...ID` → `...Id`). Renames only: nothing moved namespace, nothing was added or removed, no behaviour changed. **Its tables were incomplete — see the correction note and [the 534 omitted enum members](docs/MIGRATION-3.0-enum-members.md).**
@@ -235,7 +236,7 @@ Package versions follow SemVer 2 with build metadata identifying the upstream sc
 
 | Segment | Where it comes from | Who bumps it |
 |---|---|---|
-| `MAJOR` | `version.json` | Human — reserved for breaking SDK API changes. **Bump all three `version.json` files together** |
+| `MAJOR` | `version.json` | Human — reserved for breaking API changes. **Bump every `version.json` still behind the new major** |
 | `MINOR` | `version.json` | Human — new emitter features |
 | `PATCH` | Git commit height since the last `MAJOR.MINOR` bump | Automatic via Nerdbank.GitVersioning |
 | Build metadata | `cs2_schema.json` → `build_id`, `version_date` | Automatic from CI at pack-time |
@@ -246,7 +247,9 @@ The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header
 
 **Each package has its own `version.json`**, so each has its own git height and the three patch numbers differ. `CS2OpenDev.Sdk.GameEvents` gained one late — until then it inherited the root file, whose `pathFilters` are `:/src/CS2OpenDev.Sdk/` and do not prefix-match `src/CS2OpenDev.Sdk.GameEvents/`, so a commit touching only that project produced no version change and could not be released at all. Its `versionHeightOffset` exists to clear the versions already published from the inherited clock; the file says why.
 
-**`CS2OpenDev.Protos` has its own `version.json`, and it is a patch clock, not a major one.** Its `pathFilters` cover `protos/`, `src/CS2OpenDev.Protos/` and `scripts/normalize-protos.py`, so a schema regen that leaves the `.proto` files alone does not bump it — that is the point, and it stays. But the `MAJOR` is kept in step with the SDK by hand, so the three packages that ship from this repo read as one product rather than three unrelated ones. A major bump is therefore a two-file edit; the version numbers will agree on major and differ on patch, which is intended.
+**`CS2OpenDev.Protos` has its own `version.json`, and it is a patch clock, not a major one.** Its `pathFilters` cover `protos/`, `src/CS2OpenDev.Protos/` and `scripts/normalize-protos.py`, so a schema regen that leaves the `.proto` files alone does not bump it — that is the point, and it stays. But the `MAJOR` is kept in step with the SDK by hand, so the three packages that ship from this repo read as one product rather than three unrelated ones. A major bump is therefore a multi-file edit; the version numbers will agree on major and minor and differ on patch, which is intended.
+
+The rule above reads as though every break starts in the SDK. Not all do. The `.proto` closure is derived upstream, so Valve — or a SchemaTracker walker change — can delete public types from `CS2OpenDev.Protos` while `cs2_schema.json` is untouched and the SDK's projected API does not move at all. That is what happened at CS2 24701871: SchemaTracker v1.3.0 began emitting `cstrike15_gcmessages.proto` as a derived closure and 188 top-level types left the package, with a two-value metadata edit as the entire SDK diff. Bump the package that broke to the family's current major — the break is what `MAJOR` exists to signal, and a package sitting a major behind cannot signal it. Packages already at that major stay put rather than taking a break they did not have.
 
 ### Continuous integration
 

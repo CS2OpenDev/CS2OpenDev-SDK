@@ -180,9 +180,15 @@ patch version moves when — and only when — the descriptors do.
 The major is the exception, and it is deliberate. It tracks `CS2OpenDev.Sdk` so the three packages
 that ship from this repo read as one product; three independent majors on a feed invites pairing
 `CS2OpenDev.Protos` 1.x with `CS2OpenDev.Sdk` 1.x, which was never a real correspondence. The cost
-is that **this package's major tells you nothing about the wire format** — it moves when the schema
-breaks. Wire changes land in the patch like everything else, and `protos/PROVENANCE.json` plus the
+is that **a major here does not by itself mean the descriptors broke** — it also moves when the SDK's
+schema projection breaks and this package follows to stay in step. `protos/PROVENANCE.json` plus the
 `CS2BuildId` assembly attribute are what actually identify the descriptors.
+
+The converse does not hold, and 4.1 is the case that proves it: the descriptors can break on their
+own. The staged set is a closure derived upstream, so types can leave this package while
+`cs2_schema.json` — and therefore the SDK's API — does not move at all. 188 Game-Coordinator types
+went that way at CS2 24701871 ([migration guide](../../docs/MIGRATION-4.1-protos.md)). A removal
+like that takes a major of its own; only additive descriptor changes land in the patch.
 
 ## Regenerating
 
