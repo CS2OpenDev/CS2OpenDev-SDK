@@ -60,6 +60,25 @@ jobs:
         # full 40-file directory may not actually be closed.
         run: python3 scripts/normalize-protos.py --check
 
+      - name: Verify the proto surface has not shrunk without a version bump
+        # `normalize-protos.py --check` above proves protos/ matches the submodule.
+        # It says nothing about whether that content is releasable, and those are
+        # different questions: 3.0.7 was a faithful restage of an upstream closure
+        # prune that removed 188 public types, and shipped as a patch.
+        #
+        # This runs on PRs as well as the cron because a removal can arrive either
+        # way — a submodule bump, or someone editing the staged set by hand — and
+        # only the cron path called the readiness gate before. Needs tags, which
+        # the fetch-depth: 0 checkout above provides.
+        run: python3 scripts/check-migration-readiness.py
+
+      - name: Self-test the proto surface gate
+        # Replays the 3.0.6 -> 3.0.7 incident and its correction out of git, and
+        # asserts the gate fires on one and not the other. A gate that silently
+        # stopped detecting anything would otherwise look identical to a clean run
+        # forever — the failure mode of every check that is never exercised.
+        run: python3 scripts/check-migration-readiness.py --selftest
+
       - name: Regenerate SDK + game-event factories into a clean tree
         run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 

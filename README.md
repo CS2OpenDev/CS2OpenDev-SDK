@@ -165,7 +165,11 @@ protos/                        — staged, namespace-injected .proto subset (gen
   PROVENANCE.json              — CS2 build id / platform / tracker commit the protos came from
 scripts/
   normalize-protos.py          — restages protos/ from the schema-tracker submodule
-  check-migration-readiness.py — release gate: refuses a schema the SDK cannot attribute
+  check-migration-readiness.py — release gate: refuses a schema the SDK cannot attribute,
+                                 and a proto surface that shrank without a version bump
+                                 (--baseline TAG audits one transition, --selftest replays
+                                 the 3.0.7 incident)
+  proto_surface.py             — the .proto public-surface model the gate compares
   namespace-diff.py            — which types changed namespace between two SDK trees
   rename-diff.py               — which identifiers were renamed between two SDK trees
 names.lock.json                — pinned identifier spellings (generated, committed)
@@ -251,11 +255,13 @@ The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header
 
 The rule above reads as though every break starts in the SDK. Not all do. The `.proto` closure is derived upstream, so Valve — or a SchemaTracker walker change — can delete public types from `CS2OpenDev.Protos` while `cs2_schema.json` is untouched and the SDK's projected API does not move at all. That is what happened at CS2 24701871: SchemaTracker v1.3.0 began emitting `cstrike15_gcmessages.proto` as a derived closure and 188 top-level types left the package, with a two-value metadata edit as the entire SDK diff. Bump the package that broke to the family's current major — the break is what `MAJOR` exists to signal, and a package sitting a major behind cannot signal it. Packages already at that major stay put rather than taking a break they did not have.
 
+That rule is now checked rather than remembered. `check-migration-readiness.py` compares the staged `.proto` surface against the last released `CS2OpenDev.Protos` tag and fails when types or field numbers disappear while `version.json` stands still. It runs on PRs and ahead of the unattended regen, and it is deliberately narrow: a shrink is not forbidden, only a *silent* one. Editing `version.json` discharges it, which is the same shape as the Schema Lens gates — a fact the build cannot infer, asserted by a human, checked mechanically thereafter. 3.0.7 is the release that made the case for it.
+
 ### Continuous integration
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `ci.yml` | PRs + pushes to main | Build, test, regenerate, fail if the regen output diverges from committed SDK, verify pack succeeds |
+| `ci.yml` | PRs + pushes to main | Build, test, regenerate, fail if the regen output diverges from committed SDK, fail if the proto surface shrank without a version bump, verify pack succeeds |
 | `check-upstream.yml` | Cron (every 4h) + manual | Bump the upstream submodule, regenerate, push to main if anything changed, then invoke the reusable pack-and-publish flow in the same run |
 | `release.yml` | Pushes to main that touch `src/CS2OpenDev.Sdk/**` or `version.json` + manual | Invokes the reusable pack-and-publish flow (for human-driven version bumps and the post-merge case) |
 | `_pack-and-publish.yml` | `workflow_call` from the two above | Packs the SDK with CS2 build metadata, uploads the `.nupkg` as a workflow artifact, and pushes to NuGet.org (gated on `NUGET_API_KEY`) |
