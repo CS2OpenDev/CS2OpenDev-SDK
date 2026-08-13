@@ -45,7 +45,7 @@ public partial class CFuncRotator : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x780)]
     [NativeName("m_hRotatorTarget")]
-    public CHandle__CBaseEntity__ HRotatorTarget { get; set; }
+    public CHandle<CBaseEntity> HRotatorTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets IsRotating.
@@ -65,7 +65,7 @@ public partial class CFuncRotator : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x790)]
     [NativeName("m_vecLocalRotationHistory")]
-    public CUtlVector__Quaternion__ LocalRotationHistory { get; set; }
+    public Quaternion[] LocalRotationHistory { get; set; }
 
     /// <summary>
     ///     Gets or sets LoopSound.

@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -69,5 +75,5 @@ public partial class CEnvParticleGlow : CParticleSystem
     /// </remarks>
     [NativeOffset(0xD08)]
     [NativeName("m_hTextureOverride")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureOverride { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureOverride { get; set; }
 }

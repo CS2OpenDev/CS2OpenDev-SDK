@@ -42,7 +42,7 @@ public partial class CNmLayerBlendNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_layerDefinition")]
-    public CUtlLeanVectorFixedGrowable__CNmLayerBlendNode_LayerDefinition_t__3__ LayerDefinition { get; set; }
+    public CNmLayerBlendNodeLayerDefinition[] LayerDefinition { get; set; }
 
     /// <summary>
     ///     Gets or sets OnlySampleBaseRootMotion.

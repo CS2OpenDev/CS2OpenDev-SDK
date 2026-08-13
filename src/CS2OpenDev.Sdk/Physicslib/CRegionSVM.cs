@@ -30,7 +30,7 @@ public partial class CRegionSVM
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Nodes")]
-    public CUtlVector__uint32__ Nodes { get; set; }
+    public uint[] Nodes { get; set; }
 
     /// <summary>
     ///     Gets or sets Planes.
@@ -40,5 +40,5 @@ public partial class CRegionSVM
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Planes")]
-    public CUtlVector__RnPlane_t__ Planes { get; set; }
+    public RnPlane[] Planes { get; set; }
 }

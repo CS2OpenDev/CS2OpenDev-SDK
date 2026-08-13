@@ -99,7 +99,7 @@ public partial class CNmClipDocument : CNmAnimDocument
     [NativeMetadata("MPropertyDescription",
         "List the set of bones that need to be sampled in model space for sub-frames. Warning! This can be REALLY expensive so be careful with this!")]
     [NativeMetadata("MPropertyGroupName", "Advanced")]
-    public CUtlVector__CUtlString__ BonesToSampleInModelSpace { get; set; }
+    public string[] BonesToSampleInModelSpace { get; set; }
 
     /// <summary>
     ///     Override the final duration of this clip in seconds (0 or a negative value means use the authored duration).
@@ -136,7 +136,7 @@ public partial class CNmClipDocument : CNmAnimDocument
     [NativeOffset(0x98)]
     [NativeName("m_eventTracks")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlLeanVector__CNmClipDocEventTrack__ EventTracks { get; set; }
+    public CNmClipDocEventTrack[] EventTracks { get; set; }
 
     /// <summary>
     ///     Gets or sets SecondaryAnimationSkeletonNames.
@@ -148,7 +148,7 @@ public partial class CNmClipDocument : CNmAnimDocument
     [NativeName("m_secondaryAnimationSkeletonNames")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vnmskel, *requiredoubleclick )")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CUtlString__ SecondaryAnimationSkeletonNames { get; set; }
+    public string[] SecondaryAnimationSkeletonNames { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceFileName.

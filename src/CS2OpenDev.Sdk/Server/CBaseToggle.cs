@@ -29,7 +29,7 @@ public partial class CBaseToggle : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7C4)]
     [NativeName("m_hActivator")]
-    public CHandle__CBaseEntity__ Activator { get; set; }
+    public CHandle<CBaseEntity> Activator { get; set; }
 
     /// <summary>
     ///     Gets or sets AlwaysFireBlockedOutputs.

@@ -31,5 +31,5 @@ public partial class CBoneConstraintPoseSpaceBone : CBaseConstraint
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_inputList")]
-    public CUtlVector__CBoneConstraintPoseSpaceBone_Input_t__ InputList { get; set; }
+    public CBoneConstraintPoseSpaceBoneInput[] InputList { get; set; }
 }

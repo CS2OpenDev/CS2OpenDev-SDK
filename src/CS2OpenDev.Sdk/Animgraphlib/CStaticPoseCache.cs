@@ -51,5 +51,5 @@ public partial class CStaticPoseCache
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_poses")]
-    public CUtlVector__CCachedPose__ Poses { get; set; }
+    public CCachedPose[] Poses { get; set; }
 }

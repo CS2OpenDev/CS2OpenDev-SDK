@@ -30,7 +30,7 @@ public partial class CCSPlayerHostageServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_hCarriedHostage")]
-    public CHandle__CBaseEntity__ CarriedHostage { get; set; }
+    public CHandle<CBaseEntity> CarriedHostage { get; set; }
 
     /// <summary>
     ///     CHandle to the ragdoll/prop entity representing the carried hostage visually.
@@ -40,5 +40,5 @@ public partial class CCSPlayerHostageServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x4C)]
     [NativeName("m_hCarriedHostageProp")]
-    public CHandle__CBaseEntity__ CarriedHostageProp { get; set; }
+    public CHandle<CBaseEntity> CarriedHostageProp { get; set; }
 }

@@ -32,5 +32,5 @@ public partial class CNmAndNodeCDefinition : CNmBoolValueNodeCDefinition
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_conditionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__4__ ConditionNodeIndices { get; set; }
+    public short[] ConditionNodeIndices { get; set; }
 }

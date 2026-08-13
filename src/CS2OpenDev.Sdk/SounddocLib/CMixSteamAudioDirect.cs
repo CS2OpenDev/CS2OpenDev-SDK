@@ -127,7 +127,7 @@ public partial class CMixSteamAudioDirect : CMixPropertyBase
     [NativeName("m_vecTransmission")]
     [NativeMetadata("MPropertyAttributeRange", "0.0 1.0")]
     [NativeMetadata("MPropertyFriendlyName", "Transmission Values")]
-    public CUtlVector__float32__ Transmission { get; set; }
+    public float[] Transmission { get; set; }
 
     /// <summary>
     ///     Transmission Value (High Freq).

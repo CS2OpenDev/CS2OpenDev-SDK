@@ -30,7 +30,7 @@ public partial class CCycleClipInstanceData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_flCycle")]
-    public CAnimNetVar__float32__ Cycle { get; set; }
+    public float Cycle { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevCycle.
@@ -40,5 +40,5 @@ public partial class CCycleClipInstanceData
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_flPrevCycle")]
-    public CAnimNetVar__float32__ PrevCycle { get; set; }
+    public float PrevCycle { get; set; }
 }

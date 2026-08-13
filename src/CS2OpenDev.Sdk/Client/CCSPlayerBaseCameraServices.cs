@@ -86,5 +86,5 @@ public partial class CCSPlayerBaseCameraServices : CPlayerCameraServices
     /// </remarks>
     [NativeOffset(0x2A0)]
     [NativeName("m_hZoomOwner")]
-    public CHandle__C_BaseEntity__ ZoomOwner { get; set; }
+    public CHandle<C_BaseEntity> ZoomOwner { get; set; }
 }

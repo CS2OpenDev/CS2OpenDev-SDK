@@ -31,7 +31,7 @@ public partial class CPulsePublicOutput
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Args")]
-    public CUtlLeanVector__CPulseRuntimeMethodArg__ Args { get; set; }
+    public CPulseRuntimeMethodArg[] Args { get; set; }
 
     /// <summary>
     ///     Gets or sets Description.

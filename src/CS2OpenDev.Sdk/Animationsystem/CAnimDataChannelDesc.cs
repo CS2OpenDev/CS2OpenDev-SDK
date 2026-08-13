@@ -51,7 +51,7 @@ public partial class CAnimDataChannelDesc
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_nElementIndexArray")]
-    public CUtlVector__int32__ ElementIndexArray { get; set; }
+    public int[] ElementIndexArray { get; set; }
 
     /// <summary>
     ///     Gets or sets ElementMaskArray.
@@ -61,7 +61,7 @@ public partial class CAnimDataChannelDesc
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_nElementMaskArray")]
-    public CUtlVector__uint32__ ElementMaskArray { get; set; }
+    public uint[] ElementMaskArray { get; set; }
 
     /// <summary>
     ///     Gets or sets ElementNameArray.
@@ -71,7 +71,7 @@ public partial class CAnimDataChannelDesc
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_szElementNameArray")]
-    public CUtlVector__CBufferString__ ElementNameArray { get; set; }
+    public string[] ElementNameArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.

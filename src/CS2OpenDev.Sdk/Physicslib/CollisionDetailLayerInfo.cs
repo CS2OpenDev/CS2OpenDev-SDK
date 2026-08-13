@@ -92,5 +92,5 @@ public partial class CollisionDetailLayerInfo
     [NativeOffset(0x20)]
     [NativeName("m_vecSubtreeDetailLayers")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CollisionDetailLayerInfo_t_Name_t__ SubTreeDetailLayers { get; set; }
+    public CollisionDetailLayerInfoTName[] SubTreeDetailLayers { get; set; }
 }

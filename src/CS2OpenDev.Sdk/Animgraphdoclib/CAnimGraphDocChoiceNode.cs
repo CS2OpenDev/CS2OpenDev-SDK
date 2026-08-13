@@ -67,7 +67,7 @@ public partial class CAnimGraphDocChoiceNode : CAnimGraphDocNode
     [NativeName("m_children")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Options")]
-    public CUtlVector__CChoiceNodeChild__ Children { get; set; }
+    public CChoiceNodeChild[] Children { get; set; }
 
     /// <summary>
     ///     Change Selection.

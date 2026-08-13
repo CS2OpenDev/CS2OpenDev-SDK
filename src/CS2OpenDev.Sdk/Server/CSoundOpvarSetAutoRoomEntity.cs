@@ -29,7 +29,7 @@ public partial class CSoundOpvarSetAutoRoomEntity : CSoundOpvarSetPointEntity
     /// </remarks>
     [NativeOffset(0x658)]
     [NativeName("m_doorwayPairs")]
-    public CUtlVector__AutoRoomDoorwayPairs_t__ DoorwayPairs { get; set; }
+    public AutoRoomDoorwayPairs[] DoorwayPairs { get; set; }
 
     /// <summary>
     ///     Gets or sets HeightTolerance.
@@ -69,5 +69,5 @@ public partial class CSoundOpvarSetAutoRoomEntity : CSoundOpvarSetPointEntity
     /// </remarks>
     [NativeOffset(0x640)]
     [NativeName("m_traceResults")]
-    public CUtlVector__SoundOpvarTraceResult_t__ TraceResults { get; set; }
+    public SoundOpvarTraceResult[] TraceResults { get; set; }
 }

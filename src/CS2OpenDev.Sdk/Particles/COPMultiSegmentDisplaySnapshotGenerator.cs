@@ -184,7 +184,7 @@ public partial class COPMultiSegmentDisplaySnapshotGenerator : CParticleFunction
     [NativeOffset(0x4D8)]
     [NativeName("m_SpecialCharList")]
     [NativeMetadata("MPropertyFriendlyName", "Segment Special Character")]
-    public CUtlVector__ParticleMultiSegmentSpecialCharacter_t__ SpecialCharList { get; set; }
+    public ParticleMultiSegmentSpecialCharacter[] SpecialCharList { get; set; }
 
     /// <summary>
     ///     Float Value.

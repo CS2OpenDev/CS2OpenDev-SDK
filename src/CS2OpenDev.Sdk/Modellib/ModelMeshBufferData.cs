@@ -122,7 +122,7 @@ public partial class ModelMeshBufferData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_inputLayoutFields")]
-    public CUtlVector__RenderInputLayoutField_t__ InputLayoutFields { get; set; }
+    public RenderInputLayoutField[] InputLayoutFields { get; set; }
 
     /// <summary>
     ///     Gets or sets MeshoptCompressed.

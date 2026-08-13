@@ -206,7 +206,7 @@ public partial class CScriptedSequence : CBaseEntity
     /// </remarks>
     [NativeOffset(0x558)]
     [NativeName("m_hForcedTarget")]
-    public CHandle__CBaseAnimGraph__ ForcedTarget { get; set; }
+    public CHandle<CBaseAnimGraph> ForcedTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets HeldWeaponBehavior.
@@ -286,7 +286,7 @@ public partial class CScriptedSequence : CBaseEntity
     /// </remarks>
     [NativeOffset(0x6E0)]
     [NativeName("m_hInteractionMainEntity")]
-    public CHandle__CBaseEntity__ InteractionMainEntity { get; set; }
+    public CHandle<CBaseEntity> InteractionMainEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Interruptable.
@@ -466,7 +466,7 @@ public partial class CScriptedSequence : CBaseEntity
     /// </remarks>
     [NativeOffset(0x550)]
     [NativeName("m_hNextCine")]
-    public CHandle__CScriptedSequence__ NextCine { get; set; }
+    public CHandle<CScriptedSequence> NextCine { get; set; }
 
     /// <summary>
     ///     Gets or sets NextScript.
@@ -766,7 +766,7 @@ public partial class CScriptedSequence : CBaseEntity
     /// </remarks>
     [NativeOffset(0x54C)]
     [NativeName("m_hTargetEnt")]
-    public CHandle__CBaseEntity__ TargetEnt { get; set; }
+    public CHandle<CBaseEntity> TargetEnt { get; set; }
 
     /// <summary>
     ///     Gets or sets Thinking.

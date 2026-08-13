@@ -29,7 +29,7 @@ public partial class CPathWithDynamicNodes : CPathSimple
     /// </remarks>
     [NativeOffset(0x5B0)]
     [NativeName("m_vecPathNodes")]
-    public CNetworkUtlVectorBase__CHandle__CPathNode____ PathNodes { get; set; }
+    public CHandle<CPathNode>[] PathNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets XInitialPathWorldToLocal.

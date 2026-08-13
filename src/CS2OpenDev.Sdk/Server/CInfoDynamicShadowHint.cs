@@ -49,7 +49,7 @@ public partial class CInfoDynamicShadowHint : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hLight")]
-    public CHandle__CBaseEntity__ Light { get; set; }
+    public CHandle<CBaseEntity> Light { get; set; }
 
     /// <summary>
     ///     Gets or sets LightChoice.

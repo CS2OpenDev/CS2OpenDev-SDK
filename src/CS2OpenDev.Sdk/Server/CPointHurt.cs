@@ -29,7 +29,7 @@ public partial class CPointHurt : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_pActivator")]
-    public CHandle__CBaseEntity__ Activator { get; set; }
+    public CHandle<CBaseEntity> Activator { get; set; }
 
     /// <summary>
     ///     Gets or sets BitsDamageType.

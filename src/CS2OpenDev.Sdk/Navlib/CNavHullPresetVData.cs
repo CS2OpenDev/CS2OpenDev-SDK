@@ -34,5 +34,5 @@ public partial class CNavHullPresetVData
     [NativeMetadata("MPropertyAttributeEditor", "VDataChoice( scripts/nav_hulls.vdata )")]
     [NativeMetadata("MPropertyDescription", "List of nav hulls belonging to this preset.")]
     [NativeMetadata("MPropertyFriendlyName", "Nav Hulls")]
-    public CUtlVector__CUtlString__ NavHulls { get; set; }
+    public string[] NavHulls { get; set; }
 }

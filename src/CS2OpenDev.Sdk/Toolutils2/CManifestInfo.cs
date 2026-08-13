@@ -61,7 +61,7 @@ public partial class CManifestInfo
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_Resources")]
-    public CUtlVector__CUtlString__ Resources { get; set; }
+    public string[] Resources { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceFile.

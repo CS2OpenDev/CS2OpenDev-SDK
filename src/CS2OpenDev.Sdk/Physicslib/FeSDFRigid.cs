@@ -62,7 +62,7 @@ public partial class FeSDFRigid
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_Distances")]
-    public CUtlVector__float32__ Distances { get; set; }
+    public float[] Distances { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.

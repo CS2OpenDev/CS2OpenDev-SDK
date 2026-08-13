@@ -53,5 +53,5 @@ public abstract partial class CNmGraphDocVariationDataNode : CNmGraphDocFlowNode
     [NativeOffset(0x108)]
     [NativeName("m_overrides")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CNmGraphDocVariationDataNode_OverrideValue_t__ Overrides { get; set; }
+    public CNmGraphDocVariationDataNodeOverrideValue[] Overrides { get; set; }
 }

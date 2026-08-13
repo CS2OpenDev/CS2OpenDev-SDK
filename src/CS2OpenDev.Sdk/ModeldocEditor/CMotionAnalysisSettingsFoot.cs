@@ -35,7 +35,7 @@ public partial class CMotionAnalysisSettingsFoot
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyDescription",
         "Bone name(s) that represent the 'ankle' for this foot. Used for motion analysis. If multiple specified, use the first one found in the skeleton.")]
-    public CUtlVector__CGlobalSymbol__ AnkleBoneNames { get; set; }
+    public string[] AnkleBoneNames { get; set; }
 
     /// <summary>
     ///     Attachment point(s) generated footstep events should have their 'attachment' key set. If multiple specified, use the first one found in the model.
@@ -48,7 +48,7 @@ public partial class CMotionAnalysisSettingsFoot
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyDescription",
         "Attachment point(s) generated footstep events should have their 'attachment' key set. If multiple specified, use the first one found in the model.")]
-    public CUtlVector__CGlobalSymbol__ AttachmentNames { get; set; }
+    public string[] AttachmentNames { get; set; }
 
     /// <summary>
     ///     Value to set the 'foot' key (if nonempty).

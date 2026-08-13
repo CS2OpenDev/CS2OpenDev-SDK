@@ -31,7 +31,7 @@ public partial class CFuseSymbolTable
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_constantMap")]
-    public CUtlHashtable__CUtlStringToken__int32__ ConstantMap { get; set; }
+    public Dictionary<string, int> ConstantMap { get; set; }
 
     /// <summary>
     ///     Gets or sets Constants.
@@ -41,7 +41,7 @@ public partial class CFuseSymbolTable
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_constants")]
-    public CUtlVector__ConstantInfo_t__ Constants { get; set; }
+    public ConstantInfo[] Constants { get; set; }
 
     /// <summary>
     ///     Gets or sets FunctionMap.
@@ -51,7 +51,7 @@ public partial class CFuseSymbolTable
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_functionMap")]
-    public CUtlHashtable__CUtlStringToken__int32__ FunctionMap { get; set; }
+    public Dictionary<string, int> FunctionMap { get; set; }
 
     /// <summary>
     ///     Gets or sets Functions.
@@ -61,7 +61,7 @@ public partial class CFuseSymbolTable
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_functions")]
-    public CUtlVector__FunctionInfo_t__ Functions { get; set; }
+    public FunctionInfo[] Functions { get; set; }
 
     /// <summary>
     ///     Gets or sets VariableMap.
@@ -71,7 +71,7 @@ public partial class CFuseSymbolTable
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_variableMap")]
-    public CUtlHashtable__CUtlStringToken__int32__ VariableMap { get; set; }
+    public Dictionary<string, int> VariableMap { get; set; }
 
     /// <summary>
     ///     Gets or sets Variables.
@@ -81,5 +81,5 @@ public partial class CFuseSymbolTable
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_variables")]
-    public CUtlVector__VariableInfo_t__ Variables { get; set; }
+    public VariableInfo[] Variables { get; set; }
 }

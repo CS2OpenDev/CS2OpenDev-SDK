@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x2C8)]
     [NativeName("m_animGraph2Refs")]
-    public CUtlVector__ModelAnimGraph2Ref_t__ AnimGraph2Refs { get; set; }
+    public ModelAnimGraph2Ref[] AnimGraph2Refs { get; set; }
 
     /// <summary>
     ///     Gets or sets AnimatedMaterialAttributes.
@@ -42,7 +48,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x2B0)]
     [NativeName("m_AnimatedMaterialAttributes")]
-    public CUtlVector__PermModelDataAnimatedMaterialAttribute_t__ AnimatedMaterialAttributes { get; set; }
+    public PermModelDataAnimatedMaterial[] AnimatedMaterialAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets BodyGroupsHiddenInTools.
@@ -52,7 +58,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x280)]
     [NativeName("m_BodyGroupsHiddenInTools")]
-    public CUtlVector__CUtlString__ BodyGroupsHiddenInTools { get; set; }
+    public string[] BodyGroupsHiddenInTools { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneFlexDrivers.
@@ -62,7 +68,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x260)]
     [NativeName("m_boneFlexDrivers")]
-    public CUtlVector__ModelBoneFlexDriver_t__ BoneFlexDrivers { get; set; }
+    public ModelBoneFlexDriver[] BoneFlexDrivers { get; set; }
 
     /// <summary>
     ///     Gets or sets DefaultMeshGroupMask.
@@ -82,7 +88,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_ExtParts")]
-    public CUtlVector__PermModelExtPart_t__ ExtParts { get; set; }
+    public PermModelExtPart[] ExtParts { get; set; }
 
     /// <summary>
     ///     Gets or sets LodGroupSwitchDistances.
@@ -92,7 +98,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_lodGroupSwitchDistances")]
-    public CUtlVector__float32__ LodGroupSwitchDistances { get; set; }
+    public float[] LodGroupSwitchDistances { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialGroups.
@@ -102,7 +108,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x168)]
     [NativeName("m_materialGroups")]
-    public CUtlVector__MaterialGroup_t__ MaterialGroups { get; set; }
+    public MaterialGroup[] MaterialGroups { get; set; }
 
     /// <summary>
     ///     Gets or sets MeshGroups.
@@ -112,7 +118,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x150)]
     [NativeName("m_meshGroups")]
-    public CUtlVector__CUtlString__ MeshGroups { get; set; }
+    public string[] MeshGroups { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelConfigList.
@@ -162,7 +168,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x2E0)]
     [NativeName("m_vecNmSkeletonRefs")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCNmSkeleton____ NmSkeletonRefs { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmSkeleton>[] NmSkeletonRefs { get; set; }
 
     /// <summary>
     ///     Gets or sets RefAnimGroups.
@@ -172,7 +178,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_refAnimGroups")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCAnimationGroup____ RefAnimGroups { get; set; }
+    public CStrongHandle<InfoForResourceTypeCAnimationGroup>[] RefAnimGroups { get; set; }
 
     /// <summary>
     ///     Gets or sets RefAnimIncludeModels.
@@ -182,7 +188,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x298)]
     [NativeName("m_refAnimIncludeModels")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCModel____ RefAnimIncludeModels { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel>[] RefAnimIncludeModels { get; set; }
 
     /// <summary>
     ///     Gets or sets RefLODGroupMasks.
@@ -192,7 +198,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0xC0)]
     [NativeName("m_refLODGroupMasks")]
-    public CUtlVector__uint8__ RefLODGroupMasks { get; set; }
+    public byte[] RefLODGroupMasks { get; set; }
 
     /// <summary>
     ///     Gets or sets RefMeshGroupMasks.
@@ -202,7 +208,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_refMeshGroupMasks")]
-    public CUtlVector__uint64__ RefMeshGroupMasks { get; set; }
+    public ulong[] RefMeshGroupMasks { get; set; }
 
     /// <summary>
     ///     Gets or sets RefMeshes.
@@ -212,7 +218,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_refMeshes")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCRenderMesh____ RefMeshes { get; set; }
+    public CStrongHandle<InfoForResourceTypeCRenderMesh>[] RefMeshes { get; set; }
 
     /// <summary>
     ///     Gets or sets RefPhysGroupMasks.
@@ -222,7 +228,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_refPhysGroupMasks")]
-    public CUtlVector__uint64__ RefPhysGroupMasks { get; set; }
+    public ulong[] RefPhysGroupMasks { get; set; }
 
     /// <summary>
     ///     Gets or sets RefPhysicsData.
@@ -232,7 +238,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0xF0)]
     [NativeName("m_refPhysicsData")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCPhysAggregateData____ RefPhysicsData { get; set; }
+    public CStrongHandle<InfoForResourceTypeCPhysAggregateData>[] RefPhysicsData { get; set; }
 
     /// <summary>
     ///     Gets or sets RefPhysicsHitBoxData.
@@ -242,7 +248,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_refPhysicsHitboxData")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCPhysAggregateData____ RefPhysicsHitBoxData { get; set; }
+    public CStrongHandle<InfoForResourceTypeCPhysAggregateData>[] RefPhysicsHitBoxData { get; set; }
 
     /// <summary>
     ///     Gets or sets RefSequenceGroups.
@@ -252,7 +258,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_refSequenceGroups")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCSequenceGroupData____ RefSequenceGroups { get; set; }
+    public CStrongHandle<InfoForResourceTypeCSequenceGroupData>[] RefSequenceGroups { get; set; }
 
     /// <summary>
     ///     Gets or sets RemappingTable.
@@ -262,7 +268,7 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x230)]
     [NativeName("m_remappingTable")]
-    public CUtlVector__int16__ RemappingTable { get; set; }
+    public short[] RemappingTable { get; set; }
 
     /// <summary>
     ///     Gets or sets RemappingTableStarts.
@@ -272,5 +278,5 @@ public partial class PermModelData
     /// </remarks>
     [NativeOffset(0x248)]
     [NativeName("m_remappingTableStarts")]
-    public CUtlVector__uint16__ RemappingTableStarts { get; set; }
+    public ushort[] RemappingTableStarts { get; set; }
 }

@@ -41,7 +41,7 @@ public partial class CSeqScaleSet
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_flBoneScaleArray")]
-    public CUtlVector__float32__ BoneScaleArray { get; set; }
+    public float[] BoneScaleArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalBoneArray.
@@ -51,7 +51,7 @@ public partial class CSeqScaleSet
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_nLocalBoneArray")]
-    public CUtlVector__int16__ LocalBoneArray { get; set; }
+    public short[] LocalBoneArray { get; set; }
 
     /// <summary>
     ///     Gets or sets SName.

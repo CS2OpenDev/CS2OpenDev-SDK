@@ -32,7 +32,7 @@ public partial class AnimationDecodeDebugDump
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_elems")]
-    public CUtlVector__AnimationDecodeDebugDumpElement_t__ Elems { get; set; }
+    public AnimationDecodeDebugDumpElement[] Elems { get; set; }
 
     /// <summary>
     ///     Gets or sets ProcessingType.

@@ -32,7 +32,7 @@ public partial class CNmIdSelectorNodeCDefinition : CNmIdValueNodeCDefinition
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_conditionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__5__ ConditionNodeIndices { get; set; }
+    public short[] ConditionNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets DefaultValue.
@@ -52,5 +52,5 @@ public partial class CNmIdSelectorNodeCDefinition : CNmIdValueNodeCDefinition
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_values")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__5__ Values { get; set; }
+    public string[] Values { get; set; }
 }

@@ -29,5 +29,5 @@ public partial class EmptyTestScript : CAnimScriptBase
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_hTest")]
-    public CAnimScriptParam__float32__ Test { get; set; }
+    public float Test { get; set; }
 }

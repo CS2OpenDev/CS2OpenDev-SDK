@@ -31,5 +31,5 @@ public partial class CAnimGraphDocNodeList
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_nodes")]
-    public CUtlVector__CAnimGraphDoc_Node___ Nodes { get; set; }
+    public CAnimGraphDocNode?[] Nodes { get; set; }
 }

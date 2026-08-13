@@ -72,7 +72,7 @@ public partial class CompMatPropertyMutator
     [NativeName("m_vecConditionalMutators")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Mutators")]
-    public CUtlVector__CompMatPropertyMutator_t__ ConditionalMutators { get; set; }
+    public CompMatPropertyMutator[] ConditionalMutators { get; set; }
 
     /// <summary>
     ///     Conditions.
@@ -84,7 +84,7 @@ public partial class CompMatPropertyMutator
     [NativeName("m_vecConditions")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Conditions")]
-    public CUtlVector__CompMatMutatorCondition_t__ Conditions { get; set; }
+    public CompMatMutatorCondition[] Conditions { get; set; }
 
     /// <summary>
     ///     Find Suffix.
@@ -314,7 +314,7 @@ public partial class CompMatPropertyMutator
     [NativeName("m_vecRandomRollInputVars_InputVarsToRoll")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Input Vars")]
-    public CUtlVector__CUtlString__ RandomRollInputVarsInputVarsToRoll { get; set; }
+    public string[] RandomRollInputVarsInputVarsToRoll { get; set; }
 
     /// <summary>
     ///     Seed Input Var.
@@ -375,5 +375,5 @@ public partial class CompMatPropertyMutator
     [NativeName("m_vecTexGenInstructions")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Texture Generation Instructions")]
-    public CUtlVector__CompMatPropertyMutator_t__ TexGenInstructions { get; set; }
+    public CompMatPropertyMutator[] TexGenInstructions { get; set; }
 }

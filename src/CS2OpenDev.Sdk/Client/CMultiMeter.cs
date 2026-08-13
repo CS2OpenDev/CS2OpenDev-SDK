@@ -30,5 +30,5 @@ public partial class CMultiMeter : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x1180)]
     [NativeName("m_hTargetC4")]
-    public CHandle__C_PlantedC4__ TargetC4 { get; set; }
+    public CHandle<C_PlantedC4> TargetC4 { get; set; }
 }

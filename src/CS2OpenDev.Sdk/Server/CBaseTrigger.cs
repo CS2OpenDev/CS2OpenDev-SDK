@@ -45,7 +45,7 @@ public partial class CBaseTrigger : CBaseToggle
     /// </remarks>
     [NativeOffset(0x8D0)]
     [NativeName("m_hFilter")]
-    public CHandle__CBaseFilter__ Filter { get; set; }
+    public CHandle<CBaseFilter> Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.
@@ -145,7 +145,7 @@ public partial class CBaseTrigger : CBaseToggle
     /// </remarks>
     [NativeOffset(0x8B0)]
     [NativeName("m_hTouchingEntities")]
-    public CUtlVector__CHandle__CBaseEntity____ TouchingEntities { get; set; }
+    public CHandle<CBaseEntity>[] TouchingEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets UseAsyncQueries.

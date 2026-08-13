@@ -40,7 +40,7 @@ public partial class CAnimGraphDocState
     [NativeOffset(0x40)]
     [NativeName("m_actions")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CStateAction__ Actions { get; set; }
+    public CStateAction[] Actions { get; set; }
 
     /// <summary>
     ///     End State.
@@ -164,5 +164,5 @@ public partial class CAnimGraphDocState
     [NativeOffset(0x28)]
     [NativeName("m_transitions")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_StateTransition____ Transitions { get; set; }
+    public CAnimGraphDocStateTransition?[] Transitions { get; set; }
 }

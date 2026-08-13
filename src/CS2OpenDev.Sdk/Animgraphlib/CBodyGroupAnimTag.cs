@@ -33,7 +33,7 @@ public partial class CBodyGroupAnimTag : CAnimTagBase
     [NativeOffset(0x60)]
     [NativeName("m_bodyGroupSettings")]
     [NativeMetadata("MPropertyFriendlyName", "Body Group Settings")]
-    public CUtlVector__CBodyGroupSetting__ BodyGroupSettings { get; set; }
+    public CBodyGroupSetting[] BodyGroupSettings { get; set; }
 
     /// <summary>
     ///     Priority.

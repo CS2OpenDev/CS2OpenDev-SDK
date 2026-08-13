@@ -92,5 +92,5 @@ public partial class AimCameraOpFixedSettings
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_propJoints")]
-    public CUtlVector__int32__ PropJoints { get; set; }
+    public int[] PropJoints { get; set; }
 }

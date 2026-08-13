@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -71,7 +72,7 @@ public partial class COPRenderGpuImplicit : CParticleFunctionRenderer
     /// </remarks>
     [NativeOffset(0x690)]
     [NativeName("m_hMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     Gets or sets RadiusScale.

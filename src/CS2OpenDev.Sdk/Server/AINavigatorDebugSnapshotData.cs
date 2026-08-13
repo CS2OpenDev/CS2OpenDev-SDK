@@ -94,5 +94,5 @@ public partial class AINavigatorDebugSnapshotData
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("waypoints")]
-    public CUtlVector__AI_Navigator_DebugSnapshotData_t_Waypoint_t__ WayPoints { get; set; }
+    public AINavigatorDebugSnapshotDataTWayPoint[] WayPoints { get; set; }
 }

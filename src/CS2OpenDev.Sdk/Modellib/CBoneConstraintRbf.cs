@@ -31,7 +31,7 @@ public partial class CBoneConstraintRbf : CBoneConstraintBase
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_inputBones")]
-    public CUtlVector__std_pair__CUtlString__uint32____ InputBones { get; set; }
+    public (string, uint)[] InputBones { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputBones.
@@ -41,5 +41,5 @@ public partial class CBoneConstraintRbf : CBoneConstraintBase
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_outputBones")]
-    public CUtlVector__std_pair__CUtlString__uint32____ OutputBones { get; set; }
+    public (string, uint)[] OutputBones { get; set; }
 }

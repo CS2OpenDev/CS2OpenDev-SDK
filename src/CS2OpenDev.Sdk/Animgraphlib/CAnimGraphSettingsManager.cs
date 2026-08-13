@@ -31,5 +31,5 @@ public partial class CAnimGraphSettingsManager
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_settingsGroups")]
-    public CUtlVector__CSmartPtr__CAnimGraphSettingsGroup____ SettingsGroups { get; set; }
+    public CAnimGraphSettingsGroup?[] SettingsGroups { get; set; }
 }

@@ -31,7 +31,7 @@ public partial class CAssetTypeConfig
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_AssetTypes")]
-    public CUtlVector__CSimpleAssetTypeInfo___ AssetTypes { get; set; }
+    public CSimpleAssetTypeInfo?[] AssetTypes { get; set; }
 
     /// <summary>
     ///     Gets or sets AssetWarnings.
@@ -41,7 +41,7 @@ public partial class CAssetTypeConfig
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_AssetWarnings")]
-    public CUtlVector__CAssetWarning___ AssetWarnings { get; set; }
+    public CAssetWarning?[] AssetWarnings { get; set; }
 
     /// <summary>
     ///     Gets or sets SubAssetTypes.
@@ -51,5 +51,5 @@ public partial class CAssetTypeConfig
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_SubassetTypes")]
-    public CUtlVector__CSubassetTypeInfo___ SubAssetTypes { get; set; }
+    public CSubAssetTypeInfo?[] SubAssetTypes { get; set; }
 }

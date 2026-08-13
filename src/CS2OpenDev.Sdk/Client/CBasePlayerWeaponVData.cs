@@ -38,7 +38,7 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeOffset(0x4F8)]
     [NativeName("m_aShootSounds")]
     [NativeMetadata("MPropertyStartGroup", "Sounds")]
-    public CUtlOrderedMap__WeaponSound_t__CSoundEventName__ AShootSounds { get; set; }
+    public Dictionary<WeaponSound, string> AShootSounds { get; set; }
 
     /// <summary>
     ///     Allows flipping the model, regardless of whether it is built left or right handed.
@@ -85,7 +85,7 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeOffset(0x3D8)]
     [NativeName("m_szBarrelSmokeParticle")]
     [NativeMetadata("MPropertyDescription", "Barrel smoke after firing this weapon")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ BarrelSmokeParticle { get; set; }
+    public string BarrelSmokeParticle { get; set; }
 
     /// <summary>
     ///     Was the weapon was built right-handed?
@@ -211,7 +211,7 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeOffset(0x2F0)]
     [NativeName("m_szMuzzleFlashParticle")]
     [NativeMetadata("MPropertyDescription", "Effect when firing this weapon")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ MuzzleFlashParticle { get; set; }
+    public string MuzzleFlashParticle { get; set; }
 
     /// <summary>
     ///     Effect Config for Muzzle Flash - if set, will use this config specified in the particle effect, using whatever CP configuration is specified there, vdata muzzleflash attachment will be ignored.
@@ -329,7 +329,7 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeName("m_sToolsOnlyOwnerModelName")]
     [NativeMetadata("MPropertyDescription",
         "Model used by the tools only to populate comboboxes for things like animgraph parameter pickers")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ SToolsOnlyOwnerModelName { get; set; }
+    public string SToolsOnlyOwnerModelName { get; set; }
 
     /// <summary>
     ///     Gets or sets SecondaryAmmoType.
@@ -389,7 +389,7 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeMetadata("MPropertyDescription", "Model used on the ground or held by an entity")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
     [NativeMetadata("MPropertyStartGroup", "Visuals")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ WorldModel { get; set; }
+    public string WorldModel { get; set; }
 
     /// <summary>
     ///     Model used on the ground or held by an entity.
@@ -401,5 +401,5 @@ public partial class CBasePlayerWeaponVData : CEntitySubclassVDataBase
     [NativeName("m_szWorldModelAg2Override")]
     [NativeMetadata("MPropertyDescription", "Model used on the ground or held by an entity")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ WorldModelAg2Override { get; set; }
+    public string WorldModelAg2Override { get; set; }
 }

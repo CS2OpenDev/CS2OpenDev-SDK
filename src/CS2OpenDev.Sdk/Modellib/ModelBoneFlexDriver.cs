@@ -52,5 +52,5 @@ public partial class ModelBoneFlexDriver
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_controls")]
-    public CUtlVector__ModelBoneFlexDriverControl_t__ Controls { get; set; }
+    public ModelBoneFlexDriverControl[] Controls { get; set; }
 }

@@ -31,7 +31,7 @@ public partial class CSteamAudioBakedDimensionsData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_vecInOut")]
-    public CUtlVector__float32__ InOut { get; set; }
+    public float[] InOut { get; set; }
 
     /// <summary>
     ///     Gets or sets InsideSmallSizeField.
@@ -41,7 +41,7 @@ public partial class CSteamAudioBakedDimensionsData
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_vecInsideSmallSizeField")]
-    public CUtlVector__CSteamAudioAmbisonicsField__ InsideSmallSizeField { get; set; }
+    public CSteamAudioAmbisonicsField[] InsideSmallSizeField { get; set; }
 
     /// <summary>
     ///     Gets or sets Movables.
@@ -51,7 +51,7 @@ public partial class CSteamAudioBakedDimensionsData
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_movables")]
-    public CSteamAudioMovableBakedData__CSteamAudioBakedDimensionsData__ Movables { get; set; }
+    public CSteamAudioBakedDimensionsData Movables { get; set; }
 
     /// <summary>
     ///     Gets or sets OutSideField.
@@ -61,7 +61,7 @@ public partial class CSteamAudioBakedDimensionsData
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_vecOutsideField")]
-    public CUtlVector__CSteamAudioAmbisonicsField__ OutSideField { get; set; }
+    public CSteamAudioAmbisonicsField[] OutSideField { get; set; }
 
     /// <summary>
     ///     Gets or sets Probes.
@@ -91,5 +91,5 @@ public partial class CSteamAudioBakedDimensionsData
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_vecSize")]
-    public CUtlVector__float32__ Size { get; set; }
+    public float[] Size { get; set; }
 }

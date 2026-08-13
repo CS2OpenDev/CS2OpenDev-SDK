@@ -40,5 +40,5 @@ public partial class CPreviewList
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_sounds")]
-    public CUtlVector__CPreviewEntry__ Sounds { get; set; }
+    public CPreviewEntry[] Sounds { get; set; }
 }

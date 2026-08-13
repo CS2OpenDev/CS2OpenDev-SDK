@@ -41,5 +41,5 @@ public partial class CFootStepTriggerUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_triggers")]
-    public CUtlVector__FootStepTrigger__ Triggers { get; set; }
+    public FootStepTrigger[] Triggers { get; set; }
 }

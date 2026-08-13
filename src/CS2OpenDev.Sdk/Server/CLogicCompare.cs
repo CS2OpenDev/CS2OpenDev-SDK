@@ -49,7 +49,7 @@ public partial class CLogicCompare : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4D0)]
     [NativeName("m_OnEqualTo")]
-    public CEntityOutputTemplate__float32__ OnEqualTo { get; set; }
+    public float? OnEqualTo { get; set; }
 
     /// <summary>
     ///     Gets or sets OnGreaterThan.
@@ -59,7 +59,7 @@ public partial class CLogicCompare : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x510)]
     [NativeName("m_OnGreaterThan")]
-    public CEntityOutputTemplate__float32__ OnGreaterThan { get; set; }
+    public float? OnGreaterThan { get; set; }
 
     /// <summary>
     ///     Gets or sets OnLessThan.
@@ -69,7 +69,7 @@ public partial class CLogicCompare : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_OnLessThan")]
-    public CEntityOutputTemplate__float32__ OnLessThan { get; set; }
+    public float? OnLessThan { get; set; }
 
     /// <summary>
     ///     Gets or sets OnNotEqualTo.
@@ -79,5 +79,5 @@ public partial class CLogicCompare : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4F0)]
     [NativeName("m_OnNotEqualTo")]
-    public CEntityOutputTemplate__float32__ OnNotEqualTo { get; set; }
+    public float? OnNotEqualTo { get; set; }
 }

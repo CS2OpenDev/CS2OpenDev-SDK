@@ -88,7 +88,7 @@ public partial class CMixSubGraphSwitch : CMixPropertyBase
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("subgraphs")]
-    public CUtlVector__CSelectableSubgraph__ SubGraphs { get; set; }
+    public CSelectableSubGraph[] SubGraphs { get; set; }
 
     /// <summary>
     ///     Transition time (seconds).

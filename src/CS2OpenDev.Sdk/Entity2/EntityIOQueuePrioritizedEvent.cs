@@ -103,5 +103,5 @@ public partial class EntityIOQueuePrioritizedEvent
     [NativeOffset(0x30)]
     [NativeName("m_variantValue")]
     [NativeMetadata("MKV3TransferSaveOpsForField", "GetVariantSaveDataOps")]
-    public CVariantBase__CVariantDefaultAllocator__ VariantValue { get; set; }
+    public CVariantDefaultAllocator VariantValue { get; set; }
 }

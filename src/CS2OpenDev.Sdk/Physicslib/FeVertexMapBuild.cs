@@ -82,5 +82,5 @@ public partial class FeVertexMapBuild
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Weights")]
-    public CUtlVector__float32__ Weights { get; set; }
+    public float[] Weights { get; set; }
 }

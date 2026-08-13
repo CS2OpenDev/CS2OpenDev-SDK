@@ -31,7 +31,7 @@ public partial class CAnimationLayer
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_flCycle")]
-    public CAnimNetVar__float32__ Cycle { get; set; }
+    public float Cycle { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.
@@ -81,7 +81,7 @@ public partial class CAnimationLayer
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_nOrder")]
-    public CAnimNetVar__int32__ Order { get; set; }
+    public int Order { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevCycle.
@@ -111,7 +111,7 @@ public partial class CAnimationLayer
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hSequence")]
-    public CAnimNetVar__int32__ Sequence { get; set; }
+    public int Sequence { get; set; }
 
     /// <summary>
     ///     Gets or sets SequenceFinished.
@@ -131,5 +131,5 @@ public partial class CAnimationLayer
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("m_flWeight")]
-    public CAnimNetVar__float32__ Weight { get; set; }
+    public float Weight { get; set; }
 }

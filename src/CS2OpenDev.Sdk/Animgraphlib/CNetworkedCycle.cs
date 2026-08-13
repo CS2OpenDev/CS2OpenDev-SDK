@@ -41,7 +41,7 @@ public partial class CNetworkedCycle
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("m_flCycleZeroTime")]
-    public CAnimNetVar__float32__ CycleZeroTime { get; set; }
+    public float CycleZeroTime { get; set; }
 
     /// <summary>
     ///     Gets or sets CyclesPerSecond.
@@ -51,7 +51,7 @@ public partial class CNetworkedCycle
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_flCyclesPerSecond")]
-    public CAnimNetVar__float32__ CyclesPerSecond { get; set; }
+    public float CyclesPerSecond { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevCycleUnclamped.
@@ -71,5 +71,5 @@ public partial class CNetworkedCycle
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_resetCount")]
-    public CAnimNetVar__uint8__ ResetCount { get; set; }
+    public byte ResetCount { get; set; }
 }

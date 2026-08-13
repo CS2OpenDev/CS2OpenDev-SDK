@@ -59,7 +59,7 @@ public partial class CBaseMoveBehavior : CPathKeyFrame
     /// </remarks>
     [NativeOffset(0x504)]
     [NativeName("m_pCurrentKeyFrame")]
-    public CHandle__CPathKeyFrame__ CurrentKeyFrame { get; set; }
+    public CHandle<CPathKeyFrame> CurrentKeyFrame { get; set; }
 
     /// <summary>
     ///     Gets or sets Direction.
@@ -89,7 +89,7 @@ public partial class CBaseMoveBehavior : CPathKeyFrame
     /// </remarks>
     [NativeOffset(0x510)]
     [NativeName("m_pPostKeyFrame")]
-    public CHandle__CPathKeyFrame__ PostKeyFrame { get; set; }
+    public CHandle<CPathKeyFrame> PostKeyFrame { get; set; }
 
     /// <summary>
     ///     Gets or sets PreKeyFrame.
@@ -99,7 +99,7 @@ public partial class CBaseMoveBehavior : CPathKeyFrame
     /// </remarks>
     [NativeOffset(0x50C)]
     [NativeName("m_pPreKeyFrame")]
-    public CHandle__CPathKeyFrame__ PreKeyFrame { get; set; }
+    public CHandle<CPathKeyFrame> PreKeyFrame { get; set; }
 
     /// <summary>
     ///     Gets or sets RotationInterpolator.
@@ -119,7 +119,7 @@ public partial class CBaseMoveBehavior : CPathKeyFrame
     /// </remarks>
     [NativeOffset(0x508)]
     [NativeName("m_pTargetKeyFrame")]
-    public CHandle__CPathKeyFrame__ TargetKeyFrame { get; set; }
+    public CHandle<CPathKeyFrame> TargetKeyFrame { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeIntoFrame.

@@ -35,7 +35,7 @@ public partial class CPointAngularVelocitySensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4E0)]
     [NativeName("m_AngularVelocity")]
-    public CEntityOutputTemplate__float32__ AngularVelocity { get; set; }
+    public float? AngularVelocity { get; set; }
 
     /// <summary>
     ///     Gets or sets Axis.
@@ -165,7 +165,7 @@ public partial class CPointAngularVelocitySensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_hTargetEntity")]
-    public CHandle__CBaseEntity__ TargetEntity { get; set; }
+    public CHandle<CBaseEntity> TargetEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Threshold.

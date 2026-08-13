@@ -41,7 +41,7 @@ public partial class CChoiceInstanceData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_flClipStartTime")]
-    public CAnimNetVar__float32__ ClipStartTime { get; set; }
+    public float ClipStartTime { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentChoice.
@@ -51,7 +51,7 @@ public partial class CChoiceInstanceData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_currentChoice")]
-    public CAnimNetVar__int32__ CurrentChoice { get; set; }
+    public int CurrentChoice { get; set; }
 
     /// <summary>
     ///     Gets or sets PreviousChoice.

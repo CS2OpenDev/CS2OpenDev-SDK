@@ -31,7 +31,7 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_AdditionalExtensions")]
-    public CUtlVector__CUtlString__ AdditionalExtensions { get; set; }
+    public string[] AdditionalExtensions { get; set; }
 
     /// <summary>
     ///     Gets or sets AssetTypeVersion.
@@ -71,7 +71,7 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_EngineCommands")]
-    public CUtlVector__AssetEngineCommand_t__ EngineCommands { get; set; }
+    public AssetEngineCommand[] EngineCommands { get; set; }
 
     /// <summary>
     ///     Gets or sets ErrorOnUnrecognizedOutboundRefs.
@@ -91,7 +91,7 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_ExcludeFromMods")]
-    public CUtlVector__CUtlString__ ExcludeFromMods { get; set; }
+    public string[] ExcludeFromMods { get; set; }
 
     /// <summary>
     ///     Gets or sets Ext.
@@ -121,7 +121,7 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_HideForRetailMods")]
-    public CUtlVector__CUtlString__ HideForRetailMods { get; set; }
+    public string[] HideForRetailMods { get; set; }
 
     /// <summary>
     ///     Gets or sets HideTypeByDefault.
@@ -181,7 +181,7 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_LimitToMods")]
-    public CUtlVector__CUtlString__ LimitToMods { get; set; }
+    public string[] LimitToMods { get; set; }
 
     /// <summary>
     ///     Gets or sets PrefersLivePreview.
@@ -241,7 +241,7 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_SuppressSubstrings")]
-    public CUtlVector__CUtlString__ SuppressSubStrings { get; set; }
+    public string[] SuppressSubStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets TestInjectSearchable.
@@ -261,5 +261,5 @@ public partial class CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_UnrecognizedOutboundRefsErrorTypeExceptions")]
-    public CUtlVector__CUtlString__ UnrecognizedOutboundRefsErrorTypeExceptions { get; set; }
+    public string[] UnrecognizedOutboundRefsErrorTypeExceptions { get; set; }
 }

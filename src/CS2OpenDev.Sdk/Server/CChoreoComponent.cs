@@ -78,7 +78,7 @@ public partial class CChoreoComponent
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_hOwner")]
-    public CHandle__CBaseModelEntity__ Owner { get; set; }
+    public CHandle<CBaseModelEntity> Owner { get; set; }
 
     /// <summary>
     ///     Gets or sets SActiveExternalChoreoGraphSlotId.

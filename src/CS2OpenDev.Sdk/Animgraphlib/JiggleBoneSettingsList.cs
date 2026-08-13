@@ -31,5 +31,5 @@ public partial class JiggleBoneSettingsList
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_boneSettings")]
-    public CUtlVector__JiggleBoneSettings_t__ BoneSettings { get; set; }
+    public JiggleBoneSettings[] BoneSettings { get; set; }
 }

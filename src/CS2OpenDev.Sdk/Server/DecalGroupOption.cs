@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -42,7 +48,7 @@ public partial class DecalGroupOption
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hMaterial")]
-    public CStrongHandleCopyable__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandleCopyable<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxAngleBetweenNormalAndGravity.

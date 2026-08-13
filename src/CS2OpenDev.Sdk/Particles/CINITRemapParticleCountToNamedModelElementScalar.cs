@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class CINITRemapParticleCountToNamedModelElementScalar : CINITRem
     /// </remarks>
     [NativeOffset(0x210)]
     [NativeName("m_hModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelFromRenderer.

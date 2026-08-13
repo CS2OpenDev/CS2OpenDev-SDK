@@ -35,7 +35,7 @@ public partial class CompositeMaterialEditorPoint
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Child Model")]
     [NativeMetadata("MPropertyGroupName", "Preview Model")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ ChildModelName { get; set; }
+    public string ChildModelName { get; set; }
 
     /// <summary>
     ///     Composite Material Assembly Procedures.
@@ -47,7 +47,7 @@ public partial class CompositeMaterialEditorPoint
     [NativeName("m_vecCompositeMaterialAssemblyProcedures")]
     [NativeMetadata("MPropertyFriendlyName", "Composite Material Assembly Procedures")]
     [NativeMetadata("MPropertyGroupName", "Composite Material Assembly")]
-    public CUtlVector__CompositeMaterialAssemblyProcedure_t__ CompositeMaterialAssemblyProcedures { get; set; }
+    public CompositeMaterialAssemblyProcedure[] CompositeMaterialAssemblyProcedures { get; set; }
 
     /// <summary>
     ///     Generated Composite Materials.
@@ -58,7 +58,7 @@ public partial class CompositeMaterialEditorPoint
     [NativeOffset(0x1F8)]
     [NativeName("m_vecCompositeMaterials")]
     [NativeMetadata("MPropertyFriendlyName", "Generated Composite Materials")]
-    public CUtlVector__CompositeMaterial_t__ CompositeMaterials { get; set; }
+    public CompositeMaterial[] CompositeMaterials { get; set; }
 
     /// <summary>
     ///     Animation Cycle.
@@ -109,7 +109,7 @@ public partial class CompositeMaterialEditorPoint
     [NativeName("m_ModelName")]
     [NativeMetadata("MPropertyFriendlyName", "Target Model")]
     [NativeMetadata("MPropertyGroupName", "Preview Model")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ ModelName { get; set; }
+    public string ModelName { get; set; }
 
     /// <summary>
     ///     Animation.

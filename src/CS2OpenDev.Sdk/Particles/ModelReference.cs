@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class ModelReference
     [NativeOffset(0x0)]
     [NativeName("m_model")]
     [NativeMetadata("MPropertyFriendlyName", "model")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     Relative probability.

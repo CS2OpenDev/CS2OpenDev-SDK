@@ -32,7 +32,7 @@ public partial class PulseGraphExecutionHistoryCursorDesc
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("vecAncestorCursorIDs")]
-    public CUtlVector__PulseCursorID_t__ AncestorCursorIDs { get; set; }
+    public PulseCursorId[] AncestorCursorIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets LastReferenced.

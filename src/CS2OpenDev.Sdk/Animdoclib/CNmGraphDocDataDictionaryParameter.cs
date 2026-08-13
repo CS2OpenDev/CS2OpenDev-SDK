@@ -41,7 +41,7 @@ public partial class CNmGraphDocDataDictionaryParameter
     [NativeName("m_expectedValues")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CGlobalSymbol__ ExpectedValues { get; set; }
+    public string[] ExpectedValues { get; set; }
 
     /// <summary>
     ///     Gets or sets GroupName.

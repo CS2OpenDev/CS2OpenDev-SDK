@@ -29,7 +29,7 @@ public partial class CTriggerSoundscape : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x8E8)]
     [NativeName("m_hSoundscape")]
-    public CHandle__CEnvSoundscapeTriggerable__ Soundscape { get; set; }
+    public CHandle<CEnvSoundscapeTriggerable> Soundscape { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundscapeName.
@@ -49,5 +49,5 @@ public partial class CTriggerSoundscape : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x8F8)]
     [NativeName("m_spectators")]
-    public CUtlVector__CHandle__CBasePlayerPawn____ Spectators { get; set; }
+    public CHandle<CBasePlayerPawn>[] Spectators { get; set; }
 }

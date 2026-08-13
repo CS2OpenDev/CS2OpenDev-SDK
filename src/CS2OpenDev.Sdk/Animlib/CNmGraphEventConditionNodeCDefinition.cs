@@ -32,7 +32,7 @@ public partial class CNmGraphEventConditionNodeCDefinition : CNmBoolValueNodeCDe
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_conditions")]
-    public CUtlVectorFixedGrowable__CNmGraphEventConditionNode_Condition_t__5__ Conditions { get; set; }
+    public CNmGraphEventConditionNodeCondition[] Conditions { get; set; }
 
     /// <summary>
     ///     Gets or sets EventConditionRules.

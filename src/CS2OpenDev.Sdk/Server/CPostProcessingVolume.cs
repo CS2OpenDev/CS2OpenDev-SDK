@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -130,7 +136,7 @@ public partial class CPostProcessingVolume : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x8F8)]
     [NativeName("m_hPostSettings")]
-    public CStrongHandle__InfoForResourceTypeCPostProcessingResource__ PostSettings { get; set; }
+    public CStrongHandle<InfoForResourceTypeCPostProcessingResource> PostSettings { get; set; }
 
     /// <summary>
     ///     Gets or sets ToneMapEVSmoothingRange.

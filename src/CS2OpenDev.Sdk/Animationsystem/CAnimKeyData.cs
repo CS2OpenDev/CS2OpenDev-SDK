@@ -31,7 +31,7 @@ public partial class CAnimKeyData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_boneArray")]
-    public CUtlVector__CAnimBone__ BoneArray { get; set; }
+    public CAnimBone[] BoneArray { get; set; }
 
     /// <summary>
     ///     Gets or sets ChannelElements.
@@ -51,7 +51,7 @@ public partial class CAnimKeyData
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_dataChannelArray")]
-    public CUtlVector__CAnimDataChannelDesc__ DataChannelArray { get; set; }
+    public CAnimDataChannelDesc[] DataChannelArray { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphArray.
@@ -61,7 +61,7 @@ public partial class CAnimKeyData
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_morphArray")]
-    public CUtlVector__CBufferString__ MorphArray { get; set; }
+    public string[] MorphArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.
@@ -81,5 +81,5 @@ public partial class CAnimKeyData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_userArray")]
-    public CUtlVector__CAnimUser__ UserArray { get; set; }
+    public CAnimUser[] UserArray { get; set; }
 }

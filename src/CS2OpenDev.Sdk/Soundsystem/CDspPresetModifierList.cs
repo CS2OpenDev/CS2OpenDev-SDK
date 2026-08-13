@@ -44,5 +44,5 @@ public partial class CDspPresetModifierList
     [NativeName("m_modifiers")]
     [NativeMetadata("MPropertyDescription", "Set of modifiers for individual mix groups")]
     [NativeMetadata("MPropertyFriendlyName", "Mixgroup Modifiers")]
-    public CUtlVector__CDSPMixgroupModifier__ Modifiers { get; set; }
+    public CDSPMixGroupModifier[] Modifiers { get; set; }
 }

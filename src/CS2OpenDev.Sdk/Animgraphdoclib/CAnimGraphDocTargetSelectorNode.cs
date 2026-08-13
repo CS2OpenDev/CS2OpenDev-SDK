@@ -51,7 +51,7 @@ public partial class CAnimGraphDocTargetSelectorNode : CAnimGraphDocNode
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_children")]
-    public CUtlVector__CTargetSelectorChild__ Children { get; set; }
+    public CTargetSelectorChild[] Children { get; set; }
 
     /// <summary>
     ///     Desired Move Heading.

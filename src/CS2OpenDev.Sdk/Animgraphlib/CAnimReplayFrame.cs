@@ -31,7 +31,7 @@ public partial class CAnimReplayFrame
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_inputDataBlocks")]
-    public CUtlVector__CUtlBinaryBlock__ InputDataBlocks { get; set; }
+    public byte[][] InputDataBlocks { get; set; }
 
     /// <summary>
     ///     Gets or sets InstanceData.

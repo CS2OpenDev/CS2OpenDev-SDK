@@ -52,7 +52,7 @@ public partial class CNmParameterizedSelectorNodeCDefinition : CNmPoseNodeCDefin
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_optionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__8__ OptionNodeIndices { get; set; }
+    public short[] OptionNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets OptionWeights.
@@ -62,7 +62,7 @@ public partial class CNmParameterizedSelectorNodeCDefinition : CNmPoseNodeCDefin
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_optionWeights")]
-    public CUtlLeanVectorFixedGrowable__uint8__8__ OptionWeights { get; set; }
+    public byte[] OptionWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterNodeIdx.

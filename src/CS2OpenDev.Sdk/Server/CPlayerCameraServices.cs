@@ -47,7 +47,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_hColorCorrectionCtrl")]
-    public CHandle__CColorCorrection__ ColorCorrectionCtrl { get; set; }
+    public CHandle<CColorCorrection> ColorCorrectionCtrl { get; set; }
 
     /// <summary>
     ///     Gets or sets CsViewPunchAngle.
@@ -117,7 +117,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x128)]
     [NativeName("m_PostProcessingVolumes")]
-    public CNetworkUtlVectorBase__CHandle__CPostProcessingVolume____ PostProcessingVolumes { get; set; }
+    public CHandle<CPostProcessingVolume>[] PostProcessingVolumes { get; set; }
 
     /// <summary>
     ///     Gets or sets ToneMapController.
@@ -127,7 +127,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_hTonemapController")]
-    public CHandle__CTonemapController2__ ToneMapController { get; set; }
+    public CHandle<CToneMapController2> ToneMapController { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerSoundscapeList.
@@ -137,7 +137,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x160)]
     [NativeName("m_hTriggerSoundscapeList")]
-    public CUtlVector__CHandle__CEnvSoundscapeTriggerable____ TriggerSoundscapeList { get; set; }
+    public CHandle<CEnvSoundscapeTriggerable>[] TriggerSoundscapeList { get; set; }
 
     /// <summary>
     ///     Gets or sets ViewEntity.
@@ -147,5 +147,5 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xA4)]
     [NativeName("m_hViewEntity")]
-    public CHandle__CBaseEntity__ ViewEntity { get; set; }
+    public CHandle<CBaseEntity> ViewEntity { get; set; }
 }

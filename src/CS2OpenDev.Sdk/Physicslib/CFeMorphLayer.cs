@@ -31,7 +31,7 @@ public partial class CFeMorphLayer
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_GoalDamping")]
-    public CUtlVector__float32__ GoalDamping { get; set; }
+    public float[] GoalDamping { get; set; }
 
     /// <summary>
     ///     Gets or sets GoalStrength.
@@ -41,7 +41,7 @@ public partial class CFeMorphLayer
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_GoalStrength")]
-    public CUtlVector__float32__ GoalStrength { get; set; }
+    public float[] GoalStrength { get; set; }
 
     /// <summary>
     ///     Gets or sets Gravity.
@@ -51,7 +51,7 @@ public partial class CFeMorphLayer
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_Gravity")]
-    public CUtlVector__float32__ Gravity { get; set; }
+    public float[] Gravity { get; set; }
 
     /// <summary>
     ///     Gets or sets InitPos.
@@ -61,7 +61,7 @@ public partial class CFeMorphLayer
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_InitPos")]
-    public CUtlVector__Vector__ InitPos { get; set; }
+    public Vector[] InitPos { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.
@@ -91,5 +91,5 @@ public partial class CFeMorphLayer
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_Nodes")]
-    public CUtlVector__uint16__ Nodes { get; set; }
+    public ushort[] Nodes { get; set; }
 }

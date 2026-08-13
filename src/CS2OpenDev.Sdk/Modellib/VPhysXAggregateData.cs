@@ -38,7 +38,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_bindPose")]
-    public CUtlVector__matrix3x4a_t__ BindPose { get; set; }
+    public Matrix3x4a[] BindPose { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneNames.
@@ -48,7 +48,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_boneNames")]
-    public CUtlVector__CUtlString__ BoneNames { get; set; }
+    public string[] BoneNames { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneParents.
@@ -58,7 +58,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_boneParents")]
-    public CUtlVector__uint16__ BoneParents { get; set; }
+    public ushort[] BoneParents { get; set; }
 
     /// <summary>
     ///     Gets or sets BonesHash.
@@ -68,7 +68,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_bonesHash")]
-    public CUtlVector__uint32__ BonesHash { get; set; }
+    public uint[] BonesHash { get; set; }
 
     /// <summary>
     ///     Gets or sets CollisionAttributes.
@@ -78,7 +78,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x118)]
     [NativeName("m_collisionAttributes")]
-    public CUtlVector__VPhysXCollisionAttributes_t__ CollisionAttributes { get; set; }
+    public VPhysXCollisionAttributes[] CollisionAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets Constraints2.
@@ -88,7 +88,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_constraints2")]
-    public CUtlVector__VPhysXConstraint2_t__ Constraints2 { get; set; }
+    public VPhysXConstraint2[] Constraints2 { get; set; }
 
     /// <summary>
     ///     Gets or sets DebugPartNames.
@@ -98,7 +98,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x130)]
     [NativeName("m_debugPartNames")]
-    public CUtlVector__CUtlString__ DebugPartNames { get; set; }
+    public string[] DebugPartNames { get; set; }
 
     /// <summary>
     ///     Gets or sets EmbeddedKeyValues.
@@ -138,7 +138,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_indexHash")]
-    public CUtlVector__uint16__ IndexHash { get; set; }
+    public ushort[] IndexHash { get; set; }
 
     /// <summary>
     ///     Gets or sets IndexNames.
@@ -148,7 +148,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_indexNames")]
-    public CUtlVector__uint16__ IndexNames { get; set; }
+    public ushort[] IndexNames { get; set; }
 
     /// <summary>
     ///     Gets or sets Joints.
@@ -158,7 +158,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0xC8)]
     [NativeName("m_joints")]
-    public CUtlVector__VPhysXJoint_t__ Joints { get; set; }
+    public VPhysXJoint[] Joints { get; set; }
 
     /// <summary>
     ///     Gets or sets Parts.
@@ -168,7 +168,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_parts")]
-    public CUtlVector__VPhysXBodyPart_t__ Parts { get; set; }
+    public VPhysXBodyPart[] Parts { get; set; }
 
     /// <summary>
     ///     Gets or sets RefCounter.
@@ -188,7 +188,7 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_shapeMarkups")]
-    public CUtlVector__PhysShapeMarkup_t__ ShapeMarkups { get; set; }
+    public PhysShapeMarkup[] ShapeMarkups { get; set; }
 
     /// <summary>
     ///     Gets or sets SurfacePropertyHashes.
@@ -198,5 +198,5 @@ public partial class VPhysXAggregateData
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_surfacePropertyHashes")]
-    public CUtlVector__uint32__ SurfacePropertyHashes { get; set; }
+    public uint[] SurfacePropertyHashes { get; set; }
 }

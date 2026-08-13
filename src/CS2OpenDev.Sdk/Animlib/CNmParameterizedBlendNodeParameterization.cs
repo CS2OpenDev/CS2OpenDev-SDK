@@ -32,7 +32,7 @@ public partial class CNmParameterizedBlendNodeParameterization
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_blendRanges")]
-    public CUtlLeanVectorFixedGrowable__CNmParameterizedBlendNode_BlendRange_t__5__ BlendRanges { get; set; }
+    public CNmParameterizedBlendNodeBlendRange[] BlendRanges { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterRange.

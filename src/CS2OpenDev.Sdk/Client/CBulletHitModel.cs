@@ -60,7 +60,7 @@ public partial class CBulletHitModel : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x11B4)]
     [NativeName("m_hPlayerParent")]
-    public CHandle__C_BaseEntity__ PlayerParent { get; set; }
+    public CHandle<C_BaseEntity> PlayerParent { get; set; }
 
     /// <summary>
     ///     Gets or sets StartPos.

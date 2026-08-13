@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -50,7 +51,7 @@ public partial class COPCreateParticleSystemRenderer : CParticleFunctionRenderer
     [NativeOffset(0x238)]
     [NativeName("m_vecCPs")]
     [NativeMetadata("MPropertyFriendlyName", "Control Points")]
-    public CUtlLeanVector__CPAssignment_t__ CPs { get; set; }
+    public CPAssignment[] CPs { get; set; }
 
     /// <summary>
     ///     effect.
@@ -61,7 +62,7 @@ public partial class COPCreateParticleSystemRenderer : CParticleFunctionRenderer
     [NativeOffset(0x228)]
     [NativeName("m_hEffect")]
     [NativeMetadata("MPropertyFriendlyName", "effect")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ Effect { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> Effect { get; set; }
 
     /// <summary>
     ///     event type.

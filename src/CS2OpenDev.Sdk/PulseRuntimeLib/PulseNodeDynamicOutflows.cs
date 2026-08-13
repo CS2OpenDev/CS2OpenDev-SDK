@@ -31,5 +31,5 @@ public partial class PulseNodeDynamicOutflows
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Outflows")]
-    public CUtlVector__PulseNodeDynamicOutflows_t_DynamicOutflow_t__ Outflows { get; set; }
+    public PulseNodeDynamicOutflowsTDynamicOutflow[] Outflows { get; set; }
 }

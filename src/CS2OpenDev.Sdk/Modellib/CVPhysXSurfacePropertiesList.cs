@@ -31,5 +31,5 @@ public partial class CVPhysXSurfacePropertiesList
     [NativeOffset(0x0)]
     [NativeName("m_surfacePropertiesList")]
     [NativeMetadata("MKV3TransferName", "SurfacePropertiesList")]
-    public CUtlVector__CPhysSurfaceProperties___ SurfacePropertiesList { get; set; }
+    public CPhysSurfaceProperties?[] SurfacePropertiesList { get; set; }
 }

@@ -10,6 +10,13 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -102,7 +109,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0xB8)]
     [NativeName("m_Children")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__ParticleChildrenInfo_t__ Children { get; set; }
+    public ParticleChildrenInfo[] Children { get; set; }
 
     /// <summary>
     ///     color.
@@ -207,7 +214,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x88)]
     [NativeName("m_Constraints")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionConstraint___ Constraints { get; set; }
+    public CParticleFunctionConstraint?[] Constraints { get; set; }
 
     /// <summary>
     ///     Gets or sets ControlPointConfigurations.
@@ -218,7 +225,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x3C0)]
     [NativeName("m_controlPointConfigurations")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__ParticleControlPointConfiguration_t__ ControlPointConfigurations { get; set; }
+    public ParticleControlPointConfiguration[] ControlPointConfigurations { get; set; }
 
     /// <summary>
     ///     cull control point.
@@ -263,7 +270,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeName("m_pszCullReplacementName")]
     [NativeMetadata("MPropertyFriendlyName", "cull replacement definition")]
     [NativeMetadata("MPropertyStartGroup", "Replacement Options")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ CullReplacementName { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> CullReplacementName { get; set; }
 
     /// <summary>
     ///     bounding box depth sort bias.
@@ -285,7 +292,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x28)]
     [NativeName("m_Emitters")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionEmitter___ Emitters { get; set; }
+    public CParticleFunctionEmitter?[] Emitters { get; set; }
 
     /// <summary>
     ///     Enable Named Values (EXPERIMENTAL).
@@ -308,7 +315,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x2F8)]
     [NativeName("m_hFallback")]
     [NativeMetadata("MPropertyFriendlyName", "fallback replacement definition")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ Fallback { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> Fallback { get; set; }
 
     /// <summary>
     ///     fallback max count.
@@ -341,7 +348,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x70)]
     [NativeName("m_ForceGenerators")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionForce___ ForceGenerators { get; set; }
+    public CParticleFunctionForce?[] ForceGenerators { get; set; }
 
     /// <summary>
     ///     group id.
@@ -386,7 +393,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x40)]
     [NativeName("m_Initializers")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionInitializer___ Initializers { get; set; }
+    public CParticleFunctionInitializer?[] Initializers { get; set; }
 
     /// <summary>
     ///     simulated on the GPU.
@@ -410,7 +417,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x308)]
     [NativeName("m_hLowViolenceDef")]
     [NativeMetadata("MPropertyFriendlyName", "low violence definition")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ LowViolenceDef { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> LowViolenceDef { get; set; }
 
     /// <summary>
     ///     maximum creation distance.
@@ -546,7 +553,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x290)]
     [NativeName("m_NamedValueLocals")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__ParticleNamedValueSource_t___ NamedValueLocals { get; set; }
+    public ParticleNamedValueSource?[] NamedValueLocals { get; set; }
 
     /// <summary>
     ///     time to sleep when not drawn.
@@ -568,7 +575,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x58)]
     [NativeName("m_Operators")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionOperator___ Operators { get; set; }
+    public CParticleFunctionOperator?[] Operators { get; set; }
 
     /// <summary>
     ///     Gets or sets PreEmissionOperators.
@@ -579,7 +586,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x10)]
     [NativeName("m_PreEmissionOperators")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionPreEmission___ PreEmissionOperators { get; set; }
+    public CParticleFunctionPreEmission?[] PreEmissionOperators { get; set; }
 
     /// <summary>
     ///     pre-simulation time.
@@ -602,7 +609,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0x310)]
     [NativeName("m_hReferenceReplacement")]
     [NativeMetadata("MPropertyFriendlyName", "reference replacement definition")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ ReferenceReplacement { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ReferenceReplacement { get; set; }
 
     /// <summary>
     ///     Gets or sets Renderers.
@@ -613,7 +620,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     [NativeOffset(0xA0)]
     [NativeName("m_Renderers")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CParticleFunctionRenderer___ Renderers { get; set; }
+    public CParticleFunctionRenderer?[] Renderers { get; set; }
 
     /// <summary>
     ///     screen space effect.
@@ -703,7 +710,7 @@ public partial class CParticleSystemDefinition : IParticleSystemDefinition
     /// </remarks>
     [NativeOffset(0x2D8)]
     [NativeName("m_hSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ Snapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> Snapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets SnapshotControlPoint.

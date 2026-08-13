@@ -69,5 +69,5 @@ public partial class CMathColorBlend : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_OutValue")]
-    public CEntityOutputTemplate__Color__ OutValue { get; set; }
+    public Color? OutValue { get; set; }
 }

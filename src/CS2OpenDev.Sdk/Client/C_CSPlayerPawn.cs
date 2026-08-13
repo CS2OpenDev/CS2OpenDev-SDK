@@ -97,7 +97,7 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x1C40)]
     [NativeName("m_vecBulletHitModels")]
-    public CUtlVector__C_BulletHitModel___ BulletHitModels { get; set; }
+    public CBulletHitModel?[] BulletHitModels { get; set; }
 
     /// <summary>
     ///     Gets or sets BulletServices.
@@ -367,7 +367,7 @@ public partial class C_CSPlayerPawn : C_CSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0x1B84)]
     [NativeName("m_hHudModelArms")]
-    public CHandle__C_CS2HudModelArms__ HudModelArms { get; set; }
+    public CHandle<CCS2HudModelArms> HudModelArms { get; set; }
 
     /// <summary>
     ///     Gets or sets IdEntIndex.

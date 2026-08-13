@@ -31,7 +31,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_vAcceleration")]
-    public CAnimNetVar__Vector__ Acceleration { get; set; }
+    public Vector Acceleration { get; set; }
 
     /// <summary>
     ///     Gets or sets ActiveMotorIndex.
@@ -41,7 +41,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_nActiveMotorIndex")]
-    public CAnimNetVar__int32__ ActiveMotorIndex { get; set; }
+    public int ActiveMotorIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets BoundaryRadius.
@@ -51,7 +51,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_flBoundaryRadius")]
-    public CAnimNetVar__float32__ BoundaryRadius { get; set; }
+    public float BoundaryRadius { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentMoveSpeed.
@@ -61,7 +61,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x34)]
     [NativeName("m_flCurrentMoveSpeed")]
-    public CAnimNetVar__float32__ CurrentMoveSpeed { get; set; }
+    public float CurrentMoveSpeed { get; set; }
 
     /// <summary>
     ///     Gets or sets FacingHeading.
@@ -71,7 +71,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x74)]
     [NativeName("m_flFacingHeading")]
-    public CAnimNetVar__float32__ FacingHeading { get; set; }
+    public float FacingHeading { get; set; }
 
     /// <summary>
     ///     Gets or sets FacingMode.
@@ -81,7 +81,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_nFacingMode")]
-    public CAnimNetVar__uint8__ FacingMode { get; set; }
+    public byte FacingMode { get; set; }
 
     /// <summary>
     ///     Gets or sets FacingPosition.
@@ -91,7 +91,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0xC8)]
     [NativeName("m_vFacingPosition")]
-    public CAnimNetVar__Vector__ FacingPosition { get; set; }
+    public Vector FacingPosition { get; set; }
 
     /// <summary>
     ///     Gets or sets ForceFacing.
@@ -101,7 +101,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0xA4)]
     [NativeName("m_bForceFacing")]
-    public CAnimNetVar__bool__ ForceFacing { get; set; }
+    public bool ForceFacing { get; set; }
 
     /// <summary>
     ///     Gets or sets GoalChanged.
@@ -121,7 +121,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x4C)]
     [NativeName("m_flGoalDistance")]
-    public CAnimNetVar__float32__ GoalDistance { get; set; }
+    public float GoalDistance { get; set; }
 
     /// <summary>
     ///     Gets or sets GoalWayPointPos.
@@ -141,7 +141,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_bHasPath")]
-    public CAnimNetVar__bool__ HasPath { get; set; }
+    public bool HasPath { get; set; }
 
     /// <summary>
     ///     Gets or sets ManualFacingDirection.
@@ -171,7 +171,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_vMoveDir")]
-    public CAnimNetVar__Vector__ MoveDir { get; set; }
+    public Vector MoveDir { get; set; }
 
     /// <summary>
     ///     Gets or sets OnGround.
@@ -181,7 +181,7 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0xBC)]
     [NativeName("m_bOnGround")]
-    public CAnimNetVar__bool__ OnGround { get; set; }
+    public bool OnGround { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevFacingPosition.
@@ -201,5 +201,5 @@ public partial class MovementData
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_flTargetMoveSpeed")]
-    public CAnimNetVar__float32__ TargetMoveSpeed { get; set; }
+    public float TargetMoveSpeed { get; set; }
 }

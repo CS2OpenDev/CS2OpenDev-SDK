@@ -51,7 +51,7 @@ public partial class CModelConfig
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Elements")]
-    public CUtlVector__CModelConfigElement___ Elements { get; set; }
+    public CModelConfigElement?[] Elements { get; set; }
 
     /// <summary>
     ///     Gets or sets TopLevel.

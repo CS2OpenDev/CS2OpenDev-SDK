@@ -44,7 +44,7 @@ public partial class CompositeMaterial
     [NativeOffset(0x80)]
     [NativeName("m_vecGeneratedTextures")]
     [NativeMetadata("MPropertyFriendlyName", "Generated Textures")]
-    public CUtlVector__GeneratedTextureHandle_t__ GeneratedTextures { get; set; }
+    public GeneratedTextureHandle[] GeneratedTextures { get; set; }
 
     /// <summary>
     ///     Gets or sets PreGenerationKVs.

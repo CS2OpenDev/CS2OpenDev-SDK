@@ -39,7 +39,7 @@ public partial class CFuncMoverRouter : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hPathMover")]
-    public CHandle__CPathMover__ PathMover { get; set; }
+    public CHandle<CPathMover> PathMover { get; set; }
 
     /// <summary>
     ///     Gets or sets PathMoverName.

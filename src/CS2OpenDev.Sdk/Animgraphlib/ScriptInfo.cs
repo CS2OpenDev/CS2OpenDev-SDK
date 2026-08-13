@@ -42,7 +42,7 @@ public partial class ScriptInfo
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_paramsModified")]
-    public CUtlVector__CAnimParamHandle__ ParamsModified { get; set; }
+    public CAnimParamHandle[] ParamsModified { get; set; }
 
     /// <summary>
     ///     Gets or sets ProxyReadParams.
@@ -52,7 +52,7 @@ public partial class ScriptInfo
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_proxyReadParams")]
-    public CUtlVector__int32__ ProxyReadParams { get; set; }
+    public int[] ProxyReadParams { get; set; }
 
     /// <summary>
     ///     Gets or sets ProxyWriteParams.
@@ -62,7 +62,7 @@ public partial class ScriptInfo
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_proxyWriteParams")]
-    public CUtlVector__int32__ ProxyWriteParams { get; set; }
+    public int[] ProxyWriteParams { get; set; }
 
     /// <summary>
     ///     Gets or sets ScriptType.

@@ -31,7 +31,7 @@ public partial class CStepsRemainingMetricEvaluator : CMotionMetricEvaluator
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_footIndices")]
-    public CUtlVector__int32__ FootIndices { get; set; }
+    public int[] FootIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets MinStepsRemaining.

@@ -59,7 +59,7 @@ public partial class CPathNode : C_PointEntity
     /// </remarks>
     [NativeOffset(0x650)]
     [NativeName("m_hPath")]
-    public CHandle__CPathWithDynamicNodes__ Path { get; set; }
+    public CHandle<CPathWithDynamicNodes> Path { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodeParameter.

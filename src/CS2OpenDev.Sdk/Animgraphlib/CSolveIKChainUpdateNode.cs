@@ -41,5 +41,5 @@ public partial class CSolveIKChainUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_targetHandles")]
-    public CUtlVector__CSolveIKTargetHandle_t__ TargetHandles { get; set; }
+    public CSolveIKTargetHandle[] TargetHandles { get; set; }
 }

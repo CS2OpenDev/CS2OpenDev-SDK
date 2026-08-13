@@ -37,7 +37,7 @@ public partial class CDebugSnapshotData
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_children")]
-    public CUtlLeanVector__CDebugSnapshotData_t__ Children { get; set; }
+    public CDebugSnapshotData[] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets DataType.
@@ -57,7 +57,7 @@ public partial class CDebugSnapshotData
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_vecDebugOverlayData")]
-    public CUtlVector__CDebugDrawHistoryData___ DebugOverlayData { get; set; }
+    public CDebugDrawHistoryData?[] DebugOverlayData { get; set; }
 
     /// <summary>
     ///     Gets or sets DrawColor.
@@ -77,7 +77,7 @@ public partial class CDebugSnapshotData
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityIndex.

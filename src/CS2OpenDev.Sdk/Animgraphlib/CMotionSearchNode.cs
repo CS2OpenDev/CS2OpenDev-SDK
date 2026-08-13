@@ -31,7 +31,7 @@ public partial class CMotionSearchNode
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_children")]
-    public CUtlVector__CMotionSearchNode___ Children { get; set; }
+    public CMotionSearchNode?[] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets Quantizer.
@@ -51,7 +51,7 @@ public partial class CMotionSearchNode
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_sampleCodes")]
-    public CUtlVector__CUtlVector__SampleCode____ SampleCodes { get; set; }
+    public SampleCode[][] SampleCodes { get; set; }
 
     /// <summary>
     ///     Gets or sets SampleIndices.
@@ -61,7 +61,7 @@ public partial class CMotionSearchNode
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_sampleIndices")]
-    public CUtlVector__CUtlVector__int32____ SampleIndices { get; set; }
+    public int[][] SampleIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets SelectableSamples.
@@ -71,5 +71,5 @@ public partial class CMotionSearchNode
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_selectableSamples")]
-    public CUtlVector__int32__ SelectableSamples { get; set; }
+    public int[] SelectableSamples { get; set; }
 }

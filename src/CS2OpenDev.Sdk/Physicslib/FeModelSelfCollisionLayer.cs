@@ -62,7 +62,7 @@ public partial class FeModelSelfCollisionLayer
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Nodes")]
-    public CUtlVector__uint16__ Nodes { get; set; }
+    public ushort[] Nodes { get; set; }
 
     /// <summary>
     ///     Gets or sets ParentReaction.

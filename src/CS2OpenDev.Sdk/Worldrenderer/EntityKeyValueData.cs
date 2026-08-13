@@ -31,7 +31,7 @@ public partial class EntityKeyValueData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_connections")]
-    public CUtlVector__EntityIOConnectionData_t__ Connections { get; set; }
+    public EntityIOConnectionData[] Connections { get; set; }
 
     /// <summary>
     ///     Gets or sets KeyValuesData.

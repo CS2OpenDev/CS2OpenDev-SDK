@@ -31,7 +31,7 @@ public partial class CMotionNodeBlend1D : CMotionNode
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_blendItems")]
-    public CUtlVector__MotionBlendItem__ BlendItems { get; set; }
+    public MotionBlendItem[] BlendItems { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamIndex.

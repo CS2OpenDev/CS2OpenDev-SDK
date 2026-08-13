@@ -46,7 +46,7 @@ public partial class CPulseGraphInstanceServerEntity : CBasePulseGraphInstance
     /// </remarks>
     [NativeOffset(0x1A0)]
     [NativeName("m_hOwner")]
-    public CHandle__CBaseEntity__ Owner { get; set; }
+    public CHandle<CBaseEntity> Owner { get; set; }
 
     /// <summary>
     ///     Gets or sets SNameFixupLocal.

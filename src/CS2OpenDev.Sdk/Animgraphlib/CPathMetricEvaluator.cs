@@ -61,5 +61,5 @@ public partial class CPathMetricEvaluator : CMotionMetricEvaluator
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_pathTimeSamples")]
-    public CUtlVector__float32__ PathTimeSamples { get; set; }
+    public float[] PathTimeSamples { get; set; }
 }

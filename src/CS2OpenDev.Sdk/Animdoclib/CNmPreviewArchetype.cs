@@ -73,5 +73,5 @@ public partial class CNmPreviewArchetype
     [NativeName("m_secondarySkeletonSettings")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyGroupName", "+Secondary Skeletons")]
-    public CUtlVector__CNmPreviewArchetype_SecondarySkeleton_t__ SecondarySkeletonSettings { get; set; }
+    public CNmPreviewArchetypeSecondarySkeleton[] SecondarySkeletonSettings { get; set; }
 }

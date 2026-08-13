@@ -57,5 +57,5 @@ public partial class CMotionNodeSequence : CMotionNode
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 }

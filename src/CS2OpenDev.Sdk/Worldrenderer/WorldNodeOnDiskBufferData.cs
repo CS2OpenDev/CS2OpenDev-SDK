@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Modellib;
+
+#endregion
+
 namespace CS2OpenSchema.Worldrenderer;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class WorldNodeOnDiskBufferData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_pData")]
-    public CUtlVector__uint8__ Data { get; set; }
+    public byte[] Data { get; set; }
 
     /// <summary>
     ///     Gets or sets ElementCount.
@@ -62,5 +68,5 @@ public partial class WorldNodeOnDiskBufferData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_inputLayoutFields")]
-    public CUtlVector__RenderInputLayoutField_t__ InputLayoutFields { get; set; }
+    public RenderInputLayoutField[] InputLayoutFields { get; set; }
 }

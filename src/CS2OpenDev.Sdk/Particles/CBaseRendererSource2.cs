@@ -782,7 +782,7 @@ public abstract partial class CBaseRendererSource2 : CParticleFunctionRenderer
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Textures")]
     [NativeMetadata("MPropertySortPriority", "600")]
-    public CUtlLeanVector__TextureGroup_t__ TexturesInput { get; set; }
+    public TextureGroup[] TexturesInput { get; set; }
 
     /// <summary>
     ///     Apply fog of war to color.

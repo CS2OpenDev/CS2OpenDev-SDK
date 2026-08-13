@@ -100,7 +100,7 @@ public partial class CAnimGraphDocFootPinningNode : CAnimGraphDocNode
     [NativeName("m_items")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Feet")]
-    public CUtlVector__CFootPinningItem__ Items { get; set; }
+    public CFootPinningItem[] Items { get; set; }
 
     /// <summary>
     ///     Lock Break Distance.

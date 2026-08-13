@@ -32,7 +32,7 @@ public partial class CNmBlendSpace2D
     [NativeOffset(0x48)]
     [NativeName("m_hullIndices")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__uint8__ HullIndices { get; set; }
+    public byte[] HullIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets Indices.
@@ -43,7 +43,7 @@ public partial class CNmBlendSpace2D
     [NativeOffset(0x30)]
     [NativeName("m_indices")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__uint8__ Indices { get; set; }
+    public byte[] Indices { get; set; }
 
     /// <summary>
     ///     Gets or sets PointNames.
@@ -55,7 +55,7 @@ public partial class CNmBlendSpace2D
     [NativeName("m_pointNames")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CUtlString__ PointNames { get; set; }
+    public string[] PointNames { get; set; }
 
     /// <summary>
     ///     Gets or sets Points.
@@ -67,5 +67,5 @@ public partial class CNmBlendSpace2D
     [NativeName("m_points")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__Vector2D__ Points { get; set; }
+    public Vector2D[] Points { get; set; }
 }

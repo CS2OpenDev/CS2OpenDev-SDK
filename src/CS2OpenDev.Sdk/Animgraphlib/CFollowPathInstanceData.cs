@@ -51,7 +51,7 @@ public partial class CFollowPathInstanceData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_flPredictionScale")]
-    public CAnimNetVar__float32__ PredictionScale { get; set; }
+    public float PredictionScale { get; set; }
 
     /// <summary>
     ///     Gets or sets TurnAmount.
@@ -71,5 +71,5 @@ public partial class CFollowPathInstanceData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_xLastPredictedTransformsDeltas")]
-    public CRelativeArray__CMotionTransform__ XLastPredictedTransformsDeltas { get; set; }
+    public byte[]?[] XLastPredictedTransformsDeltas { get; set; }
 }

@@ -52,7 +52,7 @@ public partial class CNmTargetSelectorNodeCDefinition : CNmClipReferenceNodeCDef
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_optionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__8__ OptionNodeIndices { get; set; }
+    public short[] OptionNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets OrientationScoreWeight.

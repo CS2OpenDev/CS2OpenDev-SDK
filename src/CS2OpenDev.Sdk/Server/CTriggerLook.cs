@@ -65,7 +65,7 @@ public partial class CTriggerLook : CTriggerOnce
     /// </remarks>
     [NativeOffset(0x900)]
     [NativeName("m_hLookTarget")]
-    public CHandle__CBaseEntity__ LookTarget { get; set; }
+    public CHandle<CBaseEntity> LookTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets LookTime.

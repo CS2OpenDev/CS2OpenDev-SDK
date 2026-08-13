@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Worldrenderer;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class BakedLightingInfo
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_bakedShadows")]
-    public CUtlVector__BakedLightingInfo_t_BakedShadowAssignment_t__ BakedShadows { get; set; }
+    public BakedLightingInfoTBakedShadowAssignment[] BakedShadows { get; set; }
 
     /// <summary>
     ///     Gets or sets BakedShadowsGamma20.
@@ -112,7 +118,7 @@ public partial class BakedLightingInfo
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_lightMaps")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCTextureBase____ LightMaps { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase>[] LightMaps { get; set; }
 
     /// <summary>
     ///     Gets or sets SHLightMaps.

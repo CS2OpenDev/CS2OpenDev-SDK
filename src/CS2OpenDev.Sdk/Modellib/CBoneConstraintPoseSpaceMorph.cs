@@ -41,7 +41,7 @@ public partial class CBoneConstraintPoseSpaceMorph : CBoneConstraintBase
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_inputList")]
-    public CUtlVector__CBoneConstraintPoseSpaceMorph_Input_t__ InputList { get; set; }
+    public CBoneConstraintPoseSpaceMorphInput[] InputList { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputMorph.
@@ -51,7 +51,7 @@ public partial class CBoneConstraintPoseSpaceMorph : CBoneConstraintBase
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_outputMorph")]
-    public CUtlVector__CUtlString__ OutputMorph { get; set; }
+    public string[] OutputMorph { get; set; }
 
     /// <summary>
     ///     Gets or sets SAttachmentName.

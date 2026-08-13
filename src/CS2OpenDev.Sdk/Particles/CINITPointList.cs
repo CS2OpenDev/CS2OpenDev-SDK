@@ -78,5 +78,5 @@ public partial class CINITPointList : CParticleFunctionInitializer
     [NativeOffset(0x1E8)]
     [NativeName("m_pointList")]
     [NativeMetadata("MPropertyFriendlyName", "point list")]
-    public CUtlVector__PointDefinition_t__ PointList { get; set; }
+    public PointDefinition[] PointList { get; set; }
 }

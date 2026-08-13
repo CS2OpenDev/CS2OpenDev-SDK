@@ -35,7 +35,7 @@ public partial class CNmGraphDocIdControlParameterNode : CNmGraphDocControlParam
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Local graph expected values")]
-    public CUtlVector__CGlobalSymbol__ ExpectedValues { get; set; }
+    public string[] ExpectedValues { get; set; }
 
     /// <summary>
     ///     Gets or sets PreviewStartValue.

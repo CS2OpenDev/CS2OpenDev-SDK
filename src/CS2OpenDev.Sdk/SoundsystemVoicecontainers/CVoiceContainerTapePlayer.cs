@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.SoundsystemVoicecontainers;
 
 /// <summary>
@@ -42,7 +48,7 @@ public partial class CVoiceContainerTapePlayer : CVoiceContainerAsyncGenerator
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_sourceAudio")]
-    public CStrongHandle__InfoForResourceTypeCVoiceContainerBase__ SourceAudio { get; set; }
+    public CStrongHandle<InfoForResourceTypeCVoiceContainerBase> SourceAudio { get; set; }
 
     /// <summary>
     ///     Gets or sets TapeSpeedAttackTime.

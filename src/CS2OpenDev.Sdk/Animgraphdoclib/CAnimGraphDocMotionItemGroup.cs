@@ -44,7 +44,7 @@ public partial class CAnimGraphDocMotionItemGroup
     [NativeOffset(0x20)]
     [NativeName("m_motions")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_MotionItem____ Motions { get; set; }
+    public CAnimGraphDocMotionItem?[] Motions { get; set; }
 
     /// <summary>
     ///     Name.

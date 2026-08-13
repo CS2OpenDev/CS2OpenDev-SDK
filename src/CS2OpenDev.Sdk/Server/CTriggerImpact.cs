@@ -49,7 +49,7 @@ public partial class CTriggerImpact : CTriggerMultiple
     /// </remarks>
     [NativeOffset(0x910)]
     [NativeName("m_pOutputForce")]
-    public CEntityOutputTemplate__Vector__ OutputForce { get; set; }
+    public Vector? OutputForce { get; set; }
 
     /// <summary>
     ///     Gets or sets ViewKick.

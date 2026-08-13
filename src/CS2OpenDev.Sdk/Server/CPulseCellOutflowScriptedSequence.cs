@@ -38,7 +38,7 @@ public partial class CPulseCellOutflowScriptedSequence : CPulseCellBaseYieldingI
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_vecAdditionalActors")]
-    public CUtlVector__PulseScriptedSequenceData_t__ AdditionalActors { get; set; }
+    public PulseScriptedSequenceData[] AdditionalActors { get; set; }
 
     /// <summary>
     ///     Gets or sets DisallowInterrupts.
@@ -118,5 +118,5 @@ public partial class CPulseCellOutflowScriptedSequence : CPulseCellBaseYieldingI
     /// </remarks>
     [NativeOffset(0x180)]
     [NativeName("m_Triggers")]
-    public CUtlVector__CPulse_OutflowConnection__ Triggers { get; set; }
+    public CPulseOutflowConnection[] Triggers { get; set; }
 }

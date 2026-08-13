@@ -135,7 +135,7 @@ public partial class C_BaseCSGrenade : C_CSWeaponBase
     /// </remarks>
     [NativeOffset(0x1D7C)]
     [NativeName("m_hSwitchToWeaponAfterThrow")]
-    public CHandle__C_CSWeaponBase__ SwitchToWeaponAfterThrow { get; set; }
+    public CHandle<C_CSWeaponBase> SwitchToWeaponAfterThrow { get; set; }
 
     /// <summary>
     ///     Gets or sets ThrowAnimating.

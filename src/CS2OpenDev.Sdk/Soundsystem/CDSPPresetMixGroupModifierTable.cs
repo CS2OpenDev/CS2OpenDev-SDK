@@ -35,5 +35,5 @@ public partial class CDSPPresetMixGroupModifierTable
     [NativeName("m_table")]
     [NativeMetadata("MPropertyDescription", "Table of mixgroup modifiers for effect names.")]
     [NativeMetadata("MPropertyFriendlyName", "Modifier Table")]
-    public CUtlVector__CDspPresetModifierList__ Table { get; set; }
+    public CDspPresetModifierList[] Table { get; set; }
 }

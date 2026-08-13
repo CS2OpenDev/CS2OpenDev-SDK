@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Worldrenderer;
 
 /// <summary>
@@ -122,7 +128,7 @@ public partial class SceneObject
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_renderable")]
-    public CStrongHandle__InfoForResourceTypeCRenderMesh__ Renderable { get; set; }
+    public CStrongHandle<InfoForResourceTypeCRenderMesh> Renderable { get; set; }
 
     /// <summary>
     ///     Gets or sets RenderableModel.
@@ -132,7 +138,7 @@ public partial class SceneObject
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_renderableModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ RenderableModel { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> RenderableModel { get; set; }
 
     /// <summary>
     ///     Gets or sets Skin.

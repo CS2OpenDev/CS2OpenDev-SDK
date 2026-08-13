@@ -30,5 +30,5 @@ public partial class CAnimParamHandleMap
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_list")]
-    public CUtlHashtable__uint16__int16__ List { get; set; }
+    public Dictionary<ushort, short> List { get; set; }
 }

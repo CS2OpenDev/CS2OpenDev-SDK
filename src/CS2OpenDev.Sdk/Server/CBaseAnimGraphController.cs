@@ -13,8 +13,10 @@
 #region
 
 using CS2OpenSchema.Animationsystem;
+using CS2OpenSchema.Common;
 using CS2OpenSchema.Entity2;
 using CS2OpenSchema.Resourcefile;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -69,7 +71,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     /// </remarks>
     [NativeOffset(0x3E8)]
     [NativeName("m_vecExternalClipIds")]
-    public CNetworkUtlVectorBase__ResourceId_t__ ExternalClipIds { get; set; }
+    public ResourceId[] ExternalClipIds { get; set; }
 
     /// <summary>
     ///     Gets or sets ExternalGraphIds.
@@ -79,7 +81,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     /// </remarks>
     [NativeOffset(0x3D0)]
     [NativeName("m_vecExternalGraphIds")]
-    public CNetworkUtlVectorBase__ResourceId_t__ ExternalGraphIds { get; set; }
+    public ResourceId[] ExternalGraphIds { get; set; }
 
     /// <summary>
     ///     Gets or sets ExternalGraphs.
@@ -99,7 +101,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     /// </remarks>
     [NativeOffset(0x320)]
     [NativeName("m_hGraphDefinitionAG2")]
-    public CStrongHandle__InfoForResourceTypeCNmGraphDefinition__ GraphDefinitionAG2 { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmGraphDefinition> GraphDefinitionAG2 { get; set; }
 
     /// <summary>
     ///     Gets or sets GraphInstanceAG2.
@@ -219,7 +221,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_vecSecondarySkeletonSlotIDs")]
-    public CNetworkUtlVectorBase__CGlobalSymbol__ SecondarySkeletonSlotIDs { get; set; }
+    public string[] SecondarySkeletonSlotIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets SecondarySkeletons.
@@ -229,7 +231,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_vecSecondarySkeletons")]
-    public CNetworkUtlVectorBase__CHandle__CBaseAnimGraph____ SecondarySkeletons { get; set; }
+    public CHandle<CBaseAnimGraph>[] SecondarySkeletons { get; set; }
 
     /// <summary>
     ///     Gets or sets SeqFixedCycle.
@@ -291,7 +293,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     [NativeOffset(0x390)]
     [NativeName("m_SerializePoseRecipeAG2Dynamic")]
     [NativeMetadata("MNotSaved", "")]
-    public CNetworkUtlVectorBase__uint8__ SerializePoseRecipeAG2Dynamic { get; set; }
+    public byte[] SerializePoseRecipeAG2Dynamic { get; set; }
 
     /// <summary>
     ///     Gets or sets SerializePoseRecipeAG2Slots.
@@ -302,7 +304,7 @@ public partial class CBaseAnimGraphController : CSkeletonAnimationController
     [NativeOffset(0x328)]
     [NativeName("m_SerializePoseRecipeAG2Slots")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVectorEmbeddedNetworkVar__AnimGraph2SerializedPoseRecipeSlot_t__ SerializePoseRecipeAG2Slots { get; set; }
+    public AnimGraph2SerializedPoseRecipeSlot[] SerializePoseRecipeAG2Slots { get; set; }
 
     /// <summary>
     ///     Gets or sets SerializePoseRecipeVersionAG2.

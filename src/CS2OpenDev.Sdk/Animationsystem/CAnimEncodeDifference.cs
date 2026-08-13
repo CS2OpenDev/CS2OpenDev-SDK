@@ -31,7 +31,7 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_boneArray")]
-    public CUtlVector__CAnimBoneDifference__ BoneArray { get; set; }
+    public CAnimBoneDifference[] BoneArray { get; set; }
 
     /// <summary>
     ///     Gets or sets HasMorphBitArray.
@@ -41,7 +41,7 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_bHasMorphBitArray")]
-    public CUtlVector__uint8__ HasMorphBitArray { get; set; }
+    public byte[] HasMorphBitArray { get; set; }
 
     /// <summary>
     ///     Gets or sets HasMovementBitArray.
@@ -51,7 +51,7 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_bHasMovementBitArray")]
-    public CUtlVector__uint8__ HasMovementBitArray { get; set; }
+    public byte[] HasMovementBitArray { get; set; }
 
     /// <summary>
     ///     Gets or sets HasRotationBitArray.
@@ -61,7 +61,7 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_bHasRotationBitArray")]
-    public CUtlVector__uint8__ HasRotationBitArray { get; set; }
+    public byte[] HasRotationBitArray { get; set; }
 
     /// <summary>
     ///     Gets or sets HasUserBitArray.
@@ -71,7 +71,7 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_bHasUserBitArray")]
-    public CUtlVector__uint8__ HasUserBitArray { get; set; }
+    public byte[] HasUserBitArray { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphArray.
@@ -81,7 +81,7 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_morphArray")]
-    public CUtlVector__CAnimMorphDifference__ MorphArray { get; set; }
+    public CAnimMorphDifference[] MorphArray { get; set; }
 
     /// <summary>
     ///     Gets or sets UserArray.
@@ -91,5 +91,5 @@ public partial class CAnimEncodeDifference
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_userArray")]
-    public CUtlVector__CAnimUserDifference__ UserArray { get; set; }
+    public CAnimUserDifference[] UserArray { get; set; }
 }

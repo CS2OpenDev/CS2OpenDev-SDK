@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -51,7 +52,7 @@ public partial class COPRenderPostProcessing : CParticleFunctionRenderer
     [NativeName("m_hPostTexture")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vpost, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "Post Processing File")]
-    public CStrongHandle__InfoForResourceTypeCPostProcessingResource__ PostTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCPostProcessingResource> PostTexture { get; set; }
 
     /// <summary>
     ///     Post Processing Priority Group.

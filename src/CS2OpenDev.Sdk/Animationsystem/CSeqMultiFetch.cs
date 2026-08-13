@@ -101,7 +101,7 @@ public partial class CSeqMultiFetch
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_localReferenceArray")]
-    public CUtlVector__int16__ LocalReferenceArray { get; set; }
+    public short[] LocalReferenceArray { get; set; }
 
     /// <summary>
     ///     Gets or sets PoseKeyArray0.
@@ -111,7 +111,7 @@ public partial class CSeqMultiFetch
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_poseKeyArray0")]
-    public CUtlVector__float32__ PoseKeyArray0 { get; set; }
+    public float[] PoseKeyArray0 { get; set; }
 
     /// <summary>
     ///     Gets or sets PoseKeyArray1.
@@ -121,5 +121,5 @@ public partial class CSeqMultiFetch
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_poseKeyArray1")]
-    public CUtlVector__float32__ PoseKeyArray1 { get; set; }
+    public float[] PoseKeyArray1 { get; set; }
 }

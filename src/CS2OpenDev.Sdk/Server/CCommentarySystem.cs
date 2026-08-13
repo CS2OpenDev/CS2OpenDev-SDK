@@ -37,7 +37,7 @@ public partial class CCommentarySystem
     /// </remarks>
     [NativeOffset(0x3C)]
     [NativeName("m_hActiveCommentaryNode")]
-    public CHandle__CPointCommentaryNode__ ActiveCommentaryNode { get; set; }
+    public CHandle<CPointCommentaryNode> ActiveCommentaryNode { get; set; }
 
     /// <summary>
     ///     Gets or sets CheatState.
@@ -67,7 +67,7 @@ public partial class CCommentarySystem
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_hCurrentNode")]
-    public CHandle__CPointCommentaryNode__ CurrentNode { get; set; }
+    public CHandle<CPointCommentaryNode> CurrentNode { get; set; }
 
     /// <summary>
     ///     Gets or sets IsFirstSpawnGroupToLoad.
@@ -87,7 +87,7 @@ public partial class CCommentarySystem
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_hLastCommentaryNode")]
-    public CHandle__CPointCommentaryNode__ LastCommentaryNode { get; set; }
+    public CHandle<CPointCommentaryNode> LastCommentaryNode { get; set; }
 
     /// <summary>
     ///     Gets or sets ModifiedConvars.
@@ -97,7 +97,7 @@ public partial class CCommentarySystem
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_ModifiedConvars")]
-    public CUtlVector__modifiedconvars_t__ ModifiedConvars { get; set; }
+    public ModifiedConvars[] ModifiedConvars { get; set; }
 
     /// <summary>
     ///     Gets or sets NextTeleportTime.
@@ -117,7 +117,7 @@ public partial class CCommentarySystem
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_vecNodes")]
-    public CUtlVector__CHandle__CPointCommentaryNode____ Nodes { get; set; }
+    public CHandle<CPointCommentaryNode>[] Nodes { get; set; }
 
     /// <summary>
     ///     Gets or sets TeleportStage.

@@ -52,7 +52,7 @@ public partial class CNmIdBasedSelectorNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_optionIDs")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__5__ OptionIDs { get; set; }
+    public string[] OptionIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets OptionNodeIndices.
@@ -62,7 +62,7 @@ public partial class CNmIdBasedSelectorNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_optionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__5__ OptionNodeIndices { get; set; }
+    public short[] OptionNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterNodeIdx.

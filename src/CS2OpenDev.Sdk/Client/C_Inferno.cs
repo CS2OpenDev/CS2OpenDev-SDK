@@ -12,6 +12,7 @@
 
 #region
 
+using CS2OpenSchema.Resourcesystem;
 using CS2OpenSchema.Server;
 
 #endregion
@@ -135,7 +136,7 @@ public partial class C_Inferno : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1010)]
     [NativeName("m_hInfernoClimbingOutlinePointsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoClimbingOutLinePointsSnapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> InfernoClimbingOutLinePointsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoDecalsSnapshot.
@@ -145,7 +146,7 @@ public partial class C_Inferno : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1018)]
     [NativeName("m_hInfernoDecalsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoDecalsSnapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> InfernoDecalsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoFillerPointsSnapshot.
@@ -155,7 +156,7 @@ public partial class C_Inferno : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1000)]
     [NativeName("m_hInfernoFillerPointsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoFillerPointsSnapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> InfernoFillerPointsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoOutLinePointsSnapshot.
@@ -165,7 +166,7 @@ public partial class C_Inferno : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1008)]
     [NativeName("m_hInfernoOutlinePointsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoOutLinePointsSnapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> InfernoOutLinePointsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoPointsSnapshot.
@@ -175,7 +176,7 @@ public partial class C_Inferno : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFF8)]
     [NativeName("m_hInfernoPointsSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ InfernoPointsSnapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> InfernoPointsSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets InfernoType.

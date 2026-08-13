@@ -14,6 +14,7 @@
 
 using CS2OpenSchema.Entity2;
 using CS2OpenSchema.Modellib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -36,7 +37,7 @@ public partial class C_Sprite : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFB8)]
     [NativeName("m_hAttachedToEntity")]
-    public CHandle__C_BaseEntity__ AttachedToEntity { get; set; }
+    public CHandle<C_BaseEntity> AttachedToEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Attachment.
@@ -217,7 +218,7 @@ public partial class C_Sprite : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFB0)]
     [NativeName("m_hSpriteMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ SpriteMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> SpriteMaterial { get; set; }
 
     /// <summary>
     ///     Gets or sets SpriteScale.

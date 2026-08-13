@@ -31,7 +31,7 @@ public partial class CStateNodeTransitionData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_blendDuration")]
-    public CAnimValue__float32__ BlendDuration { get; set; }
+    public float BlendDuration { get; set; }
 
     /// <summary>
     ///     Gets or sets Curve.
@@ -71,5 +71,5 @@ public partial class CStateNodeTransitionData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_resetCycleValue")]
-    public CAnimValue__float32__ ResetCycleValue { get; set; }
+    public float ResetCycleValue { get; set; }
 }

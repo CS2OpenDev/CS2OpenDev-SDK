@@ -76,7 +76,7 @@ public partial class CBasePlayerPawn : CBaseCombatCharacter
     /// </remarks>
     [NativeOffset(0xBB0)]
     [NativeName("m_hController")]
-    public CHandle__CBasePlayerController__ Controller { get; set; }
+    public CHandle<CBasePlayerController> Controller { get; set; }
 
     /// <summary>
     ///     Gets or sets DeathTime.
@@ -96,7 +96,7 @@ public partial class CBasePlayerPawn : CBaseCombatCharacter
     /// </remarks>
     [NativeOffset(0xBB4)]
     [NativeName("m_hDefaultController")]
-    public CHandle__CBasePlayerController__ DefaultController { get; set; }
+    public CHandle<CBasePlayerController> DefaultController { get; set; }
 
     /// <summary>
     ///     Gets or sets Expresser.
@@ -221,7 +221,7 @@ public partial class CBasePlayerPawn : CBaseCombatCharacter
     [NativeOffset(0xA80)]
     [NativeName("m_ServerViewAngleChanges")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVectorEmbeddedNetworkVar__ViewAngleServerChange_t__ ServerViewAngleChanges { get; set; }
+    public ViewAngleServerChange[] ServerViewAngleChanges { get; set; }
 
     /// <summary>
     ///     Gets or sets Skybox3d.
@@ -241,7 +241,7 @@ public partial class CBasePlayerPawn : CBaseCombatCharacter
     /// </remarks>
     [NativeOffset(0xBC8)]
     [NativeName("m_sndOpvarLatchData")]
-    public CUtlVector__sndopvarlatchdata_t__ SndOpvarLatchData { get; set; }
+    public Sndopvarlatchdata[] SndOpvarLatchData { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeLastHurt.

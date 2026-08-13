@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -174,7 +175,7 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA80)]
     [NativeName("m_hPickupFilter")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CBaseFilter__ PickupFilter { get; set; }
+    public CHandle<CBaseFilter> PickupFilter { get; set; }
 
     /// <summary>
     ///     Gets or sets PickupFilterName.
@@ -196,7 +197,7 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA48)]
     [NativeName("m_hPickupParticleEffect")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ PickupParticleEffect { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> PickupParticleEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets PickupRadius.
@@ -273,7 +274,7 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA28)]
     [NativeName("m_hSpawnParticleEffect")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ SpawnParticleEffect { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> SpawnParticleEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets SpawnScriptFunction.
@@ -295,7 +296,7 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xA60)]
     [NativeName("m_hTimeoutParticleEffect")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ TimeOutParticleEffect { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> TimeOutParticleEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeOutScriptFunction.
@@ -328,7 +329,7 @@ public partial class CItemGeneric : CItem
     [NativeOffset(0xB20)]
     [NativeName("m_hTriggerHelper")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CItemGenericTriggerHelper__ TriggerHelper { get; set; }
+    public CHandle<CItemGenericTriggerHelper> TriggerHelper { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerRadius.

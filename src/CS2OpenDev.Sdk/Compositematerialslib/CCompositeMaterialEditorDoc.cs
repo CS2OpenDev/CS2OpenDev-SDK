@@ -41,7 +41,7 @@ public partial class CCompositeMaterialEditorDoc
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_Points")]
-    public CUtlVector__CompositeMaterialEditorPoint_t__ Points { get; set; }
+    public CompositeMaterialEditorPoint[] Points { get; set; }
 
     /// <summary>
     ///     Gets or sets Version.

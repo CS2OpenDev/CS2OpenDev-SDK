@@ -63,7 +63,7 @@ public partial class AIDefaultNPCDebugSnapshotData : DebugSnapshotBaseStructured
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("path_queries_speculative")]
-    public CUtlVector__AI_DefaultNPC_DebugSnapshotData_t_PathQuery_t__ PathQueriesSpeculative { get; set; }
+    public AIDefaultNPCDebugSnapshotDataTPathQuery[] PathQueriesSpeculative { get; set; }
 
     /// <summary>
     ///     Gets or sets PathQuery.
@@ -83,5 +83,5 @@ public partial class AIDefaultNPCDebugSnapshotData : DebugSnapshotBaseStructured
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("tactic_interrupt_conditions")]
-    public CUtlVector__CGlobalSymbol__ TacticInterruptConditions { get; set; }
+    public string[] TacticInterruptConditions { get; set; }
 }

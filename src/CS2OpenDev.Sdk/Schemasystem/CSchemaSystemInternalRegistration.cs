@@ -169,7 +169,7 @@ public partial class CSchemaSystemInternalRegistration
     /// </remarks>
     [NativeOffset(0x160)]
     [NativeName("m_ResourceTypes")]
-    public CResourceArray__CResourcePointer__CResourceString____ ResourceTypes { get; set; }
+    public string[] ResourceTypes { get; set; }
 
     /// <summary>
     ///     Gets or sets RotationVector.

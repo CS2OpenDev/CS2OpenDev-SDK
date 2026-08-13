@@ -35,5 +35,5 @@ public partial class CSmartPropVariableModel : CSmartPropVariable
     [NativeOffset(0x38)]
     [NativeName("m_DefaultValue")]
     [NativeMetadata("MPropertyFriendlyName", "Default Model")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ DefaultValue { get; set; }
+    public string DefaultValue { get; set; }
 }

@@ -52,7 +52,7 @@ public partial class CNmBoneMaskSelectorNodeCDefinition : CNmBoneMaskValueNodeCD
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_maskNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__8__ MaskNodeIndices { get; set; }
+    public short[] MaskNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterValueNodeIdx.
@@ -72,7 +72,7 @@ public partial class CNmBoneMaskSelectorNodeCDefinition : CNmBoneMaskValueNodeCD
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_parameterValues")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__7__ ParameterValues { get; set; }
+    public string[] ParameterValues { get; set; }
 
     /// <summary>
     ///     Gets or sets SwitchDynamically.

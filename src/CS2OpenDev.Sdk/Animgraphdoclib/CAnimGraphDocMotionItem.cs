@@ -32,7 +32,7 @@ public abstract partial class CAnimGraphDocMotionItem
     [NativeOffset(0x50)]
     [NativeName("m_blockSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ BlockSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] BlockSpans { get; set; }
 
     /// <summary>
     ///     Loop.
@@ -65,7 +65,7 @@ public abstract partial class CAnimGraphDocMotionItem
     [NativeOffset(0x80)]
     [NativeName("m_paramSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_ParamSpan____ ParamSpans { get; set; }
+    public CAnimGraphDocParamSpan?[] ParamSpans { get; set; }
 
     /// <summary>
     ///     Gets or sets TagSpans.
@@ -76,5 +76,5 @@ public abstract partial class CAnimGraphDocMotionItem
     [NativeOffset(0x68)]
     [NativeName("m_tagSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ TagSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] TagSpans { get; set; }
 }

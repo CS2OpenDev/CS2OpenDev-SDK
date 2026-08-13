@@ -14,6 +14,7 @@
 
 using CS2OpenSchema.Animationsystem;
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -36,7 +37,7 @@ public partial class CSceneEventInfo
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_hAnimClip")]
-    public CStrongHandle__InfoForResourceTypeCNmClip__ AnimClip { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmClip> AnimClip { get; set; }
 
     /// <summary>
     ///     Gets or sets ClientSide.
@@ -206,7 +207,7 @@ public partial class CSceneEventInfo
     /// </remarks>
     [NativeOffset(0x6C)]
     [NativeName("m_hTarget")]
-    public CHandle__CBaseEntity__ Target { get; set; }
+    public CHandle<CBaseEntity> Target { get; set; }
 
     /// <summary>
     ///     Gets or sets Type.

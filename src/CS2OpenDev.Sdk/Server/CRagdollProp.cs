@@ -107,7 +107,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xA68)]
     [NativeName("m_hDamageEntity")]
-    public CHandle__CBaseEntity__ DamageEntity { get; set; }
+    public CHandle<CBaseEntity> DamageEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets DefaultFadeScale.
@@ -177,7 +177,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xA6C)]
     [NativeName("m_hKiller")]
-    public CHandle__CBaseEntity__ Killer { get; set; }
+    public CHandle<CBaseEntity> Killer { get; set; }
 
     /// <summary>
     ///     Gets or sets LastOrigin.
@@ -248,7 +248,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     [NativeOffset(0xB00)]
     [NativeName("m_vecNavObstacles")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__INavObstacle___ NavObstacles { get; set; }
+    public INavObstacle?[] NavObstacles { get; set; }
 
     /// <summary>
     ///     Gets or sets OriginClassName.
@@ -268,7 +268,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xA70)]
     [NativeName("m_hPhysicsAttacker")]
-    public CHandle__CBasePlayerPawn__ PhysicsAttacker { get; set; }
+    public CHandle<CBasePlayerPawn> PhysicsAttacker { get; set; }
 
     /// <summary>
     ///     Gets or sets RagAngles.
@@ -278,7 +278,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xA40)]
     [NativeName("m_ragAngles")]
-    public CNetworkUtlVectorBase__QAngle__ RagAngles { get; set; }
+    public QAngle[] RagAngles { get; set; }
 
     /// <summary>
     ///     Gets or sets RagEnabled.
@@ -288,7 +288,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xA10)]
     [NativeName("m_ragEnabled")]
-    public CNetworkUtlVectorBase__bool__ RagEnabled { get; set; }
+    public bool[] RagEnabled { get; set; }
 
     /// <summary>
     ///     Gets or sets RagPos.
@@ -298,7 +298,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xA28)]
     [NativeName("m_ragPos")]
-    public CNetworkUtlVectorBase__Vector__ RagPos { get; set; }
+    public Vector[] RagPos { get; set; }
 
     /// <summary>
     ///     Gets or sets Ragdoll.
@@ -319,7 +319,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     [NativeOffset(0xAD0)]
     [NativeName("m_ragdollMaxs")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__Vector__ RagdollMaxs { get; set; }
+    public Vector[] RagdollMaxs { get; set; }
 
     /// <summary>
     ///     Gets or sets RagdollMins.
@@ -330,7 +330,7 @@ public partial class CRagdollProp : CBaseAnimGraph
     [NativeOffset(0xAB8)]
     [NativeName("m_ragdollMins")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__Vector__ RagdollMins { get; set; }
+    public Vector[] RagdollMins { get; set; }
 
     /// <summary>
     ///     Gets or sets ShouldDeleteActivationRecord.

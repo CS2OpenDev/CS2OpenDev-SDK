@@ -51,7 +51,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_localBoneMaskArray")]
-    public CUtlVector__CSeqBoneMaskList__ LocalBoneMaskArray { get; set; }
+    public CSeqBoneMaskList[] LocalBoneMaskArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalBoneNameArray.
@@ -61,7 +61,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_localBoneNameArray")]
-    public CUtlVector__CBufferString__ LocalBoneNameArray { get; set; }
+    public string[] LocalBoneNameArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalCmdSeqDescArray.
@@ -71,7 +71,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_localCmdSeqDescArray")]
-    public CUtlVector__CSeqCmdSeqDesc__ LocalCmdSeqDescArray { get; set; }
+    public CSeqCmdSeqDesc[] LocalCmdSeqDescArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalIKAutoPlayLockArray.
@@ -81,7 +81,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_localIKAutoplayLockArray")]
-    public CUtlVector__CSeqIKLock__ LocalIKAutoPlayLockArray { get; set; }
+    public CSeqIKLock[] LocalIKAutoPlayLockArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalMultiSeqDescArray.
@@ -91,7 +91,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_localMultiSeqDescArray")]
-    public CUtlVector__CSeqS1SeqDesc__ LocalMultiSeqDescArray { get; set; }
+    public CSeqS1SeqDesc[] LocalMultiSeqDescArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalNodeName.
@@ -111,7 +111,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0xF8)]
     [NativeName("m_localPoseParamArray")]
-    public CUtlVector__CSeqPoseParamDesc__ LocalPoseParamArray { get; set; }
+    public CSeqPoseParamDesc[] LocalPoseParamArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalS1SeqDescArray.
@@ -121,7 +121,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_localS1SeqDescArray")]
-    public CUtlVector__CSeqS1SeqDesc__ LocalS1SeqDescArray { get; set; }
+    public CSeqS1SeqDesc[] LocalS1SeqDescArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalScaleSetArray.
@@ -131,7 +131,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_localScaleSetArray")]
-    public CUtlVector__CSeqScaleSet__ LocalScaleSetArray { get; set; }
+    public CSeqScaleSet[] LocalScaleSetArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalSequenceNameArray.
@@ -141,7 +141,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_localSequenceNameArray")]
-    public CUtlVector__CBufferString__ LocalSequenceNameArray { get; set; }
+    public string[] LocalSequenceNameArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalSynthAnimDescArray.
@@ -151,7 +151,7 @@ public partial class CSequenceGroupData
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_localSynthAnimDescArray")]
-    public CUtlVector__CSeqSynthAnimDesc__ LocalSynthAnimDescArray { get; set; }
+    public CSeqSynthAnimDesc[] LocalSynthAnimDescArray { get; set; }
 
     /// <summary>
     ///     Gets or sets SName.

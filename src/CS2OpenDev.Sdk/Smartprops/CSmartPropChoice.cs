@@ -57,5 +57,5 @@ public partial class CSmartPropChoice : CSmartPropParameter
     [NativeOffset(0x20)]
     [NativeName("m_Options")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CSmartPropChoiceOption__ Options { get; set; }
+    public CSmartPropChoiceOption[] Options { get; set; }
 }

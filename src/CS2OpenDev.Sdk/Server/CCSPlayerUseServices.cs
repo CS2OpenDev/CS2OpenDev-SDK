@@ -36,7 +36,7 @@ public partial class CCSPlayerUseServices : CPlayerUseServices
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_hLastKnownUseEntity")]
-    public CHandle__CBaseEntity__ LastKnownUseEntity { get; set; }
+    public CHandle<CBaseEntity> LastKnownUseEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets LastUseTimeStamp.

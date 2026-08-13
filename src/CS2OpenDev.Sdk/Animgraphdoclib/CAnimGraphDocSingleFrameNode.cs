@@ -33,7 +33,7 @@ public partial class CAnimGraphDocSingleFrameNode : CAnimGraphDocNode
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_actions")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_Action____ Actions { get; set; }
+    public CAnimGraphDocAction?[] Actions { get; set; }
 
     /// <summary>
     ///     Frame Index.

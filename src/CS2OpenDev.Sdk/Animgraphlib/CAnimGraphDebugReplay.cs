@@ -51,7 +51,7 @@ public partial class CAnimGraphDebugReplay
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_frameList")]
-    public CUtlVector__CSmartPtr__CAnimReplayFrame____ FrameList { get; set; }
+    public CAnimReplayFrame?[] FrameList { get; set; }
 
     /// <summary>
     ///     Gets or sets StartIndex.

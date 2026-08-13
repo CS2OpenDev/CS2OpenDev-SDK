@@ -30,5 +30,5 @@ public partial class CCSGameModeRulesArmsRace : CCSGameModeRules
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_WeaponSequence")]
-    public C_NetworkUtlVectorBase__CUtlString__ WeaponSequence { get; set; }
+    public string[] WeaponSequence { get; set; }
 }

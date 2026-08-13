@@ -49,7 +49,7 @@ public partial class CLogicEventListener : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_OnEventFired")]
-    public CEntityOutputTemplate__CUtlString__ OnEventFired { get; set; }
+    public string? OnEventFired { get; set; }
 
     /// <summary>
     ///     Gets or sets Team.

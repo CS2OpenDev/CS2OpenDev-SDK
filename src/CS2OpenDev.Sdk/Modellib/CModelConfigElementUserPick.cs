@@ -32,5 +32,5 @@ public partial class CModelConfigElementUserPick : CModelConfigElement
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_Choices")]
-    public CUtlVector__CUtlString__ Choices { get; set; }
+    public string[] Choices { get; set; }
 }

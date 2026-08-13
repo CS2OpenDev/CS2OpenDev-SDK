@@ -30,5 +30,5 @@ public partial class CItemGenericTriggerHelper : CBaseModelEntity
     [NativeOffset(0x770)]
     [NativeName("m_hParentItem")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CItemGeneric__ ParentItem { get; set; }
+    public CHandle<CItemGeneric> ParentItem { get; set; }
 }

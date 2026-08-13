@@ -31,5 +31,5 @@ public partial class CRemapValueComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_items")]
-    public CUtlVector__CRemapValueUpdateItem__ Items { get; set; }
+    public CRemapValueUpdateItem[] Items { get; set; }
 }

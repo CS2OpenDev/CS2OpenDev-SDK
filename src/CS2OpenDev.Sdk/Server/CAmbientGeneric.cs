@@ -116,7 +116,7 @@ public partial class CAmbientGeneric : CPointEntity
     [NativeOffset(0x530)]
     [NativeName("m_hSoundSource")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CBaseEntity__ SoundSource { get; set; }
+    public CHandle<CBaseEntity> SoundSource { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundSourceEntIndex.

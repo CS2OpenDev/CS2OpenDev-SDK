@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -34,7 +40,7 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureColorWarp")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "color warp texture (3d)")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureColorWarp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureColorWarp { get; set; }
 
     /// <summary>
     ///     detail 2 texture.
@@ -46,7 +52,7 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureDetail2")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "detail 2 texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureDetail2 { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureDetail2 { get; set; }
 
     /// <summary>
     ///     diffuse warp texture (3d).
@@ -58,7 +64,7 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureDiffuseWarp")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "diffuse warp texture (3d)")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureDiffuseWarp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureDiffuseWarp { get; set; }
 
     /// <summary>
     ///     environment map texture.
@@ -70,7 +76,7 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureEnvMap")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "environment map texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureEnvMap { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureEnvMap { get; set; }
 
     /// <summary>
     ///     fresnel color warp texture (3d).
@@ -82,7 +88,7 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureFresnelColorWarp")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "fresnel color warp texture (3d)")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureFresnelColorWarp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureFresnelColorWarp { get; set; }
 
     /// <summary>
     ///     fresnel warp texture.
@@ -94,7 +100,7 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureFresnelWarp")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "fresnel warp texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureFresnelWarp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureFresnelWarp { get; set; }
 
     /// <summary>
     ///     specular warp texture.
@@ -106,5 +112,5 @@ public partial class COPRenderStatusEffect : CParticleFunctionRenderer
     [NativeName("m_pTextureSpecularWarp")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "specular warp texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureSpecularWarp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureSpecularWarp { get; set; }
 }

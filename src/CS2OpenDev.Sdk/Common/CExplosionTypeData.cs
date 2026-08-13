@@ -67,7 +67,7 @@ public partial class CExplosionTypeData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_ParticleEffect")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ ParticleEffect { get; set; }
+    public string ParticleEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundName.

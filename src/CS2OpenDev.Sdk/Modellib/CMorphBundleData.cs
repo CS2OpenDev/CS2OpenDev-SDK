@@ -31,7 +31,7 @@ public partial class CMorphBundleData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_offsets")]
-    public CUtlVector__float32__ Offsets { get; set; }
+    public float[] Offsets { get; set; }
 
     /// <summary>
     ///     Gets or sets Ranges.
@@ -41,7 +41,7 @@ public partial class CMorphBundleData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_ranges")]
-    public CUtlVector__float32__ Ranges { get; set; }
+    public float[] Ranges { get; set; }
 
     /// <summary>
     ///     Gets or sets ULeftSrc.

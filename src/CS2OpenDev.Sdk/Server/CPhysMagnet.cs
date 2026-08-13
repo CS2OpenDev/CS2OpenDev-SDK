@@ -65,7 +65,7 @@ public partial class CPhysMagnet : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x9A0)]
     [NativeName("m_MagnettedEntities")]
-    public CUtlVector__magnetted_objects_t__ MagnettedEntities { get; set; }
+    public MagnettedObjects[] MagnettedEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets MassScale.

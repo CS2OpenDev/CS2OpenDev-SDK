@@ -42,5 +42,5 @@ public partial class CNmStateMachineNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_stateDefinitions")]
-    public CUtlLeanVectorFixedGrowable__CNmStateMachineNode_StateDefinition_t__5__ StateDefinitions { get; set; }
+    public CNmStateMachineNodeStateDefinition[] StateDefinitions { get; set; }
 }

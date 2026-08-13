@@ -30,5 +30,5 @@ public partial class LookData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_vLookTarget")]
-    public CAnimNetVar__Vector__ LookTarget { get; set; }
+    public Vector LookTarget { get; set; }
 }

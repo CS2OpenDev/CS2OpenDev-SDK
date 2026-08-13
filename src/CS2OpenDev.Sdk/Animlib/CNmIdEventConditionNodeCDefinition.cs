@@ -42,7 +42,7 @@ public partial class CNmIdEventConditionNodeCDefinition : CNmBoolValueNodeCDefin
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_eventIDs")]
-    public CUtlVectorFixedGrowable__CGlobalSymbol__5__ EventIDs { get; set; }
+    public string[] EventIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceStateNodeIdx.

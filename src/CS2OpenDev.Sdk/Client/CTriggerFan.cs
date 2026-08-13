@@ -75,7 +75,7 @@ public partial class CTriggerFan : C_BaseTrigger
     /// </remarks>
     [NativeOffset(0x10D0)]
     [NativeName("m_hInfoFan")]
-    public CHandle__CInfoFan__ InfoFan { get; set; }
+    public CHandle<CInfoFan> InfoFan { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseDelta.

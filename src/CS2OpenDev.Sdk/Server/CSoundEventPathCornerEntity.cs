@@ -30,7 +30,7 @@ public partial class CSoundEventPathCornerEntity : CSoundEventEntity
     [NativeOffset(0x5A8)]
     [NativeName("m_vecCornerPairsNetworked")]
     [NativeMetadata("MNotSaved", "")]
-    public CNetworkUtlVectorBase__SoundeventPathCornerPairNetworked_t__ CornerPairsNetworked { get; set; }
+    public SoundEventPathCornerPairNetworked[] CornerPairsNetworked { get; set; }
 
     /// <summary>
     ///     Gets or sets CountMax.

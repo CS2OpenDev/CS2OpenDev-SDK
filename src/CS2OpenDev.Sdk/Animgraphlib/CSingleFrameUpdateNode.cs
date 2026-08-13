@@ -37,7 +37,7 @@ public partial class CSingleFrameUpdateNode : CLeafUpdateNode
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_actions")]
-    public CUtlVector__CSmartPtr__CAnimActionUpdater____ Actions { get; set; }
+    public CAnimActionUpdater?[] Actions { get; set; }
 
     /// <summary>
     ///     Gets or sets Cycle.

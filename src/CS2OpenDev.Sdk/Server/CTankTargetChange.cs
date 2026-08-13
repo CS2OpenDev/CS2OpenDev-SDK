@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Entity2;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -30,7 +36,7 @@ public partial class CTankTargetChange : CPointEntity
     [NativeOffset(0x4A8)]
     [NativeName("m_newTarget")]
     [NativeMetadata("MNotSaved", "")]
-    public CVariantBase__CVariantDefaultAllocator__ NewTarget { get; set; }
+    public CVariantDefaultAllocator NewTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets NewTargetName.

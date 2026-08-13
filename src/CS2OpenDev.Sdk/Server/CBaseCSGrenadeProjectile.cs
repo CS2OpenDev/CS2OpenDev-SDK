@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -55,7 +56,7 @@ public partial class CBaseCSGrenadeProjectile : CBaseGrenade
     /// </remarks>
     [NativeOffset(0xA10)]
     [NativeName("m_nExplodeEffectIndex")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ ExplodeEffectIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ExplodeEffectIndex { get; set; }
 
     /// <summary>
     ///     World-space position of the explosion centre.

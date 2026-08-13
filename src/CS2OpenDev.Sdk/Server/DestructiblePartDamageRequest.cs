@@ -32,7 +32,7 @@ public partial class DestructiblePartDamageRequest
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("m_hAttacker")]
-    public CHandle__CBaseEntity__ Attacker { get; set; }
+    public CHandle<CBaseEntity> Attacker { get; set; }
 
     /// <summary>
     ///     Gets or sets BreakDamage.

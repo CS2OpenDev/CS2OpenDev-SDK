@@ -56,7 +56,7 @@ public partial class CNmGraphDocTargetSelectorNode : CNmGraphDocFlowNode
     [NativeName("m_optionLabels")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CUtlString__ OptionLabels { get; set; }
+    public string[] OptionLabels { get; set; }
 
     /// <summary>
     ///     Gets or sets OrientationScoreWeight.

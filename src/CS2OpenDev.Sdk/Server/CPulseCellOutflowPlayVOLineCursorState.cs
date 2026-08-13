@@ -31,5 +31,5 @@ public partial class CPulseCellOutflowPlayVOLineCursorState
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_sceneInstance")]
-    public CHandle__CBaseEntity__ SceneInstance { get; set; }
+    public CHandle<CBaseEntity> SceneInstance { get; set; }
 }

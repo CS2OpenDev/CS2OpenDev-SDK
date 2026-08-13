@@ -39,7 +39,7 @@ public partial class C_RetakeGameRules
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_hBombPlanter")]
-    public CHandle__C_CSPlayerPawn__ BombPlanter { get; set; }
+    public CHandle<C_CSPlayerPawn> BombPlanter { get; set; }
 
     /// <summary>
     ///     Gets or sets BombSite.

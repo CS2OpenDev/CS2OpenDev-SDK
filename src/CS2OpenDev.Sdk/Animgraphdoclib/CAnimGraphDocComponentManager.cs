@@ -32,5 +32,5 @@ public partial class CAnimGraphDocComponentManager
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_components")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_Component____ Components { get; set; }
+    public CAnimGraphDocComponent?[] Components { get; set; }
 }

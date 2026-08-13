@@ -46,7 +46,7 @@ public partial class CAnimGraphDocFootStepTriggerNode : CAnimGraphDocNode
     [NativeName("m_items")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Feet")]
-    public CUtlVector__CFootStepTriggerItem__ Items { get; set; }
+    public CFootStepTriggerItem[] Items { get; set; }
 
     /// <summary>
     ///     Tolerance.

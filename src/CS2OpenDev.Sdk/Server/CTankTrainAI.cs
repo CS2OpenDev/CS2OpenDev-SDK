@@ -69,7 +69,7 @@ public partial class CTankTrainAI : CPointEntity
     /// </remarks>
     [NativeOffset(0x4AC)]
     [NativeName("m_hTargetEntity")]
-    public CHandle__CBaseEntity__ TargetEntity { get; set; }
+    public CHandle<CBaseEntity> TargetEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetEntityName.
@@ -89,5 +89,5 @@ public partial class CTankTrainAI : CPointEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_hTrain")]
-    public CHandle__CFuncTrackTrain__ Train { get; set; }
+    public CHandle<CFuncTrackTrain> Train { get; set; }
 }

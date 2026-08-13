@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Common;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -29,7 +35,7 @@ public partial class CAttributeManager
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_CachedResults")]
-    public CUtlVector__CAttributeManager_cached_attribute_float_t__ CachedResults { get; set; }
+    public CAttributeManagerCachedAttributeFloat[] CachedResults { get; set; }
 
     /// <summary>
     ///     Gets or sets Outer.
@@ -39,7 +45,7 @@ public partial class CAttributeManager
     /// </remarks>
     [NativeOffset(0x24)]
     [NativeName("m_hOuter")]
-    public CHandle__CBaseEntity__ Outer { get; set; }
+    public CHandle<CBaseEntity> Outer { get; set; }
 
     /// <summary>
     ///     Gets or sets PreventLoopBack.
@@ -69,7 +75,7 @@ public partial class CAttributeManager
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Providers")]
-    public CUtlVector__CHandle__CBaseEntity____ Providers { get; set; }
+    public CHandle<CBaseEntity>[] Providers { get; set; }
 
     /// <summary>
     ///     Gets or sets ReapplyProvisionParity.

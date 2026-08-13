@@ -29,7 +29,7 @@ public partial class CAnimGraphControllerManager
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_controllers")]
-    public CUtlVector__CAnimGraphControllerBase___ Controllers { get; set; }
+    public CAnimGraphControllerBase?[] Controllers { get; set; }
 
     /// <summary>
     ///     Gets or sets GraphBindingsCreated.

@@ -40,5 +40,5 @@ public abstract partial class CModelConfigElement
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_NestedElements")]
-    public CUtlVector__CModelConfigElement___ NestedElements { get; set; }
+    public CModelConfigElement?[] NestedElements { get; set; }
 }

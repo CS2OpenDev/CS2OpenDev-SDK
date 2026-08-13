@@ -167,7 +167,7 @@ public partial class CompositeMaterialInputLooseVariable
     [NativeName("m_strResourceMaterial")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Material")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIMaterial2____ ResourceMaterial { get; set; }
+    public string ResourceMaterial { get; set; }
 
     /// <summary>
     ///     String.
@@ -214,7 +214,7 @@ public partial class CompositeMaterialInputLooseVariable
     [NativeOffset(0x180)]
     [NativeName("m_strTextureRuntimeResourcePath")]
     [NativeMetadata("MPropertyHideField", "")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCTextureBase____ TextureRuntimeResourcePath { get; set; }
+    public string TextureRuntimeResourcePath { get; set; }
 
     /// <summary>
     ///     Texture Type.

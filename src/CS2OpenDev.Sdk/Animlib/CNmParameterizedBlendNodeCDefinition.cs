@@ -52,5 +52,5 @@ public partial class CNmParameterizedBlendNodeCDefinition : CNmPoseNodeCDefiniti
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_sourceNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__5__ SourceNodeIndices { get; set; }
+    public short[] SourceNodeIndices { get; set; }
 }

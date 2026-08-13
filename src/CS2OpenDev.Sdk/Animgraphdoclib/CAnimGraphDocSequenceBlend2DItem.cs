@@ -47,5 +47,5 @@ public partial class CAnimGraphDocSequenceBlend2DItem : CAnimGraphDocBlend2DItem
     [NativeOffset(0x38)]
     [NativeName("m_tagSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ TagSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] TagSpans { get; set; }
 }

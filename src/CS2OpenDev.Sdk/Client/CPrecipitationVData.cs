@@ -78,7 +78,7 @@ public partial class CPrecipitationVData : CEntitySubclassVDataBase
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_szParticlePrecipitationEffect")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ ParticlePrecipitationEffect { get; set; }
+    public string ParticlePrecipitationEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets ParticlePrecipitationPostEffect.
@@ -88,7 +88,7 @@ public partial class CPrecipitationVData : CEntitySubclassVDataBase
     /// </remarks>
     [NativeOffset(0x1E8)]
     [NativeName("m_szParticlePrecipitationPostEffect")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ ParticlePrecipitationPostEffect { get; set; }
+    public string ParticlePrecipitationPostEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets ParticlePrecipitationPuddleEffect.
@@ -98,7 +98,7 @@ public partial class CPrecipitationVData : CEntitySubclassVDataBase
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_szParticlePrecipitationPuddleEffect")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ ParticlePrecipitationPuddleEffect { get; set; }
+    public string ParticlePrecipitationPuddleEffect { get; set; }
 
     /// <summary>
     ///     Gets or sets RTEnvCP.

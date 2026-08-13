@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Modellib;
+
+#endregion
+
 namespace CS2OpenSchema.Animgraphlib;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_components")]
-    public CUtlVector__CSmartPtr__CAnimComponentUpdater____ Components { get; set; }
+    public CAnimComponentUpdater?[] Components { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeIndexMap.
@@ -41,7 +47,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_nodeIndexMap")]
-    public CUtlHashtable__CAnimNodePath__int32__ NodeIndexMap { get; set; }
+    public Dictionary<CAnimNodePath, int> NodeIndexMap { get; set; }
 
     /// <summary>
     ///     Gets or sets Nodes.
@@ -51,7 +57,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_nodes")]
-    public CUtlVector__CSmartPtr__CAnimUpdateNodeBase____ Nodes { get; set; }
+    public CAnimUpdateNodeBase?[] Nodes { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamListUpdater.
@@ -61,7 +67,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_pParamListUpdater")]
-    public CSmartPtr__CAnimParameterManagerUpdater__ ParamListUpdater { get; set; }
+    public CAnimParameterManagerUpdater? ParamListUpdater { get; set; }
 
     /// <summary>
     ///     Gets or sets RootNodePath.
@@ -81,7 +87,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_scriptManager")]
-    public CSmartPtr__CAnimScriptManager__ ScriptManager { get; set; }
+    public CAnimScriptManager? ScriptManager { get; set; }
 
     /// <summary>
     ///     Gets or sets Settings.
@@ -101,7 +107,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_pSkeleton")]
-    public CSmartPtr__CAnimSkeleton__ Skeleton { get; set; }
+    public CAnimSkeleton? Skeleton { get; set; }
 
     /// <summary>
     ///     Gets or sets StaticPoseCache.
@@ -111,7 +117,7 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_pStaticPoseCache")]
-    public CSmartPtr__CStaticPoseCacheBuilder__ StaticPoseCache { get; set; }
+    public CStaticPoseCacheBuilder? StaticPoseCache { get; set; }
 
     /// <summary>
     ///     Gets or sets TagManagerUpdater.
@@ -121,5 +127,5 @@ public partial class CAnimUpdateSharedData
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_pTagManagerUpdater")]
-    public CSmartPtr__CAnimTagManagerUpdater__ TagManagerUpdater { get; set; }
+    public CAnimTagManagerUpdater? TagManagerUpdater { get; set; }
 }

@@ -32,7 +32,7 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_boneName")]
-    public CUtlVector__CUtlString__ BoneName { get; set; }
+    public string[] BoneName { get; set; }
 
     /// <summary>
     ///     Gets or sets BonePosParent.
@@ -42,7 +42,7 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_bonePosParent")]
-    public CUtlVector__Vector__ BonePosParent { get; set; }
+    public Vector[] BonePosParent { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneRotParent.
@@ -52,7 +52,7 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_boneRotParent")]
-    public CUtlVector__QuaternionStorage__ BoneRotParent { get; set; }
+    public QuaternionStorage[] BoneRotParent { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneScaleParent.
@@ -62,7 +62,7 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_boneScaleParent")]
-    public CUtlVector__float32__ BoneScaleParent { get; set; }
+    public float[] BoneScaleParent { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneSphere.
@@ -72,7 +72,7 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_boneSphere")]
-    public CUtlVector__float32__ BoneSphere { get; set; }
+    public float[] BoneSphere { get; set; }
 
     /// <summary>
     ///     Gets or sets Flag.
@@ -82,7 +82,7 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_nFlag")]
-    public CUtlVector__uint32__ Flag { get; set; }
+    public uint[] Flag { get; set; }
 
     /// <summary>
     ///     Gets or sets Parent.
@@ -92,5 +92,5 @@ public partial class ModelSkeletonData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_nParent")]
-    public CUtlVector__int16__ Parent { get; set; }
+    public short[] Parent { get; set; }
 }

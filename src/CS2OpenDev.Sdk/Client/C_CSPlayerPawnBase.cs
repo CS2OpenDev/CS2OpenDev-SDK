@@ -236,7 +236,7 @@ public partial class C_CSPlayerPawnBase : C_BasePlayerPawn
     /// </remarks>
     [NativeOffset(0x1478)]
     [NativeName("m_hOriginalController")]
-    public CHandle__CCSPlayerController__ OriginalController { get; set; }
+    public CHandle<CCSPlayerController> OriginalController { get; set; }
 
     /// <summary>
     ///     Gets or sets PingServices.

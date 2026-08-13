@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Animlib;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x498)]
     [NativeName("m_flAimPitchAngle")]
-    public CAnimGraph2ParamOptionalRef__float32__ AimPitchAngle { get; set; }
+    public float? AimPitchAngle { get; set; }
 
     /// <summary>
     ///     Gets or sets AimYawAngle.
@@ -41,7 +47,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_flAimYawAngle")]
-    public CAnimGraph2ParamOptionalRef__float32__ AimYawAngle { get; set; }
+    public float? AimYawAngle { get; set; }
 
     /// <summary>
     ///     Gets or sets AirAction.
@@ -51,7 +57,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x420)]
     [NativeName("m_airAction")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ AirAction { get; set; }
+    public string? AirAction { get; set; }
 
     /// <summary>
     ///     Gets or sets AirHeightAboveGround.
@@ -61,7 +67,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x438)]
     [NativeName("m_flAirHeightAboveGround")]
-    public CAnimGraph2ParamOptionalRef__float32__ AirHeightAboveGround { get; set; }
+    public float? AirHeightAboveGround { get; set; }
 
     /// <summary>
     ///     Gets or sets CrouchAmount.
@@ -71,7 +77,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x348)]
     [NativeName("m_flCrouchAmount")]
-    public CAnimGraph2ParamOptionalRef__float32__ CrouchAmount { get; set; }
+    public float? CrouchAmount { get; set; }
 
     /// <summary>
     ///     Gets or sets FlashedAmount.
@@ -81,7 +87,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x480)]
     [NativeName("m_flFlashedAmount")]
-    public CAnimGraph2ParamOptionalRef__float32__ FlashedAmount { get; set; }
+    public float? FlashedAmount { get; set; }
 
     /// <summary>
     ///     Gets or sets FlinchBody.
@@ -91,7 +97,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x4F8)]
     [NativeName("m_flinchBody")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ FlinchBody { get; set; }
+    public string? FlinchBody { get; set; }
 
     /// <summary>
     ///     Gets or sets FlinchBodyRestart.
@@ -101,7 +107,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x510)]
     [NativeName("m_flinchBodyRestart")]
-    public CAnimGraph2ParamOptionalRef__bool__ FlinchBodyRestart { get; set; }
+    public bool? FlinchBodyRestart { get; set; }
 
     /// <summary>
     ///     Gets or sets FlinchHead.
@@ -111,7 +117,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_flinchHead")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ FlinchHead { get; set; }
+    public string? FlinchHead { get; set; }
 
     /// <summary>
     ///     Gets or sets FlinchHeadRestart.
@@ -121,7 +127,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x4E0)]
     [NativeName("m_flinchHeadRestart")]
-    public CAnimGraph2ParamOptionalRef__bool__ FlinchHeadRestart { get; set; }
+    public bool? FlinchHeadRestart { get; set; }
 
     /// <summary>
     ///     Gets or sets FlinchIsOnFire.
@@ -131,7 +137,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x528)]
     [NativeName("m_flinchIsOnFire")]
-    public CAnimGraph2ParamOptionalRef__bool__ FlinchIsOnFire { get; set; }
+    public bool? FlinchIsOnFire { get; set; }
 
     /// <summary>
     ///     Gets or sets GroundAction.
@@ -141,7 +147,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x390)]
     [NativeName("m_groundAction")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ GroundAction { get; set; }
+    public string? GroundAction { get; set; }
 
     /// <summary>
     ///     Gets or sets GroundActionDirectionId.
@@ -151,7 +157,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x3A8)]
     [NativeName("m_groundActionDirectionID")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ GroundActionDirectionId { get; set; }
+    public string? GroundActionDirectionId { get; set; }
 
     /// <summary>
     ///     Gets or sets GroundTurnAngleOrVelocity.
@@ -161,7 +167,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x3C0)]
     [NativeName("m_flGroundTurnAngleOrVelocity")]
-    public CAnimGraph2ParamOptionalRef__float32__ GroundTurnAngleOrVelocity { get; set; }
+    public float? GroundTurnAngleOrVelocity { get; set; }
 
     /// <summary>
     ///     Gets or sets IsDefusing.
@@ -171,7 +177,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x2A0)]
     [NativeName("m_bIsDefusing")]
-    public CAnimGraph2ParamOptionalRef__bool__ IsDefusing { get; set; }
+    public bool? IsDefusing { get; set; }
 
     /// <summary>
     ///     Gets or sets IsWalking.
@@ -181,7 +187,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x360)]
     [NativeName("m_bIsWalking")]
-    public CAnimGraph2ParamOptionalRef__bool__ IsWalking { get; set; }
+    public bool? IsWalking { get; set; }
 
     /// <summary>
     ///     Gets or sets LadderCycle.
@@ -191,7 +197,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x3D8)]
     [NativeName("m_flLadderCycle")]
-    public CAnimGraph2ParamOptionalRef__float32__ LadderCycle { get; set; }
+    public float? LadderCycle { get; set; }
 
     /// <summary>
     ///     Gets or sets LadderYaw.
@@ -201,7 +207,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x3F0)]
     [NativeName("m_flLadderYaw")]
-    public CAnimGraph2ParamOptionalRef__float32__ LadderYaw { get; set; }
+    public float? LadderYaw { get; set; }
 
     /// <summary>
     ///     Gets or sets LadderYawBackwards.
@@ -211,7 +217,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x408)]
     [NativeName("m_flLadderYawBackwards")]
-    public CAnimGraph2ParamOptionalRef__float32__ LadderYawBackwards { get; set; }
+    public float? LadderYawBackwards { get; set; }
 
     /// <summary>
     ///     Gets or sets LeftFootTarget.
@@ -221,7 +227,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x450)]
     [NativeName("m_leftFootTarget")]
-    public CAnimGraph2ParamOptionalRef__CNmTarget__ LeftFootTarget { get; set; }
+    public CNmTarget? LeftFootTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveDirectionId.
@@ -231,7 +237,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x2D0)]
     [NativeName("m_moveDirectionID")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ MoveDirectionId { get; set; }
+    public string? MoveDirectionId { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveSpeedHorizontal.
@@ -241,7 +247,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x318)]
     [NativeName("m_flMoveSpeedHorizontal")]
-    public CAnimGraph2ParamOptionalRef__float32__ MoveSpeedHorizontal { get; set; }
+    public float? MoveSpeedHorizontal { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveSpeedX.
@@ -251,7 +257,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x2E8)]
     [NativeName("m_flMoveSpeedX")]
-    public CAnimGraph2ParamOptionalRef__float32__ MoveSpeedX { get; set; }
+    public float? MoveSpeedX { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveSpeedY.
@@ -261,7 +267,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x300)]
     [NativeName("m_flMoveSpeedY")]
-    public CAnimGraph2ParamOptionalRef__float32__ MoveSpeedY { get; set; }
+    public float? MoveSpeedY { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveType.
@@ -271,7 +277,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x2B8)]
     [NativeName("m_moveType")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ MoveType { get; set; }
+    public string? MoveType { get; set; }
 
     /// <summary>
     ///     Gets or sets PreviousMoveSpeedHorizontal.
@@ -281,7 +287,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x330)]
     [NativeName("m_flPreviousMoveSpeedHorizontal")]
-    public CAnimGraph2ParamOptionalRef__float32__ PreviousMoveSpeedHorizontal { get; set; }
+    public float? PreviousMoveSpeedHorizontal { get; set; }
 
     /// <summary>
     ///     Gets or sets RightFootTarget.
@@ -291,7 +297,7 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x468)]
     [NativeName("m_rightFootTarget")]
-    public CAnimGraph2ParamOptionalRef__CNmTarget__ RightFootTarget { get; set; }
+    public CNmTarget? RightFootTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponDropAmount.
@@ -301,5 +307,5 @@ public partial class CCS2PawnGraphController : CCS2WeaponGraphController
     /// </remarks>
     [NativeOffset(0x378)]
     [NativeName("m_flWeaponDropAmount")]
-    public CAnimGraph2ParamOptionalRef__float32__ WeaponDropAmount { get; set; }
+    public float? WeaponDropAmount { get; set; }
 }

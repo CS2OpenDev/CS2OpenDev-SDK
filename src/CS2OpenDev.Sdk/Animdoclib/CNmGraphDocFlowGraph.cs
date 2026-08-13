@@ -31,5 +31,5 @@ public partial class CNmGraphDocFlowGraph : CNmGraphDocGraph
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_connections")]
-    public CUtlVector__CNmGraphDocFlowGraph_Connection_t__ Connections { get; set; }
+    public CNmGraphDocFlowGraphConnection[] Connections { get; set; }
 }

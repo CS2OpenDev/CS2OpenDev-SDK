@@ -30,5 +30,5 @@ public partial class CResponse
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_ExpresserTargets")]
-    public CUtlVector__CAI_Expresser___ ExpresserTargets { get; set; }
+    public CAIExpresser?[] ExpresserTargets { get; set; }
 }

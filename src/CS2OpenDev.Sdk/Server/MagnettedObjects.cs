@@ -31,5 +31,5 @@ public partial class MagnettedObjects
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 }

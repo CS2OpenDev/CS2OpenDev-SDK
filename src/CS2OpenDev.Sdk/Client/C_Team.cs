@@ -29,7 +29,7 @@ public partial class C_Team : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x600)]
     [NativeName("m_aPlayerControllers")]
-    public C_NetworkUtlVectorBase__CHandle__CBasePlayerController____ APlayerControllers { get; set; }
+    public CHandle<CBasePlayerController>[] APlayerControllers { get; set; }
 
     /// <summary>
     ///     Gets or sets APlayers.
@@ -39,7 +39,7 @@ public partial class C_Team : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x618)]
     [NativeName("m_aPlayers")]
-    public C_NetworkUtlVectorBase__CHandle__C_BasePlayerPawn____ APlayers { get; set; }
+    public CHandle<C_BasePlayerPawn>[] APlayers { get; set; }
 
     /// <summary>
     ///     Gets or sets Score.

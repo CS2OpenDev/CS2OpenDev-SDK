@@ -35,7 +35,7 @@ public partial class CNmGraphDocIdEventConditionNode : CNmGraphDocFlowNode
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyGroupName", "+Conditions")]
-    public CUtlVector__CGlobalSymbol__ EventIDs { get; set; }
+    public string[] EventIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets IgnoreInactiveBranchEvents.

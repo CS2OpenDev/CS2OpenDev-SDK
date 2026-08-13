@@ -34,7 +34,7 @@ public partial class CSosSoundEventGroupSchema
     [NativeName("m_vActions")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyStartGroup", "")]
-    public CUtlVector__CSosGroupActionSchema___ Actions { get; set; }
+    public CSosGroupActionSchema?[] Actions { get; set; }
 
     /// <summary>
     ///     Gets or sets BehaviorEntIndex.

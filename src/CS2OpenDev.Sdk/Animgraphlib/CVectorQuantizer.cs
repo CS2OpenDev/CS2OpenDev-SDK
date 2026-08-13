@@ -31,7 +31,7 @@ public partial class CVectorQuantizer
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_centroidVectors")]
-    public CUtlVector__float32__ CentroidVectors { get; set; }
+    public float[] CentroidVectors { get; set; }
 
     /// <summary>
     ///     Gets or sets Centroids.

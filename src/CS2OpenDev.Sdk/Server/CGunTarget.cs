@@ -65,5 +65,5 @@ public partial class CGunTarget : CBaseToggle
     /// </remarks>
     [NativeOffset(0x7F8)]
     [NativeName("m_hTargetEnt")]
-    public CHandle__CBaseEntity__ TargetEnt { get; set; }
+    public CHandle<CBaseEntity> TargetEnt { get; set; }
 }

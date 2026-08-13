@@ -35,7 +35,7 @@ public partial class CAnimGraphDocSolveIKChainNode : CAnimGraphDocNode
     [NativeName("m_IkChains")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "IK Chains")]
-    public CUtlVector__CSolveIKChainAnimNodeChainData__ IkChains { get; set; }
+    public CSolveIKChainAnimNodeChainData[] IkChains { get; set; }
 
     /// <summary>
     ///     Gets or sets InputConnection.

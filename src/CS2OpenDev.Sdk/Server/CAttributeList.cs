@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Common;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -29,7 +35,7 @@ public partial class CAttributeList
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Attributes")]
-    public CUtlVectorEmbeddedNetworkVar__CEconItemAttribute__ Attributes { get; set; }
+    public CEconItem[] Attributes { get; set; }
 
     /// <summary>
     ///     Gets or sets Manager.

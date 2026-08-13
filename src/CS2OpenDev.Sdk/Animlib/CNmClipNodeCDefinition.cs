@@ -52,7 +52,7 @@ public partial class CNmClipNodeCDefinition : CNmClipReferenceNodeCDefinition
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_graphEvents")]
-    public CUtlVectorFixedGrowable__CGlobalSymbol__2__ GraphEvents { get; set; }
+    public string[] GraphEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayInReverseValueNodeIdx.

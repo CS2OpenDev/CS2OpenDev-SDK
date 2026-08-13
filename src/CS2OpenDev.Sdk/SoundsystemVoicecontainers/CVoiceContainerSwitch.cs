@@ -34,5 +34,5 @@ public partial class CVoiceContainerSwitch : CVoiceContainerBase
     [NativeOffset(0x70)]
     [NativeName("m_soundsToPlay")]
     [NativeMetadata("MPropertyFriendlyName", "Container List")]
-    public CUtlVector__CSoundContainerReference__ SoundsToPlay { get; set; }
+    public CSoundContainerReference[] SoundsToPlay { get; set; }
 }

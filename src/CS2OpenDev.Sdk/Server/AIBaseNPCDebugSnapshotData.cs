@@ -33,7 +33,7 @@ public partial class AIBaseNPCDebugSnapshotData : DebugSnapshotBaseStructuredDat
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("anim_events")]
-    public CUtlVector__CGlobalSymbol__ AnimEvents { get; set; }
+    public string[] AnimEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets AnimGraph.
@@ -53,7 +53,7 @@ public partial class AIBaseNPCDebugSnapshotData : DebugSnapshotBaseStructuredDat
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("conditions")]
-    public CUtlVector__CGlobalSymbol__ Conditions { get; set; }
+    public string[] Conditions { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentEnemy.
@@ -63,7 +63,7 @@ public partial class AIBaseNPCDebugSnapshotData : DebugSnapshotBaseStructuredDat
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("current_enemy")]
-    public CHandle__CBaseEntity__ CurrentEnemy { get; set; }
+    public CHandle<CBaseEntity> CurrentEnemy { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentSchedule.

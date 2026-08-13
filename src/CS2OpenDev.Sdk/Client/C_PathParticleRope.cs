@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -40,7 +46,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     [NativeOffset(0x648)]
     [NativeName("m_iEffectIndex")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ EffectIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> EffectIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets EffectName.
@@ -90,7 +96,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x698)]
     [NativeName("m_PathNodes_Color")]
-    public C_NetworkUtlVectorBase__Vector__ PathNodesColor { get; set; }
+    public Vector[] PathNodesColor { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodesName.
@@ -100,7 +106,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x618)]
     [NativeName("m_PathNodes_Name")]
-    public CUtlVector__CUtlSymbolLarge__ PathNodesName { get; set; }
+    public string[] PathNodesName { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodesPinEnabled.
@@ -110,7 +116,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x6B0)]
     [NativeName("m_PathNodes_PinEnabled")]
-    public C_NetworkUtlVectorBase__bool__ PathNodesPinEnabled { get; set; }
+    public bool[] PathNodesPinEnabled { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodesPosition.
@@ -120,7 +126,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x650)]
     [NativeName("m_PathNodes_Position")]
-    public C_NetworkUtlVectorBase__Vector__ PathNodesPosition { get; set; }
+    public Vector[] PathNodesPosition { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodesRadiusScale.
@@ -130,7 +136,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x6C8)]
     [NativeName("m_PathNodes_RadiusScale")]
-    public C_NetworkUtlVectorBase__float32__ PathNodesRadiusScale { get; set; }
+    public float[] PathNodesRadiusScale { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodesTangentIn.
@@ -140,7 +146,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x668)]
     [NativeName("m_PathNodes_TangentIn")]
-    public C_NetworkUtlVectorBase__Vector__ PathNodesTangentIn { get; set; }
+    public Vector[] PathNodesTangentIn { get; set; }
 
     /// <summary>
     ///     Gets or sets PathNodesTangentOut.
@@ -150,7 +156,7 @@ public partial class C_PathParticleRope : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x680)]
     [NativeName("m_PathNodes_TangentOut")]
-    public C_NetworkUtlVectorBase__Vector__ PathNodesTangentOut { get; set; }
+    public Vector[] PathNodesTangentOut { get; set; }
 
     /// <summary>
     ///     Gets or sets Radius.

@@ -36,7 +36,7 @@ public abstract partial class CPhysConstraint : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_hAttach1")]
-    public CHandle__CBaseEntity__ Attach1 { get; set; }
+    public CHandle<CBaseEntity> Attach1 { get; set; }
 
     /// <summary>
     ///     Gets or sets Attach2.
@@ -46,7 +46,7 @@ public abstract partial class CPhysConstraint : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C4)]
     [NativeName("m_hAttach2")]
-    public CHandle__CBaseEntity__ Attach2 { get; set; }
+    public CHandle<CBaseEntity> Attach2 { get; set; }
 
     /// <summary>
     ///     Gets or sets BreakSound.

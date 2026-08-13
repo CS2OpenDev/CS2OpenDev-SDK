@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -106,7 +107,7 @@ public partial class CDecalInstance
     /// </remarks>
     [NativeOffset(0x14)]
     [NativeName("m_hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets FadeDuration.
@@ -177,7 +178,7 @@ public partial class CDecalInstance
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_hMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     Gets or sets NormalLS.

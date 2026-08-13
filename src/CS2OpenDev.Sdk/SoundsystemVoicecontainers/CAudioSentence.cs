@@ -31,7 +31,7 @@ public partial class CAudioSentence
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_EmphasisSamples")]
-    public CUtlVector__CAudioEmphasisSample__ EmphasisSamples { get; set; }
+    public CAudioEmphasisSample[] EmphasisSamples { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphData.
@@ -51,7 +51,7 @@ public partial class CAudioSentence
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_RunTimePhonemes")]
-    public CUtlVector__CAudioPhonemeTag__ RunTimePhonemes { get; set; }
+    public CAudioPhonemeTag[] RunTimePhonemes { get; set; }
 
     /// <summary>
     ///     Gets or sets ShouldVoiceDuck.

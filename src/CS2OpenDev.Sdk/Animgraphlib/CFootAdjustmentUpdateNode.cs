@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Animationsystem;
+
+#endregion
+
 namespace CS2OpenSchema.Animgraphlib;
 
 /// <summary>
@@ -51,7 +57,7 @@ public partial class CFootAdjustmentUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_clips")]
-    public CUtlVector__HSequence__ Clips { get; set; }
+    public HSequence[] Clips { get; set; }
 
     /// <summary>
     ///     Gets or sets FacingTarget.

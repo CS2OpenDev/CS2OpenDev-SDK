@@ -31,5 +31,5 @@ public partial class SelectedEditItemInfo
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_EditItems")]
-    public CUtlVector__SosEditItemInfo_t__ EditItems { get; set; }
+    public SosEditItemInfo[] EditItems { get; set; }
 }

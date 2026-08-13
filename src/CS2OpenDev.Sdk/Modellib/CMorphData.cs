@@ -30,7 +30,7 @@ public partial class CMorphData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_morphRectDatas")]
-    public CUtlVector__CMorphRectData__ MorphRectDatas { get; set; }
+    public CMorphRectData[] MorphRectDatas { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

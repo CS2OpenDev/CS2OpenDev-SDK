@@ -49,7 +49,7 @@ public partial class CMarkupVolumeTagged : CMarkupVolume
     /// </remarks>
     [NativeOffset(0x778)]
     [NativeName("m_GroupNames")]
-    public CUtlVector__CGlobalSymbol__ GroupNames { get; set; }
+    public string[] GroupNames { get; set; }
 
     /// <summary>
     ///     Gets or sets GroupOtherGroups.
@@ -91,5 +91,5 @@ public partial class CMarkupVolumeTagged : CMarkupVolume
     /// </remarks>
     [NativeOffset(0x790)]
     [NativeName("m_Tags")]
-    public CUtlVector__CGlobalSymbol__ Tags { get; set; }
+    public string[] Tags { get; set; }
 }

@@ -35,7 +35,7 @@ public partial class CFuncConveyor : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7A8)]
     [NativeName("m_hConveyorModels")]
-    public CNetworkUtlVectorBase__CHandle__CBaseEntity____ HConveyorModels { get; set; }
+    public CHandle<CBaseEntity>[] HConveyorModels { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveDirEntitySpace.

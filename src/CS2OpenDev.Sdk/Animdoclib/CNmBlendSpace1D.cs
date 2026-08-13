@@ -32,5 +32,5 @@ public partial class CNmBlendSpace1D
     [NativeName("m_points")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CNmBlendSpace1D_Point_t__ Points { get; set; }
+    public CNmBlendSpace1DPoint[] Points { get; set; }
 }

@@ -118,7 +118,7 @@ public partial class CChicken : CDynamicProp
     /// </remarks>
     [NativeOffset(0xF2C)]
     [NativeName("m_fleeFrom")]
-    public CHandle__CBaseEntity__ FleeFrom { get; set; }
+    public CHandle<CBaseEntity> FleeFrom { get; set; }
 
     /// <summary>
     ///     Gets or sets FollowMinuteTimer.
@@ -168,7 +168,7 @@ public partial class CChicken : CDynamicProp
     /// </remarks>
     [NativeOffset(0xF78)]
     [NativeName("m_leader")]
-    public CHandle__CCSPlayerPawn__ Leader { get; set; }
+    public CHandle<CCSPlayerPawn> Leader { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveRateThrottleTimer.

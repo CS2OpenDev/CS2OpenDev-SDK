@@ -113,7 +113,7 @@ public partial class CPropDoorRotating : CBasePropDoor
     /// </remarks>
     [NativeOffset(0xE34)]
     [NativeName("m_hEntityBlocker")]
-    public CHandle__CEntityBlocker__ EntityBlocker { get; set; }
+    public CHandle<CEntityBlocker> EntityBlocker { get; set; }
 
     /// <summary>
     ///     Gets or sets ForwardBoundsMax.

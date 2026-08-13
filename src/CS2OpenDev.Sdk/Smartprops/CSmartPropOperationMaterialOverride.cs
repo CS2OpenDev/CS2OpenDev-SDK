@@ -53,5 +53,5 @@ public partial class CSmartPropOperationMaterialOverride : CSmartPropOperation
     [NativeMetadata("MPropertyDescription",
         "Table specifying pairs of existing materials and the material to replace them with.")]
     [NativeMetadata("MPropertyFriendlyName", "Material Replacements")]
-    public CUtlVector__CSmartPropMaterialReplacement__ MaterialReplacements { get; set; }
+    public CSmartPropMaterialReplacement[] MaterialReplacements { get; set; }
 }

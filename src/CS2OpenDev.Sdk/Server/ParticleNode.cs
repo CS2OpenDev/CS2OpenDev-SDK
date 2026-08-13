@@ -46,7 +46,7 @@ public partial class ParticleNode
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets GrowthDuration.

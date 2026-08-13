@@ -29,7 +29,7 @@ public partial class CLogicMeasureMovement : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C4)]
     [NativeName("m_hMeasureReference")]
-    public CHandle__CBaseEntity__ HMeasureReference { get; set; }
+    public CHandle<CBaseEntity> HMeasureReference { get; set; }
 
     /// <summary>
     ///     Gets or sets HMeasureTarget.
@@ -39,7 +39,7 @@ public partial class CLogicMeasureMovement : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_hMeasureTarget")]
-    public CHandle__CBaseEntity__ HMeasureTarget { get; set; }
+    public CHandle<CBaseEntity> HMeasureTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets HTargetReference.
@@ -49,7 +49,7 @@ public partial class CLogicMeasureMovement : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4CC)]
     [NativeName("m_hTargetReference")]
-    public CHandle__CBaseEntity__ HTargetReference { get; set; }
+    public CHandle<CBaseEntity> HTargetReference { get; set; }
 
     /// <summary>
     ///     Gets or sets MeasureType.
@@ -109,5 +109,5 @@ public partial class CLogicMeasureMovement : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_hTarget")]
-    public CHandle__CBaseEntity__ Target { get; set; }
+    public CHandle<CBaseEntity> Target { get; set; }
 }

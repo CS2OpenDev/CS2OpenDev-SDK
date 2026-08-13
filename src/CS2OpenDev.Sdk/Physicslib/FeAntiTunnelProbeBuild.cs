@@ -82,7 +82,7 @@ public partial class FeAntiTunnelProbeBuild
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("targetNodes")]
-    public CUtlVector__uint16__ TargetNodes { get; set; }
+    public ushort[] TargetNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets Weight.

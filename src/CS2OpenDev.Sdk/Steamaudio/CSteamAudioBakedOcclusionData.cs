@@ -31,7 +31,7 @@ public partial class CSteamAudioBakedOcclusionData
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_vecPathingDeviation")]
-    public CUtlVector__float32__ PathingDeviation { get; set; }
+    public float[] PathingDeviation { get; set; }
 
     /// <summary>
     ///     Gets or sets PathingRatio.
@@ -41,7 +41,7 @@ public partial class CSteamAudioBakedOcclusionData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_vecPathingRatio")]
-    public CUtlVector__float32__ PathingRatio { get; set; }
+    public float[] PathingRatio { get; set; }
 
     /// <summary>
     ///     Gets or sets Probes.
@@ -61,7 +61,7 @@ public partial class CSteamAudioBakedOcclusionData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_vecReflectionEnergy")]
-    public CUtlVector__float32__ ReflectionEnergy { get; set; }
+    public float[] ReflectionEnergy { get; set; }
 
     /// <summary>
     ///     Gets or sets Settings.

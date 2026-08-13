@@ -96,5 +96,5 @@ public partial class CPointOrient : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_hTarget")]
-    public CHandle__CBaseEntity__ Target { get; set; }
+    public CHandle<CBaseEntity> Target { get; set; }
 }

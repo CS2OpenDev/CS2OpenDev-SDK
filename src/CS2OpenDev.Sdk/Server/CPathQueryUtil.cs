@@ -40,7 +40,7 @@ public partial class CPathQueryUtil
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_vecPathSampleDistances")]
-    public CUtlVector__float32__ PathSampleDistances { get; set; }
+    public float[] PathSampleDistances { get; set; }
 
     /// <summary>
     ///     Gets or sets PathSampleParameters.
@@ -50,7 +50,7 @@ public partial class CPathQueryUtil
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_vecPathSampleParameters")]
-    public CUtlVector__float32__ PathSampleParameters { get; set; }
+    public float[] PathSampleParameters { get; set; }
 
     /// <summary>
     ///     Gets or sets PathSamplePositions.
@@ -60,7 +60,7 @@ public partial class CPathQueryUtil
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_vecPathSamplePositions")]
-    public CUtlVector__Vector__ PathSamplePositions { get; set; }
+    public Vector[] PathSamplePositions { get; set; }
 
     /// <summary>
     ///     Gets or sets PathToEntityTransform.

@@ -97,7 +97,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0xDA0)]
     [NativeName("m_arrSelectedHostageSpawnIndices")]
-    public CUtlVector__int32__ ArrSelectedHostageSpawnIndices { get; set; }
+    public int[] ArrSelectedHostageSpawnIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ArrTeamUniqueKillWeaponsMatch.
@@ -107,7 +107,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0x1330)]
     [NativeName("m_arrTeamUniqueKillWeaponsMatch")]
-    public CUtlVector__int32__[] ArrTeamUniqueKillWeaponsMatch { get; set; }
+    public int[][] ArrTeamUniqueKillWeaponsMatch { get; set; }
 
     /// <summary>
     ///     Gets or sets ArrTournamentActiveCasterAccounts.
@@ -237,7 +237,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0xFA8)]
     [NativeName("m_CTSpawnPoints")]
-    public CUtlVector__CHandle__SpawnPoint____ CTSpawnPoints { get; set; }
+    public CHandle<SpawnPoint>[] CTSpawnPoints { get; set; }
 
     /// <summary>
     ///     Gets or sets CTSpawnPointsMasterList.
@@ -247,7 +247,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0xF60)]
     [NativeName("m_CTSpawnPointsMasterList")]
-    public CUtlVector__CHandle__SpawnPoint____ CTSpawnPointsMasterList { get; set; }
+    public CHandle<SpawnPoint>[] CTSpawnPointsMasterList { get; set; }
 
     /// <summary>
     ///     Variant index for the CT team intro cinematic sequence.
@@ -377,7 +377,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0xDC8)]
     [NativeName("m_nEndMatchTiedVotes")]
-    public CUtlVector__int32__ EndMatchTiedVotes { get; set; }
+    public int[] EndMatchTiedVotes { get; set; }
 
     /// <summary>
     ///     Gets or sets FirstBloodTime.
@@ -1240,7 +1240,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0x1138)]
     [NativeName("m_hPlayerResource")]
-    public CHandle__CBaseEntity__ PlayerResource { get; set; }
+    public CHandle<CBaseEntity> PlayerResource { get; set; }
 
     /// <summary>
     ///     Matchmaking mode identifier (0 = casual, 1 = competitive, etc.).
@@ -1710,7 +1710,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0xFC0)]
     [NativeName("m_TerroristSpawnPoints")]
-    public CUtlVector__CHandle__SpawnPoint____ TerroristSpawnPoints { get; set; }
+    public CHandle<SpawnPoint>[] TerroristSpawnPoints { get; set; }
 
     /// <summary>
     ///     Gets or sets TerroristSpawnPointsMasterList.
@@ -1720,7 +1720,7 @@ public partial class CCSGameRules : CTeamPlayRules
     /// </remarks>
     [NativeOffset(0xF78)]
     [NativeName("m_TerroristSpawnPointsMasterList")]
-    public CUtlVector__CHandle__SpawnPoint____ TerroristSpawnPointsMasterList { get; set; }
+    public CHandle<SpawnPoint>[] TerroristSpawnPointsMasterList { get; set; }
 
     /// <summary>
     ///     True while the Terrorist team's tactical time-out is in progress.

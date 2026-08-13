@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Modellib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -85,7 +86,7 @@ public partial class CEffectData
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_nEffectIndex")]
-    public CWeakHandle__InfoForResourceTypeIParticleSystemDefinition__ EffectIndex { get; set; }
+    public CWeakHandle<InfoForResourceTypeIParticleSystemDefinition> EffectIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets EffectName.

@@ -32,7 +32,7 @@ public partial class CNmIdComparisonNodeCDefinition : CNmBoolValueNodeCDefinitio
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_comparisionIDs")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__4__ ComparisionIDs { get; set; }
+    public string[] ComparisionIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets Comparison.

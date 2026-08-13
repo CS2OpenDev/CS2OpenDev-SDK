@@ -31,7 +31,7 @@ public partial class CRenderMesh
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_constraints")]
-    public CUtlLeanVector__CBaseConstraint___ Constraints { get; set; }
+    public CBaseConstraint?[] Constraints { get; set; }
 
     /// <summary>
     ///     Gets or sets EmbeddedMapMesh.
@@ -71,7 +71,7 @@ public partial class CRenderMesh
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_sceneObjects")]
-    public CUtlLeanVectorFixedGrowable__CSceneObjectData__1__ SceneObjects { get; set; }
+    public CSceneObjectData[] SceneObjects { get; set; }
 
     /// <summary>
     ///     Gets or sets Skeleton.

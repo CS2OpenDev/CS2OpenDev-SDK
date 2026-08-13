@@ -47,7 +47,7 @@ public partial class C_BaseModelEntity : C_BaseEntity
     /// </remarks>
     [NativeOffset(0xE50)]
     [NativeName("m_bodyGroupChoices")]
-    public CUtlOrderedMap__CGlobalSymbol__int32__ BodyGroupChoices { get; set; }
+    public Dictionary<string, int> BodyGroupChoices { get; set; }
 
     /// <summary>
     ///     Gets or sets BvDisabledHitGroups.
@@ -404,7 +404,7 @@ public partial class C_BaseModelEntity : C_BaseEntity
     /// </remarks>
     [NativeOffset(0xCA0)]
     [NativeName("m_vecRenderAttributes")]
-    public C_UtlVectorEmbeddedNetworkVar__EntityRenderAttribute_t__ RenderAttributes { get; set; }
+    public EntityRender[] RenderAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets RenderFX.

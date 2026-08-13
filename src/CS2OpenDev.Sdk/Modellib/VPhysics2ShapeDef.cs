@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Physicslib;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class VPhysics2ShapeDef
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_capsules")]
-    public CUtlVector__RnCapsuleDesc_t__ Capsules { get; set; }
+    public RnCapsuleDesc[] Capsules { get; set; }
 
     /// <summary>
     ///     Gets or sets CollisionAttributeIndices.
@@ -42,7 +48,7 @@ public partial class VPhysics2ShapeDef
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_CollisionAttributeIndices")]
-    public CUtlVector__uint16__ CollisionAttributeIndices { get; set; }
+    public ushort[] CollisionAttributeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets Hulls.
@@ -52,7 +58,7 @@ public partial class VPhysics2ShapeDef
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_hulls")]
-    public CUtlVector__RnHullDesc_t__ Hulls { get; set; }
+    public RnHullDesc[] Hulls { get; set; }
 
     /// <summary>
     ///     Gets or sets Meshes.
@@ -62,7 +68,7 @@ public partial class VPhysics2ShapeDef
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_meshes")]
-    public CUtlVector__RnMeshDesc_t__ Meshes { get; set; }
+    public RnMeshDesc[] Meshes { get; set; }
 
     /// <summary>
     ///     Gets or sets Spheres.
@@ -72,5 +78,5 @@ public partial class VPhysics2ShapeDef
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_spheres")]
-    public CUtlVector__RnSphereDesc_t__ Spheres { get; set; }
+    public RnSphereDesc[] Spheres { get; set; }
 }

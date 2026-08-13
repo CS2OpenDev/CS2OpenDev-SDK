@@ -30,7 +30,7 @@ public partial class VsInputSignature
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_depth_elems")]
-    public CUtlVector__VsInputSignatureElement_t__ DepthElems { get; set; }
+    public VsInputSignatureElement[] DepthElems { get; set; }
 
     /// <summary>
     ///     Gets or sets Elems.
@@ -40,5 +40,5 @@ public partial class VsInputSignature
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_elems")]
-    public CUtlVector__VsInputSignatureElement_t__ Elems { get; set; }
+    public VsInputSignatureElement[] Elems { get; set; }
 }

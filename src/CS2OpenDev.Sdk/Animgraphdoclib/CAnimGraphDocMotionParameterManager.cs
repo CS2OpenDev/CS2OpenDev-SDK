@@ -32,5 +32,5 @@ public partial class CAnimGraphDocMotionParameterManager
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_params")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_MotionParameter____ Params { get; set; }
+    public CAnimGraphDocMotionParameter?[] Params { get; set; }
 }

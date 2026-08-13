@@ -42,7 +42,7 @@ public partial class CPulseCellTimeline : CPulseCellBaseYieldingInflow
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_TimelineEvents")]
-    public CUtlVector__CPulseCell_Timeline_TimelineEvent_t__ TimelineEvents { get; set; }
+    public CPulseCellTimelineTimelineEvent[] TimelineEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets WaitForChildOutflows.

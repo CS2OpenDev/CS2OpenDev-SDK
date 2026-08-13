@@ -55,7 +55,7 @@ public partial class CMultiSource : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_rgEntities")]
-    public CHandle__CBaseEntity__[] RgEntities { get; set; }
+    public CHandle<CBaseEntity>[] RgEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets RgTriggered.

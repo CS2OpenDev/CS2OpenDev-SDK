@@ -65,7 +65,7 @@ public partial class CPointAngleSensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x528)]
     [NativeName("m_FacingPercentage")]
-    public CEntityOutputTemplate__float32__ FacingPercentage { get; set; }
+    public float? FacingPercentage { get; set; }
 
     /// <summary>
     ///     Gets or sets FacingTime.
@@ -95,7 +95,7 @@ public partial class CPointAngleSensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4BC)]
     [NativeName("m_hLookAtEntity")]
-    public CHandle__CBaseEntity__ LookAtEntity { get; set; }
+    public CHandle<CBaseEntity> LookAtEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets LookAtName.
@@ -135,7 +135,7 @@ public partial class CPointAngleSensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x500)]
     [NativeName("m_TargetDir")]
-    public CEntityOutputTemplate__Vector__ TargetDir { get; set; }
+    public Vector? TargetDir { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetEntity.
@@ -145,5 +145,5 @@ public partial class CPointAngleSensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hTargetEntity")]
-    public CHandle__CBaseEntity__ TargetEntity { get; set; }
+    public CHandle<CBaseEntity> TargetEntity { get; set; }
 }

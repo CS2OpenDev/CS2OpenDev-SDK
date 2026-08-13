@@ -39,7 +39,7 @@ public partial class CRetakeGameRules
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_hBombPlanter")]
-    public CHandle__CCSPlayerPawn__ BombPlanter { get; set; }
+    public CHandle<CCSPlayerPawn> BombPlanter { get; set; }
 
     /// <summary>
     ///     Gets or sets BombSite.

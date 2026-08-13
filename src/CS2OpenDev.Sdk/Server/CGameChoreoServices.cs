@@ -47,7 +47,7 @@ public partial class CGameChoreoServices : IChoreoServices
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_hOwner")]
-    public CHandle__CBaseModelEntity__ Owner { get; set; }
+    public CHandle<CBaseModelEntity> Owner { get; set; }
 
     /// <summary>
     ///     Gets or sets ScriptState.
@@ -67,7 +67,7 @@ public partial class CGameChoreoServices : IChoreoServices
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_hScriptedSequence")]
-    public CHandle__CScriptedSequence__ ScriptedSequence { get; set; }
+    public CHandle<CScriptedSequence> ScriptedSequence { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeStartedState.

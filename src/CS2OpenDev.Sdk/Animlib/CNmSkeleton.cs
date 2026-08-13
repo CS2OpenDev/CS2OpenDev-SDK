@@ -31,7 +31,7 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_boneIDs")]
-    public CUtlLeanVector__CGlobalSymbol__ BoneIDs { get; set; }
+    public string[] BoneIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets FloatChannelSets.
@@ -41,7 +41,7 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_floatChannelSets")]
-    public CUtlLeanVector__CNmFloatChannelSet_t__ FloatChannelSets { get; set; }
+    public CNmFloatChannelSet[] FloatChannelSets { get; set; }
 
     /// <summary>
     ///     Gets or sets ID.
@@ -71,7 +71,7 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_maskDefinitions")]
-    public CUtlLeanVector__NmBoneMaskSetDefinition_t__ MaskDefinitions { get; set; }
+    public NmBoneMaskSetDefinition[] MaskDefinitions { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelSpaceReferencePose.
@@ -81,7 +81,7 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_modelSpaceReferencePose")]
-    public CUtlVector__CTransform__ ModelSpaceReferencePose { get; set; }
+    public CTransform[] ModelSpaceReferencePose { get; set; }
 
     /// <summary>
     ///     Gets or sets NumBonesToSampleAtLowLOD.
@@ -101,7 +101,7 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_parentIndices")]
-    public CUtlVector__int32__ ParentIndices { get; set; }
+    public int[] ParentIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ParentSpaceReferencePose.
@@ -111,7 +111,7 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_parentSpaceReferencePose")]
-    public CUtlVector__CTransform__ ParentSpaceReferencePose { get; set; }
+    public CTransform[] ParentSpaceReferencePose { get; set; }
 
     /// <summary>
     ///     Gets or sets SecondarySkeletons.
@@ -121,5 +121,5 @@ public partial class CNmSkeleton
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_secondarySkeletons")]
-    public CUtlLeanVector__CNmSkeleton_SecondarySkeleton_t__ SecondarySkeletons { get; set; }
+    public CNmSkeletonSecondarySkeleton[] SecondarySkeletons { get; set; }
 }

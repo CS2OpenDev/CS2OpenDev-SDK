@@ -50,7 +50,7 @@ public partial class CSmartPropOperationSetMateraialGroupChoice : CSmartPropOper
     [NativeOffset(0xD8)]
     [NativeName("m_MaterialGroupChoices")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__MaterialGroupChoice_t__ MaterialGroupChoices { get; set; }
+    public MaterialGroupChoice[] MaterialGroupChoices { get; set; }
 
     /// <summary>
     ///     Specifies how the material group is to be selected from the authored set of choices.

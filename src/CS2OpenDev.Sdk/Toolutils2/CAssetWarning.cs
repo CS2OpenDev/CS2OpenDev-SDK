@@ -30,7 +30,7 @@ public partial class CAssetWarning
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_Checks")]
-    public CUtlVector__CAssetWarningCheck__ Checks { get; set; }
+    public CAssetWarningCheck[] Checks { get; set; }
 
     /// <summary>
     ///     Gets or sets Message.

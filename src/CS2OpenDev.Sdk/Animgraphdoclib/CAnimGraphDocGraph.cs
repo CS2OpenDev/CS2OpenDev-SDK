@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Animgraphlib;
+
+#endregion
+
 namespace CS2OpenSchema.Animgraphdoclib;
 
 /// <summary>
@@ -62,5 +68,5 @@ public partial class CAnimGraphDocGraph : CAnimGraphDocSubGraph
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_pSettingsManager")]
-    public CSmartPtr__CAnimGraphSettingsManager__ SettingsManager { get; set; }
+    public CAnimGraphSettingsManager? SettingsManager { get; set; }
 }

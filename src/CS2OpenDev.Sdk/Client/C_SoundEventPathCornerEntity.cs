@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Server;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -30,5 +36,5 @@ public partial class C_SoundEventPathCornerEntity : C_SoundEventEntity
     [NativeOffset(0x6C0)]
     [NativeName("m_vecCornerPairsNetworked")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__SoundeventPathCornerPairNetworked_t__ CornerPairsNetworked { get; set; }
+    public SoundEventPathCornerPairNetworked[] CornerPairsNetworked { get; set; }
 }

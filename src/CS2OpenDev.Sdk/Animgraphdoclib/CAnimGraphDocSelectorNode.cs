@@ -88,7 +88,7 @@ public partial class CAnimGraphDocSelectorNode : CAnimGraphDocNode
     [NativeOffset(0x40)]
     [NativeName("m_children")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CAnimGraphDoc_NodeConnection__ Children { get; set; }
+    public CAnimGraphDocNodeConnection[] Children { get; set; }
 
     /// <summary>
     ///     Enum Parameter.
@@ -205,5 +205,5 @@ public partial class CAnimGraphDocSelectorNode : CAnimGraphDocNode
     [NativeOffset(0x60)]
     [NativeName("m_tags")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__AnimTagID__ Tags { get; set; }
+    public AnimTagId[] Tags { get; set; }
 }

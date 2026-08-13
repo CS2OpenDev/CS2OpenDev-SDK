@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -278,7 +279,7 @@ public partial class CLightComponent : CEntityComponent
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_hLightCookie")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ LightCookie { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> LightCookie { get; set; }
 
     /// <summary>
     ///     Gets or sets LightMapUniqueId.

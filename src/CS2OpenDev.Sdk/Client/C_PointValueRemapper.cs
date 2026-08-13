@@ -167,7 +167,7 @@ public partial class C_PointValueRemapper : C_BaseEntity
     [NativeOffset(0x628)]
     [NativeName("m_hOutputEntities")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__CHandle__C_BaseEntity____ OutputEntities { get; set; }
+    public CHandle<C_BaseEntity>[] OutputEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputType.
@@ -237,7 +237,7 @@ public partial class C_PointValueRemapper : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x60C)]
     [NativeName("m_hRemapLineEnd")]
-    public CHandle__C_BaseEntity__ RemapLineEnd { get; set; }
+    public CHandle<C_BaseEntity> RemapLineEnd { get; set; }
 
     /// <summary>
     ///     Gets or sets RemapLineStart.
@@ -247,7 +247,7 @@ public partial class C_PointValueRemapper : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x608)]
     [NativeName("m_hRemapLineStart")]
-    public CHandle__C_BaseEntity__ RemapLineStart { get; set; }
+    public CHandle<C_BaseEntity> RemapLineStart { get; set; }
 
     /// <summary>
     ///     Gets or sets RequiresUseKey.

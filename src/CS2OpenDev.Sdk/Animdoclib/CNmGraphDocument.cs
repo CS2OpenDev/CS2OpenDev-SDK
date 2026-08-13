@@ -31,7 +31,7 @@ public partial class CNmGraphDocument : CNmAnimDocument
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_debugParameterSets")]
-    public CUtlLeanVector__CNmGraphDocument_DebugParameterSet_t__ DebugParameterSets { get; set; }
+    public CNmGraphDocumentDebugParameterSet[] DebugParameterSets { get; set; }
 
     /// <summary>
     ///     Gets or sets DictionaryIdSetIDs.
@@ -41,7 +41,7 @@ public partial class CNmGraphDocument : CNmAnimDocument
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_dictionaryIDSetIDs")]
-    public CUtlVector__V_uuid_t__ DictionaryIdSetIDs { get; set; }
+    public Guid[] DictionaryIdSetIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets RootGraph.

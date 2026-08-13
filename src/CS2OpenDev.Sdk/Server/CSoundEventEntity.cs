@@ -65,7 +65,7 @@ public partial class CSoundEventEntity : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_onGUIDChanged")]
-    public CEntityOutputTemplate__SndOpEventGuid_t__ OnGUIDChanged { get; set; }
+    public string? OnGUIDChanged { get; set; }
 
     /// <summary>
     ///     Gets or sets OnSoundFinished.

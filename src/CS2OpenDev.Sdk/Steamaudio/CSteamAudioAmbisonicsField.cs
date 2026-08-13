@@ -30,5 +30,5 @@ public partial class CSteamAudioAmbisonicsField
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_field")]
-    public CUtlVector__float32__ Field { get; set; }
+    public float[] Field { get; set; }
 }

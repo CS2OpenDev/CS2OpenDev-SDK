@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Animlib;
 
 /// <summary>
@@ -41,5 +47,5 @@ public partial class CNmSkeletonSecondarySkeleton
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_skeleton")]
-    public CStrongHandle__InfoForResourceTypeCNmSkeleton__ Skeleton { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton { get; set; }
 }

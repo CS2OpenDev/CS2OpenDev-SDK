@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Animationsystem;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -122,7 +123,7 @@ public partial class CParticleAnimTag : CAnimTagBase
     [NativeOffset(0x58)]
     [NativeName("m_hParticleSystem")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ ParticleSystem { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ParticleSystem { get; set; }
 
     /// <summary>
     ///     Particle System.

@@ -65,7 +65,7 @@ public partial class CAnimGraphDocBlendNode : CAnimGraphDocNode
     [NativeName("m_children")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Blend Items")]
-    public CUtlVector__CBlendNodeChild__ Children { get; set; }
+    public CBlendNodeChild[] Children { get; set; }
 
     /// <summary>
     ///     Damping.

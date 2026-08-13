@@ -115,7 +115,7 @@ public partial class CMomentaryRotButton : CRotButton
     /// </remarks>
     [NativeOffset(0x8F0)]
     [NativeName("m_Position")]
-    public CEntityOutputTemplate__float32__ Position { get; set; }
+    public float? Position { get; set; }
 
     /// <summary>
     ///     Gets or sets ReturnSpeed.

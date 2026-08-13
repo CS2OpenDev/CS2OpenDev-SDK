@@ -29,7 +29,7 @@ public partial class CInfoChoreoAnchor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_vecTargetEntries")]
-    public CUtlVector__CInfoChoreoAnchorPosition__ TargetEntries { get; set; }
+    public CInfoChoreoAnchorPosition[] TargetEntries { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetWarps.
@@ -39,5 +39,5 @@ public partial class CInfoChoreoAnchor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_vecTargetWarps")]
-    public CUtlVector__CInfoChoreoAnchorPosition__ TargetWarps { get; set; }
+    public CInfoChoreoAnchorPosition[] TargetWarps { get; set; }
 }

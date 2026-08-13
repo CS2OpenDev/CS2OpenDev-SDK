@@ -29,7 +29,7 @@ public partial class CSceneListManager : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x540)]
     [NativeName("m_hScenes")]
-    public CHandle__CBaseEntity__[] HScenes { get; set; }
+    public CHandle<CBaseEntity>[] HScenes { get; set; }
 
     /// <summary>
     ///     Gets or sets IszScenes.
@@ -49,5 +49,5 @@ public partial class CSceneListManager : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_hListManagers")]
-    public CUtlVector__CHandle__CSceneListManager____ ListManagers { get; set; }
+    public CHandle<CSceneListManager>[] ListManagers { get; set; }
 }

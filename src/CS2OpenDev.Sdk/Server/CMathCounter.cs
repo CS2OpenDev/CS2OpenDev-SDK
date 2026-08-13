@@ -105,7 +105,7 @@ public partial class CMathCounter : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4D8)]
     [NativeName("m_OnGetValue")]
-    public CEntityOutputTemplate__float32__ OnGetValue { get; set; }
+    public float? OnGetValue { get; set; }
 
     /// <summary>
     ///     Gets or sets OnHitMax.
@@ -135,5 +135,5 @@ public partial class CMathCounter : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_OutValue")]
-    public CEntityOutputTemplate__float32__ OutValue { get; set; }
+    public float? OutValue { get; set; }
 }

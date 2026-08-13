@@ -58,7 +58,7 @@ public partial class CnmGraphDocChainLookatNodeCData : CNmGraphDocVariationDataN
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyDescription",
         "The weights from the tip of the chain to the base. 0 is the effector/tip of the chain weight, N is the base of the chain.")]
-    public CUtlVector__float32__ ChainWeights { get; set; }
+    public float[] ChainWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets EndEffectorBoneName.

@@ -37,7 +37,7 @@ public partial class CVMixToolGraph
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_editorEdges")]
-    public CUtlVector__CVMixEditorEdge__ EditorEdges { get; set; }
+    public CVMixEditorEdge[] EditorEdges { get; set; }
 
     /// <summary>
     ///     Gets or sets EditorNodes.
@@ -47,7 +47,7 @@ public partial class CVMixToolGraph
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_editorNodes")]
-    public CUtlVector__CVMixEditorNode__ EditorNodes { get; set; }
+    public CVMixEditorNode[] EditorNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets GraphDescData.

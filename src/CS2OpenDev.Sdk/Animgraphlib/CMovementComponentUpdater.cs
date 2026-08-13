@@ -61,7 +61,7 @@ public partial class CMovementComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_motors")]
-    public CUtlVector__CSmartPtr__CAnimMotorUpdaterBase____ Motors { get; set; }
+    public CAnimMotorUpdaterBase?[] Motors { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveVarsDisabled.

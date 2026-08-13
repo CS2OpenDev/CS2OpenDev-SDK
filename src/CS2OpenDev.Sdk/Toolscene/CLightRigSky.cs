@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Toolscene;
 
 /// <summary>
@@ -30,5 +36,5 @@ public partial class CLightRigSky
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hSkyMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ SkyMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> SkyMaterial { get; set; }
 }

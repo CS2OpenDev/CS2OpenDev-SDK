@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Animlib;
+
+#endregion
+
 namespace CS2OpenSchema.Animdoclib;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class CNmGraphDocumentDebugParameterSet
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_boolValues")]
-    public CUtlLeanVector__std_pair__CGlobalSymbol__bool____ BoolValues { get; set; }
+    public (string, bool)[] BoolValues { get; set; }
 
     /// <summary>
     ///     Gets or sets FloatValues.
@@ -42,7 +48,7 @@ public partial class CNmGraphDocumentDebugParameterSet
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_floatValues")]
-    public CUtlLeanVector__std_pair__CGlobalSymbol__float32____ FloatValues { get; set; }
+    public (string, float)[] FloatValues { get; set; }
 
     /// <summary>
     ///     Gets or sets ID.
@@ -62,7 +68,7 @@ public partial class CNmGraphDocumentDebugParameterSet
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_IDValues")]
-    public CUtlLeanVector__std_pair__CGlobalSymbol__CGlobalSymbol____ IdValues { get; set; }
+    public (string, string)[] IdValues { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetValues.
@@ -72,7 +78,7 @@ public partial class CNmGraphDocumentDebugParameterSet
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_targetValues")]
-    public CUtlLeanVector__std_pair__CGlobalSymbol__CNmTarget____ TargetValues { get; set; }
+    public (string, CNmTarget)[] TargetValues { get; set; }
 
     /// <summary>
     ///     Gets or sets VectorValues.
@@ -82,5 +88,5 @@ public partial class CNmGraphDocumentDebugParameterSet
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_vectorValues")]
-    public CUtlLeanVector__std_pair__CGlobalSymbol__Vector____ VectorValues { get; set; }
+    public (string, Vector)[] VectorValues { get; set; }
 }

@@ -31,7 +31,7 @@ public partial class CStanceOverrideUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_footStanceInfo")]
-    public CUtlVector__StanceInfo_t__ FootStanceInfo { get; set; }
+    public StanceInfo[] FootStanceInfo { get; set; }
 
     /// <summary>
     ///     Gets or sets Mode.

@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.MathlibExtended;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CSceneObjectData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_drawBounds")]
-    public CUtlLeanVector__AABB_t__ DrawBounds { get; set; }
+    public AABB[] DrawBounds { get; set; }
 
     /// <summary>
     ///     Gets or sets DrawCalls.
@@ -41,7 +47,7 @@ public partial class CSceneObjectData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_drawCalls")]
-    public CUtlLeanVector__CMaterialDrawDescriptor__ DrawCalls { get; set; }
+    public CMaterialDrawDescriptor[] DrawCalls { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxBounds.
@@ -61,7 +67,7 @@ public partial class CSceneObjectData
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_meshlets")]
-    public CUtlLeanVector__CMeshletDescriptor__ Meshlets { get; set; }
+    public CMeshletDescriptor[] Meshlets { get; set; }
 
     /// <summary>
     ///     Gets or sets MinBounds.
@@ -81,7 +87,7 @@ public partial class CSceneObjectData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_rtProxyDrawCalls")]
-    public CUtlLeanVector__CSceneObjectData_RTProxyDrawDescriptor_t__ RtProxyDrawCalls { get; set; }
+    public CSceneObjectDataRTProxyDrawDescriptor[] RtProxyDrawCalls { get; set; }
 
     /// <summary>
     ///     Gets or sets TintColor.

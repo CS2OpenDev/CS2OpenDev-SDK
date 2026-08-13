@@ -43,7 +43,7 @@ public partial class CNmGraphDocBoneMaskSelectorNode : CNmGraphDocFlowNode
     [NativeName("m_options")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CGlobalSymbol__ Options { get; set; }
+    public string[] Options { get; set; }
 
     /// <summary>
     ///     Gets or sets SwitchDynamically.

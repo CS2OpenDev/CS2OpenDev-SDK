@@ -31,7 +31,7 @@ public partial class CSeqSynthAnimDesc
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_activityArray")]
-    public CUtlVector__CAnimActivity__ ActivityArray { get; set; }
+    public CAnimActivity[] ActivityArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.

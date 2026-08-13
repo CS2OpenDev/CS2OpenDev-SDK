@@ -205,7 +205,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x8FC)]
     [NativeName("m_hFollowEntity")]
-    public CHandle__CBaseEntity__ FollowEntity { get; set; }
+    public CHandle<CBaseEntity> FollowEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets FollowEntityDirection.
@@ -245,7 +245,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x9BC)]
     [NativeName("m_hFollowMover")]
-    public CHandle__CFuncMover__ FollowMover { get; set; }
+    public CHandle<CFuncMover> FollowMover { get; set; }
 
     /// <summary>
     ///     Gets or sets FollowMoverCalculatedDistance.
@@ -515,7 +515,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x870)]
     [NativeName("m_OnNodePassed")]
-    public CEntityOutputTemplate__CUtlString__ OnNodePassed { get; set; }
+    public string? OnNodePassed { get; set; }
 
     /// <summary>
     ///     Gets or sets OnStart.
@@ -575,7 +575,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x918)]
     [NativeName("m_hOrientationFaceEntity")]
-    public CHandle__CBaseEntity__ OrientationFaceEntity { get; set; }
+    public CHandle<CBaseEntity> OrientationFaceEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets OrientationFaceEntityName.
@@ -595,7 +595,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x898)]
     [NativeName("m_hOrientationMatchEntity")]
-    public CHandle__CBaseEntity__ OrientationMatchEntity { get; set; }
+    public CHandle<CBaseEntity> OrientationMatchEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets OrientationMatchEntityName.
@@ -655,7 +655,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x778)]
     [NativeName("m_hPathMover")]
-    public CHandle__CPathMover__ PathMover { get; set; }
+    public CHandle<CPathMover> PathMover { get; set; }
 
     /// <summary>
     ///     Gets or sets PathName.
@@ -705,7 +705,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x77C)]
     [NativeName("m_hPrevPathMover")]
-    public CHandle__CPathMover__ PrevPathMover { get; set; }
+    public CHandle<CPathMover> PrevPathMover { get; set; }
 
     /// <summary>
     ///     Gets or sets PreviousNodeIndex.
@@ -855,7 +855,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7DC)]
     [NativeName("m_hStopAtNode")]
-    public CHandle__CMoverPathNode__ StopAtNode { get; set; }
+    public CHandle<CMoverPathNode> StopAtNode { get; set; }
 
     /// <summary>
     ///     Gets or sets StopCurveScale.

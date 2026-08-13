@@ -31,7 +31,7 @@ public partial class CRenderSkeleton
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_boneParents")]
-    public CUtlVector__int32__ BoneParents { get; set; }
+    public int[] BoneParents { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneWeightCount.
@@ -51,5 +51,5 @@ public partial class CRenderSkeleton
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_bones")]
-    public CUtlVector__RenderSkeletonBone_t__ Bones { get; set; }
+    public RenderSkeletonBone[] Bones { get; set; }
 }

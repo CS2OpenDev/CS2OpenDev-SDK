@@ -41,7 +41,7 @@ public partial class SelectorInstanceData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_currentIndexStartTime")]
-    public CAnimNetVar__float32__ CurrentIndexStartTime { get; set; }
+    public float CurrentIndexStartTime { get; set; }
 
     /// <summary>
     ///     Gets or sets PreviousIndex.
@@ -61,5 +61,5 @@ public partial class SelectorInstanceData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_weights")]
-    public CRelativeArray__float32__ Weights { get; set; }
+    public float[] Weights { get; set; }
 }

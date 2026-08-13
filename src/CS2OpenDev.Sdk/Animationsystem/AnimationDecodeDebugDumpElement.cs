@@ -32,7 +32,7 @@ public partial class AnimationDecodeDebugDumpElement
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_decodeOps")]
-    public CUtlVector__CUtlString__ DecodeOps { get; set; }
+    public string[] DecodeOps { get; set; }
 
     /// <summary>
     ///     Gets or sets DecodedAnims.
@@ -42,7 +42,7 @@ public partial class AnimationDecodeDebugDumpElement
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_decodedAnims")]
-    public CUtlVector__CUtlString__ DecodedAnims { get; set; }
+    public string[] DecodedAnims { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityIndex.
@@ -62,7 +62,7 @@ public partial class AnimationDecodeDebugDumpElement
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_internalOps")]
-    public CUtlVector__CUtlString__ InternalOps { get; set; }
+    public string[] InternalOps { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelName.
@@ -82,5 +82,5 @@ public partial class AnimationDecodeDebugDumpElement
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_poseParams")]
-    public CUtlVector__CUtlString__ PoseParams { get; set; }
+    public string[] PoseParams { get; set; }
 }

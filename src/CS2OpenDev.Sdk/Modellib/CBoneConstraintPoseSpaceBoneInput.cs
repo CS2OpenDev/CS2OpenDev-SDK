@@ -40,5 +40,5 @@ public partial class CBoneConstraintPoseSpaceBoneInput
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_outputTransformList")]
-    public CUtlVector__CTransform__ OutputTransformList { get; set; }
+    public CTransform[] OutputTransformList { get; set; }
 }

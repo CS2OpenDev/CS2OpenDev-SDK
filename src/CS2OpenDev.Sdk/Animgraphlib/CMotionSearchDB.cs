@@ -31,7 +31,7 @@ public partial class CMotionSearchDB
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_codeIndices")]
-    public CUtlVector__MotionDBIndex__ CodeIndices { get; set; }
+    public MotionDBIndex[] CodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ResidualQuantizer.

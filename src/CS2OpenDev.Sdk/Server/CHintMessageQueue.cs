@@ -29,7 +29,7 @@ public partial class CHintMessageQueue
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_messages")]
-    public CUtlVector__CHintMessage___ Messages { get; set; }
+    public CHintMessage?[] Messages { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerController.

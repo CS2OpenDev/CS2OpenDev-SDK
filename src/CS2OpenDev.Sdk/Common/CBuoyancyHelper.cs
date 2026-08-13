@@ -68,7 +68,7 @@ public partial class CBuoyancyHelper
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_vecFractionOfWheelSubmergedForWheelDrag")]
-    public CUtlVector__float32__ FractionOfWheelSubmergedForWheelDrag { get; set; }
+    public float[] FractionOfWheelSubmergedForWheelDrag { get; set; }
 
     /// <summary>
     ///     Gets or sets FractionOfWheelSubmergedForWheelFriction.
@@ -78,7 +78,7 @@ public partial class CBuoyancyHelper
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_vecFractionOfWheelSubmergedForWheelFriction")]
-    public CUtlVector__float32__ FractionOfWheelSubmergedForWheelFriction { get; set; }
+    public float[] FractionOfWheelSubmergedForWheelFriction { get; set; }
 
     /// <summary>
     ///     Gets or sets NeutrallyBuoyant.
@@ -128,7 +128,7 @@ public partial class CBuoyancyHelper
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_vecWheelDrag")]
-    public CUtlVector__float32__ WheelDrag { get; set; }
+    public float[] WheelDrag { get; set; }
 
     /// <summary>
     ///     Gets or sets WheelFrictionScales.
@@ -138,5 +138,5 @@ public partial class CBuoyancyHelper
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_vecWheelFrictionScales")]
-    public CUtlVector__float32__ WheelFrictionScales { get; set; }
+    public float[] WheelFrictionScales { get; set; }
 }

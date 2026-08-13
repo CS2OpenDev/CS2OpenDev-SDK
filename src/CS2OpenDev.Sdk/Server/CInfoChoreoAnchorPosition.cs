@@ -81,7 +81,7 @@ public partial class CInfoChoreoAnchorPosition
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_hParent")]
-    public CHandle__CBaseEntity__ Parent { get; set; }
+    public CHandle<CBaseEntity> Parent { get; set; }
 
     /// <summary>
     ///     Gets or sets Radius.

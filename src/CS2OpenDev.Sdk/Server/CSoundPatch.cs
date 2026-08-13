@@ -50,7 +50,7 @@ public partial class CSoundPatch
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_hEnt")]
-    public CHandle__CBaseEntity__ Ent { get; set; }
+    public CHandle<CBaseEntity> Ent { get; set; }
 
     /// <summary>
     ///     Gets or sets Filter.

@@ -56,7 +56,7 @@ public partial class CTriggerLerpObject : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x93C)]
     [NativeName("m_hEntityToWaitForDisconnect")]
-    public CHandle__CBaseEntity__ EntityToWaitForDisconnect { get; set; }
+    public CHandle<CBaseEntity> EntityToWaitForDisconnect { get; set; }
 
     /// <summary>
     ///     Gets or sets HLerpTarget.
@@ -66,7 +66,7 @@ public partial class CTriggerLerpObject : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x8F0)]
     [NativeName("m_hLerpTarget")]
-    public CHandle__CBaseEntity__ HLerpTarget { get; set; }
+    public CHandle<CBaseEntity> HLerpTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets HLerpTargetAttachment.
@@ -146,7 +146,7 @@ public partial class CTriggerLerpObject : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x910)]
     [NativeName("m_vecLerpingObjects")]
-    public CUtlVector__lerpdata_t__ LerpingObjects { get; set; }
+    public LerpData[] LerpingObjects { get; set; }
 
     /// <summary>
     ///     Gets or sets OnDetached.

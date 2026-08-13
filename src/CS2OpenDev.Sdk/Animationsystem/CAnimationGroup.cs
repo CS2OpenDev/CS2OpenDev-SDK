@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Animationsystem;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CAnimationGroup
     /// </remarks>
     [NativeOffset(0x128)]
     [NativeName("m_AdditionalExtRefs")]
-    public CUtlVector__CStrongHandleVoid__ AdditionalExtRefs { get; set; }
+    public CStrongHandleVoid[] AdditionalExtRefs { get; set; }
 
     /// <summary>
     ///     Gets or sets DecodeKey.
@@ -52,7 +58,7 @@ public partial class CAnimationGroup
     [NativeOffset(0x90)]
     [NativeName("m_directHSeqGroup_Handle")]
     [NativeMetadata("MKV3TransferName", "m_directHSeqGroup")]
-    public CStrongHandle__InfoForResourceTypeCSequenceGroupData__ DirectHSeqGroupHandle { get; set; }
+    public CStrongHandle<InfoForResourceTypeCSequenceGroupData> DirectHSeqGroupHandle { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.
@@ -73,7 +79,7 @@ public partial class CAnimationGroup
     [NativeOffset(0x78)]
     [NativeName("m_includedGroupArray_Handle")]
     [NativeMetadata("MKV3TransferName", "m_includedGroupArray")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCAnimationGroup____ IncludedGroupArrayHandle { get; set; }
+    public CStrongHandle<InfoForResourceTypeCAnimationGroup>[] IncludedGroupArrayHandle { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalHAnimArrayHandle.
@@ -84,7 +90,7 @@ public partial class CAnimationGroup
     [NativeOffset(0x60)]
     [NativeName("m_localHAnimArray_Handle")]
     [NativeMetadata("MKV3TransferName", "m_localHAnimArray")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCAnimData____ LocalHAnimArrayHandle { get; set; }
+    public CStrongHandle<InfoForResourceTypeCAnimData>[] LocalHAnimArrayHandle { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.
@@ -104,5 +110,5 @@ public partial class CAnimationGroup
     /// </remarks>
     [NativeOffset(0x110)]
     [NativeName("m_szScripts")]
-    public CUtlVector__CBufferString__ Scripts { get; set; }
+    public string[] Scripts { get; set; }
 }

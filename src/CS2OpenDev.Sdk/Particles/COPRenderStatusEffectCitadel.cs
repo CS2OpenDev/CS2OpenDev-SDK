@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -34,7 +40,7 @@ public partial class COPRenderStatusEffectCitadel : CParticleFunctionRenderer
     [NativeName("m_pTextureColorWarp")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "color warp texture (3d)")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureColorWarp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureColorWarp { get; set; }
 
     /// <summary>
     ///     detail texture.
@@ -46,7 +52,7 @@ public partial class COPRenderStatusEffectCitadel : CParticleFunctionRenderer
     [NativeName("m_pTextureDetail")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "detail texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureDetail { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureDetail { get; set; }
 
     /// <summary>
     ///     metalness texture.
@@ -58,7 +64,7 @@ public partial class COPRenderStatusEffectCitadel : CParticleFunctionRenderer
     [NativeName("m_pTextureMetalness")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "metalness texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureMetalness { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureMetalness { get; set; }
 
     /// <summary>
     ///     normal texture.
@@ -70,7 +76,7 @@ public partial class COPRenderStatusEffectCitadel : CParticleFunctionRenderer
     [NativeName("m_pTextureNormal")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "normal texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureNormal { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureNormal { get; set; }
 
     /// <summary>
     ///     roughness texture.
@@ -82,7 +88,7 @@ public partial class COPRenderStatusEffectCitadel : CParticleFunctionRenderer
     [NativeName("m_pTextureRoughness")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "roughness texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureRoughness { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureRoughness { get; set; }
 
     /// <summary>
     ///     self illum texture.
@@ -94,5 +100,5 @@ public partial class COPRenderStatusEffectCitadel : CParticleFunctionRenderer
     [NativeName("m_pTextureSelfIllum")]
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "self illum texture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureSelfIllum { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureSelfIllum { get; set; }
 }

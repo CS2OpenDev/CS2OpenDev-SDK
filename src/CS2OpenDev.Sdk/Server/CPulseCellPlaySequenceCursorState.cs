@@ -31,5 +31,5 @@ public partial class CPulseCellPlaySequenceCursorState
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hTarget")]
-    public CHandle__CBaseAnimGraph__ Target { get; set; }
+    public CHandle<CBaseAnimGraph> Target { get; set; }
 }

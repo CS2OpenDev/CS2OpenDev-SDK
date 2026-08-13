@@ -31,7 +31,7 @@ public partial class CToolsConfig
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_EngineModulesThatReferenceAssets")]
-    public CUtlVector__CUtlString__ EngineModulesThatReferenceAssets { get; set; }
+    public string[] EngineModulesThatReferenceAssets { get; set; }
 
     /// <summary>
     ///     Gets or sets EngineTools.
@@ -41,7 +41,7 @@ public partial class CToolsConfig
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_EngineTools")]
-    public CUtlVector__CEngineToolInfo__ EngineTools { get; set; }
+    public CEngineToolInfo[] EngineTools { get; set; }
 
     /// <summary>
     ///     Gets or sets ExternalTools.
@@ -51,5 +51,5 @@ public partial class CToolsConfig
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_ExternalTools")]
-    public CUtlVector__CExternalToolInfo__ ExternalTools { get; set; }
+    public CExternalToolInfo[] ExternalTools { get; set; }
 }

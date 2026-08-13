@@ -69,7 +69,7 @@ public partial class CAnimGraphDocParamSpan
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_samples")]
-    public CUtlVector__CAnimGraphDoc_ParamSpanSample__ Samples { get; set; }
+    public CAnimGraphDocParamSpanSample[] Samples { get; set; }
 
     /// <summary>
     ///     Gets or sets StartCycle.

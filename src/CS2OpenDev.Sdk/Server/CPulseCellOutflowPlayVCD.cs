@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.PulseRuntimeLib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -38,7 +39,7 @@ public partial class CPulseCellOutflowPlayVCD : CPulseCellOutflowPlayVCDBase
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_hChoreoScene")]
-    public CStrongHandle__InfoForResourceTypeCChoreoSceneResource__ ChoreoScene { get; set; }
+    public CStrongHandle<InfoForResourceTypeCChoreoSceneResource> ChoreoScene { get; set; }
 
     /// <summary>
     ///     Gets or sets OnPaused.
@@ -68,5 +69,5 @@ public partial class CPulseCellOutflowPlayVCD : CPulseCellOutflowPlayVCDBase
     /// </remarks>
     [NativeOffset(0x1D0)]
     [NativeName("m_OutRequirements")]
-    public CUtlVector__CPulseCell_Outflow_PlayVCD_VCDRequirementInfo_t__ OutRequirements { get; set; }
+    public CPulseCellOutflowPlayVCDVCDRequirementInfo[] OutRequirements { get; set; }
 }

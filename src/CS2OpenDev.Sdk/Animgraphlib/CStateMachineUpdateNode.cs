@@ -61,7 +61,7 @@ public partial class CStateMachineUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0xC8)]
     [NativeName("m_stateData")]
-    public CUtlVector__CStateNodeStateData__ StateData { get; set; }
+    public CStateNodeStateData[] StateData { get; set; }
 
     /// <summary>
     ///     Gets or sets StateMachine.
@@ -81,5 +81,5 @@ public partial class CStateMachineUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_transitionData")]
-    public CUtlVector__CStateNodeTransitionData__ TransitionData { get; set; }
+    public CStateNodeTransitionData[] TransitionData { get; set; }
 }

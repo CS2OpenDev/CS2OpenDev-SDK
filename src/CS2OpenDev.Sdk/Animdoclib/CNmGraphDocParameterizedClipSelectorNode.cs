@@ -46,5 +46,5 @@ public partial class CNmGraphDocParameterizedClipSelectorNode : CNmGraphDocVaria
     [NativeName("m_optionLabels")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CUtlString__ OptionLabels { get; set; }
+    public string[] OptionLabels { get; set; }
 }

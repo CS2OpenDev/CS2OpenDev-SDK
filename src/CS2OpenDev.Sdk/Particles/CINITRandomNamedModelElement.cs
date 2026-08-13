@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -54,7 +60,7 @@ public abstract partial class CINITRandomNamedModelElement : CParticleFunctionIn
     /// </remarks>
     [NativeOffset(0x1E0)]
     [NativeName("m_hModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     model from renderer.
@@ -76,7 +82,7 @@ public abstract partial class CINITRandomNamedModelElement : CParticleFunctionIn
     [NativeOffset(0x1E8)]
     [NativeName("m_names")]
     [NativeMetadata("MPropertyFriendlyName", "names")]
-    public CUtlVector__CUtlString__ Names { get; set; }
+    public string[] Names { get; set; }
 
     /// <summary>
     ///     shuffle.

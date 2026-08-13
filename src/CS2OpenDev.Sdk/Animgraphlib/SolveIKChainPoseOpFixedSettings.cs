@@ -31,5 +31,5 @@ public partial class SolveIKChainPoseOpFixedSettings
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_ChainsToSolveData")]
-    public CUtlVector__ChainToSolveData_t__ ChainsToSolveData { get; set; }
+    public ChainToSolveData[] ChainsToSolveData { get; set; }
 }

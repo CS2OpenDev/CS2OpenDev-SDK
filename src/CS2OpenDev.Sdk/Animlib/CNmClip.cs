@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Animlib;
 
 /// <summary>
@@ -41,7 +47,7 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_compressedPoseOffsets")]
-    public CUtlVector__uint32__ CompressedPoseOffsets { get; set; }
+    public uint[] CompressedPoseOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets Duration.
@@ -61,7 +67,7 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_floatChannelData")]
-    public CUtlVectorFixedGrowable__CNmFloatChannelData___2__ FloatChannelData { get; set; }
+    public CNmFloatChannelData?[] FloatChannelData { get; set; }
 
     /// <summary>
     ///     Gets or sets IsAdditive.
@@ -81,7 +87,7 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x1E0)]
     [NativeName("m_modelSpaceBoneSamplingIndices")]
-    public CUtlVector__int32__ ModelSpaceBoneSamplingIndices { get; set; }
+    public int[] ModelSpaceBoneSamplingIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelSpaceSamplingChain.
@@ -91,7 +97,7 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x1C8)]
     [NativeName("m_modelSpaceSamplingChain")]
-    public CUtlVector__CNmClip_ModelSpaceSamplingChainLink_t__ ModelSpaceSamplingChain { get; set; }
+    public CNmClipModelSpaceSamplingChainLink[] ModelSpaceSamplingChain { get; set; }
 
     /// <summary>
     ///     Gets or sets NumFrames.
@@ -121,7 +127,7 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_secondaryAnimations")]
-    public CUtlVectorFixedGrowable__CNmClip___1__ SecondaryAnimations { get; set; }
+    public CNmClip?[] SecondaryAnimations { get; set; }
 
     /// <summary>
     ///     Gets or sets Skeleton.
@@ -131,7 +137,7 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_skeleton")]
-    public CStrongHandle__InfoForResourceTypeCNmSkeleton__ Skeleton { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton { get; set; }
 
     /// <summary>
     ///     Gets or sets SyncTrack.
@@ -151,5 +157,5 @@ public partial class CNmClip
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_trackCompressionSettings")]
-    public CUtlVector__NmCompressionSettings_t__ TrackCompressionSettings { get; set; }
+    public NmCompressionSettings[] TrackCompressionSettings { get; set; }
 }

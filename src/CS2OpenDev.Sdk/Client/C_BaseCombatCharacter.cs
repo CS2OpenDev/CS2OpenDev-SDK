@@ -47,7 +47,7 @@ public partial class C_BaseCombatCharacter : CBaseAnimGraph
     [NativeOffset(0x1180)]
     [NativeName("m_hMyWearables")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__CHandle__C_EconWearable____ MyWearables { get; set; }
+    public CHandle<C_EconWearable>[] MyWearables { get; set; }
 
     /// <summary>
     ///     Gets or sets RightFootAttachment.

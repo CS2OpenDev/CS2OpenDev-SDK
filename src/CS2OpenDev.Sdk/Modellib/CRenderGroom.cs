@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -101,7 +107,7 @@ public partial class CRenderGroom
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_hairPositionOffsets")]
-    public CUtlVector__uint32__ HairPositionOffsets { get; set; }
+    public uint[] HairPositionOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets Hairs.
@@ -111,7 +117,7 @@ public partial class CRenderGroom
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hairs")]
-    public CUtlVector__RenderHairStrandInfo_t__ Hairs { get; set; }
+    public RenderHairStrandInfo[] Hairs { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxSegmentsPerHairStrand.
@@ -131,7 +137,7 @@ public partial class CRenderGroom
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_hSimParamsMat")]
-    public CStrongHandleCopyable__InfoForResourceTypeIMaterial2__ SimParamsMat { get; set; }
+    public CStrongHandleCopyable<InfoForResourceTypeIMaterial2> SimParamsMat { get; set; }
 
     /// <summary>
     ///     Gets or sets StrandSegmentCountHist.
@@ -141,7 +147,7 @@ public partial class CRenderGroom
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_strandSegmentCountHist")]
-    public CUtlVector__int32__ StrandSegmentCountHist { get; set; }
+    public int[] StrandSegmentCountHist { get; set; }
 
     /// <summary>
     ///     Gets or sets TotalSegmentCount.

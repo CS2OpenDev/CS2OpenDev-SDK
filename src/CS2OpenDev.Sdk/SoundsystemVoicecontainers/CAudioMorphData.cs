@@ -51,7 +51,7 @@ public partial class CAudioMorphData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_nameHashCodes")]
-    public CUtlVector__uint32__ NameHashCodes { get; set; }
+    public uint[] NameHashCodes { get; set; }
 
     /// <summary>
     ///     Gets or sets NameStrings.
@@ -61,7 +61,7 @@ public partial class CAudioMorphData
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_nameStrings")]
-    public CUtlVector__CUtlString__ NameStrings { get; set; }
+    public string[] NameStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets Samples.
@@ -71,7 +71,7 @@ public partial class CAudioMorphData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_samples")]
-    public CUtlVector__CUtlVector__float32____ Samples { get; set; }
+    public float[][] Samples { get; set; }
 
     /// <summary>
     ///     Gets or sets Times.
@@ -81,5 +81,5 @@ public partial class CAudioMorphData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_times")]
-    public CUtlVector__float32__ Times { get; set; }
+    public float[] Times { get; set; }
 }

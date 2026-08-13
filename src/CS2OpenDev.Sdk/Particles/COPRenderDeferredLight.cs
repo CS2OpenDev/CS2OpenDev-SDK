@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -197,7 +198,7 @@ public partial class COPRenderDeferredLight : CParticleFunctionRenderer
     [NativeName("m_hTexture")]
     [NativeMetadata("MPropertyFriendlyName", "texture")]
     [NativeMetadata("MPropertySuppressExpr", "!m_bUseTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ Texture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> Texture { get; set; }
 
     /// <summary>
     ///     projected texture use alpha test window.

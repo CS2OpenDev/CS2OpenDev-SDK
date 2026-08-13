@@ -34,5 +34,5 @@ public partial class CVoiceContainerStaticAdditiveSynth : CVoiceContainerAsyncGe
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_tones")]
-    public CUtlVector__CVoiceContainerStaticAdditiveSynth_CTone__ Tones { get; set; }
+    public CVoiceContainerStaticAdditiveSynthCTone[] Tones { get; set; }
 }

@@ -32,5 +32,5 @@ public partial class DebugDrawBoneTransforms : DebugSnapshotBaseStructuredData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("vecBones")]
-    public CUtlVectorFixedGrowable__CTransform__128__ Bones { get; set; }
+    public CTransform[] Bones { get; set; }
 }

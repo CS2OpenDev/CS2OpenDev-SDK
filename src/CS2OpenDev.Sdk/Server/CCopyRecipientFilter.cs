@@ -41,7 +41,7 @@ public partial class CCopyRecipientFilter
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_Recipients")]
-    public CUtlVector__CPlayerSlot__ Recipients { get; set; }
+    public int[] Recipients { get; set; }
 
     /// <summary>
     ///     Gets or sets SlotPlayerExcludedDueToPrediction.

@@ -30,7 +30,7 @@ public partial class CSkyboxReference : C_BaseEntity
     [NativeOffset(0x604)]
     [NativeName("m_hSkyCamera")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_SkyCamera__ SkyCamera { get; set; }
+    public CHandle<C_SkyCamera> SkyCamera { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldGroupId.

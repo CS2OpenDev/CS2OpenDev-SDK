@@ -34,7 +34,7 @@ public partial class CMoodVData
     [NativeOffset(0xE8)]
     [NativeName("m_animationLayers")]
     [NativeMetadata("MPropertyDescription", "Layers for this mood")]
-    public CUtlVector__MoodAnimationLayer_t__ AnimationLayers { get; set; }
+    public MoodAnimationLayer[] AnimationLayers { get; set; }
 
     /// <summary>
     ///     Type of mood.
@@ -57,5 +57,5 @@ public partial class CMoodVData
     [NativeName("m_sModelName")]
     [NativeMetadata("MPropertyDescription", "Model to get the animation list from")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ SModelName { get; set; }
+    public string SModelName { get; set; }
 }

@@ -78,7 +78,7 @@ public partial class BlendItem
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 
     /// <summary>
     ///     Gets or sets UseCustomDuration.

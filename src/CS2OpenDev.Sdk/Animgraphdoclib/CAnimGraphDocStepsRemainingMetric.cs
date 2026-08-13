@@ -36,7 +36,7 @@ public partial class CAnimGraphDocStepsRemainingMetric : CAnimGraphDocMotionMetr
     [NativeMetadata("MPropertyAttributeChoiceName", "Foot")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Feet")]
-    public CUtlVector__CUtlString__ Feet { get; set; }
+    public string[] Feet { get; set; }
 
     /// <summary>
     ///     Min Steps Remaining.

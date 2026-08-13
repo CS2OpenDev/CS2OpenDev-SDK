@@ -65,7 +65,7 @@ public partial class CPathMoverEntitySpawner : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4D8)]
     [NativeName("m_mapSpawnedMoverTemplates")]
-    public CUtlHashtable__CHandle__CFuncMover____PathMoverEntitySpawn__ MapSpawnedMoverTemplates { get; set; }
+    public Dictionary<CHandle<CFuncMover>, PathMoverEntitySpawn> MapSpawnedMoverTemplates { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxActive.
@@ -105,7 +105,7 @@ public partial class CPathMoverEntitySpawner : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4CC)]
     [NativeName("m_hPathMover")]
-    public CHandle__CPathMover__ PathMover { get; set; }
+    public CHandle<CPathMover> PathMover { get; set; }
 
     /// <summary>
     ///     Gets or sets PathMoverName.
@@ -135,7 +135,7 @@ public partial class CPathMoverEntitySpawner : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x508)]
     [NativeName("m_vecQueuedRemovals")]
-    public CUtlVector__CHandle__CFuncMover____ QueuedRemovals { get; set; }
+    public CHandle<CFuncMover>[] QueuedRemovals { get; set; }
 
     /// <summary>
     ///     Gets or sets SpawnFrequencyDistToNearestMover.

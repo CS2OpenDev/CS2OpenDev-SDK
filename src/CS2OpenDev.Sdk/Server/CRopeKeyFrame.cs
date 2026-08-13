@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Modellib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -77,7 +78,7 @@ public partial class CRopeKeyFrame : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7BC)]
     [NativeName("m_hEndPoint")]
-    public CHandle__CBaseEntity__ EndPoint { get; set; }
+    public CHandle<CBaseEntity> EndPoint { get; set; }
 
     /// <summary>
     ///     Gets or sets EndPointValid.
@@ -147,7 +148,7 @@ public partial class CRopeKeyFrame : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7A0)]
     [NativeName("m_iRopeMaterialModelIndex")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ RopeMaterialModelIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> RopeMaterialModelIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets ScrollSpeed.
@@ -197,7 +198,7 @@ public partial class CRopeKeyFrame : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7B8)]
     [NativeName("m_hStartPoint")]
-    public CHandle__CBaseEntity__ StartPoint { get; set; }
+    public CHandle<CBaseEntity> StartPoint { get; set; }
 
     /// <summary>
     ///     Gets or sets StartPointValid.

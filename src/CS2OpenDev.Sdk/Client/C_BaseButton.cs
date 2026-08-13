@@ -39,7 +39,7 @@ public partial class C_BaseButton : C_BaseToggle
     /// </remarks>
     [NativeOffset(0xFB0)]
     [NativeName("m_glowEntity")]
-    public CHandle__C_BaseModelEntity__ GlowEntity { get; set; }
+    public CHandle<C_BaseModelEntity> GlowEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Usable.

@@ -32,7 +32,7 @@ public partial class CPulseChunk
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_InstructionDebugInfos")]
-    public CUtlLeanVector__CPulse_InstructionDebug__ InstructionDebugInfos { get; set; }
+    public CPulseInstructionDebug[] InstructionDebugInfos { get; set; }
 
     /// <summary>
     ///     Gets or sets Instructions.
@@ -42,7 +42,7 @@ public partial class CPulseChunk
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Instructions")]
-    public CUtlLeanVector__PGDInstruction_t__ Instructions { get; set; }
+    public PGDInstruction[] Instructions { get; set; }
 
     /// <summary>
     ///     Gets or sets Registers.
@@ -52,5 +52,5 @@ public partial class CPulseChunk
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_Registers")]
-    public CUtlLeanVector__CPulse_RegisterInfo__ Registers { get; set; }
+    public CPulseRegisterInfo[] Registers { get; set; }
 }

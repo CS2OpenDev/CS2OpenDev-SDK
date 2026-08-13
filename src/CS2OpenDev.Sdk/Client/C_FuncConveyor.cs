@@ -35,7 +35,7 @@ public partial class C_FuncConveyor : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFD8)]
     [NativeName("m_hConveyorModels")]
-    public C_NetworkUtlVectorBase__CHandle__C_BaseEntity____ ConveyorModels { get; set; }
+    public CHandle<C_BaseEntity>[] ConveyorModels { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentConveyorOffset.

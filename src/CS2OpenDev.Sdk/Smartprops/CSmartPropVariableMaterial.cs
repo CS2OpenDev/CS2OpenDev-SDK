@@ -35,5 +35,5 @@ public partial class CSmartPropVariableMaterial : CSmartPropVariable
     [NativeOffset(0x38)]
     [NativeName("m_DefaultValue")]
     [NativeMetadata("MPropertyFriendlyName", "Default Material")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIMaterial2____ DefaultValue { get; set; }
+    public string DefaultValue { get; set; }
 }

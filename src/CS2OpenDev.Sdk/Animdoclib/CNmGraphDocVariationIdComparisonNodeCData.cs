@@ -34,5 +34,5 @@ public partial class CNmGraphDocVariationIdComparisonNodeCData : CNmGraphDocVari
     [NativeName("m_values")]
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CGlobalSymbol__ Values { get; set; }
+    public string[] Values { get; set; }
 }

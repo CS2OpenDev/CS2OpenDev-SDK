@@ -31,5 +31,5 @@ public partial class PulseSelectorOutflowList
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Outflows")]
-    public CUtlVector__OutflowWithRequirements_t__ Outflows { get; set; }
+    public OutflowWithRequirements[] Outflows { get; set; }
 }

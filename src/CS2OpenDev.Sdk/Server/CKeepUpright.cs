@@ -55,7 +55,7 @@ public partial class CKeepUpright : CPointEntity
     /// </remarks>
     [NativeOffset(0x4D8)]
     [NativeName("m_attachedObject")]
-    public CHandle__CBaseEntity__ AttachedObject { get; set; }
+    public CHandle<CBaseEntity> AttachedObject { get; set; }
 
     /// <summary>
     ///     Gets or sets Controller.

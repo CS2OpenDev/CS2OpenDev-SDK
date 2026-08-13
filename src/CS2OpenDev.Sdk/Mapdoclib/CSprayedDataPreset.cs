@@ -61,7 +61,7 @@ public partial class CSprayedDataPreset
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_elements")]
-    public CUtlVector__CSprayedDataPresetElement__ Elements { get; set; }
+    public CSprayedDataPresetElement[] Elements { get; set; }
 
     /// <summary>
     ///     Gets or sets EraseAmount.

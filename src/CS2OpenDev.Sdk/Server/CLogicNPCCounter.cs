@@ -335,7 +335,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x548)]
     [NativeName("m_OnFactor_1")]
-    public CEntityOutputTemplate__float32__ OnFactor1 { get; set; }
+    public float? OnFactor1 { get; set; }
 
     /// <summary>
     ///     Gets or sets OnFactor2.
@@ -345,7 +345,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x5B8)]
     [NativeName("m_OnFactor_2")]
-    public CEntityOutputTemplate__float32__ OnFactor2 { get; set; }
+    public float? OnFactor2 { get; set; }
 
     /// <summary>
     ///     Gets or sets OnFactor3.
@@ -355,7 +355,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x628)]
     [NativeName("m_OnFactor_3")]
-    public CEntityOutputTemplate__float32__ OnFactor3 { get; set; }
+    public float? OnFactor3 { get; set; }
 
     /// <summary>
     ///     Gets or sets OnFactorAll.
@@ -365,7 +365,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4D8)]
     [NativeName("m_OnFactorAll")]
-    public CEntityOutputTemplate__float32__ OnFactorAll { get; set; }
+    public float? OnFactorAll { get; set; }
 
     /// <summary>
     ///     Gets or sets OnMaxCount1.
@@ -455,7 +455,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x568)]
     [NativeName("m_OnMinPlayerDist_1")]
-    public CEntityOutputTemplate__float32__ OnMinPlayerDist1 { get; set; }
+    public float? OnMinPlayerDist1 { get; set; }
 
     /// <summary>
     ///     Gets or sets OnMinPlayerDist2.
@@ -465,7 +465,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x5D8)]
     [NativeName("m_OnMinPlayerDist_2")]
-    public CEntityOutputTemplate__float32__ OnMinPlayerDist2 { get; set; }
+    public float? OnMinPlayerDist2 { get; set; }
 
     /// <summary>
     ///     Gets or sets OnMinPlayerDist3.
@@ -475,7 +475,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x648)]
     [NativeName("m_OnMinPlayerDist_3")]
-    public CEntityOutputTemplate__float32__ OnMinPlayerDist3 { get; set; }
+    public float? OnMinPlayerDist3 { get; set; }
 
     /// <summary>
     ///     Gets or sets OnMinPlayerDistAll.
@@ -485,7 +485,7 @@ public partial class CLogicNPCCounter : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4F8)]
     [NativeName("m_OnMinPlayerDistAll")]
-    public CEntityOutputTemplate__float32__ OnMinPlayerDistAll { get; set; }
+    public float? OnMinPlayerDistAll { get; set; }
 
     /// <summary>
     ///     Gets or sets Source.

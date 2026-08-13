@@ -46,5 +46,5 @@ public partial class CDetailPropType
     [NativeOffset(0x8)]
     [NativeName("m_Models")]
     [NativeMetadata("MVDataPromoteField", "1")]
-    public CUtlVector__CDetailPropModel__ Models { get; set; }
+    public CDetailPropModel[] Models { get; set; }
 }

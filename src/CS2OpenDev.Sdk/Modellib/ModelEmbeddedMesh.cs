@@ -42,7 +42,7 @@ public partial class ModelEmbeddedMesh
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_indexBuffers")]
-    public CUtlVector__ModelMeshBufferData_t__ IndexBuffers { get; set; }
+    public ModelMeshBufferData[] IndexBuffers { get; set; }
 
     /// <summary>
     ///     Gets or sets MeshIndex.
@@ -82,7 +82,7 @@ public partial class ModelEmbeddedMesh
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_toolsBuffers")]
-    public CUtlVector__ModelMeshBufferData_t__ ToolsBuffers { get; set; }
+    public ModelMeshBufferData[] ToolsBuffers { get; set; }
 
     /// <summary>
     ///     Gets or sets ToolsVBBlock.
@@ -112,5 +112,5 @@ public partial class ModelEmbeddedMesh
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_vertexBuffers")]
-    public CUtlVector__ModelMeshBufferData_t__ VertexBuffers { get; set; }
+    public ModelMeshBufferData[] VertexBuffers { get; set; }
 }

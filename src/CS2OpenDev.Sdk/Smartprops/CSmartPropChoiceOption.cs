@@ -55,5 +55,5 @@ public partial class CSmartPropChoiceOption
     [NativeName("m_VariableValues")]
     [NativeMetadata("MPropertyAttributeEditor", "SmartPropAttributeEditor(VariableValue)")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CSmartPropAttributeVariableValue__ VariableValues { get; set; }
+    public object?[] VariableValues { get; set; }
 }

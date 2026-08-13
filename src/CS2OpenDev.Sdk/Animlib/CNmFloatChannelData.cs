@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Animlib;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CNmFloatChannelData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_channelSettings")]
-    public CUtlVector__CNmFloatChannelData_ChannelSettings_t__ ChannelSettings { get; set; }
+    public CNmFloatChannelDataChannelSettings[] ChannelSettings { get; set; }
 
     /// <summary>
     ///     Gets or sets CompressedData.
@@ -41,7 +47,7 @@ public partial class CNmFloatChannelData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_compressedData")]
-    public CUtlVector__uint16__ CompressedData { get; set; }
+    public ushort[] CompressedData { get; set; }
 
     /// <summary>
     ///     Gets or sets CompressedOffsets.
@@ -51,7 +57,7 @@ public partial class CNmFloatChannelData
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_compressedOffsets")]
-    public CUtlVector__uint32__ CompressedOffsets { get; set; }
+    public uint[] CompressedOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets SetId.
@@ -71,5 +77,5 @@ public partial class CNmFloatChannelData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_skeleton")]
-    public CStrongHandle__InfoForResourceTypeCNmSkeleton__ Skeleton { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton { get; set; }
 }

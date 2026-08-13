@@ -59,7 +59,7 @@ public partial class CDestructiblePartsComponent
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_vecDamageTakenByHitGroup")]
-    public CUtlVector__uint16__ DamageTakenByHitGroup { get; set; }
+    public ushort[] DamageTakenByHitGroup { get; set; }
 
     /// <summary>
     ///     Gets or sets Owner.
@@ -69,5 +69,5 @@ public partial class CDestructiblePartsComponent
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_hOwner")]
-    public CHandle__C_BaseModelEntity__ Owner { get; set; }
+    public CHandle<C_BaseModelEntity> Owner { get; set; }
 }

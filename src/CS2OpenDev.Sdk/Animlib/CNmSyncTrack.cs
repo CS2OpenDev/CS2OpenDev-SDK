@@ -41,5 +41,5 @@ public partial class CNmSyncTrack
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_syncEvents")]
-    public CUtlLeanVectorFixedGrowable__CNmSyncTrack_Event_t__10__ SyncEvents { get; set; }
+    public CNmSyncTrackEvent[] SyncEvents { get; set; }
 }

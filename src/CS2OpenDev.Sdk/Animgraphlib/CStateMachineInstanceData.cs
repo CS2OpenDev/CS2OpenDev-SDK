@@ -31,7 +31,7 @@ public partial class CStateMachineInstanceData
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_currentTransitionIndex")]
-    public CAnimNetVar__int32__ CurrentTransitionIndex { get; set; }
+    public int CurrentTransitionIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevStateIndex.

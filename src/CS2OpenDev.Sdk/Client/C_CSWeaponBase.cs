@@ -416,7 +416,7 @@ public partial class C_CSWeaponBase : C_BasePlayerWeapon
     /// </remarks>
     [NativeOffset(0x1900)]
     [NativeName("m_hPrevOwner")]
-    public CHandle__C_CSPlayerPawn__ PrevOwner { get; set; }
+    public CHandle<C_CSPlayerPawn> PrevOwner { get; set; }
 
     /// <summary>
     ///     Gets or sets SilencerOn.

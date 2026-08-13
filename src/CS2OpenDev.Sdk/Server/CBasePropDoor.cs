@@ -35,7 +35,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC30)]
     [NativeName("m_hActivator")]
-    public CHandle__CBaseEntity__ Activator { get; set; }
+    public CHandle<CBaseEntity> Activator { get; set; }
 
     /// <summary>
     ///     Gets or sets AutoReturnDelay.
@@ -55,7 +55,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xBF8)]
     [NativeName("m_hBlocker")]
-    public CHandle__CBaseEntity__ Blocker { get; set; }
+    public CHandle<CBaseEntity> Blocker { get; set; }
 
     /// <summary>
     ///     Gets or sets ClosedAngles.
@@ -86,7 +86,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     [NativeOffset(0xBB8)]
     [NativeName("m_hDoorList")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CHandle__CBasePropDoor____ DoorList { get; set; }
+    public CHandle<CBasePropDoor>[] DoorList { get; set; }
 
     /// <summary>
     ///     Gets or sets DoorState.
@@ -166,7 +166,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xCA8)]
     [NativeName("m_hMaster")]
-    public CHandle__CBasePropDoor__ Master { get; set; }
+    public CHandle<CBasePropDoor> Master { get; set; }
 
     /// <summary>
     ///     Gets or sets NeedsHardware.

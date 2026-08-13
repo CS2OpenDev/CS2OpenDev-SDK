@@ -36,7 +36,7 @@ public partial class CCSPlayerControllerDamageServices : CPlayerControllerCompon
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_DamageList")]
-    public C_UtlVectorEmbeddedNetworkVar__CDamageRecord__ DamageList { get; set; }
+    public CDamageRecord[] DamageList { get; set; }
 
     /// <summary>
     ///     Gets or sets SendUpdate.

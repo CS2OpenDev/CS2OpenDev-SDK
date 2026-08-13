@@ -36,7 +36,7 @@ public partial class CBreakable : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7BC)]
     [NativeName("m_hBreaker")]
-    public CHandle__CBaseEntity__ Breaker { get; set; }
+    public CHandle<CBaseEntity> Breaker { get; set; }
 
     /// <summary>
     ///     Gets or sets CPropDataComponent.
@@ -116,7 +116,7 @@ public partial class CBreakable : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_OnHealthChanged")]
-    public CEntityOutputTemplate__float32__ OnHealthChanged { get; set; }
+    public float? OnHealthChanged { get; set; }
 
     /// <summary>
     ///     Gets or sets OnStartDeath.
@@ -156,7 +156,7 @@ public partial class CBreakable : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x83C)]
     [NativeName("m_hPhysicsAttacker")]
-    public CHandle__CBasePlayerPawn__ PhysicsAttacker { get; set; }
+    public CHandle<CBasePlayerPawn> PhysicsAttacker { get; set; }
 
     /// <summary>
     ///     Gets or sets PressureDelay.

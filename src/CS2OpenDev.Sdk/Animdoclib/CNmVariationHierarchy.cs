@@ -31,5 +31,5 @@ public partial class CNmVariationHierarchy
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_variations")]
-    public CUtlVector__NmVariation_t__ Variations { get; set; }
+    public NmVariation[] Variations { get; set; }
 }

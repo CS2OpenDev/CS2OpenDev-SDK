@@ -52,7 +52,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_DetailLayerStrings")]
-    public CUtlVector__CUtlString__ DetailLayerStrings { get; set; }
+    public string[] DetailLayerStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets DetailLayers.
@@ -62,7 +62,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_DetailLayers")]
-    public CUtlVector__uint32__ DetailLayers { get; set; }
+    public uint[] DetailLayers { get; set; }
 
     /// <summary>
     ///     Gets or sets IncludeDetailLayerCount.
@@ -82,7 +82,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_InteractAs")]
-    public CUtlVector__uint32__ InteractAs { get; set; }
+    public uint[] InteractAs { get; set; }
 
     /// <summary>
     ///     Gets or sets InteractAsStrings.
@@ -92,7 +92,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_InteractAsStrings")]
-    public CUtlVector__CUtlString__ InteractAsStrings { get; set; }
+    public string[] InteractAsStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets InteractExclude.
@@ -102,7 +102,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_InteractExclude")]
-    public CUtlVector__uint32__ InteractExclude { get; set; }
+    public uint[] InteractExclude { get; set; }
 
     /// <summary>
     ///     Gets or sets InteractExcludeStrings.
@@ -112,7 +112,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_InteractExcludeStrings")]
-    public CUtlVector__CUtlString__ InteractExcludeStrings { get; set; }
+    public string[] InteractExcludeStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets InteractWith.
@@ -122,7 +122,7 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_InteractWith")]
-    public CUtlVector__uint32__ InteractWith { get; set; }
+    public uint[] InteractWith { get; set; }
 
     /// <summary>
     ///     Gets or sets InteractWithStrings.
@@ -132,5 +132,5 @@ public partial class VPhysXCollisionAttributes
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_InteractWithStrings")]
-    public CUtlVector__CUtlString__ InteractWithStrings { get; set; }
+    public string[] InteractWithStrings { get; set; }
 }

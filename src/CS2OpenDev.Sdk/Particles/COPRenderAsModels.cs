@@ -45,7 +45,7 @@ public partial class COPRenderAsModels : CParticleFunctionRenderer
     [NativeName("m_ModelList")]
     [NativeMetadata("MParticleRequireDefaultArrayEntry", "")]
     [NativeMetadata("MPropertyFriendlyName", "models")]
-    public CUtlVector__ModelReference_t__ ModelList { get; set; }
+    public ModelReference[] ModelList { get; set; }
 
     /// <summary>
     ///     scale factor for radius.

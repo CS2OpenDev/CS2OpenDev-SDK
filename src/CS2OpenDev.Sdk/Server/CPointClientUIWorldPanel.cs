@@ -40,7 +40,7 @@ public partial class CPointClientUIWorldPanel : CBaseClientUIEntity
     /// </remarks>
     [NativeOffset(0x900)]
     [NativeName("m_vecCSSClasses")]
-    public CNetworkUtlVectorBase__CUtlSymbolLarge__ CSSClasses { get; set; }
+    public string[] CSSClasses { get; set; }
 
     /// <summary>
     ///     Gets or sets DPI.

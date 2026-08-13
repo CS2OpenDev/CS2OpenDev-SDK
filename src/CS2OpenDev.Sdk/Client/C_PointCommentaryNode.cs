@@ -157,7 +157,7 @@ public partial class C_PointCommentaryNode : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x11D8)]
     [NativeName("m_hViewPosition")]
-    public CHandle__C_BaseEntity__ ViewPosition { get; set; }
+    public CHandle<C_BaseEntity> ViewPosition { get; set; }
 
     /// <summary>
     ///     Gets or sets WasActive.

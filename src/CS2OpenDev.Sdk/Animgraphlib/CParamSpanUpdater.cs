@@ -30,5 +30,5 @@ public partial class CParamSpanUpdater
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_spans")]
-    public CUtlVector__ParamSpan_t__ Spans { get; set; }
+    public ParamSpan[] Spans { get; set; }
 }

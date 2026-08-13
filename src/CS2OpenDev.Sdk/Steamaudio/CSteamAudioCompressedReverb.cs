@@ -61,7 +61,7 @@ public partial class CSteamAudioCompressedReverb
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_vecDictionary")]
-    public CUtlVector__float32__ Dictionary { get; set; }
+    public float[] Dictionary { get; set; }
 
     /// <summary>
     ///     Gets or sets NumSingularValues.
@@ -71,7 +71,7 @@ public partial class CSteamAudioCompressedReverb
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_vecNumSingularValues")]
-    public CUtlVector__int32__ NumSingularValues { get; set; }
+    public int[] NumSingularValues { get; set; }
 
     /// <summary>
     ///     Gets or sets PCompressedData.
@@ -101,5 +101,5 @@ public partial class CSteamAudioCompressedReverb
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_vecCompressedData")]
-    public CUtlVector__float32__ VecCompressedData { get; set; }
+    public float[] VecCompressedData { get; set; }
 }

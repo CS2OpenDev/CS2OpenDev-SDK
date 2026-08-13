@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Toolscene;
 
 /// <summary>
@@ -30,5 +36,5 @@ public partial class CLightRigPostProcessing
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hPostProcessing")]
-    public CStrongHandle__InfoForResourceTypeCPostProcessingResource__ PostProcessing { get; set; }
+    public CStrongHandle<InfoForResourceTypeCPostProcessingResource> PostProcessing { get; set; }
 }

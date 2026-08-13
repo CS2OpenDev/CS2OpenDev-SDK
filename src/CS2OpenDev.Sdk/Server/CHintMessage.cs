@@ -29,7 +29,7 @@ public partial class CHintMessage
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_args")]
-    public CUtlVector__char___ Args { get; set; }
+    public string?[] Args { get; set; }
 
     /// <summary>
     ///     Gets or sets Duration.

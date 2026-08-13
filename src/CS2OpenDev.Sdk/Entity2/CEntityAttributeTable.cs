@@ -29,7 +29,7 @@ public partial class CEntityAttributeTable
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Attributes")]
-    public CUtlOrderedMap__CUtlStringTokenNoRegistration__Attribute_t__ Attributes { get; set; }
+    public Dictionary<CUtlStringTokenNoRegistration, Attribute> Attributes { get; set; }
 
     /// <summary>
     ///     Gets or sets Names.
@@ -39,5 +39,5 @@ public partial class CEntityAttributeTable
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_Names")]
-    public CUtlOrderedMap__CUtlStringTokenNoRegistration__CUtlString__ Names { get; set; }
+    public Dictionary<CUtlStringTokenNoRegistration, string> Names { get; set; }
 }

@@ -60,7 +60,7 @@ public partial class CCSWeaponBaseVData : CBasePlayerWeaponVData
     [NativeOffset(0x528)]
     [NativeName("m_szAnimSkeleton")]
     [NativeMetadata("MPropertyStartGroup", "Visuals")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCNmSkeleton____ AnimSkeleton { get; set; }
+    public string AnimSkeleton { get; set; }
 
     /// <summary>
     ///     Gets or sets ArmorRatio.
@@ -785,7 +785,7 @@ public partial class CCSWeaponBaseVData : CBasePlayerWeaponVData
     [NativeOffset(0x620)]
     [NativeName("m_szTracerParticle")]
     [NativeMetadata("MPropertyDescription", "Effect to actually fire into the world from this weapon")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIParticleSystemDefinition____ TracerParticle { get; set; }
+    public string TracerParticle { get; set; }
 
     /// <summary>
     ///     Gets or sets UnzoomsAfterShot.

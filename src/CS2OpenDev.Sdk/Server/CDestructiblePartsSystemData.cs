@@ -50,5 +50,5 @@ public partial class CDestructiblePartsSystemData
     [NativeOffset(0x0)]
     [NativeName("m_PartsDataByHitGroup")]
     [NativeMetadata("MPropertyDescription", "Destructible Parts")]
-    public CUtlOrderedMap__HitGroup_t__CDestructiblePart__ PartsDataByHitGroup { get; set; }
+    public Dictionary<HitGroup, CDestructiblePart> PartsDataByHitGroup { get; set; }
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "4.1",
+  "version": "5.0",
   "// pathFilters": [
     "Until this file existed, CS2OpenDev.Sdk.GameEvents inherited the root",
     "version.json, whose pathFilters are `:/src/CS2OpenDev.Sdk/` — which does",

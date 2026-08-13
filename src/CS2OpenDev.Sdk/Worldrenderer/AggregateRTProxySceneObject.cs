@@ -32,7 +32,7 @@ public partial class AggregateRTProxySceneObject
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_BLASes")]
-    public CUtlVector__RTProxyBLAS_t__ BLASes { get; set; }
+    public RTProxyBLAS[] BLASes { get; set; }
 
     /// <summary>
     ///     Gets or sets IBData.
@@ -72,7 +72,7 @@ public partial class AggregateRTProxySceneObject
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_Instances")]
-    public CUtlVector__RTProxyInstanceInfo_t__ Instances { get; set; }
+    public RTProxyInstanceInfo[] Instances { get; set; }
 
     /// <summary>
     ///     Gets or sets Layer.

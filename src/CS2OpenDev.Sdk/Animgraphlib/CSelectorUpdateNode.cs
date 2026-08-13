@@ -41,7 +41,7 @@ public partial class CSelectorUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x9C)]
     [NativeName("m_flBlendTime")]
-    public CAnimValue__float32__ BlendTime { get; set; }
+    public float BlendTime { get; set; }
 
     /// <summary>
     ///     Gets or sets Children.
@@ -51,7 +51,7 @@ public partial class CSelectorUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_children")]
-    public CUtlVector__CAnimUpdateNodeRef__ Children { get; set; }
+    public CAnimUpdateNodeRef[] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets LockWhenWaning.
@@ -121,5 +121,5 @@ public partial class CSelectorUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_tags")]
-    public CUtlVector__int8__ Tags { get; set; }
+    public sbyte[] Tags { get; set; }
 }

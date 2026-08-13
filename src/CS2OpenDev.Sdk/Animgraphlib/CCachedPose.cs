@@ -47,7 +47,7 @@ public partial class CCachedPose
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_morphWeights")]
-    public CUtlVector__float32__ MorphWeights { get; set; }
+    public float[] MorphWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets Sequence.
@@ -67,5 +67,5 @@ public partial class CCachedPose
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_transforms")]
-    public CUtlVector__CTransform__ Transforms { get; set; }
+    public CTransform[] Transforms { get; set; }
 }

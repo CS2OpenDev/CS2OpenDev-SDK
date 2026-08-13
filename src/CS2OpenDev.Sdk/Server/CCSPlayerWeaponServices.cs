@@ -86,7 +86,7 @@ public partial class CCSPlayerWeaponServices : CPlayerWeaponServices
     /// </remarks>
     [NativeOffset(0x1860)]
     [NativeName("m_networkAnimTiming")]
-    public CNetworkUtlVectorBase__uint8__ NetworkAnimTiming { get; set; }
+    public byte[] NetworkAnimTiming { get; set; }
 
     /// <summary>
     ///     GameTime before which no weapon switch is permitted (e.g. after throwing a grenade).
@@ -117,7 +117,7 @@ public partial class CCSPlayerWeaponServices : CPlayerWeaponServices
     /// </remarks>
     [NativeOffset(0xC4)]
     [NativeName("m_hSavedWeapon")]
-    public CHandle__CBasePlayerWeapon__ SavedWeapon { get; set; }
+    public CHandle<CBasePlayerWeapon> SavedWeapon { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeToMelee.

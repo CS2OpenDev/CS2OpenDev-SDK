@@ -286,20 +286,25 @@ internal static class TypeMapper
     // so `MDLName_t` never appears in the emitted source and shouldn't trigger a
     // `using` directive for its module. This predicate must mirror the branches in
     // `MapAtomicCore` — keep them in sync.
-    internal static bool AtomicProjectionUsesInner(string atomName, string? handleKind) =>
-        handleKind != null
-        || TypedHandleAtoms.Contains(atomName)
-        || SmartPtrAtoms.Contains(atomName)
-        || CollectionAtoms.Contains(atomName)
-        || MapAtoms.Contains(atomName)
-        || ValueWrapperAtoms.Contains(atomName)
-        || OptionalRefAtoms.Contains(atomName)
-        || atomName is "CCompressor" or "CEntityOutputTemplate" or "std::pair";
+    internal static bool AtomicProjectionUsesInner(string atomName, string? handleKind)
+    {
+        atomName = BareAtomName(atomName);
+        return handleKind != null
+            || TypedHandleAtoms.Contains(atomName)
+            || SmartPtrAtoms.Contains(atomName)
+            || CollectionAtoms.Contains(atomName)
+            || MapAtoms.Contains(atomName)
+            || ValueWrapperAtoms.Contains(atomName)
+            || OptionalRefAtoms.Contains(atomName)
+            || atomName is "CCompressor" or "CEntityOutputTemplate" or "std::pair";
+    }
 
     // Whether an atomic's C# projection surfaces `Inner2` (only map and pair do).
-    internal static bool AtomicProjectionUsesInner2(string atomName) =>
-        MapAtoms.Contains(atomName)
-        || atomName == "std::pair";
+    internal static bool AtomicProjectionUsesInner2(string atomName)
+    {
+        atomName = BareAtomName(atomName);
+        return MapAtoms.Contains(atomName) || atomName == "std::pair";
+    }
 
     internal static void BeginEmission()
     {
@@ -335,26 +340,29 @@ internal static class TypeMapper
     // Whether an atomic name resolves to a built-in C# projection (string, int,
     // Dictionary, etc.). Used by ModuleEmitter to decide which atomic references
     // need stub-class emission.
-    internal static bool IsKnownAtomicName(string name) =>
-        StringAtoms.Contains(name)
-        || IntegerAtoms.Contains(name)
-        || CollectionAtoms.Contains(name)
-        || MapAtoms.Contains(name)
-        || SmartPtrAtoms.Contains(name)
-        || SyntheticAtoms.Contains(name)
-        || TypedHandleAtoms.Contains(name)
-        || UntypedHandleAtoms.Contains(name)
-        || ValueWrapperAtoms.Contains(name)
-        || OptionalRefAtoms.Contains(name)
-        || ForeignPointerAtoms.Contains(name)
-        || OpaqueBlobAtoms.Contains(name)
-        || OpaqueObjectAtoms.Contains(name)
-        || NamedStringAtoms.Contains(name)
-        || SmartPropAttributeProjections.ContainsKey(name)
-        || name is "CUtlBinaryBlock" or "std::pair" or "V_uuid_t"
-            or "CNetworkedQuantizedFloat" or "KeyValues" or "KeyValues3"
-            or "CBitVec" or "CTypedBitVec" or "CCompressor" or "FourVectors"
-            or "CEntityOutputTemplate" or "CKV3MemberNameSet" or "SphereBase_t";
+    internal static bool IsKnownAtomicName(string name)
+    {
+        name = BareAtomName(name);
+        return StringAtoms.Contains(name)
+            || IntegerAtoms.Contains(name)
+            || CollectionAtoms.Contains(name)
+            || MapAtoms.Contains(name)
+            || SmartPtrAtoms.Contains(name)
+            || SyntheticAtoms.Contains(name)
+            || TypedHandleAtoms.Contains(name)
+            || UntypedHandleAtoms.Contains(name)
+            || ValueWrapperAtoms.Contains(name)
+            || OptionalRefAtoms.Contains(name)
+            || ForeignPointerAtoms.Contains(name)
+            || OpaqueBlobAtoms.Contains(name)
+            || OpaqueObjectAtoms.Contains(name)
+            || NamedStringAtoms.Contains(name)
+            || SmartPropAttributeProjections.ContainsKey(name)
+            || name is "CUtlBinaryBlock" or "std::pair" or "V_uuid_t"
+                or "CNetworkedQuantizedFloat" or "KeyValues" or "KeyValues3"
+                or "CBitVec" or "CTypedBitVec" or "CCompressor" or "FourVectors"
+                or "CEntityOutputTemplate" or "CKV3MemberNameSet" or "SphereBase_t";
+    }
 
     // Returns the canonical C# name for a C++ class/enum, honouring the collision
     // disambiguator the name-map step applied. Falls back to NameHelpers.ToTypeName
@@ -408,13 +416,21 @@ internal static class TypeMapper
     // as unknown and emit a spurious stub class + CS2_GEN_003 diagnostic.
     private static string MapAtomicCore(AtomicType at)
     {
+        // Classification keys off the BARE template name. Schema 2.0 made an
+        // atomic's `name` fully templated -- `CUtlVector< CGlobalSymbol >`, not
+        // `CUtlVector` -- while every set in this file is keyed bare, so for three
+        // schema majors no templated atomic matched anything and all 1,931 of them
+        // fell through to the stub path below. `at.Name` is still the right identity
+        // for that path: a stub's type name has to be the full instantiation.
+        string name = BareAtomName(at.Name);
+
         // Handle atomics — typed (CHandle, CStrongHandle, …) project to the
         // generic value structs emitted by HandleTypes; untyped (CEntityHandle,
         // CStrongHandleVoid) project to the corresponding non-generic structs.
         // We key off the atomic NAME because the new upstream schema doesn't
         // carry the old `handle_kind` field at all (the legacy schemas.json did,
         // and the old branch below preserved that compat path for fixtures).
-        if (TypedHandleAtoms.Contains(at.Name))
+        if (TypedHandleAtoms.Contains(name))
         {
             if (at.Inner is null)
             {
@@ -422,19 +438,19 @@ internal static class TypeMapper
                 // typed handles. If a future schema variant omits it, fall back
                 // to the untyped sibling rather than emitting `CHandle<>` which
                 // wouldn't compile.
-                return at.Name switch
+                return name switch
                 {
                     "CHandle" => "CEntityHandle",
                     _ => "CStrongHandleVoid"
                 };
             }
 
-            return at.Name + "<" + Map(at.Inner) + ">";
+            return name + "<" + Map(at.Inner) + ">";
         }
 
-        if (UntypedHandleAtoms.Contains(at.Name))
+        if (UntypedHandleAtoms.Contains(name))
         {
-            return at.Name;
+            return name;
         }
 
         // Note: an older schema variant carried a `handle_kind` field on each
@@ -445,25 +461,25 @@ internal static class TypeMapper
         // Storage shells around a single value of `inner` — animation/script
         // wrappers. Projects to the inner type directly. See the comment block
         // around ValueWrapperAtoms for the source-of-truth references.
-        if (ValueWrapperAtoms.Contains(at.Name))
+        if (ValueWrapperAtoms.Contains(name))
         {
             return at.Inner != null ? Map(at.Inner) : "object?";
         }
 
         // "Optional ref to T" — wraps inner; projects as nullable inner.
-        if (OptionalRefAtoms.Contains(at.Name))
+        if (OptionalRefAtoms.Contains(name))
         {
             return at.Inner != null ? Map(at.Inner) + "?" : "object?";
         }
 
         // Compressed animation streams — wraps inner as a compressed sequence.
-        if (at.Name == "CCompressor")
+        if (name == "CCompressor")
         {
             return at.Inner != null ? Map(at.Inner) + "[]" : "byte[]";
         }
 
         // Entity I/O typed output — fires events whose payload is the inner type.
-        if (at.Name == "CEntityOutputTemplate")
+        if (name == "CEntityOutputTemplate")
         {
             return at.Inner != null ? Map(at.Inner) + "?" : "object?";
         }
@@ -471,7 +487,7 @@ internal static class TypeMapper
         // SmartProp editor attributes — per-type C# projection picked from the
         // atomic-name suffix. Editor-only at runtime, but we surface the
         // expected value type so consumers can inspect SmartProp metadata.
-        if (SmartPropAttributeProjections.TryGetValue(at.Name, out string? smartPropProjection))
+        if (SmartPropAttributeProjections.TryGetValue(name, out string? smartPropProjection))
         {
             return smartPropProjection;
         }
@@ -479,25 +495,25 @@ internal static class TypeMapper
         // Foreign-pointer atomics (VScript HSCRIPT, Steam Audio IPL handles,
         // raw C function pointers). Project as `nint` so the bit width and
         // pointer-ness are honest.
-        if (ForeignPointerAtoms.Contains(at.Name))
+        if (ForeignPointerAtoms.Contains(name))
         {
             return "nint";
         }
 
         // Opaque serialised blobs — schema doesn't expose binary shape.
-        if (OpaqueBlobAtoms.Contains(at.Name))
+        if (OpaqueBlobAtoms.Contains(name))
         {
             return "byte[]?";
         }
 
         // Genuinely-opaque atomics that don't even carry a clear blob shape.
-        if (OpaqueObjectAtoms.Contains(at.Name))
+        if (OpaqueObjectAtoms.Contains(name))
         {
             return "object?";
         }
 
         // Named-reference atomics — schema represents them as a name token.
-        if (NamedStringAtoms.Contains(at.Name))
+        if (NamedStringAtoms.Contains(name))
         {
             return "string?";
         }
@@ -506,34 +522,34 @@ internal static class TypeMapper
         // fltx4 is a 4-float SIMD pack, so the total payload is 12 floats. We
         // project as `float[]?` because no consumer-facing struct exists today
         // — adding a dedicated synthetic struct is a future enhancement.
-        if (at.Name == "FourVectors")
+        if (name == "FourVectors")
         {
             return "float[]?";
         }
 
         // KV3 member-name set — list of name tokens.
-        if (at.Name == "CKV3MemberNameSet")
+        if (name == "CKV3MemberNameSet")
         {
             return "string[]?";
         }
 
         // Bounding sphere base — schema's `inner` carries the float radius type.
-        if (at.Name == "SphereBase_t")
+        if (name == "SphereBase_t")
         {
             return at.Inner != null ? Map(at.Inner) + "?" : "float?";
         }
 
-        if (SmartPtrAtoms.Contains(at.Name))
+        if (SmartPtrAtoms.Contains(name))
         {
             return at.Inner != null ? Map(at.Inner) + "?" : "object?";
         }
 
-        if (CollectionAtoms.Contains(at.Name))
+        if (CollectionAtoms.Contains(name))
         {
             return at.Inner != null ? Map(at.Inner) + "[]" : "object[]";
         }
 
-        if (MapAtoms.Contains(at.Name))
+        if (MapAtoms.Contains(name))
         {
             if (at is { Inner: not null, Inner2: not null })
             {
@@ -549,12 +565,12 @@ internal static class TypeMapper
             return "object /* map */";
         }
 
-        if (at is { Name: "std::pair", Inner: not null, Inner2: not null })
+        if (name == "std::pair" && at is { Inner: not null, Inner2: not null })
         {
             return "(" + Map(at.Inner) + ", " + Map(at.Inner2) + ")";
         }
 
-        if (at.Name == "CUtlBinaryBlock")
+        if (name == "CUtlBinaryBlock")
         {
             return "byte[]";
         }
@@ -565,7 +581,7 @@ internal static class TypeMapper
         // form; the `?` is added by the PtrType wrapper in `Map` for the common
         // pointer-to-KeyValues field shape (`m_pKeyValues`), or by the TM-1
         // Nullable post-pass for atomic fields that carry `nullable: true`.
-        if (at.Name is "KeyValues3" or "KeyValues")
+        if (name is "KeyValues3" or "KeyValues")
         {
             return "string";
         }
@@ -573,35 +589,35 @@ internal static class TypeMapper
         // CBitVec / CTypedBitVec — fixed-width bitvectors. Project as byte[]
         // (the only shape the schema carries about them; CTypedBitVec's `inner`
         // is the count, not a meaningful element type).
-        if (at.Name is "CBitVec" or "CTypedBitVec")
+        if (name is "CBitVec" or "CTypedBitVec")
         {
             return "byte[]";
         }
 
-        if (StringAtoms.Contains(at.Name))
+        if (StringAtoms.Contains(name))
         {
             return "string";
         }
 
-        if (IntegerAtoms.Contains(at.Name))
+        if (IntegerAtoms.Contains(name))
         {
             return "int";
         }
 
-        if (at.Name == "V_uuid_t")
+        if (name == "V_uuid_t")
         {
             return "Guid";
         }
 
-        if (at.Name == "CNetworkedQuantizedFloat")
+        if (name == "CNetworkedQuantizedFloat")
         {
             return "float";
         }
 
         // Synthetic math/geometry types — use ToTypeName for the C# name
-        if (SyntheticAtoms.Contains(at.Name))
+        if (SyntheticAtoms.Contains(name))
         {
-            return NameHelpers.Esc(NameHelpers.ToTypeName(at.Name));
+            return NameHelpers.Esc(NameHelpers.ToTypeName(name));
         }
 
         // Q3: unresolved atomic. Register it for stub emission + CS2_GEN_003 diagnostic

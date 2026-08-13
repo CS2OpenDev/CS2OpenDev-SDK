@@ -51,7 +51,7 @@ public partial class CBlendUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_children")]
-    public CUtlVector__CAnimUpdateNodeRef__ Children { get; set; }
+    public CAnimUpdateNodeRef[] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets Damping.
@@ -131,7 +131,7 @@ public partial class CBlendUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_sortedOrder")]
-    public CUtlVector__uint8__ SortedOrder { get; set; }
+    public byte[] SortedOrder { get; set; }
 
     /// <summary>
     ///     Gets or sets SyncCycles.
@@ -151,5 +151,5 @@ public partial class CBlendUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_targetValues")]
-    public CUtlVector__float32__ TargetValues { get; set; }
+    public float[] TargetValues { get; set; }
 }

@@ -59,7 +59,7 @@ public partial class CEnvGlobal : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_outCounter")]
-    public CEntityOutputTemplate__int32__ OutCounter { get; set; }
+    public int? OutCounter { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerMode.

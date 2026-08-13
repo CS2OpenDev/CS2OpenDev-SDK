@@ -55,7 +55,7 @@ public partial class CBombTarget : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x940)]
     [NativeName("m_hInstructorHint")]
-    public CHandle__CBaseEntity__ InstructorHint { get; set; }
+    public CHandle<CBaseEntity> InstructorHint { get; set; }
 
     /// <summary>
     ///     Gets or sets IsBombSiteB.

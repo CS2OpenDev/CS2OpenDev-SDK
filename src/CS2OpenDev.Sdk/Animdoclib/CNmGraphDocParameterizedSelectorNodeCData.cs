@@ -35,5 +35,5 @@ public partial class CNmGraphDocParameterizedSelectorNodeCData : CNmGraphDocVari
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyGroupName", "Advanced")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__uint8__ OptionWeights { get; set; }
+    public byte[] OptionWeights { get; set; }
 }

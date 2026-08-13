@@ -37,7 +37,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_bools")]
-    public CUtlLeanVector__bool__ Bools { get; set; }
+    public bool[] Bools { get; set; }
 
     /// <summary>
     ///     Gets or sets Colors.
@@ -47,7 +47,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_colors")]
-    public CUtlLeanVector__Color__ Colors { get; set; }
+    public Color[] Colors { get; set; }
 
     /// <summary>
     ///     Gets or sets Dimensions.
@@ -57,7 +57,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_dimensions")]
-    public CUtlLeanVector__float32__ Dimensions { get; set; }
+    public float[] Dimensions { get; set; }
 
     /// <summary>
     ///     Gets or sets Entity.
@@ -67,7 +67,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets Etype.
@@ -87,7 +87,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_strings")]
-    public CUtlLeanVector__CUtlString__ Strings { get; set; }
+    public string[] Strings { get; set; }
 
     /// <summary>
     ///     Gets or sets Times.
@@ -97,7 +97,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_times")]
-    public CUtlLeanVector__float64__ Times { get; set; }
+    public double[] Times { get; set; }
 
     /// <summary>
     ///     Gets or sets Uint64s.
@@ -107,7 +107,7 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_uint64s")]
-    public CUtlLeanVector__uint64__ Uint64s { get; set; }
+    public ulong[] Uint64s { get; set; }
 
     /// <summary>
     ///     Gets or sets Vectors.
@@ -117,5 +117,5 @@ public partial class CDebugDrawHistoryData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_vectors")]
-    public CUtlLeanVector__Vector4D__ Vectors { get; set; }
+    public Vector4D[] Vectors { get; set; }
 }

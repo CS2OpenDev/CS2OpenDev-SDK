@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -454,7 +455,7 @@ public partial class COPRenderModels : CParticleFunctionRenderer
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "material variables")]
     [NativeMetadata("MPropertySortPriority", "600")]
-    public CUtlVector__MaterialVariable_t__ MaterialVars { get; set; }
+    public MaterialVariable[] MaterialVars { get; set; }
 
     /// <summary>
     ///     input model.
@@ -480,7 +481,7 @@ public partial class COPRenderModels : CParticleFunctionRenderer
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "models")]
     [NativeMetadata("MPropertySortPriority", "775")]
-    public CUtlVector__ModelReference_t__ ModelList { get; set; }
+    public ModelReference[] ModelList { get; set; }
 
     /// <summary>
     ///     model scale CP.
@@ -567,7 +568,7 @@ public partial class COPRenderModels : CParticleFunctionRenderer
     [NativeMetadata("MPropertyFriendlyName", "material override")]
     [NativeMetadata("MPropertySortPriority", "600")]
     [NativeMetadata("MPropertyStartGroup", "Material")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ OverrideMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> OverrideMaterial { get; set; }
 
     /// <summary>
     ///     override translucent materials.

@@ -67,5 +67,5 @@ public partial class CSequenceUpdateNode : CSequenceUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 }

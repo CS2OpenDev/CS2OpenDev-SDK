@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Materialsystem2;
 
 /// <summary>
@@ -31,5 +37,5 @@ public partial class MaterialParamTexture : MaterialParam
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_pValue")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ Value { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> Value { get; set; }
 }

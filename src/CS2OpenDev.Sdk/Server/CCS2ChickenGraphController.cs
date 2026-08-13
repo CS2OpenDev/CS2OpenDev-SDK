@@ -31,7 +31,7 @@ public partial class CCS2ChickenGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_action")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ Action { get; set; }
+    public string? Action { get; set; }
 
     /// <summary>
     ///     Gets or sets ActionReset.
@@ -61,7 +61,7 @@ public partial class CCS2ChickenGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xC0)]
     [NativeName("m_idleVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ IdleVariation { get; set; }
+    public float? IdleVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets InWater.
@@ -71,7 +71,7 @@ public partial class CCS2ChickenGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_bInWater")]
-    public CAnimGraph2ParamOptionalRef__bool__ InWater { get; set; }
+    public bool? InWater { get; set; }
 
     /// <summary>
     ///     Gets or sets PanicVariation.
@@ -81,7 +81,7 @@ public partial class CCS2ChickenGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xF0)]
     [NativeName("m_panicVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ PanicVariation { get; set; }
+    public float? PanicVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets RunVariation.
@@ -91,7 +91,7 @@ public partial class CCS2ChickenGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_runVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ RunVariation { get; set; }
+    public float? RunVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets SquatVariation.
@@ -101,7 +101,7 @@ public partial class CCS2ChickenGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_squatVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ SquatVariation { get; set; }
+    public float? SquatVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets WaitingForCompletedEvent.

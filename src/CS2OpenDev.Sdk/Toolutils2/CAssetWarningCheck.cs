@@ -41,7 +41,7 @@ public partial class CAssetWarningCheck
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_ExcludeAddonNames")]
-    public CUtlVector__CUtlString__ ExcludeAddonNames { get; set; }
+    public string[] ExcludeAddonNames { get; set; }
 
     /// <summary>
     ///     Gets or sets FixDescription.

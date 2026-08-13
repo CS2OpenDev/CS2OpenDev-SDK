@@ -51,7 +51,7 @@ public partial class CMovementComponent : CAnimGraphDocComponent
     [NativeOffset(0x38)]
     [NativeName("m_motors")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_Motor____ Motors { get; set; }
+    public CAnimGraphDocMotor?[] Motors { get; set; }
 
     /// <summary>
     ///     Network Facing.

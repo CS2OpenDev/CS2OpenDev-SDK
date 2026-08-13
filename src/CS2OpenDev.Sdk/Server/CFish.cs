@@ -169,7 +169,7 @@ public partial class CFish : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x960)]
     [NativeName("m_pool")]
-    public CHandle__CFishPool__ Pool { get; set; }
+    public CHandle<CFishPool> Pool { get; set; }
 
     /// <summary>
     ///     Gets or sets PoolOrigin.
@@ -232,7 +232,7 @@ public partial class CFish : CBaseAnimGraph
     [NativeOffset(0xA50)]
     [NativeName("m_visible")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CFish___ Visible { get; set; }
+    public CFish?[] Visible { get; set; }
 
     /// <summary>
     ///     Gets or sets WaterLevel.

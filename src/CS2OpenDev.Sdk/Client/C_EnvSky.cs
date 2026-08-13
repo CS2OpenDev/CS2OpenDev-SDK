@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -100,7 +106,7 @@ public partial class C_EnvSky : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFB0)]
     [NativeName("m_hSkyMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ SkyMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> SkyMaterial { get; set; }
 
     /// <summary>
     ///     Gets or sets SkyMaterialLightingOnly.
@@ -110,7 +116,7 @@ public partial class C_EnvSky : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFB8)]
     [NativeName("m_hSkyMaterialLightingOnly")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ SkyMaterialLightingOnly { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> SkyMaterialLightingOnly { get; set; }
 
     /// <summary>
     ///     Gets or sets StartDisabled.

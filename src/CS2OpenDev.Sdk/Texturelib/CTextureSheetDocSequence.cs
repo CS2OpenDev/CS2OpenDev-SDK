@@ -65,7 +65,7 @@ public partial class CTextureSheetDocSequence
     [NativeOffset(0x30)]
     [NativeName("m_Frames")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CTextureSheetDoc_Frame__ Frames { get; set; }
+    public CTextureSheetDocFrame[] Frames { get; set; }
 
     /// <summary>
     ///     Gets or sets LoopMode.

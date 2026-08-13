@@ -38,7 +38,7 @@ public partial class CPulseCellLerpCameraSettingsCursorState : CPulseCellBaseLer
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_hCamera")]
-    public CHandle__CPointCamera__ Camera { get; set; }
+    public CHandle<CPointCamera> Camera { get; set; }
 
     /// <summary>
     ///     Gets or sets OverlaidEnd.

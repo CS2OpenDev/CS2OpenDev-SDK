@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -95,7 +96,7 @@ public partial class COPRenderMaterialProxy : CParticleFunctionRenderer
     [NativeName("m_MaterialVars")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "material variables")]
-    public CUtlVector__MaterialVariable_t__ MaterialVars { get; set; }
+    public MaterialVariable[] MaterialVars { get; set; }
 
     /// <summary>
     ///     material override.
@@ -106,7 +107,7 @@ public partial class COPRenderMaterialProxy : CParticleFunctionRenderer
     [NativeOffset(0x248)]
     [NativeName("m_hOverrideMaterial")]
     [NativeMetadata("MPropertyFriendlyName", "material override")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ OverrideMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> OverrideMaterial { get; set; }
 
     /// <summary>
     ///     proxy type.

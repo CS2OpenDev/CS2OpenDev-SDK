@@ -133,7 +133,7 @@ public partial class COPRenderProjected : CParticleFunctionRenderer
     [NativeName("m_MaterialVars")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "material variables")]
-    public CUtlVector__MaterialVariable_t__ MaterialVars { get; set; }
+    public MaterialVariable[] MaterialVars { get; set; }
 
     /// <summary>
     ///     max projection depth.
@@ -217,7 +217,7 @@ public partial class COPRenderProjected : CParticleFunctionRenderer
     [NativeMetadata("MParticleRequireDefaultArrayEntry", "")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "materials")]
-    public CUtlVector__RenderProjectedMaterial_t__ ProjectedMaterials { get; set; }
+    public RenderProjectedMaterial[] ProjectedMaterials { get; set; }
 
     /// <summary>
     ///     Radius Scale.

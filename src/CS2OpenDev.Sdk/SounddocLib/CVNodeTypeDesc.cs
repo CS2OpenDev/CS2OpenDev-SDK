@@ -59,7 +59,7 @@ public abstract partial class CVNodeTypeDesc
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_inputNames")]
-    public CUtlVector__CUtlString__ InputNames { get; set; }
+    public string[] InputNames { get; set; }
 
     /// <summary>
     ///     Gets or sets InputTypeIds.
@@ -69,7 +69,7 @@ public abstract partial class CVNodeTypeDesc
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_inputTypeIds")]
-    public CUtlVector__int32__ InputTypeIds { get; set; }
+    public int[] InputTypeIds { get; set; }
 
     /// <summary>
     ///     Gets or sets IsAudioOutput.
@@ -149,7 +149,7 @@ public abstract partial class CVNodeTypeDesc
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_outputNames")]
-    public CUtlVector__CUtlString__ OutputNames { get; set; }
+    public string[] OutputNames { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputTypeIds.
@@ -159,7 +159,7 @@ public abstract partial class CVNodeTypeDesc
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_outputTypeIds")]
-    public CUtlVector__int32__ OutputTypeIds { get; set; }
+    public int[] OutputTypeIds { get; set; }
 
     /// <summary>
     ///     Gets or sets Prefix.

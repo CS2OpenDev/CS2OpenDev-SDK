@@ -37,7 +37,7 @@ public partial class CStateAction
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_pAction")]
-    public CSmartPtr__CAnimGraphDoc_Action__ Action { get; set; }
+    public CAnimGraphDocAction? Action { get; set; }
 
     /// <summary>
     ///     Gets or sets Behavior.

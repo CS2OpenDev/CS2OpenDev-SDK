@@ -30,5 +30,5 @@ public partial class CCSObserverCameraServices : CCSPlayerBaseCameraServices
     /// </remarks>
     [NativeOffset(0x2A8)]
     [NativeName("m_hPrevPostProcessingVolume")]
-    public CHandle__C_PostProcessingVolume__ PrevPostProcessingVolume { get; set; }
+    public CHandle<C_PostProcessingVolume> PrevPostProcessingVolume { get; set; }
 }

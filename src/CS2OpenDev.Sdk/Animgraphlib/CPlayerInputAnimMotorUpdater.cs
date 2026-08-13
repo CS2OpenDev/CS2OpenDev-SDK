@@ -61,7 +61,7 @@ public partial class CPlayerInputAnimMotorUpdater : CAnimMotorUpdaterBase
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_sampleTimes")]
-    public CUtlVector__float32__ SampleTimes { get; set; }
+    public float[] SampleTimes { get; set; }
 
     /// <summary>
     ///     Gets or sets SpringConstant.

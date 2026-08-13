@@ -31,7 +31,7 @@ public partial class CFootPinningUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_params")]
-    public CUtlVector__CAnimParamHandle__ Params { get; set; }
+    public CAnimParamHandle[] Params { get; set; }
 
     /// <summary>
     ///     Gets or sets PoseOpFixedData.

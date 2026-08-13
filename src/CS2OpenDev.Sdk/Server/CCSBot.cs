@@ -156,7 +156,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5C60)]
     [NativeName("m_attacker")]
-    public CHandle__CCSPlayerPawn__ Attacker { get; set; }
+    public CHandle<CCSPlayerPawn> Attacker { get; set; }
 
     /// <summary>
     ///     Gets or sets AttentionInterval.
@@ -206,7 +206,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5F4)]
     [NativeName("m_avoid")]
-    public CHandle__CBaseEntity__ Avoid { get; set; }
+    public CHandle<CBaseEntity> Avoid { get; set; }
 
     /// <summary>
     ///     Gets or sets AvoidFriendTimer.
@@ -266,7 +266,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5C40)]
     [NativeName("m_bomber")]
-    public CHandle__CCSPlayerPawn__ Bomber { get; set; }
+    public CHandle<CCSPlayerPawn> Bomber { get; set; }
 
     /// <summary>
     ///     Gets or sets BurnedByFlamesTimer.
@@ -296,7 +296,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5C48)]
     [NativeName("m_closestVisibleFriend")]
-    public CHandle__CCSPlayerPawn__ ClosestVisibleFriend { get; set; }
+    public CHandle<CCSPlayerPawn> ClosestVisibleFriend { get; set; }
 
     /// <summary>
     ///     Gets or sets ClosestVisibleHumanFriend.
@@ -306,7 +306,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5C4C)]
     [NativeName("m_closestVisibleHumanFriend")]
-    public CHandle__CCSPlayerPawn__ ClosestVisibleHumanFriend { get; set; }
+    public CHandle<CCSPlayerPawn> ClosestVisibleHumanFriend { get; set; }
 
     /// <summary>
     ///     Gets or sets CombatRange.
@@ -356,7 +356,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5A08)]
     [NativeName("m_enemy")]
-    public CHandle__CCSPlayerPawn__ Enemy { get; set; }
+    public CHandle<CCSPlayerPawn> Enemy { get; set; }
 
     /// <summary>
     ///     Gets or sets EnemyDeathTimeStamp.
@@ -486,7 +486,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5F0)]
     [NativeName("m_goalEntity")]
-    public CHandle__CBaseEntity__ GoalEntity { get; set; }
+    public CHandle<CBaseEntity> GoalEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets GoalPosition.
@@ -816,7 +816,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x1AC)]
     [NativeName("m_leader")]
-    public CHandle__CCSPlayerPawn__ Leader { get; set; }
+    public CHandle<CCSPlayerPawn> Leader { get; set; }
 
     /// <summary>
     ///     Gets or sets LookAheadAngle.
@@ -1146,7 +1146,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5E1C)]
     [NativeName("m_radioSubject")]
-    public CHandle__CCSPlayerPawn__ RadioSubject { get; set; }
+    public CHandle<CCSPlayerPawn> RadioSubject { get; set; }
 
     /// <summary>
     ///     Gets or sets RepathTimer.
@@ -1316,7 +1316,7 @@ public partial class CCSBot : CBot
     /// </remarks>
     [NativeOffset(0x5D4)]
     [NativeName("m_taskEntity")]
-    public CHandle__CBaseEntity__ TaskEntity { get; set; }
+    public CHandle<CBaseEntity> TaskEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets TossGrenadeTimer.

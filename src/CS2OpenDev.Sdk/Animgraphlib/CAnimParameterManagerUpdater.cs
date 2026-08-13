@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Modellib;
+
+#endregion
+
 namespace CS2OpenSchema.Animgraphlib;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CAnimParameterManagerUpdater
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_autoResetMap")]
-    public CUtlHashtable__CAnimParamHandle__int16__ AutoResetMap { get; set; }
+    public Dictionary<CAnimParamHandle, short> AutoResetMap { get; set; }
 
     /// <summary>
     ///     Gets or sets AutoResetParams.
@@ -41,7 +47,7 @@ public partial class CAnimParameterManagerUpdater
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_autoResetParams")]
-    public CUtlVector__std_pair__CAnimParamHandle__CAnimVariant____ AutoResetParams { get; set; }
+    public (CAnimParamHandle, object?)[] AutoResetParams { get; set; }
 
     /// <summary>
     ///     Gets or sets IdToIndexMap.
@@ -51,7 +57,7 @@ public partial class CAnimParameterManagerUpdater
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_idToIndexMap")]
-    public CUtlHashtable__AnimParamID__int32__ IdToIndexMap { get; set; }
+    public Dictionary<AnimParamId, int> IdToIndexMap { get; set; }
 
     /// <summary>
     ///     Gets or sets IndexToHandle.
@@ -61,7 +67,7 @@ public partial class CAnimParameterManagerUpdater
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_indexToHandle")]
-    public CUtlVector__CAnimParamHandle__ IndexToHandle { get; set; }
+    public CAnimParamHandle[] IndexToHandle { get; set; }
 
     /// <summary>
     ///     Gets or sets NameToIndexMap.
@@ -71,7 +77,7 @@ public partial class CAnimParameterManagerUpdater
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_nameToIndexMap")]
-    public CUtlHashtable__CUtlString__int32__ NameToIndexMap { get; set; }
+    public Dictionary<string, int> NameToIndexMap { get; set; }
 
     /// <summary>
     ///     Gets or sets Parameters.
@@ -81,5 +87,5 @@ public partial class CAnimParameterManagerUpdater
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_parameters")]
-    public CUtlVector__CSmartPtr__CAnimParameterBase____ Parameters { get; set; }
+    public CAnimParameterBase?[] Parameters { get; set; }
 }

@@ -109,7 +109,7 @@ public partial class CPhysWheelConstraint : CPhysConstraint
     /// </remarks>
     [NativeOffset(0x534)]
     [NativeName("m_hSteeringMimicsEntity")]
-    public CHandle__CBaseEntity__ SteeringMimicsEntity { get; set; }
+    public CHandle<CBaseEntity> SteeringMimicsEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets SuspensionDampingRatio.

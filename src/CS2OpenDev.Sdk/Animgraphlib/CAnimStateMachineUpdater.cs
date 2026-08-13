@@ -41,7 +41,7 @@ public partial class CAnimStateMachineUpdater
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_states")]
-    public CUtlVector__CStateUpdateData__ States { get; set; }
+    public CStateUpdateData[] States { get; set; }
 
     /// <summary>
     ///     Gets or sets Transitions.
@@ -51,5 +51,5 @@ public partial class CAnimStateMachineUpdater
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_transitions")]
-    public CUtlVector__CTransitionUpdateData__ Transitions { get; set; }
+    public CTransitionUpdateData[] Transitions { get; set; }
 }

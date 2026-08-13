@@ -42,7 +42,7 @@ public partial class CPulseCellFireCursors : CPulseCellBaseYieldingInflow
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_Outflows")]
-    public CUtlVector__CPulse_OutflowConnection__ Outflows { get; set; }
+    public CPulseOutflowConnection[] Outflows { get; set; }
 
     /// <summary>
     ///     Gets or sets WaitForChildOutflows.

@@ -47,5 +47,5 @@ public partial class CSmartPropVariableMaterialGroup : CSmartPropVariable
     [NativeName("m_sModelName")]
     [NativeMetadata("MPropertyDescription", "Model containing the set of material groups to select.")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ SModelName { get; set; }
+    public string SModelName { get; set; }
 }

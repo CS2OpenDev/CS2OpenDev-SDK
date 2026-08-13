@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -59,7 +65,7 @@ public partial class CFlashlightEffect
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_FlashlightTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ FlashlightTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> FlashlightTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets Fov.
@@ -129,7 +135,7 @@ public partial class CFlashlightEffect
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_MuzzleFlashTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ MuzzleFlashTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> MuzzleFlashTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets QuatMuzzleFlashOrientation.

@@ -71,5 +71,5 @@ public partial class CNmRootMotionData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_transforms")]
-    public CUtlVector__CTransform__ Transforms { get; set; }
+    public CTransform[] Transforms { get; set; }
 }

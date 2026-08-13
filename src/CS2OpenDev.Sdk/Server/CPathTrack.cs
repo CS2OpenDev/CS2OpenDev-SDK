@@ -86,7 +86,7 @@ public partial class CPathTrack : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_paltpath")]
-    public CHandle__CPathTrack__ Paltpath { get; set; }
+    public CHandle<CPathTrack> Paltpath { get; set; }
 
     /// <summary>
     ///     Gets or sets Pnext.
@@ -96,7 +96,7 @@ public partial class CPathTrack : CPointEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_pnext")]
-    public CHandle__CPathTrack__ Pnext { get; set; }
+    public CHandle<CPathTrack> Pnext { get; set; }
 
     /// <summary>
     ///     Gets or sets Pprevious.
@@ -106,7 +106,7 @@ public partial class CPathTrack : CPointEntity
     /// </remarks>
     [NativeOffset(0x4AC)]
     [NativeName("m_pprevious")]
-    public CHandle__CPathTrack__ Pprevious { get; set; }
+    public CHandle<CPathTrack> Pprevious { get; set; }
 
     /// <summary>
     ///     Gets or sets Radius.

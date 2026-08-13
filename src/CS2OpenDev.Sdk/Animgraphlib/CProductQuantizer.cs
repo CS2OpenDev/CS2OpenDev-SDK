@@ -40,5 +40,5 @@ public partial class CProductQuantizer
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_subQuantizers")]
-    public CUtlVector__CVectorQuantizer__ SubQuantizers { get; set; }
+    public CVectorQuantizer[] SubQuantizers { get; set; }
 }

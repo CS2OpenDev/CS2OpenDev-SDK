@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Modellib;
+
+#endregion
+
 namespace CS2OpenSchema.Animationsystem;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CSeqS1SeqDesc
     /// </remarks>
     [NativeOffset(0xF0)]
     [NativeName("m_activityArray")]
-    public CUtlVector__CAnimActivity__ ActivityArray { get; set; }
+    public CAnimActivity[] ActivityArray { get; set; }
 
     /// <summary>
     ///     Gets or sets AutoLayerArray.
@@ -41,7 +47,7 @@ public partial class CSeqS1SeqDesc
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_autoLayerArray")]
-    public CUtlVector__CSeqAutoLayer__ AutoLayerArray { get; set; }
+    public CSeqAutoLayer[] AutoLayerArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Fetch.
@@ -71,7 +77,7 @@ public partial class CSeqS1SeqDesc
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_footMotion")]
-    public CUtlVector__CFootMotion__ FootMotion { get; set; }
+    public CFootMotion[] FootMotion { get; set; }
 
     /// <summary>
     ///     Gets or sets IKLockArray.
@@ -81,7 +87,7 @@ public partial class CSeqS1SeqDesc
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_IKLockArray")]
-    public CUtlVector__CSeqIKLock__ IKLockArray { get; set; }
+    public CSeqIKLock[] IKLockArray { get; set; }
 
     /// <summary>
     ///     Gets or sets LegacyKeyValueText.

@@ -45,7 +45,7 @@ public partial class CLogicBranch : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_Listeners")]
-    public CUtlVector__CHandle__CBaseEntity____ Listeners { get; set; }
+    public CHandle<CBaseEntity>[] Listeners { get; set; }
 
     /// <summary>
     ///     Gets or sets OnFalse.

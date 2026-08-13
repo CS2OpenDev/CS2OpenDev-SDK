@@ -72,7 +72,7 @@ public partial class CAnimDemoCaptureSettings
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Bones")]
     [NativeMetadata("MPropertyGroupName", "+Bones")]
-    public CUtlVector__BoneDemoCaptureSettings_t__ Bones { get; set; }
+    public BoneDemoCaptureSettings[] Bones { get; set; }
 
     /// <summary>
     ///     Rotation Error Range.
@@ -155,7 +155,7 @@ public partial class CAnimDemoCaptureSettings
     [NativeOffset(0x68)]
     [NativeName("m_ikChains")]
     [NativeMetadata("MPropertyFriendlyName", "IK Chains")]
-    public CUtlVector__IKDemoCaptureSettings_t__ IkChains { get; set; }
+    public IKDemoCaptureSettings[] IkChains { get; set; }
 
     /// <summary>
     ///     Max IK Rotation Error.

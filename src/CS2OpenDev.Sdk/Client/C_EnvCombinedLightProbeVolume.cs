@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -100,7 +106,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x1680)]
     [NativeName("m_Entity_hCubemapTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubeMapTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightIndicesTexture.
@@ -110,7 +116,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16C0)]
     [NativeName("m_Entity_hLightProbeDirectLightIndicesTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeDirectLightIndicesTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeDirectLightIndicesTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightScalarsTexture.
@@ -120,7 +126,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16C8)]
     [NativeName("m_Entity_hLightProbeDirectLightScalarsTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeDirectLightScalarsTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeDirectLightScalarsTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightShadowsTexture.
@@ -130,7 +136,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16D0)]
     [NativeName("m_Entity_hLightProbeDirectLightShadowsTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeDirectLightShadowsTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeDirectLightShadowsTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureAmbientCube.
@@ -140,7 +146,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x1690)]
     [NativeName("m_Entity_hLightProbeTexture_AmbientCube")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureAmbientCube { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureAmbientCube { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSDF.
@@ -150,7 +156,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x1698)]
     [NativeName("m_Entity_hLightProbeTexture_SDF")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSDF { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSDF { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2B.
@@ -160,7 +166,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16B8)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_B")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2B { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2B { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2DC.
@@ -170,7 +176,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16A0)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_DC")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2DC { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2DC { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2G.
@@ -180,7 +186,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16B0)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_G")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2G { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2G { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2R.
@@ -190,7 +196,7 @@ public partial class C_EnvCombinedLightProbeVolume : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x16A8)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_R")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2R { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2R { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityNEnvCubeMapArrayIndex.

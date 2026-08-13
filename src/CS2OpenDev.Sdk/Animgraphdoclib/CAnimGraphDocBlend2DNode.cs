@@ -100,7 +100,7 @@ public partial class CAnimGraphDocBlend2DNode : CAnimGraphDocNode
     [NativeOffset(0x58)]
     [NativeName("m_items")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_Blend2DItem____ Items { get; set; }
+    public CAnimGraphDocBlend2DItem?[] Items { get; set; }
 
     /// <summary>
     ///     Lock Blend on Reset.
@@ -166,7 +166,7 @@ public partial class CAnimGraphDocBlend2DNode : CAnimGraphDocNode
     [NativeOffset(0x88)]
     [NativeName("m_paramSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_ParamSpan____ ParamSpans { get; set; }
+    public CAnimGraphDocParamSpan?[] ParamSpans { get; set; }
 
     /// <summary>
     ///     Horizontal Parameter.
@@ -212,5 +212,5 @@ public partial class CAnimGraphDocBlend2DNode : CAnimGraphDocNode
     [NativeOffset(0x70)]
     [NativeName("m_tagSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ TagSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] TagSpans { get; set; }
 }

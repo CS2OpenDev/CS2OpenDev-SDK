@@ -109,7 +109,7 @@ public partial class CDamageRecord
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_hPlayerControllerDamager")]
-    public CHandle__CCSPlayerController__ PlayerControllerDamager { get; set; }
+    public CHandle<CCSPlayerController> PlayerControllerDamager { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerControllerRecipient.
@@ -119,7 +119,7 @@ public partial class CDamageRecord
     /// </remarks>
     [NativeOffset(0x3C)]
     [NativeName("m_hPlayerControllerRecipient")]
-    public CHandle__CCSPlayerController__ PlayerControllerRecipient { get; set; }
+    public CHandle<CCSPlayerController> PlayerControllerRecipient { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerDamager.
@@ -129,7 +129,7 @@ public partial class CDamageRecord
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_PlayerDamager")]
-    public CHandle__CCSPlayerPawn__ PlayerDamager { get; set; }
+    public CHandle<CCSPlayerPawn> PlayerDamager { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerDamagerName.
@@ -149,7 +149,7 @@ public partial class CDamageRecord
     /// </remarks>
     [NativeOffset(0x34)]
     [NativeName("m_PlayerRecipient")]
-    public CHandle__CCSPlayerPawn__ PlayerRecipient { get; set; }
+    public CHandle<CCSPlayerPawn> PlayerRecipient { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerRecipientName.

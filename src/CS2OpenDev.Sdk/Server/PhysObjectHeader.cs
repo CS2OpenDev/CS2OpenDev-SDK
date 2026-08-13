@@ -58,7 +58,7 @@ public partial class PhysObjectHeader
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets FieldName.

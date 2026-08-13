@@ -46,5 +46,5 @@ public partial class CAnimGraphDocClipData
     [NativeOffset(0x20)]
     [NativeName("m_tagSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ TagSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] TagSpans { get; set; }
 }

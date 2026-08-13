@@ -88,7 +88,7 @@ public partial class CBaseButton : CBaseToggle
     [NativeOffset(0x8E0)]
     [NativeName("m_glowEntity")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CBaseModelEntity__ GlowEntity { get; set; }
+    public CHandle<CBaseModelEntity> GlowEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Locked.

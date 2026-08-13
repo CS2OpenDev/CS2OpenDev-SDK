@@ -37,7 +37,7 @@ public partial class CDestructiblePart
     [NativeMetadata("MPropertyDescription", "The various damage levels for this hitgroup.")]
     [NativeMetadata("MPropertyFriendlyName", "Damage Levels")]
     [NativeMetadata("MPropertyStartGroup", "")]
-    public CUtlVector__CDestructiblePart_DamageLevel__ DamageLevels { get; set; }
+    public CDestructiblePartDamageLevel[] DamageLevels { get; set; }
 
     /// <summary>
     ///     Gets or sets DebugName.
@@ -98,7 +98,7 @@ public partial class CDestructiblePart
     [NativeName("m_nOtherHitgroupsToDestroyWhenFullyDestructed")]
     [NativeMetadata("MPropertyDescription",
         "Other hitgroups to destroy when this one is fully destroyed.  Useful for chaining destructibles like blowing up the lower arm when the upper arm dies.")]
-    public CUtlVector__HitGroup_t__ OtherHitGroupsToDestroyWhenFullyDestructed { get; set; }
+    public HitGroup[] OtherHitGroupsToDestroyWhenFullyDestructed { get; set; }
 
     /// <summary>
     ///     Body group to set when this damage level is broken.

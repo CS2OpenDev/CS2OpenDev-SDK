@@ -31,7 +31,7 @@ public partial class CSeqCmdSeqDesc
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_activityArray")]
-    public CUtlVector__CAnimActivity__ ActivityArray { get; set; }
+    public CAnimActivity[] ActivityArray { get; set; }
 
     /// <summary>
     ///     Gets or sets CmdLayerArray.
@@ -41,7 +41,7 @@ public partial class CSeqCmdSeqDesc
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_cmdLayerArray")]
-    public CUtlVector__CSeqCmdLayer__ CmdLayerArray { get; set; }
+    public CSeqCmdLayer[] CmdLayerArray { get; set; }
 
     /// <summary>
     ///     Gets or sets EventArray.
@@ -51,7 +51,7 @@ public partial class CSeqCmdSeqDesc
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_eventArray")]
-    public CUtlVector__CAnimEventDefinition__ EventArray { get; set; }
+    public CAnimEventDefinition[] EventArray { get; set; }
 
     /// <summary>
     ///     Gets or sets FPS.
@@ -111,7 +111,7 @@ public partial class CSeqCmdSeqDesc
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_poseSettingArray")]
-    public CUtlVector__CSeqPoseSetting__ PoseSettingArray { get; set; }
+    public CSeqPoseSetting[] PoseSettingArray { get; set; }
 
     /// <summary>
     ///     Gets or sets SName.

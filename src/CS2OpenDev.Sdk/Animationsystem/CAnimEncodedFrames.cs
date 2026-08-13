@@ -41,7 +41,7 @@ public partial class CAnimEncodedFrames
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_frameblockArray")]
-    public CUtlVector__CAnimFrameBlockAnim__ FrameBlockArray { get; set; }
+    public CAnimFrameBlockAnim[] FrameBlockArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Frames.

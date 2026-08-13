@@ -40,7 +40,7 @@ public partial class CPointClientUIHUD : C_BaseClientUIEntity
     /// </remarks>
     [NativeOffset(0x1190)]
     [NativeName("m_vecCSSClasses")]
-    public C_NetworkUtlVectorBase__CUtlSymbolLarge__ CSSClasses { get; set; }
+    public string[] CSSClasses { get; set; }
 
     /// <summary>
     ///     Gets or sets CheckCSSClasses.

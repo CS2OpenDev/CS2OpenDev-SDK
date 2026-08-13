@@ -95,7 +95,7 @@ public partial class CTriggerHurt : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x950)]
     [NativeName("m_hurtEntities")]
-    public CUtlVector__CHandle__CBaseEntity____ HurtEntities { get; set; }
+    public CHandle<CBaseEntity>[] HurtEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets HurtThinkPeriod.

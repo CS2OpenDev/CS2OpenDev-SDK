@@ -12,6 +12,7 @@
 
 #region
 
+using CS2OpenSchema.Resourcesystem;
 using CS2OpenSchema.Vphysics2;
 
 #endregion
@@ -46,7 +47,7 @@ public partial class CModelState
     /// </remarks>
     [NativeOffset(0x258)]
     [NativeName("m_nBodyGroupChoices")]
-    public C_NetworkUtlVectorBase__int32__ BodyGroupChoices { get; set; }
+    public int[] BodyGroupChoices { get; set; }
 
     /// <summary>
     ///     Gets or sets ClientClothCreationSuppressed.
@@ -106,7 +107,7 @@ public partial class CModelState
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_hModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelName.

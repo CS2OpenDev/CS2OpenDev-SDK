@@ -131,7 +131,7 @@ public partial class CBasePlayerController : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x6BC)]
     [NativeName("m_hPawn")]
-    public CHandle__C_BasePlayerPawn__ Pawn { get; set; }
+    public CHandle<C_BasePlayerPawn> Pawn { get; set; }
 
     /// <summary>
     ///     Display name of the player, as reported by Steam (up to 128 bytes, UTF-8).
@@ -153,7 +153,7 @@ public partial class CBasePlayerController : C_BaseEntity
     [NativeOffset(0x6C4)]
     [NativeName("m_hPredictedPawn")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BasePlayerPawn__ PredictedPawn { get; set; }
+    public CHandle<C_BasePlayerPawn> PredictedPawn { get; set; }
 
     /// <summary>
     ///     Gets or sets SplitOwner.
@@ -164,7 +164,7 @@ public partial class CBasePlayerController : C_BaseEntity
     [NativeOffset(0x6CC)]
     [NativeName("m_hSplitOwner")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CBasePlayerController__ SplitOwner { get; set; }
+    public CHandle<CBasePlayerController> SplitOwner { get; set; }
 
     /// <summary>
     ///     Gets or sets SplitScreenPlayers.
@@ -175,7 +175,7 @@ public partial class CBasePlayerController : C_BaseEntity
     [NativeOffset(0x6D0)]
     [NativeName("m_hSplitScreenPlayers")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CHandle__CBasePlayerController____ SplitScreenPlayers { get; set; }
+    public CHandle<CBasePlayerController>[] SplitScreenPlayers { get; set; }
 
     /// <summary>
     ///     Gets or sets SplitScreenSlot.

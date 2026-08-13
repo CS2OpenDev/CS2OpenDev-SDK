@@ -52,7 +52,7 @@ public partial class RnMesh
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_Materials")]
-    public CUtlVector__uint8__ Materials { get; set; }
+    public byte[] Materials { get; set; }
 
     /// <summary>
     ///     Gets or sets Max.
@@ -82,7 +82,7 @@ public partial class RnMesh
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Nodes")]
-    public CUtlVector__RnNode_t__ Nodes { get; set; }
+    public RnNode[] Nodes { get; set; }
 
     /// <summary>
     ///     Gets or sets OrthographicAreas.
@@ -102,7 +102,7 @@ public partial class RnMesh
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_TriangleEdgeFlags")]
-    public CUtlVector__uint8__ TriangleEdgeFlags { get; set; }
+    public byte[] TriangleEdgeFlags { get; set; }
 
     /// <summary>
     ///     Gets or sets Triangles.
@@ -112,7 +112,7 @@ public partial class RnMesh
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_Triangles")]
-    public CUtlVector__RnTriangle_t__ Triangles { get; set; }
+    public RnTriangle[] Triangles { get; set; }
 
     /// <summary>
     ///     Gets or sets Vertices.
@@ -132,5 +132,5 @@ public partial class RnMesh
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_Wings")]
-    public CUtlVector__RnWing_t__ Wings { get; set; }
+    public RnWing[] Wings { get; set; }
 }

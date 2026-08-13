@@ -90,7 +90,7 @@ public partial class CBaseCombatCharacter : CBaseAnimGraph
     [NativeOffset(0x968)]
     [NativeName("m_hMyWearables")]
     [NativeMetadata("MNotSaved", "")]
-    public CNetworkUtlVectorBase__CHandle__CEconWearable____ MyWearables { get; set; }
+    public CHandle<CEconWearable>[] MyWearables { get; set; }
 
     /// <summary>
     ///     Gets or sets NavHullIdx.
@@ -120,5 +120,5 @@ public partial class CBaseCombatCharacter : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x9C8)]
     [NativeName("m_vecRelationships")]
-    public CUtlVector__RelationshipOverride_t__ VecRelationships { get; set; }
+    public RelationshipOverride[] VecRelationships { get; set; }
 }

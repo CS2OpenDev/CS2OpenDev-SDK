@@ -179,7 +179,7 @@ public partial class CGlobalLightBase
     /// </remarks>
     [NativeOffset(0x4BC)]
     [NativeName("m_hEnvSky")]
-    public CHandle__C_BaseEntity__ EnvSky { get; set; }
+    public CHandle<C_BaseEntity> EnvSky { get; set; }
 
     /// <summary>
     ///     Gets or sets EnvWind.
@@ -189,7 +189,7 @@ public partial class CGlobalLightBase
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hEnvWind")]
-    public CHandle__C_BaseEntity__ EnvWind { get; set; }
+    public CHandle<C_BaseEntity> EnvWind { get; set; }
 
     /// <summary>
     ///     Gets or sets FOV.

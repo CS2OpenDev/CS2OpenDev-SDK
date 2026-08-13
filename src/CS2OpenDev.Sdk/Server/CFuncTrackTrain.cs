@@ -320,7 +320,7 @@ public partial class CFuncTrackTrain : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x770)]
     [NativeName("m_ppath")]
-    public CHandle__CPathTrack__ Ppath { get; set; }
+    public CHandle<CPathTrack> Ppath { get; set; }
 
     /// <summary>
     ///     Gets or sets Prev.

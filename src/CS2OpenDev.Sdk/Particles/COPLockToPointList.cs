@@ -78,5 +78,5 @@ public partial class COPLockToPointList : CParticleFunctionOperator
     [NativeOffset(0x1E0)]
     [NativeName("m_pointList")]
     [NativeMetadata("MPropertyFriendlyName", "point list")]
-    public CUtlVector__PointDefinition_t__ PointList { get; set; }
+    public PointDefinition[] PointList { get; set; }
 }

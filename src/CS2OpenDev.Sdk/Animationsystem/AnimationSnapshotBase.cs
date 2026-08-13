@@ -32,7 +32,7 @@ public partial class AnimationSnapshotBase
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_boneSetupMask")]
-    public CUtlVector__uint32__ BoneSetUpMask { get; set; }
+    public uint[] BoneSetUpMask { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneTransforms.
@@ -42,7 +42,7 @@ public partial class AnimationSnapshotBase
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_boneTransforms")]
-    public CUtlVector__matrix3x4a_t__ BoneTransforms { get; set; }
+    public Matrix3x4a[] BoneTransforms { get; set; }
 
     /// <summary>
     ///     Gets or sets BonesInWorldSpace.
@@ -72,7 +72,7 @@ public partial class AnimationSnapshotBase
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_flexControllers")]
-    public CUtlVector__float32__ FlexControllers { get; set; }
+    public float[] FlexControllers { get; set; }
 
     /// <summary>
     ///     Gets or sets HasDecodeDump.

@@ -42,5 +42,5 @@ public partial class RelationshipOverride : Relationship
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("entity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 }

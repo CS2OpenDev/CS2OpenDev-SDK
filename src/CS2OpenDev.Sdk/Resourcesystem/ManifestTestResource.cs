@@ -32,7 +32,7 @@ public partial class ManifestTestResource
     [NativeOffset(0x8)]
     [NativeName("m_child")]
     [NativeMetadata("MKV3TransferName", "child")]
-    public CStrongHandle__InfoForResourceTypeManifestTestResource_t__ Child { get; set; }
+    public CStrongHandle<InfoForResourceTypeManifestTestResource> Child { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

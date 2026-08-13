@@ -31,7 +31,7 @@ public partial class CMorphRectData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_bundleDatas")]
-    public CUtlVector__CMorphBundleData__ BundleDatas { get; set; }
+    public CMorphBundleData[] BundleDatas { get; set; }
 
     /// <summary>
     ///     Gets or sets UWidthSrc.

@@ -31,7 +31,7 @@ public partial class CSteamAudioBakedMaterialsData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_vecMaterialTokens")]
-    public CUtlVector__uint32__ MaterialTokens { get; set; }
+    public uint[] MaterialTokens { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialWeights.
@@ -41,7 +41,7 @@ public partial class CSteamAudioBakedMaterialsData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_vecMaterialWeights")]
-    public CUtlVector__float32__ MaterialWeights { get; set; }
+    public float[] MaterialWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets Probes.

@@ -30,7 +30,7 @@ public partial class MotionBlendItem
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_pChild")]
-    public CSmartPtr__CMotionNode__ Child { get; set; }
+    public CMotionNode? Child { get; set; }
 
     /// <summary>
     ///     Gets or sets KeyValue.

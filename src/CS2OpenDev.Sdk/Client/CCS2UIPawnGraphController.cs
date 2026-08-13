@@ -37,7 +37,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x130)]
     [NativeName("m_action")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ Action { get; set; }
+    public string? Action { get; set; }
 
     /// <summary>
     ///     Gets or sets AnimationSeed.
@@ -47,7 +47,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_nAnimationSeed")]
-    public CAnimGraph2ParamOptionalRef__float32__ AnimationSeed { get; set; }
+    public float? AnimationSeed { get; set; }
 
     /// <summary>
     ///     Gets or sets BannerAnimation.
@@ -57,7 +57,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_bannerAnimation")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ BannerAnimation { get; set; }
+    public string? BannerAnimation { get; set; }
 
     /// <summary>
     ///     Gets or sets CT.
@@ -67,7 +67,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x1C0)]
     [NativeName("m_bCT")]
-    public CAnimGraph2ParamOptionalRef__bool__ CT { get; set; }
+    public bool? CT { get; set; }
 
     /// <summary>
     ///     Gets or sets CharacterMode.
@@ -77,7 +77,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_characterMode")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ CharacterMode { get; set; }
+    public string? CharacterMode { get; set; }
 
     /// <summary>
     ///     Gets or sets CharacterModeReset.
@@ -87,7 +87,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_bCharacterModeReset")]
-    public CAnimGraph2ParamOptionalRef__bool__ CharacterModeReset { get; set; }
+    public bool? CharacterModeReset { get; set; }
 
     /// <summary>
     ///     Gets or sets EndOfMatchCelebration.
@@ -97,7 +97,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x118)]
     [NativeName("m_endOfMatchCelebration")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ EndOfMatchCelebration { get; set; }
+    public string? EndOfMatchCelebration { get; set; }
 
     /// <summary>
     ///     Gets or sets InspectTurnAngle.
@@ -107,7 +107,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x1A8)]
     [NativeName("m_inspectTurnAngle")]
-    public CAnimGraph2ParamOptionalRef__float32__ InspectTurnAngle { get; set; }
+    public float? InspectTurnAngle { get; set; }
 
     /// <summary>
     ///     Gets or sets TeamPreviewPosition.
@@ -117,7 +117,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_nTeamPreviewPosition")]
-    public CAnimGraph2ParamOptionalRef__float32__ TeamPreviewPosition { get; set; }
+    public float? TeamPreviewPosition { get; set; }
 
     /// <summary>
     ///     Gets or sets TeamPreviewRandom.
@@ -127,7 +127,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_nTeamPreviewRandom")]
-    public CAnimGraph2ParamOptionalRef__float32__ TeamPreviewRandom { get; set; }
+    public float? TeamPreviewRandom { get; set; }
 
     /// <summary>
     ///     Gets or sets TeamPreviewVariant.
@@ -137,7 +137,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_nTeamPreviewVariant")]
-    public CAnimGraph2ParamOptionalRef__float32__ TeamPreviewVariant { get; set; }
+    public float? TeamPreviewVariant { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponCategory.
@@ -147,7 +147,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x160)]
     [NativeName("m_weaponCategory")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ WeaponCategory { get; set; }
+    public string? WeaponCategory { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponState.
@@ -157,7 +157,7 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x190)]
     [NativeName("m_weaponState")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ WeaponState { get; set; }
+    public string? WeaponState { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponType.
@@ -167,5 +167,5 @@ public partial class CCS2UIPawnGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x178)]
     [NativeName("m_weaponType")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ WeaponType { get; set; }
+    public string? WeaponType { get; set; }
 }

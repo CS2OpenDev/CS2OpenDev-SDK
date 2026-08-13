@@ -79,7 +79,7 @@ public partial class CMultiLightProxy : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4D0)]
     [NativeName("m_vecLights")]
-    public CUtlVector__CHandle__CLightEntity____ Lights { get; set; }
+    public CHandle<CLightEntity>[] Lights { get; set; }
 
     /// <summary>
     ///     Gets or sets PerformScreenFade.

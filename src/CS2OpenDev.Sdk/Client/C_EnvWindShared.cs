@@ -38,7 +38,7 @@ public partial class C_EnvWindShared
     [NativeOffset(0x3C)]
     [NativeName("m_hEntOwner")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ EntOwner { get; set; }
+    public CHandle<C_BaseEntity> EntOwner { get; set; }
 
     /// <summary>
     ///     Gets or sets GustDirChange.

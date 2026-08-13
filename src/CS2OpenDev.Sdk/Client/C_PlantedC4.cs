@@ -168,7 +168,7 @@ public partial class C_PlantedC4 : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x16D0)]
     [NativeName("m_hDefuserMultimeter")]
-    public CHandle__C_Multimeter__ DefuserMultiMeter { get; set; }
+    public CHandle<CMultiMeter> DefuserMultiMeter { get; set; }
 
     /// <summary>
     ///     Gets or sets EntitySpottedState.
@@ -198,7 +198,7 @@ public partial class C_PlantedC4 : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x11F8)]
     [NativeName("m_hBombDefuser")]
-    public CHandle__C_CSPlayerPawn__ HBombDefuser { get; set; }
+    public CHandle<C_CSPlayerPawn> HBombDefuser { get; set; }
 
     /// <summary>
     ///     Gets or sets HasExploded.
@@ -258,7 +258,7 @@ public partial class C_PlantedC4 : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x16DC)]
     [NativeName("m_pBombDefuser")]
-    public CHandle__C_CSPlayerPawn__ PBombDefuser { get; set; }
+    public CHandle<C_CSPlayerPawn> PBombDefuser { get; set; }
 
     /// <summary>
     ///     Gets or sets PredictionOwner.

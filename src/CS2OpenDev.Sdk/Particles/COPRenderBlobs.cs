@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -72,7 +73,7 @@ public partial class COPRenderBlobs : CParticleFunctionRenderer
     /// </remarks>
     [NativeOffset(0x6B8)]
     [NativeName("m_hMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     material variables.
@@ -85,7 +86,7 @@ public partial class COPRenderBlobs : CParticleFunctionRenderer
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "material variables")]
     [NativeMetadata("MPropertySortPriority", "600")]
-    public CUtlVector__MaterialVariable_t__ MaterialVars { get; set; }
+    public MaterialVariable[] MaterialVars { get; set; }
 
     /// <summary>
     ///     render radius.

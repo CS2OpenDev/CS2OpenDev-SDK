@@ -132,7 +132,7 @@ public partial class CBasePlayerVData : CEntitySubclassVDataBase
     [NativeOffset(0x28)]
     [NativeName("m_sModelName")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ SModelName { get; set; }
+    public string SModelName { get; set; }
 
     /// <summary>
     ///     Gets or sets SModelNameAg2Override.
@@ -143,7 +143,7 @@ public partial class CBasePlayerVData : CEntitySubclassVDataBase
     [NativeOffset(0x108)]
     [NativeName("m_sModelNameAg2Override")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ SModelNameAg2Override { get; set; }
+    public string SModelNameAg2Override { get; set; }
 
     /// <summary>
     ///     Gets or sets StomachDamageMultiplier.

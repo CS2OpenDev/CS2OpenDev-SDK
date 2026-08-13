@@ -34,7 +34,7 @@ public partial class CAnimGraphDocSubGraphNode : CAnimGraphDocContainerNodeBase
     [NativeOffset(0x78)]
     [NativeName("m_animNameMap")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlHashtable__CUtlString__CUtlString__ AnimNameMap { get; set; }
+    public Dictionary<string, string> AnimNameMap { get; set; }
 
     /// <summary>
     ///     SubGraph File.

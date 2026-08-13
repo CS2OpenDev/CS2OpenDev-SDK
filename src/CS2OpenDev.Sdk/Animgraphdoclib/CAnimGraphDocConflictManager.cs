@@ -32,5 +32,5 @@ public partial class CAnimGraphDocConflictManager
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_conflicts")]
-    public CUtlVector__CSmartPtr__CAnimConflictBase____ Conflicts { get; set; }
+    public CAnimConflictBase?[] Conflicts { get; set; }
 }

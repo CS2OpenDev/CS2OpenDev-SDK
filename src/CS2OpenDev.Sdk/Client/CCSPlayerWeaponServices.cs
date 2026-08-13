@@ -46,7 +46,7 @@ public partial class CCSPlayerWeaponServices : CPlayerWeaponServices
     /// </remarks>
     [NativeOffset(0x1588)]
     [NativeName("m_networkAnimTiming")]
-    public C_NetworkUtlVectorBase__uint8__ NetworkAnimTiming { get; set; }
+    public byte[] NetworkAnimTiming { get; set; }
 
     /// <summary>
     ///     GameTime before which no weapon switch is permitted (e.g. after throwing a grenade).

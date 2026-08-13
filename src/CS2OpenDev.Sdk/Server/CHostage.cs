@@ -116,7 +116,7 @@ public partial class CHostage : CHostageExpresserShim
     /// </remarks>
     [NativeOffset(0x2C40)]
     [NativeName("m_hHostageGrabber")]
-    public CHandle__CCSPlayerPawn__ HostageGrabber { get; set; }
+    public CHandle<CCSPlayerPawn> HostageGrabber { get; set; }
 
     /// <summary>
     ///     Gets or sets HostageResetPosition.
@@ -256,7 +256,7 @@ public partial class CHostage : CHostageExpresserShim
     /// </remarks>
     [NativeOffset(0xAF8)]
     [NativeName("m_lastLeader")]
-    public CHandle__CCSPlayerPawnBase__ LastLeader { get; set; }
+    public CHandle<CCSPlayerPawnBase> LastLeader { get; set; }
 
     /// <summary>
     ///     CHandle to the entity (usually CCSPlayerPawn) that is currently leading this hostage.
@@ -266,7 +266,7 @@ public partial class CHostage : CHostageExpresserShim
     /// </remarks>
     [NativeOffset(0xAF4)]
     [NativeName("m_leader")]
-    public CHandle__CBaseEntity__ Leader { get; set; }
+    public CHandle<CBaseEntity> Leader { get; set; }
 
     /// <summary>
     ///     Gets or sets OnDroppedNotRescued.

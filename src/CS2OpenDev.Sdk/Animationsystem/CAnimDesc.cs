@@ -31,7 +31,7 @@ public partial class CAnimDesc
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_activityArray")]
-    public CUtlVector__CAnimActivity__ ActivityArray { get; set; }
+    public CAnimActivity[] ActivityArray { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneWorldMax.
@@ -41,7 +41,7 @@ public partial class CAnimDesc
     /// </remarks>
     [NativeOffset(0x1B0)]
     [NativeName("m_vecBoneWorldMax")]
-    public CUtlVector__Vector__ BoneWorldMax { get; set; }
+    public Vector[] BoneWorldMax { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneWorldMin.
@@ -51,7 +51,7 @@ public partial class CAnimDesc
     /// </remarks>
     [NativeOffset(0x198)]
     [NativeName("m_vecBoneWorldMin")]
-    public CUtlVector__Vector__ BoneWorldMin { get; set; }
+    public Vector[] BoneWorldMin { get; set; }
 
     /// <summary>
     ///     Gets or sets Data.
@@ -72,7 +72,7 @@ public partial class CAnimDesc
     /// </remarks>
     [NativeOffset(0x130)]
     [NativeName("m_eventArray")]
-    public CUtlVector__CAnimEventDefinition__ EventArray { get; set; }
+    public CAnimEventDefinition[] EventArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.
@@ -112,7 +112,7 @@ public partial class CAnimDesc
     /// </remarks>
     [NativeOffset(0x160)]
     [NativeName("m_hierarchyArray")]
-    public CUtlVector__CAnimLocalHierarchy__ HierarchyArray { get; set; }
+    public CAnimLocalHierarchy[] HierarchyArray { get; set; }
 
     /// <summary>
     ///     Gets or sets MovementArray.
@@ -122,7 +122,7 @@ public partial class CAnimDesc
     /// </remarks>
     [NativeOffset(0xF8)]
     [NativeName("m_movementArray")]
-    public CUtlVector__CAnimMovement__ MovementArray { get; set; }
+    public CAnimMovement[] MovementArray { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

@@ -32,7 +32,7 @@ public partial class CModelConfigElementRandomPick : CModelConfigElement
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_ChoiceWeights")]
-    public CUtlVector__float32__ ChoiceWeights { get; set; }
+    public float[] ChoiceWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets Choices.
@@ -42,5 +42,5 @@ public partial class CModelConfigElementRandomPick : CModelConfigElement
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_Choices")]
-    public CUtlVector__CUtlString__ Choices { get; set; }
+    public string[] Choices { get; set; }
 }

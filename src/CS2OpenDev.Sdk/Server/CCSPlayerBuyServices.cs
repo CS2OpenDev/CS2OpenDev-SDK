@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Common;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -30,5 +36,5 @@ public partial class CCSPlayerBuyServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_vecSellbackPurchaseEntries")]
-    public CUtlVectorEmbeddedNetworkVar__SellbackPurchaseEntry_t__ SellBackPurchaseEntries { get; set; }
+    public SellBackPurchaseEntry[] SellBackPurchaseEntries { get; set; }
 }

@@ -31,5 +31,5 @@ public partial class CMotionGraphUpdateNode : CLeafUpdateNode
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_pMotionGraph")]
-    public CSmartPtr__CMotionGraph__ MotionGraph { get; set; }
+    public CMotionGraph? MotionGraph { get; set; }
 }

@@ -58,7 +58,7 @@ public partial class RnHull
     /// </remarks>
     [NativeOffset(0xC8)]
     [NativeName("m_Edges")]
-    public CUtlVector__RnHalfEdge_t__ Edges { get; set; }
+    public RnHalfEdge[] Edges { get; set; }
 
     /// <summary>
     ///     Gets or sets FacePlanes.
@@ -68,7 +68,7 @@ public partial class RnHull
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_FacePlanes")]
-    public CUtlVector__RnPlane_t__ FacePlanes { get; set; }
+    public RnPlane[] FacePlanes { get; set; }
 
     /// <summary>
     ///     Gets or sets Faces.
@@ -78,7 +78,7 @@ public partial class RnHull
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_Faces")]
-    public CUtlVector__RnFace_t__ Faces { get; set; }
+    public RnFace[] Faces { get; set; }
 
     /// <summary>
     ///     Gets or sets Flags.
@@ -148,7 +148,7 @@ public partial class RnHull
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_VertexPositions")]
-    public CUtlVector__Vector__ VertexPositions { get; set; }
+    public Vector[] VertexPositions { get; set; }
 
     /// <summary>
     ///     Gets or sets Vertices.
@@ -158,7 +158,7 @@ public partial class RnHull
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_Vertices")]
-    public CUtlVector__RnVertex_t__ Vertices { get; set; }
+    public RnVertex[] Vertices { get; set; }
 
     /// <summary>
     ///     Gets or sets Volume.

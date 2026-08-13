@@ -71,5 +71,5 @@ public partial class CRagdollComponent : CAnimGraphDocComponent
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_weightLists")]
-    public CUtlVector__CAnimGraphDoc_RigidBodyWeightList__ WeightLists { get; set; }
+    public CAnimGraphDocRigidBodyWeightList[] WeightLists { get; set; }
 }

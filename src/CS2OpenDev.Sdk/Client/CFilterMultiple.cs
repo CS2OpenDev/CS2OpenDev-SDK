@@ -35,7 +35,7 @@ public partial class CFilterMultiple : CBaseFilter
     /// </remarks>
     [NativeOffset(0x690)]
     [NativeName("m_hFilter")]
-    public CHandle__C_BaseEntity__[] Filter { get; set; }
+    public CHandle<C_BaseEntity>[] Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.

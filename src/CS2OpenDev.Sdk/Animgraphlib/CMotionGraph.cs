@@ -81,7 +81,7 @@ public partial class CMotionGraph
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_pRootNode")]
-    public CSmartPtr__CMotionNode__ RootNode { get; set; }
+    public CMotionNode? RootNode { get; set; }
 
     /// <summary>
     ///     Gets or sets Tags.
@@ -91,5 +91,5 @@ public partial class CMotionGraph
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 }

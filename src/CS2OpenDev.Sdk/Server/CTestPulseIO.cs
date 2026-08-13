@@ -45,7 +45,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x5D8)]
     [NativeName("m_OnInternalTestBool")]
-    public CEntityOutputTemplate__bool__ OnInternalTestBool { get; set; }
+    public bool? OnInternalTestBool { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestColor.
@@ -55,7 +55,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x658)]
     [NativeName("m_OnInternalTestColor")]
-    public CEntityOutputTemplate__Color__ OnInternalTestColor { get; set; }
+    public Color? OnInternalTestColor { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestEntityHandle.
@@ -65,7 +65,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x6C0)]
     [NativeName("m_OnInternalTestEntityHandle")]
-    public CEntityOutputTemplate__CHandle__CBaseEntity____ OnInternalTestEntityHandle { get; set; }
+    public CHandle<CBaseEntity>? OnInternalTestEntityHandle { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestEntityHandleInt.
@@ -75,7 +75,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x750)]
     [NativeName("m_OnInternalTestEntityHandleInt")]
-    public CEntityOutputTemplate__CTestPulseIO_EntityHandleIntArgs_t__ OnInternalTestEntityHandleInt { get; set; }
+    public CTestPulseIOEntityHandleIntArgs? OnInternalTestEntityHandleInt { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestEntityName.
@@ -85,7 +85,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x6A0)]
     [NativeName("m_OnInternalTestEntityName")]
-    public CEntityOutputTemplate__CEntityNameString__ OnInternalTestEntityName { get; set; }
+    public string? OnInternalTestEntityName { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestEntityNameString.
@@ -95,7 +95,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x728)]
     [NativeName("m_OnInternalTestEntityNameString")]
-    public CEntityOutputTemplate__CTestPulseIO_EntityNameStringArgs_t__ OnInternalTestEntityNameString { get; set; }
+    public CTestPulseIOEntityNameStringArgs? OnInternalTestEntityNameString { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestFloat.
@@ -105,7 +105,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x618)]
     [NativeName("m_OnInternalTestFloat")]
-    public CEntityOutputTemplate__float32__ OnInternalTestFloat { get; set; }
+    public float? OnInternalTestFloat { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestFloatString.
@@ -115,7 +115,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x700)]
     [NativeName("m_OnInternalTestFloatString")]
-    public CEntityOutputTemplate__CTestPulseIO_FloatStringArgs_t__ OnInternalTestFloatString { get; set; }
+    public CTestPulseIOFloatStringArgs? OnInternalTestFloatString { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestInt.
@@ -125,7 +125,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x5F8)]
     [NativeName("m_OnInternalTestInt")]
-    public CEntityOutputTemplate__int32__ OnInternalTestInt { get; set; }
+    public int? OnInternalTestInt { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestSchemaEnum.
@@ -135,7 +135,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x6E0)]
     [NativeName("m_OnInternalTestSchemaEnum")]
-    public CEntityOutputTemplate__TestInputOutputCombinationsEnum_t__ OnInternalTestSchemaEnum { get; set; }
+    public TestInputOutputCombinations? OnInternalTestSchemaEnum { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestString.
@@ -145,7 +145,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x638)]
     [NativeName("m_OnInternalTestString")]
-    public CEntityOutputTemplate__CUtlSymbolLarge__ OnInternalTestString { get; set; }
+    public string? OnInternalTestString { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestStringStringString.
@@ -155,7 +155,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x770)]
     [NativeName("m_OnInternalTestStringStringString")]
-    public CEntityOutputTemplate__CTestPulseIO_ThreeStringArgs_t__ OnInternalTestStringStringString { get; set; }
+    public CTestPulseIOThreeStringArgs? OnInternalTestStringStringString { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestVector.
@@ -165,7 +165,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x678)]
     [NativeName("m_OnInternalTestVector")]
-    public CEntityOutputTemplate__Vector__ OnInternalTestVector { get; set; }
+    public Vector? OnInternalTestVector { get; set; }
 
     /// <summary>
     ///     Gets or sets OnInternalTestVoid.
@@ -185,7 +185,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_OnVariantBool")]
-    public CEntityOutputTemplate__bool__ OnVariantBool { get; set; }
+    public bool? OnVariantBool { get; set; }
 
     /// <summary>
     ///     Gets or sets OnVariantColor.
@@ -195,7 +195,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x540)]
     [NativeName("m_OnVariantColor")]
-    public CEntityOutputTemplate__Color__ OnVariantColor { get; set; }
+    public Color? OnVariantColor { get; set; }
 
     /// <summary>
     ///     Gets or sets OnVariantFloat.
@@ -205,7 +205,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x500)]
     [NativeName("m_OnVariantFloat")]
-    public CEntityOutputTemplate__float32__ OnVariantFloat { get; set; }
+    public float? OnVariantFloat { get; set; }
 
     /// <summary>
     ///     Gets or sets OnVariantInt.
@@ -215,7 +215,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4E0)]
     [NativeName("m_OnVariantInt")]
-    public CEntityOutputTemplate__int32__ OnVariantInt { get; set; }
+    public int? OnVariantInt { get; set; }
 
     /// <summary>
     ///     Gets or sets OnVariantString.
@@ -225,7 +225,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x520)]
     [NativeName("m_OnVariantString")]
-    public CEntityOutputTemplate__CUtlSymbolLarge__ OnVariantString { get; set; }
+    public string? OnVariantString { get; set; }
 
     /// <summary>
     ///     Gets or sets OnVariantVector.
@@ -235,7 +235,7 @@ public partial class CTestPulseIO : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x560)]
     [NativeName("m_OnVariantVector")]
-    public CEntityOutputTemplate__Vector__ OnVariantVector { get; set; }
+    public Vector? OnVariantVector { get; set; }
 
     /// <summary>
     ///     Gets or sets OnVariantVoid.

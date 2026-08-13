@@ -45,7 +45,7 @@ public partial class CFishPool : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4D0)]
     [NativeName("m_fishes")]
-    public CUtlVector__CHandle__CFish____ Fishes { get; set; }
+    public CHandle<CFish>[] Fishes { get; set; }
 
     /// <summary>
     ///     Gets or sets IsDormant.

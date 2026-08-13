@@ -75,7 +75,7 @@ public partial class CEnvSoundscape : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x678)]
     [NativeName("m_hProxySoundscape")]
-    public CHandle__CEnvSoundscape__ ProxySoundscape { get; set; }
+    public CHandle<CEnvSoundscape> ProxySoundscape { get; set; }
 
     /// <summary>
     ///     Gets or sets Radius.

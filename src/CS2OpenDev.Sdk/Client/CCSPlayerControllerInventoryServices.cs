@@ -12,6 +12,7 @@
 
 #region
 
+using CS2OpenSchema.Common;
 using CS2OpenSchema.Server;
 
 #endregion
@@ -46,7 +47,7 @@ public partial class CCSPlayerControllerInventoryServices : CPlayerControllerCom
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_vecNetworkableLoadout")]
-    public CUtlVector__CCSPlayerController_InventoryServices_NetworkedLoadoutSlot_t__ NetworkAbleLoadout { get; set; }
+    public CCSPlayerControllerInventoryServicesNetworkedLoadoutSlot[] NetworkAbleLoadout { get; set; }
 
     /// <summary>
     ///     Gets or sets PersonaDataPublicCommendsFriendly.
@@ -116,5 +117,5 @@ public partial class CCSPlayerControllerInventoryServices : CPlayerControllerCom
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_vecServerAuthoritativeWeaponSlots")]
-    public C_UtlVectorEmbeddedNetworkVar__ServerAuthoritativeWeaponSlot_t__ ServerAuthoritativeWeaponSlots { get; set; }
+    public ServerAuthoritativeWeaponSlot[] ServerAuthoritativeWeaponSlots { get; set; }
 }

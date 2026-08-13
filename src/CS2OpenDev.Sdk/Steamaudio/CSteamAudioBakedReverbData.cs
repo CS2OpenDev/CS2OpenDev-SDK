@@ -41,7 +41,7 @@ public partial class CSteamAudioBakedReverbData
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_vecClusterForProbe")]
-    public CUtlVector__int16__ ClusterForProbe { get; set; }
+    public short[] ClusterForProbe { get; set; }
 
     /// <summary>
     ///     Gets or sets ClusteredProbes.
@@ -91,7 +91,7 @@ public partial class CSteamAudioBakedReverbData
     /// </remarks>
     [NativeOffset(0x180)]
     [NativeName("m_movables")]
-    public CSteamAudioMovableBakedData__CSteamAudioBakedReverbData__ Movables { get; set; }
+    public CSteamAudioBakedReverbData Movables { get; set; }
 
     /// <summary>
     ///     Gets or sets Probes.

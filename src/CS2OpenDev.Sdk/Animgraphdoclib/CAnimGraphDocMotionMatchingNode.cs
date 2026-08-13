@@ -190,7 +190,7 @@ public partial class CAnimGraphDocMotionMatchingNode : CAnimGraphDocNode
     [NativeOffset(0x48)]
     [NativeName("m_groups")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_MotionItemGroup____ Groups { get; set; }
+    public CAnimGraphDocMotionItemGroup?[] Groups { get; set; }
 
     /// <summary>
     ///     Lock Selection When Waning.
@@ -212,7 +212,7 @@ public partial class CAnimGraphDocMotionMatchingNode : CAnimGraphDocNode
     [NativeOffset(0x60)]
     [NativeName("m_metrics")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_MotionMetric____ Metrics { get; set; }
+    public CAnimGraphDocMotionMetric?[] Metrics { get; set; }
 
     /// <summary>
     ///     Gets or sets RandomSeed.

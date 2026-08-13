@@ -42,7 +42,7 @@ public partial class CNmStateNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_entryEvents")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__3__ EntryEvents { get; set; }
+    public string[] EntryEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets ExecuteEvents.
@@ -52,7 +52,7 @@ public partial class CNmStateNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_executeEvents")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__3__ ExecuteEvents { get; set; }
+    public string[] ExecuteEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets ExitEvents.
@@ -62,7 +62,7 @@ public partial class CNmStateNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_exitEvents")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__3__ ExitEvents { get; set; }
+    public string[] ExitEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets IsOffState.
@@ -112,7 +112,7 @@ public partial class CNmStateNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_timedElapsedEvents")]
-    public CUtlLeanVectorFixedGrowable__CNmStateNode_TimedEvent_t__1__ TimedElapsedEvents { get; set; }
+    public CNmStateNodeTimedEvent[] TimedElapsedEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets TimedRemainingEvents.
@@ -122,7 +122,7 @@ public partial class CNmStateNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_timedRemainingEvents")]
-    public CUtlLeanVectorFixedGrowable__CNmStateNode_TimedEvent_t__1__ TimedRemainingEvents { get; set; }
+    public CNmStateNodeTimedEvent[] TimedRemainingEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets UseActualElapsedTimeInStateForTimedEvents.

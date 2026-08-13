@@ -76,7 +76,7 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     /// </remarks>
     [NativeOffset(0x13D0)]
     [NativeName("m_hController")]
-    public CHandle__CBasePlayerController__ Controller { get; set; }
+    public CHandle<CBasePlayerController> Controller { get; set; }
 
     /// <summary>
     ///     Gets or sets DeathTime.
@@ -96,7 +96,7 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     /// </remarks>
     [NativeOffset(0x13D4)]
     [NativeName("m_hDefaultController")]
-    public CHandle__CBasePlayerController__ DefaultController { get; set; }
+    public CHandle<CBasePlayerController> DefaultController { get; set; }
 
     /// <summary>
     ///     Gets or sets FOVSensitivityAdjust.
@@ -278,7 +278,7 @@ public partial class C_BasePlayerPawn : C_BaseCombatCharacter
     [NativeOffset(0x1258)]
     [NativeName("m_ServerViewAngleChanges")]
     [NativeMetadata("MNotSaved", "")]
-    public C_UtlVectorEmbeddedNetworkVar__ViewAngleServerChange_t__ ServerViewAngleChanges { get; set; }
+    public ViewAngleServerChange[] ServerViewAngleChanges { get; set; }
 
     /// <summary>
     ///     Gets or sets Skybox3d.

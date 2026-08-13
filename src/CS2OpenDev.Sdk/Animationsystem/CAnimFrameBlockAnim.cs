@@ -41,7 +41,7 @@ public partial class CAnimFrameBlockAnim
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_segmentIndexArray")]
-    public CUtlVector__int32__ SegmentIndexArray { get; set; }
+    public int[] SegmentIndexArray { get; set; }
 
     /// <summary>
     ///     Gets or sets StartFrame.

@@ -42,7 +42,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x480)]
     [NativeName("m_AnimStrayRadii")]
-    public CUtlVector__FeAnimStrayRadius_t__ AnimStrayRadii { get; set; }
+    public FeAnimStrayRadius[] AnimStrayRadii { get; set; }
 
     /// <summary>
     ///     Gets or sets AntiTunnelBytecode.
@@ -52,7 +52,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x180)]
     [NativeName("m_AntiTunnelBytecode")]
-    public CUtlVector__uint32__ AntiTunnelBytecode { get; set; }
+    public uint[] AntiTunnelBytecode { get; set; }
 
     /// <summary>
     ///     Gets or sets AntiTunnelProbes.
@@ -62,7 +62,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x1C8)]
     [NativeName("m_AntiTunnelProbes")]
-    public CUtlVector__FeAntiTunnelProbe_t__ AntiTunnelProbes { get; set; }
+    public FeAntiTunnelProbe[] AntiTunnelProbes { get; set; }
 
     /// <summary>
     ///     Gets or sets AntiTunnelTargetNodes.
@@ -72,7 +72,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x1E0)]
     [NativeName("m_AntiTunnelTargetNodes")]
-    public CUtlVector__uint16__ AntiTunnelTargetNodes { get; set; }
+    public ushort[] AntiTunnelTargetNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets AxialEdges.
@@ -82,7 +82,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x210)]
     [NativeName("m_AxialEdges")]
-    public CUtlVector__FeAxialEdgeBend_t__ AxialEdges { get; set; }
+    public FeAxialEdgeBend[] AxialEdges { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneMergeLinks.
@@ -92,7 +92,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x1B0)]
     [NativeName("m_BoneMergeLinks")]
-    public CUtlVector__FeBoneMergeLink_t__ BoneMergeLinks { get; set; }
+    public FeBoneMergeLink[] BoneMergeLinks { get; set; }
 
     /// <summary>
     ///     Gets or sets BoxRigids.
@@ -102,7 +102,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x560)]
     [NativeName("m_BoxRigids")]
-    public CUtlVector__FeBoxRigid_t__ BoxRigids { get; set; }
+    public FeBoxRigid[] BoxRigids { get; set; }
 
     /// <summary>
     ///     Gets or sets CollisionPlanes.
@@ -112,7 +112,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x288)]
     [NativeName("m_CollisionPlanes")]
-    public CUtlVector__FeCollisionPlane_t__ CollisionPlanes { get; set; }
+    public FeCollisionPlane[] CollisionPlanes { get; set; }
 
     /// <summary>
     ///     Gets or sets CtrlHash.
@@ -122,7 +122,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_CtrlHash")]
-    public CUtlVector__uint32__ CtrlHash { get; set; }
+    public uint[] CtrlHash { get; set; }
 
     /// <summary>
     ///     Gets or sets CtrlName.
@@ -132,7 +132,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_CtrlName")]
-    public CUtlVector__CUtlString__ CtrlName { get; set; }
+    public string[] CtrlName { get; set; }
 
     /// <summary>
     ///     Gets or sets CtrlOffsets.
@@ -142,7 +142,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x240)]
     [NativeName("m_CtrlOffsets")]
-    public CUtlVector__FeCtrlOffset_t__ CtrlOffsets { get; set; }
+    public FeCtrlOffset[] CtrlOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets CtrlOsOffsets.
@@ -152,7 +152,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x258)]
     [NativeName("m_CtrlOsOffsets")]
-    public CUtlVector__FeCtrlOsOffset_t__ CtrlOsOffsets { get; set; }
+    public FeCtrlOsOffset[] CtrlOsOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets CtrlSoftOffsets.
@@ -162,7 +162,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_CtrlSoftOffsets")]
-    public CUtlVector__FeCtrlSoftOffset_t__ CtrlSoftOffsets { get; set; }
+    public FeCtrlSoftOffset[] CtrlSoftOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets DefaultExpAirDrag.
@@ -262,7 +262,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x198)]
     [NativeName("m_DynKinLinks")]
-    public CUtlVector__FeDynKinLink_t__ DynKinLinks { get; set; }
+    public FeDynKinLink[] DynKinLinks { get; set; }
 
     /// <summary>
     ///     Gets or sets DynNodeFriction.
@@ -272,7 +272,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x330)]
     [NativeName("m_DynNodeFriction")]
-    public CUtlVector__float32__ DynNodeFriction { get; set; }
+    public float[] DynNodeFriction { get; set; }
 
     /// <summary>
     ///     Gets or sets DynNodeVertexSet.
@@ -282,7 +282,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x578)]
     [NativeName("m_DynNodeVertexSet")]
-    public CUtlVector__uint8__ DynNodeVertexSet { get; set; }
+    public byte[] DynNodeVertexSet { get; set; }
 
     /// <summary>
     ///     Gets or sets DynNodeWindBases.
@@ -292,7 +292,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x680)]
     [NativeName("m_DynNodeWindBases")]
-    public CUtlVector__FeNodeWindBase_t__ DynNodeWindBases { get; set; }
+    public FeNodeWindBase[] DynNodeWindBases { get; set; }
 
     /// <summary>
     ///     Gets or sets DynamicNodeFlags.
@@ -312,7 +312,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x620)]
     [NativeName("m_Effects")]
-    public CUtlVector__FeEffectDesc_t__ Effects { get; set; }
+    public FeEffectDesc[] Effects { get; set; }
 
     /// <summary>
     ///     Gets or sets ExtraGoalIterations.
@@ -362,7 +362,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x438)]
     [NativeName("m_FitMatrices")]
-    public CUtlVector__FeFitMatrix_t__ FitMatrices { get; set; }
+    public FeFitMatrix[] FitMatrices { get; set; }
 
     /// <summary>
     ///     Gets or sets FitWeights.
@@ -372,7 +372,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x450)]
     [NativeName("m_FitWeights")]
-    public CUtlVector__FeFitWeight_t__ FitWeights { get; set; }
+    public FeFitWeight[] FitWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets FlLocalForce.
@@ -402,7 +402,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x270)]
     [NativeName("m_FollowNodes")]
-    public CUtlVector__FeFollowNode_t__ FollowNodes { get; set; }
+    public FeFollowNode[] FollowNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets FreeNodes.
@@ -412,7 +412,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x420)]
     [NativeName("m_FreeNodes")]
-    public CUtlVector__uint16__ FreeNodes { get; set; }
+    public ushort[] FreeNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets GoalDampedSpringIntegrators.
@@ -422,7 +422,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x510)]
     [NativeName("m_GoalDampedSpringIntegrators")]
-    public CUtlVector__uint32__ GoalDampedSpringIntegrators { get; set; }
+    public uint[] GoalDampedSpringIntegrators { get; set; }
 
     /// <summary>
     ///     Gets or sets HingeLimits.
@@ -432,7 +432,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x168)]
     [NativeName("m_HingeLimits")]
-    public CUtlVector__FeHingeLimit_t__ HingeLimits { get; set; }
+    public FeHingeLimit[] HingeLimits { get; set; }
 
     /// <summary>
     ///     Gets or sets InitPose.
@@ -442,7 +442,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_InitPose")]
-    public CUtlVector__CTransform__ InitPose { get; set; }
+    public CTransform[] InitPose { get; set; }
 
     /// <summary>
     ///     Gets or sets InternalPressure.
@@ -462,7 +462,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x4E0)]
     [NativeName("m_JiggleBones")]
-    public CUtlVector__CFeIndexedJiggleBone__ JiggleBones { get; set; }
+    public CFeIndexedJiggleBone[] JiggleBones { get; set; }
 
     /// <summary>
     ///     Gets or sets KelagerBends.
@@ -472,7 +472,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_KelagerBends")]
-    public CUtlVector__FeKelagerBend2_t__ KelagerBends { get; set; }
+    public FeKelagerBend2[] KelagerBends { get; set; }
 
     /// <summary>
     ///     Gets or sets LegacyStretchForce.
@@ -482,7 +482,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x300)]
     [NativeName("m_LegacyStretchForce")]
-    public CUtlVector__float32__ LegacyStretchForce { get; set; }
+    public float[] LegacyStretchForce { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalDrag1.
@@ -502,7 +502,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x360)]
     [NativeName("m_LocalForce")]
-    public CUtlVector__float32__ LocalForce { get; set; }
+    public float[] LocalForce { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalRotation.
@@ -512,7 +512,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x348)]
     [NativeName("m_LocalRotation")]
-    public CUtlVector__float32__ LocalRotation { get; set; }
+    public float[] LocalRotation { get; set; }
 
     /// <summary>
     ///     Gets or sets LockToGoal.
@@ -522,7 +522,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x650)]
     [NativeName("m_LockToGoal")]
-    public CUtlVector__uint16__ LockToGoal { get; set; }
+    public ushort[] LockToGoal { get; set; }
 
     /// <summary>
     ///     Gets or sets LockToParent.
@@ -532,7 +532,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x638)]
     [NativeName("m_LockToParent")]
-    public CUtlVector__FeCtrlOffset_t__ LockToParent { get; set; }
+    public FeCtrlOffset[] LockToParent { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphLayers.
@@ -542,7 +542,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x5C0)]
     [NativeName("m_MorphLayers")]
-    public CUtlVector__FeMorphLayerDepr_t__ MorphLayers { get; set; }
+    public FeMorphLayerDepr[] MorphLayers { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphSetData.
@@ -552,7 +552,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x5D8)]
     [NativeName("m_MorphSetData")]
-    public CUtlVector__uint8__ MorphSetData { get; set; }
+    public byte[] MorphSetData { get; set; }
 
     /// <summary>
     ///     Gets or sets MotionSmoothCDT.
@@ -582,7 +582,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_NodeBases")]
-    public CUtlVector__FeNodeBase_t__ NodeBases { get; set; }
+    public FeNodeBase[] NodeBases { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeCollisionRadii.
@@ -592,7 +592,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x318)]
     [NativeName("m_NodeCollisionRadii")]
-    public CUtlVector__float32__ NodeCollisionRadii { get; set; }
+    public float[] NodeCollisionRadii { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeCount.
@@ -612,7 +612,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x2A0)]
     [NativeName("m_NodeIntegrator")]
-    public CUtlVector__FeNodeIntegrator_t__ NodeIntegrator { get; set; }
+    public FeNodeIntegrator[] NodeIntegrator { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeInvMasses.
@@ -622,7 +622,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x228)]
     [NativeName("m_NodeInvMasses")]
-    public CUtlVector__float32__ NodeInvMasses { get; set; }
+    public float[] NodeInvMasses { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeStrayBoxes.
@@ -632,7 +632,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x1F8)]
     [NativeName("m_NodeStrayBoxes")]
-    public CUtlVector__FeNodeStrayBox_t__ NodeStrayBoxes { get; set; }
+    public FeNodeStrayBox[] NodeStrayBoxes { get; set; }
 
     /// <summary>
     ///     Gets or sets QuadCount1.
@@ -682,7 +682,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_Quads")]
-    public CUtlVector__FeQuad_t__ Quads { get; set; }
+    public FeQuad[] Quads { get; set; }
 
     /// <summary>
     ///     Gets or sets ReservedUint8.
@@ -702,7 +702,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x468)]
     [NativeName("m_ReverseOffsets")]
-    public CUtlVector__FeNodeReverseOffset_t__ ReverseOffsets { get; set; }
+    public FeNodeReverseOffset[] ReverseOffsets { get; set; }
 
     /// <summary>
     ///     Gets or sets RigidColliderPriorities.
@@ -712,7 +712,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x5A8)]
     [NativeName("m_RigidColliderPriorities")]
-    public CUtlVector__FeRigidColliderIndices_t__ RigidColliderPriorities { get; set; }
+    public FeRigidColliderIndices[] RigidColliderPriorities { get; set; }
 
     /// <summary>
     ///     Gets or sets RodVelocitySmoothIterations.
@@ -742,7 +742,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_Rods")]
-    public CUtlVector__FeRodConstraint_t__ Rods { get; set; }
+    public FeRodConstraint[] Rods { get; set; }
 
     /// <summary>
     ///     Gets or sets RopeCount.
@@ -762,7 +762,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_Ropes")]
-    public CUtlVector__uint16__ Ropes { get; set; }
+    public ushort[] Ropes { get; set; }
 
     /// <summary>
     ///     Gets or sets RotLockStaticNodes.
@@ -782,7 +782,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x548)]
     [NativeName("m_SDFRigids")]
-    public CUtlVector__FeSDFRigid_t__ SDFRigids { get; set; }
+    public FeSDFRigid[] SDFRigids { get; set; }
 
     /// <summary>
     ///     Gets or sets SelfCollisionLayers.
@@ -792,7 +792,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x698)]
     [NativeName("m_SelfCollisionLayers")]
-    public CUtlVector__FeModelSelfCollisionLayer_t__ SelfCollisionLayers { get; set; }
+    public FeModelSelfCollisionLayer[] SelfCollisionLayers { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdAnimStrayRadii.
@@ -802,7 +802,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x498)]
     [NativeName("m_SimdAnimStrayRadii")]
-    public CUtlVector__FeSimdAnimStrayRadius_t__ SimdAnimStrayRadii { get; set; }
+    public FeSimdAnimStrayRadius[] SimdAnimStrayRadii { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdNodeBases.
@@ -812,7 +812,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_SimdNodeBases")]
-    public CUtlVector__FeSimdNodeBase_t__ SimdNodeBases { get; set; }
+    public FeSimdNodeBase[] SimdNodeBases { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdQuadCount1.
@@ -842,7 +842,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0xC0)]
     [NativeName("m_SimdQuads")]
-    public CUtlVector__FeSimdQuad_t__ SimdQuads { get; set; }
+    public FeSimdQuad[] SimdQuads { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdRods.
@@ -852,7 +852,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0xF0)]
     [NativeName("m_SimdRods")]
-    public CUtlVector__FeSimdRodConstraint_t__ SimdRods { get; set; }
+    public FeSimdRodConstraint[] SimdRods { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdRodsAnim.
@@ -862,7 +862,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_SimdRodsAnim")]
-    public CUtlVector__FeSimdRodConstraintAnim_t__ SimdRodsAnim { get; set; }
+    public FeSimdRodConstraintAnim[] SimdRodsAnim { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdSpringIntegrator.
@@ -872,7 +872,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x2D0)]
     [NativeName("m_SimdSpringIntegrator")]
-    public CUtlVector__FeSimdSpringIntegrator_t__ SimdSpringIntegrator { get; set; }
+    public FeSimdSpringIntegrator[] SimdSpringIntegrator { get; set; }
 
     /// <summary>
     ///     Gets or sets SimdTriCount1.
@@ -902,7 +902,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_SimdTris")]
-    public CUtlVector__FeSimdTri_t__ SimdTris { get; set; }
+    public FeSimdTri[] SimdTris { get; set; }
 
     /// <summary>
     ///     Gets or sets SkelParents.
@@ -912,7 +912,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x668)]
     [NativeName("m_SkelParents")]
-    public CUtlVector__int16__ SkelParents { get; set; }
+    public short[] SkelParents { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceElems.
@@ -922,7 +922,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x4F8)]
     [NativeName("m_SourceElems")]
-    public CUtlVector__uint16__ SourceElems { get; set; }
+    public ushort[] SourceElems { get; set; }
 
     /// <summary>
     ///     Gets or sets SphereRigids.
@@ -932,7 +932,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x3A8)]
     [NativeName("m_SphereRigids")]
-    public CUtlVector__FeSphereRigid_t__ SphereRigids { get; set; }
+    public FeSphereRigid[] SphereRigids { get; set; }
 
     /// <summary>
     ///     Gets or sets SpringIntegrator.
@@ -942,7 +942,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x2B8)]
     [NativeName("m_SpringIntegrator")]
-    public CUtlVector__FeSpringIntegrator_t__ SpringIntegrator { get; set; }
+    public FeSpringIntegrator[] SpringIntegrator { get; set; }
 
     /// <summary>
     ///     Gets or sets StaticNodeFlags.
@@ -972,7 +972,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x390)]
     [NativeName("m_TaperedCapsuleRigids")]
-    public CUtlVector__FeTaperedCapsuleRigid_t__ TaperedCapsuleRigids { get; set; }
+    public FeTaperedCapsuleRigid[] TaperedCapsuleRigids { get; set; }
 
     /// <summary>
     ///     Gets or sets TaperedCapsuleStretches.
@@ -982,7 +982,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x378)]
     [NativeName("m_TaperedCapsuleStretches")]
-    public CUtlVector__FeTaperedCapsuleStretch_t__ TaperedCapsuleStretches { get; set; }
+    public FeTaperedCapsuleStretch[] TaperedCapsuleStretches { get; set; }
 
     /// <summary>
     ///     Gets or sets TreeChildren.
@@ -992,7 +992,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x408)]
     [NativeName("m_TreeChildren")]
-    public CUtlVector__FeTreeChildren_t__ TreeChildren { get; set; }
+    public FeTreeChildren[] TreeChildren { get; set; }
 
     /// <summary>
     ///     Gets or sets TreeCollisionMasks.
@@ -1002,7 +1002,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x3F0)]
     [NativeName("m_TreeCollisionMasks")]
-    public CUtlVector__uint16__ TreeCollisionMasks { get; set; }
+    public ushort[] TreeCollisionMasks { get; set; }
 
     /// <summary>
     ///     Gets or sets TreeDepth.
@@ -1022,7 +1022,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x3D8)]
     [NativeName("m_TreeParents")]
-    public CUtlVector__uint16__ TreeParents { get; set; }
+    public ushort[] TreeParents { get; set; }
 
     /// <summary>
     ///     Gets or sets TriCount1.
@@ -1052,7 +1052,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x528)]
     [NativeName("m_Tris")]
-    public CUtlVector__FeTri_t__ Tris { get; set; }
+    public FeTri[] Tris { get; set; }
 
     /// <summary>
     ///     Gets or sets Twists.
@@ -1062,7 +1062,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x150)]
     [NativeName("m_Twists")]
-    public CUtlVector__FeTwistConstraint_t__ Twists { get; set; }
+    public FeTwistConstraint[] Twists { get; set; }
 
     /// <summary>
     ///     Gets or sets VertexMapValues.
@@ -1072,7 +1072,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x608)]
     [NativeName("m_VertexMapValues")]
-    public CUtlVector__uint8__ VertexMapValues { get; set; }
+    public byte[] VertexMapValues { get; set; }
 
     /// <summary>
     ///     Gets or sets VertexMaps.
@@ -1082,7 +1082,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x5F0)]
     [NativeName("m_VertexMaps")]
-    public CUtlVector__FeVertexMapDesc_t__ VertexMaps { get; set; }
+    public FeVertexMapDesc[] VertexMaps { get; set; }
 
     /// <summary>
     ///     Gets or sets VertexSetNames.
@@ -1092,7 +1092,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x590)]
     [NativeName("m_VertexSetNames")]
-    public CUtlVector__uint32__ VertexSetNames { get; set; }
+    public uint[] VertexSetNames { get; set; }
 
     /// <summary>
     ///     Gets or sets WindDrag.
@@ -1122,7 +1122,7 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x3C0)]
     [NativeName("m_WorldCollisionNodes")]
-    public CUtlVector__uint16__ WorldCollisionNodes { get; set; }
+    public ushort[] WorldCollisionNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldCollisionParams.
@@ -1132,5 +1132,5 @@ public partial class PhysFeModelDesc
     /// </remarks>
     [NativeOffset(0x2E8)]
     [NativeName("m_WorldCollisionParams")]
-    public CUtlVector__FeWorldCollisionParams_t__ WorldCollisionParams { get; set; }
+    public FeWorldCollisionParams[] WorldCollisionParams { get; set; }
 }

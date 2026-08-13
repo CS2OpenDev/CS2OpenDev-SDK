@@ -34,7 +34,7 @@ public partial class CompositeMaterialAssemblyProcedure
     [NativeOffset(0x0)]
     [NativeName("m_vecCompMatIncludes")]
     [NativeMetadata("MPropertyFriendlyName", "Includes")]
-    public CUtlVector__CResourceNameTyped__CWeakHandle__InfoForResourceTypeCCompositeMaterialKit______ CompMatIncludes { get; set; }
+    public string[] CompMatIncludes { get; set; }
 
     /// <summary>
     ///     Composite Inputs.
@@ -45,7 +45,7 @@ public partial class CompositeMaterialAssemblyProcedure
     [NativeOffset(0x30)]
     [NativeName("m_vecCompositeInputContainers")]
     [NativeMetadata("MPropertyFriendlyName", "Composite Inputs")]
-    public CUtlVector__CompositeMaterialInputContainer_t__ CompositeInputContainers { get; set; }
+    public CompositeMaterialInputContainer[] CompositeInputContainers { get; set; }
 
     /// <summary>
     ///     Match Filters.
@@ -56,7 +56,7 @@ public partial class CompositeMaterialAssemblyProcedure
     [NativeOffset(0x18)]
     [NativeName("m_vecMatchFilters")]
     [NativeMetadata("MPropertyFriendlyName", "Match Filters")]
-    public CUtlVector__CompositeMaterialMatchFilter_t__ MatchFilters { get; set; }
+    public CompositeMaterialMatchFilter[] MatchFilters { get; set; }
 
     /// <summary>
     ///     Property Mutators.
@@ -67,5 +67,5 @@ public partial class CompositeMaterialAssemblyProcedure
     [NativeOffset(0x48)]
     [NativeName("m_vecPropertyMutators")]
     [NativeMetadata("MPropertyFriendlyName", "Property Mutators")]
-    public CUtlVector__CompMatPropertyMutator_t__ PropertyMutators { get; set; }
+    public CompMatPropertyMutator[] PropertyMutators { get; set; }
 }

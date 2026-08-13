@@ -31,7 +31,7 @@ public partial class TargetSelectorInstanceData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_currentIndex")]
-    public CAnimNetVar__int32__ CurrentIndex { get; set; }
+    public int CurrentIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets MSRootMotionAnlyzerTarget.
@@ -41,5 +41,5 @@ public partial class TargetSelectorInstanceData
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("m_vMSRootMotionAnlyzerTarget")]
-    public CAnimNetVar__Vector__ MSRootMotionAnlyzerTarget { get; set; }
+    public Vector MSRootMotionAnlyzerTarget { get; set; }
 }

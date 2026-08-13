@@ -31,5 +31,5 @@ public partial class CDampedValueComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_items")]
-    public CUtlVector__CDampedValueUpdateItem__ Items { get; set; }
+    public CDampedValueUpdateItem[] Items { get; set; }
 }

@@ -65,7 +65,7 @@ public partial class CTestEffect : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_pBeam")]
-    public CHandle__CBeam__[] PBeam { get; set; }
+    public CHandle<CBeam>[] PBeam { get; set; }
 
     /// <summary>
     ///     Gets or sets StartTime.

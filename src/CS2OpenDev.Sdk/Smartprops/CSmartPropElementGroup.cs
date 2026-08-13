@@ -37,5 +37,5 @@ public partial class CSmartPropElementGroup : CSmartPropElement
     [NativeMetadata("MPropertyDescription", "List of child elements which will appear if this element appears")]
     [NativeMetadata("MPropertyFriendlyName", "Children")]
     [NativeMetadata("MVDataPromoteField", "1")]
-    public CUtlVector__CSmartPropElement___ Children { get; set; }
+    public CSmartPropElement?[] Children { get; set; }
 }

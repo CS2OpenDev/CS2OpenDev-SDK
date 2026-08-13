@@ -32,7 +32,7 @@ public partial class CPulseCellInflowMethod : CPulseCellInflowBaseEntryPoint
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_Args")]
-    public CUtlLeanVector__CPulseRuntimeMethodArg__ Args { get; set; }
+    public CPulseRuntimeMethodArg[] Args { get; set; }
 
     /// <summary>
     ///     Gets or sets Description.

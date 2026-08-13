@@ -43,7 +43,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0xB0)]
     [NativeName("m_entryEvents")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CGlobalSymbol__ EntryEvents { get; set; }
+    public string[] EntryEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets Events.
@@ -54,7 +54,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0x98)]
     [NativeName("m_events")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CGlobalSymbol__ Events { get; set; }
+    public string[] Events { get; set; }
 
     /// <summary>
     ///     Gets or sets ExecuteEvents.
@@ -65,7 +65,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0xC8)]
     [NativeName("m_executeEvents")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CGlobalSymbol__ ExecuteEvents { get; set; }
+    public string[] ExecuteEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets ExitEvents.
@@ -76,7 +76,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0xE0)]
     [NativeName("m_exitEvents")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CGlobalSymbol__ ExitEvents { get; set; }
+    public string[] ExitEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets StateEvents.
@@ -87,7 +87,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0x68)]
     [NativeName("m_stateEvents")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocStateNode_StateEvent_t__ StateEvents { get; set; }
+    public CNmGraphDocStateNodeStateEvent[] StateEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeElapsedEvents.
@@ -98,7 +98,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0x110)]
     [NativeName("m_timeElapsedEvents")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CNmGraphDocStateNode_TimedStateEvent_t__ TimeElapsedEvents { get; set; }
+    public CNmGraphDocStateNodeTimedStateEvent[] TimeElapsedEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeRemainingEvents.
@@ -109,7 +109,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0xF8)]
     [NativeName("m_timeRemainingEvents")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CNmGraphDocStateNode_TimedStateEvent_t__ TimeRemainingEvents { get; set; }
+    public CNmGraphDocStateNodeTimedStateEvent[] TimeRemainingEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets TimedStateEvents.
@@ -120,7 +120,7 @@ public partial class CNmGraphDocStateNode : CNmGraphDocStateMachineGraphNode
     [NativeOffset(0x80)]
     [NativeName("m_timedStateEvents")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocStateNode_TimedStateEvent_t__ TimedStateEvents { get; set; }
+    public CNmGraphDocStateNodeTimedStateEvent[] TimedStateEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets Type.

@@ -42,7 +42,7 @@ public partial class ParticlePreviewState
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_vecBodyGroups")]
-    public CUtlVector__ParticlePreviewBodyGroup_t__ BodyGroups { get; set; }
+    public ParticlePreviewBodyGroup[] BodyGroups { get; set; }
 
     /// <summary>
     ///     Gets or sets FireParticleOnSequenceFrame.

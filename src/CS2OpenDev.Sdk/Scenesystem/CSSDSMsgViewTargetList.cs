@@ -32,7 +32,7 @@ public partial class CSSDSMsgViewTargetList
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Targets")]
-    public CUtlVector__CSSDSMsg_ViewTarget__ Targets { get; set; }
+    public CSSDSMsgViewTarget[] Targets { get; set; }
 
     /// <summary>
     ///     Gets or sets ViewId.

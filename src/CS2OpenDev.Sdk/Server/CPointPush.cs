@@ -49,7 +49,7 @@ public partial class CPointPush : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_hFilter")]
-    public CHandle__CBaseFilter__ Filter { get; set; }
+    public CHandle<CBaseFilter> Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.

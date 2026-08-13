@@ -115,7 +115,7 @@ public partial class CVoteController : CBaseEntity
     /// </remarks>
     [NativeOffset(0x628)]
     [NativeName("m_potentialIssues")]
-    public CUtlVector__CBaseIssue___ PotentialIssues { get; set; }
+    public CBaseIssue?[] PotentialIssues { get; set; }
 
     /// <summary>
     ///     Gets or sets PotentialVotes.
@@ -155,7 +155,7 @@ public partial class CVoteController : CBaseEntity
     /// </remarks>
     [NativeOffset(0x640)]
     [NativeName("m_VoteOptions")]
-    public CUtlVector__char___ VoteOptions { get; set; }
+    public string?[] VoteOptions { get; set; }
 
     /// <summary>
     ///     Gets or sets VotesCast.

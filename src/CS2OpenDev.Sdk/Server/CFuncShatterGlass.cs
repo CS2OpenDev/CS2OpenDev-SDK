@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -106,7 +107,7 @@ public partial class CFuncShatterGlass : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x848)]
     [NativeName("m_vExtraDamagePositions")]
-    public CUtlVector__VectorWS__ ExtraDamagePositions { get; set; }
+    public VectorWS[] ExtraDamagePositions { get; set; }
 
     /// <summary>
     ///     Gets or sets GlassInFrame.
@@ -156,7 +157,7 @@ public partial class CFuncShatterGlass : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x830)]
     [NativeName("m_vInitialDamagePositions")]
-    public CUtlVector__VectorWS__ InitialDamagePositions { get; set; }
+    public VectorWS[] InitialDamagePositions { get; set; }
 
     /// <summary>
     ///     Gets or sets InitialDamageType.
@@ -176,7 +177,7 @@ public partial class CFuncShatterGlass : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x860)]
     [NativeName("m_vInitialPanelVertices")]
-    public CUtlVector__Vector4D__ InitialPanelVertices { get; set; }
+    public Vector4D[] InitialPanelVertices { get; set; }
 
     /// <summary>
     ///     Gets or sets LastCleanupTime.
@@ -226,7 +227,7 @@ public partial class CFuncShatterGlass : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x898)]
     [NativeName("m_hMaterialDamageBase")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ MaterialDamageBase { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> MaterialDamageBase { get; set; }
 
     /// <summary>
     ///     Gets or sets OnBroken.
@@ -256,7 +257,7 @@ public partial class CFuncShatterGlass : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7D0)]
     [NativeName("m_vecShatterGlassShards")]
-    public CUtlVector__uint32__ ShatterGlassShards { get; set; }
+    public uint[] ShatterGlassShards { get; set; }
 
     /// <summary>
     ///     Gets or sets SpawnInvulnerability.

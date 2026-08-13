@@ -77,7 +77,7 @@ public partial class CCycleControlClipUpdateNode : CLeafUpdateNode
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 
     /// <summary>
     ///     Gets or sets ValueSource.

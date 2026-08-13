@@ -39,7 +39,7 @@ public partial class CPointProximitySensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_Distance")]
-    public CEntityOutputTemplate__float32__ Distance { get; set; }
+    public float? Distance { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetEntity.
@@ -49,5 +49,5 @@ public partial class CPointProximitySensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4AC)]
     [NativeName("m_hTargetEntity")]
-    public CHandle__CBaseEntity__ TargetEntity { get; set; }
+    public CHandle<CBaseEntity> TargetEntity { get; set; }
 }

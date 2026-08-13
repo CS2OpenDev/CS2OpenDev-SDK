@@ -31,5 +31,5 @@ public partial class CSSDSMsgEndFrame
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Views")]
-    public CUtlVector__CSSDSEndFrameViewInfo__ Views { get; set; }
+    public CSSDSEndFrameViewInfo[] Views { get; set; }
 }

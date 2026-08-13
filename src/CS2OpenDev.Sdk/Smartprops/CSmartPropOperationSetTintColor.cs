@@ -36,7 +36,7 @@ public partial class CSmartPropOperationSetTintColor : CSmartPropOperation
     [NativeOffset(0x110)]
     [NativeName("m_ColorChoices")]
     [NativeMetadata("MPropertyDescription", "List of possible colors which may be selected")]
-    public CUtlVector__ColorChoice_t__ ColorChoices { get; set; }
+    public ColorChoice[] ColorChoices { get; set; }
 
     /// <summary>
     ///     Specifies the index of the color to pick.

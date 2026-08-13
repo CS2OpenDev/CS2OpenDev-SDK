@@ -68,5 +68,5 @@ public partial class AutoTagVDataCondition
     [NativeOffset(0x0)]
     [NativeName("m_SourceFile")]
     [NativeMetadata("MPropertyDescription", "The VData file to read")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCVDataResource____ SourceFile { get; set; }
+    public string SourceFile { get; set; }
 }

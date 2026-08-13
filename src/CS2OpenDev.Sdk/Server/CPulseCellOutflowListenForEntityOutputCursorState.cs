@@ -31,5 +31,5 @@ public partial class CPulseCellOutflowListenForEntityOutputCursorState
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_entity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 }

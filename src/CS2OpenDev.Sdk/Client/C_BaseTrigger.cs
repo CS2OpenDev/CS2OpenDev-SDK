@@ -45,7 +45,7 @@ public partial class C_BaseTrigger : C_BaseToggle
     /// </remarks>
     [NativeOffset(0x1090)]
     [NativeName("m_hFilter")]
-    public CHandle__CBaseFilter__ Filter { get; set; }
+    public CHandle<CBaseFilter> Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.
@@ -145,5 +145,5 @@ public partial class C_BaseTrigger : C_BaseToggle
     /// </remarks>
     [NativeOffset(0x1070)]
     [NativeName("m_hTouchingEntities")]
-    public CUtlVector__CHandle__C_BaseEntity____ TouchingEntities { get; set; }
+    public CHandle<C_BaseEntity>[] TouchingEntities { get; set; }
 }

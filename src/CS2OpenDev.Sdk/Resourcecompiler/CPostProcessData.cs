@@ -30,5 +30,5 @@ public partial class CPostProcessData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_layers")]
-    public CUtlVector__CColorCorrectionLayer___ Layers { get; set; }
+    public CColorCorrectionLayer?[] Layers { get; set; }
 }

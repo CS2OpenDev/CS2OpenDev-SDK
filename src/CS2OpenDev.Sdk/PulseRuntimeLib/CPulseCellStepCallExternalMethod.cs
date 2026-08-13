@@ -52,7 +52,7 @@ public partial class CPulseCellStepCallExternalMethod : CPulseCellBaseYieldingIn
     /// </remarks>
     [NativeOffset(0xF0)]
     [NativeName("m_ExpectedArgs")]
-    public CUtlLeanVector__CPulseRuntimeMethodArg__ ExpectedArgs { get; set; }
+    public CPulseRuntimeMethodArg[] ExpectedArgs { get; set; }
 
     /// <summary>
     ///     Gets or sets MethodName.

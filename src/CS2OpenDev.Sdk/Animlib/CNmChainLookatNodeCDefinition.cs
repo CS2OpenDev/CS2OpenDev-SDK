@@ -52,7 +52,7 @@ public partial class CNmChainLookatNodeCDefinition : CNmPassthroughNodeCDefiniti
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_chainWeights")]
-    public CUtlVectorFixedGrowable__float32__5__ ChainWeights { get; set; }
+    public float[] ChainWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets EnabledNodeIdx.

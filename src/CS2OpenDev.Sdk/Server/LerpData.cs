@@ -38,7 +38,7 @@ public partial class LerpData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hEnt")]
-    public CHandle__CBaseEntity__ Ent { get; set; }
+    public CHandle<CBaseEntity> Ent { get; set; }
 
     /// <summary>
     ///     Gets or sets FXIndex.

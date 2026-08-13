@@ -52,5 +52,5 @@ public partial class NmBoneMaskSetDefinition
     /// </remarks>
     [NativeOffset(0x118)]
     [NativeName("m_secondaryWeightLists")]
-    public CUtlLeanVector__CNmBoneWeightList__ SecondaryWeightLists { get; set; }
+    public CNmBoneWeightList[] SecondaryWeightLists { get; set; }
 }

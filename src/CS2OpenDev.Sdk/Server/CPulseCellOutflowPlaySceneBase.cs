@@ -48,5 +48,5 @@ public partial class CPulseCellOutflowPlaySceneBase : CPulseCellBaseYieldingInfl
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_Triggers")]
-    public CUtlVector__CPulse_OutflowConnection__ Triggers { get; set; }
+    public CPulseOutflowConnection[] Triggers { get; set; }
 }

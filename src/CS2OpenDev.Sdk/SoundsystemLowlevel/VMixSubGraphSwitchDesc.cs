@@ -82,5 +82,5 @@ public partial class VMixSubGraphSwitchDesc
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_subgraphs")]
-    public CUtlVector__CUtlString__ SubGraphs { get; set; }
+    public string[] SubGraphs { get; set; }
 }

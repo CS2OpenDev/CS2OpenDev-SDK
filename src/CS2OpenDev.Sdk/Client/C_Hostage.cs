@@ -127,7 +127,7 @@ public partial class C_Hostage : C_BaseCombatCharacter
     /// </remarks>
     [NativeOffset(0x1258)]
     [NativeName("m_hHostageGrabber")]
-    public CHandle__C_CSPlayerPawn__ HostageGrabber { get; set; }
+    public CHandle<C_CSPlayerPawn> HostageGrabber { get; set; }
 
     /// <summary>
     ///     Gets or sets HostageState.
@@ -187,7 +187,7 @@ public partial class C_Hostage : C_BaseCombatCharacter
     /// </remarks>
     [NativeOffset(0x1220)]
     [NativeName("m_leader")]
-    public CHandle__C_BaseEntity__ Leader { get; set; }
+    public CHandle<C_BaseEntity> Leader { get; set; }
 
     /// <summary>
     ///     Gets or sets LookAroundTimer.

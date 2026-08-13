@@ -30,7 +30,7 @@ public partial class C_PhysMagnet : CBaseAnimGraph
     [NativeOffset(0x1198)]
     [NativeName("m_aAttachedObjects")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CHandle__C_BaseEntity____ AAttachedObjects { get; set; }
+    public CHandle<C_BaseEntity>[] AAttachedObjects { get; set; }
 
     /// <summary>
     ///     Gets or sets AAttachedObjectsFromServer.
@@ -41,5 +41,5 @@ public partial class C_PhysMagnet : CBaseAnimGraph
     [NativeOffset(0x1180)]
     [NativeName("m_aAttachedObjectsFromServer")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__int32__ AAttachedObjectsFromServer { get; set; }
+    public int[] AAttachedObjectsFromServer { get; set; }
 }

@@ -121,7 +121,7 @@ public partial class MoodAnimationLayer
     [NativeOffset(0x10)]
     [NativeName("m_layerAnimations")]
     [NativeMetadata("MPropertyDescription", "List of animations to choose from")]
-    public CUtlVector__MoodAnimation_t__ LayerAnimations { get; set; }
+    public MoodAnimation[] LayerAnimations { get; set; }
 
     /// <summary>
     ///     Time before the next animation can start.

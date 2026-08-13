@@ -30,5 +30,5 @@ public partial class CAnimScriptManager
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_scriptInfo")]
-    public CUtlVector__ScriptInfo_t__ ScriptInfo { get; set; }
+    public ScriptInfo[] ScriptInfo { get; set; }
 }

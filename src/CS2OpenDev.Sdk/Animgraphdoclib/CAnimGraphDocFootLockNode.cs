@@ -276,7 +276,7 @@ public partial class CAnimGraphDocFootLockNode : CAnimGraphDocNode
     [NativeName("m_items")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Feet")]
-    public CUtlVector__CFootLockItem__ Items { get; set; }
+    public CFootLockItem[] Items { get; set; }
 
     /// <summary>
     ///     Blend Time.

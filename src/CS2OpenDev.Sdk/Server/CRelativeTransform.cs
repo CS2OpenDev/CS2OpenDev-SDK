@@ -30,7 +30,7 @@ public partial class CRelativeTransform
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets Transform.

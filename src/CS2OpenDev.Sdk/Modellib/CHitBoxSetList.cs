@@ -30,5 +30,5 @@ public partial class CHitBoxSetList
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_HitBoxSets")]
-    public CUtlVector__CHitBoxSet__ HitBoxSets { get; set; }
+    public CHitBoxSet[] HitBoxSets { get; set; }
 }

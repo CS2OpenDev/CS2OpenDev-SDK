@@ -35,7 +35,7 @@ public partial class CLogicPlayerProxy : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x510)]
     [NativeName("m_hPlayer")]
-    public CHandle__CBaseEntity__ Player { get; set; }
+    public CHandle<CBaseEntity> Player { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerDied.
@@ -75,5 +75,5 @@ public partial class CLogicPlayerProxy : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4F0)]
     [NativeName("m_RequestedPlayerHealth")]
-    public CEntityOutputTemplate__int32__ RequestedPlayerHealth { get; set; }
+    public int? RequestedPlayerHealth { get; set; }
 }

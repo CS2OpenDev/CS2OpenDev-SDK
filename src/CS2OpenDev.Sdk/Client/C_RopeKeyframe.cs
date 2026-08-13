@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Modellib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -157,7 +158,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0x1278)]
     [NativeName("m_hEndPoint")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ EndPoint { get; set; }
+    public CHandle<C_BaseEntity> EndPoint { get; set; }
 
     /// <summary>
     ///     Gets or sets EndPointAttachmentAnglesDirty.
@@ -212,7 +213,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0xFB8)]
     [NativeName("m_LinksTouchingSomething")]
     [NativeMetadata("MNotSaved", "")]
-    public CBitVec__10__ LinksTouchingSomething { get; set; }
+    public byte[] LinksTouchingSomething { get; set; }
 
     /// <summary>
     ///     Gets or sets LockedPoints.
@@ -234,7 +235,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0x12A0)]
     [NativeName("m_hMaterial")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     Gets or sets NLinksTouchingSomething.
@@ -333,7 +334,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0xFF8)]
     [NativeName("m_iRopeMaterialModelIndex")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ RopeMaterialModelIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> RopeMaterialModelIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets ScrollSpeed.
@@ -388,7 +389,7 @@ public partial class C_RopeKeyframe : C_BaseModelEntity
     [NativeOffset(0x1274)]
     [NativeName("m_hStartPoint")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ StartPoint { get; set; }
+    public CHandle<C_BaseEntity> StartPoint { get; set; }
 
     /// <summary>
     ///     Gets or sets Subdiv.

@@ -45,7 +45,7 @@ public partial class CEnvEntityMaker : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C4)]
     [NativeName("m_hCurrentBlocker")]
-    public CHandle__CBaseEntity__ CurrentBlocker { get; set; }
+    public CHandle<CBaseEntity> CurrentBlocker { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentInstance.
@@ -55,7 +55,7 @@ public partial class CEnvEntityMaker : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_hCurrentInstance")]
-    public CHandle__CBaseEntity__ CurrentInstance { get; set; }
+    public CHandle<CBaseEntity> CurrentInstance { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityMaxs.

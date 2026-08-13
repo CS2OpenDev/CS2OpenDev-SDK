@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -109,7 +110,7 @@ public partial class COPRenderSimpleModelCollection : CParticleFunctionRenderer
     [NativeName("m_hModel")]
     [NativeMetadata("MPropertyFriendlyName", "model")]
     [NativeMetadata("MPropertyStartGroup", "Model")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     input model override.

@@ -29,7 +29,7 @@ public partial class C_HandleTest : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x600)]
     [NativeName("m_Handle")]
-    public CHandle__C_BaseEntity__ Handle { get; set; }
+    public CHandle<C_BaseEntity> Handle { get; set; }
 
     /// <summary>
     ///     Gets or sets SendHandle.

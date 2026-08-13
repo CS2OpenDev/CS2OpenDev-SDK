@@ -12,6 +12,7 @@
 
 #region
 
+using CS2OpenSchema.Common;
 using CS2OpenSchema.Server;
 
 #endregion
@@ -66,7 +67,7 @@ public partial class CCSPlayerControllerActionTrackingServices : CPlayerControll
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_perRoundStats")]
-    public C_UtlVectorEmbeddedNetworkVar__CSPerRoundStats_t__ PerRoundStats { get; set; }
+    public CSPerRoundStats[] PerRoundStats { get; set; }
 
     /// <summary>
     ///     Total damage this player has dealt in the current round.

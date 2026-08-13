@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -61,7 +62,7 @@ public abstract partial class CINITRemapNamedModelElementToScalar : CParticleFun
     /// </remarks>
     [NativeOffset(0x1E0)]
     [NativeName("m_hModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     model from renderer.
@@ -83,7 +84,7 @@ public abstract partial class CINITRemapNamedModelElementToScalar : CParticleFun
     [NativeOffset(0x1E8)]
     [NativeName("m_names")]
     [NativeMetadata("MPropertyFriendlyName", "names")]
-    public CUtlVector__CUtlString__ Names { get; set; }
+    public string[] Names { get; set; }
 
     /// <summary>
     ///     set value method.
@@ -105,5 +106,5 @@ public abstract partial class CINITRemapNamedModelElementToScalar : CParticleFun
     [NativeOffset(0x200)]
     [NativeName("m_values")]
     [NativeMetadata("MPropertyFriendlyName", "remap values for names")]
-    public CUtlVector__float32__ Values { get; set; }
+    public float[] Values { get; set; }
 }

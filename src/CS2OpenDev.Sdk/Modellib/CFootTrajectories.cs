@@ -30,5 +30,5 @@ public partial class CFootTrajectories
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_trajectories")]
-    public CUtlVector__CFootTrajectory__ Trajectories { get; set; }
+    public CFootTrajectory[] Trajectories { get; set; }
 }

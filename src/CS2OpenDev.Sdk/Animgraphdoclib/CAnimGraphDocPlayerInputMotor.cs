@@ -97,7 +97,7 @@ public partial class CAnimGraphDocPlayerInputMotor : CAnimGraphDocMotor
     [NativeOffset(0x30)]
     [NativeName("m_sampleTimes")]
     [NativeMetadata("MPropertyFriendlyName", "Sample Times")]
-    public CUtlVector__float32__ SampleTimes { get; set; }
+    public float[] SampleTimes { get; set; }
 
     /// <summary>
     ///     Spring Constant.

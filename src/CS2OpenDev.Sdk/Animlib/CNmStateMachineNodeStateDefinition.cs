@@ -52,5 +52,5 @@ public partial class CNmStateMachineNodeStateDefinition
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_transitionDefinitions")]
-    public CUtlLeanVectorFixedGrowable__CNmStateMachineNode_TransitionDefinition_t__5__ TransitionDefinitions { get; set; }
+    public CNmStateMachineNodeTransitionDefinition[] TransitionDefinitions { get; set; }
 }

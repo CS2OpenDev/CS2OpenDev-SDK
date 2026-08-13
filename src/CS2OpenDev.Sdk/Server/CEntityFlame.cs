@@ -36,7 +36,7 @@ public partial class CEntityFlame : CBaseEntity
     [NativeOffset(0x4C4)]
     [NativeName("m_hAttacker")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CBaseEntity__ Attacker { get; set; }
+    public CHandle<CBaseEntity> Attacker { get; set; }
 
     /// <summary>
     ///     Gets or sets CheapEffect.
@@ -78,7 +78,7 @@ public partial class CEntityFlame : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_hEntAttached")]
-    public CHandle__CBaseEntity__ EntAttached { get; set; }
+    public CHandle<CBaseEntity> EntAttached { get; set; }
 
     /// <summary>
     ///     Gets or sets HitBoxFireScale.

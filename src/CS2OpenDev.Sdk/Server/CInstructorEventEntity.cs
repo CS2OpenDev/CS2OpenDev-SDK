@@ -49,5 +49,5 @@ public partial class CInstructorEventEntity : CPointEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hTargetPlayer")]
-    public CHandle__CBasePlayerPawn__ TargetPlayer { get; set; }
+    public CHandle<CBasePlayerPawn> TargetPlayer { get; set; }
 }

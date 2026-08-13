@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.PulseRuntimeLib;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class CPulseCellOutflowPlaySceneBaseCursorState
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_cursorIDToEventID")]
-    public CUtlHashtable__PulseCursorID_t__int32__ CursorIdToEventId { get; set; }
+    public Dictionary<PulseCursorId, int> CursorIdToEventId { get; set; }
 
     /// <summary>
     ///     Gets or sets MainActor.
@@ -42,7 +48,7 @@ public partial class CPulseCellOutflowPlaySceneBaseCursorState
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_mainActor")]
-    public CHandle__CBaseEntity__ MainActor { get; set; }
+    public CHandle<CBaseEntity> MainActor { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneInstance.
@@ -52,5 +58,5 @@ public partial class CPulseCellOutflowPlaySceneBaseCursorState
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_sceneInstance")]
-    public CHandle__CBaseEntity__ SceneInstance { get; set; }
+    public CHandle<CBaseEntity> SceneInstance { get; set; }
 }

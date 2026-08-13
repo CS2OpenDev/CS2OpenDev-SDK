@@ -30,7 +30,7 @@ public partial class PathMoverEntitySpawn
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("hMover")]
-    public CHandle__CFuncMover__ Mover { get; set; }
+    public CHandle<CFuncMover> Mover { get; set; }
 
     /// <summary>
     ///     Gets or sets OtherEntities.
@@ -40,5 +40,5 @@ public partial class PathMoverEntitySpawn
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("vecOtherEntities")]
-    public CUtlVector__CHandle__CBaseEntity____ OtherEntities { get; set; }
+    public CHandle<CBaseEntity>[] OtherEntities { get; set; }
 }

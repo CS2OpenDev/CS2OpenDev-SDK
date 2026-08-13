@@ -32,7 +32,7 @@ public partial class ParticleControlPointConfiguration
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_drivers")]
-    public CUtlVector__ParticleControlPointDriver_t__ Drivers { get; set; }
+    public ParticleControlPointDriver[] Drivers { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

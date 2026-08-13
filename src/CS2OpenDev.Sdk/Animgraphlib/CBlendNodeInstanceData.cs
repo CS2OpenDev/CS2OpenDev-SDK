@@ -31,7 +31,7 @@ public partial class CBlendNodeInstanceData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_flBlendValue")]
-    public CAnimNetVar__float32__ BlendValue { get; set; }
+    public float BlendValue { get; set; }
 
     /// <summary>
     ///     Gets or sets Cycle.
@@ -91,5 +91,5 @@ public partial class CBlendNodeInstanceData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_resetCount")]
-    public CAnimNetVar__uint8__ ResetCount { get; set; }
+    public byte ResetCount { get; set; }
 }

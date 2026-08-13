@@ -41,7 +41,7 @@ public partial class CSteamAudioProbeLineSegment
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_vecIntervals")]
-    public CUtlVector__float32__ Intervals { get; set; }
+    public float[] Intervals { get; set; }
 
     /// <summary>
     ///     Gets or sets ProbeIndices.
@@ -51,7 +51,7 @@ public partial class CSteamAudioProbeLineSegment
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_vecProbeIndices")]
-    public CUtlVector__int32__ ProbeIndices { get; set; }
+    public int[] ProbeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets Start.

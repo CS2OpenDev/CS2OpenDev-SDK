@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -166,7 +167,7 @@ public partial class COPRenderOmni2Light : CParticleFunctionRenderer
     [NativeOffset(0x1770)]
     [NativeName("m_hLightCookie")]
     [NativeMetadata("MPropertyFriendlyName", "Cookie")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ LightCookie { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> LightCookie { get; set; }
 
     /// <summary>
     ///     light style.

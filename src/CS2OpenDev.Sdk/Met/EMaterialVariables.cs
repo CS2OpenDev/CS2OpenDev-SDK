@@ -42,7 +42,7 @@ public partial class EMaterialVariables
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_Layers")]
-    public CUtlVector__EMaterialLayer_t__ Layers { get; set; }
+    public EMaterialLayer[] Layers { get; set; }
 
     /// <summary>
     ///     Gets or sets Variables.
@@ -52,5 +52,5 @@ public partial class EMaterialVariables
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Variables")]
-    public CUtlVector__EMaterialVariable_t__ Variables { get; set; }
+    public EMaterialVariable[] Variables { get; set; }
 }

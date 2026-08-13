@@ -37,7 +37,7 @@ public partial class CStateUpdateData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_actions")]
-    public CUtlVector__CStateActionUpdater__ Actions { get; set; }
+    public CStateActionUpdater[] Actions { get; set; }
 
     /// <summary>
     ///     Gets or sets IsEndState.
@@ -127,5 +127,5 @@ public partial class CStateUpdateData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_transitionIndices")]
-    public CUtlVector__int32__ TransitionIndices { get; set; }
+    public int[] TransitionIndices { get; set; }
 }

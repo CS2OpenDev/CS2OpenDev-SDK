@@ -30,5 +30,5 @@ public partial class NetVarConfigIndex
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_index")]
-    public CAnimNetVar__uint32__ Index { get; set; }
+    public uint Index { get; set; }
 }

@@ -66,7 +66,7 @@ public partial class COPConstrainDistanceToUserSpecifiedPath : CParticleFunction
     [NativeOffset(0x1E8)]
     [NativeName("m_pointList")]
     [NativeMetadata("MPropertyFriendlyName", "path points")]
-    public CUtlVector__PointDefinitionWithTimeValues_t__ PointList { get; set; }
+    public PointDefinitionWithTimeValues[] PointList { get; set; }
 
     /// <summary>
     ///     Time scale.

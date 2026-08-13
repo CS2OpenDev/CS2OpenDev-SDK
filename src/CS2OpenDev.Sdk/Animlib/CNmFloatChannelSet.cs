@@ -31,7 +31,7 @@ public partial class CNmFloatChannelSet
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_channelIDs")]
-    public CUtlLeanVector__CGlobalSymbol__ ChannelIDs { get; set; }
+    public string[] ChannelIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets ID.

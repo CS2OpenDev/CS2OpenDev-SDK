@@ -72,7 +72,7 @@ public partial class DynamicVolumeDef
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_source")]
-    public CHandle__CBaseEntity__ Source { get; set; }
+    public CHandle<CBaseEntity> Source { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceAnchorPos.
@@ -92,7 +92,7 @@ public partial class DynamicVolumeDef
     /// </remarks>
     [NativeOffset(0x4)]
     [NativeName("m_target")]
-    public CHandle__CBaseEntity__ Target { get; set; }
+    public CHandle<CBaseEntity> Target { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetAnchorPos.

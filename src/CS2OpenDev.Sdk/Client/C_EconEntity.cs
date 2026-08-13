@@ -31,7 +31,7 @@ public partial class C_EconEntity : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x16D8)]
     [NativeName("m_vecAttachedModels")]
-    public CUtlVector__C_EconEntity_AttachedModelData_t__ AttachedModels { get; set; }
+    public CEconEntityAttachedModelData[] AttachedModels { get; set; }
 
     /// <summary>
     ///     Gets or sets AttachedParticles.
@@ -41,7 +41,7 @@ public partial class C_EconEntity : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x1698)]
     [NativeName("m_vecAttachedParticles")]
-    public CUtlVector__int32__ AttachedParticles { get; set; }
+    public int[] AttachedParticles { get; set; }
 
     /// <summary>
     ///     Gets or sets AttachmentDirty.
@@ -161,7 +161,7 @@ public partial class C_EconEntity : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x16D0)]
     [NativeName("m_hOldProvidee")]
-    public CHandle__C_BaseEntity__ OldProvidee { get; set; }
+    public CHandle<C_BaseEntity> OldProvidee { get; set; }
 
     /// <summary>
     ///     Gets or sets OldTeam.
@@ -221,5 +221,5 @@ public partial class C_EconEntity : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x16B0)]
     [NativeName("m_hViewmodelAttachment")]
-    public CHandle__CBaseAnimGraph__ ViewModelAttachment { get; set; }
+    public CHandle<CBaseAnimGraph> ViewModelAttachment { get; set; }
 }

@@ -46,5 +46,5 @@ public partial class CAnimGraphDocJiggleBoneNode : CAnimGraphDocNode
     [NativeName("m_items")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Jiggle Bones")]
-    public CUtlVector__CJiggleBoneItem__ Items { get; set; }
+    public CJiggleBoneItem[] Items { get; set; }
 }

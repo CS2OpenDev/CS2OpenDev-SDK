@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.PulseRuntimeLib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -40,5 +41,5 @@ public partial class CSmartPropPulseSmartProp : CPulseCellBaseFlow
     [NativeOffset(0x48)]
     [NativeName("m_hSmartProp")]
     [NativeMetadata("MPropertyDescription", "Name of the target smart prop resource (.vsmart) to evaluate.")]
-    public CStrongHandle__InfoForResourceTypeCSmartProp__ SmartProp { get; set; }
+    public CStrongHandle<InfoForResourceTypeCSmartProp> SmartProp { get; set; }
 }

@@ -105,7 +105,7 @@ public partial class CTriggerFan : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x920)]
     [NativeName("m_hInfoFan")]
-    public CHandle__CInfoFan__ HInfoFan { get; set; }
+    public CHandle<CInfoFan> HInfoFan { get; set; }
 
     /// <summary>
     ///     Gets or sets IszInfoFan.

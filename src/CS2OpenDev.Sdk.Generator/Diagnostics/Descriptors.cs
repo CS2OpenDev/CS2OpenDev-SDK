@@ -210,8 +210,18 @@ internal static class Descriptors
     // discriminator only describes C++ template arity. Reporting them would train
     // people to ignore this id.
     //
-    // It is not, at the time of writing, a forward-looking alarm. It fires on a
-    // live defect: schema 2.0 made an atomic's `name` fully templated
+    // Error, and it fires zero times. That is the point.
+    //
+    // It shipped as a Warning describing a live defect, which is now repaired: the
+    // count went 10 -> 0 when classification moved to the bare template name. A
+    // count of zero is the invariant worth holding, so the severity moves with it,
+    // and the exporter now exits non-zero when any Error-severity diagnostic
+    // reaches the sink. A future schema major that changes the name shape again
+    // fails the regen instead of adding lines to a log nobody reads — which is
+    // exactly how the last one went unnoticed for three majors.
+    //
+    // The history it was written against, kept because it is the argument for the
+    // severity: schema 2.0 made an atomic's `name` fully templated
     // (`CUtlVector< CGlobalSymbol >`) while TypeMapper's classification sets are
     // still keyed on the bare template name, so no templated atomic matches any of
     // them. 1,931 of 5,013 field-level atomics are templated and every one falls
@@ -224,20 +234,11 @@ internal static class Descriptors
     // aggregated to the bare name and carries the field count, so the size of the
     // problem is legible: eight lines instead of eight hundred.
     //
-    // Reported, not fixed. Correcting the match changes ~1,931 property types and
-    // is a major-version event -- tracked separately rather than smuggled in with
-    // the measurement.
-    //
-    // Warning rather than Info, for the same reason CS2_GEN_009 is: this names a
-    // specific type that is probably being projected wrong, where CS2_GEN_003
-    // lists everything the mapper has never heard of. It cannot fail a build --
-    // the exporter drains diagnostics and returns 0 regardless of severity -- so
-    // the unattended cron is unaffected.
     internal static readonly GeneratorDiagnostic AtomicCategoryDrift = new(
         "CS2_GEN_015",
-        GeneratorDiagnosticSeverity.Warning,
+        GeneratorDiagnosticSeverity.Error,
         "Upstream declares atomic '{0}' as {1} on {2} field(s), but TypeMapper stubs it "
-        + "instead of projecting a collection or map. Its sets are keyed on the bare "
-        + "template name and schema 2.0 names are fully templated, so the lookup cannot "
-        + "match. See the tracking issue before changing the projection — it is breaking.");
+        + "instead of projecting a collection or map. Either the schema changed the shape "
+        + "of atomic names again, or a new container template arrived that no set in "
+        + "TypeMapper knows. Classify it, or record why the projection deliberately differs.");
 }

@@ -71,5 +71,5 @@ public partial class CNmGraphDocFloatSelectorNode : CNmGraphDocFlowNode
     [NativeName("m_options")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CNmGraphDocFloatSelectorNode_Option_t__ Options { get; set; }
+    public CNmGraphDocFloatSelectorNodeOption[] Options { get; set; }
 }

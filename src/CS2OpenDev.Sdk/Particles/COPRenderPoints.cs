@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -33,5 +39,5 @@ public partial class COPRenderPoints : CParticleFunctionRenderer
     /// </remarks>
     [NativeOffset(0x228)]
     [NativeName("m_hMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 }

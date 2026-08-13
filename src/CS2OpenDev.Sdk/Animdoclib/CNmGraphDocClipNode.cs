@@ -44,7 +44,7 @@ public partial class CNmGraphDocClipNode : CNmGraphDocVariationDataNode
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyGroupName", "Advanced")]
-    public CUtlVector__CGlobalSymbol__ GraphEvents { get; set; }
+    public string[] GraphEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets SampleRootMotion.

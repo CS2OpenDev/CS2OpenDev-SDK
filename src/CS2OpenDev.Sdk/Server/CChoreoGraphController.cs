@@ -32,7 +32,7 @@ public partial class CChoreoGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_eChoreoState")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ ChoreoState { get; set; }
+    public string? ChoreoState { get; set; }
 
     /// <summary>
     ///     Gets or sets TChoreoExitWarp.
@@ -42,7 +42,7 @@ public partial class CChoreoGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_tChoreoExitWarp")]
-    public CAnimGraph2ParamOptionalRef__CTransform__ TChoreoExitWarp { get; set; }
+    public CTransform? TChoreoExitWarp { get; set; }
 
     /// <summary>
     ///     Gets or sets TChoreoTargetWarp.
@@ -52,5 +52,5 @@ public partial class CChoreoGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_tChoreoTargetWarp")]
-    public CAnimGraph2ParamOptionalRef__CTransform__ TChoreoTargetWarp { get; set; }
+    public CTransform? TChoreoTargetWarp { get; set; }
 }

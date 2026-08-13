@@ -32,7 +32,7 @@ public partial class ActiveModelConfig
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_AssociatedEntities")]
-    public CNetworkUtlVectorBase__CHandle__CBaseModelEntity____ AssociatedEntities { get; set; }
+    public CHandle<CBaseModelEntity>[] AssociatedEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets AssociatedEntityNames.
@@ -42,7 +42,7 @@ public partial class ActiveModelConfig
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_AssociatedEntityNames")]
-    public CNetworkUtlVectorBase__CUtlSymbolLarge__ AssociatedEntityNames { get; set; }
+    public string[] AssociatedEntityNames { get; set; }
 
     /// <summary>
     ///     Gets or sets Handle.

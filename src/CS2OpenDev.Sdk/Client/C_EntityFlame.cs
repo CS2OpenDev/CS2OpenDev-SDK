@@ -39,7 +39,7 @@ public partial class C_EntityFlame : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x600)]
     [NativeName("m_hEntAttached")]
-    public CHandle__C_BaseEntity__ EntAttached { get; set; }
+    public CHandle<C_BaseEntity> EntAttached { get; set; }
 
     /// <summary>
     ///     Gets or sets OldAttached.
@@ -49,5 +49,5 @@ public partial class C_EntityFlame : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x628)]
     [NativeName("m_hOldAttached")]
-    public CHandle__C_BaseEntity__ OldAttached { get; set; }
+    public CHandle<C_BaseEntity> OldAttached { get; set; }
 }

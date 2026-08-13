@@ -35,7 +35,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x248)]
     [NativeName("m_aThinkFunctions")]
-    public CUtlVector__thinkfunc_t__ AThinkFunctions { get; set; }
+    public Thinkfunc[] AThinkFunctions { get; set; }
 
     /// <summary>
     ///     Gets or sets AbsVelocity.
@@ -116,7 +116,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x490)]
     [NativeName("m_pBlocker")]
-    public CHandle__CBaseEntity__ Blocker { get; set; }
+    public CHandle<CBaseEntity> Blocker { get; set; }
 
     /// <summary>
     ///     Gets or sets BloodType.
@@ -198,7 +198,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x308)]
     [NativeName("m_hDamageFilter")]
-    public CHandle__CBaseFilter__ DamageFilter { get; set; }
+    public CHandle<CBaseFilter> DamageFilter { get; set; }
 
     /// <summary>
     ///     Gets or sets DamageFilterName.
@@ -248,7 +248,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x3E0)]
     [NativeName("m_hEffectEntity")]
-    public CHandle__CBaseEntity__ EffectEntity { get; set; }
+    public CHandle<CBaseEntity> EffectEntity { get; set; }
 
     /// <summary>
     ///     Effect flags bitmask (EF_NODRAW = 32, EF_NORECEIVESHADOW = 64, etc.).
@@ -349,7 +349,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x3EC)]
     [NativeName("m_hGroundEntity")]
-    public CHandle__CBaseEntity__ GroundEntity { get; set; }
+    public CHandle<CBaseEntity> GroundEntity { get; set; }
 
     /// <summary>
     ///     Current health points of the entity. Serialised with the 'ClampHealth' encoder so values above max are clamped.
@@ -381,7 +381,7 @@ public partial class CBaseEntity : CEntityInstance
     [NativeOffset(0x278)]
     [NativeName("m_isSteadyState")]
     [NativeMetadata("MNotSaved", "")]
-    public CTypedBitVec__64__ IsSteadyState { get; set; }
+    public byte[] IsSteadyState { get; set; }
 
     /// <summary>
     ///     Gets or sets LagCompensate.
@@ -572,7 +572,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x3E4)]
     [NativeName("m_hOwnerEntity")]
-    public CHandle__CBaseEntity__ OwnerEntity { get; set; }
+    public CHandle<CBaseEntity> OwnerEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets PfnBlocked.
@@ -684,7 +684,7 @@ public partial class CBaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x290)]
     [NativeName("m_ResponseContexts")]
-    public CUtlVector__ResponseContext_t__ ResponseContexts { get; set; }
+    public ResponseContext[] ResponseContexts { get; set; }
 
     /// <summary>
     ///     Gets or sets RestoreInHierarchy.

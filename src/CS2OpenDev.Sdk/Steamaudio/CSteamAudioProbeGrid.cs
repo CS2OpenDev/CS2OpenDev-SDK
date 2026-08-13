@@ -47,7 +47,7 @@ public partial class CSteamAudioProbeGrid
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_vecLineSegments")]
-    public CUtlVector__CSteamAudioProbeLineSegment__ LineSegments { get; set; }
+    public CSteamAudioProbeLineSegment[] LineSegments { get; set; }
 
     /// <summary>
     ///     Gets or sets Nx.
@@ -87,7 +87,7 @@ public partial class CSteamAudioProbeGrid
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_vecProbes")]
-    public CUtlVector__Vector__ Probes { get; set; }
+    public Vector[] Probes { get; set; }
 
     /// <summary>
     ///     Gets or sets Spacing.

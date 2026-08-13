@@ -31,7 +31,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_boneNames")]
-    public CUtlVector__CUtlString__ BoneNames { get; set; }
+    public string[] BoneNames { get; set; }
 
     /// <summary>
     ///     Gets or sets Children.
@@ -41,7 +41,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_children")]
-    public CUtlVector__CUtlVector__int32____ Children { get; set; }
+    public int[][] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets Feet.
@@ -51,7 +51,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_feet")]
-    public CUtlVector__CAnimFoot__ Feet { get; set; }
+    public CAnimFoot[] Feet { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalSpaceTransforms.
@@ -61,7 +61,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_localSpaceTransforms")]
-    public CUtlVector__CTransform__ LocalSpaceTransforms { get; set; }
+    public CTransform[] LocalSpaceTransforms { get; set; }
 
     /// <summary>
     ///     Gets or sets LodBoneCounts.
@@ -71,7 +71,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_lodBoneCounts")]
-    public CUtlVector__int32__ LodBoneCounts { get; set; }
+    public int[] LodBoneCounts { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelSpaceTransforms.
@@ -81,7 +81,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_modelSpaceTransforms")]
-    public CUtlVector__CTransform__ ModelSpaceTransforms { get; set; }
+    public CTransform[] ModelSpaceTransforms { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphNames.
@@ -91,7 +91,7 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_morphNames")]
-    public CUtlVector__CUtlString__ MorphNames { get; set; }
+    public string[] MorphNames { get; set; }
 
     /// <summary>
     ///     Gets or sets Parents.
@@ -101,5 +101,5 @@ public partial class CAnimSkeleton
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_parents")]
-    public CUtlVector__int32__ Parents { get; set; }
+    public int[] Parents { get; set; }
 }

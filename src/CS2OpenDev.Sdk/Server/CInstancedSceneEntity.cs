@@ -49,7 +49,7 @@ public partial class CInstancedSceneEntity : CSceneEntity
     /// </remarks>
     [NativeOffset(0x7F0)]
     [NativeName("m_hOwner")]
-    public CHandle__CBaseEntity__ Owner { get; set; }
+    public CHandle<CBaseEntity> Owner { get; set; }
 
     /// <summary>
     ///     Gets or sets PostSpeakDelay.
@@ -89,5 +89,5 @@ public partial class CInstancedSceneEntity : CSceneEntity
     /// </remarks>
     [NativeOffset(0x804)]
     [NativeName("m_hTarget")]
-    public CHandle__CBaseEntity__ Target { get; set; }
+    public CHandle<CBaseEntity> Target { get; set; }
 }

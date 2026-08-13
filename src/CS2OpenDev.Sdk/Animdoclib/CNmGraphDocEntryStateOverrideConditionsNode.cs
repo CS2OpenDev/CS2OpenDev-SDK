@@ -32,5 +32,5 @@ public partial class CNmGraphDocEntryStateOverrideConditionsNode : CNmGraphDocRe
     [NativeOffset(0x108)]
     [NativeName("m_pinToStateMapping")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__V_uuid_t__ PinToStateMapping { get; set; }
+    public Guid[] PinToStateMapping { get; set; }
 }

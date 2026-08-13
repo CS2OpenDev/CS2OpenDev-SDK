@@ -32,7 +32,7 @@ public partial class CNmGraphDocDataDictionary
     [NativeOffset(0x18)]
     [NativeName("m_IDSets")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocDataDictionary_IDSet_t__ IdSets { get; set; }
+    public CNmGraphDocDataDictionaryIdSet[] IdSets { get; set; }
 
     /// <summary>
     ///     Gets or sets ParameterSets.
@@ -43,5 +43,5 @@ public partial class CNmGraphDocDataDictionary
     [NativeOffset(0x0)]
     [NativeName("m_parameterSets")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocDataDictionary_ParameterSet_t__ ParameterSets { get; set; }
+    public CNmGraphDocDataDictionaryParameterSet[] ParameterSets { get; set; }
 }

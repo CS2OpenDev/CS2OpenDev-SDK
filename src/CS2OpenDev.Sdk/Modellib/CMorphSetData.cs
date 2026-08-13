@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CMorphSetData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_bundleTypes")]
-    public CUtlVector__MorphBundleType_t__ BundleTypes { get; set; }
+    public MorphBundleType[] BundleTypes { get; set; }
 
     /// <summary>
     ///     Gets or sets FlexControllers.
@@ -41,7 +47,7 @@ public partial class CMorphSetData
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_FlexControllers")]
-    public CUtlVector__CFlexController__ FlexControllers { get; set; }
+    public CFlexController[] FlexControllers { get; set; }
 
     /// <summary>
     ///     Gets or sets FlexDesc.
@@ -51,7 +57,7 @@ public partial class CMorphSetData
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_FlexDesc")]
-    public CUtlVector__CFlexDesc__ FlexDesc { get; set; }
+    public CFlexDesc[] FlexDesc { get; set; }
 
     /// <summary>
     ///     Gets or sets FlexRules.
@@ -61,7 +67,7 @@ public partial class CMorphSetData
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_FlexRules")]
-    public CUtlVector__CFlexRule__ FlexRules { get; set; }
+    public CFlexRule[] FlexRules { get; set; }
 
     /// <summary>
     ///     Gets or sets Height.
@@ -81,7 +87,7 @@ public partial class CMorphSetData
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_morphDatas")]
-    public CUtlVector__CMorphData__ MorphDatas { get; set; }
+    public CMorphData[] MorphDatas { get; set; }
 
     /// <summary>
     ///     Gets or sets TextureAtlas.
@@ -91,7 +97,7 @@ public partial class CMorphSetData
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_pTextureAtlas")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ TextureAtlas { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> TextureAtlas { get; set; }
 
     /// <summary>
     ///     Gets or sets Width.

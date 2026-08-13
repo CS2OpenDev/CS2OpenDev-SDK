@@ -50,7 +50,7 @@ public partial class CFuncTrackChange : CFuncPlatRot
     [NativeOffset(0x844)]
     [NativeName("m_trackBottom")]
     [NativeMetadata("MSaveBehavior", "")]
-    public CHandle__CPathTrack__ TrackBottom { get; set; }
+    public CHandle<CPathTrack> TrackBottom { get; set; }
 
     /// <summary>
     ///     Gets or sets TrackBottomName.
@@ -72,7 +72,7 @@ public partial class CFuncTrackChange : CFuncPlatRot
     [NativeOffset(0x840)]
     [NativeName("m_trackTop")]
     [NativeMetadata("MSaveBehavior", "")]
-    public CHandle__CPathTrack__ TrackTop { get; set; }
+    public CHandle<CPathTrack> TrackTop { get; set; }
 
     /// <summary>
     ///     Gets or sets TrackTopName.
@@ -94,7 +94,7 @@ public partial class CFuncTrackChange : CFuncPlatRot
     [NativeOffset(0x848)]
     [NativeName("m_train")]
     [NativeMetadata("MSaveBehavior", "")]
-    public CHandle__CFuncTrackTrain__ Train { get; set; }
+    public CHandle<CFuncTrackTrain> Train { get; set; }
 
     /// <summary>
     ///     Gets or sets TrainName.

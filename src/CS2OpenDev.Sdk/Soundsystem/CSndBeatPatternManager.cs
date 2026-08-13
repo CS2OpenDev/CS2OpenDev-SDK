@@ -35,7 +35,7 @@ public partial class CSndBeatPatternManager
     [NativeName("m_vecActiveTracks")]
     [NativeMetadata("MPropertyFriendlyName", "Tracks")]
     [NativeMetadata("MVDataPromoteField", "0")]
-    public CUtlVector__CSndBeatTrack__ ActiveTracks { get; set; }
+    public CSndBeatTrack[] ActiveTracks { get; set; }
 
     /// <summary>
     ///     Patterns.
@@ -47,5 +47,5 @@ public partial class CSndBeatPatternManager
     [NativeName("m_vecPatterns")]
     [NativeMetadata("MPropertyFriendlyName", "Patterns")]
     [NativeMetadata("MVDataPromoteField", "0")]
-    public CUtlVector__CSndBeatPattern__ Patterns { get; set; }
+    public CSndBeatPattern[] Patterns { get; set; }
 }

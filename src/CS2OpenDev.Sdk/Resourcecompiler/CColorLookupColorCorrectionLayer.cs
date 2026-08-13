@@ -51,5 +51,5 @@ public partial class CColorLookupColorCorrectionLayer : CColorCorrectionLayer
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_lut")]
-    public CUtlVector__float32__ Lut { get; set; }
+    public float[] Lut { get; set; }
 }

@@ -32,7 +32,7 @@ public partial class SkeletonDemoDb
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_AnimCaptures")]
-    public CUtlVector__SkeletonAnimCapture_t___ AnimCaptures { get; set; }
+    public SkeletonAnimCapture?[] AnimCaptures { get; set; }
 
     /// <summary>
     ///     Gets or sets CameraTrack.
@@ -42,7 +42,7 @@ public partial class SkeletonDemoDb
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_CameraTrack")]
-    public CUtlVector__SkeletonAnimCapture_t_Camera_t__ CameraTrack { get; set; }
+    public SkeletonAnimCaptureTCamera[] CameraTrack { get; set; }
 
     /// <summary>
     ///     Gets or sets RecordingTime.

@@ -65,7 +65,7 @@ public partial class CLogicCase : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x8D0)]
     [NativeName("m_OnDefault")]
-    public CEntityOutputTemplate__CUtlString__ OnDefault { get; set; }
+    public string? OnDefault { get; set; }
 
     /// <summary>
     ///     Gets or sets ShuffleCases.

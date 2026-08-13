@@ -48,7 +48,7 @@ public partial class RnCompound
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Capsules")]
-    public CUtlVector__RnCapsule_t__ Capsules { get; set; }
+    public RnCapsule[] Capsules { get; set; }
 
     /// <summary>
     ///     Gets or sets Hulls.
@@ -58,7 +58,7 @@ public partial class RnCompound
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_Hulls")]
-    public CUtlVector__RnHull_t__ Hulls { get; set; }
+    public RnHull[] Hulls { get; set; }
 
     /// <summary>
     ///     Gets or sets Meshes.
@@ -68,7 +68,7 @@ public partial class RnCompound
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_Meshes")]
-    public CUtlVector__RnMesh_t__ Meshes { get; set; }
+    public RnMesh[] Meshes { get; set; }
 
     /// <summary>
     ///     Gets or sets OrthographicAreas.
@@ -88,7 +88,7 @@ public partial class RnCompound
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Spheres")]
-    public CUtlVector__RnSphere_t__ Spheres { get; set; }
+    public RnSphere_t[] Spheres { get; set; }
 
     /// <summary>
     ///     Gets or sets SurfaceArea.

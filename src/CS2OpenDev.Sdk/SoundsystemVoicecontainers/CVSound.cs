@@ -101,7 +101,7 @@ public partial class CVSound
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Sentences")]
-    public CUtlLeanVector__CAudioSentence__ Sentences { get; set; }
+    public CAudioSentence[] Sentences { get; set; }
 
     /// <summary>
     ///     Gets or sets StreamingSize.

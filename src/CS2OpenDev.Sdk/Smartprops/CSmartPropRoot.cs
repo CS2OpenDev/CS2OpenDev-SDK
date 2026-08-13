@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Smartprops;
 
 /// <summary>
@@ -43,7 +49,7 @@ public partial class CSmartPropRoot
     [NativeMetadata("MPropertyDescription",
         "List of the root level elements making up the smart prop definition, each element may be an entire tree.")]
     [NativeMetadata("MVDataPromoteField", "1")]
-    public CUtlVector__CSmartPropElement___ Children { get; set; }
+    public CSmartPropElement?[] Children { get; set; }
 
     /// <summary>
     ///     Choices.
@@ -55,7 +61,7 @@ public partial class CSmartPropRoot
     [NativeName("m_Choices")]
     [NativeMetadata("MPropertyFriendlyName", "Choices")]
     [NativeMetadata("MVDataPromoteField", "2")]
-    public CUtlVector__CSmartPropChoice___ Choices { get; set; }
+    public CSmartPropChoice?[] Choices { get; set; }
 
     /// <summary>
     ///     Specifies the current version of this smart prop. Any existing references to this smart prop with an older version number will not automatically update.
@@ -90,7 +96,7 @@ public partial class CSmartPropRoot
     [NativeName("m_Modifiers")]
     [NativeMetadata("MPropertyFriendlyName", "Modifiers")]
     [NativeMetadata("MVDataPromoteField", "2")]
-    public CUtlVector__CSmartPropModifier___ Modifiers { get; set; }
+    public CSmartPropModifier?[] Modifiers { get; set; }
 
     /// <summary>
     ///     Gets or sets PulseGraph.
@@ -101,7 +107,7 @@ public partial class CSmartPropRoot
     [NativeOffset(0xA8)]
     [NativeName("m_hPulseGraph")]
     [NativeMetadata("MPropertySuppressExpr", "!__IsSmartPropPulseActive")]
-    public CStrongHandle__InfoForResourceTypeIPulseGraphDef__ PulseGraph { get; set; }
+    public CStrongHandle<InfoForResourceTypeIPulseGraphDef> PulseGraph { get; set; }
 
     /// <summary>
     ///     Variables.
@@ -113,5 +119,5 @@ public partial class CSmartPropRoot
     [NativeName("m_Variables")]
     [NativeMetadata("MPropertyFriendlyName", "Variables")]
     [NativeMetadata("MVDataPromoteField", "2")]
-    public CUtlVector__CSmartPropVariable___ Variables { get; set; }
+    public CSmartPropVariable?[] Variables { get; set; }
 }

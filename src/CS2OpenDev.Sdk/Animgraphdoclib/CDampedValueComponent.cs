@@ -33,7 +33,7 @@ public partial class CDampedValueComponent : CAnimGraphDocComponent
     [NativeName("m_items")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Items")]
-    public CUtlVector__CDampedValueItem__ Items { get; set; }
+    public CDampedValueItem[] Items { get; set; }
 
     /// <summary>
     ///     Name.

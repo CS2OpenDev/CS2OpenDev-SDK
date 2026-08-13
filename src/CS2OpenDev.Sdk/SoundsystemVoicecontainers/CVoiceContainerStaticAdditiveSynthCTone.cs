@@ -44,7 +44,7 @@ public partial class CVoiceContainerStaticAdditiveSynthCTone
     [NativeOffset(0x0)]
     [NativeName("m_harmonics")]
     [NativeMetadata("MPropertyFriendlyName", "Harmonics")]
-    public CUtlVector__CVoiceContainerStaticAdditiveSynth_CHarmonic__ Harmonics { get; set; }
+    public CVoiceContainerStaticAdditiveSynthCHarmonic[] Harmonics { get; set; }
 
     /// <summary>
     ///     Play All Instances In Sync.

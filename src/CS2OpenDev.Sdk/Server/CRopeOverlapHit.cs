@@ -30,7 +30,7 @@ public partial class CRopeOverlapHit
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_hEntity")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets OverlappingLinks.
@@ -40,5 +40,5 @@ public partial class CRopeOverlapHit
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_vecOverlappingLinks")]
-    public CUtlVector__int32__ OverlappingLinks { get; set; }
+    public int[] OverlappingLinks { get; set; }
 }

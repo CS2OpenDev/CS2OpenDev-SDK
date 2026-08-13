@@ -30,7 +30,7 @@ public partial class CStateNodeInstanceData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_currentStateStartTime")]
-    public CAnimNetVar__float32__ CurrentStateStartTime { get; set; }
+    public float CurrentStateStartTime { get; set; }
 
     /// <summary>
     ///     Gets or sets ResetCount.
@@ -40,7 +40,7 @@ public partial class CStateNodeInstanceData
     /// </remarks>
     [NativeOffset(0x3C)]
     [NativeName("m_resetCount")]
-    public CAnimNetVar__uint8__ ResetCount { get; set; }
+    public byte ResetCount { get; set; }
 
     /// <summary>
     ///     Gets or sets StateWeights.
@@ -50,7 +50,7 @@ public partial class CStateNodeInstanceData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_stateWeights")]
-    public CRelativeArray__float32__ StateWeights { get; set; }
+    public float[] StateWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets TransitionVelocityDeltaWS.

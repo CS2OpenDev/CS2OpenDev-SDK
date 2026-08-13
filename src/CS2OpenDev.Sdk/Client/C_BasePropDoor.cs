@@ -80,7 +80,7 @@ public partial class C_BasePropDoor : C_DynamicProp
     [NativeOffset(0x13F0)]
     [NativeName("m_hMaster")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BasePropDoor__ Master { get; set; }
+    public CHandle<C_BasePropDoor> Master { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelChanged.

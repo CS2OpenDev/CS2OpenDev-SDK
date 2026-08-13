@@ -32,7 +32,7 @@ public partial class NodeData
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_ChildNodeIndices")]
-    public CUtlVector__int32__ ChildNodeIndices { get; set; }
+    public int[] ChildNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxBounds.

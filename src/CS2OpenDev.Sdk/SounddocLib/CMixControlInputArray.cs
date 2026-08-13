@@ -36,5 +36,5 @@ public partial class CMixControlInputArray : CMixPropertyBase
     [NativeName("m_vflData")]
     [NativeMetadata("MPropertyAttributeRange", "-1 1")]
     [NativeMetadata("MPropertyFriendlyName", "Input Data")]
-    public CUtlVector__float32__ VflData { get; set; }
+    public float[] VflData { get; set; }
 }

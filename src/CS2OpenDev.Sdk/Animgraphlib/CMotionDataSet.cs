@@ -40,5 +40,5 @@ public partial class CMotionDataSet
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_groups")]
-    public CUtlVector__CMotionGraphGroup__ Groups { get; set; }
+    public CMotionGraphGroup[] Groups { get; set; }
 }

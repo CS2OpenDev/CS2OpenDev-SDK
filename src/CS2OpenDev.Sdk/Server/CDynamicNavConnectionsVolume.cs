@@ -39,7 +39,7 @@ public partial class CDynamicNavConnectionsVolume : CTriggerMultiple
     /// </remarks>
     [NativeOffset(0x908)]
     [NativeName("m_vecConnections")]
-    public CUtlVector__DynamicVolumeDef_t__ Connections { get; set; }
+    public DynamicVolumeDef[] Connections { get; set; }
 
     /// <summary>
     ///     Gets or sets ConnectionsEnabled.

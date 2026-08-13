@@ -962,7 +962,7 @@ public partial class CCSPlayerPawn : CCSPlayerPawnBase
     /// </remarks>
     [NativeOffset(0xE78)]
     [NativeName("m_TouchingBuyZones")]
-    public CUtlVector__CHandle__CBaseEntity____ TouchingBuyZones { get; set; }
+    public CHandle<CBaseEntity>[] TouchingBuyZones { get; set; }
 
     /// <summary>
     ///     Gets or sets VOPrefix.

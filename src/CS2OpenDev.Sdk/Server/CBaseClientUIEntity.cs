@@ -29,7 +29,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x790)]
     [NativeName("m_CustomOutput0")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput0 { get; set; }
+    public string? CustomOutput0 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput1.
@@ -39,7 +39,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7B0)]
     [NativeName("m_CustomOutput1")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput1 { get; set; }
+    public string? CustomOutput1 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput2.
@@ -49,7 +49,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7D0)]
     [NativeName("m_CustomOutput2")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput2 { get; set; }
+    public string? CustomOutput2 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput3.
@@ -59,7 +59,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7F0)]
     [NativeName("m_CustomOutput3")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput3 { get; set; }
+    public string? CustomOutput3 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput4.
@@ -69,7 +69,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x810)]
     [NativeName("m_CustomOutput4")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput4 { get; set; }
+    public string? CustomOutput4 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput5.
@@ -79,7 +79,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x830)]
     [NativeName("m_CustomOutput5")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput5 { get; set; }
+    public string? CustomOutput5 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput6.
@@ -89,7 +89,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x850)]
     [NativeName("m_CustomOutput6")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput6 { get; set; }
+    public string? CustomOutput6 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput7.
@@ -99,7 +99,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x870)]
     [NativeName("m_CustomOutput7")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput7 { get; set; }
+    public string? CustomOutput7 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput8.
@@ -109,7 +109,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x890)]
     [NativeName("m_CustomOutput8")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput8 { get; set; }
+    public string? CustomOutput8 { get; set; }
 
     /// <summary>
     ///     Gets or sets CustomOutput9.
@@ -119,7 +119,7 @@ public partial class CBaseClientUIEntity : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x8B0)]
     [NativeName("m_CustomOutput9")]
-    public CEntityOutputTemplate__CUtlString__ CustomOutput9 { get; set; }
+    public string? CustomOutput9 { get; set; }
 
     /// <summary>
     ///     Gets or sets DialogXMLName.

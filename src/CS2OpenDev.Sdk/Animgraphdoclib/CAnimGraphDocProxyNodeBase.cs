@@ -33,5 +33,5 @@ public abstract partial class CAnimGraphDocProxyNodeBase : CAnimGraphDocNode
     [NativeName("m_proxyItems")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "External Connections")]
-    public CUtlVector__CConnectionProxyItem__ ProxyItems { get; set; }
+    public CConnectionProxyItem[] ProxyItems { get; set; }
 }

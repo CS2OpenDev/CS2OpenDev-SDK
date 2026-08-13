@@ -40,5 +40,5 @@ public partial class CFlexRule
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_FlexOps")]
-    public CUtlVector__CFlexOp__ FlexOps { get; set; }
+    public CFlexOp[] FlexOps { get; set; }
 }

@@ -67,7 +67,7 @@ public partial class C_BreakableProp : CBaseProp
     /// </remarks>
     [NativeOffset(0x1274)]
     [NativeName("m_hBreaker")]
-    public CHandle__C_BaseEntity__ Breaker { get; set; }
+    public CHandle<C_BaseEntity> Breaker { get; set; }
 
     /// <summary>
     ///     Gets or sets CPropDataComponent.
@@ -207,7 +207,7 @@ public partial class C_BreakableProp : CBaseProp
     /// </remarks>
     [NativeOffset(0x12E4)]
     [NativeName("m_hLastAttacker")]
-    public CHandle__C_BaseEntity__ LastAttacker { get; set; }
+    public CHandle<C_BaseEntity> LastAttacker { get; set; }
 
     /// <summary>
     ///     Gets or sets LastPhysicsInfluenceTime.
@@ -247,7 +247,7 @@ public partial class C_BreakableProp : CBaseProp
     /// </remarks>
     [NativeOffset(0x1220)]
     [NativeName("m_OnHealthChanged")]
-    public CEntityOutputTemplate__float32__ OnHealthChanged { get; set; }
+    public float? OnHealthChanged { get; set; }
 
     /// <summary>
     ///     Gets or sets OnStartDeath.
@@ -287,7 +287,7 @@ public partial class C_BreakableProp : CBaseProp
     /// </remarks>
     [NativeOffset(0x12D8)]
     [NativeName("m_hPhysicsAttacker")]
-    public CHandle__C_BasePlayerPawn__ PhysicsAttacker { get; set; }
+    public CHandle<C_BasePlayerPawn> PhysicsAttacker { get; set; }
 
     /// <summary>
     ///     Gets or sets PressureDelay.

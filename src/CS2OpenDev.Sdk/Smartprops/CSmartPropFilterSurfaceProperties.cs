@@ -38,7 +38,7 @@ public partial class CSmartPropFilterSurfaceProperties : CSmartPropFilter
     [NativeName("m_AllowedSurfaceProperties")]
     [NativeMetadata("MPropertyDescription",
         "List of surface properties on which this element is valid. If empty element is not restricted to any specific surfaces.")]
-    public CUtlVector__CUtlString__ AllowedSurfaceProperties { get; set; }
+    public string[] AllowedSurfaceProperties { get; set; }
 
     /// <summary>
     ///     List of surface properties on which this element is not valid. If empty element is not restricted to any specific surfaces.
@@ -50,5 +50,5 @@ public partial class CSmartPropFilterSurfaceProperties : CSmartPropFilter
     [NativeName("m_DisallowedSurfaceProperties")]
     [NativeMetadata("MPropertyDescription",
         "List of surface properties on which this element is not valid. If empty element is not restricted to any specific surfaces.")]
-    public CUtlVector__CUtlString__ DisallowedSurfaceProperties { get; set; }
+    public string[] DisallowedSurfaceProperties { get; set; }
 }

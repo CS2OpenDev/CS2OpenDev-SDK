@@ -33,5 +33,5 @@ public partial class CAnimGraphDocStateMachine
     [NativeOffset(0x8)]
     [NativeName("m_states")]
     [NativeMetadata("MPropertyHideField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_State____ States { get; set; }
+    public CAnimGraphDocState?[] States { get; set; }
 }

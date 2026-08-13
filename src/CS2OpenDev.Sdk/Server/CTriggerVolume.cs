@@ -29,7 +29,7 @@ public partial class CTriggerVolume : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x778)]
     [NativeName("m_hFilter")]
-    public CHandle__CBaseFilter__ Filter { get; set; }
+    public CHandle<CBaseFilter> Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.

@@ -51,5 +51,5 @@ public partial class PairedSequence
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_hSequence")]
-    public CAnimNetVar__uint32__ Sequence { get; set; }
+    public uint Sequence { get; set; }
 }

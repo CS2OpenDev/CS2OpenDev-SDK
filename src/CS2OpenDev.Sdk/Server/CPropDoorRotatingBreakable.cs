@@ -52,7 +52,7 @@ public partial class CPropDoorRotatingBreakable : CPropDoorRotating
     [NativeOffset(0xE48)]
     [NativeName("m_damageStates")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CUtlSymbolLarge__ DamageStates { get; set; }
+    public string[] DamageStates { get; set; }
 
     /// <summary>
     ///     Gets or sets IsAbleToCloseAreaPortals.

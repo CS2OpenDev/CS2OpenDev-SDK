@@ -43,5 +43,5 @@ public partial class CNmGraphDocIdToFloatNode : CNmGraphDocFlowNode
     [NativeOffset(0x108)]
     [NativeName("m_mappings")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocIDToFloatNode_Mapping_t__ Mappings { get; set; }
+    public CNmGraphDocIdToFloatNodeMapping[] Mappings { get; set; }
 }

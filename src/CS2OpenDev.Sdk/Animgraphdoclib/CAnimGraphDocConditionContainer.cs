@@ -33,5 +33,5 @@ public partial class CAnimGraphDocConditionContainer
     [NativeOffset(0x8)]
     [NativeName("m_conditions")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_Condition____ Conditions { get; set; }
+    public CAnimGraphDocCondition?[] Conditions { get; set; }
 }

@@ -35,7 +35,7 @@ public partial class CMixSteamAudioHybridReverb : CMixPropertyBase
     [NativeName("m_vecReverbTime")]
     [NativeMetadata("MPropertyAttributeRange", "0.1 10.0")]
     [NativeMetadata("MPropertyFriendlyName", "Reverb Time")]
-    public CUtlVector__float32__ ReverbTime { get; set; }
+    public float[] ReverbTime { get; set; }
 
     /// <summary>
     ///     Reverb Time (RT60), High Frequency.

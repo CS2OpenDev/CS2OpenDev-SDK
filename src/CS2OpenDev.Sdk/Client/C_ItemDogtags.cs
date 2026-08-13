@@ -29,7 +29,7 @@ public partial class C_ItemDogtags : C_Item
     /// </remarks>
     [NativeOffset(0x17F4)]
     [NativeName("m_KillingPlayer")]
-    public CHandle__C_CSPlayerPawn__ KillingPlayer { get; set; }
+    public CHandle<C_CSPlayerPawn> KillingPlayer { get; set; }
 
     /// <summary>
     ///     Gets or sets OwningPlayer.
@@ -39,5 +39,5 @@ public partial class C_ItemDogtags : C_Item
     /// </remarks>
     [NativeOffset(0x17F0)]
     [NativeName("m_OwningPlayer")]
-    public CHandle__C_CSPlayerPawn__ OwningPlayer { get; set; }
+    public CHandle<C_CSPlayerPawn> OwningPlayer { get; set; }
 }

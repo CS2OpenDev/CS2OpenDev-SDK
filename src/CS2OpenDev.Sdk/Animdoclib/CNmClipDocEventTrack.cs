@@ -41,7 +41,7 @@ public partial class CNmClipDocEventTrack
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_events")]
-    public CUtlVector__CNmClipDocEvent___ Events { get; set; }
+    public CNmClipDocEvent?[] Events { get; set; }
 
     /// <summary>
     ///     Gets or sets IsDisabled.

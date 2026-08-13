@@ -46,7 +46,7 @@ public partial class CBaseModelEntity : CBaseEntity
     /// </remarks>
     [NativeOffset(0x710)]
     [NativeName("m_bodyGroupChoices")]
-    public CUtlOrderedMap__CGlobalSymbol__int32__ BodyGroupChoices { get; set; }
+    public Dictionary<string, int> BodyGroupChoices { get; set; }
 
     /// <summary>
     ///     Gets or sets BvDisabledHitGroups.
@@ -348,7 +348,7 @@ public partial class CBaseModelEntity : CBaseEntity
     /// </remarks>
     [NativeOffset(0x508)]
     [NativeName("m_OnDestructibleHitGroupDamageLevelChanged")]
-    public CEntityOutputTemplate__CBaseModelEntity_OnDamageLevelChangedArgs_t__ OnDestructibleHitGroupDamageLevelChanged { get; set; }
+    public CBaseModelEntityOnDamageLevelChangedArgs? OnDestructibleHitGroupDamageLevelChanged { get; set; }
 
     /// <summary>
     ///     Gets or sets OnIgnite.
@@ -378,7 +378,7 @@ public partial class CBaseModelEntity : CBaseEntity
     /// </remarks>
     [NativeOffset(0x578)]
     [NativeName("m_vecRenderAttributes")]
-    public CUtlVectorEmbeddedNetworkVar__EntityRenderAttribute_t__ RenderAttributes { get; set; }
+    public EntityRender[] RenderAttributes { get; set; }
 
     /// <summary>
     ///     RenderFx_t enum for special rendering effects (pulsing, fading, hologram, etc.).

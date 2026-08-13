@@ -32,5 +32,5 @@ public partial class CPulseCellOutflowCycleOrdered : CPulseCellBaseFlow
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_Outputs")]
-    public CUtlVector__CPulse_OutflowConnection__ Outputs { get; set; }
+    public CPulseOutflowConnection[] Outputs { get; set; }
 }

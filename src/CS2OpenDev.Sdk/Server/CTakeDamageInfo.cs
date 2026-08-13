@@ -31,7 +31,7 @@ public partial class CTakeDamageInfo
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_hAbility")]
-    public CHandle__CBaseEntity__ Ability { get; set; }
+    public CHandle<CBaseEntity> Ability { get; set; }
 
     /// <summary>
     ///     Gets or sets AmmoType.
@@ -51,7 +51,7 @@ public partial class CTakeDamageInfo
     /// </remarks>
     [NativeOffset(0x3C)]
     [NativeName("m_hAttacker")]
-    public CHandle__CBaseEntity__ Attacker { get; set; }
+    public CHandle<CBaseEntity> Attacker { get; set; }
 
     /// <summary>
     ///     Gets or sets BitsDamageType.
@@ -131,7 +131,7 @@ public partial class CTakeDamageInfo
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_DestructibleHitGroupRequests")]
-    public CUtlLeanVector__DestructiblePartDamageRequest_t__ DestructibleHitGroupRequests { get; set; }
+    public DestructiblePartDamageRequest[] DestructibleHitGroupRequests { get; set; }
 
     /// <summary>
     ///     Gets or sets FriendlyFireDamageReductionRatio.
@@ -172,7 +172,7 @@ public partial class CTakeDamageInfo
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_hInflictor")]
-    public CHandle__CBaseEntity__ Inflictor { get; set; }
+    public CHandle<CBaseEntity> Inflictor { get; set; }
 
     /// <summary>
     ///     Gets or sets NumObjectsPenetrated.

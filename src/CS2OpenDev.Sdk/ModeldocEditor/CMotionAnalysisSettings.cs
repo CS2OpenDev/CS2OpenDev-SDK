@@ -68,7 +68,7 @@ public partial class CMotionAnalysisSettings
     [NativeOffset(0x18)]
     [NativeName("m_Feet")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlStringMap__CMotionAnalysisSettings_Foot__ Feet { get; set; }
+    public Dictionary<string, CMotionAnalysisSettingsFoot> Feet { get; set; }
 
     /// <summary>
     ///     Threshold for 'nearly stopped' linear velocity (inches/second).

@@ -62,7 +62,7 @@ public partial class FootPinningPoseOpFixedData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_footInfo")]
-    public CUtlVector__FootFixedData_t__ FootInfo { get; set; }
+    public FootFixedData[] FootInfo { get; set; }
 
     /// <summary>
     ///     Gets or sets HipBoneIndex.

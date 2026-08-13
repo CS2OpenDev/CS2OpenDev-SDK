@@ -41,5 +41,5 @@ public partial class CAnimGraphModelBinding
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_pSharedData")]
-    public CSmartPtr__CAnimUpdateSharedData__ SharedData { get; set; }
+    public CAnimUpdateSharedData? SharedData { get; set; }
 }

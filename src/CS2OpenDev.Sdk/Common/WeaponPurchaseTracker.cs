@@ -30,5 +30,5 @@ public partial class WeaponPurchaseTracker
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_weaponPurchases")]
-    public C_UtlVectorEmbeddedNetworkVar__WeaponPurchaseCount_t__ WeaponPurchases { get; set; }
+    public WeaponPurchaseCount[] WeaponPurchases { get; set; }
 }

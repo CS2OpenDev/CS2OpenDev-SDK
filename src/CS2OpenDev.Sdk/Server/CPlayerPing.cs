@@ -29,7 +29,7 @@ public partial class CPlayerPing : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4B4)]
     [NativeName("m_hPingedEntity")]
-    public CHandle__CBaseEntity__ PingedEntity { get; set; }
+    public CHandle<CBaseEntity> PingedEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets PlaceName.
@@ -49,7 +49,7 @@ public partial class CPlayerPing : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4B0)]
     [NativeName("m_hPlayer")]
-    public CHandle__CCSPlayerPawn__ Player { get; set; }
+    public CHandle<CCSPlayerPawn> Player { get; set; }
 
     /// <summary>
     ///     Gets or sets Type.

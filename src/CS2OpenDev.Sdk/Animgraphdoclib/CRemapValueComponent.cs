@@ -33,7 +33,7 @@ public partial class CRemapValueComponent : CAnimGraphDocComponent
     [NativeName("m_items")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Items")]
-    public CUtlVector__CRemapValueItem__ Items { get; set; }
+    public CRemapValueItem[] Items { get; set; }
 
     /// <summary>
     ///     Name.

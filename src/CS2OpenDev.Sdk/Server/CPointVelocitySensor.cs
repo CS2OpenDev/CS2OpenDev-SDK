@@ -69,7 +69,7 @@ public partial class CPointVelocitySensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_hTargetEntity")]
-    public CHandle__CBaseEntity__ TargetEntity { get; set; }
+    public CHandle<CBaseEntity> TargetEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Velocity.
@@ -79,5 +79,5 @@ public partial class CPointVelocitySensor : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_Velocity")]
-    public CEntityOutputTemplate__float32__ Velocity { get; set; }
+    public float? Velocity { get; set; }
 }

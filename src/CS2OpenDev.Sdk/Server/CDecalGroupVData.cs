@@ -31,7 +31,7 @@ public partial class CDecalGroupVData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_vecOptions")]
-    public CUtlVector__DecalGroupOption_t__ Options { get; set; }
+    public DecalGroupOption[] Options { get; set; }
 
     /// <summary>
     ///     Gets or sets TotalProbability.

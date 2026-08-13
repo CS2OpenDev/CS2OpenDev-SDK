@@ -30,5 +30,5 @@ public partial class CAnimTagManagerUpdater
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_tags")]
-    public CUtlVector__CSmartPtr__CAnimTagBase____ Tags { get; set; }
+    public CAnimTagBase?[] Tags { get; set; }
 }

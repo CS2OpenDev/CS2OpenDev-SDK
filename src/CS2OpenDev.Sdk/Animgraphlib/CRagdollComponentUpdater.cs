@@ -31,7 +31,7 @@ public partial class CRagdollComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_boneIndices")]
-    public CUtlVector__int32__ BoneIndices { get; set; }
+    public int[] BoneIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneNames.
@@ -41,7 +41,7 @@ public partial class CRagdollComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_boneNames")]
-    public CUtlVector__CUtlString__ BoneNames { get; set; }
+    public string[] BoneNames { get; set; }
 
     /// <summary>
     ///     Gets or sets BoneToWeightIndices.
@@ -51,7 +51,7 @@ public partial class CRagdollComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_boneToWeightIndices")]
-    public CUtlVector__int32__ BoneToWeightIndices { get; set; }
+    public int[] BoneToWeightIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets FollowAttachmentNodePaths.
@@ -61,7 +61,7 @@ public partial class CRagdollComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_followAttachmentNodePaths")]
-    public CUtlVector__CAnimNodePath__ FollowAttachmentNodePaths { get; set; }
+    public CAnimNodePath[] FollowAttachmentNodePaths { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxStretch.
@@ -81,7 +81,7 @@ public partial class CRagdollComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_ragdollNodePaths")]
-    public CUtlVector__CAnimNodePath__ RagdollNodePaths { get; set; }
+    public CAnimNodePath[] RagdollNodePaths { get; set; }
 
     /// <summary>
     ///     Gets or sets SolidCollisionAtZeroWeight.
@@ -121,5 +121,5 @@ public partial class CRagdollComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_weightLists")]
-    public CUtlVector__WeightList__ WeightLists { get; set; }
+    public WeightList[] WeightLists { get; set; }
 }

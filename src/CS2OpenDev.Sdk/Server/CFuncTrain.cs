@@ -55,7 +55,7 @@ public partial class CFuncTrain : CBasePlatTrain
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_hCurrentTarget")]
-    public CHandle__CBaseEntity__ CurrentTarget { get; set; }
+    public CHandle<CBaseEntity> CurrentTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets Enemy.
@@ -65,7 +65,7 @@ public partial class CFuncTrain : CBasePlatTrain
     /// </remarks>
     [NativeOffset(0x820)]
     [NativeName("m_hEnemy")]
-    public CHandle__CBaseEntity__ Enemy { get; set; }
+    public CHandle<CBaseEntity> Enemy { get; set; }
 
     /// <summary>
     ///     Gets or sets LastTarget.

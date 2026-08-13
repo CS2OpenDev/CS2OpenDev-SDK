@@ -31,7 +31,7 @@ public partial class CSeqBoneMaskList
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_flBoneWeightArray")]
-    public CUtlVector__float32__ BoneWeightArray { get; set; }
+    public float[] BoneWeightArray { get; set; }
 
     /// <summary>
     ///     Gets or sets DefaultMorphCtrlWeight.
@@ -51,7 +51,7 @@ public partial class CSeqBoneMaskList
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_nLocalBoneArray")]
-    public CUtlVector__int16__ LocalBoneArray { get; set; }
+    public short[] LocalBoneArray { get; set; }
 
     /// <summary>
     ///     Gets or sets MorphCtrlWeightArray.
@@ -61,7 +61,7 @@ public partial class CSeqBoneMaskList
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_morphCtrlWeightArray")]
-    public CUtlVector__std_pair__CBufferString__float32____ MorphCtrlWeightArray { get; set; }
+    public (string, float)[] MorphCtrlWeightArray { get; set; }
 
     /// <summary>
     ///     Gets or sets SName.

@@ -41,7 +41,7 @@ public partial class MotionSelection
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_flCycleZeroTime")]
-    public CAnimNetVar__float32__ CycleZeroTime { get; set; }
+    public float CycleZeroTime { get; set; }
 
     /// <summary>
     ///     Gets or sets PlaybackSpeed.
@@ -51,7 +51,7 @@ public partial class MotionSelection
     /// </remarks>
     [NativeOffset(0x3C)]
     [NativeName("m_flPlaybackSpeed")]
-    public CAnimNetVar__float32__ PlaybackSpeed { get; set; }
+    public float PlaybackSpeed { get; set; }
 
     /// <summary>
     ///     Gets or sets Sample.
@@ -71,5 +71,5 @@ public partial class MotionSelection
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_flStartTime")]
-    public CAnimNetVar__float32__ StartTime { get; set; }
+    public float StartTime { get; set; }
 }

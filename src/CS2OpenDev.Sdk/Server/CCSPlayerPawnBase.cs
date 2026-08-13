@@ -126,7 +126,7 @@ public partial class CCSPlayerPawnBase : CBasePlayerPawn
     /// </remarks>
     [NativeOffset(0xD24)]
     [NativeName("m_hOriginalController")]
-    public CHandle__CCSPlayerController__ OriginalController { get; set; }
+    public CHandle<CCSPlayerController> OriginalController { get; set; }
 
     /// <summary>
     ///     Pointer to CCSPlayer_PingServices managing the in-game map-ping system.

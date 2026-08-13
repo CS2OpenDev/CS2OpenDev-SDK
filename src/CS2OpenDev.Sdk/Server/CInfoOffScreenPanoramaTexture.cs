@@ -31,7 +31,7 @@ public partial class CInfoOffScreenPanoramaTexture : CPointEntity
     /// </remarks>
     [NativeOffset(0x510)]
     [NativeName("m_AdditionalTargetEntities")]
-    public CUtlVector__CHandle__CBaseModelEntity____ AdditionalTargetEntities { get; set; }
+    public CHandle<CBaseModelEntity>[] AdditionalTargetEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets CSSClasses.
@@ -41,7 +41,7 @@ public partial class CInfoOffScreenPanoramaTexture : CPointEntity
     /// </remarks>
     [NativeOffset(0x4F0)]
     [NativeName("m_vecCSSClasses")]
-    public CNetworkUtlVectorBase__CUtlSymbolLarge__ CSSClasses { get; set; }
+    public string[] CSSClasses { get; set; }
 
     /// <summary>
     ///     Gets or sets Disabled.
@@ -121,7 +121,7 @@ public partial class CInfoOffScreenPanoramaTexture : CPointEntity
     /// </remarks>
     [NativeOffset(0x4D0)]
     [NativeName("m_TargetEntities")]
-    public CNetworkUtlVectorBase__CHandle__CBaseModelEntity____ TargetEntities { get; set; }
+    public CHandle<CBaseModelEntity>[] TargetEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetsName.

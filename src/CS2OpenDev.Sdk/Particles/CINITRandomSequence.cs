@@ -80,5 +80,5 @@ public partial class CINITRandomSequence : CParticleFunctionInitializer
     [NativeOffset(0x1F0)]
     [NativeName("m_WeightedList")]
     [NativeMetadata("MPropertyFriendlyName", "weighted list")]
-    public CUtlVector__SequenceWeightedList_t__ WeightedList { get; set; }
+    public SequenceWeightedList[] WeightedList { get; set; }
 }

@@ -45,7 +45,7 @@ public partial class CPhysMotor : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4BC)]
     [NativeName("m_hAnchorObject")]
-    public CHandle__CBaseEntity__ AnchorObject { get; set; }
+    public CHandle<CBaseEntity> AnchorObject { get; set; }
 
     /// <summary>
     ///     Gets or sets AngularAcceleration.
@@ -65,7 +65,7 @@ public partial class CPhysMotor : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hAttachedObject")]
-    public CHandle__CBaseEntity__ AttachedObject { get; set; }
+    public CHandle<CBaseEntity> AttachedObject { get; set; }
 
     /// <summary>
     ///     Gets or sets FixedWorldBody.

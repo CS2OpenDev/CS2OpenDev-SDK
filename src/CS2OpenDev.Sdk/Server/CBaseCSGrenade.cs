@@ -125,7 +125,7 @@ public partial class CBaseCSGrenade : CCSWeaponBase
     /// </remarks>
     [NativeOffset(0x1074)]
     [NativeName("m_hSwitchToWeaponAfterThrow")]
-    public CHandle__CCSWeaponBase__ SwitchToWeaponAfterThrow { get; set; }
+    public CHandle<CCSWeaponBase> SwitchToWeaponAfterThrow { get; set; }
 
     /// <summary>
     ///     Gets or sets ThrowAnimating.

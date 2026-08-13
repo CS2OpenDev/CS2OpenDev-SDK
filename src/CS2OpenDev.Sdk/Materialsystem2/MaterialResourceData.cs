@@ -32,7 +32,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_dynamicParams")]
-    public CUtlVector__MaterialParamBuffer_t__ DynamicParams { get; set; }
+    public MaterialParamBuffer[] DynamicParams { get; set; }
 
     /// <summary>
     ///     Gets or sets DynamicTextureParams.
@@ -42,7 +42,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_dynamicTextureParams")]
-    public CUtlVector__MaterialParamBuffer_t__ DynamicTextureParams { get; set; }
+    public MaterialParamBuffer[] DynamicTextureParams { get; set; }
 
     /// <summary>
     ///     Gets or sets FloatAttributes.
@@ -52,7 +52,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_floatAttributes")]
-    public CUtlVector__MaterialParamFloat_t__ FloatAttributes { get; set; }
+    public MaterialParamFloat[] FloatAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets FloatParams.
@@ -62,7 +62,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_floatParams")]
-    public CUtlVector__MaterialParamFloat_t__ FloatParams { get; set; }
+    public MaterialParamFloat[] FloatParams { get; set; }
 
     /// <summary>
     ///     Gets or sets IntAttributes.
@@ -72,7 +72,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_intAttributes")]
-    public CUtlVector__MaterialParamInt_t__ IntAttributes { get; set; }
+    public MaterialParamInt[] IntAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets IntParams.
@@ -82,7 +82,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_intParams")]
-    public CUtlVector__MaterialParamInt_t__ IntParams { get; set; }
+    public MaterialParamInt[] IntParams { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialName.
@@ -102,7 +102,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x118)]
     [NativeName("m_renderAttributesUsed")]
-    public CUtlVector__CUtlString__ RenderAttributesUsed { get; set; }
+    public string[] RenderAttributesUsed { get; set; }
 
     /// <summary>
     ///     Gets or sets ShaderName.
@@ -122,7 +122,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_stringAttributes")]
-    public CUtlVector__MaterialParamString_t__ StringAttributes { get; set; }
+    public MaterialParamString[] StringAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets TextureAttributes.
@@ -132,7 +132,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_textureAttributes")]
-    public CUtlVector__MaterialParamTexture_t__ TextureAttributes { get; set; }
+    public MaterialParamTexture[] TextureAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets TextureParams.
@@ -142,7 +142,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_textureParams")]
-    public CUtlVector__MaterialParamTexture_t__ TextureParams { get; set; }
+    public MaterialParamTexture[] TextureParams { get; set; }
 
     /// <summary>
     ///     Gets or sets VectorAttributes.
@@ -152,7 +152,7 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_vectorAttributes")]
-    public CUtlVector__MaterialParamVector_t__ VectorAttributes { get; set; }
+    public MaterialParamVector[] VectorAttributes { get; set; }
 
     /// <summary>
     ///     Gets or sets VectorParams.
@@ -162,5 +162,5 @@ public partial class MaterialResourceData
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_vectorParams")]
-    public CUtlVector__MaterialParamVector_t__ VectorParams { get; set; }
+    public MaterialParamVector[] VectorParams { get; set; }
 }

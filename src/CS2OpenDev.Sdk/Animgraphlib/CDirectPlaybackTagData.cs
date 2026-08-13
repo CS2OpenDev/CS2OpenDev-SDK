@@ -40,5 +40,5 @@ public partial class CDirectPlaybackTagData
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 }

@@ -31,7 +31,7 @@ public partial class CLightRigVMap
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_MapName")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeVMapResourceData_t____ MapName { get; set; }
+    public string MapName { get; set; }
 
     /// <summary>
     ///     Gets or sets ParticlesTraceAgainstMap.

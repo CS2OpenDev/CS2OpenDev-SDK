@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -101,7 +107,7 @@ public partial class CMaterialDrawDescriptor
     /// </remarks>
     [NativeOffset(0x110)]
     [NativeName("m_material")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     Gets or sets MeshletPackedIVB.
@@ -151,7 +157,7 @@ public partial class CMaterialDrawDescriptor
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_rigidMeshParts")]
-    public CUtlLeanVector__CMaterialDrawDescriptor_RigidMeshPart_t__ RigidMeshParts { get; set; }
+    public CMaterialDrawDescriptorRigidMeshPart[] RigidMeshParts { get; set; }
 
     /// <summary>
     ///     Gets or sets RootBvhNodes.
@@ -161,7 +167,7 @@ public partial class CMaterialDrawDescriptor
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_rootBvhNodes")]
-    public CUtlLeanVector__uint16__ RootBvhNodes { get; set; }
+    public ushort[] RootBvhNodes { get; set; }
 
     /// <summary>
     ///     Gets or sets StartIndex.

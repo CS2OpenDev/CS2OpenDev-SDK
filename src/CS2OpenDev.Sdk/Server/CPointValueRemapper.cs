@@ -216,7 +216,7 @@ public partial class CPointValueRemapper : CBaseEntity
     [NativeOffset(0x500)]
     [NativeName("m_hOutputEntities")]
     [NativeMetadata("MNotSaved", "")]
-    public CNetworkUtlVectorBase__CHandle__CBaseEntity____ OutputEntities { get; set; }
+    public CHandle<CBaseEntity>[] OutputEntities { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputEntity2Name.
@@ -276,7 +276,7 @@ public partial class CPointValueRemapper : CBaseEntity
     /// </remarks>
     [NativeOffset(0x598)]
     [NativeName("m_Position")]
-    public CEntityOutputTemplate__float32__ Position { get; set; }
+    public float? Position { get; set; }
 
     /// <summary>
     ///     Gets or sets PositionDelta.
@@ -286,7 +286,7 @@ public partial class CPointValueRemapper : CBaseEntity
     /// </remarks>
     [NativeOffset(0x5B8)]
     [NativeName("m_PositionDelta")]
-    public CEntityOutputTemplate__float32__ PositionDelta { get; set; }
+    public float? PositionDelta { get; set; }
 
     /// <summary>
     ///     Gets or sets PreviousTestPoint.
@@ -346,7 +346,7 @@ public partial class CPointValueRemapper : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4C4)]
     [NativeName("m_hRemapLineEnd")]
-    public CHandle__CBaseEntity__ RemapLineEnd { get; set; }
+    public CHandle<CBaseEntity> RemapLineEnd { get; set; }
 
     /// <summary>
     ///     Gets or sets RemapLineEndName.
@@ -366,7 +366,7 @@ public partial class CPointValueRemapper : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_hRemapLineStart")]
-    public CHandle__CBaseEntity__ RemapLineStart { get; set; }
+    public CHandle<CBaseEntity> RemapLineStart { get; set; }
 
     /// <summary>
     ///     Gets or sets RemapLineStartName.
@@ -466,5 +466,5 @@ public partial class CPointValueRemapper : CBaseEntity
     /// </remarks>
     [NativeOffset(0x550)]
     [NativeName("m_hUsingPlayer")]
-    public CHandle__CBasePlayerPawn__ UsingPlayer { get; set; }
+    public CHandle<CBasePlayerPawn> UsingPlayer { get; set; }
 }

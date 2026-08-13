@@ -29,7 +29,7 @@ public partial class CMoverPathNode : CPathNode
     /// </remarks>
     [NativeOffset(0x540)]
     [NativeName("m_OnPassThrough")]
-    public CEntityOutputTemplate__CUtlString__ OnPassThrough { get; set; }
+    public string? OnPassThrough { get; set; }
 
     /// <summary>
     ///     Gets or sets OnPassThroughForward.
@@ -39,7 +39,7 @@ public partial class CMoverPathNode : CPathNode
     /// </remarks>
     [NativeOffset(0x560)]
     [NativeName("m_OnPassThroughForward")]
-    public CEntityOutputTemplate__CUtlString__ OnPassThroughForward { get; set; }
+    public string? OnPassThroughForward { get; set; }
 
     /// <summary>
     ///     Gets or sets OnPassThroughReverse.
@@ -49,7 +49,7 @@ public partial class CMoverPathNode : CPathNode
     /// </remarks>
     [NativeOffset(0x580)]
     [NativeName("m_OnPassThroughReverse")]
-    public CEntityOutputTemplate__CUtlString__ OnPassThroughReverse { get; set; }
+    public string? OnPassThroughReverse { get; set; }
 
     /// <summary>
     ///     Gets or sets OnStartFromOrInSegment.
@@ -59,7 +59,7 @@ public partial class CMoverPathNode : CPathNode
     /// </remarks>
     [NativeOffset(0x500)]
     [NativeName("m_OnStartFromOrInSegment")]
-    public CEntityOutputTemplate__CUtlString__ OnStartFromOrInSegment { get; set; }
+    public string? OnStartFromOrInSegment { get; set; }
 
     /// <summary>
     ///     Gets or sets OnStoppedAtOrInSegment.
@@ -69,5 +69,5 @@ public partial class CMoverPathNode : CPathNode
     /// </remarks>
     [NativeOffset(0x520)]
     [NativeName("m_OnStoppedAtOrInSegment")]
-    public CEntityOutputTemplate__CUtlString__ OnStoppedAtOrInSegment { get; set; }
+    public string? OnStoppedAtOrInSegment { get; set; }
 }

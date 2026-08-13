@@ -49,7 +49,7 @@ public partial class CEnvLaser : CBeam
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_pSprite")]
-    public CHandle__CSprite__ Sprite { get; set; }
+    public CHandle<CSprite> Sprite { get; set; }
 
     /// <summary>
     ///     Gets or sets SpriteName.

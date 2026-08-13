@@ -38,7 +38,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x1FC)]
     [NativeName("m_hActivePostProcessingVolume")]
-    public CHandle__C_PostProcessingVolume__ ActivePostProcessingVolume { get; set; }
+    public CHandle<C_PostProcessingVolume> ActivePostProcessingVolume { get; set; }
 
     /// <summary>
     ///     Gets or sets Audio.
@@ -68,7 +68,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_hColorCorrectionCtrl")]
-    public CHandle__C_ColorCorrection__ ColorCorrectionCtrl { get; set; }
+    public CHandle<C_ColorCorrection> ColorCorrectionCtrl { get; set; }
 
     /// <summary>
     ///     Gets or sets CsViewPunchAngle.
@@ -128,7 +128,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x1B0)]
     [NativeName("m_hOldFogController")]
-    public CHandle__C_FogController__ OldFogController { get; set; }
+    public CHandle<C_FogController> OldFogController { get; set; }
 
     /// <summary>
     ///     Gets or sets OldPlayerViewOffsetZ.
@@ -208,7 +208,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x128)]
     [NativeName("m_PostProcessingVolumes")]
-    public C_NetworkUtlVectorBase__CHandle__C_PostProcessingVolume____ PostProcessingVolumes { get; set; }
+    public CHandle<C_PostProcessingVolume>[] PostProcessingVolumes { get; set; }
 
     /// <summary>
     ///     Gets or sets ToneMapController.
@@ -218,7 +218,7 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_hTonemapController")]
-    public CHandle__C_TonemapController2__ ToneMapController { get; set; }
+    public CHandle<C_TonemapController2> ToneMapController { get; set; }
 
     /// <summary>
     ///     Gets or sets ViewEntity.
@@ -228,5 +228,5 @@ public partial class CPlayerCameraServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0xA4)]
     [NativeName("m_hViewEntity")]
-    public CHandle__C_BaseEntity__ ViewEntity { get; set; }
+    public CHandle<C_BaseEntity> ViewEntity { get; set; }
 }

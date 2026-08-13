@@ -62,7 +62,7 @@ public partial class ParamSpan
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_samples")]
-    public CUtlVector__ParamSpanSample_t__ Samples { get; set; }
+    public ParamSpanSample[] Samples { get; set; }
 
     /// <summary>
     ///     Gets or sets StartCycle.

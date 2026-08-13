@@ -36,7 +36,7 @@ public partial class CMixSteamAudioPathing : CMixPropertyBase
     [NativeName("m_vPathingCoeffs")]
     [NativeMetadata("MPropertyAttributeRange", "-1 1")]
     [NativeMetadata("MPropertyFriendlyName", "Pathing Coefficients")]
-    public CUtlVector__float32__ PathingCoeffs { get; set; }
+    public float[] PathingCoeffs { get; set; }
 
     /// <summary>
     ///     Pathing Mix Level.
@@ -72,5 +72,5 @@ public partial class CMixSteamAudioPathing : CMixPropertyBase
     [NativeName("m_vecPathingEQ")]
     [NativeMetadata("MPropertyAttributeRange", "0.0 1.0")]
     [NativeMetadata("MPropertyFriendlyName", "Pathing EQ (N-band)")]
-    public CUtlVector__float32__ VecPathingEQ { get; set; }
+    public float[] VecPathingEQ { get; set; }
 }

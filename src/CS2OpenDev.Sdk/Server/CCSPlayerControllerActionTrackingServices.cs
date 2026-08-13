@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Common;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -60,7 +66,7 @@ public partial class CCSPlayerControllerActionTrackingServices : CPlayerControll
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_perRoundStats")]
-    public CUtlVectorEmbeddedNetworkVar__CSPerRoundStats_t__ PerRoundStats { get; set; }
+    public CSPerRoundStats[] PerRoundStats { get; set; }
 
     /// <summary>
     ///     Total damage this player has dealt in the current round.

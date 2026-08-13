@@ -41,7 +41,7 @@ public partial class CPulseGraphExecutionHistory
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_vecHistory")]
-    public CUtlVector__PulseGraphExecutionHistoryEntry_t___ History { get; set; }
+    public PulseGraphExecutionHistoryEntry?[] History { get; set; }
 
     /// <summary>
     ///     Gets or sets InstanceId.
@@ -61,7 +61,7 @@ public partial class CPulseGraphExecutionHistory
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_mapCellDesc")]
-    public CUtlOrderedMap__PulseDocNodeID_t__PulseGraphExecutionHistoryNodeDesc_t___ MapCellDesc { get; set; }
+    public Dictionary<PulseDocNodeId, PulseGraphExecutionHistoryNodeDesc?> MapCellDesc { get; set; }
 
     /// <summary>
     ///     Gets or sets MapCursorDesc.
@@ -71,5 +71,5 @@ public partial class CPulseGraphExecutionHistory
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_mapCursorDesc")]
-    public CUtlOrderedMap__PulseCursorID_t__PulseGraphExecutionHistoryCursorDesc_t___ MapCursorDesc { get; set; }
+    public Dictionary<PulseCursorId, PulseGraphExecutionHistoryCursorDesc?> MapCursorDesc { get; set; }
 }

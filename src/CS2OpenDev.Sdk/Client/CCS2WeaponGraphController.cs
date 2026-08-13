@@ -37,7 +37,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x88)]
     [NativeName("m_action")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ Action { get; set; }
+    public string? Action { get; set; }
 
     /// <summary>
     ///     Gets or sets ActionReset.
@@ -47,7 +47,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_bActionReset")]
-    public CAnimGraph2ParamOptionalRef__bool__ ActionReset { get; set; }
+    public bool? ActionReset { get; set; }
 
     /// <summary>
     ///     Gets or sets AttackThrowStrength.
@@ -57,7 +57,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x1F0)]
     [NativeName("m_attackThrowStrength")]
-    public CAnimGraph2ParamOptionalRef__float32__ AttackThrowStrength { get; set; }
+    public float? AttackThrowStrength { get; set; }
 
     /// <summary>
     ///     Gets or sets AttackType.
@@ -67,7 +67,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x1D8)]
     [NativeName("m_attackType")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ AttackType { get; set; }
+    public string? AttackType { get; set; }
 
     /// <summary>
     ///     Gets or sets AttackVariation.
@@ -77,7 +77,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x208)]
     [NativeName("m_flAttackVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ AttackVariation { get; set; }
+    public float? AttackVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets DeployVariation.
@@ -87,7 +87,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x1C0)]
     [NativeName("m_deployVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ DeployVariation { get; set; }
+    public float? DeployVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets IdleVariation.
@@ -97,7 +97,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x1A8)]
     [NativeName("m_idleVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ IdleVariation { get; set; }
+    public float? IdleVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets InspectExtraInfo.
@@ -107,7 +107,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x238)]
     [NativeName("m_inspectExtraInfo")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ InspectExtraInfo { get; set; }
+    public string? InspectExtraInfo { get; set; }
 
     /// <summary>
     ///     Gets or sets InspectVariation.
@@ -117,7 +117,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x220)]
     [NativeName("m_inspectVariation")]
-    public CAnimGraph2ParamOptionalRef__float32__ InspectVariation { get; set; }
+    public float? InspectVariation { get; set; }
 
     /// <summary>
     ///     Gets or sets IsUsingLegacyModel.
@@ -127,7 +127,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x190)]
     [NativeName("m_bIsUsingLegacyModel")]
-    public CAnimGraph2ParamOptionalRef__bool__ IsUsingLegacyModel { get; set; }
+    public bool? IsUsingLegacyModel { get; set; }
 
     /// <summary>
     ///     Gets or sets ReloadStage.
@@ -137,7 +137,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x250)]
     [NativeName("m_reloadStage")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ ReloadStage { get; set; }
+    public string? ReloadStage { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponActionSpeedScale.
@@ -147,7 +147,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_flWeaponActionSpeedScale")]
-    public CAnimGraph2ParamOptionalRef__float32__ WeaponActionSpeedScale { get; set; }
+    public float? WeaponActionSpeedScale { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponAmmo.
@@ -157,7 +157,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x118)]
     [NativeName("m_flWeaponAmmo")]
-    public CAnimGraph2ParamOptionalRef__float32__ WeaponAmmo { get; set; }
+    public float? WeaponAmmo { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponAmmoMax.
@@ -167,7 +167,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x130)]
     [NativeName("m_flWeaponAmmoMax")]
-    public CAnimGraph2ParamOptionalRef__float32__ WeaponAmmoMax { get; set; }
+    public float? WeaponAmmoMax { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponAmmoReserve.
@@ -177,7 +177,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x148)]
     [NativeName("m_flWeaponAmmoReserve")]
-    public CAnimGraph2ParamOptionalRef__float32__ WeaponAmmoReserve { get; set; }
+    public float? WeaponAmmoReserve { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponCategory.
@@ -187,7 +187,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_weaponCategory")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ WeaponCategory { get; set; }
+    public string? WeaponCategory { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponExtraInfo.
@@ -197,7 +197,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x100)]
     [NativeName("m_weaponExtraInfo")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ WeaponExtraInfo { get; set; }
+    public string? WeaponExtraInfo { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponIronsightAmount.
@@ -207,7 +207,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x178)]
     [NativeName("m_flWeaponIronsightAmount")]
-    public CAnimGraph2ParamOptionalRef__float32__ WeaponIronsightAmount { get; set; }
+    public float? WeaponIronsightAmount { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponIsSilenced.
@@ -217,7 +217,7 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0x160)]
     [NativeName("m_bWeaponIsSilenced")]
-    public CAnimGraph2ParamOptionalRef__bool__ WeaponIsSilenced { get; set; }
+    public bool? WeaponIsSilenced { get; set; }
 
     /// <summary>
     ///     Gets or sets WeaponType.
@@ -227,5 +227,5 @@ public partial class CCS2WeaponGraphController : CAnimGraphControllerBase
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_weaponType")]
-    public CAnimGraph2ParamOptionalRef__CGlobalSymbol__ WeaponType { get; set; }
+    public string? WeaponType { get; set; }
 }

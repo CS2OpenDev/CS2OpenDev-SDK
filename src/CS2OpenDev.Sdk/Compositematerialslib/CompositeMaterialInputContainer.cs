@@ -108,7 +108,7 @@ public partial class CompositeMaterialInputContainer
     [NativeName("m_vecLooseVariables")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Variables")]
-    public CUtlVector__CompositeMaterialInputLooseVariable_t__ LooseVariables { get; set; }
+    public CompositeMaterialInputLooseVariable[] LooseVariables { get; set; }
 
     /// <summary>
     ///     Specific Material.
@@ -120,5 +120,5 @@ public partial class CompositeMaterialInputContainer
     [NativeName("m_strSpecificContainerMaterial")]
     [NativeMetadata("MPropertyAttrStateCallback", "")]
     [NativeMetadata("MPropertyFriendlyName", "Specific Material")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeIMaterial2____ SpecificContainerMaterial { get; set; }
+    public string SpecificContainerMaterial { get; set; }
 }

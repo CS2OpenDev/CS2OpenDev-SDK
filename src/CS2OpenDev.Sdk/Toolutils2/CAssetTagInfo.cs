@@ -77,7 +77,7 @@ public partial class CAssetTagInfo
     [NativeName("m_TagAliases")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyDescription", "Alternate strings this tag will match when searching for assets by name.")]
-    public CUtlVector__CUtlString__ TagAliases { get; set; }
+    public string[] TagAliases { get; set; }
 
     /// <summary>
     ///     Color for the tag badge.

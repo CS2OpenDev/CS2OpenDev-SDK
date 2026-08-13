@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -96,7 +97,7 @@ public partial class CEnvBeam : CBeam
     /// </remarks>
     [NativeOffset(0x880)]
     [NativeName("m_hFilter")]
-    public CHandle__CBaseEntity__ Filter { get; set; }
+    public CHandle<CBaseEntity> Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.
@@ -196,7 +197,7 @@ public partial class CEnvBeam : CBeam
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_spriteTexture")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ SpriteTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> SpriteTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets StartEntity.

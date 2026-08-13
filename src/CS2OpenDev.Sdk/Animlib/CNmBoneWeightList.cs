@@ -31,7 +31,7 @@ public partial class CNmBoneWeightList
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_boneIDs")]
-    public CUtlVector__CGlobalSymbol__ BoneIDs { get; set; }
+    public string[] BoneIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets SkeletonName.
@@ -51,5 +51,5 @@ public partial class CNmBoneWeightList
     /// </remarks>
     [NativeOffset(0xF8)]
     [NativeName("m_weights")]
-    public CUtlVector__float32__ Weights { get; set; }
+    public float[] Weights { get; set; }
 }

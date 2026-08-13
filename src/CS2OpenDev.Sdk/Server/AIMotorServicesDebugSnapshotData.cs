@@ -54,7 +54,7 @@ public partial class AIMotorServicesDebugSnapshotData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("motor_path")]
-    public CUtlVector__AI_MotorServices_DebugSnapshotData_t_MotorPathWaypoint_t__ MotorPath { get; set; }
+    public AIMotorServicesDebugSnapshotDataTMotorPathWayPoint[] MotorPath { get; set; }
 
     /// <summary>
     ///     Gets or sets MotorVelocity.

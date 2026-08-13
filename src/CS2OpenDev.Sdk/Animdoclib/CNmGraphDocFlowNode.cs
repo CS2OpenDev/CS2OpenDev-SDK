@@ -30,7 +30,7 @@ public abstract partial class CNmGraphDocFlowNode : CNmGraphDocNode
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_inputPins")]
-    public CUtlLeanVectorFixedGrowable__NmGraphDocPin_t__4__ InputPins { get; set; }
+    public NmGraphDocPin[] InputPins { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputPins.
@@ -40,5 +40,5 @@ public abstract partial class CNmGraphDocFlowNode : CNmGraphDocNode
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_outputPins")]
-    public CUtlLeanVectorFixedGrowable__NmGraphDocPin_t__1__ OutputPins { get; set; }
+    public NmGraphDocPin[] OutputPins { get; set; }
 }

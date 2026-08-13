@@ -31,7 +31,7 @@ public partial class CFootAdjustmentInstanceData
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_flDuration")]
-    public CAnimNetVar__float32__ Duration { get; set; }
+    public float Duration { get; set; }
 
     /// <summary>
     ///     Gets or sets StartHeadingWS.
@@ -51,5 +51,5 @@ public partial class CFootAdjustmentInstanceData
     /// </remarks>
     [NativeOffset(0xC)]
     [NativeName("m_flStartTime")]
-    public CAnimNetVar__float32__ StartTime { get; set; }
+    public float StartTime { get; set; }
 }

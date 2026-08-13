@@ -59,7 +59,7 @@ public partial class CFuncMonitor : CFuncBrush
     /// </remarks>
     [NativeOffset(0x7A8)]
     [NativeName("m_hTargetCamera")]
-    public CHandle__CBaseEntity__ HTargetCamera { get; set; }
+    public CHandle<CBaseEntity> HTargetCamera { get; set; }
 
     /// <summary>
     ///     Gets or sets RenderShadows.

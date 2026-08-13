@@ -31,5 +31,5 @@ public partial class CActionComponentUpdater : CAnimComponentUpdater
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_actions")]
-    public CUtlVector__CSmartPtr__CAnimActionUpdater____ Actions { get; set; }
+    public CAnimActionUpdater?[] Actions { get; set; }
 }

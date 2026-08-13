@@ -40,7 +40,7 @@ public abstract partial class CBaseConstraint : CBoneConstraintBase
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_slaves")]
-    public CUtlLeanVector__CConstraintSlave__ Slaves { get; set; }
+    public CConstraintSlave[] Slaves { get; set; }
 
     /// <summary>
     ///     Gets or sets Targets.
@@ -50,7 +50,7 @@ public abstract partial class CBaseConstraint : CBoneConstraintBase
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_targets")]
-    public CUtlVector__CConstraintTarget__ Targets { get; set; }
+    public CConstraintTarget[] Targets { get; set; }
 
     /// <summary>
     ///     Gets or sets UpVector.

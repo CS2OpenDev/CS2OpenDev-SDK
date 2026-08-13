@@ -32,7 +32,7 @@ public partial class PhysicsRagdollPose
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_hOwner")]
-    public CHandle__C_BaseEntity__ Owner { get; set; }
+    public CHandle<C_BaseEntity> Owner { get; set; }
 
     /// <summary>
     ///     Gets or sets SetFromDebugHistory.
@@ -53,5 +53,5 @@ public partial class PhysicsRagdollPose
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Transforms")]
-    public C_NetworkUtlVectorBase__CTransform__ Transforms { get; set; }
+    public CTransform[] Transforms { get; set; }
 }

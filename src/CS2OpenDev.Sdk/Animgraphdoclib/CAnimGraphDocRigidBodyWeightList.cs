@@ -42,5 +42,5 @@ public partial class CAnimGraphDocRigidBodyWeightList
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_weights")]
-    public CUtlVector__CRigidBodyWeight__ Weights { get; set; }
+    public CRigidBodyWeight[] Weights { get; set; }
 }

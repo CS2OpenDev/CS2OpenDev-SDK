@@ -44,7 +44,7 @@ public partial class CEnumAnimParameter : CConcreteAnimParameter
     [NativeOffset(0x90)]
     [NativeName("m_enumOptions")]
     [NativeMetadata("MPropertyFriendlyName", "Values")]
-    public CUtlVector__CUtlString__ EnumOptions { get; set; }
+    public string[] EnumOptions { get; set; }
 
     /// <summary>
     ///     Gets or sets EnumReferenced.
@@ -55,5 +55,5 @@ public partial class CEnumAnimParameter : CConcreteAnimParameter
     [NativeOffset(0xA8)]
     [NativeName("m_vecEnumReferenced")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__uint64__ EnumReferenced { get; set; }
+    public ulong[] EnumReferenced { get; set; }
 }

@@ -31,7 +31,7 @@ public partial class CDirectPlaybackUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_allTags")]
-    public CUtlVector__CDirectPlaybackTagData__ AllTags { get; set; }
+    public CDirectPlaybackTagData[] AllTags { get; set; }
 
     /// <summary>
     ///     Gets or sets FinishEarly.

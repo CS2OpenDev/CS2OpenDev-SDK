@@ -42,7 +42,7 @@ public partial class CNmBlend2DNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_hullIndices")]
-    public CUtlLeanVectorFixedGrowable__uint8__10__ HullIndices { get; set; }
+    public byte[] HullIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets Indices.
@@ -52,7 +52,7 @@ public partial class CNmBlend2DNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_indices")]
-    public CUtlLeanVectorFixedGrowable__uint8__30__ Indices { get; set; }
+    public byte[] Indices { get; set; }
 
     /// <summary>
     ///     Gets or sets InputParameterNodeIdx0.
@@ -82,7 +82,7 @@ public partial class CNmBlend2DNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_sourceNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__5__ SourceNodeIndices { get; set; }
+    public short[] SourceNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets Values.
@@ -92,5 +92,5 @@ public partial class CNmBlend2DNodeCDefinition : CNmPoseNodeCDefinition
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_values")]
-    public CUtlLeanVectorFixedGrowable__Vector2D__10__ Values { get; set; }
+    public Vector2D[] Values { get; set; }
 }

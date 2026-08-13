@@ -51,7 +51,7 @@ public partial class C_PointClientUIWorldPanel : C_BaseClientUIEntity
     /// </remarks>
     [NativeOffset(0x11D8)]
     [NativeName("m_vecCSSClasses")]
-    public C_NetworkUtlVectorBase__CUtlSymbolLarge__ CSSClasses { get; set; }
+    public string[] CSSClasses { get; set; }
 
     /// <summary>
     ///     Gets or sets CheckCSSClasses.

@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Animationsystem;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -107,7 +108,7 @@ public partial class CNmParticleEvent : CNmEvent
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_hParticleSystem")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ ParticleSystem { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ParticleSystem { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayEndCap.

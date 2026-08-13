@@ -31,7 +31,7 @@ public partial class CModelConfigList
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Configs")]
-    public CUtlVector__CModelConfig___ Configs { get; set; }
+    public CModelConfig?[] Configs { get; set; }
 
     /// <summary>
     ///     Gets or sets HideMaterialGroupInTools.

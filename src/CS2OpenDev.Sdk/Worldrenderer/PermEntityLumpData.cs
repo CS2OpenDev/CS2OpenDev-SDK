@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Worldrenderer;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class PermEntityLumpData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_childLumps")]
-    public CUtlVector__CStrongHandleCopyable__InfoForResourceTypeCEntityLump____ ChildLumps { get; set; }
+    public CStrongHandleCopyable<InfoForResourceTypeCEntityLump>[] ChildLumps { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityKeyValues.
@@ -42,7 +48,7 @@ public partial class PermEntityLumpData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_entityKeyValues")]
-    public CUtlLeanVector__EntityKeyValueData_t__ EntityKeyValues { get; set; }
+    public EntityKeyValueData[] EntityKeyValues { get; set; }
 
     /// <summary>
     ///     Gets or sets Name.

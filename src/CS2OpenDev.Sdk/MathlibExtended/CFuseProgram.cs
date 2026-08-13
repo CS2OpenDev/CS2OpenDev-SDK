@@ -41,7 +41,7 @@ public partial class CFuseProgram
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_programBuffer")]
-    public CUtlVector__uint8__ ProgramBuffer { get; set; }
+    public byte[] ProgramBuffer { get; set; }
 
     /// <summary>
     ///     Gets or sets VariablesRead.
@@ -51,7 +51,7 @@ public partial class CFuseProgram
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_variablesRead")]
-    public CUtlVector__FuseVariableIndex_t__ VariablesRead { get; set; }
+    public FuseVariableIndex[] VariablesRead { get; set; }
 
     /// <summary>
     ///     Gets or sets VariablesWritten.
@@ -61,5 +61,5 @@ public partial class CFuseProgram
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_variablesWritten")]
-    public CUtlVector__FuseVariableIndex_t__ VariablesWritten { get; set; }
+    public FuseVariableIndex[] VariablesWritten { get; set; }
 }

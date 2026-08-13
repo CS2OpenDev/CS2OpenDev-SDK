@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -69,7 +75,7 @@ public partial class C_TextureBasedAnimatable : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFB8)]
     [NativeName("m_hPositionKeys")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ PositionKeys { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> PositionKeys { get; set; }
 
     /// <summary>
     ///     Gets or sets RotationKeys.
@@ -79,7 +85,7 @@ public partial class C_TextureBasedAnimatable : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFC0)]
     [NativeName("m_hRotationKeys")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ RotationKeys { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> RotationKeys { get; set; }
 
     /// <summary>
     ///     Gets or sets StartFrame.

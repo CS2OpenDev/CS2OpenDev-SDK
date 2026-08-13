@@ -45,7 +45,7 @@ public partial class CVoiceContainerSelector : CVoiceContainerBase
     [NativeOffset(0xB0)]
     [NativeName("m_fProbabilityWeights")]
     [NativeMetadata("MPropertyFriendlyName", "Relative Weights")]
-    public CUtlVector__float32__ ProbabilityWeights { get; set; }
+    public float[] ProbabilityWeights { get; set; }
 
     /// <summary>
     ///     Sounds To play.

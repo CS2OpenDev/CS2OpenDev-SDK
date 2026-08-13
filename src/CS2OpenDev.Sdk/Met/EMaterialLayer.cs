@@ -42,7 +42,7 @@ public partial class EMaterialLayer
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_HiddenVariableUiNames")]
-    public CUtlVector__std_pair__CUtlString__CUtlString____ HiddenVariableUiNames { get; set; }
+    public (string, string)[] HiddenVariableUiNames { get; set; }
 
     /// <summary>
     ///     Gets or sets InheritedVariableSources.
@@ -102,5 +102,5 @@ public partial class EMaterialLayer
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_VariableNames")]
-    public CUtlVector__CUtlString__ VariableNames { get; set; }
+    public string[] VariableNames { get; set; }
 }

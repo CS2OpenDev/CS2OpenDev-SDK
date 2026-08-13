@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -81,7 +82,7 @@ public partial class CShatterGlassShard
     /// </remarks>
     [NativeOffset(0x9C)]
     [NativeName("m_hEntityHittingMe")]
-    public CHandle__CBaseEntity__ EntityHittingMe { get; set; }
+    public CHandle<CBaseEntity> EntityHittingMe { get; set; }
 
     /// <summary>
     ///     Gets or sets FlaggedForRemoval.
@@ -135,7 +136,7 @@ public partial class CShatterGlassShard
     [NativeOffset(0x30)]
     [NativeName("m_hModel")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     Gets or sets Neighbors.
@@ -145,7 +146,7 @@ public partial class CShatterGlassShard
     /// </remarks>
     [NativeOffset(0xA0)]
     [NativeName("m_vecNeighbors")]
-    public CUtlVector__uint32__ Neighbors { get; set; }
+    public uint[] Neighbors { get; set; }
 
     /// <summary>
     ///     Gets or sets OnFrameEdge.
@@ -186,7 +187,7 @@ public partial class CShatterGlassShard
     [NativeOffset(0x10)]
     [NativeName("m_vecPanelVertices")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__Vector2D__ PanelVertices { get; set; }
+    public Vector2D[] PanelVertices { get; set; }
 
     /// <summary>
     ///     Gets or sets ParentPanel.
@@ -196,7 +197,7 @@ public partial class CShatterGlassShard
     /// </remarks>
     [NativeOffset(0x3C)]
     [NativeName("m_hParentPanel")]
-    public CHandle__CFuncShatterglass__ ParentPanel { get; set; }
+    public CHandle<CFuncShatterGlass> ParentPanel { get; set; }
 
     /// <summary>
     ///     Gets or sets ParentShard.
@@ -216,7 +217,7 @@ public partial class CShatterGlassShard
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_hPhysicsEntity")]
-    public CHandle__CShatterGlassShardPhysics__ PhysicsEntity { get; set; }
+    public CHandle<CShatterGlassShardPhysics> PhysicsEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets PhysicsEntitySpawnedAtTime.

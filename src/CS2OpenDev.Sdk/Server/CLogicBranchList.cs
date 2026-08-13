@@ -45,7 +45,7 @@ public partial class CLogicBranchList : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x528)]
     [NativeName("m_LogicBranchList")]
-    public CUtlVector__CHandle__CBaseEntity____ LogicBranchList { get; set; }
+    public CHandle<CBaseEntity>[] LogicBranchList { get; set; }
 
     /// <summary>
     ///     Gets or sets LogicBranchNames.

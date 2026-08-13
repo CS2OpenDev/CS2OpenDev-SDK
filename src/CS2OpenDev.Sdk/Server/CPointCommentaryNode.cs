@@ -105,7 +105,7 @@ public partial class CPointCommentaryNode : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x990)]
     [NativeName("m_hViewPosition")]
-    public CHandle__CBaseEntity__ HViewPosition { get; set; }
+    public CHandle<CBaseEntity> HViewPosition { get; set; }
 
     /// <summary>
     ///     Gets or sets HViewTarget.
@@ -115,7 +115,7 @@ public partial class CPointCommentaryNode : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x980)]
     [NativeName("m_hViewTarget")]
-    public CHandle__CBaseEntity__ HViewTarget { get; set; }
+    public CHandle<CBaseEntity> HViewTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets IszViewPosition.
@@ -315,7 +315,7 @@ public partial class CPointCommentaryNode : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x994)]
     [NativeName("m_hViewPositionMover")]
-    public CHandle__CBaseEntity__ ViewPositionMover { get; set; }
+    public CHandle<CBaseEntity> ViewPositionMover { get; set; }
 
     /// <summary>
     ///     Gets or sets ViewTargetAngles.
@@ -325,5 +325,5 @@ public partial class CPointCommentaryNode : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x984)]
     [NativeName("m_hViewTargetAngles")]
-    public CHandle__CBaseEntity__ ViewTargetAngles { get; set; }
+    public CHandle<CBaseEntity> ViewTargetAngles { get; set; }
 }

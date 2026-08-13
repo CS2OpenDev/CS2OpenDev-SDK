@@ -29,5 +29,5 @@ public partial class CTakeDamageSummaryScopeGuard
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_vecSummaries")]
-    public CUtlVector__SummaryTakeDamageInfo_t___ Summaries { get; set; }
+    public SummaryTakeDamageInfo?[] Summaries { get; set; }
 }

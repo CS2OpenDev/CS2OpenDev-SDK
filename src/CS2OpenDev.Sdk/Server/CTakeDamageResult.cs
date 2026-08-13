@@ -61,7 +61,7 @@ public partial class CTakeDamageResult
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_DestructibleHitGroupRequests")]
-    public CUtlLeanVector__DestructiblePartDamageRequest_t__ DestructibleHitGroupRequests { get; set; }
+    public DestructiblePartDamageRequest[] DestructibleHitGroupRequests { get; set; }
 
     /// <summary>
     ///     Gets or sets HealthBefore.

@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Animgraphlib;
+
+#endregion
+
 namespace CS2OpenSchema.Animgraphdoclib;
 
 /// <summary>
@@ -42,7 +48,7 @@ public partial class CAnimGraphDocSubGraph
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_localParameters")]
-    public CUtlVector__CSmartPtr__CAnimParameterBase____ LocalParameters { get; set; }
+    public CAnimParameterBase?[] LocalParameters { get; set; }
 
     /// <summary>
     ///     Gets or sets LocalTags.
@@ -52,7 +58,7 @@ public partial class CAnimGraphDocSubGraph
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_localTags")]
-    public CUtlVector__CSmartPtr__CAnimTagBase____ LocalTags { get; set; }
+    public CAnimTagBase?[] LocalTags { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeManager.
@@ -72,7 +78,7 @@ public partial class CAnimGraphDocSubGraph
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_referencedParamGroups")]
-    public CUtlVector__CUtlString__ ReferencedParamGroups { get; set; }
+    public string[] ReferencedParamGroups { get; set; }
 
     /// <summary>
     ///     Gets or sets ReferencedTagGroups.
@@ -82,5 +88,5 @@ public partial class CAnimGraphDocSubGraph
     /// </remarks>
     [NativeOffset(0xC0)]
     [NativeName("m_referencedTagGroups")]
-    public CUtlVector__CUtlString__ ReferencedTagGroups { get; set; }
+    public string[] ReferencedTagGroups { get; set; }
 }

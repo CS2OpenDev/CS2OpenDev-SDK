@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -33,7 +39,7 @@ public partial class ParticleChildrenInfo
     [NativeOffset(0x0)]
     [NativeName("m_ChildRef")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ ChildRef { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ChildRef { get; set; }
 
     /// <summary>
     ///     delay.

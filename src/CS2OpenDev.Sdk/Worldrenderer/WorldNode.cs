@@ -32,7 +32,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0xC0)]
     [NativeName("m_aggregateInstanceStreams")]
-    public CUtlVector__AggregateInstanceStreamOnDiskData_t__ AggregateInstanceStreams { get; set; }
+    public AggregateInstanceStreamOnDiskData[] AggregateInstanceStreams { get; set; }
 
     /// <summary>
     ///     Gets or sets AggregateSceneObjects.
@@ -42,7 +42,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_aggregateSceneObjects")]
-    public CUtlVector__AggregateSceneObject_t__ AggregateSceneObjects { get; set; }
+    public AggregateSceneObject[] AggregateSceneObjects { get; set; }
 
     /// <summary>
     ///     Gets or sets ClutterSceneObjects.
@@ -52,7 +52,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_clutterSceneObjects")]
-    public CUtlVector__ClutterSceneObject_t__ ClutterSceneObjects { get; set; }
+    public ClutterSceneObject[] ClutterSceneObjects { get; set; }
 
     /// <summary>
     ///     Gets or sets ExtraVertexStreamOverrides.
@@ -62,7 +62,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_extraVertexStreamOverrides")]
-    public CUtlVector__ExtraVertexStreamOverride_t__ ExtraVertexStreamOverrides { get; set; }
+    public ExtraVertexStreamOverride[] ExtraVertexStreamOverrides { get; set; }
 
     /// <summary>
     ///     Gets or sets ExtraVertexStreams.
@@ -72,7 +72,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_extraVertexStreams")]
-    public CUtlVector__WorldNodeOnDiskBufferData_t__ ExtraVertexStreams { get; set; }
+    public WorldNodeOnDiskBufferData[] ExtraVertexStreams { get; set; }
 
     /// <summary>
     ///     Gets or sets GrassFileName.
@@ -102,7 +102,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_layerNames")]
-    public CUtlVector__CUtlString__ LayerNames { get; set; }
+    public string[] LayerNames { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialOverrides.
@@ -112,7 +112,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_materialOverrides")]
-    public CUtlVector__MaterialOverride_t__ MaterialOverrides { get; set; }
+    public MaterialOverride[] MaterialOverrides { get; set; }
 
     /// <summary>
     ///     Gets or sets NodeLightingInfo.
@@ -132,7 +132,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_rtProxies")]
-    public CUtlVector__AggregateRTProxySceneObject_t__ RtProxies { get; set; }
+    public AggregateRTProxySceneObject[] RtProxies { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneObjectLayerIndices.
@@ -142,7 +142,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_sceneObjectLayerIndices")]
-    public CUtlVector__uint8__ SceneObjectLayerIndices { get; set; }
+    public byte[] SceneObjectLayerIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneObjects.
@@ -152,7 +152,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_sceneObjects")]
-    public CUtlVector__SceneObject_t__ SceneObjects { get; set; }
+    public SceneObject[] SceneObjects { get; set; }
 
     /// <summary>
     ///     Gets or sets VertexAlbedoStreams.
@@ -162,7 +162,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0xD8)]
     [NativeName("m_vertexAlbedoStreams")]
-    public CUtlVector__AggregateVertexAlbedoStreamOnDiskData_t__ VertexAlbedoStreams { get; set; }
+    public AggregateVertexAlbedoStreamOnDiskData[] VertexAlbedoStreams { get; set; }
 
     /// <summary>
     ///     Gets or sets VertexEmissiveStreams.
@@ -172,7 +172,7 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0xF0)]
     [NativeName("m_vertexEmissiveStreams")]
-    public CUtlVector__AggregateVertexEmissiveStreamOnDiskData_t__ VertexEmissiveStreams { get; set; }
+    public AggregateVertexEmissiveStreamOnDiskData[] VertexEmissiveStreams { get; set; }
 
     /// <summary>
     ///     Gets or sets VisClusterMembership.
@@ -182,5 +182,5 @@ public partial class WorldNode
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_visClusterMembership")]
-    public CUtlVector__uint16__ VisClusterMembership { get; set; }
+    public ushort[] VisClusterMembership { get; set; }
 }

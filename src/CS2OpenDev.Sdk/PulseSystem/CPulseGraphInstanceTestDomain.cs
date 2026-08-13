@@ -116,5 +116,5 @@ public partial class CPulseGraphInstanceTestDomain : CBasePulseGraphInstance
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_Tracepoints")]
-    public CUtlVector__CUtlString__ TracePoints { get; set; }
+    public string[] TracePoints { get; set; }
 }

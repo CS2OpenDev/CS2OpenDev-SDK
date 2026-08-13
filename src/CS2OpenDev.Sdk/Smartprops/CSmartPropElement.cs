@@ -64,7 +64,7 @@ public partial class CSmartPropElement
     [NativeName("m_Modifiers")]
     [NativeMetadata("MPropertyFriendlyName", "Modifiers")]
     [NativeMetadata("MVDataPromoteField", "2")]
-    public CUtlVector__CSmartPropModifier___ Modifiers { get; set; }
+    public CSmartPropModifier?[] Modifiers { get; set; }
 
     /// <summary>
     ///     Optional text that will appear in the outliner to help organize Smart Prop elements and communicate their purpose to other users.
@@ -89,5 +89,5 @@ public partial class CSmartPropElement
     [NativeName("m_SelectionCriteria")]
     [NativeMetadata("MPropertyFriendlyName", "Selection Criteria")]
     [NativeMetadata("MVDataPromoteField", "2")]
-    public CUtlVector__CSmartPropSelectionCriteria___ SelectionCriteria { get; set; }
+    public CSmartPropSelectionCriteria?[] SelectionCriteria { get; set; }
 }

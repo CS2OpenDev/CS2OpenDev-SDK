@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.SoundsystemVoicecontainers;
 
 /// <summary>
@@ -57,7 +63,7 @@ public partial class CSoundContainerReference
     [NativeName("m_sound")]
     [NativeMetadata("MPropertyFriendlyName", "Vsnd File")]
     [NativeMetadata("MPropertySuppressExpr", "m_bUseReference == 0")]
-    public CStrongHandle__InfoForResourceTypeCVoiceContainerBase__ Sound { get; set; }
+    public CStrongHandle<InfoForResourceTypeCVoiceContainerBase> Sound { get; set; }
 
     /// <summary>
     ///     Use Vsnd File.

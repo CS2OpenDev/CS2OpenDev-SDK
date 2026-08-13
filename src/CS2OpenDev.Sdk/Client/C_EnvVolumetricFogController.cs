@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -176,7 +177,7 @@ public partial class C_EnvVolumetricFogController : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x678)]
     [NativeName("m_hFogIndirectTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ FogInDirectTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> FogInDirectTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets ForceRefreshCount.

@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.MathlibExtended;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -78,7 +79,7 @@ public partial class ClutterSceneObject
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_instancePositions")]
-    public CUtlVector__Vector__ InstancePositions { get; set; }
+    public Vector[] InstancePositions { get; set; }
 
     /// <summary>
     ///     Gets or sets InstanceScales.
@@ -88,7 +89,7 @@ public partial class ClutterSceneObject
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_instanceScales")]
-    public CUtlVector__float32__ InstanceScales { get; set; }
+    public float[] InstanceScales { get; set; }
 
     /// <summary>
     ///     Gets or sets InstanceTintSrgb.
@@ -98,7 +99,7 @@ public partial class ClutterSceneObject
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_instanceTintSrgb")]
-    public CUtlVector__Color__ InstanceTintSrgb { get; set; }
+    public Color[] InstanceTintSrgb { get; set; }
 
     /// <summary>
     ///     Gets or sets Layer.
@@ -128,7 +129,7 @@ public partial class ClutterSceneObject
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_renderableModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ RenderableModel { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> RenderableModel { get; set; }
 
     /// <summary>
     ///     Gets or sets Tiles.
@@ -138,5 +139,5 @@ public partial class ClutterSceneObject
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_tiles")]
-    public CUtlVector__ClutterTile_t__ Tiles { get; set; }
+    public ClutterTile[] Tiles { get; set; }
 }

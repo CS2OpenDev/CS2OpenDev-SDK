@@ -31,5 +31,5 @@ public partial class GlobalEntityDatabase
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_list")]
-    public CUtlVector__globalentity_t__ List { get; set; }
+    public GlobalEntity[] List { get; set; }
 }

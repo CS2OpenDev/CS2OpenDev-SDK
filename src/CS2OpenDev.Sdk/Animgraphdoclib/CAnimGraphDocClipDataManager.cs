@@ -33,5 +33,5 @@ public partial class CAnimGraphDocClipDataManager
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_itemTable")]
-    public CUtlHashtable__CUtlString__CSmartPtr__CAnimGraphDoc_ClipData____ ItemTable { get; set; }
+    public Dictionary<string, CAnimGraphDocClipData?> ItemTable { get; set; }
 }

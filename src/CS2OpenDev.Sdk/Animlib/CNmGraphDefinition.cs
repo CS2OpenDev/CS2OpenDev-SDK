@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Animlib;
 
 /// <summary>
@@ -31,7 +37,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_controlParameterIDs")]
-    public CUtlVector__CGlobalSymbol__ ControlParameterIDs { get; set; }
+    public string[] ControlParameterIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets ExternalGraphSlots.
@@ -41,7 +47,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_externalGraphSlots")]
-    public CUtlVector__CNmGraphDefinition_ExternalGraphSlot_t__ ExternalGraphSlots { get; set; }
+    public CNmGraphDefinitionExternalGraphSlot[] ExternalGraphSlots { get; set; }
 
     /// <summary>
     ///     Gets or sets ExternalPoseSlots.
@@ -51,7 +57,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0xC8)]
     [NativeName("m_externalPoseSlots")]
-    public CUtlVector__CNmGraphDefinition_ExternalPoseSlot_t__ ExternalPoseSlots { get; set; }
+    public CNmGraphDefinitionExternalPoseSlot[] ExternalPoseSlots { get; set; }
 
     /// <summary>
     ///     Gets or sets NodePaths.
@@ -61,7 +67,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x150)]
     [NativeName("m_nodePaths")]
-    public CUtlVector__CUtlString__ NodePaths { get; set; }
+    public string[] NodePaths { get; set; }
 
     /// <summary>
     ///     Gets or sets PersistentNodeIndices.
@@ -71,7 +77,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_persistentNodeIndices")]
-    public CUtlVector__int16__ PersistentNodeIndices { get; set; }
+    public short[] PersistentNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ReferencedGraphSlots.
@@ -81,7 +87,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_referencedGraphSlots")]
-    public CUtlVector__CNmGraphDefinition_ReferencedGraphSlot_t__ ReferencedGraphSlots { get; set; }
+    public CNmGraphDefinitionReferencedGraphSlot[] ReferencedGraphSlots { get; set; }
 
     /// <summary>
     ///     Gets or sets Resources.
@@ -91,7 +97,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x168)]
     [NativeName("m_resources")]
-    public CUtlVector__CStrongHandleVoid__ Resources { get; set; }
+    public CStrongHandleVoid[] Resources { get; set; }
 
     /// <summary>
     ///     Gets or sets RootNodeIdx.
@@ -111,7 +117,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_skeleton")]
-    public CStrongHandle__InfoForResourceTypeCNmSkeleton__ Skeleton { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton { get; set; }
 
     /// <summary>
     ///     Gets or sets SupportedSecondarySkeletons.
@@ -121,7 +127,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_supportedSecondarySkeletons")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCNmSkeleton____ SupportedSecondarySkeletons { get; set; }
+    public CStrongHandle<InfoForResourceTypeCNmSkeleton>[] SupportedSecondarySkeletons { get; set; }
 
     /// <summary>
     ///     Gets or sets UserData.
@@ -151,7 +157,7 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_virtualParameterIDs")]
-    public CUtlVector__CGlobalSymbol__ VirtualParameterIDs { get; set; }
+    public string[] VirtualParameterIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets VirtualParameterNodeIndices.
@@ -161,5 +167,5 @@ public partial class CNmGraphDefinition
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_virtualParameterNodeIndices")]
-    public CUtlVector__int16__ VirtualParameterNodeIndices { get; set; }
+    public short[] VirtualParameterNodeIndices { get; set; }
 }

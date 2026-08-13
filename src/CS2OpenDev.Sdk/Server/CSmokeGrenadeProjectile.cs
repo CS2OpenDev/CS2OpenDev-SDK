@@ -125,7 +125,7 @@ public partial class CSmokeGrenadeProjectile : CBaseCSGrenadeProjectile
     /// </remarks>
     [NativeOffset(0xAB0)]
     [NativeName("m_VoxelFrameData")]
-    public CNetworkUtlVectorBase__uint8__ VoxelFrameData { get; set; }
+    public byte[] VoxelFrameData { get; set; }
 
     /// <summary>
     ///     Gets or sets VoxelFrameDataSize.

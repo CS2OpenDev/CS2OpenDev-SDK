@@ -102,7 +102,7 @@ public partial class CSndBeatPattern
     [NativeOffset(0x50)]
     [NativeName("m_vecPatternFloats")]
     [NativeMetadata("MPropertySuppressExpr", "m_keyType != eSndBeatPatternTypeKeyedFloats")]
-    public CUtlVector__SndBeatEventKeyedFloats_t__ PatternFloats { get; set; }
+    public SndBeatEventKeyedFloats[] PatternFloats { get; set; }
 
     /// <summary>
     ///     Gets or sets PatternKeys.
@@ -113,7 +113,7 @@ public partial class CSndBeatPattern
     [NativeOffset(0x38)]
     [NativeName("m_vecPatternKeys")]
     [NativeMetadata("MPropertySuppressExpr", "m_keyType != eSndBeatPatternTypeKeys")]
-    public CUtlVector__SndBeatEventKeys_t__ PatternKeys { get; set; }
+    public SndBeatEventKeys[] PatternKeys { get; set; }
 
     /// <summary>
     ///     Gets or sets PatternMidi.
@@ -124,7 +124,7 @@ public partial class CSndBeatPattern
     [NativeOffset(0x80)]
     [NativeName("m_vecPatternMidi")]
     [NativeMetadata("MPropertySuppressExpr", "m_keyType != eSndBeatPatternTypeKeyedMidi")]
-    public CUtlVector__SndBeatEventKeyedMidiNotes_t__ PatternMidi { get; set; }
+    public SndBeatEventKeyedMidiNotes[] PatternMidi { get; set; }
 
     /// <summary>
     ///     Gets or sets PatternSndEvts.
@@ -135,7 +135,7 @@ public partial class CSndBeatPattern
     [NativeOffset(0x68)]
     [NativeName("m_vecPatternSndEvts")]
     [NativeMetadata("MPropertySuppressExpr", "m_keyType != eSndBeatPatternTypeKeyedSndEvts")]
-    public CUtlVector__SndBeatEventKeyedSndEvts_t__ PatternSndEvts { get; set; }
+    public SndBeatEventKeyedSndEvts[] PatternSndEvts { get; set; }
 
     /// <summary>
     ///     Play Track Beat/Bar/Phrase/Length Multiplier.

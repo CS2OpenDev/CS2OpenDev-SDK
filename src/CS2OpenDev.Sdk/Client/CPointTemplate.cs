@@ -56,7 +56,7 @@ public partial class CPointTemplate : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x628)]
     [NativeName("m_createdSpawnGroupHandles")]
-    public CUtlVector__uint32__ CreatedSpawnGroupHandles { get; set; }
+    public uint[] CreatedSpawnGroupHandles { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityFilterName.
@@ -76,7 +76,7 @@ public partial class CPointTemplate : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x668)]
     [NativeName("m_OnEntitySpawned")]
-    public CEntityOutputTemplate__CUtlVector__CEntityHandle____ OnEntitySpawned { get; set; }
+    public CEntityHandle[]? OnEntitySpawned { get; set; }
 
     /// <summary>
     ///     Gets or sets OwnerSpawnGroupType.
@@ -129,7 +129,7 @@ public partial class CPointTemplate : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x640)]
     [NativeName("m_SpawnedEntityHandles")]
-    public CUtlVector__CEntityHandle__ SpawnedEntityHandles { get; set; }
+    public CEntityHandle[] SpawnedEntityHandles { get; set; }
 
     /// <summary>
     ///     Gets or sets TimeOutInterval.

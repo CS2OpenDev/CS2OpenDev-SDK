@@ -29,5 +29,5 @@ public partial class CPlatTrigger : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x770)]
     [NativeName("m_pPlatform")]
-    public CHandle__CFuncPlat__ Platform { get; set; }
+    public CHandle<CFuncPlat> Platform { get; set; }
 }

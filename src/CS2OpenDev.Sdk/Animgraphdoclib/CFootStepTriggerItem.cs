@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Animgraphlib;
+using CS2OpenSchema.Modellib;
 
 #endregion
 
@@ -53,7 +54,7 @@ public partial class CFootStepTriggerItem
     [NativeName("m_tagIDs")]
     [NativeMetadata("MPropertyAttributeChoiceName", "Tag")]
     [NativeMetadata("MPropertyFriendlyName", "Tags")]
-    public CUtlVector__AnimTagID__ TagIDs { get; set; }
+    public AnimTagId[] TagIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets TagNames.
@@ -64,7 +65,7 @@ public partial class CFootStepTriggerItem
     [NativeOffset(0x10)]
     [NativeName("m_tagNames")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CGlobalSymbol__ TagNames { get; set; }
+    public string[] TagNames { get; set; }
 
     /// <summary>
     ///     Trigger Phase.

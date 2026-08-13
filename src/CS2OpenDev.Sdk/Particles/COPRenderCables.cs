@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -157,7 +158,7 @@ public partial class COPRenderCables : CParticleFunctionRenderer
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vmat, *extraFilterString=(shader=cables.vfx) )")]
     [NativeMetadata("MPropertyFriendlyName", "cable material")]
     [NativeMetadata("MPropertyStartGroup", "")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ Material { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> Material { get; set; }
 
     /// <summary>
     ///     material float variables.
@@ -168,7 +169,7 @@ public partial class COPRenderCables : CParticleFunctionRenderer
     [NativeOffset(0x1500)]
     [NativeName("m_MaterialFloatVars")]
     [NativeMetadata("MPropertyFriendlyName", "material float variables")]
-    public CUtlLeanVector__FloatInputMaterialVariable_t__ MaterialFloatVars { get; set; }
+    public FloatInputMaterialVariable[] MaterialFloatVars { get; set; }
 
     /// <summary>
     ///     material vector variables.
@@ -179,7 +180,7 @@ public partial class COPRenderCables : CParticleFunctionRenderer
     [NativeOffset(0x1520)]
     [NativeName("m_MaterialVecVars")]
     [NativeMetadata("MPropertyFriendlyName", "material vector variables")]
-    public CUtlLeanVector__VecInputMaterialVariable_t__ MaterialVecVars { get; set; }
+    public VecInputMaterialVariable[] MaterialVecVars { get; set; }
 
     /// <summary>
     ///     maximum steps between particles.

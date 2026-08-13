@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -56,7 +57,7 @@ public partial class C_ParticleSystem : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1204)]
     [NativeName("m_hControlPointEnts")]
-    public CHandle__C_BaseEntity__[] ControlPointEnts { get; set; }
+    public CHandle<C_BaseEntity>[] ControlPointEnts { get; set; }
 
     /// <summary>
     ///     Gets or sets ControlPointNames.
@@ -117,7 +118,7 @@ public partial class C_ParticleSystem : C_BaseModelEntity
     [NativeOffset(0x11C0)]
     [NativeName("m_iEffectIndex")]
     [NativeMetadata("MNotSaved", "")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ EffectIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> EffectIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets EffectName.

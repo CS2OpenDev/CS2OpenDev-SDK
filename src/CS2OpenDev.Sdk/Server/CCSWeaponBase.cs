@@ -386,7 +386,7 @@ public partial class CCSWeaponBase : CBasePlayerWeapon
     /// </remarks>
     [NativeOffset(0xDDC)]
     [NativeName("m_hPrevOwner")]
-    public CHandle__CCSPlayerPawn__ PrevOwner { get; set; }
+    public CHandle<CCSPlayerPawn> PrevOwner { get; set; }
 
     /// <summary>
     ///     Gets or sets RemoveAble.

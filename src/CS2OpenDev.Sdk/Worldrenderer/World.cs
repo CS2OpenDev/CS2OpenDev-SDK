@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Worldrenderer;
 
 /// <summary>
@@ -42,7 +48,7 @@ public partial class World
     /// </remarks>
     [NativeOffset(0xC0)]
     [NativeName("m_entityLumps")]
-    public CUtlVector__CStrongHandleCopyable__InfoForResourceTypeCEntityLump____ EntityLumps { get; set; }
+    public CStrongHandleCopyable<InfoForResourceTypeCEntityLump>[] EntityLumps { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldLightingInfo.
@@ -62,5 +68,5 @@ public partial class World
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_worldNodes")]
-    public CUtlVector__NodeData_t__ WorldNodes { get; set; }
+    public NodeData[] WorldNodes { get; set; }
 }

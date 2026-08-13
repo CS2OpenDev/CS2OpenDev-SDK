@@ -39,7 +39,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x398)]
     [NativeName("m_aThinkFunctions")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__thinkfunc_t__ AThinkFunctions { get; set; }
+    public Thinkfunc[] AThinkFunctions { get; set; }
 
     /// <summary>
     ///     Gets or sets AbsVelocity.
@@ -254,7 +254,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x5B8)]
     [NativeName("m_dependencies")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CEntityHandle__ Dependencies { get; set; }
+    public CEntityHandle[] Dependencies { get; set; }
 
     /// <summary>
     ///     Gets or sets DisabledContextThinks.
@@ -286,7 +286,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x51C)]
     [NativeName("m_hEffectEntity")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ EffectEntity { get; set; }
+    public CHandle<C_BaseEntity> EffectEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Effects.
@@ -416,7 +416,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x530)]
     [NativeName("m_hGroundEntity")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ GroundEntity { get; set; }
+    public CHandle<C_BaseEntity> GroundEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets HasAddedVarsToInterpolation.
@@ -601,7 +601,7 @@ public partial class C_BaseEntity : CEntityInstance
     [NativeOffset(0x574)]
     [NativeName("m_hOldMoveParent")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ OldMoveParent { get; set; }
+    public CHandle<C_BaseEntity> OldMoveParent { get; set; }
 
     /// <summary>
     ///     Gets or sets OwnerEntity.
@@ -611,7 +611,7 @@ public partial class C_BaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x520)]
     [NativeName("m_hOwnerEntity")]
-    public CHandle__C_BaseEntity__ OwnerEntity { get; set; }
+    public CHandle<C_BaseEntity> OwnerEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Particles.
@@ -718,7 +718,7 @@ public partial class C_BaseEntity : CEntityInstance
     /// </remarks>
     [NativeOffset(0x364)]
     [NativeName("m_hSceneObjectController")]
-    public CHandle__C_BaseEntity__ SceneObjectController { get; set; }
+    public CHandle<C_BaseEntity> SceneObjectController { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneObjectOverrideFlags.

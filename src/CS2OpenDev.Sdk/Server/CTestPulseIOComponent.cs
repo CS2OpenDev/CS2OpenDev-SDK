@@ -41,5 +41,5 @@ public partial class CTestPulseIOComponent
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_OnComponentTestFunc")]
-    public CEntityOutputTemplate__CUtlSymbolLarge__ OnComponentTestFunc { get; set; }
+    public string? OnComponentTestFunc { get; set; }
 }

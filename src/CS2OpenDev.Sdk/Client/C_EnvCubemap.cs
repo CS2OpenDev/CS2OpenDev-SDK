@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Client;
 
 /// <summary>
@@ -140,7 +146,7 @@ public partial class C_EnvCubemap : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x680)]
     [NativeName("m_Entity_hCubemapTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHCubeMapTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHCubeMapTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityNEnvCubeMapArrayIndex.

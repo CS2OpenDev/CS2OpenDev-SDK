@@ -32,5 +32,5 @@ public partial class CCPPScriptComponentUpdater : CAnimComponentUpdater
     [NativeOffset(0x30)]
     [NativeName("m_scriptsToRun")]
     [NativeMetadata("MPropertyFriendlyName", "Scripts")]
-    public CUtlVector__CGlobalSymbol__ ScriptsToRun { get; set; }
+    public string[] ScriptsToRun { get; set; }
 }

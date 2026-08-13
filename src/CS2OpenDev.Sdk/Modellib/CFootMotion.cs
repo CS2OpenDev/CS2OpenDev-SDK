@@ -50,5 +50,5 @@ public partial class CFootMotion
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_strides")]
-    public CUtlVector__CFootStride__ Strides { get; set; }
+    public CFootStride[] Strides { get; set; }
 }

@@ -119,6 +119,12 @@ raw packed value and exposes `Value`, `IsValid` and an `Invalid` sentinel:
 
 `T` is the C# projection of the atomic's `inner` declared-class.
 
+Worth stating because it was not true until 5.0: these projections now actually appear on
+generated properties. Through 2.x, 3.x and 4.x the classification that produces them could not
+match a templated atomic name, so every handle field was emitted as an empty stub class and
+`CHandle<T>` was referenced by no generated property at all. This page described the intent
+correctly and the output not at all. See [MIGRATION-5.0](MIGRATION-5.0.md).
+
 ### Bit layout is deliberately not decoded
 
 `CHandle<T>` and `CEntityHandle` expose the raw packed `Value` and nothing else.

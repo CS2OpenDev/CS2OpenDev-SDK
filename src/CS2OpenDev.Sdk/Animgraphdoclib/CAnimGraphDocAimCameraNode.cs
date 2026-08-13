@@ -208,5 +208,5 @@ public partial class CAnimGraphDocAimCameraNode : CAnimGraphDocNode
     [NativeName("m_propJoints")]
     [NativeMetadata("MPropertyDescription", "These joints will maintain their offset relative to the camera joint.")]
     [NativeMetadata("MPropertyFriendlyName", "Prop Joints")]
-    public CUtlVector__CAnimGraphDoc_AimCameraNode_PropJoint__ PropJoints { get; set; }
+    public CAnimGraphDocAimCameraNodePropJoint[] PropJoints { get; set; }
 }

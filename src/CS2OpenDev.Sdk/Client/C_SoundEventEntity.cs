@@ -76,7 +76,7 @@ public partial class C_SoundEventEntity : C_BaseEntity
     /// </remarks>
     [NativeOffset(0x620)]
     [NativeName("m_onGUIDChanged")]
-    public CEntityOutputTemplate__SndOpEventGuid_t__ OnGUIDChanged { get; set; }
+    public string? OnGUIDChanged { get; set; }
 
     /// <summary>
     ///     Gets or sets OnSoundFinished.

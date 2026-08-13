@@ -472,9 +472,38 @@ if (fresh.Count > 0)
     }
 }
 
+int errorCount = 0;
 foreach ((string id, GeneratorDiagnosticSeverity severity, string message) in sink.Diagnostics)
 {
     WriteDiagnosticRaw(id, severity, message);
+    if (severity == GeneratorDiagnosticSeverity.Error)
+    {
+        errorCount++;
+    }
+}
+
+// Until now, severity on a sink-reported diagnostic was decoration: every Error
+// descriptor that actually stopped anything did so by throwing at its own site,
+// and anything merely *reported* as an Error exited 0 like everything else.
+//
+// That gap is what let CS2_GEN_015's subject survive three schema majors. The
+// generator had been reporting the individual names all along — 770 per regen at
+// Info — and a log line that nothing acts on is indistinguishable from silence.
+// Reporting an Error and then succeeding is the same failure one level up.
+//
+// So a reported Error now fails the run. The output is still written first, on
+// purpose: a maintainer diagnosing the failure wants to diff what the generator
+// produced, and deleting it would make the error harder to understand rather than
+// safer. What this stops is the *unattended* path — check-upstream.yml commits and
+// publishes only if this exits 0.
+if (errorCount > 0)
+{
+    WriteDiagnosticRaw(
+        "CS2_GEN_000",
+        GeneratorDiagnosticSeverity.Error,
+        $"{errorCount} error-severity diagnostic(s) above. The regenerated output was written "
+        + "so it can be inspected, but it is not fit to commit or publish.");
+    return 1;
 }
 
 return 0;

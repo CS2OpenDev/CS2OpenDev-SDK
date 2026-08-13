@@ -78,7 +78,7 @@ public partial class CPlantedC4 : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xD54)]
     [NativeName("m_hBombDefuser")]
-    public CHandle__CCSPlayerPawn__ BombDefuser { get; set; }
+    public CHandle<CCSPlayerPawn> BombDefuser { get; set; }
 
     /// <summary>
     ///     Which bombsite the bomb was planted on (0 = site A, 1 = site B; matches the bombsite trigger index).

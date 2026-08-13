@@ -51,7 +51,7 @@ public partial class CNmGraphDocGraph
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_nodes")]
-    public CUtlVector__CNmGraphDocNode___ Nodes { get; set; }
+    public CNmGraphDocNode?[] Nodes { get; set; }
 
     /// <summary>
     ///     Gets or sets ViewOffset.

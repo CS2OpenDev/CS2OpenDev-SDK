@@ -48,5 +48,5 @@ public partial class CSmartPropElementSmartProp : CSmartPropElement
     [NativeOffset(0x88)]
     [NativeName("m_sSmartProp")]
     [NativeMetadata("MPropertyDescription", "Name of the target smart prop resource (.vsmart) to evaluate.")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCSmartProp____ SSmartProp { get; set; }
+    public string SSmartProp { get; set; }
 }

@@ -40,5 +40,5 @@ public partial class CBoneConstraintPoseSpaceMorphInput
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_outputWeightList")]
-    public CUtlVector__float32__ OutputWeightList { get; set; }
+    public float[] OutputWeightList { get; set; }
 }

@@ -29,7 +29,7 @@ public partial class CPointClientUIDialog : CBaseClientUIEntity
     /// </remarks>
     [NativeOffset(0x8D0)]
     [NativeName("m_hActivator")]
-    public CHandle__CBaseEntity__ Activator { get; set; }
+    public CHandle<CBaseEntity> Activator { get; set; }
 
     /// <summary>
     ///     Gets or sets StartEnabled.

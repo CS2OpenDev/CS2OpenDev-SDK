@@ -31,7 +31,7 @@ public partial class CDirectPlaybackInstanceData
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_currentSequenceData")]
-    public CAnimNetVar__uint64__ CurrentSequenceData { get; set; }
+    public ulong CurrentSequenceData { get; set; }
 
     /// <summary>
     ///     Gets or sets CurrentSequenceIndex.
@@ -71,7 +71,7 @@ public partial class CDirectPlaybackInstanceData
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_flForcedCycle")]
-    public CAnimNetVar__float32__ ForcedCycle { get; set; }
+    public float ForcedCycle { get; set; }
 
     /// <summary>
     ///     Gets or sets InterpEndTime.
@@ -101,7 +101,7 @@ public partial class CDirectPlaybackInstanceData
     /// </remarks>
     [NativeOffset(0x138)]
     [NativeName("m_SequenceCycleZeroTime")]
-    public CAnimNetVar__float32__ SequenceCycleZeroTime { get; set; }
+    public float SequenceCycleZeroTime { get; set; }
 
     /// <summary>
     ///     Gets or sets Sequences.

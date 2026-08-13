@@ -31,5 +31,5 @@ public partial class CAnimGraphDocStateList
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_states")]
-    public CUtlVector__CAnimGraphDoc_State___ States { get; set; }
+    public CAnimGraphDocState?[] States { get; set; }
 }

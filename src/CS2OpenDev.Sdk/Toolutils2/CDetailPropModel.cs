@@ -168,7 +168,7 @@ public partial class CDetailPropModel
     [NativeName("m_ModelName")]
     [NativeMetadata("MPropertyDescription", "Model to be displayed.")]
     [NativeMetadata("MPropertyProvidesEditContextString", "ToolEditContext_ID_VMDL")]
-    public CResourceNameTyped__CWeakHandle__InfoForResourceTypeCModel____ ModelName { get; set; }
+    public string ModelName { get; set; }
 
     /// <summary>
     ///     Value indicating if the model's up direction should be matched to the surface. Value should be in the [ 0, 1 ] range, where 0 means that the model up will be model (or object space) up and will ignore the surface direction, and 1 indicates that the model up will exactly match the surface normal.

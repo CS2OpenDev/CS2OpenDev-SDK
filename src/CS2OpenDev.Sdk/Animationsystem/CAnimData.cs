@@ -31,7 +31,7 @@ public partial class CAnimData
     /// </remarks>
     [NativeOffset(0x20)]
     [NativeName("m_animArray")]
-    public CUtlVector__CAnimDesc__ AnimArray { get; set; }
+    public CAnimDesc[] AnimArray { get; set; }
 
     /// <summary>
     ///     Gets or sets DecoderArray.
@@ -41,7 +41,7 @@ public partial class CAnimData
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_decoderArray")]
-    public CUtlVector__CAnimDecoder__ DecoderArray { get; set; }
+    public CAnimDecoder[] DecoderArray { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxUniqueFrameIndex.
@@ -71,5 +71,5 @@ public partial class CAnimData
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_segmentArray")]
-    public CUtlVector__CAnimFrameSegment__ SegmentArray { get; set; }
+    public CAnimFrameSegment[] SegmentArray { get; set; }
 }

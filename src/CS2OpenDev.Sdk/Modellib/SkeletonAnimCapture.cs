@@ -62,7 +62,7 @@ public partial class SkeletonAnimCapture
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_FeModelInitPose")]
-    public CUtlVector__SkeletonAnimCapture_t_Bone_t__ FeModelInitPose { get; set; }
+    public SkeletonAnimCaptureTBone[] FeModelInitPose { get; set; }
 
     /// <summary>
     ///     Gets or sets FlexControllers.
@@ -82,7 +82,7 @@ public partial class SkeletonAnimCapture
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_Frames")]
-    public CUtlVector__SkeletonAnimCapture_t_Frame_t__ Frames { get; set; }
+    public SkeletonAnimCaptureTFrame[] Frames { get; set; }
 
     /// <summary>
     ///     Gets or sets ImportedCollision.
@@ -92,7 +92,7 @@ public partial class SkeletonAnimCapture
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_ImportedCollision")]
-    public CUtlVector__CEntityIndex__ ImportedCollision { get; set; }
+    public int[] ImportedCollision { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelBindPose.
@@ -102,7 +102,7 @@ public partial class SkeletonAnimCapture
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_ModelBindPose")]
-    public CUtlVector__SkeletonAnimCapture_t_Bone_t__ ModelBindPose { get; set; }
+    public SkeletonAnimCaptureTBone[] ModelBindPose { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelName.

@@ -32,7 +32,7 @@ public partial class SkeletonAnimCaptureTFrame
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_CompositeBones")]
-    public CUtlVector__CTransform__ CompositeBones { get; set; }
+    public CTransform[] CompositeBones { get; set; }
 
     /// <summary>
     ///     Gets or sets FeModelAnims.
@@ -42,7 +42,7 @@ public partial class SkeletonAnimCaptureTFrame
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_FeModelAnims")]
-    public CUtlVector__CTransform__ FeModelAnims { get; set; }
+    public CTransform[] FeModelAnims { get; set; }
 
     /// <summary>
     ///     Gets or sets FeModelPos.
@@ -52,7 +52,7 @@ public partial class SkeletonAnimCaptureTFrame
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_FeModelPos")]
-    public CUtlVector__VectorAligned__ FeModelPos { get; set; }
+    public VectorAligned[] FeModelPos { get; set; }
 
     /// <summary>
     ///     Gets or sets FlexControllerWeights.
@@ -62,7 +62,7 @@ public partial class SkeletonAnimCaptureTFrame
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_FlexControllerWeights")]
-    public CUtlVector__float32__ FlexControllerWeights { get; set; }
+    public float[] FlexControllerWeights { get; set; }
 
     /// <summary>
     ///     Gets or sets SimStateBones.
@@ -72,7 +72,7 @@ public partial class SkeletonAnimCaptureTFrame
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_SimStateBones")]
-    public CUtlVector__CTransform__ SimStateBones { get; set; }
+    public CTransform[] SimStateBones { get; set; }
 
     /// <summary>
     ///     Gets or sets Stamp.

@@ -81,7 +81,7 @@ public partial class CExternalToolInfo : CBaseToolInfo
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_PriorityExts")]
-    public CUtlVector__CUtlString__ PriorityExts { get; set; }
+    public string[] PriorityExts { get; set; }
 
     /// <summary>
     ///     Gets or sets SupportedExts.
@@ -91,7 +91,7 @@ public partial class CExternalToolInfo : CBaseToolInfo
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_SupportedExts")]
-    public CUtlVector__CUtlString__ SupportedExts { get; set; }
+    public string[] SupportedExts { get; set; }
 
     /// <summary>
     ///     Gets or sets WorkingDir.

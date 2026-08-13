@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Particles;
 
 /// <summary>
@@ -32,7 +38,7 @@ public abstract partial class COPRemapNamedModelElementEndCap : CParticleFunctio
     [NativeOffset(0x210)]
     [NativeName("m_fallbackNames")]
     [NativeMetadata("MPropertyFriendlyName", "fallback names when the input doesn't match")]
-    public CUtlVector__CUtlString__ FallbackNames { get; set; }
+    public string[] FallbackNames { get; set; }
 
     /// <summary>
     ///     input field.
@@ -67,7 +73,7 @@ public abstract partial class COPRemapNamedModelElementEndCap : CParticleFunctio
     [NativeOffset(0x1E0)]
     [NativeName("m_inNames")]
     [NativeMetadata("MPropertyFriendlyName", "input names")]
-    public CUtlVector__CUtlString__ InNames { get; set; }
+    public string[] InNames { get; set; }
 
     /// <summary>
     ///     Gets or sets Model.
@@ -77,7 +83,7 @@ public abstract partial class COPRemapNamedModelElementEndCap : CParticleFunctio
     /// </remarks>
     [NativeOffset(0x1D8)]
     [NativeName("m_hModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ Model { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> Model { get; set; }
 
     /// <summary>
     ///     model from renderer.
@@ -99,5 +105,5 @@ public abstract partial class COPRemapNamedModelElementEndCap : CParticleFunctio
     [NativeOffset(0x1F8)]
     [NativeName("m_outNames")]
     [NativeMetadata("MPropertyFriendlyName", "output names")]
-    public CUtlVector__CUtlString__ OutNames { get; set; }
+    public string[] OutNames { get; set; }
 }

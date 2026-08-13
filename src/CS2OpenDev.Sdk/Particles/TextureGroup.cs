@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Particleslib;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -77,7 +78,7 @@ public partial class TextureGroup
     [NativeMetadata("MPropertyAttributeEditor", "AssetBrowse( vtex, *showassetpreview )")]
     [NativeMetadata("MPropertyFriendlyName", "Texture")]
     [NativeMetadata("MPropertySuppressExpr", "m_bReplaceTextureWithGradient")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ Texture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> Texture { get; set; }
 
     /// <summary>
     ///     Blend Amount.

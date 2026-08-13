@@ -668,23 +668,28 @@ public class TypeMapperTests
     {
         TypeMapper.BeginEmission();
 
+        // Deliberately invented template names. Every real container template is
+        // classified now, which is the point of the repair — so exercising the
+        // detector needs a container upstream knows about and TypeMapper does not,
+        // which is exactly the future case this diagnostic exists to catch.
+        //
         // Two instantiations of the same template: one entry, count 2.
-        TypeMapper.Map(new AtomicType("CUtlVector< CGlobalSymbol >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
-        TypeMapper.Map(new AtomicType("CUtlVector< int32 >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
-        TypeMapper.Map(new AtomicType("CUtlHashtable< CUtlString, int32 >", null, false, null, null, "ATOMIC_TT"));
+        TypeMapper.Map(new AtomicType("CFutureVector< CGlobalSymbol >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+        TypeMapper.Map(new AtomicType("CFutureVector< int32 >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+        TypeMapper.Map(new AtomicType("CFutureMap< CUtlString, int32 >", null, false, null, null, "ATOMIC_TT"));
 
         // Not a container category, and an artifact with no discriminator at all
         // (pre-2.1). Both are ordinary CS2_GEN_003 material and must not appear.
-        TypeMapper.Map(new AtomicType("CAnimGraph2ParamOptionalRef< CTransform >", null, false, null, null, "ATOMIC_T"));
-        TypeMapper.Map(new AtomicType("CSomethingUnknown< int32 >", null, false, null, null, null));
+        TypeMapper.Map(new AtomicType("CFutureRef< CTransform >", null, false, null, null, "ATOMIC_T"));
+        TypeMapper.Map(new AtomicType("CFutureUnknown< int32 >", null, false, null, null, null));
 
         IReadOnlyDictionary<string, (string Category, int Count)> drift = TypeMapper.GetAtomicCategoryDrift();
 
         await Assert.That(drift.Count).IsEqualTo(2);
-        await Assert.That(drift["CUtlVector"].Category).IsEqualTo("ATOMIC_COLLECTION_OF_T");
-        await Assert.That(drift["CUtlVector"].Count).IsEqualTo(2);
-        await Assert.That(drift["CUtlHashtable"].Category).IsEqualTo("ATOMIC_TT");
-        await Assert.That(drift["CUtlHashtable"].Count).IsEqualTo(1);
+        await Assert.That(drift["CFutureVector"].Category).IsEqualTo("ATOMIC_COLLECTION_OF_T");
+        await Assert.That(drift["CFutureVector"].Count).IsEqualTo(2);
+        await Assert.That(drift["CFutureMap"].Category).IsEqualTo("ATOMIC_TT");
+        await Assert.That(drift["CFutureMap"].Count).IsEqualTo(1);
     }
 
     /// <summary>An atomic the mapper already projects properly never counts as drift, however upstream categorises it.</summary>
@@ -694,9 +699,11 @@ public class TypeMapperTests
     {
         TypeMapper.BeginEmission();
 
-        // CUtlString resolves through StringAtoms, so it never reaches the
-        // unresolved path where drift is recorded — even labelled a container.
-        TypeMapper.Map(new AtomicType("CUtlString", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+        // CUtlVector resolves through CollectionAtoms now that classification keys
+        // on the bare template name, so it never reaches the unresolved path where
+        // drift is recorded. Before the repair this same call recorded drift, which
+        // is the regression this case pins.
+        TypeMapper.Map(new AtomicType("CUtlVector< int32 >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
 
         await Assert.That(TypeMapper.GetAtomicCategoryDrift().Count).IsEqualTo(0);
     }

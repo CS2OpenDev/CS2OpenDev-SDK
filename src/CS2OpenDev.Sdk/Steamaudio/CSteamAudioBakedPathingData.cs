@@ -41,7 +41,7 @@ public partial class CSteamAudioBakedPathingData
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_movables")]
-    public CSteamAudioMovableBakedData__CSteamAudioBakedPathingData__ Movables { get; set; }
+    public CSteamAudioBakedPathingData Movables { get; set; }
 
     /// <summary>
     ///     Gets or sets Probes.

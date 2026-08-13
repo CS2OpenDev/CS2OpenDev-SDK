@@ -47,7 +47,7 @@ public partial class CMotionGraphGroup
     /// </remarks>
     [NativeOffset(0xD0)]
     [NativeName("m_motionGraphConfigs")]
-    public CUtlVector__CMotionGraphConfig__ MotionGraphConfigs { get; set; }
+    public CMotionGraphConfig[] MotionGraphConfigs { get; set; }
 
     /// <summary>
     ///     Gets or sets MotionGraphs.
@@ -57,7 +57,7 @@ public partial class CMotionGraphGroup
     /// </remarks>
     [NativeOffset(0xB8)]
     [NativeName("m_motionGraphs")]
-    public CUtlVector__CSmartPtr__CMotionGraph____ MotionGraphs { get; set; }
+    public CMotionGraph?[] MotionGraphs { get; set; }
 
     /// <summary>
     ///     Gets or sets SampleToConfig.
@@ -67,7 +67,7 @@ public partial class CMotionGraphGroup
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_sampleToConfig")]
-    public CUtlVector__int32__ SampleToConfig { get; set; }
+    public int[] SampleToConfig { get; set; }
 
     /// <summary>
     ///     Gets or sets SearchDB.

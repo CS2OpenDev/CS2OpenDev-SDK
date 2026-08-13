@@ -76,7 +76,7 @@ public partial class CCSPlayerBaseCameraServices : CPlayerCameraServices
     /// </remarks>
     [NativeOffset(0x1A8)]
     [NativeName("m_hLastFogTrigger")]
-    public CHandle__CBaseEntity__ LastFogTrigger { get; set; }
+    public CHandle<CBaseEntity> LastFogTrigger { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerFogList.
@@ -86,7 +86,7 @@ public partial class CCSPlayerBaseCameraServices : CPlayerCameraServices
     /// </remarks>
     [NativeOffset(0x190)]
     [NativeName("m_hTriggerFogList")]
-    public CUtlVector__CHandle__CBaseEntity____ TriggerFogList { get; set; }
+    public CHandle<CBaseEntity>[] TriggerFogList { get; set; }
 
     /// <summary>
     ///     Gets or sets ZoomOwner.
@@ -96,5 +96,5 @@ public partial class CCSPlayerBaseCameraServices : CPlayerCameraServices
     /// </remarks>
     [NativeOffset(0x188)]
     [NativeName("m_hZoomOwner")]
-    public CHandle__CBaseEntity__ ZoomOwner { get; set; }
+    public CHandle<CBaseEntity> ZoomOwner { get; set; }
 }

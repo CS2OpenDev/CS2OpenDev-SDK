@@ -30,5 +30,5 @@ public partial class CModuleManifests
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Manifests")]
-    public CUtlVector__CManifestInfo__ Manifests { get; set; }
+    public CManifestInfo[] Manifests { get; set; }
 }

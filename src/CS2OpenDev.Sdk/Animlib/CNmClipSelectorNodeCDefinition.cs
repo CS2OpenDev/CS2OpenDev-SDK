@@ -32,7 +32,7 @@ public partial class CNmClipSelectorNodeCDefinition : CNmClipReferenceNodeCDefin
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_conditionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__8__ ConditionNodeIndices { get; set; }
+    public short[] ConditionNodeIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets OptionNodeIndices.
@@ -42,5 +42,5 @@ public partial class CNmClipSelectorNodeCDefinition : CNmClipReferenceNodeCDefin
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_optionNodeIndices")]
-    public CUtlLeanVectorFixedGrowable__int16__8__ OptionNodeIndices { get; set; }
+    public short[] OptionNodeIndices { get; set; }
 }

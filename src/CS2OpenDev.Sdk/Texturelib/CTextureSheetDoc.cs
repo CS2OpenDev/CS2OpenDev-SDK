@@ -78,5 +78,5 @@ public partial class CTextureSheetDoc
     [NativeOffset(0x18)]
     [NativeName("m_Sequences")]
     [NativeMetadata("MVDataPromoteField", "1")]
-    public CUtlStringMap__CTextureSheetDoc_Sequence___ Sequences { get; set; }
+    public Dictionary<string, CTextureSheetDocSequence?> Sequences { get; set; }
 }

@@ -89,7 +89,7 @@ public partial class CPathKeyFrame : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4DC)]
     [NativeName("m_pNextKey")]
-    public CHandle__CPathKeyFrame__ PNextKey { get; set; }
+    public CHandle<CPathKeyFrame> PNextKey { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevKey.
@@ -99,5 +99,5 @@ public partial class CPathKeyFrame : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4E0)]
     [NativeName("m_pPrevKey")]
-    public CHandle__CPathKeyFrame__ PrevKey { get; set; }
+    public CHandle<CPathKeyFrame> PrevKey { get; set; }
 }

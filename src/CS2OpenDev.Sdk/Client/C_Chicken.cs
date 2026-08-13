@@ -67,7 +67,7 @@ public partial class C_Chicken : C_DynamicProp
     /// </remarks>
     [NativeOffset(0x13C8)]
     [NativeName("m_leader")]
-    public CHandle__C_CSPlayerPawn__ Leader { get; set; }
+    public CHandle<C_CSPlayerPawn> Leader { get; set; }
 
     /// <summary>
     ///     Gets or sets WaterWakeParticles.

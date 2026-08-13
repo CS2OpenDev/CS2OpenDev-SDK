@@ -38,7 +38,7 @@ public partial class CSmartPropFilterMaterialAttributes : CSmartPropFilter
     [NativeName("m_AllowedMaterialAttributes")]
     [NativeMetadata("MPropertyDescription",
         "List of material attributes on which this element is valid. If empty, the element is not restricted to any specific surfaces.")]
-    public CUtlVector__CUtlString__ AllowedMaterialAttributes { get; set; }
+    public string[] AllowedMaterialAttributes { get; set; }
 
     /// <summary>
     ///     List of material attributes on which this element is not valid. If empty, the element is not restricted to any specific surfaces.
@@ -50,5 +50,5 @@ public partial class CSmartPropFilterMaterialAttributes : CSmartPropFilter
     [NativeName("m_DisallowedMaterialAttributes")]
     [NativeMetadata("MPropertyDescription",
         "List of material attributes on which this element is not valid. If empty, the element is not restricted to any specific surfaces.")]
-    public CUtlVector__CUtlString__ DisallowedMaterialAttributes { get; set; }
+    public string[] DisallowedMaterialAttributes { get; set; }
 }

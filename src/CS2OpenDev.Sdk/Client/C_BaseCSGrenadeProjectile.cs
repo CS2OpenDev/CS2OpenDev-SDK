@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 using CS2OpenSchema.Server;
 
 #endregion
@@ -36,7 +37,7 @@ public partial class C_BaseCSGrenadeProjectile : C_BaseGrenade
     /// </remarks>
     [NativeOffset(0x1240)]
     [NativeName("m_arrTrajectoryTrailPointCreationTimes")]
-    public CUtlVector__float32__ ArrTrajectoryTrailPointCreationTimes { get; set; }
+    public float[] ArrTrajectoryTrailPointCreationTimes { get; set; }
 
     /// <summary>
     ///     Gets or sets ArrTrajectoryTrailPoints.
@@ -46,7 +47,7 @@ public partial class C_BaseCSGrenadeProjectile : C_BaseGrenade
     /// </remarks>
     [NativeOffset(0x1228)]
     [NativeName("m_arrTrajectoryTrailPoints")]
-    public CUtlVector__Vector__ ArrTrajectoryTrailPoints { get; set; }
+    public Vector[] ArrTrajectoryTrailPoints { get; set; }
 
     /// <summary>
     ///     Gets or sets Bounces.
@@ -86,7 +87,7 @@ public partial class C_BaseCSGrenadeProjectile : C_BaseGrenade
     /// </remarks>
     [NativeOffset(0x11E8)]
     [NativeName("m_nExplodeEffectIndex")]
-    public CStrongHandle__InfoForResourceTypeIParticleSystemDefinition__ ExplodeEffectIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ExplodeEffectIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets ExplodeEffectOrigin.
@@ -166,7 +167,7 @@ public partial class C_BaseCSGrenadeProjectile : C_BaseGrenade
     /// </remarks>
     [NativeOffset(0x1220)]
     [NativeName("m_hSnapshotTrajectoryParticleSnapshot")]
-    public CStrongHandle__InfoForResourceTypeIParticleSnapshot__ SnapshotTrajectoryParticleSnapshot { get; set; }
+    public CStrongHandle<InfoForResourceTypeIParticleSnapshot> SnapshotTrajectoryParticleSnapshot { get; set; }
 
     /// <summary>
     ///     Gets or sets SpawnTime.

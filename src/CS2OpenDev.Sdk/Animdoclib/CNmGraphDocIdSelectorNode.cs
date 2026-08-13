@@ -46,5 +46,5 @@ public partial class CNmGraphDocIdSelectorNode : CNmGraphDocFlowNode
     [NativeMetadata("MPropertyAttributeEditor", "AnimGraphID()")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyResizable", "")]
-    public CUtlVector__CGlobalSymbol__ Options { get; set; }
+    public string[] Options { get; set; }
 }

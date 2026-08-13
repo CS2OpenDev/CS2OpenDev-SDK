@@ -31,7 +31,7 @@ public partial class CCurvesColorCorrectionLayer : CColorCorrectionLayer
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_curvePointsB")]
-    public CUtlVector__Vector2D__ CurvePointsB { get; set; }
+    public Vector2D[] CurvePointsB { get; set; }
 
     /// <summary>
     ///     Gets or sets CurvePointsG.
@@ -41,7 +41,7 @@ public partial class CCurvesColorCorrectionLayer : CColorCorrectionLayer
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_curvePointsG")]
-    public CUtlVector__Vector2D__ CurvePointsG { get; set; }
+    public Vector2D[] CurvePointsG { get; set; }
 
     /// <summary>
     ///     Gets or sets CurvePointsR.
@@ -51,7 +51,7 @@ public partial class CCurvesColorCorrectionLayer : CColorCorrectionLayer
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_curvePointsR")]
-    public CUtlVector__Vector2D__ CurvePointsR { get; set; }
+    public Vector2D[] CurvePointsR { get; set; }
 
     /// <summary>
     ///     Gets or sets CurvePointsRGB.
@@ -61,5 +61,5 @@ public partial class CCurvesColorCorrectionLayer : CColorCorrectionLayer
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_curvePointsRGB")]
-    public CUtlVector__Vector2D__ CurvePointsRGB { get; set; }
+    public Vector2D[] CurvePointsRGB { get; set; }
 }

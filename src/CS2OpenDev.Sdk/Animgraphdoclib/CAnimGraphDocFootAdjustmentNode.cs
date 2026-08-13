@@ -69,7 +69,7 @@ public partial class CAnimGraphDocFootAdjustmentNode : CAnimGraphDocNode
     [NativeMetadata("MPropertyAttributeChoiceName", "Sequence")]
     [NativeMetadata("MPropertyFriendlyName", "Clips")]
     [NativeMetadata("MPropertyGroupName", "Anim Driven Settings")]
-    public CUtlVector__CUtlString__ Clips { get; set; }
+    public string[] Clips { get; set; }
 
     /// <summary>
     ///     Turn to Face.

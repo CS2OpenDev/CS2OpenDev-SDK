@@ -29,7 +29,7 @@ public partial class CPathMover : CPathWithDynamicNodes
     /// </remarks>
     [NativeOffset(0x628)]
     [NativeName("m_hMoverRouter")]
-    public CHandle__CFuncMoverRouter__ MoverRouter { get; set; }
+    public CHandle<CFuncMoverRouter> MoverRouter { get; set; }
 
     /// <summary>
     ///     Gets or sets MoverRouterName.
@@ -59,7 +59,7 @@ public partial class CPathMover : CPathWithDynamicNodes
     /// </remarks>
     [NativeOffset(0x5F0)]
     [NativeName("m_vecMovers")]
-    public CUtlVector__CHandle__CFuncMover____ Movers { get; set; }
+    public CHandle<CFuncMover>[] Movers { get; set; }
 
     /// <summary>
     ///     Gets or sets SampleSpacing.
@@ -79,5 +79,5 @@ public partial class CPathMover : CPathWithDynamicNodes
     /// </remarks>
     [NativeOffset(0x608)]
     [NativeName("m_vecSpawners")]
-    public CUtlVector__CHandle__CPathMoverEntitySpawner____ Spawners { get; set; }
+    public CHandle<CPathMoverEntitySpawner>[] Spawners { get; set; }
 }

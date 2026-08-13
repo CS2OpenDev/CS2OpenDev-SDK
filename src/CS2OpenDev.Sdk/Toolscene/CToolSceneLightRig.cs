@@ -73,7 +73,7 @@ public partial class CToolSceneLightRig
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_PointLights")]
-    public CUtlVector__CLightRigPointLight__ PointLights { get; set; }
+    public CLightRigPointLight[] PointLights { get; set; }
 
     /// <summary>
     ///     Gets or sets PostProcessing.
@@ -113,7 +113,7 @@ public partial class CToolSceneLightRig
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_SpotLights")]
-    public CUtlVector__CLightRigSpotLight__ SpotLights { get; set; }
+    public CLightRigSpotLight[] SpotLights { get; set; }
 
     /// <summary>
     ///     Gets or sets Suns.
@@ -123,5 +123,5 @@ public partial class CToolSceneLightRig
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_Suns")]
-    public CUtlVector__CLightRigSunLight__ Suns { get; set; }
+    public CLightRigSunLight[] Suns { get; set; }
 }

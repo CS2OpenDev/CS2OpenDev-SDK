@@ -203,5 +203,5 @@ public partial class AIGroundRootMotionMotorDebugSnapshotData : DebugSnapshotBas
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("vec_events")]
-    public CUtlVector__AI_GroundRootMotionMotor_DebugSnapshotData_t_Event_t__ VecEvents { get; set; }
+    public AIGroundRootMotionMotorDebugSnapshotDataTEvent[] VecEvents { get; set; }
 }

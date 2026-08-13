@@ -89,5 +89,5 @@ public partial class CPlayerObserverServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x4C)]
     [NativeName("m_hObserverTarget")]
-    public CHandle__C_BaseEntity__ ObserverTarget { get; set; }
+    public CHandle<C_BaseEntity> ObserverTarget { get; set; }
 }

@@ -45,7 +45,7 @@ public partial class CPhysicsEntitySolver : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_hMovingEntity")]
-    public CHandle__CBaseEntity__ MovingEntity { get; set; }
+    public CHandle<CBaseEntity> MovingEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets PhysicsBlocker.
@@ -55,7 +55,7 @@ public partial class CPhysicsEntitySolver : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C4)]
     [NativeName("m_hPhysicsBlocker")]
-    public CHandle__CBaseEntity__ PhysicsBlocker { get; set; }
+    public CHandle<CBaseEntity> PhysicsBlocker { get; set; }
 
     /// <summary>
     ///     Gets or sets SeparationDuration.

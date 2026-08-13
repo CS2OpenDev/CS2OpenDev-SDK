@@ -29,7 +29,7 @@ public partial class CPointPrefab : CServerOnlyPointEntity
     /// </remarks>
     [NativeOffset(0x4C4)]
     [NativeName("m_associatedRelayEntity")]
-    public CHandle__CPointPrefab__ AssociatedRelayEntity { get; set; }
+    public CHandle<CPointPrefab> AssociatedRelayEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets AssociatedRelayTargetName.
@@ -79,7 +79,7 @@ public partial class CPointPrefab : CServerOnlyPointEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_ProceduralRelaySources")]
-    public CUtlVector__CHandle__CBaseEntity____ ProceduralRelaySources { get; set; }
+    public CHandle<CBaseEntity>[] ProceduralRelaySources { get; set; }
 
     /// <summary>
     ///     Gets or sets TargetMapName.

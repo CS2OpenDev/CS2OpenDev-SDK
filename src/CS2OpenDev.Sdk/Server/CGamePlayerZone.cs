@@ -55,7 +55,7 @@ public partial class CGamePlayerZone : CRuleBrushEntity
     /// </remarks>
     [NativeOffset(0x7A8)]
     [NativeName("m_PlayersInCount")]
-    public CEntityOutputTemplate__int32__ PlayersInCount { get; set; }
+    public int? PlayersInCount { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayersOutCount.
@@ -65,5 +65,5 @@ public partial class CGamePlayerZone : CRuleBrushEntity
     /// </remarks>
     [NativeOffset(0x7C8)]
     [NativeName("m_PlayersOutCount")]
-    public CEntityOutputTemplate__int32__ PlayersOutCount { get; set; }
+    public int? PlayersOutCount { get; set; }
 }

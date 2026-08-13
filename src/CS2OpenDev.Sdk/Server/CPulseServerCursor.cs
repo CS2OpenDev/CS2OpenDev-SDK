@@ -35,7 +35,7 @@ public partial class CPulseServerCursor : CPulseExecCursor
     /// </remarks>
     [NativeOffset(0xE8)]
     [NativeName("m_hActivator")]
-    public CHandle__CBaseEntity__ Activator { get; set; }
+    public CHandle<CBaseEntity> Activator { get; set; }
 
     /// <summary>
     ///     Gets or sets Caller.
@@ -45,5 +45,5 @@ public partial class CPulseServerCursor : CPulseExecCursor
     /// </remarks>
     [NativeOffset(0xEC)]
     [NativeName("m_hCaller")]
-    public CHandle__CBaseEntity__ Caller { get; set; }
+    public CHandle<CBaseEntity> Caller { get; set; }
 }

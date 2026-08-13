@@ -36,5 +36,5 @@ public partial class CAnimGraphDocFootCycleMetric : CAnimGraphDocMotionMetric
     [NativeMetadata("MPropertyAttributeChoiceName", "Foot")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Foot")]
-    public CUtlVector__CUtlString__ Feet { get; set; }
+    public string[] Feet { get; set; }
 }

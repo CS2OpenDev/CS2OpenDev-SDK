@@ -156,7 +156,7 @@ public partial class CTriggerSndSosOpvar : CBaseTrigger
     [NativeOffset(0x8E8)]
     [NativeName("m_hTouchingPlayers")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CHandle__CBaseEntity____ TouchingPlayers { get; set; }
+    public CHandle<CBaseEntity>[] TouchingPlayers { get; set; }
 
     /// <summary>
     ///     Gets or sets VolIs2D.

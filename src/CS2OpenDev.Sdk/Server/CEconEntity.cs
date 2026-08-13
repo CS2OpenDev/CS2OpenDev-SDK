@@ -91,7 +91,7 @@ public partial class CEconEntity : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0xC88)]
     [NativeName("m_hOldProvidee")]
-    public CHandle__CBaseEntity__ OldProvidee { get; set; }
+    public CHandle<CBaseEntity> OldProvidee { get; set; }
 
     /// <summary>
     ///     High 32 bits of the item's original-owner SteamID.

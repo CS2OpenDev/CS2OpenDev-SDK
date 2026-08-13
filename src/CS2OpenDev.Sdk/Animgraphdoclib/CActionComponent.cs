@@ -31,7 +31,7 @@ public partial class CActionComponent : CAnimGraphDocComponent
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_actions")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_Action____ Actions { get; set; }
+    public CAnimGraphDocAction?[] Actions { get; set; }
 
     /// <summary>
     ///     Name.

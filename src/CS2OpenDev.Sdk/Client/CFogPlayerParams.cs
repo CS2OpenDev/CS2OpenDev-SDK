@@ -31,7 +31,7 @@ public partial class CFogPlayerParams
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_hCtrl")]
-    public CHandle__C_FogController__ Ctrl { get; set; }
+    public CHandle<C_FogController> Ctrl { get; set; }
 
     /// <summary>
     ///     Gets or sets NewColor.

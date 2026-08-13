@@ -31,7 +31,7 @@ public partial class CStateActionUpdater
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_pAction")]
-    public CSmartPtr__CAnimActionUpdater__ Action { get; set; }
+    public CAnimActionUpdater? Action { get; set; }
 
     /// <summary>
     ///     Gets or sets Behavior.

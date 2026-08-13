@@ -40,7 +40,7 @@ public abstract partial class CMotionMetricEvaluator
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_means")]
-    public CUtlVector__float32__ Means { get; set; }
+    public float[] Means { get; set; }
 
     /// <summary>
     ///     Gets or sets StandardDeviations.
@@ -50,7 +50,7 @@ public abstract partial class CMotionMetricEvaluator
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_standardDeviations")]
-    public CUtlVector__float32__ StandardDeviations { get; set; }
+    public float[] StandardDeviations { get; set; }
 
     /// <summary>
     ///     Gets or sets Weight.

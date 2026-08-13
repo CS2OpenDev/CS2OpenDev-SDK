@@ -29,7 +29,7 @@ public partial class CLogicLineToEntity : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4DC)]
     [NativeName("m_EndEntity")]
-    public CHandle__CBaseEntity__ EndEntity { get; set; }
+    public CHandle<CBaseEntity> EndEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Line.
@@ -39,7 +39,7 @@ public partial class CLogicLineToEntity : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_Line")]
-    public CEntityOutputTemplate__Vector__ Line { get; set; }
+    public Vector? Line { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceName.
@@ -59,5 +59,5 @@ public partial class CLogicLineToEntity : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4D8)]
     [NativeName("m_StartEntity")]
-    public CHandle__CBaseEntity__ StartEntity { get; set; }
+    public CHandle<CBaseEntity> StartEntity { get; set; }
 }

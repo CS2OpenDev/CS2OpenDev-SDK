@@ -40,5 +40,5 @@ public partial class WeightList
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_weights")]
-    public CUtlVector__float32__ Weights { get; set; }
+    public float[] Weights { get; set; }
 }

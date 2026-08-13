@@ -107,7 +107,7 @@ public partial class CGameScriptedMoveData
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_hDestEntity")]
-    public CHandle__CBaseEntity__ DestEntity { get; set; }
+    public CHandle<CBaseEntity> DestEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets Dst.

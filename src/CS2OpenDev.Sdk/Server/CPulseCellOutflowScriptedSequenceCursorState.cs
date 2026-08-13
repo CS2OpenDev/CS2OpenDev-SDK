@@ -31,5 +31,5 @@ public partial class CPulseCellOutflowScriptedSequenceCursorState
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_scriptedSequence")]
-    public CHandle__CBaseEntity__ ScriptedSequence { get; set; }
+    public CHandle<CBaseEntity> ScriptedSequence { get; set; }
 }

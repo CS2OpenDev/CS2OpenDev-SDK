@@ -13,6 +13,7 @@
 #region
 
 using CS2OpenSchema.Entity2;
+using CS2OpenSchema.Resourcesystem;
 
 #endregion
 
@@ -276,7 +277,7 @@ public partial class CBarnLight : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x880)]
     [NativeName("m_hLightCookie")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ LightCookie { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> LightCookie { get; set; }
 
     /// <summary>
     ///     Gets or sets LightMapUniqueId.
@@ -306,7 +307,7 @@ public partial class CBarnLight : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7D0)]
     [NativeName("m_LightStyleEvents")]
-    public CNetworkUtlVectorBase__CUtlString__ LightStyleEvents { get; set; }
+    public string[] LightStyleEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets LightStyleStartTime.
@@ -336,7 +337,7 @@ public partial class CBarnLight : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7E8)]
     [NativeName("m_LightStyleTargets")]
-    public CNetworkUtlVectorBase__CHandle__CBaseModelEntity____ LightStyleTargets { get; set; }
+    public CHandle<CBaseModelEntity>[] LightStyleTargets { get; set; }
 
     /// <summary>
     ///     Gets or sets LuminaireAnisotropy.
@@ -646,7 +647,7 @@ public partial class CBarnLight : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7B8)]
     [NativeName("m_QueuedLightStyleStrings")]
-    public CNetworkUtlVectorBase__CUtlString__ QueuedLightStyleStrings { get; set; }
+    public string[] QueuedLightStyleStrings { get; set; }
 
     /// <summary>
     ///     Gets or sets Range.
@@ -796,5 +797,5 @@ public partial class CBarnLight : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0xA38)]
     [NativeName("m_VisClusters")]
-    public CNetworkUtlVectorBase__uint16__ VisClusters { get; set; }
+    public ushort[] VisClusters { get; set; }
 }

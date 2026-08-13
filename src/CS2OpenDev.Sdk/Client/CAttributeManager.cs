@@ -12,6 +12,7 @@
 
 #region
 
+using CS2OpenSchema.Common;
 using CS2OpenSchema.Server;
 
 #endregion
@@ -35,7 +36,7 @@ public partial class CAttributeManager
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_CachedResults")]
-    public CUtlVector__CAttributeManager_cached_attribute_float_t__ CachedResults { get; set; }
+    public CAttributeManagerCachedAttributeFloat[] CachedResults { get; set; }
 
     /// <summary>
     ///     Gets or sets Outer.
@@ -45,7 +46,7 @@ public partial class CAttributeManager
     /// </remarks>
     [NativeOffset(0x24)]
     [NativeName("m_hOuter")]
-    public CHandle__C_BaseEntity__ Outer { get; set; }
+    public CHandle<C_BaseEntity> Outer { get; set; }
 
     /// <summary>
     ///     Gets or sets PreventLoopBack.
@@ -75,7 +76,7 @@ public partial class CAttributeManager
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_Providers")]
-    public CUtlVector__CHandle__C_BaseEntity____ Providers { get; set; }
+    public CHandle<C_BaseEntity>[] Providers { get; set; }
 
     /// <summary>
     ///     Gets or sets ReapplyProvisionParity.

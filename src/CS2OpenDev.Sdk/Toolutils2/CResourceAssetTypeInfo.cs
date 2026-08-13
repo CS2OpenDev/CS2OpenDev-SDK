@@ -41,7 +41,7 @@ public partial class CResourceAssetTypeInfo : CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x120)]
     [NativeName("m_Blocks")]
-    public CUtlVector__ResourceBlockTypeInfo_t__ Blocks { get; set; }
+    public ResourceBlockTypeInfo[] Blocks { get; set; }
 
     /// <summary>
     ///     Gets or sets CanNotBeAMultiParentChildCompile.
@@ -61,7 +61,7 @@ public partial class CResourceAssetTypeInfo : CSimpleAssetTypeInfo
     /// </remarks>
     [NativeOffset(0x108)]
     [NativeName("m_CompileDependsOnResourceTypes")]
-    public CUtlVector__CUtlString__ CompileDependsOnResourceTypes { get; set; }
+    public string[] CompileDependsOnResourceTypes { get; set; }
 
     /// <summary>
     ///     Gets or sets CompilerIdentifier.

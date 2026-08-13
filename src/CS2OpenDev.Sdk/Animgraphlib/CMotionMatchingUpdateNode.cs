@@ -171,7 +171,7 @@ public partial class CMotionMatchingUpdateNode : CLeafUpdateNode
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_metrics")]
-    public CUtlVector__CSmartPtr__CMotionMetricEvaluator____ Metrics { get; set; }
+    public CMotionMetricEvaluator?[] Metrics { get; set; }
 
     /// <summary>
     ///     Gets or sets ReselectionTimeWindow.
@@ -251,5 +251,5 @@ public partial class CMotionMatchingUpdateNode : CLeafUpdateNode
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_weights")]
-    public CUtlVector__float32__ Weights { get; set; }
+    public float[] Weights { get; set; }
 }

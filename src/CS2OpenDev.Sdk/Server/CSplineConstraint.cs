@@ -148,7 +148,7 @@ public partial class CSplineConstraint : CPhysConstraint
     /// </remarks>
     [NativeOffset(0x564)]
     [NativeName("m_hSplineEntity")]
-    public CHandle__CBaseEntity__ SplineEntity { get; set; }
+    public CHandle<CBaseEntity> SplineEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets StartTransitionTime.

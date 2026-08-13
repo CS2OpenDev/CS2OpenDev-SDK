@@ -69,5 +69,5 @@ public partial class CAnimGraphDocPathMetric : CAnimGraphDocMotionMetric
     [NativeOffset(0x30)]
     [NativeName("m_pathSamples")]
     [NativeMetadata("MPropertyFriendlyName", "Samples Times")]
-    public CUtlVector__float32__ PathSamples { get; set; }
+    public float[] PathSamples { get; set; }
 }

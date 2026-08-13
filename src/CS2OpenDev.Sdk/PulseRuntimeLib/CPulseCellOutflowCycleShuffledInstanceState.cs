@@ -41,5 +41,5 @@ public partial class CPulseCellOutflowCycleShuffledInstanceState
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Shuffle")]
-    public CUtlVectorFixedGrowable__uint8__8__ Shuffle { get; set; }
+    public byte[] Shuffle { get; set; }
 }

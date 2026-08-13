@@ -30,5 +30,5 @@ public partial class CFeVertexMapBuildArray
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Array")]
-    public CUtlVector__FeVertexMapBuild_t___ Array { get; set; }
+    public FeVertexMapBuild?[] Array { get; set; }
 }

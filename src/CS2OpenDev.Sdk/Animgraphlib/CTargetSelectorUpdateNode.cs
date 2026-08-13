@@ -41,7 +41,7 @@ public partial class CTargetSelectorUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_children")]
-    public CUtlVector__CAnimUpdateNodeRef__ Children { get; set; }
+    public CAnimUpdateNodeRef[] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets DesiredMoveHeadingParameter.

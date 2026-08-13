@@ -32,5 +32,5 @@ public partial class CCPPScriptComponent : CAnimGraphDocComponent
     [NativeOffset(0x38)]
     [NativeName("m_scriptsToRun")]
     [NativeMetadata("MPropertyFriendlyName", "Scripts")]
-    public CUtlVector__CUtlString__ ScriptsToRun { get; set; }
+    public string[] ScriptsToRun { get; set; }
 }

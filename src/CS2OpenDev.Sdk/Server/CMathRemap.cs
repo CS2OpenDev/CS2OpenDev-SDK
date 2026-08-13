@@ -135,5 +135,5 @@ public partial class CMathRemap : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_OutValue")]
-    public CEntityOutputTemplate__float32__ OutValue { get; set; }
+    public float? OutValue { get; set; }
 }

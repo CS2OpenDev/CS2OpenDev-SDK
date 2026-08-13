@@ -29,5 +29,5 @@ public partial class CGenericShapeProxy
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_verts")]
-    public CUtlLeanVectorFixedGrowable__Vector__8__ Verts { get; set; }
+    public Vector[] Verts { get; set; }
 }

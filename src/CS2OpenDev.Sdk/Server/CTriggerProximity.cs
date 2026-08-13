@@ -29,7 +29,7 @@ public partial class CTriggerProximity : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x8E8)]
     [NativeName("m_hMeasureTarget")]
-    public CHandle__CBaseEntity__ HMeasureTarget { get; set; }
+    public CHandle<CBaseEntity> HMeasureTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets IszMeasureTarget.
@@ -49,7 +49,7 @@ public partial class CTriggerProximity : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x900)]
     [NativeName("m_NearestEntityDistance")]
-    public CEntityOutputTemplate__float32__ NearestEntityDistance { get; set; }
+    public float? NearestEntityDistance { get; set; }
 
     /// <summary>
     ///     Gets or sets Radius.

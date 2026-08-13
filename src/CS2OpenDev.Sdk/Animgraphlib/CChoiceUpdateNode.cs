@@ -51,7 +51,7 @@ public partial class CChoiceUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x90)]
     [NativeName("m_blendTimes")]
-    public CUtlVector__float32__ BlendTimes { get; set; }
+    public float[] BlendTimes { get; set; }
 
     /// <summary>
     ///     Gets or sets Children.
@@ -61,7 +61,7 @@ public partial class CChoiceUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_children")]
-    public CUtlVector__CAnimUpdateNodeRef__ Children { get; set; }
+    public CAnimUpdateNodeRef[] Children { get; set; }
 
     /// <summary>
     ///     Gets or sets ChoiceChangeMethod.
@@ -121,5 +121,5 @@ public partial class CChoiceUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_weights")]
-    public CUtlVector__float32__ Weights { get; set; }
+    public float[] Weights { get; set; }
 }

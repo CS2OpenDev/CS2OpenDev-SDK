@@ -52,5 +52,5 @@ public partial class AggregateLODSetUp
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_fSwitchDistances")]
-    public CUtlVector__float32__ SwitchDistances { get; set; }
+    public float[] SwitchDistances { get; set; }
 }

@@ -62,5 +62,5 @@ public partial class SummaryTakeDamageInfo
     /// </remarks>
     [NativeOffset(0x180)]
     [NativeName("hTarget")]
-    public CHandle__CBaseEntity__ Target { get; set; }
+    public CHandle<CBaseEntity> Target { get; set; }
 }

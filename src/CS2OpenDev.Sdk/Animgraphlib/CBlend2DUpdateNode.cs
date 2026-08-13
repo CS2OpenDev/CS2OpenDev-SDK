@@ -81,7 +81,7 @@ public partial class CBlend2DUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_items")]
-    public CUtlVector__BlendItem_t__ Items { get; set; }
+    public BlendItem[] Items { get; set; }
 
     /// <summary>
     ///     Gets or sets LockBlendOnReset.
@@ -121,7 +121,7 @@ public partial class CBlend2DUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0xA8)]
     [NativeName("m_nodeItemIndices")]
-    public CUtlVector__int32__ NodeItemIndices { get; set; }
+    public int[] NodeItemIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets ParamSpans.
@@ -171,5 +171,5 @@ public partial class CBlend2DUpdateNode : CAnimUpdateNodeBase
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_tags")]
-    public CUtlVector__TagSpan_t__ Tags { get; set; }
+    public TagSpan[] Tags { get; set; }
 }

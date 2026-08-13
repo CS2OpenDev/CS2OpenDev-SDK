@@ -30,7 +30,7 @@ public partial class C_SceneEntity : C_PointEntity
     [NativeOffset(0x620)]
     [NativeName("m_hActorList")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__CHandle__C_BaseModelEntity____ ActorList { get; set; }
+    public CHandle<C_BaseModelEntity>[] ActorList { get; set; }
 
     /// <summary>
     ///     Gets or sets AllRequirementsComplete.
@@ -118,7 +118,7 @@ public partial class C_SceneEntity : C_PointEntity
     [NativeOffset(0x618)]
     [NativeName("m_hOwner")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseModelEntity__ Owner { get; set; }
+    public CHandle<C_BaseModelEntity> Owner { get; set; }
 
     /// <summary>
     ///     Gets or sets Paused.
@@ -140,7 +140,7 @@ public partial class C_SceneEntity : C_PointEntity
     [NativeOffset(0x648)]
     [NativeName("m_QueuedEvents")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__C_SceneEntity_QueuedEvents_t__ QueuedEvents { get; set; }
+    public CSceneEntityQueuedEvents[] QueuedEvents { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneStringIndex.

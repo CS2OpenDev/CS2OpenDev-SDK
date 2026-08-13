@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Animlib;
+
+#endregion
+
 namespace CS2OpenSchema.Animdoclib;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     [NativeOffset(0xD0)]
     [NativeName("m_boneMaskSetDefinitions")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__NmBoneMaskSetDefinition_t__ BoneMaskSetDefinitions { get; set; }
+    public NmBoneMaskSetDefinition[] BoneMaskSetDefinitions { get; set; }
 
     /// <summary>
     ///     Gets or sets FloatChannelSets.
@@ -43,7 +49,7 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     [NativeOffset(0xE8)]
     [NativeName("m_floatChannelSets")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CNmFloatChannelSet_t__ FloatChannelSets { get; set; }
+    public CNmFloatChannelSet[] FloatChannelSets { get; set; }
 
     /// <summary>
     ///     The set of bones that need to be converted at import to match the S2 coordinate system (Z-up, X-forward).
@@ -55,7 +61,7 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     [NativeName("m_gameplayRelevantBones")]
     [NativeMetadata("MPropertyDescription",
         "The set of bones that need to be converted at import to match the S2 coordinate system (Z-up, X-forward)")]
-    public CUtlVector__CGlobalSymbol__ GameplayRelevantBones { get; set; }
+    public string[] GameplayRelevantBones { get; set; }
 
     /// <summary>
     ///     Gets or sets GlobalScale.
@@ -76,7 +82,7 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     [NativeOffset(0xB8)]
     [NativeName("m_highLODBones")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CGlobalSymbol__ HighLODBones { get; set; }
+    public string[] HighLODBones { get; set; }
 
     /// <summary>
     ///     Gets or sets IsAttachableProp.
@@ -130,7 +136,7 @@ public partial class CNmSkeletonDocument : CNmAnimDocument
     [NativeName("m_secondarySkeletons")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Expected secondary skeletons")]
-    public CUtlVector__CNmSkeletonDocument_SecondarySkeleton_t__ SecondarySkeletons { get; set; }
+    public CNmSkeletonDocumentSecondarySkeleton[] SecondarySkeletons { get; set; }
 
     /// <summary>
     ///     Gets or sets SourceFileName.

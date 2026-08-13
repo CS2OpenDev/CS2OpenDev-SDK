@@ -30,7 +30,7 @@ public partial class CPlayerWeaponServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_hActiveWeapon")]
-    public CHandle__CBasePlayerWeapon__ ActiveWeapon { get; set; }
+    public CHandle<CBasePlayerWeapon> ActiveWeapon { get; set; }
 
     /// <summary>
     ///     Gets or sets Ammo.
@@ -50,7 +50,7 @@ public partial class CPlayerWeaponServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x64)]
     [NativeName("m_hLastWeapon")]
-    public CHandle__CBasePlayerWeapon__ LastWeapon { get; set; }
+    public CHandle<CBasePlayerWeapon> LastWeapon { get; set; }
 
     /// <summary>
     ///     Gets or sets MyWeapons.
@@ -60,7 +60,7 @@ public partial class CPlayerWeaponServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_hMyWeapons")]
-    public CNetworkUtlVectorBase__CHandle__CBasePlayerWeapon____ MyWeapons { get; set; }
+    public CHandle<CBasePlayerWeapon>[] MyWeapons { get; set; }
 
     /// <summary>
     ///     Gets or sets PreventWeaponPickup.

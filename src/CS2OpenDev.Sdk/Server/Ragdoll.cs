@@ -42,7 +42,7 @@ public partial class Ragdoll
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("boneIndex")]
-    public CUtlVector__int32__ BoneIndex { get; set; }
+    public int[] BoneIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets HierarchyJoints.
@@ -52,7 +52,7 @@ public partial class Ragdoll
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("hierarchyJoints")]
-    public CUtlVector__ragdollhierarchyjoint_t__ HierarchyJoints { get; set; }
+    public RagdollHierarchyJoint[] HierarchyJoints { get; set; }
 
     /// <summary>
     ///     Gets or sets List.
@@ -62,7 +62,7 @@ public partial class Ragdoll
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("list")]
-    public CUtlVector__ragdollelement_t__ List { get; set; }
+    public RagdollElement[] List { get; set; }
 
     /// <summary>
     ///     Gets or sets Unused.

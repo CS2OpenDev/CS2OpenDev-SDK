@@ -45,7 +45,7 @@ public partial class CAnimGraphDocSequenceNode : CAnimGraphDocNode
     [NativeOffset(0x88)]
     [NativeName("m_paramSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_ParamSpan____ ParamSpans { get; set; }
+    public CAnimGraphDocParamSpan?[] ParamSpans { get; set; }
 
     /// <summary>
     ///     Playback Speed.
@@ -79,5 +79,5 @@ public partial class CAnimGraphDocSequenceNode : CAnimGraphDocNode
     [NativeOffset(0x70)]
     [NativeName("m_tagSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ TagSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] TagSpans { get; set; }
 }

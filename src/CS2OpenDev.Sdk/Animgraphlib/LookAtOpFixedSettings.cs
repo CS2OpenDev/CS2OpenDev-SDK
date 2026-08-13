@@ -48,7 +48,7 @@ public partial class LookAtOpFixedSettings
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_bones")]
-    public CUtlVector__LookAtBone_t__ Bones { get; set; }
+    public LookAtBone[] Bones { get; set; }
 
     /// <summary>
     ///     Gets or sets Damping.

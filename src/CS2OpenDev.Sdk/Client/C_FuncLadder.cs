@@ -50,7 +50,7 @@ public partial class C_FuncLadder : C_BaseModelEntity
     [NativeOffset(0xFC0)]
     [NativeName("m_Dismounts")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__CHandle__C_InfoLadderDismount____ Dismounts { get; set; }
+    public CHandle<C_InfoLadderDismount>[] Dismounts { get; set; }
 
     /// <summary>
     ///     Gets or sets FakeLadder.

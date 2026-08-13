@@ -139,7 +139,7 @@ public partial class CMapVetoPickController : CBaseEntity
     /// </remarks>
     [NativeOffset(0xE88)]
     [NativeName("m_OnLevelTransition")]
-    public CEntityOutputTemplate__int32__ OnLevelTransition { get; set; }
+    public int? OnLevelTransition { get; set; }
 
     /// <summary>
     ///     Gets or sets OnMapPicked.
@@ -149,7 +149,7 @@ public partial class CMapVetoPickController : CBaseEntity
     /// </remarks>
     [NativeOffset(0xE28)]
     [NativeName("m_OnMapPicked")]
-    public CEntityOutputTemplate__CUtlSymbolLarge__ OnMapPicked { get; set; }
+    public string? OnMapPicked { get; set; }
 
     /// <summary>
     ///     Gets or sets OnMapVetoed.
@@ -159,7 +159,7 @@ public partial class CMapVetoPickController : CBaseEntity
     /// </remarks>
     [NativeOffset(0xE08)]
     [NativeName("m_OnMapVetoed")]
-    public CEntityOutputTemplate__CUtlSymbolLarge__ OnMapVetoed { get; set; }
+    public string? OnMapVetoed { get; set; }
 
     /// <summary>
     ///     Gets or sets OnNewPhaseStarted.
@@ -169,7 +169,7 @@ public partial class CMapVetoPickController : CBaseEntity
     /// </remarks>
     [NativeOffset(0xE68)]
     [NativeName("m_OnNewPhaseStarted")]
-    public CEntityOutputTemplate__int32__ OnNewPhaseStarted { get; set; }
+    public int? OnNewPhaseStarted { get; set; }
 
     /// <summary>
     ///     Gets or sets OnSidesPicked.
@@ -179,7 +179,7 @@ public partial class CMapVetoPickController : CBaseEntity
     /// </remarks>
     [NativeOffset(0xE48)]
     [NativeName("m_OnSidesPicked")]
-    public CEntityOutputTemplate__int32__ OnSidesPicked { get; set; }
+    public int? OnSidesPicked { get; set; }
 
     /// <summary>
     ///     Gets or sets PhaseDurationTicks.

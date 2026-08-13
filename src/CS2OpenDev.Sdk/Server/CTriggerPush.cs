@@ -29,7 +29,7 @@ public partial class CTriggerPush : CBaseTrigger
     /// </remarks>
     [NativeOffset(0x910)]
     [NativeName("m_PathSimple")]
-    public CHandle__CPathSimple__ PathSimple { get; set; }
+    public CHandle<CPathSimple> PathSimple { get; set; }
 
     /// <summary>
     ///     Gets or sets PathSimpleName.

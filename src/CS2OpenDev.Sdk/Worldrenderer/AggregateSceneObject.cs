@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Worldrenderer;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class AggregateSceneObject
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_aggregateMeshes")]
-    public CUtlVector__AggregateMeshInfo_t__ AggregateMeshes { get; set; }
+    public AggregateMeshInfo[] AggregateMeshes { get; set; }
 
     /// <summary>
     ///     Gets or sets AllFlags.
@@ -62,7 +68,7 @@ public partial class AggregateSceneObject
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_fragmentTransforms")]
-    public CUtlVector__matrix3x4_t__ FragmentTransforms { get; set; }
+    public Matrix3x4[] FragmentTransforms { get; set; }
 
     /// <summary>
     ///     Gets or sets InstanceStream.
@@ -92,7 +98,7 @@ public partial class AggregateSceneObject
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_lodSetups")]
-    public CUtlVector__AggregateLODSetup_t__ LodSetups { get; set; }
+    public AggregateLODSetUp[] LodSetups { get; set; }
 
     /// <summary>
     ///     Gets or sets RenderableModel.
@@ -102,7 +108,7 @@ public partial class AggregateSceneObject
     /// </remarks>
     [NativeOffset(0x70)]
     [NativeName("m_renderableModel")]
-    public CStrongHandle__InfoForResourceTypeCModel__ RenderableModel { get; set; }
+    public CStrongHandle<InfoForResourceTypeCModel> RenderableModel { get; set; }
 
     /// <summary>
     ///     Gets or sets VertexAlbedoStream.
@@ -132,5 +138,5 @@ public partial class AggregateSceneObject
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_visClusterMembership")]
-    public CUtlVector__uint16__ VisClusterMembership { get; set; }
+    public ushort[] VisClusterMembership { get; set; }
 }

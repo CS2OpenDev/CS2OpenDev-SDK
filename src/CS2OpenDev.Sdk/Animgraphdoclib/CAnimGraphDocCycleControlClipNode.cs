@@ -87,7 +87,7 @@ public partial class CAnimGraphDocCycleControlClipNode : CAnimGraphDocNode
     [NativeOffset(0x58)]
     [NativeName("m_tagSpans")]
     [NativeMetadata("MPropertySuppressField", "")]
-    public CUtlVector__CSmartPtr__CAnimGraphDoc_TagSpan____ TagSpans { get; set; }
+    public CAnimGraphDocTagSpan?[] TagSpans { get; set; }
 
     /// <summary>
     ///     Blend Source.

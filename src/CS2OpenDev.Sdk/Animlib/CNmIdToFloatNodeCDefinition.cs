@@ -42,7 +42,7 @@ public partial class CNmIdToFloatNodeCDefinition : CNmFloatValueNodeCDefinition
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_IDs")]
-    public CUtlLeanVectorFixedGrowable__CGlobalSymbol__5__ IDs { get; set; }
+    public string[] IDs { get; set; }
 
     /// <summary>
     ///     Gets or sets InputValueNodeIdx.
@@ -62,5 +62,5 @@ public partial class CNmIdToFloatNodeCDefinition : CNmFloatValueNodeCDefinition
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_values")]
-    public CUtlLeanVectorFixedGrowable__float32__5__ Values { get; set; }
+    public float[] Values { get; set; }
 }

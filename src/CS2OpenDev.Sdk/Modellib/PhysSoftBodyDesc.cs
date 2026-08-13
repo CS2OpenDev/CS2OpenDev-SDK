@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Physicslib;
+
+#endregion
+
 namespace CS2OpenSchema.Modellib;
 
 /// <summary>
@@ -32,7 +38,7 @@ public partial class PhysSoftBodyDesc
     /// </remarks>
     [NativeOffset(0x48)]
     [NativeName("m_Capsules")]
-    public CUtlVector__RnSoftbodyCapsule_t__ Capsules { get; set; }
+    public RnSoftBodyCapsule[] Capsules { get; set; }
 
     /// <summary>
     ///     Gets or sets InitPose.
@@ -42,7 +48,7 @@ public partial class PhysSoftBodyDesc
     /// </remarks>
     [NativeOffset(0x60)]
     [NativeName("m_InitPose")]
-    public CUtlVector__CTransform__ InitPose { get; set; }
+    public CTransform[] InitPose { get; set; }
 
     /// <summary>
     ///     Gets or sets ParticleBoneHash.
@@ -52,7 +58,7 @@ public partial class PhysSoftBodyDesc
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_ParticleBoneHash")]
-    public CUtlVector__uint32__ ParticleBoneHash { get; set; }
+    public uint[] ParticleBoneHash { get; set; }
 
     /// <summary>
     ///     Gets or sets ParticleBoneName.
@@ -62,7 +68,7 @@ public partial class PhysSoftBodyDesc
     /// </remarks>
     [NativeOffset(0x78)]
     [NativeName("m_ParticleBoneName")]
-    public CUtlVector__CUtlString__ ParticleBoneName { get; set; }
+    public string[] ParticleBoneName { get; set; }
 
     /// <summary>
     ///     Gets or sets Particles.
@@ -72,7 +78,7 @@ public partial class PhysSoftBodyDesc
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Particles")]
-    public CUtlVector__RnSoftbodyParticle_t__ Particles { get; set; }
+    public RnSoftBodyParticle[] Particles { get; set; }
 
     /// <summary>
     ///     Gets or sets Springs.
@@ -82,5 +88,5 @@ public partial class PhysSoftBodyDesc
     /// </remarks>
     [NativeOffset(0x30)]
     [NativeName("m_Springs")]
-    public CUtlVector__RnSoftbodySpring_t__ Springs { get; set; }
+    public RnSoftBodySpring[] Springs { get; set; }
 }

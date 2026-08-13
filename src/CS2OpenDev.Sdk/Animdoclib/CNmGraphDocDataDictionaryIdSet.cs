@@ -35,7 +35,7 @@ public partial class CNmGraphDocDataDictionaryIdSet
     [NativeName("m_graphIDs")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyFriendlyName", "Graph IDs")]
-    public CUtlVector__CGlobalSymbol__ GraphIDs { get; set; }
+    public string[] GraphIDs { get; set; }
 
     /// <summary>
     ///     Gets or sets ID.

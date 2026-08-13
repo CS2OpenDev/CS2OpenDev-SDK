@@ -31,7 +31,7 @@ public partial class FogPlayerParams
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("m_hCtrl")]
-    public CHandle__CFogController__ Ctrl { get; set; }
+    public CHandle<CFogController> Ctrl { get; set; }
 
     /// <summary>
     ///     Gets or sets NewColor.

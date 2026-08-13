@@ -67,7 +67,7 @@ public partial class FuncMoverMovementSummary
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("hPathMover")]
-    public CHandle__CPathMover__ PathMover { get; set; }
+    public CHandle<CPathMover> PathMover { get; set; }
 
     /// <summary>
     ///     Gets or sets StartNodeIndex.

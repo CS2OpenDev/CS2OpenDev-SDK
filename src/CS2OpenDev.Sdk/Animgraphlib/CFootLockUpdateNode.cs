@@ -81,7 +81,7 @@ public partial class CFootLockUpdateNode : CUnaryUpdateNode
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_footSettings")]
-    public CUtlVector__FootFixedSettings__ FootSettings { get; set; }
+    public FootFixedSettings[] FootSettings { get; set; }
 
     /// <summary>
     ///     Gets or sets HipShiftDamping.

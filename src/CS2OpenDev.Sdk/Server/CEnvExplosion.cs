@@ -99,7 +99,7 @@ public partial class CEnvExplosion : CModelPointEntity
     /// </remarks>
     [NativeOffset(0x7C0)]
     [NativeName("m_hEntityIgnore")]
-    public CHandle__CBaseEntity__ EntityIgnore { get; set; }
+    public CHandle<CBaseEntity> EntityIgnore { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityIgnoreName.
@@ -119,7 +119,7 @@ public partial class CEnvExplosion : CModelPointEntity
     /// </remarks>
     [NativeOffset(0x784)]
     [NativeName("m_hInflictor")]
-    public CHandle__CBaseEntity__ Inflictor { get; set; }
+    public CHandle<CBaseEntity> Inflictor { get; set; }
 
     /// <summary>
     ///     Gets or sets InnerRadius.

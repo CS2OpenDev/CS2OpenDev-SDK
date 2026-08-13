@@ -29,5 +29,5 @@ public partial class CPointGiveAmmo : CPointEntity
     /// </remarks>
     [NativeOffset(0x4A8)]
     [NativeName("m_pActivator")]
-    public CHandle__CBaseEntity__ Activator { get; set; }
+    public CHandle<CBaseEntity> Activator { get; set; }
 }

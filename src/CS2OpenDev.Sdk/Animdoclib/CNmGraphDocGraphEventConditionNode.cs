@@ -33,7 +33,7 @@ public partial class CNmGraphDocGraphEventConditionNode : CNmGraphDocFlowNode
     [NativeName("m_conditions")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
     [NativeMetadata("MPropertyGroupName", "+Conditions")]
-    public CUtlVector__CNmGraphDocGraphEventConditionNode_Condition_t__ Conditions { get; set; }
+    public CNmGraphDocGraphEventConditionNodeCondition[] Conditions { get; set; }
 
     /// <summary>
     ///     Gets or sets IgnoreInactiveBranchEvents.

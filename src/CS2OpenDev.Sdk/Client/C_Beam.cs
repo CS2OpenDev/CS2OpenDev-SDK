@@ -14,6 +14,7 @@
 
 using CS2OpenSchema.Entity2;
 using CS2OpenSchema.Modellib;
+using CS2OpenSchema.Resourcesystem;
 using CS2OpenSchema.Server;
 
 #endregion
@@ -47,7 +48,7 @@ public partial class C_Beam : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1000)]
     [NativeName("m_hAttachEntity")]
-    public CHandle__C_BaseEntity__[] AttachEntity { get; set; }
+    public CHandle<C_BaseEntity>[] AttachEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets AttachIndex.
@@ -67,7 +68,7 @@ public partial class C_Beam : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFE8)]
     [NativeName("m_hBaseMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ BaseMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> BaseMaterial { get; set; }
 
     /// <summary>
     ///     Gets or sets BeamFlags.
@@ -107,7 +108,7 @@ public partial class C_Beam : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0x1064)]
     [NativeName("m_hEndEntity")]
-    public CHandle__C_BaseEntity__ EndEntity { get; set; }
+    public CHandle<C_BaseEntity> EndEntity { get; set; }
 
     /// <summary>
     ///     Gets or sets EndPos.
@@ -187,7 +188,7 @@ public partial class C_Beam : C_BaseModelEntity
     /// </remarks>
     [NativeOffset(0xFF0)]
     [NativeName("m_nHaloIndex")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ HaloIndex { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> HaloIndex { get; set; }
 
     /// <summary>
     ///     Gets or sets HaloScale.

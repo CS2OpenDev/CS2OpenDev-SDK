@@ -31,7 +31,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0x110)]
     [NativeName("m_BlackboardReferences")]
-    public CUtlVector__CPulse_BlackboardReference__ BlackBoardReferences { get; set; }
+    public CPulseBlackBoardReference[] BlackBoardReferences { get; set; }
 
     /// <summary>
     ///     Gets or sets CallInfos.
@@ -41,7 +41,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0xC8)]
     [NativeName("m_CallInfos")]
-    public CUtlVector__CPulse_CallInfo___ CallInfos { get; set; }
+    public CPulseCallInfo?[] CallInfos { get; set; }
 
     /// <summary>
     ///     Gets or sets Cells.
@@ -51,7 +51,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_Cells")]
-    public CUtlVector__CPulseCell_Base___ Cells { get; set; }
+    public CPulseCellBase?[] Cells { get; set; }
 
     /// <summary>
     ///     Gets or sets Chunks.
@@ -61,7 +61,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_Chunks")]
-    public CUtlVector__CPulse_Chunk___ Chunks { get; set; }
+    public CPulseChunk?[] Chunks { get; set; }
 
     /// <summary>
     ///     Gets or sets Constants.
@@ -71,7 +71,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0xE0)]
     [NativeName("m_Constants")]
-    public CUtlVector__CPulse_Constant__ Constants { get; set; }
+    public CPulseConstant[] Constants { get; set; }
 
     /// <summary>
     ///     Gets or sets DomainIdentifier.
@@ -101,7 +101,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0xF8)]
     [NativeName("m_DomainValues")]
-    public CUtlVector__CPulse_DomainValue__ DomainValues { get; set; }
+    public CPulseDomainValue[] DomainValues { get; set; }
 
     /// <summary>
     ///     Gets or sets InvokeBindings.
@@ -111,7 +111,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0xB0)]
     [NativeName("m_InvokeBindings")]
-    public CUtlVector__CPulse_InvokeBinding___ InvokeBindings { get; set; }
+    public CPulseInvokeBinding?[] InvokeBindings { get; set; }
 
     /// <summary>
     ///     Gets or sets OutputConnections.
@@ -121,7 +121,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0x128)]
     [NativeName("m_OutputConnections")]
-    public CUtlVector__CPulse_OutputConnection___ OutputConnections { get; set; }
+    public CPulseOutputConnection?[] OutputConnections { get; set; }
 
     /// <summary>
     ///     Gets or sets ParentMapName.
@@ -151,7 +151,7 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_PublicOutputs")]
-    public CUtlVector__CPulse_PublicOutput__ PublicOutputs { get; set; }
+    public CPulsePublicOutput[] PublicOutputs { get; set; }
 
     /// <summary>
     ///     Gets or sets Vars.
@@ -161,5 +161,5 @@ public partial class CPulseGraphDef
     /// </remarks>
     [NativeOffset(0x80)]
     [NativeName("m_Vars")]
-    public CUtlVector__CPulse_Variable__ Vars { get; set; }
+    public CPulseVariable[] Vars { get; set; }
 }

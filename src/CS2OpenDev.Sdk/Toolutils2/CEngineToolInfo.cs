@@ -31,7 +31,7 @@ public partial class CEngineToolInfo : CBaseToolInfo
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_AssetTypes")]
-    public CUtlVector__CUtlString__ AssetTypes { get; set; }
+    public string[] AssetTypes { get; set; }
 
     /// <summary>
     ///     Gets or sets CanHighlightSubAssets.
@@ -61,7 +61,7 @@ public partial class CEngineToolInfo : CBaseToolInfo
     /// </remarks>
     [NativeOffset(0x68)]
     [NativeName("m_ExcludeFromMods")]
-    public CUtlVector__CUtlString__ ExcludeFromMods { get; set; }
+    public string[] ExcludeFromMods { get; set; }
 
     /// <summary>
     ///     Gets or sets InterfaceName.
@@ -121,7 +121,7 @@ public partial class CEngineToolInfo : CBaseToolInfo
     /// </remarks>
     [NativeOffset(0x50)]
     [NativeName("m_LimitToMods")]
-    public CUtlVector__CUtlString__ LimitToMods { get; set; }
+    public string[] LimitToMods { get; set; }
 
     /// <summary>
     ///     Gets or sets ShowInRevisionSubMenu.

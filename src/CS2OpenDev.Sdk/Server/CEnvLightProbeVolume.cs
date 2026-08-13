@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -59,7 +65,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14D0)]
     [NativeName("m_Entity_hLightProbeDirectLightIndicesTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeDirectLightIndicesTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeDirectLightIndicesTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightScalarsTexture.
@@ -69,7 +75,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14D8)]
     [NativeName("m_Entity_hLightProbeDirectLightScalarsTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeDirectLightScalarsTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeDirectLightScalarsTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeDirectLightShadowsTexture.
@@ -79,7 +85,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14E0)]
     [NativeName("m_Entity_hLightProbeDirectLightShadowsTexture")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeDirectLightShadowsTexture { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeDirectLightShadowsTexture { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureAmbientCube.
@@ -89,7 +95,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14A0)]
     [NativeName("m_Entity_hLightProbeTexture_AmbientCube")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureAmbientCube { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureAmbientCube { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSDF.
@@ -99,7 +105,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14A8)]
     [NativeName("m_Entity_hLightProbeTexture_SDF")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSDF { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSDF { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2B.
@@ -109,7 +115,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14C8)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_B")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2B { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2B { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2DC.
@@ -119,7 +125,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14B0)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_DC")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2DC { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2DC { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2G.
@@ -129,7 +135,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14C0)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_G")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2G { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2G { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityHLightProbeTextureSH2R.
@@ -139,7 +145,7 @@ public partial class CEnvLightProbeVolume : CBaseEntity
     /// </remarks>
     [NativeOffset(0x14B8)]
     [NativeName("m_Entity_hLightProbeTexture_SH2_R")]
-    public CStrongHandle__InfoForResourceTypeCTextureBase__ EntityHLightProbeTextureSH2R { get; set; }
+    public CStrongHandle<InfoForResourceTypeCTextureBase> EntityHLightProbeTextureSH2R { get; set; }
 
     /// <summary>
     ///     Gets or sets EntityNHandshake.

@@ -69,7 +69,7 @@ public partial class C_RagdollProp : CBaseAnimGraph
     [NativeOffset(0x11D8)]
     [NativeName("m_parentPhysicsBoneIndices")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__int32__ ParentPhysicsBoneIndices { get; set; }
+    public int[] ParentPhysicsBoneIndices { get; set; }
 
     /// <summary>
     ///     Gets or sets RagAngles.
@@ -80,7 +80,7 @@ public partial class C_RagdollProp : CBaseAnimGraph
     [NativeOffset(0x11B0)]
     [NativeName("m_ragAngles")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__QAngle__ RagAngles { get; set; }
+    public QAngle[] RagAngles { get; set; }
 
     /// <summary>
     ///     Gets or sets RagEnabled.
@@ -91,7 +91,7 @@ public partial class C_RagdollProp : CBaseAnimGraph
     [NativeOffset(0x1180)]
     [NativeName("m_ragEnabled")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__bool__ RagEnabled { get; set; }
+    public bool[] RagEnabled { get; set; }
 
     /// <summary>
     ///     Gets or sets RagPos.
@@ -102,7 +102,7 @@ public partial class C_RagdollProp : CBaseAnimGraph
     [NativeOffset(0x1198)]
     [NativeName("m_ragPos")]
     [NativeMetadata("MNotSaved", "")]
-    public C_NetworkUtlVectorBase__Vector__ RagPos { get; set; }
+    public Vector[] RagPos { get; set; }
 
     /// <summary>
     ///     Gets or sets RagdollSource.
@@ -113,7 +113,7 @@ public partial class C_RagdollProp : CBaseAnimGraph
     [NativeOffset(0x11CC)]
     [NativeName("m_hRagdollSource")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__C_BaseEntity__ RagdollSource { get; set; }
+    public CHandle<C_BaseEntity> RagdollSource { get; set; }
 
     /// <summary>
     ///     Gets or sets WorldSpaceBoneComputationOrder.
@@ -124,5 +124,5 @@ public partial class C_RagdollProp : CBaseAnimGraph
     [NativeOffset(0x11F0)]
     [NativeName("m_worldSpaceBoneComputationOrder")]
     [NativeMetadata("MNotSaved", "")]
-    public CUtlVector__int32__ WorldSpaceBoneComputationOrder { get; set; }
+    public int[] WorldSpaceBoneComputationOrder { get; set; }
 }

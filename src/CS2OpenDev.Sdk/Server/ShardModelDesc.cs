@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -50,7 +56,7 @@ public partial class ShardModelDesc
     /// </remarks>
     [NativeOffset(0x58)]
     [NativeName("m_vInitialPanelVertices")]
-    public CNetworkUtlVectorBase__Vector4D__ InitialPanelVertices { get; set; }
+    public Vector4D[] InitialPanelVertices { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialBase.
@@ -60,7 +66,7 @@ public partial class ShardModelDesc
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_hMaterialBase")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ MaterialBase { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> MaterialBase { get; set; }
 
     /// <summary>
     ///     Gets or sets MaterialDamageOverlay.
@@ -70,7 +76,7 @@ public partial class ShardModelDesc
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_hMaterialDamageOverlay")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ MaterialDamageOverlay { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> MaterialDamageOverlay { get; set; }
 
     /// <summary>
     ///     Gets or sets ModelId.
@@ -100,7 +106,7 @@ public partial class ShardModelDesc
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_vecPanelVertices")]
-    public CNetworkUtlVectorBase__Vector2D__ PanelVertices { get; set; }
+    public Vector2D[] PanelVertices { get; set; }
 
     /// <summary>
     ///     Gets or sets ParentFrozen.

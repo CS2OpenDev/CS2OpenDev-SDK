@@ -609,7 +609,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x8E8)]
     [NativeName("m_hObserverPawn")]
-    public CHandle__CCSObserverPawn__ ObserverPawn { get; set; }
+    public CHandle<CCSObserverPawn> ObserverPawn { get; set; }
 
     /// <summary>
     ///     When a human takes over a bot, this holds a handle back to the original bot controller so the pawn can be returned after the human disconnects.
@@ -619,7 +619,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x910)]
     [NativeName("m_hOriginalControllerOfCurrentPawn")]
-    public CHandle__CCSPlayerController__ OriginalControllerOfCurrentPawn { get; set; }
+    public CHandle<CCSPlayerController> OriginalControllerOfCurrentPawn { get; set; }
 
     /// <summary>
     ///     Current armor value of the pawn (0–100 for vest, 100+ for helmet).
@@ -762,7 +762,7 @@ public partial class CCSPlayerController : CBasePlayerController
     /// </remarks>
     [NativeOffset(0x8E4)]
     [NativeName("m_hPlayerPawn")]
-    public CHandle__CCSPlayerPawn__ PlayerPawn { get; set; }
+    public CHandle<CCSPlayerPawn> PlayerPawn { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerTvControlFlags.

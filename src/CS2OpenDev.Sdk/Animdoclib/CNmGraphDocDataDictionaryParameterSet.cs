@@ -44,5 +44,5 @@ public partial class CNmGraphDocDataDictionaryParameterSet
     [NativeOffset(0x8)]
     [NativeName("m_parameters")]
     [NativeMetadata("MPropertyAutoExpandSelf", "")]
-    public CUtlVector__CNmGraphDocDataDictionary_Parameter_t__ Parameters { get; set; }
+    public CNmGraphDocDataDictionaryParameter[] Parameters { get; set; }
 }

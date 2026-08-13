@@ -41,7 +41,7 @@ public partial class FootStepTrigger
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_tags")]
-    public CUtlVector__int32__ Tags { get; set; }
+    public int[] Tags { get; set; }
 
     /// <summary>
     ///     Gets or sets TriggerPhase.

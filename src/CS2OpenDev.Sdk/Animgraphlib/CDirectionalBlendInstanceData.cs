@@ -41,7 +41,7 @@ public partial class CDirectionalBlendInstanceData
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_flCycleZeroTime")]
-    public CAnimNetVar__float32__ CycleZeroTime { get; set; }
+    public float CycleZeroTime { get; set; }
 
     /// <summary>
     ///     Gets or sets DampedValue.
@@ -61,7 +61,7 @@ public partial class CDirectionalBlendInstanceData
     /// </remarks>
     [NativeOffset(0x1C)]
     [NativeName("m_flPlaybackRate")]
-    public CAnimNetVar__float32__ PlaybackRate { get; set; }
+    public float PlaybackRate { get; set; }
 
     /// <summary>
     ///     Gets or sets PrevCycle.
@@ -81,7 +81,7 @@ public partial class CDirectionalBlendInstanceData
     /// </remarks>
     [NativeOffset(0x40)]
     [NativeName("m_resetCount")]
-    public CAnimNetVar__float32__ ResetCount { get; set; }
+    public float ResetCount { get; set; }
 
     /// <summary>
     ///     Gets or sets ResetCycleValue.
@@ -91,5 +91,5 @@ public partial class CDirectionalBlendInstanceData
     /// </remarks>
     [NativeOffset(0x34)]
     [NativeName("m_resetCycleValue")]
-    public CAnimNetVar__float32__ ResetCycleValue { get; set; }
+    public float ResetCycleValue { get; set; }
 }

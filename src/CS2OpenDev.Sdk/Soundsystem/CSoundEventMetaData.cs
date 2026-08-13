@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Soundsystem;
 
 /// <summary>
@@ -30,5 +36,5 @@ public partial class CSoundEventMetaData
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_soundEventVMix")]
-    public CStrongHandle__InfoForResourceTypeCVMixListResource__ SoundEventVMix { get; set; }
+    public CStrongHandle<InfoForResourceTypeCVMixListResource> SoundEventVMix { get; set; }
 }

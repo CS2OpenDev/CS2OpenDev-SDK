@@ -36,7 +36,7 @@ public partial class CCSPlayerPingServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x5C)]
     [NativeName("m_hPlayerPing")]
-    public CHandle__CPlayerPing__ PlayerPing { get; set; }
+    public CHandle<CPlayerPing> PlayerPing { get; set; }
 
     /// <summary>
     ///     Gets or sets PlayerPingTokens.

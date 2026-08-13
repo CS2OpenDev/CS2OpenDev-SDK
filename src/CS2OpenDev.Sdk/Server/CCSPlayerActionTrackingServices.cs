@@ -46,7 +46,7 @@ public partial class CCSPlayerActionTrackingServices : CPlayerPawnComponent
     /// </remarks>
     [NativeOffset(0x1F8)]
     [NativeName("m_hLastWeaponBeforeC4AutoSwitch")]
-    public CHandle__CBasePlayerWeapon__ LastWeaponBeforeC4AutoSwitch { get; set; }
+    public CHandle<CBasePlayerWeapon> LastWeaponBeforeC4AutoSwitch { get; set; }
 
     /// <summary>
     ///     WeaponPurchaseTracker_t recording which weapons were bought during the match (used for match-stats).

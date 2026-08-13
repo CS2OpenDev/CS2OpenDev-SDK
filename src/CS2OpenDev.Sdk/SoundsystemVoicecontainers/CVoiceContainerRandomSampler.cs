@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.SoundsystemVoicecontainers;
 
 /// <summary>
@@ -53,7 +59,7 @@ public partial class CVoiceContainerRandomSampler : CVoiceContainerAsyncGenerato
     /// </remarks>
     [NativeOffset(0x98)]
     [NativeName("m_grainResources")]
-    public CUtlVector__CStrongHandle__InfoForResourceTypeCVoiceContainerBase____ GrainResources { get; set; }
+    public CStrongHandle<InfoForResourceTypeCVoiceContainerBase>[] GrainResources { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxLength.

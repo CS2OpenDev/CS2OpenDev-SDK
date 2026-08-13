@@ -36,7 +36,7 @@ public partial class CPointEntityFinder : CBaseEntity
     [NativeOffset(0x4A8)]
     [NativeName("m_hEntity")]
     [NativeMetadata("MNotSaved", "")]
-    public CHandle__CBaseEntity__ Entity { get; set; }
+    public CHandle<CBaseEntity> Entity { get; set; }
 
     /// <summary>
     ///     Gets or sets Filter.
@@ -46,7 +46,7 @@ public partial class CPointEntityFinder : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4B8)]
     [NativeName("m_hFilter")]
-    public CHandle__CBaseFilter__ Filter { get; set; }
+    public CHandle<CBaseFilter> Filter { get; set; }
 
     /// <summary>
     ///     Gets or sets FilterName.
@@ -96,5 +96,5 @@ public partial class CPointEntityFinder : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_hReference")]
-    public CHandle__CBaseEntity__ Reference { get; set; }
+    public CHandle<CBaseEntity> Reference { get; set; }
 }

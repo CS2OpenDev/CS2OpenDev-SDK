@@ -130,7 +130,7 @@ public partial class CBaseAnimGraph : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_OnLayerCycleUpdated")]
-    public CEntityOutputTemplate__float32__ OnLayerCycleUpdated { get; set; }
+    public float? OnLayerCycleUpdated { get; set; }
 
     /// <summary>
     ///     Gets or sets RagdollClientSide.

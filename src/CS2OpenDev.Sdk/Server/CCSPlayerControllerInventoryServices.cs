@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Common;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -120,5 +126,5 @@ public partial class CCSPlayerControllerInventoryServices : CPlayerControllerCom
     /// </remarks>
     [NativeOffset(0xF58)]
     [NativeName("m_vecServerAuthoritativeWeaponSlots")]
-    public CUtlVectorEmbeddedNetworkVar__ServerAuthoritativeWeaponSlot_t__ ServerAuthoritativeWeaponSlots { get; set; }
+    public ServerAuthoritativeWeaponSlot[] ServerAuthoritativeWeaponSlots { get; set; }
 }

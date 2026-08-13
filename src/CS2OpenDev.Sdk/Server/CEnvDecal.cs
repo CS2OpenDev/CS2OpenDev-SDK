@@ -10,6 +10,12 @@
 #pragma warning disable CS8714 // nullable type as Dictionary key
 #pragma warning disable CS0108 // member hides inherited member (C++ field shadowing)
 
+#region
+
+using CS2OpenSchema.Resourcesystem;
+
+#endregion
+
 namespace CS2OpenSchema.Server;
 
 /// <summary>
@@ -30,7 +36,7 @@ public partial class CEnvDecal : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x770)]
     [NativeName("m_hDecalMaterial")]
-    public CStrongHandle__InfoForResourceTypeIMaterial2__ DecalMaterial { get; set; }
+    public CStrongHandle<InfoForResourceTypeIMaterial2> DecalMaterial { get; set; }
 
     /// <summary>
     ///     Gets or sets Depth.

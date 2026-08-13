@@ -34,5 +34,5 @@ public partial class CVoiceContainerSet : CVoiceContainerBase
     [NativeOffset(0x70)]
     [NativeName("m_soundsToPlay")]
     [NativeMetadata("MPropertyFriendlyName", "Container List")]
-    public CUtlVector__CVoiceContainerSetElement__ SoundsToPlay { get; set; }
+    public CVoiceContainerSetElement[] SoundsToPlay { get; set; }
 }

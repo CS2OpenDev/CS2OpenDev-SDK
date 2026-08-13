@@ -155,7 +155,7 @@ public partial class CBaseGrenade : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x9E4)]
     [NativeName("m_hOriginalThrower")]
-    public CHandle__CCSPlayerPawn__ OriginalThrower { get; set; }
+    public CHandle<CCSPlayerPawn> OriginalThrower { get; set; }
 
     /// <summary>
     ///     Gets or sets Thrower.
@@ -165,7 +165,7 @@ public partial class CBaseGrenade : CBaseAnimGraph
     /// </remarks>
     [NativeOffset(0x9C8)]
     [NativeName("m_hThrower")]
-    public CHandle__CCSPlayerPawn__ Thrower { get; set; }
+    public CHandle<CCSPlayerPawn> Thrower { get; set; }
 
     /// <summary>
     ///     Gets or sets WarnAITime.
