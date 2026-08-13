@@ -31,6 +31,14 @@ namespace CS2SchemaGen.Emitters;
 // expose the raw packed `Value` and an `IsValid` check, and leave bit-decoding
 // to the consumer until upstream documents the layout authoritatively. Adding
 // EntityIndex/SerialNumber accessors later is a non-breaking addition.
+//
+// The doc comment below used to name a split (15 index / 17 serial) and send
+// readers to AGENTS.md for confirmation. Both halves were wrong: there is no
+// AGENTS.md in this repo, the Docs submodule's copy says nothing about handle
+// packing, and no artifact this repo consumes carries the number —
+// engine_constants.json is schema enums only. Being cautious in the code and
+// specific in the XML doc shipped the guess to every consumer, which is the one
+// place it could do real damage. See docs/HANDLES.md.
 internal static class HandleTypes
 {
     internal const uint InvalidEntityHandle = 0xFFFFFFFFu;
@@ -48,7 +56,7 @@ internal static class HandleTypes
         EmitEntityHandle(sb);
         sb.AppendLine();
         EmitGeneric(sb, "CHandle", "uint", InvalidEntityHandle.ToString() + "u",
-            "Strongly-typed 32-bit entity handle. `Value` is the raw packed `(serial &lt;&lt; index_bits) | index`; consult AGENTS.md for the exact bit split (currently 15 index / 17 serial).",
+            "Strongly-typed 32-bit entity handle. `Value` is the raw packed `(serial &lt;&lt; index_bits) | index`; the bit split is not documented authoritatively upstream, so decode it on your side and pin the assumption there. See docs/HANDLES.md.",
             "T");
         sb.AppendLine();
         EmitStrongHandleVoid(sb);

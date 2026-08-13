@@ -122,11 +122,37 @@ raw packed value and exposes `Value`, `IsValid` and an `Invalid` sentinel:
 ### Bit layout is deliberately not decoded
 
 `CHandle<T>` and `CEntityHandle` expose the raw packed `Value` and nothing else.
-The packing is `(serial << index_bits) | index`, currently 15 index bits and 17
-serial bits — but that split is not documented authoritatively upstream, so the
-SDK does not ship `EntityIndex` / `SerialNumber` accessors that would silently
-become wrong if it changed. Decode it yourself if you need to, and pin the
-assumption on your side. Adding those accessors later is a non-breaking change.
+The packing is `(serial << index_bits) | index`. **How many bits the index gets is
+not something this repository can tell you**, and that is a statement about the
+evidence rather than a stylistic hedge — so the SDK ships no `EntityIndex` /
+`SerialNumber` accessors that would silently become wrong. Decode it yourself if
+you need to, and pin the assumption on your side. Adding those accessors later,
+if the fact ever becomes citable, is a non-breaking change.
+
+An earlier revision of this page named a specific split (15 index bits, 17 serial
+bits). That number had no source and has been removed. Nothing in what this repo
+consumes carries it: `cs2_schema.json` describes types, not engine limits, and
+SchemaTracker's `engine_constants.json` at build 24701871 is 4,721 constants of
+which every single one has `source: schema_enum` — there is no `MAX_EDICTS`, no
+`NUM_ENT_ENTRY_BITS`, no entity-limit constant of any kind in it. Stating a split
+in prose while declining to encode it in code was the page contradicting itself,
+and the prose was the half without evidence behind it.
+
+The disagreement is not hypothetical. DemoViewer.NET's `EntityTracker` masks
+`handle & 0x3FFF` — 14 index bits — while this page asserted 15. Two
+implementations in one ecosystem, two different numbers, neither citing anything.
+Raised in the [entity-abstraction thread](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/6),
+where it settles a design question rather than opening one: **generated wrapper
+code must never decode a handle.** It passes the raw packed value to the runtime,
+and mask, sentinel and serial-validation policy stay the runtime's business. Had
+the SDK shipped accessors, one of those two readings would now be baked into
+published API.
+
+Resolving it properly needs the constant extracted from the binaries rather than
+inferred from behaviour — an upstream ask on
+[CS2OpenDev-SchemaTracker](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker),
+since `engine_constants.json` is the artifact that would carry it. Until then,
+"unknown" is the honest value and the one this page will keep.
 
 ## Game events are a separate thing
 
