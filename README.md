@@ -15,10 +15,13 @@ Three packages ship from this repo. They are layered so that taking the schema t
 | **`CS2OpenDev.Sdk`** | Schema classes, enums and game-event records. | **nothing** |
 | **`CS2OpenDev.Protos`** | Generated protobuf message types for the demo/engine wire protocol. | `Google.Protobuf` |
 | **`CS2OpenDev.Sdk.GameEvents`** | Decodes `CMsgSource1LegacyGameEvent` into the SDK's typed records. | `CS2OpenDev.Protos`, `CS2OpenDev.Sdk` |
+| **`CS2OpenDev.Sdk.Entities.Abstractions`** | The read contract generated entity wrappers are emitted against. Implemented by a demo parser. | **nothing** |
 
 `CS2OpenDev.Sdk`'s **zero dependencies are a deliberate, load-bearing property**, not an accident of the current implementation. A decoder's input type is a protobuf message, so putting one in the SDK would drag `Google.Protobuf` onto every consumer who only wanted to name a schema type. That is the entire reason the decoder is a separate package, and CI fails the build if the SDK's nuspec ever grows a `<dependency>`.
 
-The two new packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy) and [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names).
+The other packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy), [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names), and [`CS2OpenDev.Sdk.Entities.Abstractions`](src/CS2OpenDev.Sdk.Entities.Abstractions/README.md) (what crosses the seam and what deliberately does not).
+
+`CS2OpenDev.Sdk.Entities.Abstractions` is the odd one out and is meant to be. Every other package here is regenerated from the schema on a four-hourly clock; that one is hand-written, versioned on its own directory, and does not share the family major. It is a contract other people's runtimes implement, and a contract that regenerates every four hours is not a contract. It is at `0.x` until a real parser has implemented it and the conformance suite passes against that implementation — `1.0` is a claim about the shape surviving contact with a second implementation, which is not ours to make alone.
 
 > **Upgrading?** Five releases carry migration guides listing every affected name:
 >
@@ -156,11 +159,15 @@ src/
   CS2OpenDev.Protos/          — protobuf package; compiles ../../protos/ via Grpc.Tools at build
   CS2OpenDev.Sdk.GameEvents/  — decoder, registry, envelope
     Generated/                    — exporter output: 292 factories + the name registry
+  CS2OpenDev.Sdk.Entities.Abstractions/ — hand-written entity read contract; the only
+                                  package here not generated from the schema
   CS2OpenDev.Sdk.Generator/   — emitter library (consumes cs2_schema.json + gameevents_schema.json)
   CS2OpenDev.Sdk.Exporter/    — CLI that drives the emitters and writes both output trees to disk
 test/
   CS2OpenDev.Sdk.Generator.Tests/     — emitter + model unit tests
   CS2OpenDev.Sdk.GameEvents.Tests/    — decoder tests against real protobuf messages
+  CS2OpenDev.Sdk.Entities.Abstractions.Tests/ — the conformance suite: what the read
+                                        contract MEANS, run against the reference reader
 protos/                        — staged, namespace-injected .proto subset (generated, committed)
   PROVENANCE.json              — CS2 build id / platform / tracker commit the protos came from
 scripts/

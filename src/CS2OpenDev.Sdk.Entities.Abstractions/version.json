@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
+  "version": "0.1",
+  "// version": [
+    "0.x on purpose, and it is not modesty. This is a frozen contract that other",
+    "people's runtimes implement, and it has been implemented by nobody yet. 1.0",
+    "is the promise that the shape survived contact with a second implementation;",
+    "DemoViewer.NET is writing the first one against this assembly now. It goes to",
+    "1.0 when that lands and the conformance suite passes against a real parser,",
+    "not before.",
+    "",
+    "It does NOT track the family major. Sdk, Sdk.GameEvents and Protos share a",
+    "major because they are one product regenerated together; this is a contract",
+    "with its own life, and pinning it to the schema's major would mean a Valve",
+    "patch could bump the version of a file nobody touched."
+  ],
+  "pathFilters": [
+    ":/src/CS2OpenDev.Sdk.Entities.Abstractions/"
+  ],
+  "// pathFilters": [
+    "Its own directory and nothing else — this is the load-bearing line in the",
+    "file. Every other package here moves when the schema moves, because their",
+    "content is regenerated from it. A contract assembly that regenerates every",
+    "four hours is not frozen, whatever its documentation claims.",
+    "",
+    "The cost of getting this wrong is not hypothetical. On 2026-08-13 the",
+    "unattended refresh published CS2OpenDev.Protos 3.0.7 carrying a 188-type",
+    "removal as a patch, because nothing in that path is a semantic-versioning",
+    "gate and the version number came from git height. Scoping the filter here",
+    "means a schema regen cannot move this version at all: the only thing that",
+    "bumps it is a commit touching this directory, which is a human editing the",
+    "contract."
+  ],
+  "publicReleaseRefSpec": [
+    "^refs/heads/main$"
+  ],
+  "nugetPackageVersion": {
+    "semVer": 2
+  }
+}

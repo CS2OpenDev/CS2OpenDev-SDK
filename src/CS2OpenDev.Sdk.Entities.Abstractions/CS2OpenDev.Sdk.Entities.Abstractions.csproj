@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>CS2OpenDev.Sdk.Entities.Abstractions</AssemblyName>
+        <RootNamespace>CS2OpenDev.Sdk.Entities</RootNamespace>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- This assembly is the published contract, so the things that make a
+             contract safe to depend on are asserted rather than assumed.
+             IsTrimmable/IsAotCompatible are cheap here precisely because the
+             manifest is pure data: dropping the factory delegate from
+             EntityClassBinding is what makes them true. -->
+        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible>true</IsAotCompatible>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+        <PackageId>CS2OpenDev.Sdk.Entities.Abstractions</PackageId>
+        <Authors>CS2OpenDev Contributors</Authors>
+        <Description>
+            The read contract generated Counter-Strike 2 entity wrappers are emitted against:
+            a field reader, a handle-resolution service, a wrapper base class, and a pure-data
+            class binding. Implemented by a demo parser; consumed by generated code. Carries no
+            storage, decode or lifetime concepts, and takes no dependencies outside the BCL.
+        </Description>
+        <PackageTags>cs2;counter-strike;demo;source2;entities;abstractions</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <!-- No ProjectReference, no PackageReference, deliberately. A runtime
+         implements this contract in order to be usable by generated wrappers;
+         making it drag in CS2OpenDev.Sdk (which regenerates every four hours)
+         would put the schema's release cadence on the far side of a contract
+         that is supposed to be frozen. That is also why handles cross this seam
+         as a raw uint rather than as the SDK's CHandle<T>. -->
+</Project>

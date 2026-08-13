@@ -6,11 +6,20 @@ name: Pack and publish
 # the pack+publish logic in one place avoids the chained-workflow gotcha where
 # the default GITHUB_TOKEN can't trigger downstream workflow_runs.
 #
-# Three packages ship, and they do NOT share a version. CS2OpenDev.Protos moves
-# on the protobuf clock (its version.json matches `protos/` only), while the
-# other two move on the schema clock. So each package resolves its own version,
-# gets its own release tag, and is skipped independently when its version is a
-# prerelease.
+# Four packages ship, and they do NOT share a version. Three clocks:
+#
+#   * CS2OpenDev.Sdk and CS2OpenDev.Sdk.GameEvents move on the schema clock.
+#   * CS2OpenDev.Protos moves on the protobuf clock — its version.json matches
+#     `protos/` only, so a regen that leaves the descriptors alone does not
+#     bump it.
+#   * CS2OpenDev.Sdk.Entities.Abstractions moves only when a human edits it.
+#     Its pathFilters cover its own directory and nothing else, deliberately:
+#     it is a frozen contract other people's runtimes implement, and a contract
+#     that regenerates every four hours is not frozen. It does not share the
+#     family major either — see its version.json.
+#
+# So each package resolves its own version, gets its own release tag, and is
+# skipped independently when its version is a prerelease.
 
 on:
   workflow_call:
@@ -61,6 +70,16 @@ jobs:
           - id: CS2OpenDev.Sdk.GameEvents
             path: src/CS2OpenDev.Sdk.GameEvents
             schema_metadata: true
+          - id: CS2OpenDev.Sdk.Entities.Abstractions
+            path: src/CS2OpenDev.Sdk.Entities.Abstractions
+            # No schema provenance, and not for CS2OpenDev.Protos' reason. That
+            # package omits it because it stamps its own from PROVENANCE.json;
+            # this one omits it because the facts do not apply. Nothing here is
+            # generated from a CS2 build, so "which schema revision is this"
+            # has no answer — stamping one would imply the contract moves with
+            # the schema, which is the exact coupling its isolated pathFilters
+            # exist to prevent.
+            schema_metadata: false
     env:
       # Job-level so `if: env.NUGET_API_KEY != ''` can read it in step
       # conditions (step-level env is evaluated AFTER step `if:`).

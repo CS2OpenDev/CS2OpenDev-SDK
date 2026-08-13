@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TUnit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- The contract, referenced as a consumer would. These tests are the
+             conformance suite: they pin what the contract MEANS, not how this
+             repository happens to implement it, so a runtime can run the same
+             assertions against its own reader. -->
+        <ProjectReference Include="../../src/CS2OpenDev.Sdk.Entities.Abstractions/CS2OpenDev.Sdk.Entities.Abstractions.csproj"/>
+    </ItemGroup>
+
+</Project>

@@ -13,10 +13,12 @@
         <Project Path="src/CS2OpenDev.Sdk.Generator/CS2OpenDev.Sdk.Generator.csproj"/>
         <Project Path="src/CS2OpenDev.Protos/CS2OpenDev.Protos.csproj"/>
         <Project Path="src/CS2OpenDev.Sdk.GameEvents/CS2OpenDev.Sdk.GameEvents.csproj"/>
+        <Project Path="src/CS2OpenDev.Sdk.Entities.Abstractions/CS2OpenDev.Sdk.Entities.Abstractions.csproj"/>
     </Folder>
     <Folder Name="/test/">
         <Project Path="test/CS2OpenDev.Sdk.Generator.Tests/CS2OpenDev.Sdk.Generator.Tests.csproj"/>
         <Project Path="test/CS2OpenDev.Sdk.GameEvents.Tests/CS2OpenDev.Sdk.GameEvents.Tests.csproj"/>
+        <Project Path="test/CS2OpenDev.Sdk.Entities.Abstractions.Tests/CS2OpenDev.Sdk.Entities.Abstractions.Tests.csproj"/>
     </Folder>
 
 </Solution>
