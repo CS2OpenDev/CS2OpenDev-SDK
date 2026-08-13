@@ -32,19 +32,25 @@ wire-IDs to message types by short name.
 
 ## Where to get it
 
-**Not NuGet.org.** Publishing there is gated on a `NUGET_API_KEY` repository secret that is not
-configured, so the release job pushes to **GitHub Packages** and attaches the `.nupkg` and `.snupkg`
-to the GitHub release. Each release's notes name the feeds that version actually reached, so this is
+**GitHub Packages, and not NuGet.org.** The release job pushes to
+`https://nuget.pkg.github.com/CS2OpenDev/index.json` and attaches the `.nupkg` and `.snupkg` to the
+GitHub release. Each release's notes name the feeds that version actually reached, so this is
 checkable rather than something you have to take on trust.
 
-Two ways to consume it: a `nuget.config` source pointing at
-`https://nuget.pkg.github.com/CS2OpenDev/index.json`, or the `.nupkg` off the release page into a
-local folder source. GitHub Packages requires an authenticated token even for public packages, which
-is reason enough for some consumers to prefer the second.
+Two ways to consume it: a `nuget.config` source pointing at that feed, or the `.nupkg` off the
+release page into a local folder source. GitHub Packages requires an authenticated token even for
+public packages, which is reason enough for some consumers to prefer the second.
 
-NuGet.org is a gap rather than a decision — it is a credential, not a design question. It is not
-purely cosmetic, though: a package published on NuGet.org cannot declare a dependency on one that is
-not there, so the missing credential blocks downstream *publishers*, not just convenience.
+An earlier revision of this page called NuGet.org "a gap rather than a decision — a credential, not
+a design question." That is no longer true in either half: it **is** a decision, and it has been
+made. This project publishes to GitHub Packages only.
+
+The cost that paragraph correctly identified still stands, and is now a deliberate cost rather than
+an accident: a package on NuGet.org cannot declare a dependency on one that is not there, so this
+choice blocks downstream *publishers*, not just convenience. If you need to publish a NuGet.org
+package that depends on these types, the options are to vendor the generated types, to keep your
+dependency on them private, or to republish under an ID you own. Discussion in
+[#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5).
 
 ## Which CS2 build?
 

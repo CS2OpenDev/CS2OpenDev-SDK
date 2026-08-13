@@ -50,11 +50,31 @@ git submodule update --init --depth 1 schema-tracker
 
 ## Using the SDK
 
-Add the NuGet package to your project:
+**These packages are published to GitHub Packages, not NuGet.org.** Point a `nuget.config` at this
+org's feed:
 
 ```xml
-<PackageReference Include="CS2OpenDev.Sdk" Version="1.0.0" />
+<configuration>
+  <packageSources>
+    <add key="CS2OpenDev" value="https://nuget.pkg.github.com/CS2OpenDev/index.json" />
+  </packageSources>
+</configuration>
 ```
+
+GitHub Packages requires an authenticated token even for public packages, so the alternative is to
+take the `.nupkg` off a [release page](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases) into a
+local folder source. Each release's notes name the feeds that version actually reached.
+
+```xml
+<PackageReference Include="CS2OpenDev.Sdk" Version="4.1.5" />
+```
+
+> **Do not resolve `CS2OpenDev.Sdk` from NuGet.org.** A `1.0.1` exists there from May 2026 and is the
+> only version that does. It is four majors stale, and it advertises `GPL-3.0-or-later` — a licence
+> this project's own history records as an error four days after publishing it ([`4d0bffb0`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/commit/4d0bffb0)).
+> This project is MIT. Unlisting that version is tracked in
+> [#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5); until it happens, an unqualified
+> `dotnet add package CS2OpenDev.Sdk` against the default feed will silently fetch it.
 
 Then reference types out of the per-module namespaces. The root namespace is `CS2OpenSchema`; each schema module gets a child namespace (`CS2OpenSchema.Client`, `CS2OpenSchema.Server`, `CS2OpenSchema.Common`, etc.).
 
@@ -273,12 +293,14 @@ That rule is now checked rather than remembered. `check-migration-readiness.py` 
 |---|---|---|
 | `ci.yml` | PRs + pushes to main | Build, test, regenerate, fail if the regen output diverges from committed SDK, fail if the proto surface shrank without a version bump, verify pack succeeds |
 | `check-upstream.yml` | Cron (every 4h) + manual | Bump the upstream submodule, regenerate, push to main if anything changed, then invoke the reusable pack-and-publish flow in the same run |
-| `release.yml` | Pushes to main that touch `src/CS2OpenDev.Sdk/**` or `version.json` + manual | Invokes the reusable pack-and-publish flow (for human-driven version bumps and the post-merge case) |
-| `_pack-and-publish.yml` | `workflow_call` from the two above | Packs the SDK with CS2 build metadata, uploads the `.nupkg` as a workflow artifact, and pushes to NuGet.org (gated on `NUGET_API_KEY`) |
+| `release.yml` | Pushes to main touching any package's `src/` directory, `protos/`, or a `version.json` + manual | Invokes the reusable pack-and-publish flow (for human-driven version bumps and the post-merge case). Its trigger paths are literal prefixes and must list every package — `scripts/check-release-wiring.py` asserts they do |
+| `_pack-and-publish.yml` | `workflow_call` from the two above | Packs each of the four packages with its own version, uploads the `.nupkg` as a workflow artifact, and pushes to **GitHub Packages** |
 
 The bot identity used for automated pushes is `CS2OpenDev-bot <bot@CS2OpenDev.invalid>`. `check-upstream.yml` calls the publish workflow as a *dependent job in the same run* (via `workflow_call`) rather than relying on its push to fire `release.yml` — that's because GitHub blocks workflow-triggered pushes authenticated with the default `GITHUB_TOKEN` from triggering downstream workflows, and we'd rather skip the PAT-rotation burden.
 
-To enable NuGet.org publishing, add a `NUGET_API_KEY` secret in Settings → Secrets and variables → Actions. Without it, the package is still built on every run and uploaded as a workflow artifact (downloadable from the run page) — useful for forks and during initial setup.
+**NuGet.org publishing is not enabled, and that is a decision rather than a gap.** The publish steps are still gated on a `NUGET_API_KEY` secret, which is deliberately not set; every version reaches GitHub Packages and the release page instead. The workflow's own notices say which feeds a given version actually reached, so this stays checkable.
+
+Two consequences worth stating rather than leaving to be discovered. The 4-hourly cron cannot publish irreversibly, because there is no credential for it to use — which is not nothing: on 2026-08-13 it shipped `CS2OpenDev.Protos` 3.0.7 carrying a 188-type removal as a patch, and GitHub Packages let that version be deleted where NuGet.org would not have. And a package on NuGet.org cannot depend on one that is not there, so this choice blocks downstream *publishers*, not just convenience — discussed in [#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5).
 
 #### What ends up in the published artifact
 
