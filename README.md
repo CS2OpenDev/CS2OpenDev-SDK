@@ -177,6 +177,9 @@ scripts/
                                  (--baseline TAG audits one transition, --selftest replays
                                  the 3.0.7 incident)
   proto_surface.py             — the .proto public-surface model the gate compares
+  check-release-wiring.py      — asserts every package is in the publish matrix, release.yml's
+                                 trigger paths, and ci.yml's pack step (miss one and it
+                                 merges and silently never ships)
   namespace-diff.py            — which types changed namespace between two SDK trees
   rename-diff.py               — which identifiers were renamed between two SDK trees
 names.lock.json                — pinned identifier spellings (generated, committed)

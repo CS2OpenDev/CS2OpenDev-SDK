@@ -12,10 +12,18 @@ name: Release
 # unchanged ones no-ops on the feed, so this does not need to work out which
 # package a given push affected.
 #
-# The trigger paths must cover all three packages. `src/CS2OpenDev.Sdk/**` is a
+# The trigger paths must cover all four packages. `src/CS2OpenDev.Sdk/**` is a
 # literal prefix match and does NOT match `src/CS2OpenDev.Sdk.GameEvents/**`,
 # so each is listed explicitly — as is `protos/`, which is the input
 # CS2OpenDev.Protos is built from and the only thing that moves its version.
+#
+# That warning caught a real omission the day it was tested: CS2OpenDev.Sdk.-
+# Entities.Abstractions was added to the release matrix and both pack paths but
+# not here, so it merged to main and no release fired. The failure is silent by
+# construction — a package missing from this list does not error, it simply
+# never ships, and the matrix that would have built it never runs. Adding a
+# package means editing this list, _pack-and-publish.yml's matrix, and ci.yml's
+# pack step; miss this one and the other two look complete.
 
 on:
   push:
@@ -23,6 +31,7 @@ on:
     paths:
       - 'src/CS2OpenDev.Sdk/**'
       - 'src/CS2OpenDev.Sdk.GameEvents/**'
+      - 'src/CS2OpenDev.Sdk.Entities.Abstractions/**'
       - 'src/CS2OpenDev.Protos/**'
       - 'protos/**'
       # In CS2OpenDev.Protos' version.json pathFilters, so editing it moves that
