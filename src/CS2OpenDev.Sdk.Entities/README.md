@@ -129,10 +129,25 @@ them.
 
 ## Versioning
 
-`0.x` until a second implementation has run these wrappers over a real demo. The package
-self-verifies — every manifest passes `BindingConformance`, and the wrappers are exercised over the
-reference reader with no parser present — but "compiles and self-verifies" is not "correct", and
-the difference is what `1.0` claims.
+**`1.0`.** It stayed `0.x` until a second implementation had run these wrappers over a real demo.
+The package self-verifies — every manifest passes `BindingConformance`, and the wrappers are
+exercised over the reference reader with no parser present — but "compiles and self-verifies" is
+not "correct", and the difference is what `1.0` claims.
+
+DemoViewer.NET ran stages 2 and 3 against 0.3.0 over their own `EntityTracker` and a real GOTV
+demo: **4,434 ordinal comparisons, 0 mismatches**, joined by canonical path through the alias
+tables, and **zero adapter changes** — the third consecutive round, this time across a 4.6×
+manifest growth. The read this package exists for was measured directly: a marker `AK47` binding
+reads `Clip1` through a base-typed `BasePlayerWeapon` reference, using the base's compile-time
+ordinal against the derived class's binding, while `typeof(AK47)` declares no `Clip1`.
+
+**What that evidence does not cover.** 16 of the 59 curated classes never went live on the
+reference demo — `CWeaponAug`, `CWeaponNegev`, `CWeaponRevolver` and 13 more — so they are
+unexercised on real bytes. One demo cannot contain every gun. Each is a fieldless marker whose
+binding is its base's paths verbatim, byte-identical to markers under the same base that did sweep
+clean, and the prefix law is pinned structurally over all 52 derived wrappers rather than only the
+live ones. That is why the risk was judged small; it is not zero, and it is written down here
+rather than discovered later. `version.json` carries the full list and the reasoning.
 
 This package regenerates with the schema, so it moves when the curated state does. It does not
 share a version with the contract next door, which deliberately does not.
