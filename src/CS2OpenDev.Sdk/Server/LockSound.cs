@@ -48,7 +48,7 @@ public partial class LockSound
     /// </remarks>
     [NativeOffset(0x8)]
     [NativeName("sLockedSound")]
-    public CGameSoundEventName SLockedSound { get; set; }
+    public string SLockedSound { get; set; }
 
     /// <summary>
     ///     Gets or sets SUnlockedSound.
@@ -58,5 +58,5 @@ public partial class LockSound
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("sUnlockedSound")]
-    public CGameSoundEventName SUnlockedSound { get; set; }
+    public string SUnlockedSound { get; set; }
 }

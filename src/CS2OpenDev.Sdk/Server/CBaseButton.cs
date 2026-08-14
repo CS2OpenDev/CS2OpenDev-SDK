@@ -199,7 +199,7 @@ public partial class CBaseButton : CBaseToggle
     /// </remarks>
     [NativeOffset(0x828)]
     [NativeName("m_sLockedSound")]
-    public CGameSoundEventName SLockedSound { get; set; }
+    public string SLockedSound { get; set; }
 
     /// <summary>
     ///     Gets or sets SOverrideAnticipationName.
@@ -219,7 +219,7 @@ public partial class CBaseButton : CBaseToggle
     /// </remarks>
     [NativeOffset(0x830)]
     [NativeName("m_sUnlockedSound")]
-    public CGameSoundEventName SUnlockedSound { get; set; }
+    public string SUnlockedSound { get; set; }
 
     /// <summary>
     ///     Gets or sets SUseSound.
@@ -229,7 +229,7 @@ public partial class CBaseButton : CBaseToggle
     /// </remarks>
     [NativeOffset(0x820)]
     [NativeName("m_sUseSound")]
-    public CGameSoundEventName SUseSound { get; set; }
+    public string SUseSound { get; set; }
 
     /// <summary>
     ///     Gets or sets SolidBsp.

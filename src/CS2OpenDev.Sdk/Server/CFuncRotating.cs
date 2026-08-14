@@ -117,7 +117,7 @@ public partial class CFuncRotating : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7E0)]
     [NativeName("m_NoiseRunning")]
-    public CGameSoundEventName NoiseRunning { get; set; }
+    public string NoiseRunning { get; set; }
 
     /// <summary>
     ///     Gets or sets OnReachedStart.

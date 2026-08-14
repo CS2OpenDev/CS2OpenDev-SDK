@@ -300,7 +300,7 @@ public partial class CFuncTrackTrain : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7F8)]
     [NativeName("m_strPathTarget")]
-    public CGameSoundEventName PathTarget { get; set; }
+    public string PathTarget { get; set; }
 
     /// <summary>
     ///     Gets or sets PosPrev.
@@ -340,7 +340,7 @@ public partial class CFuncTrackTrain : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7D8)]
     [NativeName("m_iszSoundMove")]
-    public CGameSoundEventName SoundMove { get; set; }
+    public string SoundMove { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundMovePing.
@@ -350,7 +350,7 @@ public partial class CFuncTrackTrain : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7E0)]
     [NativeName("m_iszSoundMovePing")]
-    public CGameSoundEventName SoundMovePing { get; set; }
+    public string SoundMovePing { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundStart.
@@ -360,7 +360,7 @@ public partial class CFuncTrackTrain : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7E8)]
     [NativeName("m_iszSoundStart")]
-    public CGameSoundEventName SoundStart { get; set; }
+    public string SoundStart { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundStop.
@@ -370,7 +370,7 @@ public partial class CFuncTrackTrain : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7F0)]
     [NativeName("m_iszSoundStop")]
-    public CGameSoundEventName SoundStop { get; set; }
+    public string SoundStop { get; set; }
 
     /// <summary>
     ///     Gets or sets Speed.

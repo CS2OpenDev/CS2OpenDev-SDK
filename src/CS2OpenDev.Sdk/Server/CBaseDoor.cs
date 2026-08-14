@@ -178,7 +178,7 @@ public partial class CBaseDoor : CBaseToggle
     /// </remarks>
     [NativeOffset(0x850)]
     [NativeName("m_NoiseArrived")]
-    public CGameSoundEventName NoiseArrived { get; set; }
+    public string NoiseArrived { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseArrivedClosed.
@@ -188,7 +188,7 @@ public partial class CBaseDoor : CBaseToggle
     /// </remarks>
     [NativeOffset(0x860)]
     [NativeName("m_NoiseArrivedClosed")]
-    public CGameSoundEventName NoiseArrivedClosed { get; set; }
+    public string NoiseArrivedClosed { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseMoving.
@@ -198,7 +198,7 @@ public partial class CBaseDoor : CBaseToggle
     /// </remarks>
     [NativeOffset(0x848)]
     [NativeName("m_NoiseMoving")]
-    public CGameSoundEventName NoiseMoving { get; set; }
+    public string NoiseMoving { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseMovingClosed.
@@ -208,7 +208,7 @@ public partial class CBaseDoor : CBaseToggle
     /// </remarks>
     [NativeOffset(0x858)]
     [NativeName("m_NoiseMovingClosed")]
-    public CGameSoundEventName NoiseMovingClosed { get; set; }
+    public string NoiseMovingClosed { get; set; }
 
     /// <summary>
     ///     Gets or sets OnBlockedClosing.

@@ -23,10 +23,16 @@ internal static class Descriptors
     // TM-2: a new schema-dumper type the TypeMapper hasn't classified yet falls
     // through to a stub class. Reported so the maintainer sees the gap instead
     // of finding an empty stub at consumer build time.
+    //
+    // Deliberately-stubbed atomics (TypeMapper.DeliberatelyStubbedAtoms) take
+    // the stub path without the report: an entry there is a decision, not a
+    // gap, and a diagnostic that re-reports decisions on every regen is how
+    // this one spent three majors at 770 lines nobody read. The list this
+    // prints is a to-do list, and it reads empty when everything is decided.
     internal static readonly GeneratorDiagnostic UnknownAtomicType = new(
         "CS2_GEN_003",
         GeneratorDiagnosticSeverity.Info,
-        "Unknown atomic type '{0}' — emitted as empty stub class. Add it to TypeMapper if it has a meaningful C# projection.");
+        "Unknown atomic type '{0}' — emitted as empty stub class. Add it to TypeMapper if it has a meaningful C# projection, or to DeliberatelyStubbedAtoms with the reasoning if it does not.");
 
     // Raised when the upstream schema declares a `schema_format_version` whose
     // major differs from the one this generator was written against.
@@ -205,10 +211,10 @@ internal static class Descriptors
     // Deliberately one-directional. The reverse case, where this repo projects a
     // collection that upstream calls ATOMIC_T or ATOMIC_PLAIN, is not drift and is
     // not reported: CResourceArray and CRelativeArray are arrays by intent,
-    // CUtlStringMap is a map with an implied string key, CUtlVectorSIMDPaddedVector
-    // ships without an `inner` at all. Those are C# projection decisions, and the
-    // discriminator only describes C++ template arity. Reporting them would train
-    // people to ignore this id.
+    // CUtlStringMap and CUtlDict are maps with an implied string key,
+    // CUtlVectorSIMDPaddedVector ships without an `inner` at all. Those are C#
+    // projection decisions, and the discriminator only describes C++ template
+    // arity. Reporting them would train people to ignore this id.
     //
     // Error, and it fires zero times. That is the point.
     //

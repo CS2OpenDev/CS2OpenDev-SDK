@@ -652,6 +652,30 @@ public class GeneratorPipelineTests
         await Assert.That(result.Diagnostics).Contains(d => d.Id == "CS2_GEN_003");
     }
 
+    /// <summary>
+    ///     Issue #33: a deliberately-stubbed atomic still gets its stub class — the referencing property needs it to
+    ///     compile — but emits no <c>CS2_GEN_003</c>, and the generated summary points at the decision record instead
+    ///     of inviting classification.
+    /// </summary>
+    [Test]
+    public async Task Generator_DeliberatelyStubbedAtomic_EmitsStubWithoutCS2GEN003()
+    {
+        GeneratorHarness.RunResult result = GeneratorHarness.Run("""
+                                                                 {
+                                                                   "classes": [{
+                                                                     "name": "CFoo", "module": "client",
+                                                                     "fields": [{ "name": "m_hSelfCursor", "offset": 0,
+                                                                       "type": { "category": "atomic", "name": "HYieldedCursor" } }]
+                                                                   }]
+                                                                 }
+                                                                 """);
+
+        await Assert.That(result.Files).ContainsKey("Stubs");
+        await Assert.That(result.Files["Stubs"]).Contains("public partial class HYieldedCursor");
+        await Assert.That(result.Files["Stubs"]).Contains("deliberately unprojected");
+        await Assert.That(result.Diagnostics).DoesNotContain(d => d.Id == "CS2_GEN_003");
+    }
+
     // ── Q4 / sort stability: unsorted input → sorted output ──────────────────
 
     /// <summary>
