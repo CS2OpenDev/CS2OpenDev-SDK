@@ -153,12 +153,37 @@ jobs:
         # So state the condition instead of relying on a parse failure to imply
         # it. Runs before the regen so the log says "not ready to bump" rather
         # than burying it behind a successful regen of output we would not ship.
+        #
+        # Its C# surface condition is close to a no-op at this point in the job —
+        # src/CS2OpenDev.Sdk/ still holds what is committed on main, and the
+        # sources that would actually ship do not exist until the next step. The
+        # step after the regen is the one that sees them.
         if: steps.bump.outputs.submodule_changed == 'true'
         run: python3 scripts/check-migration-readiness.py
 
       - name: Regenerate SDK + game-event factories
         if: steps.bump.outputs.submodule_changed == 'true'
         run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
+
+      - name: Re-check the regenerated C# surface before pushing it
+        # The gate that could not run yet. Everything above the regen judged the
+        # inputs; this judges the output, which is the thing that gets committed,
+        # pushed to main and published without anyone looking at it.
+        #
+        # It has to be its own step rather than a re-run of the readiness check:
+        # the schema and proto conditions were already answered above and the
+        # answer has not changed, and a gate that repeats itself trains people to
+        # skim it.
+        #
+        # A removal here stops the job before "Commit + push", which is the whole
+        # design — src/CS2OpenDev.Sdk/ is regenerated wholesale from the submodule
+        # pin, so an upstream schema that drops a class drops it from the package
+        # with no line of this repository changing, and Nerdbank.GitVersioning
+        # supplies a patch number either way. That is how CS2OpenDev.Protos 3.0.7
+        # removed 188 public types as a patch. Discharge it the same way: bump the
+        # root version.json and write the migration note.
+        if: steps.bump.outputs.submodule_changed == 'true'
+        run: python3 scripts/check-migration-readiness.py --sdk-only
 
       - name: Decide whether any shipped content changed
         # A submodule moved, but the regenerated output might match what's
