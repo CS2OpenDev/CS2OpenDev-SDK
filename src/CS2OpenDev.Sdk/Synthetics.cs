@@ -209,6 +209,26 @@ public readonly struct CTransform
 }
 
 /// <summary>
+///     Rubikon physics bounding sphere — center and radius. 16 bytes.
+/// </summary>
+/// <remarks>
+///     Schema dump never registers a definition for this type — shape recovered
+///     from <c>RnSphereDesc_t</c>'s layout (16 bytes at offset 24 of 40) and the
+///     reflected sibling <c>RnCapsule_t</c> (two centers + radius, 28 bytes).
+/// </remarks>
+[NativeName("RnSphere_t")]
+public readonly struct RnSphere
+{
+    /// <summary>Center of the sphere.</summary>
+    [NativeName("m_vCenter")]
+    public Vector Center { get; init; }
+
+    /// <summary>Radius of the sphere.</summary>
+    [NativeName("m_flRadius")]
+    public float Radius { get; init; }
+}
+
+/// <summary>
 ///     3×4 transform matrix (12 floats, row-major).
 /// </summary>
 [NativeName("matrix3x4_t")]

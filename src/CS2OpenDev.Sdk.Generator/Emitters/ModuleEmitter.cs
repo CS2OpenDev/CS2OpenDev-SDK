@@ -1072,7 +1072,15 @@ internal static class ModuleEmitter
             // generates a documentation file, so that is an error and not a
             // warning — 5,430 of them on the first 2.0 regen. Everywhere else
             // that interpolates a schema name into XML already escapes it.
-            sb.AppendLine($"/// <summary>{NameHelpers.XmlEscape(original)} — forward-declared stub (type not reflected in cs2_schema.json).</summary>");
+            //
+            // Two kinds of stub, and the summary says which: an undecided one is
+            // an open item CS2_GEN_003 also reports, a deliberate one is a
+            // recorded decision — the consumer who lands here should find the
+            // pointer to why, not an invitation to classify it.
+            string reason = TypeMapper.DeliberatelyStubbedAtoms.Contains(TypeMapper.BareAtomName(original))
+                ? "deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record"
+                : "forward-declared stub (type not reflected in cs2_schema.json)";
+            sb.AppendLine($"/// <summary>{NameHelpers.XmlEscape(original)} — {reason}.</summary>");
             // CE-1: when SanitizeName had to rewrite the original (typically because
             // it contained C++ scope operators), preserve the original via [NativeName]
             // so runtime interop can round-trip back to the schema identifier.

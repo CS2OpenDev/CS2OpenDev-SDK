@@ -95,7 +95,7 @@ public partial class CAmbientGeneric : CPointEntity
     /// </remarks>
     [NativeOffset(0x520)]
     [NativeName("m_iszSound")]
-    public CGameSoundEventName Sound { get; set; }
+    public string Sound { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundLevel.

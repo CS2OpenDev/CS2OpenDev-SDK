@@ -75,7 +75,7 @@ public partial class CFuncRotator : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x8B0)]
     [NativeName("m_iszLoopSound")]
-    public CGameSoundEventName LoopSound { get; set; }
+    public string LoopSound { get; set; }
 
     /// <summary>
     ///     Gets or sets MaxYawRotation.
@@ -295,7 +295,7 @@ public partial class CFuncRotator : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x8A8)]
     [NativeName("m_iszStartSound")]
-    public CGameSoundEventName StartSound { get; set; }
+    public string StartSound { get; set; }
 
     /// <summary>
     ///     Gets or sets StartSpeed.
@@ -325,7 +325,7 @@ public partial class CFuncRotator : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x8D0)]
     [NativeName("m_iszStopSound")]
-    public CGameSoundEventName StopSound { get; set; }
+    public string StopSound { get; set; }
 
     /// <summary>
     ///     Gets or sets StrRotatorTarget.
