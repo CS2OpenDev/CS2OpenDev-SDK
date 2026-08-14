@@ -273,7 +273,7 @@ Package versions follow SemVer 2 with build metadata identifying the upstream sc
 |---|---|---|
 | `MAJOR` | `version.json` | Human — reserved for breaking API changes. **Bump every `version.json` still behind the new major** |
 | `MINOR` | `version.json` | Human — new emitter features |
-| `PATCH` | Git commit height since the last `MAJOR.MINOR` bump | Automatic via Nerdbank.GitVersioning |
+| `PATCH` | Git commit height since the last `MAJOR.MINOR` bump, less one | Automatic via Nerdbank.GitVersioning |
 | Build metadata | `cs2_schema.json` → `build_id`, `version_date` | Automatic from CI at pack-time |
 
 The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header's `revision` field. In schema 2.0 `revision` is a slash-bearing walker identity (`hl2sdk-cs2/5f891c90…/v1/3d1200e3…`) which is not a legal SemVer 2 build-metadata identifier; `.github/actions/read-schema-metadata` reads `build_id` and fails closed if it is missing rather than falling back to it.
@@ -285,6 +285,10 @@ The build-metadata slot is the Steam **`build_id`** (`24537688`), not the header
 **`CS2OpenDev.Protos` has its own `version.json`, and it is a patch clock, not a major one.** Its `pathFilters` cover `protos/`, `src/CS2OpenDev.Protos/` and `scripts/normalize-protos.py`, so a schema regen that leaves the `.proto` files alone does not bump it — that is the point, and it stays. But the `MAJOR` is kept in step with the SDK by hand, so the three packages that ship from this repo read as one product rather than three unrelated ones. A major bump is therefore a multi-file edit; the version numbers will agree on major and minor and differ on patch, which is intended.
 
 The rule above reads as though every break starts in the SDK. Not all do. The `.proto` closure is derived upstream, so Valve — or a SchemaTracker walker change — can delete public types from `CS2OpenDev.Protos` while `cs2_schema.json` is untouched and the SDK's projected API does not move at all. That is what happened at CS2 24701871: SchemaTracker v1.3.0 began emitting `cstrike15_gcmessages.proto` as a derived closure and 188 top-level types left the package, with a two-value metadata edit as the entire SDK diff. Bump the package that broke to the family's current major — the break is what `MAJOR` exists to signal, and a package sitting a major behind cannot signal it. Packages already at that major stay put rather than taking a break they did not have.
+
+**Every `MAJOR.MINOR` bump cuts a real `X.Y.0`**, and that takes one line per `version.json`. Nerdbank.GitVersioning counts height from the commit that changes `version`, and that commit is itself height 1 — so without `"versionHeightOffset": -1` the first release of a new major or minor lands as `X.Y.1`. This repo shipped 22 versions before anyone noticed, none of them ending in `.0`; `5.0.1` as the first 5.0 implies a `5.0.0` that was superseded, and none ever existed.
+
+The offset must be introduced *alongside* a `MAJOR.MINOR` bump. Adding it on its own shifts the next resolved version down by one, which can land below what is already on the feed — the same hazard as the restarted clock `CS2OpenDev.Sdk.GameEvents` once needed a positive offset to escape, running the other way.
 
 That rule is now checked rather than remembered. `check-migration-readiness.py` compares the staged `.proto` surface against the last released `CS2OpenDev.Protos` tag and fails when types or field numbers disappear while `version.json` stands still. It runs on PRs and ahead of the unattended regen, and it is deliberately narrow: a shrink is not forbidden, only a *silent* one. Editing `version.json` discharges it, which is the same shape as the Schema Lens gates — a fact the build cannot infer, asserted by a human, checked mechanically thereafter. 3.0.7 is the release that made the case for it.
 

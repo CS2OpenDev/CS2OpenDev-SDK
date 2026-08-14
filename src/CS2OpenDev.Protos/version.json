@@ -1,6 +1,25 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "5.0",
+  "version": "5.1",
+  "versionHeightOffset": -1,
+  "// versionHeightOffset": [
+    "Cancels the commit that changes `version` above, so a MAJOR.MINOR bump cuts a",
+    "real X.Y.0 instead of X.Y.1.",
+    "",
+    "Nerdbank.GitVersioning counts height from the commit that last changed",
+    "`version`, and that commit is itself height 1 -- so the first release of every",
+    "new MAJOR.MINOR landed as .1 and no .0 has ever existed here. 22 released",
+    "versions, zero ending in .0. Shipping `5.0.1` as the first 5.0 implies a 5.0.0",
+    "that was superseded, which never existed.",
+    "",
+    "This MUST be introduced alongside a MAJOR.MINOR bump. Adding it mid-stream",
+    "shifts the next resolved version DOWN by one, which can land below what is",
+    "already on the feed -- exactly the trap CS2OpenDev.Sdk.GameEvents' positive",
+    "offset was created to escape, in the other direction.",
+    "",
+    "Cannot make height negative in practice: the offset only applies from the",
+    "commit that sets it, which is a `version` change, so height is at least 1."
+  ],
   "pathFilters": [
     ":/protos/",
     ":/src/CS2OpenDev.Protos/",
