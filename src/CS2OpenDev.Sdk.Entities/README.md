@@ -30,7 +30,7 @@ if (w is CSPlayerPawn pawn)
 {
     int health = pawn.Health;                   // absent reads as 0
     int? life  = pawn.LifeState;                // absent reads as null — 0 means LIFE_ALIVE
-    Vector3 at = pawn.Origin;
+    Vector3? at = pawn.Origin;                  // absent reads as null — null is the normal case
     ulong buttons = pawn.Buttons;
 
     uint raw = pawn.ActiveWeaponHandle;         // packed, undecoded
@@ -43,10 +43,21 @@ if (w is CSPlayerPawn pawn)
 Most properties are **0-default**: a field that was never received reads as zero, which is
 harmless when zero is not a meaningful value.
 
-A curated few are **seen-aware** and typed `T?`, because zero *is* meaningful. `m_lifeState`'s `0`
-is `LIFE_ALIVE`, so a 0-default getter would make a pawn that never transmitted the field
-indistinguishable from a live one. Which fields get which policy is a per-field judgement recorded
-in the generator, not something inferred from a type.
+A curated few are **seen-aware** and typed `T?`, because a zero would be read as data. Which fields
+get which policy is a per-field judgement recorded in the generator, not something inferred from a
+type — and the reason differs per field, so read the property's `<remarks>` rather than assuming.
+
+Two ways in so far:
+
+- **A received zero is a state.** `m_lifeState`'s `0` is `LIFE_ALIVE`, so a 0-default getter would
+  make a pawn that never transmitted the field indistinguishable from a live one.
+- **The value never arrives at all.** `Origin`'s canonical path names a struct
+  (`CNetworkOriginCellCoordQuantizedVector`) whose leaves are what the wire carries, so the parent
+  path does not materialise over a GOTV demo and a 0-default presented that absence as the world
+  origin. Here `null` is the *normal* case, not an edge case — it does not mean the entity is at
+  `(0,0,0)`, and it does not mean your runtime dropped something. A runtime that reconstructs world
+  coordinates from the cell leaves and stores the result under this path serves it through this
+  property.
 
 ## Handles cross undecoded
 
