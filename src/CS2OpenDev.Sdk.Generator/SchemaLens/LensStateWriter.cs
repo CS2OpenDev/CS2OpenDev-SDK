@@ -34,6 +34,19 @@ internal static class LensStateWriter
         SchemaRoot schema,
         IReadOnlyDictionary<string, LensResolvedClass> resolution)
     {
+        // Built once per write rather than per field: 3,769 classes, of which 165
+        // reduce to a builtin today. The renderer resolves declared classes through
+        // this, which is what lets `CInButtonState` report the uint64 it actually
+        // carries instead of the null a type-graph walk stops at.
+        Dictionary<string, int?> effectiveWidths = new(StringComparer.Ordinal);
+        foreach (ClassModel c in schema.Classes)
+        {
+            effectiveWidths[c.Name] = c.EffectiveBuiltin?.ElementWidth;
+        }
+
+        Func<string, int?> declaredClassWidth = name =>
+            effectiveWidths.TryGetValue(name, out int? w) ? w : null;
+
         using MemoryStream buffer = new();
         // Relaxed escaping so `CHandle< CCSPlayerPawn >` reads as itself in a
         // file whose whole audience is people and non-.NET tooling — the
@@ -77,7 +90,7 @@ internal static class LensStateWriter
                     writer.WriteString("targetProperty", field.TargetProperty);
                     writer.WriteString("schemaType", LensTypeRenderer.Render(leaf));
 
-                    if (LensTypeRenderer.WidthBytes(leaf) is { } width)
+                    if (LensTypeRenderer.WidthBytes(leaf, declaredClassWidth) is { } width)
                     {
                         writer.WriteNumber("widthBytes", width);
                     }

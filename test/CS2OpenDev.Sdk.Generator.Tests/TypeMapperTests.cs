@@ -1,5 +1,6 @@
 using CS2SchemaGen.Emitters;
 using CS2SchemaGen.Models;
+using CS2SchemaGen.SchemaLens;
 
 namespace CS2_OpenDev.Sdk.Generator.Tests;
 
@@ -645,6 +646,40 @@ public class TypeMapperTests
     {
         string actual = TypeMapper.FormatEnumValue(value, storage);
         await Assert.That(actual).IsEqualTo(expected);
+    }
+
+    // ── Effective builtin width through a wrapper class ───────────────────────
+
+    /// <summary>A struct that reduces to one builtin reports that builtin's width, which is what stops every consumer maintaining a hand-curated "secretly wide" table.</summary>
+    [Test]
+    public async Task WidthBytes_ResolvesThroughAWrapperClass()
+    {
+        // CInButtonState declares one field, uint64[3]. A type-graph walk stops at
+        // the struct and returns null; upstream's effectiveBuiltin says uint64/8.
+        DeclaredClassType buttons = new("CInButtonState", "server");
+
+        await Assert.That(LensTypeRenderer.WidthBytes(buttons)).IsNull();
+        await Assert.That(LensTypeRenderer.WidthBytes(buttons, n => n == "CInButtonState" ? 8 : null))
+            .IsEqualTo(8);
+    }
+
+    /// <summary>An ordinary struct reduces to nothing, and null means "unknown" rather than a guess.</summary>
+    [Test]
+    public async Task WidthBytes_OrdinaryStructStaysUnknown()
+    {
+        DeclaredClassType plain = new("CSomeAggregate", "server");
+
+        await Assert.That(LensTypeRenderer.WidthBytes(plain, _ => null)).IsNull();
+    }
+
+    /// <summary>The resolver reaches through pointers and atomic wrappers, not just the top-level type.</summary>
+    [Test]
+    public async Task WidthBytes_ResolverReachesThroughWrappers()
+    {
+        TypeModel wrapped = new PtrType(new DeclaredClassType("CInButtonState", "server"));
+
+        await Assert.That(LensTypeRenderer.WidthBytes(wrapped, n => n == "CInButtonState" ? 8 : null))
+            .IsEqualTo(8);
     }
 
     // ── BareAtomName / CS2_GEN_015 category drift ─────────────────────────────

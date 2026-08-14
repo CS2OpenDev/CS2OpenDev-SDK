@@ -33,7 +33,23 @@ internal record ClassModel(
     ParentModel[] Parents,
     FieldModel[] Fields,
     MetadataEntry[] Metadata, // class-level metadata (MGetKV3ClassDefaults, etc.)
-    Annotations? Annotations = null);
+    Annotations? Annotations = null,
+    // The builtin this class actually reduces to on the wire, when it reduces to
+    // one at all. Present from SchemaTracker entity_schema 0.10.0 by way of the
+    // Docs projection, and null for the 3,604 of 3,769 classes that are ordinary
+    // structs rather than a wrapper around a single builtin shape.
+    //
+    // It exists to answer a question no other field could: `CInButtonState` is
+    // declared as a struct, so a width derivation walking the type graph stops
+    // there and returns null, while the wire carries uint64[3]. That gap is why
+    // every consumer maintained a hand-curated "these are secretly wide" table.
+    EffectiveBuiltin? EffectiveBuiltin = null);
+
+/// <summary>The builtin a wrapper class reduces to on the wire.</summary>
+/// <param name="Builtin">The underlying builtin name, e.g. <c>uint64</c>.</param>
+/// <param name="ElementWidth">Bytes per element — 8 for a <c>uint64</c>.</param>
+/// <param name="ElementCount">How many of them, 1 for a scalar wrapper.</param>
+internal record EffectiveBuiltin(string Builtin, int ElementWidth, int ElementCount);
 
 internal record ParentModel(string Name, string Module, uint Offset);
 
@@ -195,8 +211,10 @@ internal static class SchemaModel
             : [];
 
         Annotations? annotations = ParseAnnotations(e);
+        EffectiveBuiltin? effectiveBuiltin = ParseEffectiveBuiltin(e);
 
-        return new ClassModel(name, module, size, alignment, isAbstract, parents, fields, metadata, annotations);
+        return new ClassModel(
+            name, module, size, alignment, isAbstract, parents, fields, metadata, annotations, effectiveBuiltin);
     }
 
     // ── Classes ──
@@ -368,6 +386,26 @@ internal static class SchemaModel
         }
 
         return list.ToArray();
+    }
+
+    // Upstream encodes elementCount as a string and elementWidth as a number,
+    // matching how it spells sizes elsewhere in the artifact. Both are read
+    // permissively: a shape we cannot make sense of yields null, which is the
+    // same answer as the property being absent, and null means "we do not know"
+    // rather than "one byte".
+    private static EffectiveBuiltin? ParseEffectiveBuiltin(JsonElement e)
+    {
+        if (!e.TryGetProperty("effectiveBuiltin", out JsonElement el)
+            || el.ValueKind != JsonValueKind.Object)
+        {
+            return null;
+        }
+
+        string builtin = Str(el, "builtin");
+        int width = NumInt(el, "elementWidth");
+        int count = NumInt(el, "elementCount");
+
+        return builtin.Length == 0 || width <= 0 ? null : new EffectiveBuiltin(builtin, width, count);
     }
 
     private static TypeModel ParseType(JsonElement e)

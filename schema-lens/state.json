@@ -51,7 +51,7 @@
         "m_flSpawnTime": {
           "targetProperty": "SpawnTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_hOriginalThrower": {
@@ -169,13 +169,13 @@
         "m_nNextPrimaryAttackTick": {
           "targetProperty": "NextPrimaryAttackTick",
           "schemaType": "GameTick_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_nNextSecondaryAttackTick": {
           "targetProperty": "NextSecondaryAttackTick",
           "schemaType": "GameTick_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_pReserveAmmo": {
@@ -261,7 +261,7 @@
         "m_fRoundStartTime": {
           "targetProperty": "RoundStartTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_gamePhase": {
@@ -544,7 +544,7 @@
         "m_pGameRules.m_fRoundStartTime": {
           "targetProperty": "RoundStartTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_pGameRules.m_flGameStartTime": {
@@ -903,7 +903,7 @@
         "m_flDeathTime": {
           "targetProperty": "DeathTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_hController": {
@@ -975,7 +975,7 @@
         "m_pMovementServices.m_nButtons": {
           "targetProperty": "Buttons",
           "schemaType": "CInButtonState",
-          "widthBytes": null,
+          "widthBytes": 8,
           "firstSeenBuild": "genesis"
         },
         "m_pObserverServices.m_hObserverTarget": {
@@ -1158,13 +1158,13 @@
         "m_blindStartTime": {
           "targetProperty": "BlindStartTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_blindUntilTime": {
           "targetProperty": "BlindUntilTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_flFlashDuration": {
@@ -1287,7 +1287,7 @@
         "m_fExpireTime": {
           "targetProperty": "ExpireTime",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_nDecoyShotTick": {
@@ -1453,13 +1453,13 @@
         "m_flC4Blow": {
           "targetProperty": "C4Blow",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_flDefuseCountDown": {
           "targetProperty": "DefuseCountDown",
           "schemaType": "GameTime_t",
-          "widthBytes": null,
+          "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
         "m_flDefuseLength": {

@@ -41,11 +41,26 @@ internal static class LensTypeRenderer
     // declared classes, enums, arrays, bitfields — is a shape whose width
     // depends on knowledge this layer does not have, and a guessed width is
     // worse than an honest null.
-    internal static int? WidthBytes(TypeModel type) => type switch
+    internal static int? WidthBytes(TypeModel type) => WidthBytes(type, null);
+
+    /// <param name="type">The field type to measure.</param>
+    /// <param name="declaredClassWidth">
+    ///     Resolves a declared class name to the width of the builtin it reduces to,
+    ///     or null when it reduces to nothing. Supplied by the caller because this
+    ///     renderer sees one type at a time and the answer lives on the class record.
+    /// </param>
+    internal static int? WidthBytes(TypeModel type, Func<string, int?>? declaredClassWidth) => type switch
     {
         BuiltinType b => BuiltinWidth(b.Name),
-        PtrType p => WidthBytes(p.Inner),
-        AtomicType { Inner: { } inner } => WidthBytes(inner),
+        PtrType p => WidthBytes(p.Inner, declaredClassWidth),
+        AtomicType { Inner: { } inner } => WidthBytes(inner, declaredClassWidth),
+
+        // A struct that is really one builtin in disguise. Before upstream published
+        // this fact the walk stopped here and returned null, and every consumer kept
+        // a hand-curated list of the exceptions — `m_pMovementServices.m_nButtons`
+        // is declared `CInButtonState` and carries uint64 on the wire. Deriving it
+        // is what stops that list from being written.
+        DeclaredClassType d when declaredClassWidth is not null => declaredClassWidth(d.Name),
         _ => null
     };
 
