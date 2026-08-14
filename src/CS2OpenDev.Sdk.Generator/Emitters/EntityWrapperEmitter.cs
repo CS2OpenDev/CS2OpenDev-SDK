@@ -70,10 +70,18 @@ internal static class EntityWrapperEmitter
     //    presented that structural absence as the world origin. Measured, not
     //    theorised: none of DemoViewer.NET's 2,539 real-demo ordinal comparisons
     //    ever found an origin ordinal present (SDK#25, finding F3). Nullability
-    //    only stops the wrapper stating a position it never received — curating
-    //    the cell leaves, or synthesising world coordinates from them, remains
-    //    open (SDK#31) and is deliberately NOT attempted here, because decode
+    //    only stops the wrapper stating a position it never received. The cell
+    //    leaves themselves are now curated beside it (SDK#41, below); world-
+    //    coordinate synthesis from them stays open deliberately, because decode
     //    arithmetic is read semantics and lives consumer-side (SDK#6 §3).
+    //  - the quantized-origin leaves, on the same three classes: unlike the
+    //    struct parent these DO arrive on the wire, but a 0 that was never
+    //    received is not a missing position — it is a POSITION. Cell 0 is a
+    //    legal world cell, and the consumer-side reconstruction is
+    //    (cell − 32) × 512 + offset, so a 0-default would place the entity at
+    //    −16384 on that axis with full confidence. These were born nullable, so
+    //    the growth warning below does not apply to them: no consumer was ever
+    //    typed against a non-nullable spelling of these properties.
     //
     // Growing this set is a BREAKING change for consumers typed against the
     // non-nullable property — DemoViewer.NET has the four m_pInGameMoneyServices
@@ -101,6 +109,22 @@ internal static class EntityWrapperEmitter
         "under this path serves it through this property."
     ];
 
+    // Shared by all six leaves of the quantized origin, on the same three
+    // classes. One remark, because the trap is identical on every axis: zero is
+    // a coordinate, not an absence.
+    private static readonly string[] OriginLeafRemark =
+    [
+        "Nullable because <c>0</c> is a real value on every axis of the quantized",
+        "origin: cell 0 names a legal world cell, and the consumer-side",
+        "reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero",
+        "would place the entity at −16384 on that axis rather than nowhere.",
+        "<see langword=\"null\"/> means this leaf has never been received on the",
+        "wire. Unlike the struct-valued origin canonical, these leaves are exactly",
+        "what a demo transmits, so on live entities presence is the normal case.",
+        "World-coordinate synthesis from them is deliberately left to the consumer",
+        "(SDK#6 §3); this property is the raw wire value only."
+    ];
+
     private static readonly Dictionary<(string Class, string Field), string[]> SeenAwareFields = new()
     {
         [("CCSPlayerPawn", "m_lifeState")] =
@@ -111,7 +135,29 @@ internal static class EntityWrapperEmitter
         ],
         [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
         [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
-        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
+
+        // The quantized-origin leaves (SDK#41), spelled out entry by entry so a
+        // grep for any full canonical path lands here — the table is the record
+        // of the decision, and a loop would hide eighteen decisions behind one.
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX")] = OriginLeafRemark,
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY")] = OriginLeafRemark,
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ")] = OriginLeafRemark,
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX")] = OriginLeafRemark,
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY")] = OriginLeafRemark,
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ")] = OriginLeafRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX")] = OriginLeafRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY")] = OriginLeafRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ")] = OriginLeafRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX")] = OriginLeafRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY")] = OriginLeafRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ")] = OriginLeafRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX")] = OriginLeafRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY")] = OriginLeafRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ")] = OriginLeafRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX")] = OriginLeafRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY")] = OriginLeafRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ")] = OriginLeafRemark
     };
 
     // Abstract bases that are curated so the type hierarchy is complete — they
@@ -366,7 +412,16 @@ internal static class EntityWrapperEmitter
     private static Reads Dispatch(string schemaType, int? widthBytes) => schemaType switch
     {
         "bool" => new Reads("bool", "TryReadBool", "false", "bool"),
-        "float32" or "GameTime_t" => new Reads("float", "TryReadSingle", "0f", "float"),
+
+        // CNetworkedQuantizedFloat is compression policy around a float, not a
+        // shape of its own: the networked payload is one float32, quantized to
+        // a bit width this layer cannot see (which is also why widthBytes stays
+        // honestly null for it). Same projection TypeMapper makes for the main
+        // SDK. Without this branch the quantized-origin leaves would fall to
+        // the boxed composite default — the exact allocation the SDK#41 ask
+        // exists to remove.
+        "float32" or "GameTime_t" or "CNetworkedQuantizedFloat"
+            => new Reads("float", "TryReadSingle", "0f", "float"),
         "QAngle" => new Reads("QAngle", "TryReadQAngle", "default", "QAngle"),
 
         "Vector" or "VectorWS"
