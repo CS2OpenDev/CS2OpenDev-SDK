@@ -26,21 +26,65 @@ namespace CS2SchemaGen.Emitters;
 // because the wrapper and its manifest move together.
 internal static class EntityWrapperEmitter
 {
-    // Fields where a received 0 is a meaningful value rather than a harmless
-    // default, so the property is nullable and absence is null.
+    // Fields whose 0-default read would present absence as a plausible value,
+    // so the property is nullable and absence is null. The value is the emitted
+    // <remarks> body: each entry carries its own justification, because the trap
+    // differs per field and a generic remark would state the wrong reason.
     //
     // Curation, not inference: no schema fact distinguishes "0 is a sentinel"
-    // from "0 is a state". m_lifeState's 0 is LIFE_ALIVE, so a 0-default getter
-    // makes a pawn that never transmitted the field indistinguishable from a
-    // live one.
+    // from "0 is a state". Two ways in so far:
+    //
+    //  - m_lifeState: a received 0 IS a state — LIFE_ALIVE — so a 0-default
+    //    getter makes a pawn that never transmitted the field indistinguishable
+    //    from a live one.
+    //  - the relocated origin canonical, on all three classes carrying it: the
+    //    path names a struct whose leaves are what the wire carries, so the
+    //    parent path never materialises over a GOTV demo and the 0-default
+    //    presented that structural absence as the world origin. Measured, not
+    //    theorised: none of DemoViewer.NET's 2,539 real-demo ordinal comparisons
+    //    ever found an origin ordinal present (SDK#25, finding F3). Nullability
+    //    only stops the wrapper stating a position it never received — curating
+    //    the cell leaves, or synthesising world coordinates from them, remains
+    //    open (SDK#31) and is deliberately NOT attempted here, because decode
+    //    arithmetic is read semantics and lives consumer-side (SDK#6 §3).
     //
     // Growing this set is a BREAKING change for consumers typed against the
     // non-nullable property — DemoViewer.NET has the four m_pInGameMoneyServices
     // money fields staged and commented out for exactly that reason. Treat an
-    // addition as a major with a deprecation cycle, never a silent flip.
-    private static readonly HashSet<(string Class, string Field)> SeenAwareFields = new()
+    // addition as a major with a deprecation cycle, never a silent flip; a type
+    // flip on one name cannot carry a deprecation shim, so the version signal is
+    // all there is. The origin entries are why the package's 0.1 became 0.2 —
+    // pre-1.0, the minor is where that signal lives.
+    // Shared by the three classes carrying the relocated origin canonical. The
+    // remark has to say why null is the normal case on real demos, because a
+    // consumer who reads "nullable" without the struct fact will treat null as a
+    // transmission gap rather than as the wire's actual shape.
+    //
+    // Declared before SeenAwareFields because static initializers run in
+    // declaration order — the other way round, the dictionary captures null.
+    private static readonly string[] StructOriginRemark =
+    [
+        "Nullable because this canonical path names a struct",
+        "(<c>CNetworkOriginCellCoordQuantizedVector</c>) whose leaves — <c>m_cellX/Y/Z</c>,",
+        "<c>m_vecX/Y/Z</c> — are what the wire actually carries; the struct-valued parent",
+        "path never materialises over a GOTV demo, so a zero default would present that",
+        "absence as the world origin. <see langword=\"null\"/> means no value is stored",
+        "under this path — it does NOT mean the entity is at <c>(0,0,0)</c>. A runtime",
+        "that reconstructs world coordinates from the cell leaves and stores the result",
+        "under this path serves it through this property."
+    ];
+
+    private static readonly Dictionary<(string Class, string Field), string[]> SeenAwareFields = new()
     {
-        ("CCSPlayerPawn", "m_lifeState")
+        [("CCSPlayerPawn", "m_lifeState")] =
+        [
+            "Nullable because a received <c>0</c> is a meaningful value for this field,",
+            "so absence cannot be reported as zero. <see langword=\"null\"/> means the",
+            "field has never been received on the wire."
+        ],
+        [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
+        [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
+        [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark
     };
 
     // Abstract bases that are curated so the type hierarchy is complete — they
@@ -139,7 +183,7 @@ internal static class EntityWrapperEmitter
                 schemaType,
                 entry.FirstSeenBuild,
                 Dispatch(schemaType, width),
-                SeenAwareFields.Contains((engineClass, canonical))));
+                SeenAwareFields.ContainsKey((engineClass, canonical))));
         }
 
         // Identity entries (canonical → canonical) are a lookup convenience in
@@ -252,10 +296,14 @@ internal static class EntityWrapperEmitter
 
         if (f.SeenAware)
         {
+            // The per-field remark from the curated set: why THIS field's absence
+            // cannot be a zero, in the artifact a consumer actually reads.
             sb.AppendLine("    /// <remarks>");
-            sb.AppendLine("    ///     Nullable because a received <c>0</c> is a meaningful value for this field,");
-            sb.AppendLine("    ///     so absence cannot be reported as zero. <see langword=\"null\"/> means the");
-            sb.AppendLine("    ///     field has never been received on the wire.");
+            foreach (string line in SeenAwareFields[(plan.EngineClass, f.Canonical)])
+            {
+                sb.AppendLine($"    ///     {line}");
+            }
+
             sb.AppendLine("    /// </remarks>");
         }
 
