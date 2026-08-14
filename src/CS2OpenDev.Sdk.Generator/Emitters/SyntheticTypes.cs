@@ -122,6 +122,8 @@ internal static class SyntheticTypes
             sb.AppendLine();
         }
 
+        EmitRnSphere(sb, definedClassNames);
+
         EmitFloatArray(sb, "matrix3x4_t", "Matrix3x4", "3×4 transform matrix (12 floats, row-major).", 12, 0, definedClassNames);
         EmitFloatArray(sb, "matrix3x4a_t", "Matrix3x4a", "16-byte-aligned 3×4 transform matrix.", 12, 16, definedClassNames);
         EmitFloatArray(sb, "fltx4", "Fltx4", "SIMD 4-float vector (fltx4 / __m128). 16 bytes.", 4, 0, definedClassNames);
@@ -171,6 +173,51 @@ internal static class SyntheticTypes
         EmitGraphEditorViewConfig(sb, definedClassNames);
 
         return sb.ToString();
+    }
+
+    // RnSphere_t is referenced from RnSphereDesc_t.m_Sphere and
+    // RnCompound_t.m_Spheres (physicslib) but never reflected itself — the dump
+    // registers its siblings RnCapsule_t and RnHull_t and skips the sphere.
+    //
+    // The shape is reconstructable from what the schema does carry (issue #33):
+    //   1. RnSphereDesc_t is 40 bytes, parent RnShapeDesc_t is 24, and m_Sphere
+    //      sits at offset 24 with nothing after it — RnSphere_t is 16 bytes.
+    //   2. The declared sibling RnCapsule_t is the same shape one segment up:
+    //      `Vector m_vCenter[2]` + `float m_flRadius` = 28 bytes. A sphere is
+    //      the one-center degenerate of that: Vector (12) + float (4) = 16,
+    //      matching (1) exactly.
+    //
+    // Field names follow RnCapsule_t's reflected names, not a guess. This is
+    // the struct the FourVectors comment in TypeMapper calls the better route —
+    // FourVectors itself still projects float[] because nothing pins its
+    // consumer-facing shape the way RnCapsule_t pins this one.
+    private static void EmitRnSphere(StringBuilder sb, HashSet<string> definedClassNames)
+    {
+        if (definedClassNames.Contains("RnSphere_t"))
+        {
+            return;
+        }
+
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine("///     Rubikon physics bounding sphere — center and radius. 16 bytes.");
+        sb.AppendLine("/// </summary>");
+        sb.AppendLine("/// <remarks>");
+        sb.AppendLine("///     Schema dump never registers a definition for this type — shape recovered");
+        sb.AppendLine("///     from <c>RnSphereDesc_t</c>'s layout (16 bytes at offset 24 of 40) and the");
+        sb.AppendLine("///     reflected sibling <c>RnCapsule_t</c> (two centers + radius, 28 bytes).");
+        sb.AppendLine("/// </remarks>");
+        sb.AppendLine("[NativeName(\"RnSphere_t\")]");
+        sb.AppendLine("public readonly struct RnSphere");
+        sb.AppendLine("{");
+        sb.AppendLine("    /// <summary>Center of the sphere.</summary>");
+        sb.AppendLine("    [NativeName(\"m_vCenter\")]");
+        sb.AppendLine("    public Vector Center { get; init; }");
+        sb.AppendLine();
+        sb.AppendLine("    /// <summary>Radius of the sphere.</summary>");
+        sb.AppendLine("    [NativeName(\"m_flRadius\")]");
+        sb.AppendLine("    public float Radius { get; init; }");
+        sb.AppendLine("}");
+        sb.AppendLine();
     }
 
     // CGraphEditorViewConfig is referenced from CGraphEditorState.m_viewConfig

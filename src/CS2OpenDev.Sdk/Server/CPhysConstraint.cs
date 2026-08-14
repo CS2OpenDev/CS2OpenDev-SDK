@@ -56,7 +56,7 @@ public abstract partial class CPhysConstraint : CLogicalEntity
     /// </remarks>
     [NativeOffset(0x4D8)]
     [NativeName("m_breakSound")]
-    public CGameSoundEventName BreakSound { get; set; }
+    public string BreakSound { get; set; }
 
     /// <summary>
     ///     Gets or sets ForceLimit.

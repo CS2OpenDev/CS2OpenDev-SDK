@@ -45,7 +45,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x820)]
     [NativeName("m_iszArriveAtDestinationSound")]
-    public CGameSoundEventName ArriveAtDestinationSound { get; set; }
+    public string ArriveAtDestinationSound { get; set; }
 
     /// <summary>
     ///     Gets or sets BeginStopT.
@@ -445,7 +445,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7F8)]
     [NativeName("m_iszLoopForwardSound")]
-    public CGameSoundEventName LoopForwardSound { get; set; }
+    public string LoopForwardSound { get; set; }
 
     /// <summary>
     ///     Gets or sets LoopReverseSound.
@@ -455,7 +455,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x810)]
     [NativeName("m_iszLoopReverseSound")]
-    public CGameSoundEventName LoopReverseSound { get; set; }
+    public string LoopReverseSound { get; set; }
 
     /// <summary>
     ///     Gets or sets MoveType.
@@ -815,7 +815,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x7F0)]
     [NativeName("m_iszStartForwardSound")]
-    public CGameSoundEventName StartForwardSound { get; set; }
+    public string StartForwardSound { get; set; }
 
     /// <summary>
     ///     Gets or sets StartReverseSound.
@@ -825,7 +825,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x808)]
     [NativeName("m_iszStartReverseSound")]
-    public CGameSoundEventName StartReverseSound { get; set; }
+    public string StartReverseSound { get; set; }
 
     /// <summary>
     ///     Gets or sets StartSpeed.
@@ -875,7 +875,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x800)]
     [NativeName("m_iszStopForwardSound")]
-    public CGameSoundEventName StopForwardSound { get; set; }
+    public string StopForwardSound { get; set; }
 
     /// <summary>
     ///     Gets or sets StopFromBeginStopTarget.
@@ -895,7 +895,7 @@ public partial class CFuncMover : CBaseModelEntity
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_iszStopReverseSound")]
-    public CGameSoundEventName StopReverseSound { get; set; }
+    public string StopReverseSound { get; set; }
 
     /// <summary>
     ///     Gets or sets T.

@@ -42,7 +42,12 @@ internal static class TypeMapper
         "CUtlMap",
         // String-keyed dictionary; real schema entries carry only `inner` (the value
         // type) — the key is implied to be a string. (improvement-plan Step 4 callout.)
-        "CUtlStringMap"
+        "CUtlStringMap",
+        // Same shape, same divergence (issue #33): CUtlDict is CUtlMap with a
+        // const-char* key, upstream categorises it ATOMIC_T, and its schema
+        // entries carry only `inner`. Listed in the CS2_GEN_015 descriptor's
+        // deliberate-divergence roster alongside CUtlStringMap.
+        "CUtlDict"
     };
 
     private static readonly HashSet<string> SmartPtrAtoms = new(StringComparer.Ordinal)
@@ -80,7 +85,16 @@ internal static class TypeMapper
         "CResourceAssetTypeInfo",
         "CResourcePointer",
         "SndOpEventGuid_t",
-        "CUtlSymbolUTF8"
+        "CUtlSymbolUTF8",
+        // Issue #33 residue. CGameSoundEventName is the server-side sibling of
+        // CSoundEventName (above) — every schema use is a `m_isz*Sound` name on
+        // door/button/train entities. CUtlStringTokenNoRegistration is
+        // CUtlStringToken (above) minus the debug-registry side effect; both of
+        // its schema uses are the key of a CUtlOrderedMap in
+        // CEntityAttributeTable, so this entry is what turns those keys into
+        // `Dictionary<string, …>` instead of a stub-keyed dictionary.
+        "CGameSoundEventName",
+        "CUtlStringTokenNoRegistration"
     };
 
     // Handle atomics — project to the typed-handle value structs emitted by
@@ -242,8 +256,68 @@ internal static class TypeMapper
         // referencing class — see SyntheticTypes.EmitGraphEditorViewConfig.
         // Listed here so stub-collection treats it as a known type and skips
         // emitting an empty `public partial class CGraphEditorViewConfig {}`.
-        "CGraphEditorViewConfig"
+        "CGraphEditorViewConfig",
+        // Rubikon bounding sphere (issue #33). Not reflected in cs2_schema.json —
+        // physicslib reflects RnCapsule_t but not RnSphere_t — so the struct is
+        // reconstructed in SyntheticTypes.EmitRnSphere from evidence the schema
+        // does carry: RnSphereDesc_t is 40 bytes with m_Sphere at offset 24
+        // (parent RnShapeDesc_t is 24), pinning RnSphere_t at 16 bytes, and the
+        // declared sibling RnCapsule_t is exactly the same shape one segment up
+        // (m_vCenter[2] + m_flRadius, 28 bytes). Center + radius is the only
+        // 16-byte reading.
+        "RnSphere_t"
     };
+
+    // ── Deliberately stubbed atomics (issue #33) ─────────────────────────────
+    //
+    // Pulse VM internals that stay empty stub classes ON PURPOSE. This set is
+    // the decision record: an entry here means someone looked at the type and
+    // chose the stub over a projection — do not "fix" one without new evidence.
+    // Keyed on the BARE template name, so the decision covers every current and
+    // future instantiation of the template.
+    //
+    //   CPulseObservableExpression — NOT a value wrapper, though it looks like
+    //     one. The field is 120 bytes in every schema use (offset arithmetic on
+    //     CPulseCell_BooleanSwitchState and CPulseCell_TestYieldWithObservables):
+    //     it carries the observable expression itself — bindings and evaluation
+    //     state — not a T. Projecting `T?` via ValueWrapperAtoms would hand a
+    //     consumer a "float" that is actually an expression object.
+    //   HPulseCell / HPulseCellBase / HYieldedCursor — Pulse VM handles into
+    //     cell-instance and yielded-cursor tables. `nint` (the
+    //     ForeignPointerAtoms route) asserts pointer width, and for HYieldedCursor
+    //     that is provably false: CPulseCell_TestWaitWithCursorState::CursorState_t
+    //     places it at offset 8 and the next field at 20 — 12 bytes, no pointer.
+    //     The two 8-byte handles have no source naming their layout (HSCRIPT got
+    //     into ForeignPointerAtoms on hl2sdk's DECLARE_POINTER_HANDLE; nothing
+    //     comparable exists for Pulse). Every referencing field sits on a Pulse
+    //     cell — two of the four classes are literally Test cells — which no
+    //     demo consumer reads.
+    //
+    // Effect: MapAtomicCore still falls through to the stub path for these (the
+    // referencing properties need the class to exist), but the fall-through no
+    // longer registers a CS2_GEN_003 — a decided entry is not a gap, and the
+    // report stays a to-do list that reads empty when everything is decided.
+    //
+    // Two things this deliberately does NOT change:
+    //   ─ IsKnownAtomicName must keep returning false for these. "Known" is what
+    //     suppresses stub emission, and these still need their stubs. Adding an
+    //     entry to both sets produces properties referencing a class that is
+    //     never emitted.
+    //   ─ The CS2_GEN_015 category-drift check still runs for them. If a future
+    //     schema recategorises one as a container, that is new evidence and the
+    //     Error-severity tripwire should force the re-litigation.
+    //
+    // What this cannot catch: if upstream ever reflects one of these as a real
+    // class, the field stops being an ATOMIC and this set silently stops
+    // matching — which is the correct outcome, not a failure.
+    internal static readonly HashSet<string> DeliberatelyStubbedAtoms = new(StringComparer.Ordinal)
+    {
+        "CPulseObservableExpression",
+        "HPulseCell",
+        "HPulseCellBase",
+        "HYieldedCursor"
+    };
+
     // ── Name map ─────────────────────────────────────────────────────────────────
     //
     // Set by ModuleEmitter before any emission begins. Maps C++ type names to their
@@ -624,7 +698,15 @@ internal static class TypeMapper
         // and return the sanitized C++ name as the type reference. The stub class
         // emitted by ModuleEmitter will use the same SanitizeName, so the reference
         // resolves at compile time.
-        _unresolvedAtomics?.Add(at.Name);
+        //
+        // Deliberately-stubbed atomics take the same path minus the diagnostic:
+        // the stub is the decision, so reporting it as a gap on every regen would
+        // re-train people to skim CS2_GEN_003 — the habit that let the templated-
+        // name break survive three majors.
+        if (!DeliberatelyStubbedAtoms.Contains(name))
+        {
+            _unresolvedAtomics?.Add(at.Name);
+        }
 
         // CS2_GEN_015: upstream classified this as a container and we stubbed it.
         // Only the container categories are reported — ATOMIC_PLAIN and ATOMIC_T

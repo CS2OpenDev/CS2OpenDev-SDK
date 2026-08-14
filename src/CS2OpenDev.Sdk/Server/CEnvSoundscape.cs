@@ -106,7 +106,7 @@ public partial class CEnvSoundscape : CBaseEntity
     /// </remarks>
     [NativeOffset(0x4C8)]
     [NativeName("m_soundEventName")]
-    public CGameSoundEventName SoundEventName { get; set; }
+    public string SoundEventName { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundscapeEntityListId.

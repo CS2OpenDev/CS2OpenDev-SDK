@@ -58,7 +58,7 @@ public partial class CAIExpresser
     /// </remarks>
     [NativeOffset(0x10)]
     [NativeName("m_conceptCooldowns")]
-    public CUtlDict__GameTime_t__ ConceptCooldowns { get; set; }
+    public Dictionary<string, GameTime> ConceptCooldowns { get; set; }
 
     /// <summary>
     ///     Gets or sets ConsiderSceneInvolvementAsSpeech.
@@ -119,7 +119,7 @@ public partial class CAIExpresser
     /// </remarks>
     [NativeOffset(0x38)]
     [NativeName("m_ruleCooldowns")]
-    public CUtlDict__GameTime_t__ RuleCooldowns { get; set; }
+    public Dictionary<string, GameTime> RuleCooldowns { get; set; }
 
     /// <summary>
     ///     Gets or sets SceneEntityDisabled.

@@ -88,7 +88,7 @@ public partial class RnCompound
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Spheres")]
-    public RnSphere_t[] Spheres { get; set; }
+    public RnSphere[] Spheres { get; set; }
 
     /// <summary>
     ///     Gets or sets SurfaceArea.

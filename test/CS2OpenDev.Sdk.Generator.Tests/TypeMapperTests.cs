@@ -742,4 +742,87 @@ public class TypeMapperTests
 
         await Assert.That(TypeMapper.GetAtomicCategoryDrift().Count).IsEqualTo(0);
     }
+
+    // ── Issue #33: the eleven remaining unclassified atomics ─────────────────
+
+    /// <summary>Issue #33 classifications: sound/token names to <c>string</c>, <c>CUtlDict</c> to a string-keyed dictionary, <c>RnSphere_t</c> to the synthetic struct.</summary>
+    [Test]
+    [Arguments("CGameSoundEventName", "string")]
+    [Arguments("CUtlStringTokenNoRegistration", "string")]
+    [Arguments("RnSphere_t", "RnSphere")]
+    public async Task MapAtomic_Issue33ClassifiedAtoms_Project(string atomName, string expected)
+    {
+        AtomicType type = new(atomName, null, false, null, null);
+        string actual = TypeMapper.Map(type);
+        await Assert.That(actual).IsEqualTo(expected);
+    }
+
+    /// <summary>CUtlDict entries carry only <c>inner</c> (the value type) — the key is an implied string, same as <c>CUtlStringMap</c>.</summary>
+    [Test]
+    public async Task MapAtomic_CUtlDict_ProjectsToStringKeyedDictionary()
+    {
+        AtomicType type = new(
+            Name: "CUtlDict< GameTime_t >",
+            HandleKind: null,
+            Nullable: false,
+            Inner: new DeclaredClassType("GameTime_t", "entity2"),
+            Inner2: null);
+        string actual = TypeMapper.Map(type);
+        await Assert.That(actual).IsEqualTo("Dictionary<string, GameTime>");
+    }
+
+    /// <summary>The issue #33 classifications are mirrored in <see cref="TypeMapper.IsKnownAtomicName"/>, so the stub pre-pass stops emitting their stub classes.</summary>
+    [Test]
+    [Arguments("CGameSoundEventName")]
+    [Arguments("CUtlStringTokenNoRegistration")]
+    [Arguments("CUtlDict< GameTime_t >")]
+    [Arguments("RnSphere_t")]
+    public async Task IsKnownAtomicName_Issue33ClassifiedAtoms_ReportsKnown(string name)
+    {
+        await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsTrue();
+    }
+
+    /// <summary>The inverse lockstep: a deliberately-stubbed atomic must stay UNKNOWN to the stub pre-pass — "known" is what suppresses stub emission, and these still need their stub classes to exist.</summary>
+    [Test]
+    [Arguments("CPulseObservableExpression< bool >")]
+    [Arguments("HPulseCell< CPulseCell_TestWaitWithCursorState >")]
+    [Arguments("HPulseCellBase")]
+    [Arguments("HYieldedCursor")]
+    public async Task IsKnownAtomicName_DeliberatelyStubbedAtoms_StaysUnknown(string name)
+    {
+        await Assert.That(TypeMapper.DeliberatelyStubbedAtoms.Contains(TypeMapper.BareAtomName(name))).IsTrue();
+        await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsFalse();
+    }
+
+    /// <summary>A deliberately-stubbed atomic takes the stub path without registering a CS2_GEN_003 — the stub is the decision, not a gap.</summary>
+    [Test]
+    [NotInParallel("AtomicDrift")]
+    public async Task MapAtomic_DeliberatelyStubbed_EmitsStubWithoutDiagnostic()
+    {
+        TypeMapper.BeginEmission();
+
+        string actual = TypeMapper.Map(new AtomicType("HYieldedCursor", null, false, null, null, "ATOMIC_PLAIN"));
+
+        // Still the stub reference — the property needs the class to exist.
+        await Assert.That(actual).IsEqualTo("HYieldedCursor");
+        // But not reported: a decided entry on every regen is what trained
+        // people to skim this diagnostic for three majors.
+        await Assert.That(TypeMapper.GetUnresolvedAtomics()).DoesNotContain("HYieldedCursor");
+    }
+
+    /// <summary>The deliberate-stub decision does not disarm CS2_GEN_015: if upstream recategorises one of these as a container, the drift tripwire still records it.</summary>
+    [Test]
+    [NotInParallel("AtomicDrift")]
+    public async Task CategoryDrift_DeliberatelyStubbed_StillRecordsContainerCategory()
+    {
+        TypeMapper.BeginEmission();
+
+        // Hypothetical future schema calling HPulseCell a container. That is new
+        // evidence against the recorded decision, and it must fail the regen
+        // rather than hide behind the CS2_GEN_003 suppression.
+        TypeMapper.Map(new AtomicType("HPulseCell< CPulseCell_Foo >", null, false, null, null, "ATOMIC_COLLECTION_OF_T"));
+
+        IReadOnlyDictionary<string, (string Category, int Count)> drift = TypeMapper.GetAtomicCategoryDrift();
+        await Assert.That(drift.ContainsKey("HPulseCell")).IsTrue();
+    }
 }

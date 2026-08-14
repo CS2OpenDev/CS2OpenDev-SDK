@@ -29,7 +29,7 @@ public partial class CBasePlatTrain : CBaseToggle
     /// </remarks>
     [NativeOffset(0x7F8)]
     [NativeName("m_NoiseArrived")]
-    public CGameSoundEventName NoiseArrived { get; set; }
+    public string NoiseArrived { get; set; }
 
     /// <summary>
     ///     Gets or sets NoiseMoving.
@@ -39,7 +39,7 @@ public partial class CBasePlatTrain : CBaseToggle
     /// </remarks>
     [NativeOffset(0x7F0)]
     [NativeName("m_NoiseMoving")]
-    public CGameSoundEventName NoiseMoving { get; set; }
+    public string NoiseMoving { get; set; }
 
     /// <summary>
     ///     Gets or sets TLength.
