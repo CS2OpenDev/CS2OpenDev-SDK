@@ -96,7 +96,47 @@ public sealed class DictionaryEntityReader(
     }
 
     /// <inheritdoc/>
-    public bool TryReadEntityHandle(int ordinal, out uint rawHandle) => TryConvert(ordinal, out rawHandle);
+    public bool TryReadEntityHandle(int ordinal, out uint rawHandle)
+    {
+        // A width-fold, not a conversion, and the distinction is load-bearing.
+        //
+        // Routing handles through the same checked conversion as the numeric
+        // accessors made the invalid sentinel unreadable: `0xFFFFFFFF` written as an
+        // int `-1` overflows, and the read reported *absent*. But absent and
+        // "present, and explicitly nothing" are different facts about an entity —
+        // the whole reason this interface distinguishes them — and a handle reader
+        // that cannot return the sentinel cannot express the second one.
+        //
+        // So every integral width folds unchecked to the packed 32 bits, and the
+        // bit pattern crosses exactly as stored. Which of those patterns mean "no
+        // entity" is the runtime's policy, not this reader's, per TryReadEntityHandle's
+        // own contract.
+        //
+        // Found by DemoViewer.NET implementing this contract over a real parser,
+        // whose handles arrive boxed at several widths (SDK#6, finding F3).
+        if (!TryReadRaw(ordinal, out object? raw) || raw is null)
+        {
+            rawHandle = default;
+            return false;
+        }
+
+        switch (raw)
+        {
+            case uint u: rawHandle = u; return true;
+            case int i: rawHandle = unchecked((uint)i); return true;
+            case ulong ul: rawHandle = unchecked((uint)ul); return true;
+            case long l: rawHandle = unchecked((uint)l); return true;
+            case ushort us: rawHandle = us; return true;
+            case short s: rawHandle = unchecked((uint)s); return true;
+            case byte b: rawHandle = b; return true;
+            case sbyte sb: rawHandle = unchecked((uint)sb); return true;
+            default:
+                // Not an integral value at all — nothing to fold, so report absent
+                // rather than inventing a handle.
+                rawHandle = default;
+                return false;
+        }
+    }
 
     /// <inheritdoc/>
     public bool TryReadVector3(int ordinal, out System.Numerics.Vector3 value)

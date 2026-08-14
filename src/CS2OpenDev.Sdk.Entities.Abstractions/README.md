@@ -78,9 +78,26 @@ startup over whatever binding set you load.
 
 ## Versioning
 
-`0.x` because no runtime has implemented this yet. It goes to `1.0` when a real parser has and
-the conformance suite passes against it — `1.0` is the claim that the shape survived contact with
-a second implementation, and that claim is not ours to make alone.
+**Still `0.x`.** `1.0` is the claim that the shape survived contact with a *second*
+implementation, not that the author is happy with it.
+
+DemoViewer.NET implemented `IEntityFieldReader` and `IEntityWorld` over their own runtime against
+**0.1.1** and reported no contract change required, no runtime hooks added, and 43 conformance
+tests passing. On that version the criterion is met.
+
+This is `0.2`, not that version. Their findings changed the reference reader — `TryReadEntityHandle` now
+folds integral widths rather than converting them — and added normative wording about cross-shape
+`Vector3`/`QAngle` reads. They validated the reader *before* those changes. `1.0` goes out when the
+second implementation has run against this one.
+
+The minor moved rather than the patch because in `0.x` the minor is the breaking slot, and the
+handle fold is a behaviour change a consumer can observe: a handle that read as absent now reads as
+the invalid sentinel.
+
+One friction is deferred rather than resolved: a binding set has no contract-visible place to
+record which Schema Lens state it was derived from. That belongs on the generated wrapper registry,
+which does not exist yet — recorded here so it lands in the registry's design rather than being
+bolted into a `NetName` string later.
 
 This package does **not** share the major version of `CS2OpenDev.Sdk` / `.GameEvents` / `.Protos`.
 Those regenerate together from the schema; this is a contract with its own life, and its

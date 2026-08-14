@@ -126,6 +126,38 @@ public class ReadContractTests
         await Assert.That(raw).IsEqualTo(packed);
     }
 
+    /// <summary>Folds any integral width to the packed 32 bits, so the "no entity" sentinel can cross — a checked conversion would reject it and report absent.</summary>
+    [Test]
+    [Arguments(-1, 0xFFFFFFFFu)]                 // the invalid sentinel, written the way an int lane stores it
+    [Arguments(0, 0u)]                           // the other "no entity" encoding
+    [Arguments(271391, 271391u)]
+    public async Task EntityHandle_FoldsIntegralWidthsRatherThanConverting(int stored, uint expected)
+    {
+        DictionaryEntityReader reader = Reader(new Dictionary<string, object?> { ["m_hOwnerEntity"] = stored });
+
+        await Assert.That(reader.TryReadEntityHandle(4, out uint raw)).IsTrue();
+        await Assert.That(raw).IsEqualTo(expected);
+    }
+
+    /// <summary>A handle boxed at a wider width folds to the low 32 bits rather than failing.</summary>
+    [Test]
+    public async Task EntityHandle_FoldsFromWiderStorage()
+    {
+        DictionaryEntityReader reader = Reader(new Dictionary<string, object?> { ["m_hOwnerEntity"] = 0xFFFFFFFFUL });
+
+        await Assert.That(reader.TryReadEntityHandle(4, out uint raw)).IsTrue();
+        await Assert.That(raw).IsEqualTo(0xFFFFFFFFu);
+    }
+
+    /// <summary>A non-integral value is not a handle, so it reads as absent rather than being invented.</summary>
+    [Test]
+    public async Task EntityHandle_NonIntegralIsAbsent()
+    {
+        DictionaryEntityReader reader = Reader(new Dictionary<string, object?> { ["m_hOwnerEntity"] = "not a handle" });
+
+        await Assert.That(reader.TryReadEntityHandle(4, out _)).IsFalse();
+    }
+
     /// <summary>QAngle round-trips in the engine's own component order.</summary>
     [Test]
     public async Task QAngle_RoundTripsPitchYawRoll()

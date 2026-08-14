@@ -72,6 +72,14 @@ public interface IEntityFieldReader
     ///         Mask, sentinel encodings and serial validation are the runtime's policy. Turn
     ///         the value into an entity with <see cref="IEntityWorld.Resolve{T}"/>.
     ///     </para>
+    ///     <para>
+    ///         An implementation whose storage boxes handles at some other integral width must
+    ///         <b>fold</b> to these 32 bits rather than convert: the packed sentinel meaning
+    ///         "no entity" has the high bit set, and a checked conversion from a signed width
+    ///         rejects it. Reporting that as absent would erase the difference between a field
+    ///         that was never received and one that was explicitly set to nothing, which is the
+    ///         distinction this whole interface exists to preserve.
+    ///     </para>
     /// </remarks>
     /// <returns><see langword="false"/> if the field has never been received.</returns>
     bool TryReadEntityHandle(int ordinal, out uint rawHandle);
@@ -81,6 +89,28 @@ public interface IEntityFieldReader
     bool TryReadVector3(int ordinal, out System.Numerics.Vector3 value);
 
     /// <summary>Reads an Euler-angle field.</summary>
+    /// <remarks>
+    ///     <para>
+    ///         <b>Reading a position field as an angle, or an angle field as a vector, is
+    ///         implementation-defined.</b> An implementation may return the component triple
+    ///         reinterpreted, or report absent, and a consumer must not rely on either.
+    ///     </para>
+    ///     <para>
+    ///         This is a concession to how the wire actually works rather than a gap. Both
+    ///         shapes are three floats, and a runtime that decodes them into one storage
+    ///         representation has nothing left to discriminate on — the angle-ness is a fact
+    ///         about the schema, not about the value. Requiring refusal would oblige every
+    ///         implementation to carry per-ordinal schema-type metadata purely to reject a
+    ///         call no correct caller makes.
+    ///     </para>
+    ///     <para>
+    ///         Picking the right accessor is the emitter's job: a generated property calls the
+    ///         one matching its field's schema type, so the ambiguous call does not arise in
+    ///         generated code. Hand-written callers using ordinals directly are the only ones
+    ///         exposed, and they have the binding's <see cref="EntityClassBinding.CanonicalPaths"/>
+    ///         to tell them which field they are reading.
+    ///     </para>
+    /// </remarks>
     /// <returns><see langword="false"/> if the field has never been received.</returns>
     bool TryReadQAngle(int ordinal, out QAngle value);
 
