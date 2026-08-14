@@ -6,7 +6,7 @@ name: Pack and publish
 # the pack+publish logic in one place avoids the chained-workflow gotcha where
 # the default GITHUB_TOKEN can't trigger downstream workflow_runs.
 #
-# Four packages ship, and they do NOT share a version. Three clocks:
+# Five packages ship, and they do NOT share a version. Four clocks:
 #
 #   * CS2OpenDev.Sdk and CS2OpenDev.Sdk.GameEvents move on the schema clock.
 #   * CS2OpenDev.Protos moves on the protobuf clock — its version.json matches
@@ -69,6 +69,11 @@ jobs:
             schema_metadata: true
           - id: CS2OpenDev.Sdk.GameEvents
             path: src/CS2OpenDev.Sdk.GameEvents
+            schema_metadata: true
+          - id: CS2OpenDev.Sdk.Entities
+            path: src/CS2OpenDev.Sdk.Entities
+            # Generated from schema-lens/state.json, so it carries the same
+            # provenance as the other schema-derived packages.
             schema_metadata: true
           - id: CS2OpenDev.Sdk.Entities.Abstractions
             path: src/CS2OpenDev.Sdk.Entities.Abstractions

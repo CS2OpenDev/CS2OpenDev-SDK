@@ -14,6 +14,7 @@ using CS2OpenDev.SdkExporter;
 using CS2SchemaGen;
 using CS2SchemaGen.Diagnostics;
 using CS2SchemaGen.Emitters;
+using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using CS2SchemaGen.Models;
@@ -118,6 +119,26 @@ DiskSink sink = new(outputDir, staleCandidates);
 string gameEventsDir = Path.GetFullPath(
     Path.Combine(outputDir, "..", "CS2OpenDev.Sdk.GameEvents"));
 Directory.CreateDirectory(gameEventsDir);
+
+// Third output tree: the generated typed entity wrappers. Same reasoning as the
+// game-events split — they reference CS2OpenDev.Sdk.Entities.Abstractions, and
+// putting that in CS2OpenDev.Sdk would spend its zero-dependency footprint.
+string entitiesDir = Path.GetFullPath(
+    Path.Combine(outputDir, "..", "CS2OpenDev.Sdk.Entities"));
+Directory.CreateDirectory(entitiesDir);
+
+HashSet<string> entitiesStale = new(StringComparer.Ordinal);
+string entitiesGenerated = Path.Combine(entitiesDir, "Generated");
+if (Directory.Exists(entitiesGenerated))
+{
+    foreach (string path in Directory.EnumerateFiles(entitiesGenerated, "*.cs", SearchOption.AllDirectories))
+    {
+        if (IsGeneratedFile(path))
+        {
+            entitiesStale.Add(Path.GetFullPath(path));
+        }
+    }
+}
 
 HashSet<string> gameEventsStale = new(StringComparer.Ordinal);
 string gameEventsGenerated = Path.Combine(gameEventsDir, "Generated");
@@ -397,6 +418,34 @@ if (Directory.Exists(lensDirectory))
     Console.WriteLine(
         $"Lens: {lensMigrations.Count} migration(s), {lensReplay.State.Classes.Count} classes, "
         + $"{lensFieldCount} fields tracked");
+
+    // The typed wrappers go to their own package, for the same reason the
+    // game-event factories do: they reference CS2OpenDev.Sdk.Entities.Abstractions,
+    // and CS2OpenDev.Sdk's zero-dependency footprint is deliberate.
+    //
+    // Emitted from the same in-memory state that just produced state.json rather
+    // than by re-reading the file, so the manifests and the wrappers cannot
+    // disagree about an ordinal — they are two projections of one walk.
+    Dictionary<string, int?> effectiveWidths = new(StringComparer.Ordinal);
+    foreach (ClassModel c in schema.Classes)
+    {
+        effectiveWidths[c.Name] = c.EffectiveBuiltin?.ElementWidth;
+    }
+
+    DiskSink entitiesSink = new(Path.Combine(entitiesDir, "Generated"), entitiesStale);
+    EntityWrapperEmitter.EmitAll(
+        entitiesSink,
+        lensReplay.State,
+        lensGates.Resolution,
+        name => effectiveWidths.TryGetValue(name, out int? w) ? w : null,
+        lensHash,
+        schema.Revision?.ToString(CultureInfo.InvariantCulture) ?? "unknown",
+        "CS2OpenDev.Sdk.Entities");
+    Console.WriteLine($"Entities package: {entitiesSink.WrittenCount} file(s) to {entitiesDir}");
+    foreach (string path in entitiesStale)
+    {
+        File.Delete(path);
+    }
 }
 
 // ── Name diagnostics ─────────────────────────────────────────────────────────

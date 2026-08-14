@@ -67,6 +67,28 @@ def main() -> int:
     if not packages:
         return fail("Release wiring: no packages found in the pack-and-publish matrix.")
 
+    # The matrix cannot be the only source of truth for what ships, or a package
+    # absent from all three places is invisible to this check -- which is the
+    # failure it exists to prevent, one level up. It happened while adding
+    # CS2OpenDev.Sdk.Entities: the gate passed on four packages and said nothing
+    # about the fifth, because the fifth was in none of the lists it reads.
+    #
+    # So the ground truth is the filesystem: a project under src/ carrying a
+    # PackageId is a package, whatever the workflows think.
+    shipped = []
+    for proj in sorted((REPO / "src").glob("*/*.csproj")):
+        if "<PackageId>" in proj.read_text(encoding="utf-8"):
+            shipped.append(proj.parent.name)
+
+    missing_from_matrix = [p for p in shipped if p not in packages]
+    if missing_from_matrix:
+        for pkg in missing_from_matrix:
+            print(
+                f"::error::Release wiring: src/{pkg}/ declares a PackageId but is not in the "
+                f"pack-and-publish matrix — it would never be built or published."
+            )
+        return 1
+
     paths = trigger_block(release).get("push", {}).get("paths", [])
     if not paths:
         return fail("Release wiring: release.yml declares no push trigger paths.")
@@ -94,8 +116,8 @@ def main() -> int:
         return 1
 
     print(
-        f"Release wiring: all {len(packages)} package(s) are in the publish matrix, "
-        f"release.yml's trigger paths, and ci.yml's pack step."
+        f"Release wiring: all {len(packages)} package(s) found under src/ are in the publish "
+        f"matrix, release.yml's trigger paths, and ci.yml's pack step."
     )
     return 0
 

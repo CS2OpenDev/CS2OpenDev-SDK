@@ -12,7 +12,7 @@ name: Release
 # unchanged ones no-ops on the feed, so this does not need to work out which
 # package a given push affected.
 #
-# The trigger paths must cover all four packages. `src/CS2OpenDev.Sdk/**` is a
+# The trigger paths must cover all five packages. `src/CS2OpenDev.Sdk/**` is a
 # literal prefix match and does NOT match `src/CS2OpenDev.Sdk.GameEvents/**`,
 # so each is listed explicitly — as is `protos/`, which is the input
 # CS2OpenDev.Protos is built from and the only thing that moves its version.
@@ -31,6 +31,7 @@ on:
     paths:
       - 'src/CS2OpenDev.Sdk/**'
       - 'src/CS2OpenDev.Sdk.GameEvents/**'
+      - 'src/CS2OpenDev.Sdk.Entities/**'
       - 'src/CS2OpenDev.Sdk.Entities.Abstractions/**'
       - 'src/CS2OpenDev.Protos/**'
       - 'protos/**'

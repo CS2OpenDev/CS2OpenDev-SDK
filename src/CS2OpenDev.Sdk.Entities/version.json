@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
+  "version": "0.1",
+  "// version": [
+    "0.x for the same reason CS2OpenDev.Sdk.Entities.Abstractions is: no second",
+    "implementation has run these wrappers yet. The contract's own 1.0 criterion",
+    "applies here too -- DemoViewer.NET's A/B against a real demo, joined by",
+    "canonical path, is what turns 'the emitter compiles and self-verifies' into",
+    "'the emitter is right'.",
+    "",
+    "It does NOT track the family major, and it does not track the abstractions",
+    "version either. This regenerates with the schema; the contract does not.",
+    "Sharing a number with either would mean one of them moving for a reason that",
+    "has nothing to do with it."
+  ],
+  "versionHeightOffset": -1,
+  "// versionHeightOffset": [
+    "Cancels the commit that changes `version` above, so a MAJOR.MINOR bump cuts a",
+    "real X.Y.0. See the root README's versioning section for why every package",
+    "here carries it.",
+    "",
+    "Safe to introduce with the initial version rather than alongside a bump,",
+    "because nothing is published under this ID yet -- there is no feed entry for",
+    "a lower number to hide behind."
+  ],
+  "pathFilters": [
+    ":/src/CS2OpenDev.Sdk.Entities/"
+  ],
+  "// pathFilters": [
+    "Its own directory. Unlike the abstractions contract next door, this one SHOULD",
+    "move when the schema moves: the wrappers are regenerated from",
+    "schema-lens/state.json, so a curation change that adds a field is a real change",
+    "to this package's surface and should ship as one."
+  ],
+  "publicReleaseRefSpec": [
+    "^refs/heads/main$"
+  ],
+  "nugetPackageVersion": {
+    "semVer": 2
+  }
+}

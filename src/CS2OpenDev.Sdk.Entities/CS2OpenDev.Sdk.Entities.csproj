@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>CS2OpenDev.Sdk.Entities</AssemblyName>
+        <RootNamespace>CS2OpenDev.Sdk.Entities</RootNamespace>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- Generated/ carries the schema's own naming — underscored engine paths
+             in doc comments, C++-flavoured type names — so the same analyzer
+             carve-outs the other generated trees need apply here. -->
+        <NoWarn>$(NoWarn);CA1707;CA1711;CA1720</NoWarn>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+        <PackageId>CS2OpenDev.Sdk.Entities</PackageId>
+        <Authors>CS2OpenDev Contributors</Authors>
+        <Description>
+            Typed entity wrappers for Counter-Strike 2, generated from the curated Schema Lens
+            state. Reads through CS2OpenDev.Sdk.Entities.Abstractions, so the wrappers work over
+            any demo parser implementing that contract rather than over one particular runtime.
+        </Description>
+        <PackageTags>cs2;counter-strike;demo;source2;entities</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <BuildMetadata Include="cs.$(CS2SchemaRevision)"
+                       Condition="'$(CS2SchemaRevision)' != ''"/>
+        <BuildMetadata Include="dump.$(CS2SchemaDate)"
+                       Condition="'$(CS2SchemaDate)' != ''"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyMetadata Include="CS2SchemaRevision"
+                          Value="$(CS2SchemaRevision)"
+                          Condition="'$(CS2SchemaRevision)' != ''"/>
+        <AssemblyMetadata Include="CS2SchemaDumpDate"
+                          Value="$(CS2SchemaDate)"
+                          Condition="'$(CS2SchemaDate)' != ''"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- The contract, and nothing else. The generated wrappers touch
+             IEntityFieldReader, IEntityWorld, EntityWrapper and
+             EntityClassBinding; they reference no schema type, no protobuf
+             message and no parser, which is what lets them run over any runtime
+             implementing the seam. -->
+        <ProjectReference Include="../CS2OpenDev.Sdk.Entities.Abstractions/CS2OpenDev.Sdk.Entities.Abstractions.csproj"/>
+    </ItemGroup>
+</Project>

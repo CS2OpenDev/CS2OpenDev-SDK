@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TUnit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- The emitted package, exercised as a consumer would: through the
+             contract, with no parser present. Everything here runs against
+             DictionaryEntityReader, so a failure is a fault in what we emit
+             rather than in anyone's runtime. -->
+        <ProjectReference Include="../../src/CS2OpenDev.Sdk.Entities/CS2OpenDev.Sdk.Entities.csproj"/>
+    </ItemGroup>
+
+</Project>

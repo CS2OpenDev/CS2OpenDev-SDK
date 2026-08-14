@@ -161,6 +161,11 @@ jobs:
           # No schema properties: nothing in the abstractions package is generated
           # from a CS2 build, so there is no revision to stamp.
           dotnet pack src/CS2OpenDev.Sdk.Entities.Abstractions --configuration Release -nologo
+          dotnet pack src/CS2OpenDev.Sdk.Entities \
+            --configuration Release \
+            -nologo \
+            -p:CS2SchemaRevision=${{ steps.schema.outputs.revision }} \
+            -p:CS2SchemaDate=${{ steps.schema.outputs.date-iso }}
 
       - name: Assert CS2OpenDev.Sdk stays dependency-free
         # A standing constraint, and one that is easy to break by accident: the
