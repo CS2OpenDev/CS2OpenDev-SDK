@@ -94,6 +94,14 @@ public sealed class CSGameRulesProxy(IEntityFieldReader reader, IEntityWorld wor
     [SchemaFieldVersion("genesis")]
     public int TotalRoundsPlayed => Reader.TryReadInt32(Ord.TotalRoundsPlayed, out int v) ? v : 0;
 
+    /// <summary><c>m_pGameRules.m_vMinimapMaxs</c> (VectorWS).</summary>
+    [SchemaFieldVersion("24701871")]
+    public Vector3 MinimapMaxs => Reader.TryReadVector3(Ord.MinimapMaxs, out Vector3 v) ? v : default;
+
+    /// <summary><c>m_pGameRules.m_vMinimapMins</c> (VectorWS).</summary>
+    [SchemaFieldVersion("24701871")]
+    public Vector3 MinimapMins => Reader.TryReadVector3(Ord.MinimapMins, out Vector3 v) ? v : default;
+
     // Ordinals into the binding's CanonicalPaths — the own segment, after the
     // inherited prefix. Private because they are not API: a curation change on
     // an ancestor renumbers every own segment below it.
@@ -118,5 +126,7 @@ public sealed class CSGameRulesProxy(IEntityFieldReader reader, IEntityWorld wor
         internal const int CTsAliveAtFreezetimeEnd = 16;
         internal const int TerroristsAliveAtFreezetimeEnd = 17;
         internal const int TotalRoundsPlayed = 18;
+        internal const int MinimapMaxs = 19;
+        internal const int MinimapMins = 20;
     }
 }

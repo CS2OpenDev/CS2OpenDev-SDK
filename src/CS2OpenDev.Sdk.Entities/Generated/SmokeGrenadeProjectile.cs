@@ -47,11 +47,11 @@ public sealed class SmokeGrenadeProjectile(IEntityFieldReader reader, IEntityWor
     // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int DidGroundScorch = 12;
-        internal const int DidSmokeEffect = 13;
-        internal const int ExplodeFromInferno = 14;
-        internal const int SmokeEffectTickBegin = 15;
-        internal const int SmokeColor = 16;
-        internal const int SmokeDetonationPos = 17;
+        internal const int DidGroundScorch = 18;
+        internal const int DidSmokeEffect = 19;
+        internal const int ExplodeFromInferno = 20;
+        internal const int SmokeEffectTickBegin = 21;
+        internal const int SmokeColor = 22;
+        internal const int SmokeDetonationPos = 23;
     }
 }

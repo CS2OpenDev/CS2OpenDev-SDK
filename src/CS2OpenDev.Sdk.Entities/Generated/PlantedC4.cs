@@ -32,6 +32,96 @@ public sealed class PlantedC4(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public Vector3? Origin => Reader.TryReadVector3(Ord.Origin, out Vector3 v) ? v : null;
 
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX</c> (uint16).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public int? OriginCellX => Reader.TryReadInt32(Ord.OriginCellX, out int v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY</c> (uint16).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public int? OriginCellY => Reader.TryReadInt32(Ord.OriginCellY, out int v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ</c> (uint16).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public int? OriginCellZ => Reader.TryReadInt32(Ord.OriginCellZ, out int v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX</c> (CNetworkedQuantizedFloat).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public float? OriginVecX => Reader.TryReadSingle(Ord.OriginVecX, out float v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY</c> (CNetworkedQuantizedFloat).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public float? OriginVecY => Reader.TryReadSingle(Ord.OriginVecY, out float v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ</c> (CNetworkedQuantizedFloat).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public float? OriginVecZ => Reader.TryReadSingle(Ord.OriginVecZ, out float v) ? v : null;
+
     /// <summary><c>m_bBeingDefused</c> (bool).</summary>
     [SchemaFieldVersion("genesis")]
     public bool BeingDefused => Reader.TryReadBool(Ord.BeingDefused, out bool v) ? v : false;
@@ -90,16 +180,22 @@ public sealed class PlantedC4(IEntityFieldReader reader, IEntityWorld world)
     private static class Ord
     {
         internal const int Origin = 0;
-        internal const int BeingDefused = 1;
-        internal const int BombDefused = 2;
-        internal const int BombTicking = 3;
-        internal const int CannotBeDefused = 4;
-        internal const int HasExploded = 5;
-        internal const int C4Blow = 6;
-        internal const int DefuseCountDown = 7;
-        internal const int DefuseLength = 8;
-        internal const int TimerLength = 9;
-        internal const int BombDefuserHandle = 10;
-        internal const int BombSite = 11;
+        internal const int OriginCellX = 1;
+        internal const int OriginCellY = 2;
+        internal const int OriginCellZ = 3;
+        internal const int OriginVecX = 4;
+        internal const int OriginVecY = 5;
+        internal const int OriginVecZ = 6;
+        internal const int BeingDefused = 7;
+        internal const int BombDefused = 8;
+        internal const int BombTicking = 9;
+        internal const int CannotBeDefused = 10;
+        internal const int HasExploded = 11;
+        internal const int C4Blow = 12;
+        internal const int DefuseCountDown = 13;
+        internal const int DefuseLength = 14;
+        internal const int TimerLength = 15;
+        internal const int BombDefuserHandle = 16;
+        internal const int BombSite = 17;
     }
 }

@@ -78,6 +78,10 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     [SchemaFieldVersion("genesis")]
     public int PawnHealth => Reader.TryReadInt32(Ord.PawnHealth, out int v) ? v : 0;
 
+    /// <summary><c>m_iPendingTeamNum</c> (uint8).</summary>
+    [SchemaFieldVersion("24701871")]
+    public int PendingTeamNum => Reader.TryReadInt32(Ord.PendingTeamNum, out int v) ? v : 0;
+
     /// <summary><c>m_iPing</c> (uint32).</summary>
     [SchemaFieldVersion("genesis")]
     public int Ping => Reader.TryReadInt32(Ord.Ping, out int v) ? v : 0;
@@ -105,6 +109,22 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     /// <summary><c>m_pActionTrackingServices.m_iNumRoundKillsHeadshots</c> (int32).</summary>
     [SchemaFieldVersion("genesis")]
     public int NumRoundKillsHeadshots => Reader.TryReadInt32(Ord.NumRoundKillsHeadshots, out int v) ? v : 0;
+
+    /// <summary><c>m_pActionTrackingServices.m_matchStats.m_iAssists</c> (int32).</summary>
+    [SchemaFieldVersion("24701871")]
+    public int MatchAssists => Reader.TryReadInt32(Ord.MatchAssists, out int v) ? v : 0;
+
+    /// <summary><c>m_pActionTrackingServices.m_matchStats.m_iDamage</c> (int32).</summary>
+    [SchemaFieldVersion("24701871")]
+    public int MatchDamage => Reader.TryReadInt32(Ord.MatchDamage, out int v) ? v : 0;
+
+    /// <summary><c>m_pActionTrackingServices.m_matchStats.m_iDeaths</c> (int32).</summary>
+    [SchemaFieldVersion("24701871")]
+    public int MatchDeaths => Reader.TryReadInt32(Ord.MatchDeaths, out int v) ? v : 0;
+
+    /// <summary><c>m_pActionTrackingServices.m_matchStats.m_iKills</c> (int32).</summary>
+    [SchemaFieldVersion("24701871")]
+    public int MatchKills => Reader.TryReadInt32(Ord.MatchKills, out int v) ? v : 0;
 
     /// <summary><c>m_pInGameMoneyServices.m_iAccount</c> (int32).</summary>
     [SchemaFieldVersion("genesis")]
@@ -148,18 +168,23 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
         internal const int MVPs = 10;
         internal const int PawnArmor = 11;
         internal const int PawnHealth = 12;
-        internal const int Ping = 13;
-        internal const int Score = 14;
-        internal const int TeamNum = 15;
-        internal const int PlayerName = 16;
-        internal const int TotalRoundDamageDealt = 17;
-        internal const int NumRoundKills = 18;
-        internal const int NumRoundKillsHeadshots = 19;
-        internal const int Account = 20;
-        internal const int CashSpentThisRound = 21;
-        internal const int StartAccount = 22;
-        internal const int TotalCashSpent = 23;
-        internal const int SanitizedPlayerName = 24;
-        internal const int SteamID = 25;
+        internal const int PendingTeamNum = 13;
+        internal const int Ping = 14;
+        internal const int Score = 15;
+        internal const int TeamNum = 16;
+        internal const int PlayerName = 17;
+        internal const int TotalRoundDamageDealt = 18;
+        internal const int NumRoundKills = 19;
+        internal const int NumRoundKillsHeadshots = 20;
+        internal const int MatchAssists = 21;
+        internal const int MatchDamage = 22;
+        internal const int MatchDeaths = 23;
+        internal const int MatchKills = 24;
+        internal const int Account = 25;
+        internal const int CashSpentThisRound = 26;
+        internal const int StartAccount = 27;
+        internal const int TotalCashSpent = 28;
+        internal const int SanitizedPlayerName = 29;
+        internal const int SteamID = 30;
     }
 }

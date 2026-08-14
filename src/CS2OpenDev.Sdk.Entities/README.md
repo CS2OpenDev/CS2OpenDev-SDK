@@ -13,7 +13,7 @@ a [release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases).
 
 ## What you get
 
-59 wrapper classes over the curated set, mirroring the schema's curated hierarchy, and a
+61 wrapper classes over the curated set, mirroring the schema's curated hierarchy, and a
 registry:
 
 ```csharp
@@ -81,7 +81,7 @@ A curated few are **seen-aware** and typed `T?`, because a zero would be read as
 get which policy is a per-field judgement recorded in the generator, not something inferred from a
 type — and the reason differs per field, so read the property's `<remarks>` rather than assuming.
 
-Two ways in so far:
+Three ways in so far:
 
 - **A received zero is a state.** `m_lifeState`'s `0` is `LIFE_ALIVE`, so a 0-default getter would
   make a pawn that never transmitted the field indistinguishable from a live one.
@@ -92,6 +92,12 @@ Two ways in so far:
   `(0,0,0)`, and it does not mean your runtime dropped something. A runtime that reconstructs world
   coordinates from the cell leaves and stores the result under this path serves it through this
   property.
+- **A fabricated zero is a coordinate.** The quantized-origin leaves (`OriginCellX/Y/Z`,
+  `OriginVecX/Y/Z` on the same three classes) *do* arrive on the wire, but cell 0 is a legal world
+  cell — the consumer-side reconstruction is `(cell − 32) × 512 + offset`, so a 0-default would
+  place a never-received entity at −16384 on that axis with full confidence. `null` means the leaf
+  has not been received yet; on live entities presence is the normal case. The reconstruction
+  arithmetic itself stays on your side of the seam, deliberately.
 
 ## Handles cross undecoded
 

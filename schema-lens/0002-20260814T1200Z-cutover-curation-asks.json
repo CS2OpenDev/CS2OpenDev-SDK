@@ -1,0 +1,227 @@
+{
+  "id": "0002-20260814T1200Z-cutover-curation-asks",
+  "build": "24701871",
+  "appliedAt": "2026-08-14T12:00:00Z",
+  "notes": "The curation asks from DemoViewer.NET's cutover-readiness inventory (SDK#41), in their ranking. (1) The six quantized-origin leaves — m_cellX/Y/Z and m_vecX/Y/Z under m_CBodyComponent.m_pSceneNode.m_vecOrigin — on all three classes that carry the relocated origin canonical: CCSPlayerPawn, CBaseCSGrenadeProjectile and CPlantedC4. All three, not just the pawn, because the leaves exist to serve the same render/visibility path the Origin curation serves, and CBaseCSGrenadeProjectile is where the five projectile wrappers inherit from — curating the base once gives every projectile the typed leaves under the prefix layout. World-coordinate synthesis ((cell − 32) × 512 + offset) stays consumer-side per the issue #6 section-3 split; these are the raw leaves only. Property names keep the wire leaf spelling visible (OriginCellX ↔ m_cellX, OriginVecX ↔ m_vecX) while the Origin prefix groups them with the property they decompose. (2) CCSTeam, server-only so no module pin; m_iTeamNum and m_iScore resolve on its ancestors (CBaseEntity, CTeam), m_szClanTeamname is its own. (3) CInferno, server-only: scalar m_fireCount ONLY. The other two asks (m_bFireIsBurning[i], m_firePositions[i]) are fixed arrays, and array ELEMENTS have no ordinal-space answer without new contract surface: a canonical path names one ordinal, an [i] segment is not a schema field the resolver can walk, and curating the whole array would emit one boxed object — no better than the by-path hatch it would replace. Elements stay on TryReadByEnginePath, which resolves them by exact spelling on DemoViewer.NET's runtime today; what this choice cannot do is give arrays a typed, allocation-free read. Same reasoning leaves m_MinimapVerticalSectionHeights[i] uncurated. (4) The match-scoped action-tracking totals. The issue spells them m_pActionTrackingServices.m_iKills etc., but on the schema those leaves live on CSPerRoundStats_t, inherited by the embedded m_matchStats (CSMatchStats_t) — the schema-true path is m_pActionTrackingServices.m_matchStats.m_iKills, recorded as canonical with the issue's serializer-flattened spelling kept as an alias, exactly the genesis m_vecOrigin adaptation. Named Match* so the match scope cannot be confused with the round-scoped NumRoundKills/NumRoundKillsHeadshots/TotalRoundDamageDealt already curated beside them. (5) The minor leaves: minimap bounds through the gamerules proxy, pawn last-place name and duck amount, controller pending team. Seen-aware policy: the six origin leaves are nullable (see EntityWrapperEmitter — cell 0 is a legal world cell, so a 0-default would place a never-received entity at −16384 on that axis); everything else here takes the 0-default like its already-curated siblings — TeamNum/Score/FireCount zeros are the honest pre-first-update reading, DuckAmount 0 is standing, and MinimapMins/Maxs are per-map constants a consumer reads once, present whenever gamerules is.",
+  "stateHash": "sha256:bd27551a31bb92d1531c51e31475ff2c11a8b2f8df2290c8786bfa5d4f4698ff",
+  "changes": [
+    {
+      "op": "addClass",
+      "class": "CCSTeam"
+    },
+    {
+      "op": "addClass",
+      "class": "CInferno"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+      "targetProperty": "OriginCellX"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+      "targetProperty": "OriginCellY"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+      "targetProperty": "OriginCellZ"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+      "targetProperty": "OriginVecX"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+      "targetProperty": "OriginVecY"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
+      "targetProperty": "OriginVecZ"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_szLastPlaceName",
+      "targetProperty": "LastPlaceName"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pMovementServices.m_flDuckAmount",
+      "targetProperty": "DuckAmount"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+      "targetProperty": "OriginCellX"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+      "targetProperty": "OriginCellY"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+      "targetProperty": "OriginCellZ"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+      "targetProperty": "OriginVecX"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+      "targetProperty": "OriginVecY"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
+      "targetProperty": "OriginVecZ"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+      "targetProperty": "OriginCellX"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+      "targetProperty": "OriginCellY"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+      "targetProperty": "OriginCellZ"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+      "targetProperty": "OriginVecX"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+      "targetProperty": "OriginVecY"
+    },
+    {
+      "op": "addField",
+      "class": "CPlantedC4",
+      "field": "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
+      "targetProperty": "OriginVecZ"
+    },
+    {
+      "op": "addField",
+      "class": "CCSTeam",
+      "field": "m_iTeamNum",
+      "targetProperty": "TeamNum"
+    },
+    {
+      "op": "addField",
+      "class": "CCSTeam",
+      "field": "m_iScore",
+      "targetProperty": "Score"
+    },
+    {
+      "op": "addField",
+      "class": "CCSTeam",
+      "field": "m_szClanTeamname",
+      "targetProperty": "ClanTeamname"
+    },
+    {
+      "op": "addField",
+      "class": "CInferno",
+      "field": "m_fireCount",
+      "targetProperty": "FireCount"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_matchStats.m_iKills",
+      "targetProperty": "MatchKills"
+    },
+    {
+      "op": "addAlias",
+      "class": "CCSPlayerController",
+      "canonical": "m_pActionTrackingServices.m_matchStats.m_iKills",
+      "alias": "m_pActionTrackingServices.m_iKills"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_matchStats.m_iDeaths",
+      "targetProperty": "MatchDeaths"
+    },
+    {
+      "op": "addAlias",
+      "class": "CCSPlayerController",
+      "canonical": "m_pActionTrackingServices.m_matchStats.m_iDeaths",
+      "alias": "m_pActionTrackingServices.m_iDeaths"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_matchStats.m_iAssists",
+      "targetProperty": "MatchAssists"
+    },
+    {
+      "op": "addAlias",
+      "class": "CCSPlayerController",
+      "canonical": "m_pActionTrackingServices.m_matchStats.m_iAssists",
+      "alias": "m_pActionTrackingServices.m_iAssists"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_pActionTrackingServices.m_matchStats.m_iDamage",
+      "targetProperty": "MatchDamage"
+    },
+    {
+      "op": "addAlias",
+      "class": "CCSPlayerController",
+      "canonical": "m_pActionTrackingServices.m_matchStats.m_iDamage",
+      "alias": "m_pActionTrackingServices.m_iDamage"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iPendingTeamNum",
+      "targetProperty": "PendingTeamNum"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_vMinimapMins",
+      "targetProperty": "MinimapMins"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRulesProxy",
+      "field": "m_pGameRules.m_vMinimapMaxs",
+      "targetProperty": "MinimapMaxs"
+    }
+  ]
+}

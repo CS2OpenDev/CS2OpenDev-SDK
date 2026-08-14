@@ -1,5 +1,5 @@
 {
-  "lensHash": "sha256:41bec924af8d71fd09f780784484764cbed979359848592a6fbb64424be99884",
+  "lensHash": "sha256:bd27551a31bb92d1531c51e31475ff2c11a8b2f8df2290c8786bfa5d4f4698ff",
   "schemaBuild": "24701871",
   "classes": {
     "CAK47": {
@@ -41,6 +41,42 @@
           "schemaType": "CNetworkOriginCellCoordQuantizedVector",
           "widthBytes": null,
           "firstSeenBuild": "genesis"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX": {
+          "targetProperty": "OriginCellX",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY": {
+          "targetProperty": "OriginCellY",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ": {
+          "targetProperty": "OriginCellZ",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX": {
+          "targetProperty": "OriginVecX",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY": {
+          "targetProperty": "OriginVecY",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ": {
+          "targetProperty": "OriginVecZ",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
         },
         "m_bDetonationRecorded": {
           "targetProperty": "DetonationRecorded",
@@ -600,6 +636,18 @@
           "schemaType": "int32",
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
+        },
+        "m_pGameRules.m_vMinimapMaxs": {
+          "targetProperty": "MinimapMaxs",
+          "schemaType": "VectorWS",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_pGameRules.m_vMinimapMins": {
+          "targetProperty": "MinimapMins",
+          "schemaType": "VectorWS",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
         }
       },
       "aliases": {},
@@ -690,6 +738,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_iPendingTeamNum": {
+          "targetProperty": "PendingTeamNum",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "24701871"
+        },
         "m_iPing": {
           "targetProperty": "Ping",
           "schemaType": "uint32",
@@ -732,6 +786,30 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_pActionTrackingServices.m_matchStats.m_iAssists": {
+          "targetProperty": "MatchAssists",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        },
+        "m_pActionTrackingServices.m_matchStats.m_iDamage": {
+          "targetProperty": "MatchDamage",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        },
+        "m_pActionTrackingServices.m_matchStats.m_iDeaths": {
+          "targetProperty": "MatchDeaths",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        },
+        "m_pActionTrackingServices.m_matchStats.m_iKills": {
+          "targetProperty": "MatchKills",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        },
         "m_pInGameMoneyServices.m_iAccount": {
           "targetProperty": "Account",
           "schemaType": "int32",
@@ -769,7 +847,12 @@
           "firstSeenBuild": "genesis"
         }
       },
-      "aliases": {},
+      "aliases": {
+        "m_pActionTrackingServices.m_iAssists": "m_pActionTrackingServices.m_matchStats.m_iAssists",
+        "m_pActionTrackingServices.m_iDamage": "m_pActionTrackingServices.m_matchStats.m_iDamage",
+        "m_pActionTrackingServices.m_iDeaths": "m_pActionTrackingServices.m_matchStats.m_iDeaths",
+        "m_pActionTrackingServices.m_iKills": "m_pActionTrackingServices.m_matchStats.m_iKills"
+      },
       "ignored": [],
       "observedFields": [
         "m_bAbandonAllowsSurrender",
@@ -857,6 +940,42 @@
           "schemaType": "CNetworkOriginCellCoordQuantizedVector",
           "widthBytes": null,
           "firstSeenBuild": "genesis"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX": {
+          "targetProperty": "OriginCellX",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY": {
+          "targetProperty": "OriginCellY",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ": {
+          "targetProperty": "OriginCellZ",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX": {
+          "targetProperty": "OriginVecX",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY": {
+          "targetProperty": "OriginVecY",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ": {
+          "targetProperty": "OriginVecZ",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
         },
         "m_angEyeAngles": {
           "targetProperty": "EyeAngles",
@@ -966,6 +1085,12 @@
           "widthBytes": 1,
           "firstSeenBuild": "genesis"
         },
+        "m_pMovementServices.m_flDuckAmount": {
+          "targetProperty": "DuckAmount",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        },
         "m_pMovementServices.m_flStamina": {
           "targetProperty": "Stamina",
           "schemaType": "float32",
@@ -1007,6 +1132,12 @@
           "schemaType": "CNetworkUtlVectorBase< CHandle< CBasePlayerWeapon > >",
           "widthBytes": null,
           "firstSeenBuild": "genesis"
+        },
+        "m_szLastPlaceName": {
+          "targetProperty": "LastPlaceName",
+          "schemaType": "char[18]",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
         },
         "m_unCurrentEquipmentValue": {
           "targetProperty": "CurrentEquipmentValue",
@@ -1212,6 +1343,48 @@
         "m_pPingServices"
       ]
     },
+    "CCSTeam": {
+      "netName": "CSTeam",
+      "module": "server",
+      "fields": {
+        "m_iScore": {
+          "targetProperty": "Score",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        },
+        "m_iTeamNum": {
+          "targetProperty": "TeamNum",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "24701871"
+        },
+        "m_szClanTeamname": {
+          "targetProperty": "ClanTeamname",
+          "schemaType": "char[129]",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_bSurrendered",
+        "m_flNextResourceTime",
+        "m_iClanID",
+        "m_iLastUpdateSentAt",
+        "m_nLastRecievedShorthandedRoundBonus",
+        "m_nShorthandedRoundBonusStartRound",
+        "m_numMapVictories",
+        "m_scoreFirstHalf",
+        "m_scoreOvertime",
+        "m_scoreSecondHalf",
+        "m_szClanTeamname",
+        "m_szTeamFlagImage",
+        "m_szTeamLogoImage",
+        "m_szTeamMatchStat"
+      ]
+    },
     "CCSWeaponBaseGun": {
       "netName": "CSWeaponBaseGun",
       "module": "server",
@@ -1375,6 +1548,46 @@
       "ignored": [],
       "observedFields": []
     },
+    "CInferno": {
+      "netName": "Inferno",
+      "module": "server",
+      "fields": {
+        "m_fireCount": {
+          "targetProperty": "FireCount",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "24701871"
+        }
+      },
+      "aliases": {},
+      "ignored": [],
+      "observedFields": [
+        "m_BookkeepingTimer",
+        "m_BurnNormal",
+        "m_InitialSplashVelocity",
+        "m_NextSpreadTimer",
+        "m_activeTimer",
+        "m_bFireIsBurning",
+        "m_bInPostEffectTime",
+        "m_bWasCreatedInSmoke",
+        "m_damageRampTimer",
+        "m_damageTimer",
+        "m_extent",
+        "m_fireCount",
+        "m_fireParentPositions",
+        "m_firePositions",
+        "m_fireSpawnOffset",
+        "m_nFireEffectTickBegin",
+        "m_nFireLifetime",
+        "m_nInfernoType",
+        "m_nMaxFlames",
+        "m_nSourceItemDefIndex",
+        "m_nSpreadCount",
+        "m_splashVelocity",
+        "m_startPos",
+        "m_vecOriginalSpawnLocation"
+      ]
+    },
     "CKnife": {
       "netName": "Knife",
       "module": "server",
@@ -1427,6 +1640,42 @@
           "schemaType": "CNetworkOriginCellCoordQuantizedVector",
           "widthBytes": null,
           "firstSeenBuild": "genesis"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX": {
+          "targetProperty": "OriginCellX",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY": {
+          "targetProperty": "OriginCellY",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ": {
+          "targetProperty": "OriginCellZ",
+          "schemaType": "uint16",
+          "widthBytes": 2,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX": {
+          "targetProperty": "OriginVecX",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY": {
+          "targetProperty": "OriginVecY",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
+        },
+        "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ": {
+          "targetProperty": "OriginVecZ",
+          "schemaType": "CNetworkedQuantizedFloat",
+          "widthBytes": null,
+          "firstSeenBuild": "24701871"
         },
         "m_bBeingDefused": {
           "targetProperty": "BeingDefused",
