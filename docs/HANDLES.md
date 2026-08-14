@@ -154,11 +154,39 @@ and mask, sentinel and serial-validation policy stay the runtime's business. Had
 the SDK shipped accessors, one of those two readings would now be baked into
 published API.
 
-Resolving it properly needs the constant extracted from the binaries rather than
-inferred from behaviour — an upstream ask on
-[CS2OpenDev-SchemaTracker](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker),
-since `engine_constants.json` is the artifact that would carry it. Until then,
-"unknown" is the honest value and the one this page will keep.
+### What the upstream investigation found
+
+[SchemaTracker#11](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker/issues/11) asked for the
+constant to be extracted. The answer came back as a **verified negative**: it is not obtainable.
+
+String pools on both platforms carry no `NUM_ENT_ENTRY_BITS`, `NUM_SERIAL_NUM_BITS` or `MAX_EDICT*`
+under any spelling — the binaries do not name them even in assert text. `CEntityHandle` presents as
+an opaque atomic with no bitfield decomposition, and `CEntityIdentity`'s schema-visible fields start
+at offset 20, so the handle and serial bytes live in a prefix the type system deliberately hides.
+What remains is mask immediates baked into optimised code, which would mean per-era, per-platform
+disassembly matching — the "correct on every build tried so far" fragility this ecosystem exists to
+avoid.
+
+**But the investigation turned up something better than the number:** the two implementations may
+both have been right, about different encodings.
+
+`const.h` in the pinned hl2sdk defines `NUM_NETWORKED_EHANDLE_BITS = 14 + 10` — a **24-bit
+networked handle with a 14-bit index and a 10-bit serial** — separately from the in-memory 32-bit
+`CEntityHandle`, whose entry width is implied at 15 by `MAX_TOTAL_ENTITIES = 0x8000`. So a 14-bit
+mask matches the networked encoding, and 15 matches the in-memory one. If networked entities only
+ever occupy entries below 16,384, the narrow mask also works on in-memory handles for every entity
+a demo can reference — which is exactly how a wrong-in-principle mask passes every test anyone runs.
+
+That is a hypothesis with evidence, not a fact, and this page will not promote it to one. Note that
+the reference SDK contradicts itself even here: `const.h` says `NUM_ENT_ENTRY_BITS = 16` while its
+own comment (`32 - NUM_ENT_ENTRY_BITS`, against `NUM_SERIAL_NUM_BITS = 17`) implies 15. A header
+that disagrees with itself is not a citation.
+
+Upstream's guidance is that a curated number belongs in Docs' `well_known_constants.json` — cited,
+and visibly not machine-extracted — rather than in an auto-extracted artifact. Until someone
+curates it there, **"implementation-defined" is the honest value and the one this page keeps.** The
+design conclusion is unchanged and now better supported: generated code never decodes a handle, and
+whichever encoding a runtime is looking at is its own to know.
 
 ## Game events are a separate thing
 

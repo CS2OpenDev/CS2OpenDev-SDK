@@ -22,10 +22,21 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     </para>
 ///     <para>
 ///         <see cref="LensHash"/> and <see cref="SchemaBuild"/> identify the curated state
-///         these wrappers were generated from. A runtime that also loads the Schema Lens
-///         should compare its own hash against this one at startup — a mismatch means the
-///         curation moved without the wrappers being regenerated, which is skew that
-///         otherwise surfaces as fields silently reading absent.
+///         these wrappers were generated from. It is the hash of THIS repository’s
+///         <c>schema-lens/state.json</c>, under its own canonical form.
+///     </para>
+///     <para>
+///         <b>Do not compare it against a hash your own runtime computes.</b> An
+///         implementation that maintains its own Schema Lens hashes a different preimage
+///         — different fields, different canonical form — so the two numbers are not
+///         comparable and a mismatch would be guaranteed rather than meaningful. Assert
+///         your hash against your state, and this one against the <c>state.json</c> this
+///         package was published beside.
+///     </para>
+///     <para>
+///         Compatibility across the seam is established by canonical path, not by hash:
+///         two curated states can describe the same field under different spellings, and
+///         the alias tables are what reconcile them.
 ///     </para>
 /// </remarks>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
