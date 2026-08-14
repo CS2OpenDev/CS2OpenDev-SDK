@@ -2,6 +2,7 @@
 
 using System.Globalization;
 using System.Text;
+using CS2SchemaGen.Diagnostics;
 using CS2SchemaGen.Models;
 using CS2SchemaGen.SchemaLens;
 
@@ -18,12 +19,38 @@ namespace CS2SchemaGen.Emitters;
 // is what makes the output usable over any runtime implementing the seam rather
 // than over one particular parser.
 //
-// Ordinals are the ordinal-sort position of a class's canonical Lens paths, which
-// is exactly how the binding's CanonicalPaths array is built here — the two are
-// emitted from the same state in the same pass, so they agree by construction
-// rather than by convention. They are private, because they are not API: a rename
-// re-sorts the space and renumbers everything after it, which is safe only
-// because the wrapper and its manifest move together.
+// The emitted classes mirror the schema's curated hierarchy, and the ordinal
+// layout law is what makes that correct (SDK#30):
+//
+//   layout(C) = layout(nearestCuratedAncestor(C)) ++ ordinal-sort(ownFields(C))
+//
+// — single-inheritance object layout applied to ordinal spaces. The base
+// chain's ordinal space is a verbatim prefix of every descendant's binding, so
+// a base property's compile-time ordinal constant addresses the same field
+// through every derived binding, exactly as a C++ base subobject sits at
+// offset 0 of every derived object. The ancestor walk follows Parents[0] to
+// the nearest CURATED class; uncurated intermediates contribute nothing.
+//
+// What this deliberately gives up: a binding's whole path array is no longer
+// globally ordinal-sorted — only a root's is, and each class's own suffix.
+// That was always a repo convention, never a contract term: the contract
+// requires only that ordinal i is the field at CanonicalPaths[i], dense from
+// zero. The prefix property is the stronger invariant, and the one the tests
+// state.
+//
+// Ordinal constants and CanonicalPaths are two projections of the one layout
+// computation, emitted in the same pass, so they agree by construction rather
+// than by convention. The constants stay private, because they are not API: a
+// curation change to a base renumbers the own-segment of every descendant,
+// which is safe only because each wrapper and its manifest move together.
+//
+// What none of this can prove: that the wire agrees. Prefix layout is correct
+// only because a real flattened serializer carries exactly the class's true
+// ancestry — measured by DemoViewer.NET on live entities (SDK#30: gun-chain
+// classes carry all composed paths, shotguns carry the base's 8 and none of
+// the gun's 3), not derivable here. A manifest routed through a non-ancestor
+// would emit ordinals that read absent on real data, which is why the ancestor
+// walk must follow the schema's real parent chain and nothing else.
 internal static class EntityWrapperEmitter
 {
     // Fields whose 0-default read would present absence as a plausible value,
@@ -110,9 +137,14 @@ internal static class EntityWrapperEmitter
         string schemaBuild,
         string ns)
     {
-        // A curated class with curated descendants cannot be the static type of a
-        // companion: a registry-faithful runtime dispatches the handle target to
-        // its own concrete wrapper, and the typed fold then fails. See CompanionType.
+        // One Parents[0] map for both hierarchy questions — which curated
+        // classes have curated descendants (sealing), and which curated ancestor
+        // a class's layout prefixes (the layout law). Sharing the map is what
+        // makes the two walks unable to disagree; the schema's second parents on
+        // these chains are mixin interfaces the wire does not flatten, and a
+        // full-graph walk that consulted them could route a class through a
+        // non-ancestor — the exact manifest shape the shotgun measurement
+        // proves reads absent on real data.
         Dictionary<string, string> firstParent = new(StringComparer.Ordinal);
         foreach (ClassModel c in schema.Classes)
         {
@@ -137,16 +169,76 @@ internal static class EntityWrapperEmitter
             }
         }
 
+        // The nearest CURATED ancestor, walking Parents[0] past uncurated
+        // intermediates (CCSWeaponBase, CEconEntity, ...), which contribute
+        // nothing to any layout.
+        Dictionary<string, string?> nearestCuratedAncestor = new(StringComparer.Ordinal);
+        foreach (string curated in state.Classes.Keys)
+        {
+            string cursor = curated;
+            string? found = null;
+            while (firstParent.TryGetValue(cursor, out string? parent))
+            {
+                if (state.Classes.ContainsKey(parent))
+                {
+                    found = parent;
+                    break;
+                }
+
+                cursor = parent;
+            }
+
+            nearestCuratedAncestor[curated] = found;
+        }
+
+        // The layout computation, memoized per class because every descendant
+        // shares its ancestors' layouts by reference. The chain gates fire in
+        // here — once per class, at the level that introduces the conflict —
+        // and report at error severity so the exporter's post-3.0.7 guard turns
+        // them into a non-zero exit. Emission still proceeds: the written tree
+        // is what a maintainer diagnosing the failure wants to diff.
+        Dictionary<string, ClassLayout> layouts = new(StringComparer.Ordinal);
+
+        ClassLayout Layout(string engineClass)
+        {
+            if (layouts.TryGetValue(engineClass, out ClassLayout? done))
+            {
+                return done;
+            }
+
+            string? baseClass = nearestCuratedAncestor[engineClass];
+            ClassLayout layout = ComposeLayout(
+                sink,
+                engineClass,
+                state.Classes[engineClass],
+                resolution[engineClass],
+                declaredClassWidth,
+                baseClass is null ? null : Layout(baseClass),
+                baseClass is null ? null : state.Classes[baseClass].NetName);
+            layouts[engineClass] = layout;
+            return layout;
+        }
+
         List<BindingPlan> plans = [];
 
         foreach ((string engineClass, LensClassState cls) in state.Classes)
         {
-            if (!resolution.TryGetValue(engineClass, out LensResolvedClass? resolved))
+            if (!resolution.ContainsKey(engineClass))
             {
                 continue;
             }
 
-            BindingPlan plan = Plan(engineClass, cls, resolved, declaredClassWidth, state, hasCuratedDescendant);
+            ClassLayout layout = Layout(engineClass);
+            BindingPlan plan = new(
+                engineClass,
+                cls.NetName,
+                layout.BaseNetName,
+                !hasCuratedDescendant.Contains(engineClass),
+                layout.Fields,
+                layout.InheritedCount,
+                layout.Aliases,
+                !NoFactoryRegistration.Contains(engineClass),
+                state);
             plans.Add(plan);
             sink.AddSource(plan.NetName, EmitWrapper(plan, ns));
         }
@@ -156,22 +248,48 @@ internal static class EntityWrapperEmitter
 
     // ── Planning ─────────────────────────────────────────────────────────────
 
-    private static BindingPlan Plan(
+    // One class's full layout under the prefix law: the base layout's FieldPlans
+    // verbatim — their ordinals are already correct, because the prefix IS the
+    // base's ordinal space — then own fields at ordinals offset by the prefix
+    // length. Aliases merge the same way, inherited first.
+    private static ClassLayout ComposeLayout(
+        IGeneratorSink sink,
         string engineClass,
         LensClassState cls,
         LensResolvedClass resolved,
         Func<string, int?> declaredClassWidth,
-        LensState state,
-        IReadOnlySet<string> hasCuratedDescendant)
+        ClassLayout? baseLayout,
+        string? baseNetName)
     {
-        List<FieldPlan> fields = [];
-        int ordinal = 0;
+        List<FieldPlan> fields = baseLayout is null ? [] : [.. baseLayout.Fields];
+        int inheritedCount = fields.Count;
+
+        HashSet<string> chainPaths = new(fields.Select(f => f.Canonical), StringComparer.Ordinal);
+        HashSet<string> chainProperties = new(fields.Select(f => f.Property), StringComparer.Ordinal);
+        HashSet<string> ownPaths = new(StringComparer.Ordinal);
+
+        int ordinal = inheritedCount;
 
         // Fields is a SortedDictionary keyed StringComparer.Ordinal, so iteration
-        // order IS the ordinal space. Stated rather than relied on silently,
-        // because the manifest's CanonicalPaths is built from the same walk.
+        // order IS the own-segment's ordinal order. Stated rather than relied on
+        // silently, because the manifest's CanonicalPaths is built from the same
+        // walk.
         foreach ((string canonical, LensFieldEntry entry) in cls.Fields)
         {
+            if (!chainPaths.Add(canonical))
+            {
+                sink.ReportDiagnostic(Descriptors.DuplicateCurationAcrossChain, engineClass,
+                    $"canonical path '{canonical}' is curated here and on a curated ancestor.");
+            }
+
+            if (!chainProperties.Add(entry.TargetProperty))
+            {
+                sink.ReportDiagnostic(Descriptors.DuplicateCurationAcrossChain, engineClass,
+                    $"targetProperty '{entry.TargetProperty}' is curated here and on a curated ancestor.");
+            }
+
+            ownPaths.Add(canonical);
+
             TypeModel type = resolved.FieldTypes[canonical];
             string schemaType = LensTypeRenderer.Render(type);
             int? width = LensTypeRenderer.WidthBytes(type, declaredClassWidth);
@@ -186,28 +304,60 @@ internal static class EntityWrapperEmitter
                 SeenAwareFields.ContainsKey((engineClass, canonical))));
         }
 
+        Dictionary<string, string> aliases = baseLayout is null
+            ? new Dictionary<string, string>(StringComparer.Ordinal)
+            : new Dictionary<string, string>(baseLayout.Aliases, StringComparer.Ordinal);
+
         // Identity entries (canonical → canonical) are a lookup convenience in
         // the replay model and must NOT reach the manifest: an alias whose key is
         // a live canonical path would shadow the field, and BindingConformance
         // rightly rejects it.
-        Dictionary<string, string> aliases = new(StringComparer.Ordinal);
         foreach ((string alias, string target) in cls.Aliases)
         {
-            if (!string.Equals(alias, target, StringComparison.Ordinal)
-                && cls.Fields.ContainsKey(target))
+            if (string.Equals(alias, target, StringComparison.Ordinal)
+                || !cls.Fields.ContainsKey(target))
             {
-                aliases[alias] = target;
+                continue;
+            }
+
+            if (aliases.TryGetValue(alias, out string? inherited))
+            {
+                sink.ReportDiagnostic(Descriptors.AliasConflictAcrossChain, engineClass,
+                    $"alias '{alias}' targets '{target}' here and '{inherited}' on a curated ancestor.");
+                continue;
+            }
+
+            // An own alias key naming an INHERITED canonical path. The
+            // own-vs-own case cannot reach here — the Lens replay rejects it —
+            // so a hit is always cross-level.
+            if (chainPaths.Contains(alias))
+            {
+                sink.ReportDiagnostic(Descriptors.AliasConflictAcrossChain, engineClass,
+                    $"alias '{alias}' (targeting '{target}') is also a canonical path on a curated ancestor.");
+                continue;
+            }
+
+            aliases[alias] = target;
+        }
+
+        // The other direction: an inherited alias key that THIS level curates
+        // as a canonical path. Within one class the Lens replay forbids the
+        // collision; the chain is where it can now happen, and this level is
+        // the one that introduces it — descendants inherit the conflict but do
+        // not re-report it, because their layout memoizes this one.
+        if (baseLayout is not null)
+        {
+            foreach ((string alias, string target) in baseLayout.Aliases)
+            {
+                if (ownPaths.Contains(alias))
+                {
+                    sink.ReportDiagnostic(Descriptors.AliasConflictAcrossChain, engineClass,
+                        $"inherited alias '{alias}' (targeting '{target}') collides with a canonical path curated here.");
+                }
             }
         }
 
-        return new BindingPlan(
-            engineClass,
-            cls.NetName,
-            fields,
-            aliases,
-            !NoFactoryRegistration.Contains(engineClass),
-            state,
-            hasCuratedDescendant);
+        return new ClassLayout(baseNetName, fields, inheritedCount, aliases);
     }
 
     // The whole type dispatch. Every branch names the reader member the emitted
@@ -260,22 +410,29 @@ internal static class EntityWrapperEmitter
         sb.AppendLine($"///     Typed read surface over <c>{NameHelpers.XmlEscape(plan.EngineClass)}</c>.");
         sb.AppendLine("/// </summary>");
         sb.AppendLine($"[GeneratedCode(\"CS2OpenDev.Sdk.Exporter\", \"{ns}\")]");
-        sb.AppendLine($"public sealed class {plan.NetName}(IEntityFieldReader reader, IEntityWorld world)");
-        sb.AppendLine("    : EntityWrapper(reader, world)");
+        string sealedModifier = plan.Sealed ? "sealed " : "";
+        sb.AppendLine($"public {sealedModifier}class {plan.NetName}(IEntityFieldReader reader, IEntityWorld world)");
+        sb.AppendLine($"    : {plan.BaseNetName ?? "EntityWrapper"}(reader, world)");
         sb.AppendLine("{");
 
-        foreach (FieldPlan f in plan.Fields)
+        // Own fields only: inherited properties are exactly that — inherited.
+        // Their base-class ordinal constants stay correct through this class's
+        // binding because the base layout is a verbatim prefix of it.
+        IEnumerable<FieldPlan> ownFields = plan.Fields.Skip(plan.InheritedCount);
+
+        foreach (FieldPlan f in ownFields)
         {
             EmitProperty(sb, f, plan);
         }
 
-        if (plan.Fields.Count > 0)
+        if (plan.Fields.Count > plan.InheritedCount)
         {
-            sb.AppendLine("    // Ordinals into the binding's CanonicalPaths. Private because they are");
-            sb.AppendLine("    // not API: a rename re-sorts the space and renumbers everything after it.");
+            sb.AppendLine("    // Ordinals into the binding's CanonicalPaths — the own segment, after the");
+            sb.AppendLine("    // inherited prefix. Private because they are not API: a curation change on");
+            sb.AppendLine("    // an ancestor renumbers every own segment below it.");
             sb.AppendLine("    private static class Ord");
             sb.AppendLine("    {");
-            foreach (FieldPlan f in plan.Fields)
+            foreach (FieldPlan f in ownFields)
             {
                 sb.AppendLine($"        internal const int {f.Property} = {f.Ordinal};");
             }
@@ -373,24 +530,15 @@ internal static class EntityWrapperEmitter
             return null;
         }
 
-        // If the target has curated descendants, it cannot be the companion's
-        // static type. A runtime dispatches a handle to the concrete class's own
+        // The declared target's own net name, even when it has curated
+        // descendants. A runtime dispatches the handle to the concrete class's
         // wrapper — an active weapon resolves to `SmokeGrenade`, not to
-        // `BasePlayerWeapon` — and because the emitted types are flat, the typed
-        // fold then fails and the property is null for every real entity.
-        //
-        // Measured rather than theorised: on a real demo, a pawn whose active
-        // weapon was a live CSmokeGrenade read `ActiveWeapon == null` while the
-        // same handle resolved untyped perfectly well (SDK#25, finding F1).
-        //
-        // EntityWrapper is the honest static type until the emitted wrappers
-        // mirror the schema hierarchy, which is not a free change: a base
-        // property's ordinal constant comes from the base's own field set, while
-        // the reader is bound to the derived class's binding, so inheritance and
-        // the ordinal space have to be solved together.
-        return plan.HasCuratedDescendant.Contains(curated)
-            ? "EntityWrapper"
-            : plan.State.Classes[curated].NetName;
+        // `BasePlayerWeapon` — and that used to force `EntityWrapper` here,
+        // because the emitted types were flat and the typed fold failed for
+        // every real entity (SDK#25, finding F1). Now that the wrappers mirror
+        // the curated hierarchy, `SmokeGrenade` IS a `BasePlayerWeapon` and the
+        // typed fold succeeds for exactly the classes the wire can deliver.
+        return plan.State.Classes[curated].NetName;
     }
 
     // ── Registry emission ────────────────────────────────────────────────────
@@ -548,12 +696,25 @@ internal static class EntityWrapperEmitter
         Reads Reads,
         bool SeenAware);
 
+    // One class's composed layout under the prefix law. `Fields` is the WHOLE
+    // ordinal space — the inherited prefix verbatim, then own fields — and
+    // `InheritedCount` is the boundary: the binding emits all of it, the
+    // wrapper emits only what is after the boundary. Descendants embed this
+    // list by reference, which is what "verbatim prefix" means mechanically.
+    private sealed record ClassLayout(
+        string? BaseNetName,
+        IReadOnlyList<FieldPlan> Fields,
+        int InheritedCount,
+        IReadOnlyDictionary<string, string> Aliases);
+
     private sealed record BindingPlan(
         string EngineClass,
         string NetName,
+        string? BaseNetName,
+        bool Sealed,
         IReadOnlyList<FieldPlan> Fields,
+        int InheritedCount,
         IReadOnlyDictionary<string, string> Aliases,
         bool Registers,
-        LensState State,
-        IReadOnlySet<string> HasCuratedDescendant);
+        LensState State);
 }

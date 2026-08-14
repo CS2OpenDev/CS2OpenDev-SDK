@@ -16,7 +16,7 @@ namespace CS2OpenDev.Sdk.Entities;
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
 public sealed class MolotovProjectile(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+    : BaseCSGrenadeProjectile(reader, world)
 {
     /// <summary><c>m_bDetonated</c> (bool).</summary>
     [SchemaFieldVersion("genesis")]
@@ -26,11 +26,12 @@ public sealed class MolotovProjectile(IEntityFieldReader reader, IEntityWorld wo
     [SchemaFieldVersion("genesis")]
     public bool IsIncGrenade => Reader.TryReadBool(Ord.IsIncGrenade, out bool v) ? v : false;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int Detonated = 0;
-        internal const int IsIncGrenade = 1;
+        internal const int Detonated = 12;
+        internal const int IsIncGrenade = 13;
     }
 }

@@ -16,7 +16,7 @@ namespace CS2OpenDev.Sdk.Entities;
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
 public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+    : CSPlayerPawnBase(reader, world)
 {
     /// <summary><c>m_ArmorValue</c> (int32).</summary>
     [SchemaFieldVersion("genesis")]
@@ -139,7 +139,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     unset, invalid, stale, or pointing at a different class. Which encodings
     ///     mean which is the runtime's policy, not this wrapper's.
     /// </remarks>
-    public EntityWrapper? ActiveWeapon => World.Resolve<EntityWrapper>(ActiveWeaponHandle);
+    public BasePlayerWeapon? ActiveWeapon => World.Resolve<BasePlayerWeapon>(ActiveWeaponHandle);
 
     /// <summary><c>m_pWeaponServices.m_hLastWeapon</c> (CHandle&lt; CBasePlayerWeapon &gt;).</summary>
     [SchemaFieldVersion("genesis")]
@@ -151,7 +151,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     unset, invalid, stale, or pointing at a different class. Which encodings
     ///     mean which is the runtime's policy, not this wrapper's.
     /// </remarks>
-    public EntityWrapper? LastWeapon => World.Resolve<EntityWrapper>(LastWeaponHandle);
+    public BasePlayerWeapon? LastWeapon => World.Resolve<BasePlayerWeapon>(LastWeaponHandle);
 
     /// <summary><c>m_pWeaponServices.m_hMyWeapons</c> (CNetworkUtlVectorBase&lt; CHandle&lt; CBasePlayerWeapon &gt; &gt;).</summary>
     [SchemaFieldVersion("genesis")]
@@ -177,41 +177,42 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public QAngle ViewAngle => Reader.TryReadQAngle(Ord.ViewAngle, out QAngle v) ? v : default;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int ArmorValue = 0;
-        internal const int Origin = 1;
-        internal const int EyeAngles = 2;
-        internal const int InBombZone = 3;
-        internal const int InBuyZone = 4;
-        internal const int IsDefusing = 5;
-        internal const int IsScoped = 6;
-        internal const int IsWalking = 7;
-        internal const int KilledByHeadshot = 8;
-        internal const int DeathTime = 9;
-        internal const int ControllerHandle = 10;
-        internal const int OwnerEntityHandle = 11;
-        internal const int DeathFlags = 12;
-        internal const int Health = 13;
-        internal const int MaxHealth = 14;
-        internal const int ShotsFired = 15;
-        internal const int TeamNum = 16;
-        internal const int LifeState = 17;
-        internal const int HasDefuser = 18;
-        internal const int HasHelmet = 19;
-        internal const int Stamina = 20;
-        internal const int Buttons = 21;
-        internal const int ObserverTargetHandle = 22;
-        internal const int ObserverMode = 23;
-        internal const int ActiveWeaponHandle = 24;
-        internal const int LastWeaponHandle = 25;
-        internal const int MyWeapons = 26;
-        internal const int CurrentEquipmentValue = 27;
-        internal const int FreezetimeEndEquipmentValue = 28;
-        internal const int RoundStartEquipmentValue = 29;
-        internal const int Velocity = 30;
-        internal const int ViewAngle = 31;
+        internal const int ArmorValue = 6;
+        internal const int Origin = 7;
+        internal const int EyeAngles = 8;
+        internal const int InBombZone = 9;
+        internal const int InBuyZone = 10;
+        internal const int IsDefusing = 11;
+        internal const int IsScoped = 12;
+        internal const int IsWalking = 13;
+        internal const int KilledByHeadshot = 14;
+        internal const int DeathTime = 15;
+        internal const int ControllerHandle = 16;
+        internal const int OwnerEntityHandle = 17;
+        internal const int DeathFlags = 18;
+        internal const int Health = 19;
+        internal const int MaxHealth = 20;
+        internal const int ShotsFired = 21;
+        internal const int TeamNum = 22;
+        internal const int LifeState = 23;
+        internal const int HasDefuser = 24;
+        internal const int HasHelmet = 25;
+        internal const int Stamina = 26;
+        internal const int Buttons = 27;
+        internal const int ObserverTargetHandle = 28;
+        internal const int ObserverMode = 29;
+        internal const int ActiveWeaponHandle = 30;
+        internal const int LastWeaponHandle = 31;
+        internal const int MyWeapons = 32;
+        internal const int CurrentEquipmentValue = 33;
+        internal const int FreezetimeEndEquipmentValue = 34;
+        internal const int RoundStartEquipmentValue = 35;
+        internal const int Velocity = 36;
+        internal const int ViewAngle = 37;
     }
 }

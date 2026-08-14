@@ -13,7 +13,8 @@ a [release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases).
 
 ## What you get
 
-58 wrapper classes over the curated set, and a registry:
+59 wrapper classes over the curated set, mirroring the schema's curated hierarchy, and a
+registry:
 
 ```csharp
 // Bind once per class at startup — your runtime builds its own
@@ -34,10 +35,42 @@ if (w is CSPlayerPawn pawn)
     ulong buttons = pawn.Buttons;
 
     uint raw = pawn.ActiveWeaponHandle;         // packed, undecoded
-    EntityWrapper? gun = pawn.ActiveWeapon;     // resolved by your runtime; cast to the
-                                                // concrete weapon wrapper you got back
+    BasePlayerWeapon? gun = pawn.ActiveWeapon;  // resolved by your runtime to the concrete
+                                                // weapon wrapper — every one IS a BasePlayerWeapon
 }
 ```
+
+## The hierarchy, and the ordinal layout that makes it correct
+
+Wrapper classes derive from each other exactly as the schema's curated classes do: `AK47` is a
+`CSWeaponBaseGun` is a `BasePlayerWeapon`, `CSPlayerPawn` is a `CSPlayerPawnBase`. Uncurated
+intermediates (`CCSWeaponBase`, `CEconEntity`, ...) are skipped — the chain hops to the nearest
+*curated* ancestor. Most concrete weapon classes curate no fields of their own; their whole read
+surface is inherited, and their binding is their base chain's layout verbatim.
+
+That "verbatim" is the load-bearing part. Each binding's `CanonicalPaths` is laid out as
+
+```
+layout(C) = layout(nearestCuratedAncestor(C)) ++ ordinal-sort(ownFields(C))
+```
+
+— the base chain's ordinal space as a prefix, own fields after it, the way a C++ base subobject
+sits at offset 0 of every derived object. A base property's ordinal constant is therefore valid
+through every descendant's binding, which is what lets `BasePlayerWeapon.Clip1` read correctly on
+a wrapper constructed over `CAK47`'s manifest.
+
+What this means for a consumer, unchanged in substance but with sharper teeth: **never hard-code
+an ordinal.** Ordinals were always unstable across releases; under prefix layout a curation change
+to a base class renumbers the own segment of *every* descendant's binding at once. Bind against
+the `CanonicalPaths` array, the only supported way, and renumbering cannot affect you — wrapper
+and manifest ship from one emitter pass and always agree.
+
+One thing the layout asks of the wire: a concrete class's serializer must carry its ancestors'
+fields. It does — DemoViewer.NET measured it on live entities before this shipped (SDK#30: every
+gun-chain class carries all composed paths; the shotguns carry the weapon base's fields and none
+of the gun's, because shotguns are not guns) — but that is a fact about the wire, not something
+this package can enforce. The manifests follow the schema's real parent chain and nothing else,
+because the wire does too.
 
 ## Two read policies, and the difference matters
 
@@ -70,11 +103,12 @@ Only handles whose target is itself a curated class get a companion. `m_hOwnerEn
 `CBaseEntity`, which this package does not wrap, so it exposes the raw handle alone rather than
 inventing a type for it.
 
-Two companions — `ActiveWeapon` and `LastWeapon` — are typed `EntityWrapper?` rather than
-`BasePlayerWeapon?`, so you cast. Their handles declare `CHandle< CBasePlayerWeapon >` but point at
-concrete weapons on real demos, and the emitted wrappers are flat, so `SmokeGrenade` is not a
-`BasePlayerWeapon` and a typed fold would return `null` for a weapon that resolved perfectly well.
-`EntityWrapper?` is the honest type until the wrappers mirror the schema hierarchy
+The weapon companions — `ActiveWeapon` and `LastWeapon` — are typed `BasePlayerWeapon?`. Their
+handles point at concrete weapons on real demos, and every concrete weapon wrapper now derives
+from `BasePlayerWeapon`, so your runtime's dispatch to the concrete class satisfies the typed
+fold. This is the type they briefly had and lost: under the old flat emission a resolved
+`SmokeGrenade` was *not* a `BasePlayerWeapon`, the fold failed for every real weapon, and
+`EntityWrapper?` was the honest type until the hierarchy landed
 ([#30](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/30)).
 
 ## Skew detection

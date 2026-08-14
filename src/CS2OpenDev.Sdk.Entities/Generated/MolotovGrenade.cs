@@ -15,7 +15,7 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     Typed read surface over <c>CMolotovGrenade</c>.
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
-public sealed class MolotovGrenade(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+public class MolotovGrenade(IEntityFieldReader reader, IEntityWorld world)
+    : BaseCSGrenade(reader, world)
 {
 }

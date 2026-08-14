@@ -15,8 +15,8 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     Typed read surface over <c>CCSWeaponBaseGun</c>.
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
-public sealed class CSWeaponBaseGun(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+public class CSWeaponBaseGun(IEntityFieldReader reader, IEntityWorld world)
+    : BasePlayerWeapon(reader, world)
 {
     /// <summary><c>m_bNeedsBoltAction</c> (bool).</summary>
     [SchemaFieldVersion("genesis")]
@@ -30,12 +30,13 @@ public sealed class CSWeaponBaseGun(IEntityFieldReader reader, IEntityWorld worl
     [SchemaFieldVersion("genesis")]
     public int ZoomLevel => Reader.TryReadInt32(Ord.ZoomLevel, out int v) ? v : 0;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int NeedsBoltAction = 0;
-        internal const int BurstShotsRemaining = 1;
-        internal const int ZoomLevel = 2;
+        internal const int NeedsBoltAction = 8;
+        internal const int BurstShotsRemaining = 9;
+        internal const int ZoomLevel = 10;
     }
 }

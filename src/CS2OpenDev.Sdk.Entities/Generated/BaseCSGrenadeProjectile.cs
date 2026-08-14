@@ -15,7 +15,7 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     Typed read surface over <c>CBaseCSGrenadeProjectile</c>.
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
-public sealed class BaseCSGrenadeProjectile(IEntityFieldReader reader, IEntityWorld world)
+public class BaseCSGrenadeProjectile(IEntityFieldReader reader, IEntityWorld world)
     : EntityWrapper(reader, world)
 {
     /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin</c> (CNetworkOriginCellCoordQuantizedVector).</summary>
@@ -92,8 +92,9 @@ public sealed class BaseCSGrenadeProjectile(IEntityFieldReader reader, IEntityWo
     [SchemaFieldVersion("genesis")]
     public Vector3 Velocity => Reader.TryReadVector3(Ord.Velocity, out Vector3 v) ? v : default;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
         internal const int Origin = 0;

@@ -16,7 +16,7 @@ namespace CS2OpenDev.Sdk.Entities;
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
 public sealed class SmokeGrenadeProjectile(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+    : BaseCSGrenadeProjectile(reader, world)
 {
     /// <summary><c>m_bDidGroundScorch</c> (bool).</summary>
     [SchemaFieldVersion("genesis")]
@@ -42,15 +42,16 @@ public sealed class SmokeGrenadeProjectile(IEntityFieldReader reader, IEntityWor
     [SchemaFieldVersion("genesis")]
     public Vector3 SmokeDetonationPos => Reader.TryReadVector3(Ord.SmokeDetonationPos, out Vector3 v) ? v : default;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int DidGroundScorch = 0;
-        internal const int DidSmokeEffect = 1;
-        internal const int ExplodeFromInferno = 2;
-        internal const int SmokeEffectTickBegin = 3;
-        internal const int SmokeColor = 4;
-        internal const int SmokeDetonationPos = 5;
+        internal const int DidGroundScorch = 12;
+        internal const int DidSmokeEffect = 13;
+        internal const int ExplodeFromInferno = 14;
+        internal const int SmokeEffectTickBegin = 15;
+        internal const int SmokeColor = 16;
+        internal const int SmokeDetonationPos = 17;
     }
 }

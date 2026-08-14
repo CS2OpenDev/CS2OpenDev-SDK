@@ -1,5 +1,5 @@
 {
-  "lensHash": "sha256:3e491c3b2d2f72e672b561a4959c67f44b82d3141c566d30e5050554f7120c20",
+  "lensHash": "sha256:41bec924af8d71fd09f780784484764cbed979359848592a6fbb64424be99884",
   "schemaBuild": "24701871",
   "classes": {
     "CAK47": {
@@ -1361,6 +1361,14 @@
     },
     "CHEGrenadeProjectile": {
       "netName": "HEGrenadeProjectile",
+      "module": "server",
+      "fields": {},
+      "aliases": {},
+      "ignored": [],
+      "observedFields": []
+    },
+    "CIncendiaryGrenade": {
+      "netName": "IncendiaryGrenade",
       "module": "server",
       "fields": {},
       "aliases": {},

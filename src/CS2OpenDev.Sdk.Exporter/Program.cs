@@ -343,6 +343,14 @@ else
 // Runs before the name-diagnostics drain because targetProperty derivation
 // goes through WordSplitter, and any run it resolves must reach both the
 // CS2_GEN_006 report and the name lock like every other identifier.
+// Diagnostics the entity emitter reports land on ITS sink, not the main one,
+// and the error-exit guard at the bottom drains the main sink only. Left alone
+// that would repeat the severity-as-decoration failure the guard exists to
+// close — an emit-time Error on a second sink would print nothing and exit 0.
+// So the entities sink's diagnostics are carried out of the block here and
+// folded into the same drain.
+List<(string Id, GeneratorDiagnosticSeverity Severity, string Message)> entitiesDiagnostics = [];
+
 string lensDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "schema-lens"));
 if (Directory.Exists(lensDirectory))
 {
@@ -443,6 +451,7 @@ if (Directory.Exists(lensDirectory))
         schema.Revision?.ToString(CultureInfo.InvariantCulture) ?? "unknown",
         "CS2OpenDev.Sdk.Entities");
     Console.WriteLine($"Entities package: {entitiesSink.WrittenCount} file(s) to {entitiesDir}");
+    entitiesDiagnostics.AddRange(entitiesSink.Diagnostics);
     foreach (string path in entitiesStale)
     {
         File.Delete(path);
@@ -523,7 +532,7 @@ if (fresh.Count > 0)
 }
 
 int errorCount = 0;
-foreach ((string id, GeneratorDiagnosticSeverity severity, string message) in sink.Diagnostics)
+foreach ((string id, GeneratorDiagnosticSeverity severity, string message) in sink.Diagnostics.Concat(entitiesDiagnostics))
 {
     WriteDiagnosticRaw(id, severity, message);
     if (severity == GeneratorDiagnosticSeverity.Error)

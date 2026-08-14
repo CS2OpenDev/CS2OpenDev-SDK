@@ -16,6 +16,6 @@ namespace CS2OpenDev.Sdk.Entities;
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
 public sealed class WeaponXM1014(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+    : CSWeaponBaseShotgun(reader, world)
 {
 }

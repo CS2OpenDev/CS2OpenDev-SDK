@@ -15,7 +15,7 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     Typed read surface over <c>CCSPlayerPawnBase</c>.
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
-public sealed class CSPlayerPawnBase(IEntityFieldReader reader, IEntityWorld world)
+public class CSPlayerPawnBase(IEntityFieldReader reader, IEntityWorld world)
     : EntityWrapper(reader, world)
 {
     /// <summary><c>m_blindStartTime</c> (GameTime_t).</summary>
@@ -50,8 +50,9 @@ public sealed class CSPlayerPawnBase(IEntityFieldReader reader, IEntityWorld wor
     [SchemaFieldVersion("genesis")]
     public int PlayerState => Reader.TryReadInt32(Ord.PlayerState, out int v) ? v : 0;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
         internal const int BlindStartTime = 0;

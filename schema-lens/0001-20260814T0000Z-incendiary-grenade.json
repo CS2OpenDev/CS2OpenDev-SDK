@@ -1,0 +1,13 @@
+{
+  "id": "0001-20260814T0000Z-incendiary-grenade",
+  "build": "24701871",
+  "appliedAt": "2026-08-14T00:00:00Z",
+  "notes": "CIncendiaryGrenade is the one common weapon class the genesis set misses: DemoViewer.NET's SDK#34 verification found it as a real m_hLastWeapon target on demo data, while its sibling CMolotovGrenade and the other four grenades are all covered. Added with no fields of its own — under the SDK#30 prefix layout it is a marker class whose binding is its parent chain's layout verbatim (CMolotovGrenade -> CBaseCSGrenade -> CBasePlayerWeapon), so covering the class is the whole change. Server module only; the bare name is unambiguous, so no module pin.",
+  "stateHash": "sha256:41bec924af8d71fd09f780784484764cbed979359848592a6fbb64424be99884",
+  "changes": [
+    {
+      "op": "addClass",
+      "class": "CIncendiaryGrenade"
+    }
+  ]
+}

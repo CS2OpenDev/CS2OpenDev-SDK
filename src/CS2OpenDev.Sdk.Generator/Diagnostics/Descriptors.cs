@@ -247,4 +247,42 @@ internal static class Descriptors
         + "instead of projecting a collection or map. Either the schema changed the shape "
         + "of atomic names again, or a new container template arrived that no set in "
         + "TypeMapper knows. Classify it, or record why the projection deliberately differs.");
+
+    // The same canonical path, or the same targetProperty, curated at two levels
+    // of one curated inheritance chain.
+    //
+    // Legal before prefix layout, because every class owned its whole ordinal
+    // space. Under layout(C) = layout(base) ++ own, a re-curated path would put
+    // one field at two ordinals of one binding, and a re-curated targetProperty
+    // would emit a derived C# property shadowing the base's — two members, one
+    // name, which value you read decided by the static type of the reference.
+    // BindingConformance's duplicate check would catch the path case, but at
+    // some consumer's startup; the shadowing case the C# compiler reports only
+    // as a warning. Both belong to the emitter, at generation, as errors — the
+    // exporter exits non-zero on error-severity diagnostics (the post-3.0.7
+    // guard), so an unattended regen cannot publish either shape.
+    internal static readonly GeneratorDiagnostic DuplicateCurationAcrossChain = new(
+        "CS2_GEN_016",
+        GeneratorDiagnosticSeverity.Error,
+        "Curated inheritance chain of '{0}': {1} Curate it at exactly one level — "
+        + "under prefix layout a descendant's binding already carries everything its "
+        + "curated ancestors track.");
+
+    // An alias key colliding with a canonical path elsewhere in its chain, or
+    // one alias key curated at two levels of the chain.
+    //
+    // Within one class the Lens replay already forbids both. Across levels
+    // nothing did, and the failure is the quiet kind: a consumer routing reads
+    // by path resolves the canonical spelling and silently ignores the alias,
+    // while the aliased ordinal's candidate walk probes the colliding spelling
+    // and can read a DIFFERENT field's storage. Readable-wrong, not loud —
+    // DemoViewer.NET named this gate load-bearing for their by-path routing
+    // (SDK#30), which is why it is an error here rather than a startup check
+    // in someone else's process.
+    internal static readonly GeneratorDiagnostic AliasConflictAcrossChain = new(
+        "CS2_GEN_017",
+        GeneratorDiagnosticSeverity.Error,
+        "Curated inheritance chain of '{0}': {1} Alias keys and canonical paths share "
+        + "one namespace per binding, and under prefix layout a binding's namespace is "
+        + "its whole chain's.");
 }

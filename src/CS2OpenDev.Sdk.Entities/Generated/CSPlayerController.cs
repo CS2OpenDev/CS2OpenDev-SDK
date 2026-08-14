@@ -130,8 +130,9 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     [SchemaFieldVersion("genesis")]
     public ulong SteamID => Reader.TryReadUInt64(Ord.SteamID, out ulong v) ? v : 0ul;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
         internal const int IsHLTV = 0;

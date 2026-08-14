@@ -15,7 +15,7 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     Typed read surface over <c>CCSWeaponBaseShotgun</c>.
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
-public sealed class CSWeaponBaseShotgun(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+public class CSWeaponBaseShotgun(IEntityFieldReader reader, IEntityWorld world)
+    : BasePlayerWeapon(reader, world)
 {
 }

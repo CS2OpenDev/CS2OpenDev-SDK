@@ -15,7 +15,7 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     Typed read surface over <c>CBasePlayerWeapon</c>.
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
-public sealed class BasePlayerWeapon(IEntityFieldReader reader, IEntityWorld world)
+public class BasePlayerWeapon(IEntityFieldReader reader, IEntityWorld world)
     : EntityWrapper(reader, world)
 {
     /// <summary><c>m_flNextPrimaryAttackTickRatio</c> (float32).</summary>
@@ -50,8 +50,9 @@ public sealed class BasePlayerWeapon(IEntityFieldReader reader, IEntityWorld wor
     [SchemaFieldVersion("genesis")]
     public object? ReserveAmmo => Reader.TryReadObject(Ord.ReserveAmmo, out object? v) ? v : null;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
         internal const int NextPrimaryAttackTickRatio = 0;

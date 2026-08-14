@@ -16,7 +16,7 @@ namespace CS2OpenDev.Sdk.Entities;
 /// </summary>
 [GeneratedCode("CS2OpenDev.Sdk.Exporter", "CS2OpenDev.Sdk.Entities")]
 public sealed class FlashbangProjectile(IEntityFieldReader reader, IEntityWorld world)
-    : EntityWrapper(reader, world)
+    : BaseCSGrenadeProjectile(reader, world)
 {
     /// <summary><c>m_flTimeToDetonate</c> (float32).</summary>
     [SchemaFieldVersion("genesis")]
@@ -30,12 +30,13 @@ public sealed class FlashbangProjectile(IEntityFieldReader reader, IEntityWorld 
     [SchemaFieldVersion("genesis")]
     public int NumTeammatesHit => Reader.TryReadInt32(Ord.NumTeammatesHit, out int v) ? v : 0;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int TimeToDetonate = 0;
-        internal const int NumOpponentsHit = 1;
-        internal const int NumTeammatesHit = 2;
+        internal const int TimeToDetonate = 12;
+        internal const int NumOpponentsHit = 13;
+        internal const int NumTeammatesHit = 14;
     }
 }

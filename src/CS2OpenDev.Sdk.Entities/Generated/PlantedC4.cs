@@ -84,8 +84,9 @@ public sealed class PlantedC4(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public int BombSite => Reader.TryReadInt32(Ord.BombSite, out int v) ? v : 0;
 
-    // Ordinals into the binding's CanonicalPaths. Private because they are
-    // not API: a rename re-sorts the space and renumbers everything after it.
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
     private static class Ord
     {
         internal const int Origin = 0;
