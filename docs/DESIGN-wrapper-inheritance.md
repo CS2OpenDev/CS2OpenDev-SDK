@@ -10,6 +10,19 @@ Decision document for CS2OpenDev/CS2OpenDev-SDK#30. Everything asserted below wa
 re-verified against the committed tree at `4409fe60`; where the issue's numbers are
 repeated, they were checked first.
 
+**Re-checked after #35, #36, #37 and #38 landed**, since a design document that silently
+ages is worse than none. What moved, and what it does to the argument:
+
+| Landed | Effect here |
+|---|---|
+| #35 — Abstractions 1.0.0 | The contract assembly changed only `README.md` and `version.json`. Every contract claim in §1 and §3 holds verbatim. It does raise the price: a seam change is now a MAJOR, which is an argument *for* the option chosen here, since it moves the contract not at all. |
+| #36 — `Origin` → `Vector3?` | Entities 0.2.0. Property *types* changed on three classes; the census below is unaffected — still 58 wrappers, 58 `sealed`, same field counts and ordinals. |
+| #37 — 6.0 atomics | `src/CS2OpenDev.Sdk/` only. Does not touch the entity wrappers or the contract. |
+| #38 — the C# surface gate | Narrows §5's stated risk considerably: a schema reparent that changed emitted base types would now be reported rather than published silently. It does **not** eliminate it — a base swap is case 1 in that gate's own "cannot catch" list, so the pinned-hierarchy census in step 4 is still required. |
+
+The flatness the issue exists to fix is unchanged: 58 wrappers, 58 of them `sealed`,
+deriving `EntityWrapper` directly.
+
 ## 1. what is actually true today
 
 **The flatness claim is exact.** All 58 emitted wrappers are `public sealed class X(...)
@@ -84,16 +97,24 @@ first-parent-only walk reaches the same curated ancestors as a full-graph walk f
 — today. The emitter should keep using `Parents[0]` for the new computation so the two
 walks cannot disagree.
 
-**Two things the committed tree gets wrong that the issue does not mention.**
-`src/CS2OpenDev.Sdk.Entities/README.md` was written in #27 and not touched by #28 or #29:
+**Two things the committed tree got wrong that the issue does not mention — both since
+fixed.** `src/CS2OpenDev.Sdk.Entities/README.md` was written in #27 and not touched by #28
+or #29, so at `4409fe60` it still:
 
-- lines 61-66 still tell a runtime that also loads the Schema Lens to "compare hashes at
-  startup" — the exact advice #28 removed from the registry docs because the two
-  preimages are not comparable;
-- line 37 shows `BasePlayerWeapon? gun = pawn.ActiveWeapon;` — false since #29, which
-  typed both weapon companions `EntityWrapper?`
-  (`Generated/CSPlayerPawn.cs:132,144`). This design makes the example true again;
-  the hash paragraph needs an actual fix.
+- told a runtime that also loads the Schema Lens to "compare hashes at startup" — the exact
+  advice #28 removed from the registry docs because the two preimages are not comparable;
+- showed `BasePlayerWeapon? gun = pawn.ActiveWeapon;`, false since #29 typed both weapon
+  companions `EntityWrapper?`.
+
+Both were fixed in #36 alongside the `Origin` flip, which had made a third example
+(`Vector3 at = pawn.Origin;`) false as well. Recorded here because the pattern is the
+finding, not the three instances: **the README is prose beside generated code with nothing
+checking that the two agree**, and it had drifted three times in three days. #38's surface
+gate does not close this — it compares emitted C# against emitted C#, and a README is
+neither side of that comparison.
+
+If this design is implemented, the companion example becomes true again and that section
+of the README needs a fourth edit. Step 6 covers it.
 
 ## 2. the decision
 
