@@ -40,7 +40,7 @@ public class EmittedWrapperTests
         }
 
         await Assert.That(thrown).IsNull();
-        await Assert.That(EntityWrapperRegistry.Bindings.Count).IsEqualTo(59);
+        await Assert.That(EntityWrapperRegistry.Bindings.Count).IsEqualTo(61);
     }
 
     /// <summary>The registry pins the curated state it was emitted from, so a runtime can detect skew at startup.</summary>
@@ -159,6 +159,8 @@ public class EmittedWrapperTests
         [typeof(CSGameRulesProxy)] = typeof(EntityWrapper),
         [typeof(CSPlayerController)] = typeof(EntityWrapper),
         [typeof(CSPlayerPawnBase)] = typeof(EntityWrapper),
+        [typeof(CSTeam)] = typeof(EntityWrapper),
+        [typeof(Inferno)] = typeof(EntityWrapper),
         [typeof(PlantedC4)] = typeof(EntityWrapper),
 
         [typeof(CSPlayerPawn)] = typeof(CSPlayerPawnBase),
@@ -231,7 +233,7 @@ public class EmittedWrapperTests
     };
 
     /// <summary>
-    ///     All 59 base-type edges match the pinned census, sealing follows from the edges,
+    ///     All 61 base-type edges match the pinned census, sealing follows from the edges,
     ///     and no wrapper exists outside the pin.
     /// </summary>
     [Test]
@@ -243,7 +245,7 @@ public class EmittedWrapperTests
             .Where(t => t.IsPublic && !t.IsAbstract && typeof(EntityWrapper).IsAssignableFrom(t))
             .ToArray();
         await Assert.That(emitted.Length).IsEqualTo(ExpectedBases.Count);
-        await Assert.That(ExpectedBases.Count).IsEqualTo(59);
+        await Assert.That(ExpectedBases.Count).IsEqualTo(61);
 
         // A class is sealed exactly when nothing in the pin derives from it —
         // sealing is a consequence of the edges, so it is asserted from them
@@ -408,6 +410,225 @@ public class EmittedWrapperTests
             new EmptyWorld());
 
         await Assert.That(pawn.Buttons).IsEqualTo(pressed);
+    }
+
+    // ── The SDK#41 cutover curation ──────────────────────────────────────────
+
+    /// <summary>
+    ///     The six quantized-origin leaves are seen-aware on every class carrying the
+    ///     relocated origin canonical: absent is null, never a coordinate. Cell 0 is a legal
+    ///     world cell — the consumer-side reconstruction is (cell − 32) × 512 + offset — so a
+    ///     0-default would place a never-received entity at −16384 on that axis.
+    /// </summary>
+    /// <remarks>
+    ///     Reflection for the same reason as <see cref="Origin_IsSeenAware"/>: the three
+    ///     carriers share no base with these members, and the declared property types
+    ///     (<c>int?</c> for cells, <c>float?</c> for offsets) are part of what is pinned —
+    ///     a boxed <c>object?</c> here would be the exact allocation the ask exists to remove.
+    /// </remarks>
+    [Test]
+    [Arguments("CCSPlayerPawn")]
+    [Arguments("CBaseCSGrenadeProjectile")]
+    [Arguments("CPlantedC4")]
+    public async Task OriginLeaves_AreSeenAwareOnAllThreeCarriers(string engineClass)
+    {
+        EntityClassBinding b = Binding(engineClass);
+        EntityWrapper absent = EntityWrapperRegistry.Create(engineClass, Reader(b, []), new EmptyWorld())!;
+
+        foreach (string cell in new[] { "OriginCellX", "OriginCellY", "OriginCellZ" })
+        {
+            var p = absent.GetType().GetProperty(cell)!;
+            await Assert.That(p.PropertyType).IsEqualTo(typeof(int?));
+            await Assert.That(p.GetValue(absent)).IsNull();
+        }
+
+        foreach (string vec in new[] { "OriginVecX", "OriginVecY", "OriginVecZ" })
+        {
+            var p = absent.GetType().GetProperty(vec)!;
+            await Assert.That(p.PropertyType).IsEqualTo(typeof(float?));
+            await Assert.That(p.GetValue(absent)).IsNull();
+        }
+
+        // Presence reads the raw wire value — including the zeros that motivated
+        // the nullability, which must survive the trip as values.
+        EntityWrapper present = EntityWrapperRegistry.Create(
+            engineClass,
+            Reader(b, new Dictionary<string, object?>
+            {
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX"] = 0,
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX"] = 0f,
+            }),
+            new EmptyWorld())!;
+
+        await Assert.That(present.GetType().GetProperty("OriginCellX")!.GetValue(present)).IsEqualTo(0);
+        await Assert.That(present.GetType().GetProperty("OriginVecX")!.GetValue(present)).IsEqualTo(0f);
+    }
+
+    /// <summary>The pawn's leaves read typed alongside the struct-valued Origin, which they decompose rather than replace.</summary>
+    [Test]
+    public async Task OriginLeaves_ReadTypedBesideOrigin()
+    {
+        CSPlayerPawn pawn = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?>
+            {
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX"] = 35,
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY"] = 33,
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ"] = 32,
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX"] = 231.96875f,
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY"] = 12.5f,
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ"] = 0.03125f,
+            }),
+            new EmptyWorld());
+
+        await Assert.That(pawn.OriginCellX).IsEqualTo(35);
+        await Assert.That(pawn.OriginCellY).IsEqualTo(33);
+        await Assert.That(pawn.OriginCellZ).IsEqualTo(32);
+        await Assert.That(pawn.OriginVecX).IsEqualTo(231.96875f);
+        await Assert.That(pawn.OriginVecY).IsEqualTo(12.5f);
+        await Assert.That(pawn.OriginVecZ).IsEqualTo(0.03125f);
+
+        // The struct-valued parent path stays absent — the leaves are curated
+        // BESIDE Origin, not through it, and neither read disturbs the other.
+        await Assert.That(pawn.Origin).IsNull();
+    }
+
+    /// <summary>The projectile leaves are curated on the base once, so every projectile wrapper inherits them through its own binding.</summary>
+    [Test]
+    [Arguments("CSmokeGrenadeProjectile")]
+    [Arguments("CMolotovProjectile")]
+    public async Task ProjectileOriginLeaves_ReadThroughDerivedBindings(string engineClass)
+    {
+        EntityWrapper w = EntityWrapperRegistry.Create(
+            engineClass,
+            Reader(Binding(engineClass), new Dictionary<string, object?>
+            {
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ"] = 31,
+            }),
+            new EmptyWorld())!;
+
+        // Base-typed, base ordinal constant, derived binding — the prefix law
+        // working for the newest fields exactly as it does for Clip1.
+        BaseCSGrenadeProjectile projectile = (BaseCSGrenadeProjectile)w;
+        await Assert.That(projectile.OriginCellZ).IsEqualTo(31);
+        await Assert.That(projectile.OriginCellX).IsNull();
+    }
+
+    /// <summary>CCSTeam curates the scoreboard triple; the two scalars resolve on its ancestors, the clan name on the class itself.</summary>
+    [Test]
+    public async Task CSTeam_ReadsTheScoreboardTriple()
+    {
+        EntityWrapper? w = EntityWrapperRegistry.Create(
+            "CCSTeam",
+            Reader(Binding("CCSTeam"), new Dictionary<string, object?>
+            {
+                ["m_iTeamNum"] = 3,
+                ["m_iScore"] = 13,
+                ["m_szClanTeamname"] = "NAVI",
+            }),
+            new EmptyWorld());
+
+        await Assert.That(w).IsTypeOf<CSTeam>();
+        CSTeam team = (CSTeam)w!;
+        await Assert.That(team.TeamNum).IsEqualTo(3);
+        await Assert.That(team.Score).IsEqualTo(13);
+        // A char[129] has no first-class shape on the seam; boxed is the honest
+        // projection, and the runtime decides what a string field decodes to.
+        await Assert.That(team.ClanTeamname).IsEqualTo("NAVI");
+    }
+
+    /// <summary>
+    ///     CInferno curates the scalar; the fire arrays stay on the by-path hatch. An [i]
+    ///     element is not a schema field a canonical path can name, so the ordinal space has
+    ///     nothing to offer arrays without new contract surface — which SDK#41 does not ask
+    ///     for and constraint 1 forbids.
+    /// </summary>
+    [Test]
+    public async Task Inferno_CuratesTheScalarAndLeavesArraysToTheHatch()
+    {
+        bool[] burning = new bool[64];
+        burning[0] = true;
+
+        DictionaryEntityReader reader = Reader(Binding("CInferno"), new Dictionary<string, object?>
+        {
+            ["m_fireCount"] = 7,
+            ["m_bFireIsBurning"] = burning,
+        });
+
+        Inferno inferno = (Inferno)EntityWrapperRegistry.Create("CInferno", reader, new EmptyWorld())!;
+        await Assert.That(inferno.FireCount).IsEqualTo(7);
+
+        // The arrays answer by exact spelling through the hatch, boxed — the
+        // same read DemoViewer.NET's runtime serves today, unchanged by this
+        // curation.
+        await Assert.That(reader.TryReadByEnginePath("m_bFireIsBurning", out object? v)).IsTrue();
+        await Assert.That(v).IsEqualTo(burning);
+    }
+
+    /// <summary>
+    ///     The match-scoped totals live beside the round-scoped stats without confusion: two
+    ///     scopes, two name families, one service. The schema-true canonical routes through
+    ///     the embedded m_matchStats; the issue's serializer-flattened spelling still answers
+    ///     through the alias table, the genesis m_vecOrigin adaptation repeated.
+    /// </summary>
+    [Test]
+    public async Task MatchTotals_AreScopedApartFromRoundStats()
+    {
+        DictionaryEntityReader reader = Reader(Binding("CCSPlayerController"), new Dictionary<string, object?>
+        {
+            ["m_pActionTrackingServices.m_matchStats.m_iKills"] = 24,
+            ["m_pActionTrackingServices.m_matchStats.m_iDeaths"] = 17,
+            ["m_pActionTrackingServices.m_matchStats.m_iAssists"] = 5,
+            ["m_pActionTrackingServices.m_matchStats.m_iDamage"] = 2412,
+            ["m_pActionTrackingServices.m_iNumRoundKills"] = 3,
+        });
+
+        CSPlayerController controller = new(reader, new EmptyWorld());
+
+        await Assert.That(controller.MatchKills).IsEqualTo(24);
+        await Assert.That(controller.MatchDeaths).IsEqualTo(17);
+        await Assert.That(controller.MatchAssists).IsEqualTo(5);
+        await Assert.That(controller.MatchDamage).IsEqualTo(2412);
+        await Assert.That(controller.NumRoundKills).IsEqualTo(3);
+
+        // The flattened spelling from the issue resolves through the alias.
+        await Assert.That(reader.TryReadByEnginePath("m_pActionTrackingServices.m_iKills", out object? kills)).IsTrue();
+        await Assert.That(kills).IsEqualTo(24);
+    }
+
+    /// <summary>The minor leaves read through their curated names: minimap framing, last place, duck amount, pending team.</summary>
+    [Test]
+    public async Task MinorLeaves_ReadThroughTheirCuratedNames()
+    {
+        CSGameRulesProxy rules = new(
+            Reader(Binding("CCSGameRulesProxy"), new Dictionary<string, object?>
+            {
+                ["m_pGameRules.m_vMinimapMins"] = new Vector3(-2476, -2444, -100),
+                ["m_pGameRules.m_vMinimapMaxs"] = new Vector3(1735, 1770, 300),
+            }),
+            new EmptyWorld());
+
+        await Assert.That(rules.MinimapMins).IsEqualTo(new Vector3(-2476, -2444, -100));
+        await Assert.That(rules.MinimapMaxs).IsEqualTo(new Vector3(1735, 1770, 300));
+
+        CSPlayerPawn pawn = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?>
+            {
+                ["m_szLastPlaceName"] = "BombsiteA",
+                ["m_pMovementServices.m_flDuckAmount"] = 0.62f,
+            }),
+            new EmptyWorld());
+
+        await Assert.That(pawn.LastPlaceName).IsEqualTo("BombsiteA");
+        await Assert.That(pawn.DuckAmount).IsEqualTo(0.62f);
+
+        CSPlayerController controller = new(
+            Reader(Binding("CCSPlayerController"), new Dictionary<string, object?>
+            {
+                ["m_iPendingTeamNum"] = 2,
+            }),
+            new EmptyWorld());
+
+        await Assert.That(controller.PendingTeamNum).IsEqualTo(2);
     }
 
     // ── Handles ──────────────────────────────────────────────────────────────

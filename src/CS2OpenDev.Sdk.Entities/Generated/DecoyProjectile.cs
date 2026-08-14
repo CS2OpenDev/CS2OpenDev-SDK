@@ -39,9 +39,9 @@ public sealed class DecoyProjectile(IEntityFieldReader reader, IEntityWorld worl
     // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int DecoyWeaponDefIndex = 12;
-        internal const int ExpireTime = 13;
-        internal const int DecoyShotTick = 14;
-        internal const int ShotsRemaining = 15;
+        internal const int DecoyWeaponDefIndex = 18;
+        internal const int ExpireTime = 19;
+        internal const int DecoyShotTick = 20;
+        internal const int ShotsRemaining = 21;
     }
 }

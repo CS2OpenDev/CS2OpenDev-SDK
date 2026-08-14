@@ -43,7 +43,7 @@ namespace CS2OpenDev.Sdk.Entities;
 public static class EntityWrapperRegistry
 {
     /// <summary>Curation hash of the Schema Lens state these wrappers were emitted from.</summary>
-    public const string LensHash = "sha256:41bec924af8d71fd09f780784484764cbed979359848592a6fbb64424be99884";
+    public const string LensHash = "sha256:bd27551a31bb92d1531c51e31475ff2c11a8b2f8df2290c8786bfa5d4f4698ff";
 
     /// <summary>The CS2 build the emitting schema described.</summary>
     public const string SchemaBuild = "24701871";
@@ -92,6 +92,12 @@ public static class EntityWrapperRegistry
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bDetonationRecorded",
                 "m_flSpawnTime",
                 "m_hOriginalThrower",
@@ -108,7 +114,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [3, 4, 5]),
+            HandleOrdinals: [9, 10, 11]),
         new(
             EngineClass: "CBasePlayerWeapon",
             NetName: "BasePlayerWeapon",
@@ -184,6 +190,8 @@ public static class EntityWrapperRegistry
                 "m_pGameRules.m_nCTsAliveAtFreezetimeEnd",
                 "m_pGameRules.m_nTerroristsAliveAtFreezetimeEnd",
                 "m_pGameRules.m_totalRoundsPlayed",
+                "m_pGameRules.m_vMinimapMaxs",
+                "m_pGameRules.m_vMinimapMins",
             ],
             Aliases: new Dictionary<string, string>(),
             HandleOrdinals: []),
@@ -205,6 +213,7 @@ public static class EntityWrapperRegistry
                 "m_iMVPs",
                 "m_iPawnArmor",
                 "m_iPawnHealth",
+                "m_iPendingTeamNum",
                 "m_iPing",
                 "m_iScore",
                 "m_iTeamNum",
@@ -212,6 +221,10 @@ public static class EntityWrapperRegistry
                 "m_pActionTrackingServices.m_flTotalRoundDamageDealt",
                 "m_pActionTrackingServices.m_iNumRoundKills",
                 "m_pActionTrackingServices.m_iNumRoundKillsHeadshots",
+                "m_pActionTrackingServices.m_matchStats.m_iAssists",
+                "m_pActionTrackingServices.m_matchStats.m_iDamage",
+                "m_pActionTrackingServices.m_matchStats.m_iDeaths",
+                "m_pActionTrackingServices.m_matchStats.m_iKills",
                 "m_pInGameMoneyServices.m_iAccount",
                 "m_pInGameMoneyServices.m_iCashSpentThisRound",
                 "m_pInGameMoneyServices.m_iStartAccount",
@@ -219,7 +232,13 @@ public static class EntityWrapperRegistry
                 "m_sSanitizedPlayerName",
                 "m_steamID",
             ],
-            Aliases: new Dictionary<string, string>(),
+            Aliases: new Dictionary<string, string>
+            {
+                ["m_pActionTrackingServices.m_iAssists"] = "m_pActionTrackingServices.m_matchStats.m_iAssists",
+                ["m_pActionTrackingServices.m_iDamage"] = "m_pActionTrackingServices.m_matchStats.m_iDamage",
+                ["m_pActionTrackingServices.m_iDeaths"] = "m_pActionTrackingServices.m_matchStats.m_iDeaths",
+                ["m_pActionTrackingServices.m_iKills"] = "m_pActionTrackingServices.m_matchStats.m_iKills",
+            },
             HandleOrdinals: [5, 6]),
         new(
             EngineClass: "CCSPlayerPawn",
@@ -234,6 +253,12 @@ public static class EntityWrapperRegistry
                 "m_iPlayerState",
                 "m_ArmorValue",
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_angEyeAngles",
                 "m_bInBombZone",
                 "m_bInBuyZone",
@@ -252,6 +277,7 @@ public static class EntityWrapperRegistry
                 "m_lifeState",
                 "m_pItemServices.m_bHasDefuser",
                 "m_pItemServices.m_bHasHelmet",
+                "m_pMovementServices.m_flDuckAmount",
                 "m_pMovementServices.m_flStamina",
                 "m_pMovementServices.m_nButtons",
                 "m_pObserverServices.m_hObserverTarget",
@@ -259,6 +285,7 @@ public static class EntityWrapperRegistry
                 "m_pWeaponServices.m_hActiveWeapon",
                 "m_pWeaponServices.m_hLastWeapon",
                 "m_pWeaponServices.m_hMyWeapons",
+                "m_szLastPlaceName",
                 "m_unCurrentEquipmentValue",
                 "m_unFreezetimeEndEquipmentValue",
                 "m_unRoundStartEquipmentValue",
@@ -269,7 +296,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [4, 16, 17, 28, 30, 31]),
+            HandleOrdinals: [4, 22, 23, 35, 37, 38]),
         new(
             EngineClass: "CCSPlayerPawnBase",
             NetName: "CSPlayerPawnBase",
@@ -284,6 +311,17 @@ public static class EntityWrapperRegistry
             ],
             Aliases: new Dictionary<string, string>(),
             HandleOrdinals: [4]),
+        new(
+            EngineClass: "CCSTeam",
+            NetName: "CSTeam",
+            CanonicalPaths:
+            [
+                "m_iScore",
+                "m_iTeamNum",
+                "m_szClanTeamname",
+            ],
+            Aliases: new Dictionary<string, string>(),
+            HandleOrdinals: []),
         new(
             EngineClass: "CCSWeaponBaseGun",
             NetName: "CSWeaponBaseGun",
@@ -360,6 +398,12 @@ public static class EntityWrapperRegistry
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bDetonationRecorded",
                 "m_flSpawnTime",
                 "m_hOriginalThrower",
@@ -380,7 +424,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [3, 4, 5]),
+            HandleOrdinals: [9, 10, 11]),
         new(
             EngineClass: "CFlashbang",
             NetName: "Flashbang",
@@ -403,6 +447,12 @@ public static class EntityWrapperRegistry
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bDetonationRecorded",
                 "m_flSpawnTime",
                 "m_hOriginalThrower",
@@ -422,7 +472,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [3, 4, 5]),
+            HandleOrdinals: [9, 10, 11]),
         new(
             EngineClass: "CHEGrenade",
             NetName: "HEGrenade",
@@ -445,6 +495,12 @@ public static class EntityWrapperRegistry
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bDetonationRecorded",
                 "m_flSpawnTime",
                 "m_hOriginalThrower",
@@ -461,7 +517,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [3, 4, 5]),
+            HandleOrdinals: [9, 10, 11]),
         new(
             EngineClass: "CIncendiaryGrenade",
             NetName: "IncendiaryGrenade",
@@ -478,6 +534,15 @@ public static class EntityWrapperRegistry
             ],
             Aliases: new Dictionary<string, string>(),
             HandleOrdinals: [1]),
+        new(
+            EngineClass: "CInferno",
+            NetName: "Inferno",
+            CanonicalPaths:
+            [
+                "m_fireCount",
+            ],
+            Aliases: new Dictionary<string, string>(),
+            HandleOrdinals: []),
         new(
             EngineClass: "CKnife",
             NetName: "Knife",
@@ -516,6 +581,12 @@ public static class EntityWrapperRegistry
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bDetonationRecorded",
                 "m_flSpawnTime",
                 "m_hOriginalThrower",
@@ -534,13 +605,19 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [3, 4, 5]),
+            HandleOrdinals: [9, 10, 11]),
         new(
             EngineClass: "CPlantedC4",
             NetName: "PlantedC4",
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bBeingDefused",
                 "m_bBombDefused",
                 "m_bBombTicking",
@@ -557,7 +634,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [10]),
+            HandleOrdinals: [16]),
         new(
             EngineClass: "CSmokeGrenade",
             NetName: "SmokeGrenade",
@@ -580,6 +657,12 @@ public static class EntityWrapperRegistry
             CanonicalPaths:
             [
                 "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY",
+                "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ",
                 "m_bDetonationRecorded",
                 "m_flSpawnTime",
                 "m_hOriginalThrower",
@@ -602,7 +685,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [3, 4, 5]),
+            HandleOrdinals: [9, 10, 11]),
         new(
             EngineClass: "CWeaponAWP",
             NetName: "WeaponAWP",
@@ -1242,6 +1325,7 @@ public static class EntityWrapperRegistry
             "CCSPlayerController" => new CSPlayerController(reader, world),
             "CCSPlayerPawn" => new CSPlayerPawn(reader, world),
             "CCSPlayerPawnBase" => new CSPlayerPawnBase(reader, world),
+            "CCSTeam" => new CSTeam(reader, world),
             "CCSWeaponBaseGun" => new CSWeaponBaseGun(reader, world),
             "CDEagle" => new DEagle(reader, world),
             "CDecoyGrenade" => new DecoyGrenade(reader, world),
@@ -1251,6 +1335,7 @@ public static class EntityWrapperRegistry
             "CHEGrenade" => new HEGrenade(reader, world),
             "CHEGrenadeProjectile" => new HEGrenadeProjectile(reader, world),
             "CIncendiaryGrenade" => new IncendiaryGrenade(reader, world),
+            "CInferno" => new Inferno(reader, world),
             "CKnife" => new Knife(reader, world),
             "CMolotovGrenade" => new MolotovGrenade(reader, world),
             "CMolotovProjectile" => new MolotovProjectile(reader, world),

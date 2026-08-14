@@ -36,6 +36,96 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public Vector3? Origin => Reader.TryReadVector3(Ord.Origin, out Vector3 v) ? v : null;
 
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellX</c> (uint16).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public int? OriginCellX => Reader.TryReadInt32(Ord.OriginCellX, out int v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellY</c> (uint16).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public int? OriginCellY => Reader.TryReadInt32(Ord.OriginCellY, out int v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_cellZ</c> (uint16).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public int? OriginCellZ => Reader.TryReadInt32(Ord.OriginCellZ, out int v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecX</c> (CNetworkedQuantizedFloat).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public float? OriginVecX => Reader.TryReadSingle(Ord.OriginVecX, out float v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecY</c> (CNetworkedQuantizedFloat).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public float? OriginVecY => Reader.TryReadSingle(Ord.OriginVecY, out float v) ? v : null;
+
+    /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ</c> (CNetworkedQuantizedFloat).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real value on every axis of the quantized
+    ///     origin: cell 0 names a legal world cell, and the consumer-side
+    ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
+    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     <see langword="null"/> means this leaf has never been received on the
+    ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
+    ///     what a demo transmits, so on live entities presence is the normal case.
+    ///     World-coordinate synthesis from them is deliberately left to the consumer
+    ///     (SDK#6 §3); this property is the raw wire value only.
+    /// </remarks>
+    [SchemaFieldVersion("24701871")]
+    public float? OriginVecZ => Reader.TryReadSingle(Ord.OriginVecZ, out float v) ? v : null;
+
     /// <summary><c>m_angEyeAngles</c> (QAngle).</summary>
     [SchemaFieldVersion("genesis")]
     public QAngle EyeAngles => Reader.TryReadQAngle(Ord.EyeAngles, out QAngle v) ? v : default;
@@ -113,6 +203,10 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public bool HasHelmet => Reader.TryReadBool(Ord.HasHelmet, out bool v) ? v : false;
 
+    /// <summary><c>m_pMovementServices.m_flDuckAmount</c> (float32).</summary>
+    [SchemaFieldVersion("24701871")]
+    public float DuckAmount => Reader.TryReadSingle(Ord.DuckAmount, out float v) ? v : 0f;
+
     /// <summary><c>m_pMovementServices.m_flStamina</c> (float32).</summary>
     [SchemaFieldVersion("genesis")]
     public float Stamina => Reader.TryReadSingle(Ord.Stamina, out float v) ? v : 0f;
@@ -157,6 +251,10 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public object? MyWeapons => Reader.TryReadObject(Ord.MyWeapons, out object? v) ? v : null;
 
+    /// <summary><c>m_szLastPlaceName</c> (char[18]).</summary>
+    [SchemaFieldVersion("24701871")]
+    public object? LastPlaceName => Reader.TryReadObject(Ord.LastPlaceName, out object? v) ? v : null;
+
     /// <summary><c>m_unCurrentEquipmentValue</c> (uint16).</summary>
     [SchemaFieldVersion("genesis")]
     public int CurrentEquipmentValue => Reader.TryReadInt32(Ord.CurrentEquipmentValue, out int v) ? v : 0;
@@ -184,35 +282,43 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     {
         internal const int ArmorValue = 6;
         internal const int Origin = 7;
-        internal const int EyeAngles = 8;
-        internal const int InBombZone = 9;
-        internal const int InBuyZone = 10;
-        internal const int IsDefusing = 11;
-        internal const int IsScoped = 12;
-        internal const int IsWalking = 13;
-        internal const int KilledByHeadshot = 14;
-        internal const int DeathTime = 15;
-        internal const int ControllerHandle = 16;
-        internal const int OwnerEntityHandle = 17;
-        internal const int DeathFlags = 18;
-        internal const int Health = 19;
-        internal const int MaxHealth = 20;
-        internal const int ShotsFired = 21;
-        internal const int TeamNum = 22;
-        internal const int LifeState = 23;
-        internal const int HasDefuser = 24;
-        internal const int HasHelmet = 25;
-        internal const int Stamina = 26;
-        internal const int Buttons = 27;
-        internal const int ObserverTargetHandle = 28;
-        internal const int ObserverMode = 29;
-        internal const int ActiveWeaponHandle = 30;
-        internal const int LastWeaponHandle = 31;
-        internal const int MyWeapons = 32;
-        internal const int CurrentEquipmentValue = 33;
-        internal const int FreezetimeEndEquipmentValue = 34;
-        internal const int RoundStartEquipmentValue = 35;
-        internal const int Velocity = 36;
-        internal const int ViewAngle = 37;
+        internal const int OriginCellX = 8;
+        internal const int OriginCellY = 9;
+        internal const int OriginCellZ = 10;
+        internal const int OriginVecX = 11;
+        internal const int OriginVecY = 12;
+        internal const int OriginVecZ = 13;
+        internal const int EyeAngles = 14;
+        internal const int InBombZone = 15;
+        internal const int InBuyZone = 16;
+        internal const int IsDefusing = 17;
+        internal const int IsScoped = 18;
+        internal const int IsWalking = 19;
+        internal const int KilledByHeadshot = 20;
+        internal const int DeathTime = 21;
+        internal const int ControllerHandle = 22;
+        internal const int OwnerEntityHandle = 23;
+        internal const int DeathFlags = 24;
+        internal const int Health = 25;
+        internal const int MaxHealth = 26;
+        internal const int ShotsFired = 27;
+        internal const int TeamNum = 28;
+        internal const int LifeState = 29;
+        internal const int HasDefuser = 30;
+        internal const int HasHelmet = 31;
+        internal const int DuckAmount = 32;
+        internal const int Stamina = 33;
+        internal const int Buttons = 34;
+        internal const int ObserverTargetHandle = 35;
+        internal const int ObserverMode = 36;
+        internal const int ActiveWeaponHandle = 37;
+        internal const int LastWeaponHandle = 38;
+        internal const int MyWeapons = 39;
+        internal const int LastPlaceName = 40;
+        internal const int CurrentEquipmentValue = 41;
+        internal const int FreezetimeEndEquipmentValue = 42;
+        internal const int RoundStartEquipmentValue = 43;
+        internal const int Velocity = 44;
+        internal const int ViewAngle = 45;
     }
 }
