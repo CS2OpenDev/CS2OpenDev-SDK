@@ -30,11 +30,12 @@ if (w is CSPlayerPawn pawn)
 {
     int health = pawn.Health;                   // absent reads as 0
     int? life  = pawn.LifeState;                // absent reads as null — 0 means LIFE_ALIVE
-    Vector3 at = pawn.Origin;
+    Vector3? at = pawn.Origin;                  // absent reads as null — null is the normal case
     ulong buttons = pawn.Buttons;
 
     uint raw = pawn.ActiveWeaponHandle;         // packed, undecoded
-    BasePlayerWeapon? gun = pawn.ActiveWeapon;  // resolved by your runtime
+    EntityWrapper? gun = pawn.ActiveWeapon;     // resolved by your runtime; cast to the
+                                                // concrete weapon wrapper you got back
 }
 ```
 
@@ -43,10 +44,21 @@ if (w is CSPlayerPawn pawn)
 Most properties are **0-default**: a field that was never received reads as zero, which is
 harmless when zero is not a meaningful value.
 
-A curated few are **seen-aware** and typed `T?`, because zero *is* meaningful. `m_lifeState`'s `0`
-is `LIFE_ALIVE`, so a 0-default getter would make a pawn that never transmitted the field
-indistinguishable from a live one. Which fields get which policy is a per-field judgement recorded
-in the generator, not something inferred from a type.
+A curated few are **seen-aware** and typed `T?`, because a zero would be read as data. Which fields
+get which policy is a per-field judgement recorded in the generator, not something inferred from a
+type — and the reason differs per field, so read the property's `<remarks>` rather than assuming.
+
+Two ways in so far:
+
+- **A received zero is a state.** `m_lifeState`'s `0` is `LIFE_ALIVE`, so a 0-default getter would
+  make a pawn that never transmitted the field indistinguishable from a live one.
+- **The value never arrives at all.** `Origin`'s canonical path names a struct
+  (`CNetworkOriginCellCoordQuantizedVector`) whose leaves are what the wire carries, so the parent
+  path does not materialise over a GOTV demo and a 0-default presented that absence as the world
+  origin. Here `null` is the *normal* case, not an edge case — it does not mean the entity is at
+  `(0,0,0)`, and it does not mean your runtime dropped something. A runtime that reconstructs world
+  coordinates from the cell leaves and stores the result under this path serves it through this
+  property.
 
 ## Handles cross undecoded
 
@@ -58,12 +70,28 @@ Only handles whose target is itself a curated class get a companion. `m_hOwnerEn
 `CBaseEntity`, which this package does not wrap, so it exposes the raw handle alone rather than
 inventing a type for it.
 
+Two companions — `ActiveWeapon` and `LastWeapon` — are typed `EntityWrapper?` rather than
+`BasePlayerWeapon?`, so you cast. Their handles declare `CHandle< CBasePlayerWeapon >` but point at
+concrete weapons on real demos, and the emitted wrappers are flat, so `SmokeGrenade` is not a
+`BasePlayerWeapon` and a typed fold would return `null` for a weapon that resolved perfectly well.
+`EntityWrapper?` is the honest type until the wrappers mirror the schema hierarchy
+([#30](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/30)).
+
 ## Skew detection
 
 `EntityWrapperRegistry.LensHash` and `.SchemaBuild` identify the curated state these wrappers were
-generated from. If your runtime also loads the Schema Lens, compare hashes at startup: a mismatch
-means the curation moved without the wrappers being regenerated, and that skew otherwise surfaces
-as fields quietly reading absent.
+generated from. `LensHash` is the hash of **this repository's** `schema-lens/state.json` under its
+own canonical form.
+
+**Do not compare it against a hash your own runtime computes.** An implementation that maintains
+its own Schema Lens hashes a different preimage — different fields, different canonical form — so
+the two numbers are not comparable and a mismatch would be guaranteed rather than meaningful.
+Assert your hash against your state, and this one against the `state.json` this package was
+published beside.
+
+Compatibility across the seam is established by **canonical path, not by hash**: two curated states
+can describe the same field under different spellings, and the alias tables are what reconcile
+them.
 
 ## Versioning
 

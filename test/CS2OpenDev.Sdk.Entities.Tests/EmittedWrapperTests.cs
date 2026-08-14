@@ -132,6 +132,42 @@ public class EmittedWrapperTests
         await Assert.That(absent.Health).IsEqualTo(0);
     }
 
+    /// <summary>Origin is seen-aware on the three classes whose canonical is the quantized-vector struct: the wire carries the struct's leaves, never the parent path, so absent must read null rather than the world origin.</summary>
+    [Test]
+    [Arguments("CCSPlayerPawn")]
+    [Arguments("CBaseCSGrenadeProjectile")]
+    [Arguments("CPlantedC4")]
+    public async Task Origin_IsSeenAware(string engineClass)
+    {
+        EntityClassBinding b = Binding(engineClass);
+
+        // Absent is null, not (0,0,0). On a real GOTV demo absent is the normal
+        // case — the parent path never materialises, only the struct's cell
+        // leaves do (SDK#25, finding F3) — and a 0-default here presented that
+        // as a plausible coordinate. Reflection because the three wrappers share
+        // no base with an Origin member; the property's declared type is part of
+        // what this test pins.
+        EntityWrapper absent = EntityWrapperRegistry.Create(engineClass, Reader(b, []), new EmptyWorld())!;
+        var origin = absent.GetType().GetProperty("Origin")!;
+
+        await Assert.That(origin.PropertyType).IsEqualTo(typeof(Vector3?));
+        await Assert.That(origin.GetValue(absent)).IsNull();
+
+        // A runtime that stores a value under the canonical path — fabricated
+        // state, or reconstructed world coordinates — still serves it through
+        // the property. Nullability changes what absence reads as, not what
+        // presence does.
+        EntityWrapper present = EntityWrapperRegistry.Create(
+            engineClass,
+            Reader(b, new Dictionary<string, object?>
+            {
+                ["m_CBodyComponent.m_pSceneNode.m_vecOrigin"] = new Vector3(4, 5, 6),
+            }),
+            new EmptyWorld())!;
+
+        await Assert.That(origin.GetValue(present)).IsEqualTo(new Vector3(4, 5, 6));
+    }
+
     /// <summary>A field declared as a struct but carrying uint64 on the wire reads as ulong — the derivation that replaced the hand-curated wide-int table.</summary>
     [Test]
     public async Task Buttons_ReadsWideDespiteItsDeclaredType()
