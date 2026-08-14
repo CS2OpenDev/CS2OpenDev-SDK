@@ -19,8 +19,18 @@ public sealed class PlantedC4(IEntityFieldReader reader, IEntityWorld world)
     : EntityWrapper(reader, world)
 {
     /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin</c> (CNetworkOriginCellCoordQuantizedVector).</summary>
+    /// <remarks>
+    ///     Nullable because this canonical path names a struct
+    ///     (<c>CNetworkOriginCellCoordQuantizedVector</c>) whose leaves — <c>m_cellX/Y/Z</c>,
+    ///     <c>m_vecX/Y/Z</c> — are what the wire actually carries; the struct-valued parent
+    ///     path never materialises over a GOTV demo, so a zero default would present that
+    ///     absence as the world origin. <see langword="null"/> means no value is stored
+    ///     under this path — it does NOT mean the entity is at <c>(0,0,0)</c>. A runtime
+    ///     that reconstructs world coordinates from the cell leaves and stores the result
+    ///     under this path serves it through this property.
+    /// </remarks>
     [SchemaFieldVersion("genesis")]
-    public Vector3 Origin => Reader.TryReadVector3(Ord.Origin, out Vector3 v) ? v : default;
+    public Vector3? Origin => Reader.TryReadVector3(Ord.Origin, out Vector3 v) ? v : null;
 
     /// <summary><c>m_bBeingDefused</c> (bool).</summary>
     [SchemaFieldVersion("genesis")]

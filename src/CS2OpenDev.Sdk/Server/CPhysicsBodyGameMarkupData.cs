@@ -32,5 +32,5 @@ public partial class CPhysicsBodyGameMarkupData
     [NativeOffset(0x0)]
     [NativeName("m_PhysicsBodyMarkupByBoneName")]
     [NativeMetadata("MPropertyDescription", "Physics Body Data By Bone Name")]
-    public CUtlDict__CPhysicsBodyGameMarkup__ PhysicsBodyMarkupByBoneName { get; set; }
+    public Dictionary<string, CPhysicsBodyGameMarkup> PhysicsBodyMarkupByBoneName { get; set; }
 }

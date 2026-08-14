@@ -78,21 +78,37 @@ startup over whatever binding set you load.
 
 ## Versioning
 
-**Still `0.x`.** `1.0` is the claim that the shape survived contact with a *second*
-implementation, not that the author is happy with it.
+**`1.0`.** `1.0` is the claim that the shape survived contact with a *second* implementation, not
+that the author is happy with it. The criterion was written down before it was met, and it is met.
 
 DemoViewer.NET implemented `IEntityFieldReader` and `IEntityWorld` over their own runtime against
 **0.1.1** and reported no contract change required, no runtime hooks added, and 43 conformance
-tests passing. On that version the criterion is met.
+tests passing. That met the criterion on 0.1.1 — and `1.0` was withheld anyway, because their
+findings had already changed the reference reader underneath it. `TryReadEntityHandle` now folds
+integral widths rather than converting them, so a handle written as `int -1` reads as the
+`0xFFFFFFFF` sentinel instead of absent. They had validated the reader *before* that. Shipping
+`1.0` on evidence that predates the change would have asserted exactly the thing the criterion
+exists to establish.
 
-This is `0.2`, not that version. Their findings changed the reference reader — `TryReadEntityHandle` now
-folds integral widths rather than converting them — and added normative wording about cross-shape
-`Vector3`/`QAngle` reads. They validated the reader *before* those changes. `1.0` goes out when the
-second implementation has run against this one.
+They re-ran against **0.2.1** and [confirmed it
+narrowly](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/6#issuecomment-5288717770): the
+conformance port executed inside a full run of their parser suite — 268/268 passed, 0 failed,
+**0 skipped**, so nothing passed by being skipped rather than updated. Their handle-sentinel test
+predates the reference fix and already asserted present-`0xFFFFFFFF`, which is why the reference
+catching up moved nothing on their side.
 
-The minor moved rather than the patch because in `0.x` the minor is the breaking slot, and the
-handle fold is a behaviour change a consumer can observe: a handle that read as absent now reads as
-the invalid sentinel.
+The published release was `0.3.0`, not the `0.2.1` they ran. That gap closes by inspection, not by
+argument — `0.3.0` was the `versionHeightOffset` cut, and its diff against `0.2.1` over this
+directory is `version.json` alone. No reader, no interface, no conformance kit moved between the
+code they validated and the code `1.0.0` carries. Had that diff shown one line of contract, this
+would be another `0.x`.
+
+**What `1.0` costs from here:** a breaking change to this contract is a MAJOR. [SDK#30](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/30)
+has candidate resolutions that would move the read seam off ordinal addressing; if one of those is
+chosen, it ships as `2.0` rather than sliding in. Pricing that correctly is the point.
+
+**What `1.0` does not claim:** that the contract is finished, or that a third implementation would
+find nothing. Only that the shape held when someone other than its author built against it.
 
 One friction is deferred rather than resolved: a binding set has no contract-visible place to
 record which Schema Lens state it was derived from. That belongs on the generated wrapper registry,

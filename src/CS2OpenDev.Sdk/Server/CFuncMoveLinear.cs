@@ -135,7 +135,7 @@ public partial class CFuncMoveLinear : CBaseToggle
     /// </remarks>
     [NativeOffset(0x810)]
     [NativeName("m_soundStart")]
-    public CGameSoundEventName SoundStart { get; set; }
+    public string SoundStart { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundStop.
@@ -145,7 +145,7 @@ public partial class CFuncMoveLinear : CBaseToggle
     /// </remarks>
     [NativeOffset(0x818)]
     [NativeName("m_soundStop")]
-    public CGameSoundEventName SoundStop { get; set; }
+    public string SoundStop { get; set; }
 
     /// <summary>
     ///     Gets or sets Speed.

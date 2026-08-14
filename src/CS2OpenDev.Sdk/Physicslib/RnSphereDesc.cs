@@ -32,5 +32,5 @@ public partial class RnSphereDesc : RnShapeDesc
     /// </remarks>
     [NativeOffset(0x18)]
     [NativeName("m_Sphere")]
-    public RnSphere_t Sphere { get; set; }
+    public RnSphere Sphere { get; set; }
 }

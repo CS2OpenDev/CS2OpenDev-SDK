@@ -60,11 +60,19 @@ jobs:
         # full 40-file directory may not actually be closed.
         run: python3 scripts/normalize-protos.py --check
 
-      - name: Verify the proto surface has not shrunk without a version bump
+      - name: Verify the proto and C# surfaces have not shrunk without a version bump
         # `normalize-protos.py --check` above proves protos/ matches the submodule.
         # It says nothing about whether that content is releasable, and those are
         # different questions: 3.0.7 was a faithful restage of an upstream closure
         # prune that removed 188 public types, and shipped as a patch.
+        #
+        # One invocation, three conditions — schema readiness, the `.proto`
+        # surface, and since issue #32 the emitted C# surface of CS2OpenDev.Sdk.
+        # They share a step because they share a script and each reports itself by
+        # name; splitting them would mean running the schema check three times.
+        # The C# half is the one with teeth here: the 5.0 repair changed 1,923
+        # property types and dropped 760 stub classes with nothing in the pipeline
+        # in a position to say so.
         #
         # This runs on PRs as well as the cron because a removal can arrive either
         # way — a submodule bump, or someone editing the staged set by hand — and
@@ -90,7 +98,23 @@ jobs:
         # asserts the gate fires on one and not the other. A gate that silently
         # stopped detecting anything would otherwise look identical to a clean run
         # forever — the failure mode of every check that is never exercised.
-        run: python3 scripts/check-migration-readiness.py --selftest
+        run: python3 scripts/check-migration-readiness.py --selftest proto
+
+      - name: Self-test the SDK surface gate
+        # Same argument, one step further. The verdict cases replay 4.1.5 -> 5.0.1
+        # twice: once against the version pair that actually shipped, which must
+        # pass, and once against a counterfactual unchanged 4.1, which must fail.
+        # No released CS2OpenDev.Sdk tag pair removes API unacknowledged, so the
+        # counterfactual is the only way to prove the gate fires at all.
+        #
+        # It also pins the counts — 1,923 property type changes across 820 classes,
+        # 760 types removed — against the numbers docs/MIGRATION-5.0.md was built
+        # from by a different method. That is the part that matters most: the C#
+        # surface is extracted lexically, so an emitter reformat that the compiler
+        # would not notice could blind the extractor, and an extractor that sees
+        # nothing produces a clean diff and a green verdict forever. Only a case
+        # that knows the right number catches that.
+        run: python3 scripts/check-migration-readiness.py --selftest sdk
 
       - name: Regenerate SDK + game-event factories into a clean tree
         run: dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter

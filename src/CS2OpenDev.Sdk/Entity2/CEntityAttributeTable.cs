@@ -29,7 +29,7 @@ public partial class CEntityAttributeTable
     /// </remarks>
     [NativeOffset(0x0)]
     [NativeName("m_Attributes")]
-    public Dictionary<CUtlStringTokenNoRegistration, Attribute> Attributes { get; set; }
+    public Dictionary<string, Attribute> Attributes { get; set; }
 
     /// <summary>
     ///     Gets or sets Names.
@@ -39,5 +39,5 @@ public partial class CEntityAttributeTable
     /// </remarks>
     [NativeOffset(0x28)]
     [NativeName("m_Names")]
-    public Dictionary<CUtlStringTokenNoRegistration, string> Names { get; set; }
+    public Dictionary<string, string> Names { get; set; }
 }

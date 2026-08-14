@@ -328,7 +328,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC60)]
     [NativeName("m_SoundClose")]
-    public CGameSoundEventName SoundClose { get; set; }
+    public string SoundClose { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundJiggle.
@@ -338,7 +338,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC88)]
     [NativeName("m_SoundJiggle")]
-    public CGameSoundEventName SoundJiggle { get; set; }
+    public string SoundJiggle { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundLatch.
@@ -348,7 +348,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC78)]
     [NativeName("m_SoundLatch")]
-    public CGameSoundEventName SoundLatch { get; set; }
+    public string SoundLatch { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundLock.
@@ -358,7 +358,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC68)]
     [NativeName("m_SoundLock")]
-    public CGameSoundEventName SoundLock { get; set; }
+    public string SoundLock { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundLockedAnim.
@@ -368,7 +368,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC90)]
     [NativeName("m_SoundLockedAnim")]
-    public CGameSoundEventName SoundLockedAnim { get; set; }
+    public string SoundLockedAnim { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundMoving.
@@ -378,7 +378,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC50)]
     [NativeName("m_SoundMoving")]
-    public CGameSoundEventName SoundMoving { get; set; }
+    public string SoundMoving { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundOpen.
@@ -388,7 +388,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC58)]
     [NativeName("m_SoundOpen")]
-    public CGameSoundEventName SoundOpen { get; set; }
+    public string SoundOpen { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundPound.
@@ -399,7 +399,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     [NativeOffset(0xC80)]
     [NativeName("m_SoundPound")]
     [NativeMetadata("MNotSaved", "")]
-    public CGameSoundEventName SoundPound { get; set; }
+    public string SoundPound { get; set; }
 
     /// <summary>
     ///     Gets or sets SoundUnlock.
@@ -409,7 +409,7 @@ public abstract partial class CBasePropDoor : CDynamicProp
     /// </remarks>
     [NativeOffset(0xC70)]
     [NativeName("m_SoundUnlock")]
-    public CGameSoundEventName SoundUnlock { get; set; }
+    public string SoundUnlock { get; set; }
 
     /// <summary>
     ///     Gets or sets Speed.

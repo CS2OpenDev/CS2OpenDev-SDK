@@ -26,74 +26,42 @@ public partial class Attribute_t
 {
 }
 
-/// <summary>CGameSoundEventName — forward-declared stub (type not reflected in cs2_schema.json).</summary>
-[EditorBrowsable(EditorBrowsableState.Never)]
-public partial class CGameSoundEventName
-{
-}
-
-/// <summary>CPulseObservableExpression&lt; CUtlString &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+/// <summary>CPulseObservableExpression&lt; CUtlString &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
 [NativeName("CPulseObservableExpression< CUtlString >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class CPulseObservableExpression__CUtlString__
 {
 }
 
-/// <summary>CPulseObservableExpression&lt; bool &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+/// <summary>CPulseObservableExpression&lt; bool &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
 [NativeName("CPulseObservableExpression< bool >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class CPulseObservableExpression__bool__
 {
 }
 
-/// <summary>CPulseObservableExpression&lt; float32 &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+/// <summary>CPulseObservableExpression&lt; float32 &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
 [NativeName("CPulseObservableExpression< float32 >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class CPulseObservableExpression__float32__
 {
 }
 
-/// <summary>CUtlDict&lt; CPhysicsBodyGameMarkup &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
-[NativeName("CUtlDict< CPhysicsBodyGameMarkup >")]
-[EditorBrowsable(EditorBrowsableState.Never)]
-public partial class CUtlDict__CPhysicsBodyGameMarkup__
-{
-}
-
-/// <summary>CUtlDict&lt; GameTime_t &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
-[NativeName("CUtlDict< GameTime_t >")]
-[EditorBrowsable(EditorBrowsableState.Never)]
-public partial class CUtlDict__GameTime_t__
-{
-}
-
-/// <summary>CUtlStringTokenNoRegistration — forward-declared stub (type not reflected in cs2_schema.json).</summary>
-[EditorBrowsable(EditorBrowsableState.Never)]
-public partial class CUtlStringTokenNoRegistration
-{
-}
-
-/// <summary>HPulseCellBase — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+/// <summary>HPulseCellBase — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class HPulseCellBase
 {
 }
 
-/// <summary>HPulseCell&lt; CPulseCell_TestWaitWithCursorState &gt; — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+/// <summary>HPulseCell&lt; CPulseCell_TestWaitWithCursorState &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
 [NativeName("HPulseCell< CPulseCell_TestWaitWithCursorState >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class HPulseCell__CPulseCell_TestWaitWithCursorState__
 {
 }
 
-/// <summary>HYieldedCursor — forward-declared stub (type not reflected in cs2_schema.json).</summary>
+/// <summary>HYieldedCursor — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class HYieldedCursor
-{
-}
-
-/// <summary>RnSphere_t — forward-declared stub (type not reflected in cs2_schema.json).</summary>
-[EditorBrowsable(EditorBrowsableState.Never)]
-public partial class RnSphere_t
 {
 }

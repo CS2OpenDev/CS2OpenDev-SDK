@@ -85,5 +85,5 @@ public partial class CMessage : CPointEntity
     /// </remarks>
     [NativeOffset(0x4C0)]
     [NativeName("m_sNoise")]
-    public CGameSoundEventName SNoise { get; set; }
+    public string SNoise { get; set; }
 }
