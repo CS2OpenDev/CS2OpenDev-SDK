@@ -436,6 +436,7 @@ if (Directory.Exists(lensDirectory))
     EntityWrapperEmitter.EmitAll(
         entitiesSink,
         lensReplay.State,
+        schema,
         lensGates.Resolution,
         name => effectiveWidths.TryGetValue(name, out int? w) ? w : null,
         lensHash,

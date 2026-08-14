@@ -129,7 +129,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     unset, invalid, stale, or pointing at a different class. Which encodings
     ///     mean which is the runtime's policy, not this wrapper's.
     /// </remarks>
-    public BasePlayerWeapon? ActiveWeapon => World.Resolve<BasePlayerWeapon>(ActiveWeaponHandle);
+    public EntityWrapper? ActiveWeapon => World.Resolve<EntityWrapper>(ActiveWeaponHandle);
 
     /// <summary><c>m_pWeaponServices.m_hLastWeapon</c> (CHandle&lt; CBasePlayerWeapon &gt;).</summary>
     [SchemaFieldVersion("genesis")]
@@ -141,7 +141,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     unset, invalid, stale, or pointing at a different class. Which encodings
     ///     mean which is the runtime's policy, not this wrapper's.
     /// </remarks>
-    public BasePlayerWeapon? LastWeapon => World.Resolve<BasePlayerWeapon>(LastWeaponHandle);
+    public EntityWrapper? LastWeapon => World.Resolve<EntityWrapper>(LastWeaponHandle);
 
     /// <summary><c>m_pWeaponServices.m_hMyWeapons</c> (CNetworkUtlVectorBase&lt; CHandle&lt; CBasePlayerWeapon &gt; &gt;).</summary>
     [SchemaFieldVersion("genesis")]

@@ -59,12 +59,40 @@ internal static class EntityWrapperEmitter
     internal static void EmitAll(
         IGeneratorSink sink,
         LensState state,
+        SchemaRoot schema,
         IReadOnlyDictionary<string, LensResolvedClass> resolution,
         Func<string, int?> declaredClassWidth,
         string lensHash,
         string schemaBuild,
         string ns)
     {
+        // A curated class with curated descendants cannot be the static type of a
+        // companion: a registry-faithful runtime dispatches the handle target to
+        // its own concrete wrapper, and the typed fold then fails. See CompanionType.
+        Dictionary<string, string> firstParent = new(StringComparer.Ordinal);
+        foreach (ClassModel c in schema.Classes)
+        {
+            if (c.Parents.Length > 0)
+            {
+                firstParent[c.Name] = c.Parents[0].Name;
+            }
+        }
+
+        HashSet<string> hasCuratedDescendant = new(StringComparer.Ordinal);
+        foreach (string curated in state.Classes.Keys)
+        {
+            string cursor = curated;
+            while (firstParent.TryGetValue(cursor, out string? parent))
+            {
+                if (state.Classes.ContainsKey(parent))
+                {
+                    hasCuratedDescendant.Add(parent);
+                }
+
+                cursor = parent;
+            }
+        }
+
         List<BindingPlan> plans = [];
 
         foreach ((string engineClass, LensClassState cls) in state.Classes)
@@ -74,7 +102,7 @@ internal static class EntityWrapperEmitter
                 continue;
             }
 
-            BindingPlan plan = Plan(engineClass, cls, resolved, declaredClassWidth, state);
+            BindingPlan plan = Plan(engineClass, cls, resolved, declaredClassWidth, state, hasCuratedDescendant);
             plans.Add(plan);
             sink.AddSource(plan.NetName, EmitWrapper(plan, ns));
         }
@@ -89,7 +117,8 @@ internal static class EntityWrapperEmitter
         LensClassState cls,
         LensResolvedClass resolved,
         Func<string, int?> declaredClassWidth,
-        LensState state)
+        LensState state,
+        IReadOnlySet<string> hasCuratedDescendant)
     {
         List<FieldPlan> fields = [];
         int ordinal = 0;
@@ -133,7 +162,8 @@ internal static class EntityWrapperEmitter
             fields,
             aliases,
             !NoFactoryRegistration.Contains(engineClass),
-            state);
+            state,
+            hasCuratedDescendant);
     }
 
     // The whole type dispatch. Every branch names the reader member the emitted
@@ -245,7 +275,7 @@ internal static class EntityWrapperEmitter
         // equivalence the schema does not state, and guessing it here would put a
         // wrong type on a public property.
         if (f.Reads.Member == "TryReadEntityHandle"
-            && ResolvedTarget(f, plan) is { } target
+            && CompanionType(f, plan) is { } target
             && f.Property.EndsWith("Handle", StringComparison.Ordinal))
         {
             string resolvedName = f.Property[..^"Handle".Length];
@@ -261,7 +291,8 @@ internal static class EntityWrapperEmitter
         }
     }
 
-    private static string? ResolvedTarget(FieldPlan f, BindingPlan plan)
+    // The C# type a resolved companion should carry, or null for no companion.
+    private static string? CompanionType(FieldPlan f, BindingPlan plan)
     {
         int lt = f.SchemaType.IndexOf('<');
         int gt = f.SchemaType.LastIndexOf('>');
@@ -270,8 +301,48 @@ internal static class EntityWrapperEmitter
             return null;
         }
 
-        string target = f.SchemaType[(lt + 1)..gt].Trim();
-        return plan.State.Classes.TryGetValue(target, out LensClassState? cls) ? cls.NetName : null;
+        string declared = f.SchemaType[(lt + 1)..gt].Trim();
+
+        // A handle declared against the client-side projection of a class names the
+        // same entity as its server-side sibling: `C_CSPlayerPawn` and
+        // `CCSPlayerPawn` are one pawn seen from two modules, and the Lens curates
+        // whichever side it curates. CCSPlayerController.m_hPlayerPawn is declared
+        // client-side, so matching only the literal spelling silently denied a
+        // companion for the single most-used traversal there is — controller to
+        // pawn. Reported from the consuming seat (SDK#25, finding F2).
+        //
+        // Only the C_ prefix is folded. Nothing else about the two names is
+        // assumed equivalent, and a target curated under neither spelling still
+        // gets no companion.
+        string? curated =
+            plan.State.Classes.ContainsKey(declared) ? declared
+            : declared.StartsWith("C_", StringComparison.Ordinal)
+              && plan.State.Classes.ContainsKey("C" + declared[2..]) ? "C" + declared[2..]
+            : null;
+
+        if (curated is null)
+        {
+            return null;
+        }
+
+        // If the target has curated descendants, it cannot be the companion's
+        // static type. A runtime dispatches a handle to the concrete class's own
+        // wrapper — an active weapon resolves to `SmokeGrenade`, not to
+        // `BasePlayerWeapon` — and because the emitted types are flat, the typed
+        // fold then fails and the property is null for every real entity.
+        //
+        // Measured rather than theorised: on a real demo, a pawn whose active
+        // weapon was a live CSmokeGrenade read `ActiveWeapon == null` while the
+        // same handle resolved untyped perfectly well (SDK#25, finding F1).
+        //
+        // EntityWrapper is the honest static type until the emitted wrappers
+        // mirror the schema hierarchy, which is not a free change: a base
+        // property's ordinal constant comes from the base's own field set, while
+        // the reader is bound to the derived class's binding, so inheritance and
+        // the ordinal space have to be solved together.
+        return plan.HasCuratedDescendant.Contains(curated)
+            ? "EntityWrapper"
+            : plan.State.Classes[curated].NetName;
     }
 
     // ── Registry emission ────────────────────────────────────────────────────
@@ -435,5 +506,6 @@ internal static class EntityWrapperEmitter
         IReadOnlyList<FieldPlan> Fields,
         IReadOnlyDictionary<string, string> Aliases,
         bool Registers,
-        LensState State);
+        LensState State,
+        IReadOnlySet<string> HasCuratedDescendant);
 }

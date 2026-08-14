@@ -46,6 +46,14 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     [SchemaFieldVersion("genesis")]
     public uint PlayerPawnHandle => Reader.TryReadEntityHandle(Ord.PlayerPawnHandle, out uint v) ? v : 0u;
 
+    /// <summary><see cref="PlayerPawnHandle"/> resolved by the runtime.</summary>
+    /// <remarks>
+    ///     <see langword="null"/> when the handle names no live entity of this type —
+    ///     unset, invalid, stale, or pointing at a different class. Which encodings
+    ///     mean which is the runtime's policy, not this wrapper's.
+    /// </remarks>
+    public CSPlayerPawn? PlayerPawn => World.Resolve<CSPlayerPawn>(PlayerPawnHandle);
+
     /// <summary><c>m_iCompetitiveRanking</c> (int32).</summary>
     [SchemaFieldVersion("genesis")]
     public int CompetitiveRanking => Reader.TryReadInt32(Ord.CompetitiveRanking, out int v) ? v : 0;

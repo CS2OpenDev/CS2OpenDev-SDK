@@ -173,7 +173,12 @@ public class EmittedWrapperTests
 
         await Assert.That(pawn.ActiveWeaponHandle).IsEqualTo(handle);
         await Assert.That(pawn.ActiveWeapon).IsNotNull();
-        await Assert.That(pawn.ActiveWeapon!.Clip1).IsEqualTo(30);
+
+        // The companion is EntityWrapper? because its target has curated
+        // descendants, so a consumer narrows to the class it expects. That cast is
+        // the cost of the companion working at all on real data — see
+        // WeaponCompanions_AreTypedForWhatARuntimeActuallyReturns.
+        await Assert.That(((BasePlayerWeapon)pawn.ActiveWeapon!).Clip1).IsEqualTo(30);
     }
 
     /// <summary>An unresolvable handle yields null rather than throwing.</summary>
@@ -205,6 +210,86 @@ public class EmittedWrapperTests
                 await Assert.That(b.CanonicalPaths[ordinal].Split('.')[^1]).StartsWith("m_h");
             }
         }
+    }
+
+    // ── Companion typing (SDK#25 F1 and F2, both found over a real demo) ──────
+
+    /// <summary>A companion whose target has curated descendants is typed EntityWrapper, because a runtime dispatches the handle to the concrete class and a narrower fold could never succeed.</summary>
+    [Test]
+    public async Task WeaponCompanions_AreTypedForWhatARuntimeActuallyReturns()
+    {
+        const uint handle = 0x0002_1234u;
+
+        // A live smoke grenade is what m_hActiveWeapon points at in practice, and
+        // a registry-faithful runtime resolves it to that class's own wrapper.
+        EntityWrapper smoke = EntityWrapperRegistry.Create(
+            "CSmokeGrenade", Reader(Binding("CSmokeGrenade"), []), new EmptyWorld())!;
+
+        TableWorld world = new();
+        world.Add(handle, smoke);
+
+        CSPlayerPawn pawn = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?>
+            {
+                ["m_pWeaponServices.m_hActiveWeapon"] = handle,
+            }),
+            world);
+
+        // Before the fix this was typed BasePlayerWeapon? and read null here, because
+        // the emitted types are flat and SmokeGrenade is not a BasePlayerWeapon.
+        await Assert.That(pawn.ActiveWeapon).IsNotNull();
+        await Assert.That(pawn.ActiveWeapon).IsTypeOf<SmokeGrenade>();
+    }
+
+    /// <summary>A handle declared against the client-side spelling of a curated class still gets its companion — controller to pawn is the most-used traversal there is.</summary>
+    [Test]
+    public async Task ClientSpelledHandle_StillGetsItsCompanion()
+    {
+        const uint handle = 0x0003_0042u;
+
+        EntityWrapper target = EntityWrapperRegistry.Create(
+            "CCSPlayerPawn",
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_iHealth"] = 55 }),
+            new EmptyWorld())!;
+
+        TableWorld world = new();
+        world.Add(handle, target);
+
+        // m_hPlayerPawn declares CHandle< C_CSPlayerPawn > — the client spelling of
+        // the curated, server-named CCSPlayerPawn.
+        CSPlayerController controller = new(
+            Reader(Binding("CCSPlayerController"), new Dictionary<string, object?>
+            {
+                ["m_hPlayerPawn"] = handle,
+            }),
+            world);
+
+        await Assert.That(controller.PlayerPawn).IsNotNull();
+        await Assert.That(controller.PlayerPawn!.Health).IsEqualTo(55);
+    }
+
+    /// <summary>A target with no curated descendants keeps its specific type, so the fix does not flatten companions that were already correct.</summary>
+    [Test]
+    public async Task CompanionsWithNoCuratedDescendants_StayTyped()
+    {
+        const uint handle = 0x0004_0007u;
+
+        EntityWrapper defuser = EntityWrapperRegistry.Create(
+            "CCSPlayerPawn", Reader(Binding("CCSPlayerPawn"), []), new EmptyWorld())!;
+
+        TableWorld world = new();
+        world.Add(handle, defuser);
+
+        PlantedC4 bomb = new(
+            Reader(Binding("CPlantedC4"), new Dictionary<string, object?>
+            {
+                ["m_hBombDefuser"] = handle,
+            }),
+            world);
+
+        // Statically CSPlayerPawn?, not EntityWrapper? — the type still carries information.
+        CSPlayerPawn? typed = bomb.BombDefuser;
+        await Assert.That(typed).IsNotNull();
     }
 
     // ── Support ──────────────────────────────────────────────────────────────
