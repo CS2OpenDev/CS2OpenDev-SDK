@@ -113,8 +113,9 @@
          through because MSBuild evaluates them before the P2P call.
 
          Date format must be ISO (no spaces) per the SemVer 2 identifier
-         grammar `[0-9A-Za-z-]+`; the CI step converts the schema's
-         "May 20 2026" upstream format to "2026-05-20" before invoking pack. -->
+         grammar `[0-9A-Za-z-]+`; schema 2.0 headers already carry the date as
+         ISO ("2026-05-20"), and the read-schema-metadata action validates the
+         shape before invoking pack. -->
     <ItemGroup>
         <BuildMetadata Include="cs.$(CS2SchemaRevision)"
                        Condition="'$(CS2SchemaRevision)' != ''"/>
