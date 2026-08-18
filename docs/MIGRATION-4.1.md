@@ -1,8 +1,8 @@
 # Migrating to CS2OpenDev.Sdk 4.1
 
 4.1 fixes a decoding bug in the player-reference game-event fields. It **adds 59
-properties** and **changes the type of 11**. Nothing is renamed, nothing moved
-namespace, nothing was removed.
+properties** and **changes the type of 11**. No renames this time, no namespace
+moves, no removals.
 
 The 11 type changes are breaking on paper. In practice no working code can break
 on them: those properties decoded as a constant `0` in every release up to and
@@ -33,8 +33,8 @@ Through 4.0.1 the generator read `<name>` for all three. So:
   yields `0` for an absent key by design, so the miss surfaced as a plausible
   value rather than a failure.
 
-Nothing in the extracted schema names the `_pawn` keys — they are a property of
-the declared type, one representation level above the field list — which is why
+Nothing in the extracted schema names the `_pawn` keys; they are a property of
+the declared type, one representation level above the field list. That is why
 this survived three majors.
 
 ## The 11 changed properties
@@ -57,7 +57,7 @@ Each keeps its name and its `[NativeName]`. The type changes from `int` to
 | `player_footstep` | `PlayerFootstepCoreEvent` | `UserId` |
 
 **What to do:** if you read any of these, you were reading `0`. Change the local
-type to `uint` and treat the value as an entity handle, not a userid — it
+type to `uint` and treat the value as an entity handle, not a userid; it
 identifies a pawn, so there is no controller slot to look up. If you had a
 workaround that read the raw key yourself, delete it.
 
@@ -92,7 +92,7 @@ The companions are spread across 50 events: 51 are `<name>Pawn` for `userid`,
 5 for `attacker`, 2 for `victim`, 1 for `assister`.
 
 On the companions, `[NativeName]` carries the wire key (`userid_pawn`) because
-that is the identifier the engine emits and the one a reverse lookup needs — but
+that is the identifier the engine emits and the one a reverse lookup needs. But
 the XML remarks say **"Wire key … derived by the engine … rather than declared as
 a field"**, not "Native name", because nothing in the schema declares it. The 11
 `player_pawn` properties keep the ordinary "Native name" wording and their
@@ -101,7 +101,7 @@ decide what is schema-backed, use `[GameEventFieldType]` plus the property name
 suffix rather than assuming every `[NativeName]` corresponds to a declared field.
 
 Records use `required` init-only properties, so **if you construct event records
-by hand** — in tests, fixtures, or fakes — the new properties are required and
+by hand** (in tests, fixtures, or fakes) the new properties are required and
 your object initialisers will not compile until you set them. Decoding through
 the generated factories is unaffected.
 
@@ -123,6 +123,6 @@ deliberately different for these fields.
 
 ## Unaffected
 
-`player_controller` (82 fields) is unchanged in every respect — one key, same
+`player_controller` (82 fields) is unchanged in every respect: one key, same
 name, still `int`. No other type tag, namespace, or record is touched, and the
 schema pin moves independently of this change.

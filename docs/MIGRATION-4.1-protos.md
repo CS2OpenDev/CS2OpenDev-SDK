@@ -1,8 +1,8 @@
 # Migrating to CS2OpenDev.Protos 4.1
 
 `CS2OpenDev.Protos` goes 3.0.6 → 4.1.0. **188 top-level types are removed** and
-three `.proto` files are gone from the package. Nothing is renamed, nothing
-changes shape, and no type is added.
+three `.proto` files are gone from the package. No renames, no shape changes,
+no additions.
 
 > **If you have 3.0.7, you already have this break.** The unattended refresh
 > picked up the tracker bump and shipped the removal as a patch before the major
@@ -27,7 +27,7 @@ SchemaTracker v1.3.0 the extractor emits `cstrike15_gcmessages.proto` as a
 types transitively referenced by the rest of the artifact set and drops the
 rest, re-deriving on every extract so a new referencing field re-grows the
 closure automatically. The file's own header records the result for the build it
-came from — `17 of 162 top-level types kept`.
+came from: `17 of 162 top-level types kept`.
 
 Three imports became unnecessary once the surviving closure no longer referenced
 them, so they are no longer staged into `protos/` at all:
@@ -49,13 +49,13 @@ a two-value `MGetKV3ClassDefaults` metadata edit on `DynPitchVol` and
 `DynPitchVolBase` (`vol` 32762 → 32760). `Sdk` and `Sdk.GameEvents` stay at 4.1
 rather than taking a major they did not have.
 
-Protos was already a major behind — `Sdk` and `Sdk.GameEvents` moved to 4.x
+Protos was already a major behind: `Sdk` and `Sdk.GameEvents` moved to 4.x
 while this package stayed at 3.0, against the rule in the root README that the
 major is kept in step by hand. Rejoining at 4.1 fixes that drift and signals the
 break in the same motion, which is the whole job `MAJOR` has here.
 
 Nothing in the pipeline catches this on its own, which is how 3.0.7 happened.
-Build, tests, the readiness gate and the regen fixed point were all green — none
+Build, tests, the readiness gate and the regen fixed point were all green; none
 of them is a semantic-versioning gate, and none claims to be. The major comes
 from a human editing `version.json`; the patch comes from git height. When
 upstream removes public API, only the first of those notices.
@@ -68,7 +68,7 @@ Nothing on the demo path moved. `demo.proto`, `netmessages.proto`,
 `te.proto`, `networkbasetypes.proto`, `network_connection.proto`,
 `clientmessages.proto`, `connectionless_netmessages.proto`,
 `source2_steam_stats.proto` and `valveextensions.proto` are all still staged and
-unchanged in shape. The package still compiles as a closed set — `protoc`
+unchanged in shape. The package still compiles as a closed set: `protoc`
 verifies the 15 surviving files in isolation on every regen.
 
 ### Four removals that look demo-adjacent and are not
@@ -97,7 +97,7 @@ They are not coming back to this package. The closure is re-derived on every
 extract from what the artifact set references, so a GC message returns only if
 something on the wire path starts referencing it.
 
-Get them from the full embedded descriptors instead — SchemaTracker publishes
+Get them from the full embedded descriptors instead. SchemaTracker publishes
 the complete, unpruned `.proto` set per build under
 `artifacts/<build>/<platform>/protos/`, and `protos.descriptorset` alongside it.
 That is the same source this package is staged from; `protos/PROVENANCE.json`

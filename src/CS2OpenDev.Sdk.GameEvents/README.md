@@ -3,11 +3,11 @@
 Decodes Counter-Strike 2's legacy game-event wire messages into the strongly-typed event records
 shipped by [`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK).
 
-> **Published to GitHub Packages, not NuGet.org.** Add
+> Published to GitHub Packages only. Add
 > `https://nuget.pkg.github.com/CS2OpenDev/index.json` as a package source, or take the `.nupkg` off
 > a [release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases). The `CS2OpenDev.Sdk` 1.0.1 on
-> NuGet.org is not this project's current output — it is four majors stale and carries a licence the
-> project disowned; see the root README.
+> NuGet.org is not this project's current output: it is four majors stale and carries a licence the
+> project disowned. See the root README.
 
 Every CS2 demo parser ends up writing the same code: key-by-name dispatch, the `val_long` /
 `val_short` / `val_byte` fallback chain, entity-handle and controller-slot handling. This is that
@@ -28,11 +28,9 @@ if (decoder.TryDecode(msg, out object? ev) && ev is PlayerDeathEvent death)
 
 ## Why you need the descriptor table
 
-The wire format splits an event across two messages:
-
-- **`CMsgSource1LegacyGameEventList`** arrives once and declares, per event id, the event's name and
-  its key names **in order**.
-- **`CMsgSource1LegacyGameEvent`** carries an event id and a **positional** value list. No names.
+The wire format splits an event across two messages. `CMsgSource1LegacyGameEventList` arrives
+once and declares, per event id, the event's name and its key names in order.
+`CMsgSource1LegacyGameEvent` carries an event id and a positional value list. No names.
 
 Neither is decodable alone, and the table never repeats. So `GameEventDecoder` is stateful for the
 lifetime of a demo: feed it the list when you see it, then feed it events. If you decode without
@@ -40,21 +38,20 @@ loading descriptors, `TryDecode` returns `false` rather than guessing.
 
 ## The integer fallback chain
 
-`key_t` has four integer widths plus a bool, and **the server is not obliged to use the one the
-schema declares** — it writes the narrowest slot the value fits. A decoder that reads only the
+`key_t` has four integer widths plus a bool, and the server is not obliged to use the one the
+schema declares — it writes the narrowest slot the value fits. A decoder that reads only the
 declared slot silently returns 0 for values that are plainly on the wire. This is the single most
 common way a hand-rolled decoder goes wrong.
 
 `GameEventReader` collapses whichever slot was actually used, widest-first, so a value that needed
-the wider slot is never truncated. Narrow properties saturate rather than wrap — an out-of-range
+the wider slot is never truncated. Narrow properties saturate rather than wrap: an out-of-range
 value becomes `short.MaxValue`, not a plausible-looking negative.
 
 ## Duplicate event names
 
-Native event names are **not unique**. Across 292 declarations there are 276 distinct names: 15
-carry more than one, because the same event is declared in several `.gameevents` files with
-different field sets. `player_death` has two declarations (core: 2 fields, mod: 22);
-`round_end` has three.
+Native event names are not unique. Across 292 declarations there are 276 distinct names: 15 carry
+more than one, because the same event is declared in several `.gameevents` files with different
+field sets. `player_death` has two declarations (core: 2 fields, mod: 22); `round_end` has three.
 
 ```csharp
 // Resolves the declaration CS2 actually fires — mod overrides game overrides core.
@@ -72,14 +69,14 @@ that assumption holds for 261 of 276 and silently truncates on the rest.
 
 ## Curated events the schema doesn't declare
 
-Three of those 276 names — `item_drop`, `halftime`, `game_restart` — are **not** in the extracted
+Three of those 276 names — `item_drop`, `halftime`, `game_restart` — are not in the extracted
 schema. They appear in the `CMsgSource1LegacyGameEventList` descriptor real GOTV demos carry, and
 they fire, but nothing upstream of this repo declares them: not `gameevents_schema.json`, not the
 SchemaTracker artifact it derives from.
 
-That gap is worth naming because of how it fails. A missing *field* is loud — the record is there,
+The gap is worth naming because of how it fails. A missing *field* is loud: the record is there,
 the property isn't, your code doesn't compile. A missing *record* is silent at every layer that
-compiles: your rule bound to `item_drop` just never fires, and nothing logs. That's how this was
+compiles. Your rule bound to `item_drop` just never fires, and nothing logs. That's how this was
 found (issue #3), and finding it took a demo.
 
 So they ship as records, generated from a `game-event-supplement.json` in the repo root and marked
@@ -93,20 +90,21 @@ public sealed partial record ItemDropEvent { … }
 
 `GameEventRegistry` and `GameEventFactories` treat them like any other declaration, so
 `TryGetFactory("item_drop", …)` works and the reader calls are the same ones `item_pickup` gets. The
-difference is provenance, and provenance is the thing to act on: **the field lists are observed, not
-declared.** `item_drop` carries `userid` and `item` because that is what the descriptor table shows,
-with the KV1 tags copied from `item_pickup`. `halftime` and `game_restart` are empty records — no
-keys were observed on them. Treat all three as a floor, not a contract; an extracted record is a
-promise about shape, and these are not.
+difference is provenance, and provenance is the thing to act on: the field lists were observed on
+a demo, never declared upstream. `item_drop` carries `userid` and `item` because that is what the
+descriptor table shows, with the KV1 tags copied from `item_pickup`. `halftime` and `game_restart`
+are empty records; no keys were observed on them. Treat all three as a floor. An extracted record
+is a promise about shape, and these are not.
 
-They are also temporary, and enforced to be. The supplement is **additive only**: it can introduce a
+They are also temporary, and enforced to be. The supplement is additive only: it can introduce a
 native name, never replace one. The moment upstream declares any of these, generation fails with
 `CS2_GEN_008` naming the event, and the entry has to be deleted before the build goes green again.
-That's deliberate — the alternative is a curated guess quietly outliving the real declaration and
+That's deliberate. The alternative is a curated guess quietly outliving the real declaration and
 shipping forever under a slightly different type name.
 
-If you build the SDK from source and hit an event of your own with the same problem, add it there —
-same shape as `gameevents_schema.json`'s `events` array, minus `source`, which the generator stamps:
+If you build the SDK from source and hit an event of your own with the same problem, add it there,
+in the same shape as `gameevents_schema.json`'s `events` array, minus `source`, which the
+generator stamps:
 
 ```json
 {
@@ -118,14 +116,14 @@ same shape as `gameevents_schema.json`'s `events` array, minus `source`, which t
 }
 ```
 
-Resolved next to the schema first, then the working directory — same search as
+Resolved next to the schema first, then the working directory, the same search as
 `game-event-overrides.json` below. Absent, it changes nothing.
 
 ## Transport context
 
 Records model exactly what the schema declares and nothing else. When an event happened is a
 property of the fire, not of the event, and it comes from the demo container rather than the event
-message — so it travels in an envelope:
+message. So it travels in an envelope:
 
 ```csharp
 if (decoder.TryDecode<PlayerDeathEvent>(msg, gameTick, frameNumber, out var envelope))
@@ -135,14 +133,15 @@ if (decoder.TryDecode<PlayerDeathEvent>(msg, gameTick, frameNumber, out var enve
 ```
 
 The generated records are `partial` and property-based, so if you would rather carry this on the
-record itself, add it in a sibling file. The envelope is the recommended shape, not the only one.
+record itself, add it in a sibling file. The envelope is the recommended shape, but not the only
+one.
 
 ## Performance
 
-Factories are generated, not reflective. The records carry `[NativeName]` and
-`[GameEventFieldType]` for consumers who want to introspect, but the decode path never reads them —
-a demo can fire hundreds of thousands of events, and an attribute lookup per field is not something
-to pay on that path. `GameEventReader` is a struct over two references, so decoding allocates only
+Factories are generated code, not reflection. The records carry `[NativeName]` and
+`[GameEventFieldType]` for consumers who want to introspect, but the decode path never reads them.
+A demo can fire hundreds of thousands of events; an attribute lookup per field is not something to
+pay on that path. `GameEventReader` is a struct over two references, so decoding allocates only
 the record itself.
 
 Key lookup is a linear scan over the descriptor's key names. Events carry a handful of keys (the
@@ -151,9 +150,9 @@ widest in the schema has 18), and building a per-event dictionary costs more tha
 ## Customising the projection
 
 By default all three player-reference tags (`player_controller`, `player_pawn`,
-`player_controller_and_pawn`) project to `int` — the raw userid the engine emits — with the original
-tag preserved on the property. If you build the SDK from source and would rather the records carried
-your own type, drop a `game-event-overrides.json` next to the schema:
+`player_controller_and_pawn`) project to `int`, the raw userid the engine emits, with the original
+tag preserved on the property. If you build the SDK from source and would rather the records
+carried your own type, drop a `game-event-overrides.json` next to the schema:
 
 ```json
 {
@@ -168,21 +167,20 @@ your own type, drop a `game-event-overrides.json` next to the schema:
 }
 ```
 
-The same entry drives the record property **and** the factory that fills it, so the two cannot
+The same entry drives the record property and the factory that fills it, so the two cannot
 disagree. `readAs` must name a `GameEventReader` accessor; a typo fails at generation time with a
 message naming the valid set, rather than emitting code that will not compile.
 
 ## Dependencies
 
-| Package | Why |
-|---|---|
-| [`CS2OpenDev.Protos`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Protos) | the decoder's input type is a protobuf message |
-| [`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Sdk) | the event records |
+[`CS2OpenDev.Protos`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Protos),
+because the decoder's input type is a protobuf message, and
+[`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Sdk) for
+the event records. Both resolve from the same GitHub Packages feed as this package. Neither is on
+NuGet.org.
 
-Both resolve from the same GitHub Packages feed as this package. Neither is on NuGet.org.
-
-This package exists so that split can hold: `CS2OpenDev.Sdk` ships **zero** package dependencies,
-and a consumer who only wants schema types is never made to take `Google.Protobuf`. CI asserts that
+This package exists so that split can hold: `CS2OpenDev.Sdk` ships zero package dependencies, and
+a consumer who only wants schema types is never made to take `Google.Protobuf`. CI asserts that
 property on every build.
 
 MIT.

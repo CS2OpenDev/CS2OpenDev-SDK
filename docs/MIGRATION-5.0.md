@@ -12,14 +12,14 @@ dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 
 ## Why 5.0
 
-Schema 2.0 made an atomic type's `name` fully templated — `CUtlVector< CGlobalSymbol >` where 1.x
+Schema 2.0 made an atomic type's `name` fully templated: `CUtlVector< CGlobalSymbol >` where 1.x
 carried a bare `CUtlVector` plus a separate `inner`. Every classification set in the generator's
 `TypeMapper` was keyed on the bare name, and none of them was updated. From 2.0 until now, **no
 templated atomic matched any classification branch**, so all of them fell through to the
 unresolved path and were emitted as empty stub classes named after the mangled instantiation.
 
-That is why `CCSPlayerPawn.m_hOwnerEntity` was typed `CHandle__CBaseEntity__` — a class with no
-members — instead of `CHandle<BaseEntity>`, and why a `CUtlVector< CUtlString >` field was an
+That is why `CCSPlayerPawn.m_hOwnerEntity` was typed `CHandle__CBaseEntity__`, a class with no
+members, instead of `CHandle<BaseEntity>`, and why a `CUtlVector< CUtlString >` field was an
 opaque stub rather than `string[]`.
 
 The `CHandle<T>` and `CStrongHandle<T>` value structs the generator emits were referenced by
@@ -45,7 +45,7 @@ it should project to.
 have read a value out of one. If you never referenced a `*__*` type by name, your code compiles
 unchanged and starts doing something useful.
 
-DemoViewer.NET measured its own exposure at zero before this landed — its `CS2OpenDev.Sdk` usage is
+DemoViewer.NET measured its own exposure at zero before this landed: its `CS2OpenDev.Sdk` usage is
 `SchemaNames.*` constants plus event records, neither of which this touches.
 
 **If you did reference a stub type by name**, replace it with the real type. The index below is by
@@ -89,17 +89,15 @@ Every change falls into one of these:
 
 ## What did not change
 
-- **No renames.** Every property keeps its name; only its type moves.
-- **No namespace moves.**
-- **`[NativeName]`, `[NativeOffset]`, `[NativeSize]` are untouched.** They carry the native
-  identity, which is independent of the C# projection.
-- **`SchemaNames` is untouched.** It maps C# property names to native field names, and no property
-  name moved.
-- **Game events are untouched.** `CS2OpenDev.Sdk.GameEvents` decodes by native KV1 key at runtime.
-- **The entity read contract is untouched.** `CS2OpenDev.Sdk.Entities.Abstractions` passes handles
-  across the seam as a raw `uint` regardless of whether `CHandle<T>` exists on schema classes —
-  that decision rested on keeping the contract BCL-only and on the handle bit split being
-  unspecified, and both reasons survive this repair.
+- No renames and no namespace moves. Every property keeps its name; only its type moves.
+- `[NativeName]`, `[NativeOffset]` and `[NativeSize]` carry the native identity, which is
+  independent of the C# projection, so they are untouched.
+- `SchemaNames` maps C# property names to native field names, and no property name moved.
+- Game events: `CS2OpenDev.Sdk.GameEvents` decodes by native KV1 key at runtime.
+- The entity read contract. `CS2OpenDev.Sdk.Entities.Abstractions` passes handles across the seam
+  as a raw `uint` regardless of whether `CHandle<T>` exists on schema classes. That decision
+  rested on keeping the contract BCL-only and on the handle bit split being unspecified, and both
+  reasons survive this repair.
 
 ## Why it took three majors to notice
 
@@ -118,7 +116,7 @@ The test passed.
 Two things changed so the next one presents as a failure rather than a log:
 
 - **`CS2_GEN_015` is now `Error` severity and fires zero times.** It reports an atomic that
-  upstream's own `atomicCategory` calls a container while `TypeMapper` stubs it — so a future
+  upstream's own `atomicCategory` calls a container while `TypeMapper` stubs it, so a future
   schema major that changes the name shape again trips it immediately.
 - **The exporter now exits non-zero when any error-severity diagnostic reaches the sink.** Until
   now, severity on a reported diagnostic was decoration: only descriptors that threw at their own

@@ -10,7 +10,7 @@ python3 scripts/namespace-diff.py OLD_SDK_DIR NEW_SDK_DIR --markdown
 ## Why 2.0
 
 Upstream replaced the schema artifact. `cs2_schema.json` moved from
-`schema_format_version` 1.1 to 2.0, which is not a reformat — it is a different
+`schema_format_version` 1.1 to 2.0. That is not a reformat; it is a different
 projection of the runtime, published by
 [CS2OpenDev-SchemaTracker](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker)
 rather than the old DumpSource2 pipeline. The SDK reads 2.0 only.
@@ -76,7 +76,7 @@ types; `Attribute_t` and `BeamClipStyle` are the notable singletons.
 
 142 classes are now emitted `public abstract partial class`, from the schema's
 `SCHEMA_CF1_IS_ABSTRACT` flag bit. Instantiating one of these no longer
-compiles — that was always wrong against the native type, and the 1.x pipeline
+compiles. That was always wrong against the native type; the 1.x pipeline
 simply did not expose the flag.
 
 ## Type renames
@@ -119,7 +119,7 @@ The last one is the one to check. A hand-written `player_death` decoder built
 against the 18-field declaration still compiles and still reads the fields it
 knows; it silently ignores four it does not.
 
-Unchanged: the duplicate-name situation is exactly as before — **15** native
+The duplicate-name situation is exactly as before: **15** native
 names carry more than one record, across **31** records, and
 `GameEventRegistry` still resolves each to the declaration CS2 actually fires
 (`mod` > `game` > `core`), with the others reachable explicitly.
@@ -135,7 +135,7 @@ All three packages move to major **2**.
 | `CS2OpenDev.Protos` | 1.0.7 | **2.0.x** |
 
 The patch component is Nerdbank.GitVersioning's git height, not a hand-set
-number, so it advances on every regen — take the newest `2.0.x`, not `2.0.3`
+number, so it advances on every regen; take the newest `2.0.x`, not `2.0.3`
 specifically. Each package has its own `version.json` and its own height, so
 the three patch numbers differ and are not meant to match.
 
@@ -145,13 +145,13 @@ the three patch numbers differ and are not meant to match.
 
 **`CS2OpenDev.Protos` 2.0 contains no breaking change.** Its `.proto` content
 is identical to 1.0.7; the major moved only so the three packages that ship
-together carry one major. It keeps its own patch clock — a schema regen that
-leaves the `.proto` files alone still does not bump it — which means the three
-version numbers are aligned on major but will not match digit for digit. Take
-the newest of each.
+together carry one major. It keeps its own patch clock (a schema regen that
+leaves the `.proto` files alone still does not bump it), so the three version
+numbers are aligned on major but will not match digit for digit. Take the
+newest of each.
 
 **These are published to GitHub Packages and attached to each GitHub release,
-not to NuGet.org** — the publish credential is not configured. Each release's
+not to NuGet.org**; the publish credential is not configured. Each release's
 notes state which feeds actually received that version.
 
 ## Unchanged

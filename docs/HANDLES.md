@@ -2,7 +2,7 @@
 
 CS2's schema reflects entity and resource references through six atomic type
 names. This document is the canonical list, written because every consumer that
-touches them does so by **string-matching the type name**, and each one has been
+touches them does so by string-matching the type name, and each one has been
 re-deriving a slightly different subset from scratch.
 
 Requested in
@@ -30,7 +30,7 @@ the other.
 
 ## How they appear in the schema
 
-Typed handles carry their template argument **in the atomic's `name`**, with
+Typed handles carry their template argument in the atomic's `name`, with
 spaces inside the angle brackets:
 
 ```json
@@ -41,20 +41,20 @@ spaces inside the angle brackets:
 }
 ```
 
-Untyped handles have no `inner` and no template argument — the name is exactly
+Untyped handles have no `inner` and no template argument: the name is exactly
 `CEntityHandle` or `CStrongHandleVoid`.
 
 There is no `handle_kind` discriminator field. Older schema revisions carried
 one and it was dropped; keying off the atomic name is the supported approach and
 the names are stable. That decline is
-[dispositioned upstream](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker/issues/4)
-— demo files will never carry a discriminator either, since consumers decoding
+[dispositioned upstream](https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker/issues/4):
+demo files will never carry a discriminator either, since consumers decoding
 `CSVCMsg_FlattenedSerializer` var-type symbols get the same bare strings.
 
 ### Matching trap: order your prefixes longest-first
 
 Three of the six share a prefix. A naive `StartsWith("CStrongHandle")` matches
-**`CStrongHandle`, `CStrongHandleCopyable` and `CStrongHandleVoid`** — including
+`CStrongHandle`, `CStrongHandleCopyable` and `CStrongHandleVoid`, including
 the untyped one, whose width and semantics you probably branch on.
 
 Test the longest names first:
@@ -63,8 +63,8 @@ Test the longest names first:
 CStrongHandleCopyable  →  CStrongHandleVoid  →  CStrongHandle
 ```
 
-`CHandle` has no such conflict with the others, but note it is **not** a prefix
-of `CEntityHandle` — they are separate names, not a family.
+`CHandle` has no such conflict with the others, but note it is *not* a prefix
+of `CEntityHandle`; they are separate names, not a family.
 
 ### Spelling
 
@@ -98,8 +98,8 @@ nodes by prefix over a recursive walk including `inner`:
 
 Counted against this repo's input, `CS2OpenDev-Docs`'
 `cs2_schema.json`. The same walk over SchemaTracker's raw
-`windows-x86_64/entity_schema.json` at the same build yields **688**, the 20
-extra all in `CStrongHandle` — the two artifacts do not cover an identical module
+`windows-x86_64/entity_schema.json` at the same build yields 688, the 20
+extra all in `CStrongHandle`. The two artifacts do not cover an identical module
 set, so use the number that matches whichever one you consume rather than
 treating either as *the* count.
 
@@ -128,9 +128,8 @@ correctly and the output not at all. See [MIGRATION-5.0](MIGRATION-5.0.md).
 ### Bit layout is deliberately not decoded
 
 `CHandle<T>` and `CEntityHandle` expose the raw packed `Value` and nothing else.
-The packing is `(serial << index_bits) | index`. **How many bits the index gets is
-not something this repository can tell you**, and that is a statement about the
-evidence rather than a stylistic hedge — so the SDK ships no `EntityIndex` /
+The packing is `(serial << index_bits) | index`. How many bits the index gets is
+not something this repository can tell you, so the SDK ships no `EntityIndex` /
 `SerialNumber` accessors that would silently become wrong. Decode it yourself if
 you need to, and pin the assumption on your side. Adding those accessors later,
 if the fact ever becomes citable, is a non-breaking change.
@@ -139,13 +138,13 @@ An earlier revision of this page named a specific split (15 index bits, 17 seria
 bits). That number had no source and has been removed. Nothing in what this repo
 consumes carries it: `cs2_schema.json` describes types, not engine limits, and
 SchemaTracker's `engine_constants.json` at build 24701871 is 4,721 constants of
-which every single one has `source: schema_enum` — there is no `MAX_EDICTS`, no
+which every single one has `source: schema_enum`. There is no `MAX_EDICTS`, no
 `NUM_ENT_ENTRY_BITS`, no entity-limit constant of any kind in it. Stating a split
 in prose while declining to encode it in code was the page contradicting itself,
 and the prose was the half without evidence behind it.
 
 The disagreement is not hypothetical. DemoViewer.NET's `EntityTracker` masks
-`handle & 0x3FFF` — 14 index bits — while this page asserted 15. Two
+`handle & 0x3FFF` (14 index bits) while this page asserted 15. Two
 implementations in one ecosystem, two different numbers, neither citing anything.
 Raised in the [entity-abstraction thread](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/6),
 where it settles a design question rather than opening one: **generated wrapper
@@ -167,11 +166,11 @@ What remains is mask immediates baked into optimised code, which would mean per-
 disassembly matching — the "correct on every build tried so far" fragility this ecosystem exists to
 avoid.
 
-**But the investigation turned up something better than the number:** the two implementations may
+But the investigation turned up something better than the number: the two implementations may
 both have been right, about different encodings.
 
-`const.h` in the pinned hl2sdk defines `NUM_NETWORKED_EHANDLE_BITS = 14 + 10` — a **24-bit
-networked handle with a 14-bit index and a 10-bit serial** — separately from the in-memory 32-bit
+`const.h` in the pinned hl2sdk defines `NUM_NETWORKED_EHANDLE_BITS = 14 + 10` — a 24-bit
+networked handle, 14-bit index and 10-bit serial — separately from the in-memory 32-bit
 `CEntityHandle`, whose entry width is implied at 15 by `MAX_TOTAL_ENTITIES = 0x8000`. So a 14-bit
 mask matches the networked encoding, and 15 matches the in-memory one. If networked entities only
 ever occupy entries below 16,384, the narrow mask also works on in-memory handles for every entity
@@ -179,12 +178,12 @@ a demo can reference — which is exactly how a wrong-in-principle mask passes e
 
 That is a hypothesis with evidence, not a fact, and this page will not promote it to one. Note that
 the reference SDK contradicts itself even here: `const.h` says `NUM_ENT_ENTRY_BITS = 16` while its
-own comment (`32 - NUM_ENT_ENTRY_BITS`, against `NUM_SERIAL_NUM_BITS = 17`) implies 15. A header
-that disagrees with itself is not a citation.
+own comment (`32 - NUM_ENT_ENTRY_BITS`, against `NUM_SERIAL_NUM_BITS = 17`) implies 15, so the
+header cannot be cited for either value.
 
-Upstream's guidance is that a curated number belongs in Docs' `well_known_constants.json` — cited,
-and visibly not machine-extracted — rather than in an auto-extracted artifact. Until someone
-curates it there, **"implementation-defined" is the honest value and the one this page keeps.** The
+Upstream's guidance is that a curated number belongs in Docs' `well_known_constants.json` (cited,
+and visibly not machine-extracted) rather than in an auto-extracted artifact. Until someone
+curates it there, "implementation-defined" is the honest value and the one this page keeps. The
 design conclusion is unchanged and now better supported: generated code never decodes a handle, and
 whichever encoding a runtime is looking at is its own to know.
 

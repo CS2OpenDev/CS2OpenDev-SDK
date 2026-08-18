@@ -4,9 +4,9 @@ The previous release was **3.0.3**; there is no 3.1 on any feed. 4.0 carries wha
 was staged as 3.1 as well, so this document covers both.
 
 4.0 renames **ten generated identifiers** and **adds three event records**. The
-renames are the only breaking change — no type moved namespace, none was removed,
-no signature or projected type changed, and the schema pin is the same as 3.0.3's.
-If your code compiles after the renames, it behaves exactly as it did.
+renames are the only breaking change. No type moved namespace, none was removed,
+no signature or projected type changed, and the schema pin is the same as
+3.0.3's, so once your code compiles it behaves exactly as it did.
 
 The additions are `ItemDropEvent`, `HalfTimeEvent` and `GameRestartEvent`:
 `item_drop`, `halftime` and `game_restart` fire in real GOTV demos and appear in
@@ -42,7 +42,7 @@ python3 scripts/rename-diff.py OLD_SDK_DIR NEW_SDK_DIR --markdown
 
 The matching `SchemaEvents` constants move with them (`SchemaEvents.PlayerTeamEvent.IsBot`
 and so on), as do the property assignments in `GameEventFactories`. Native names
-are unchanged — every `[NativeName]` value, every wire key, every dictionary key
+are unchanged: every `[NativeName]` value, every wire key, every dictionary key
 in the registry is exactly what it was. A rename map keyed on native name is
 therefore sufficient, and nothing that reads the wire needs to change.
 
@@ -50,7 +50,7 @@ therefore sufficient, and nothing that reads the wire needs to change.
 
 Six of these were [reported by a downstream consumer](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/2)
 after adopting 3.0.3. The 3.0 casing pass split run-together lowercase names
-against a curated vocabulary — `attackerinair` → `AttackerInAir` — but these
+against a curated vocabulary (`attackerinair` → `AttackerInAir`), but these
 compounds were built from words the vocabulary did not have. `faux` is the
 clearest case: `WeaponFauxitemid` sat on `PlayerDeathEvent` directly beside
 `WeaponItemId`, which did split, so the same record showed the rule working and
@@ -74,8 +74,8 @@ compounds the vocabulary cannot segment. It reported **zero** while all six of
 these were shipping, for three independent reasons:
 
 1. It was drained inside the *class* emitter, which runs before the game-event
-   emitter. Every game-event name — the flat KV1 vocabulary the splitter was
-   written for — landed in the bucket after the last read.
+   emitter. Every game-event name (the flat KV1 vocabulary the splitter was
+   written for) landed in the bucket after the last read.
 2. Its near-miss filter ignored runs of six characters or fewer, and `isbot` is
    five.
 3. `names.lock.json` pins resolved spellings and short-circuits before
@@ -97,7 +97,7 @@ and shipped listing 574 of 3.0's 1,108 renames.** The 534 it omitted are all enu
 members and are now published as
 [`MIGRATION-3.0-enum-members.md`](MIGRATION-3.0-enum-members.md), with a correction
 note on the original. If you migrated to 3.x from that document alone, read the
-appendix — this 4.0 upgrade is ten renames, but that one was not what it said.
+appendix. This 4.0 upgrade is ten renames; that one was not what it said.
 
 ## Upgrading
 

@@ -1,11 +1,11 @@
 # Migrating to CS2OpenDev.Sdk 6.0
 
 **50 properties across 19 classes change type, 5 stub classes leave the public surface, and one
-struct (`RnSphere`) is added.** Nothing is renamed, nothing moves namespace. Every retyped property
-was typed as an empty stub class before — a name with no members — so no working code can have read
-a value through one.
+struct (`RnSphere`) is added.** As in 5.0, nothing is renamed and nothing moves namespace, and
+every retyped property was typed as an empty stub class before (a name with no members), so no
+working code can have read a value through one.
 
-Measured against CS2 build 24701871. Regenerate the inventory with:
+Same CS2 build as 5.0, 24701871. The inventory regenerates with:
 
 ```
 dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
@@ -37,21 +37,22 @@ stubbed. Retyping a public property is a breaking change, so the family major mo
 
 The deliberate stubs are recorded in `TypeMapper.DeliberatelyStubbedAtoms` with the full evidence;
 their generated summaries in `Stubs.cs` point there. They no longer appear in `CS2_GEN_003`, which
-now reports **zero** — the report is a to-do list, and it reads empty because everything on it has
-been decided, not because nobody is looking. A schema that re-categorises one of them as a
+now reports **zero**. The report is a to-do list; it reads empty because everything on it has been
+decided, not because nobody is looking. A schema that re-categorises one of them as a
 container still trips the Error-severity `CS2_GEN_015`.
 
 ## What you have to do
 
-**Most consumers: nothing.** The five removed types were empty classes — `CGameSoundEventName`,
+Most consumers, again: nothing. The five removed types (`CGameSoundEventName`,
 `CUtlStringTokenNoRegistration`, `CUtlDict__GameTime_t__`, `CUtlDict__CPhysicsBodyGameMarkup__`,
-`RnSphere_t` — so no code could have read a value out of one. If you never referenced any of those
-names, your code compiles unchanged and the 50 properties start carrying data.
+`RnSphere_t`) were empty classes, so no code could have read a value out of one. If you never
+referenced any of those names, your code compiles unchanged and the 50 properties start carrying
+data.
 
-**If you referenced a removed stub by name**, replace it with the projection from the table above.
-The index below lists every affected property by declaring class.
+If you referenced a removed stub by name, replace it with the projection from the table above; the
+index below lists every affected property by declaring class.
 
-**If you referenced `RnSphere_t`**, it is now the readonly struct `RnSphere` in the SDK root
+If you referenced `RnSphere_t`, it is now the readonly struct `RnSphere` in the SDK root
 namespace, with `Center` and `Radius` members.
 
 The three `CPulseObservableExpression__*__` stubs, `HPulseCell__CPulseCell_TestWaitWithCursorState__`,
@@ -59,16 +60,15 @@ The three `CPulseObservableExpression__*__` stubs, `HPulseCell__CPulseCell_TestW
 
 ## What did not change
 
-- **No renames.** Every property keeps its name; only its type moves.
-- **No namespace moves.**
-- **`[NativeName]`, `[NativeOffset]` are untouched.** They carry the native identity, which is
-  independent of the C# projection.
-- **`SchemaNames` is untouched.** No property name moved.
-- **Game events are untouched.** `CS2OpenDev.Sdk.GameEvents` decodes by native KV1 key at runtime;
-  its major moves only to keep the family in step.
-- **`CS2OpenDev.Protos` is untouched.** Same: family major only.
-- **The entity read contract is untouched.** `CS2OpenDev.Sdk.Entities.Abstractions` stays on its
-  own 0.x clock, and none of the 19 classes here crosses that seam.
+Same list as 5.0:
+
+- No renames, no namespace moves. Every property keeps its name; only its type moves.
+- `[NativeName]` and `[NativeOffset]` carry the native identity, independent of the C# projection.
+- `SchemaNames` — no property name moved.
+- Game events. `CS2OpenDev.Sdk.GameEvents` decodes by native KV1 key at runtime; its major moves
+  only to keep the family in step, and the same goes for `CS2OpenDev.Protos`.
+- The entity read contract. `CS2OpenDev.Sdk.Entities.Abstractions` stays on its own 0.x clock, and
+  none of the 19 classes here crosses that seam.
 
 ## Index of changed properties, by declaring class
 

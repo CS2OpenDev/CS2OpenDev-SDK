@@ -1,7 +1,7 @@
 # Migrating to CS2OpenDev.Sdk 3.0
 
 3.0 renames generated identifiers to idiomatic .NET casing. **That is the only
-change** — no type moved namespace, none was added or removed, no signature or
+change**: no type moved namespace, none was added or removed, no signature or
 projected type changed, and the schema pin is the same as 2.0.4's. If your code
 compiles after the renames, it behaves exactly as it did.
 
@@ -50,32 +50,32 @@ spelling the BCL uses (`Process.Id`, `Activity.Id`).
 into known words; anything else keeps its 2.x spelling exactly. The failure
 mode is a missed improvement, never a wrong name.
 
-**Nothing is left half-done either.** The generator reports every run-together
+It is not left half-done either. The generator reports every run-together
 name it could not segment, and that report is now empty: each one is either
 split, or explicitly declared a single word. `Assister`, `Hostage`, `Database`,
 `Breakable`, `Flashbang`, `Deathmatch` and `Preset` are words, and stay whole.
 
-**And these names are now pinned.** Every one of them is recorded in
+The names are now pinned, too. Every one of them is recorded in
 `names.lock.json`, and the generator returns locked names verbatim rather than
 re-deriving them. The word list that produced 3.0 can be extended for future CS2
 fields without any risk of it quietly re-splitting a name you are already
-compiling against — which is a real hazard, not a hypothetical: extending it is
+compiling against. That risk is real, not hypothetical: extending the list is
 what turned `Database` into `DataBase` twice during development. Changing a
 shipped name now requires an explicit re-baseline and a new major.
 
 ## What did not change
 
-- **`[NativeName]` still carries the native name**, unchanged, on every member.
+- `[NativeName]` still carries the native name, unchanged, on every member.
   Reverse lookup through `SchemaNames` is unaffected, and so is anything that
   matches on native names.
-- **Byte offsets, sizes and metadata** — `[NativeOffset]`, `[NativeSize]`,
-  `[NativeMetadata]` are attribute values, never derived from identifiers.
-  Interop is untouched.
-- **Game-event decoding** reads by native key at runtime
-  (`reader.GetInt32("userid")`), so the wire path does not depend on the
-  property name.
-- **Namespaces**, the type set, and every projected C# type.
-- **`CS2OpenDev.Protos`** — no generated protobuf identifier changed. Its major
+- Byte offsets, sizes and metadata. `[NativeOffset]`, `[NativeSize]` and
+  `[NativeMetadata]` are attribute values, never derived from identifiers, so
+  interop is untouched.
+- Game-event decoding reads by native key at runtime
+  (`reader.GetInt32("userid")`); the wire path does not depend on the property
+  name.
+- Namespaces, the type set, and every projected C# type.
+- `CS2OpenDev.Protos`: no generated protobuf identifier changed. Its major
   moves to 3 only to stay in step with the other two, exactly as it did at 2.0.
 
 ## Versions
@@ -86,22 +86,22 @@ shipped name now requires an explicit re-baseline and a new major.
 | `CS2OpenDev.Sdk.GameEvents` | 2.0.11 | **3.0.x** |
 | `CS2OpenDev.Protos` | 2.0.1 | **3.0.x** |
 
-The patch is Nerdbank.GitVersioning's git height and each package has its own,
-so the three numbers agree on major and not below it — take the newest of each.
+The patch is Nerdbank.GitVersioning's git height again, per package, so the
+three numbers agree on major and nothing below it. Take the newest of each.
 
 **`CS2OpenDev.Protos` 3.0 contains no change at all.** No generated protobuf
 identifier moved; its major tracks the other two so the packages that ship
 together read as one product, exactly as at 2.0.
 
-These publish to **GitHub Packages** and the GitHub release page, not
-NuGet.org — the publish credential is not configured. Each release's notes state
-which feeds actually received that version.
+Publishing is as it was at 2.0: **GitHub Packages** and the GitHub release
+page, no NuGet.org (the credential is not configured), and each release's notes
+state which feeds actually received that version.
 
 ## How to migrate
 
 The rename is mechanical and the compiler finds every site. Build, and for each
 error take the new name from the tables below. There is no behavioural change to
-review — if it compiles, you are done.
+review: if it compiles, you are done.
 
 The common ones, by a wide margin:
 
