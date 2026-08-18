@@ -88,8 +88,8 @@ widths rather than converting them, so a handle written as `int -1` reads as the
 sentinel instead of absent, and they had validated the reader *before* that change. Shipping `1.0`
 on evidence that predates it would have asserted the criterion without meeting it.
 
-They re-ran against 0.2.1 and [confirmed it
-narrowly](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/6#issuecomment-5288717770): the
+They re-ran against 0.2.1 and confirmed it
+narrowly: the
 conformance port executed inside a full run of their parser suite, 268/268 passed, 0 failed, 0
 skipped — so nothing passed by being skipped rather than updated. Their handle-sentinel test
 predates the reference fix and already asserted present-`0xFFFFFFFF`, which is why the reference
@@ -101,7 +101,7 @@ is `version.json` alone. No reader, no interface, no conformance kit moved betwe
 validated and the code `1.0.0` carries. Had that diff shown one line of contract, this would be
 another `0.x`.
 
-What `1.0` costs from here: a breaking change to this contract is a MAJOR. [SDK#30](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/30)
+What `1.0` costs from here: a breaking change to this contract is a MAJOR. SDK#30
 has candidate resolutions that would move the read seam off ordinal addressing; if one of those is
 chosen, it ships as `2.0` rather than sliding in. Pricing that correctly is the point.
 

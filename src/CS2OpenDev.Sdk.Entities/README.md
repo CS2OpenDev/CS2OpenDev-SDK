@@ -118,7 +118,7 @@ from `BasePlayerWeapon`, so your runtime's dispatch to the concrete class satisf
 fold. This is the type they briefly had and lost: under the old flat emission a resolved
 `SmokeGrenade` was *not* a `BasePlayerWeapon`, the fold failed for every real weapon, and
 `EntityWrapper?` was the honest type until the hierarchy landed
-([#30](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/30)).
+(#30).
 
 ## Skew detection
 

@@ -15,7 +15,7 @@ dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 
 The 5.0 repair left an eleven-entry residue: atomics that were genuinely unclassified rather than
 broken, each needing a deliberate decision about what it should project to
-([#33](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/33)). This release decides all eleven.
+(#33). This release decides all eleven.
 Four get projections; four templates (seven of the eleven names) are recorded as deliberately
 stubbed. Retyping a public property is a breaking change, so the family major moves.
 

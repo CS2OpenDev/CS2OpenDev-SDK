@@ -17,7 +17,7 @@ dispatcher dropped every fire in silence. They are carried in a root
 mark them curated rather than extracted, and they retire themselves: when upstream
 starts declaring one, generation fails (`CS2_GEN_008`) until the entry is deleted.
 Their field lists are observed rather than declared — treat them as a floor.
-Reported in [issue #3](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/3).
+Reported in issue #3.
 
 Regenerate the table below with:
 
@@ -48,7 +48,7 @@ therefore sufficient, and nothing that reads the wire needs to change.
 
 ## Why
 
-Six of these were [reported by a downstream consumer](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/2)
+Six of these were reported by a downstream consumer (#2)
 after adopting 3.0.3. The 3.0 casing pass split run-together lowercase names
 against a curated vocabulary (`attackerinair` → `AttackerInAir`), but these
 compounds were built from words the vocabulary did not have. `faux` is the

@@ -21,7 +21,7 @@ The zero dependencies on `CS2OpenDev.Sdk` are load-bearing. A decoder's input ty
 
 The other packages carry their own READMEs with the detail: [`CS2OpenDev.Protos`](src/CS2OpenDev.Protos/README.md) (the curated proto subset, the collision domains, the `Google.Protobuf` floor policy), [`CS2OpenDev.Sdk.GameEvents`](src/CS2OpenDev.Sdk.GameEvents/README.md) (the descriptor-table join, the integer fallback chain, duplicate event names), and [`CS2OpenDev.Sdk.Entities.Abstractions`](src/CS2OpenDev.Sdk.Entities.Abstractions/README.md) (what crosses the seam and what deliberately does not).
 
-`CS2OpenDev.Sdk.Entities.Abstractions` is the odd one out and is meant to be. Every other package here is regenerated from the schema on a four-hourly clock; that one is hand-written, versioned on its own directory, and does not share the family major. It is a contract other people's runtimes implement, and a contract that regenerates every four hours is not a contract. It stayed at `0.x` until a second implementation had run against the *current* reader: DemoViewer.NET's adapter passed against 0.1.1, but the fixes their findings prompted came after, so `1.0` waited on their re-validation instead of resting on evidence that predated the change. They re-ran against 0.2.1 and [confirmed](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/6#issuecomment-5288717770); `0.3.0` changed nothing in that directory but `version.json`, so it is now `1.0`.
+`CS2OpenDev.Sdk.Entities.Abstractions` is the odd one out and is meant to be. Every other package here is regenerated from the schema on a four-hourly clock; that one is hand-written, versioned on its own directory, and does not share the family major. It is a contract other people's runtimes implement, and a contract that regenerates every four hours is not a contract. It stayed at `0.x` until a second implementation had run against the *current* reader: DemoViewer.NET's adapter passed against 0.1.1, but the fixes their findings prompted came after, so `1.0` waited on their re-validation instead of resting on evidence that predated the change. They re-ran against 0.2.1 and confirmed; `0.3.0` changed nothing in that directory but `version.json`, so it is now `1.0`.
 
 > **Upgrading?** Seven releases carry migration guides listing every affected name:
 >
@@ -75,7 +75,7 @@ local folder source. Each release's notes name the feeds that version actually r
 > only version that does. It is four majors stale, and it advertises `GPL-3.0-or-later`, a licence
 > this project's own history records as an error four days after publishing it ([`69d34ad4`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/commit/69d34ad4)).
 > This project is MIT. Unlisting that version is tracked in
-> [#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5); until it happens, an unqualified
+> #5; until it happens, an unqualified
 > `dotnet add package CS2OpenDev.Sdk` against the default feed will silently fetch it.
 
 Then reference types out of the per-module namespaces. The root namespace is `CS2OpenSchema`; each schema module gets a child namespace (`CS2OpenSchema.Client`, `CS2OpenSchema.Server`, `CS2OpenSchema.Common`, etc.).
@@ -304,7 +304,7 @@ The bot identity used for automated pushes is `CS2OpenDev-bot <bot@CS2OpenDev.in
 
 NuGet.org publishing is not enabled, on purpose. The publish steps are still gated on a `NUGET_API_KEY` secret, which is deliberately not set; every version reaches GitHub Packages and the release page instead. The workflow's own notices say which feeds a given version actually reached, so this stays checkable.
 
-Two consequences follow. The 4-hourly cron cannot publish irreversibly, because there is no credential for it to use, and that has already mattered: on 2026-08-13 it shipped `CS2OpenDev.Protos` 3.0.7 carrying a 188-type removal as a patch, and GitHub Packages let that version be deleted where NuGet.org would not have. And since a package on NuGet.org cannot depend on one that is not there, this choice blocks downstream *publishers*, not just convenience — discussed in [#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5).
+Two consequences follow. The 4-hourly cron cannot publish irreversibly, because there is no credential for it to use, and that has already mattered: on 2026-08-13 it shipped `CS2OpenDev.Protos` 3.0.7 carrying a 188-type removal as a patch, and GitHub Packages let that version be deleted where NuGet.org would not have. And since a package on NuGet.org cannot depend on one that is not there, this choice blocks downstream *publishers*, not just convenience — discussed in #5.
 
 #### What ends up in the published artifact
 

@@ -146,7 +146,7 @@ and the prose was the half without evidence behind it.
 The disagreement is not hypothetical. DemoViewer.NET's `EntityTracker` masks
 `handle & 0x3FFF` (14 index bits) while this page asserted 15. Two
 implementations in one ecosystem, two different numbers, neither citing anything.
-Raised in the [entity-abstraction thread](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/6),
+Raised in the entity-abstraction thread (#6),
 where it settles a design question rather than opening one: **generated wrapper
 code must never decode a handle.** It passes the raw packed value to the runtime,
 and mask, sentinel and serial-validation policy stay the runtime's business. Had

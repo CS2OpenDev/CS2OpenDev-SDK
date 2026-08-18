@@ -44,7 +44,7 @@ accident: a package on NuGet.org cannot declare a dependency on one that is not 
 choice blocks downstream *publishers*, not just convenience. If you need to publish a NuGet.org
 package that depends on these types, the options are to vendor the generated types, to keep your
 dependency on them private, or to republish under an ID you own. Discussion in
-[#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5).
+#5.
 
 ## Which CS2 build?
 
@@ -124,7 +124,7 @@ proves that names resolve, and a field whose number, declared type or label diff
 still compiles, and then misparses in silence.
 
 Cs2DemoKit / DemoViewer.NET diffed the two sources field-by-field before trusting the swap, and
-[reported the result to us](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/4). It is their
+reported the result to us (#4). It is their
 measurement, not ours. 2,753 fields are present in both sources, and zero of them differ in field
 number, declared type or label. Separately, 47 fields dropped and 50 added; the drops are GC /
 close-caption cruft and `descriptor.proto` internals, none of which their parser reads.
