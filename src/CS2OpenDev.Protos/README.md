@@ -185,8 +185,8 @@ committed; protoc produces it at build time from the committed sources.
 
 ## Related
 
-Both ship from the same repository and the same feeds as this package: GitHub Packages and the
-GitHub release page, not NuGet.org.
+Both ship from the same repository and the same feeds as this package: NuGet.org, GitHub
+Packages, and the GitHub release page.
 
 - [`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK): strongly-typed schema classes,
   enums and game-event records. Zero dependencies.
