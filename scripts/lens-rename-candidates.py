@@ -14,7 +14,7 @@ candidate successors by signal strength, cross-checks the two whole-move
 surfaces, and writes a migration file with the op filled in and the evidence in
 `notes`.
 
-It PROPOSES. It never decides. SchemaTracker publishes these candidates
+It proposes; it never decides. SchemaTracker publishes these candidates
 deliberately unselected and N:M -- picking one among tied candidates is an
 inference, not a fact, and 58% of the corpus sits in the weak
 `sizeMatch + typeMatch` tier where ties are normal. A `rename` op is an
@@ -54,7 +54,7 @@ When it refuses to draft:
 
 Both print the ranked list and stop. Offset is what makes a candidate
 near-unique; without it, or with a tie, any pick is arbitrary rather than
-evidenced. Decide by hand and pass `--to`. The refusal is the feature —
+evidenced. Decide by hand and pass `--to`. The refusal is deliberate:
 m_flLandseconds has 18 tied candidates, and the one a human would choose
 (m_flLandingTimeSeconds) is not the first the artifact happens to list.
 """
@@ -177,7 +177,7 @@ def class_moves_for(artifact, class_name):
 
 
 def next_ordinal():
-    """Next `NNNN-` prefix. Filename order IS replay order, so it must not collide."""
+    """Next `NNNN-` prefix. Filename order is replay order, so it must not collide."""
     highest = -1
     if os.path.isdir(LENS_DIR):
         for name in os.listdir(LENS_DIR):
@@ -308,7 +308,7 @@ def main():
         best = match[0]
         print(f"\nUsing --to {args.to} (your choice, not the script's).")
     elif len(top) > 1:
-        # Do NOT pick. Within a tier the artifact imposes no order, so cands[0]
+        # Do not pick. Within a tier the artifact imposes no order, so cands[0]
         # is whatever the JSON happened to list first -- for CCSPlayerPawn's
         # m_flLandseconds that is m_fLastGivenBombTime, while the name a human
         # would choose (m_flLandingTimeSeconds) sits several entries down.

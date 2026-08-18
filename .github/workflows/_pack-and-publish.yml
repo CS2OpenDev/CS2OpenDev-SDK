@@ -6,7 +6,7 @@ name: Pack and publish
 # the pack+publish logic in one place avoids the chained-workflow gotcha where
 # the default GITHUB_TOKEN can't trigger downstream workflow_runs.
 #
-# Five packages ship, and they do NOT share a version. Four clocks:
+# Five packages ship, and they do not share a version. Four clocks:
 #
 #   * CS2OpenDev.Sdk and CS2OpenDev.Sdk.GameEvents move on the schema clock.
 #   * CS2OpenDev.Protos moves on the protobuf clock — its version.json matches
@@ -220,7 +220,7 @@ jobs:
         # a build ever stops honouring it (e.g. the property gets dropped, or a
         # future runner layout defeats the path mapping).
         #
-        # Asserts the positive signal too — a `/_/` path must be PRESENT, not
+        # Asserts the positive signal too — a `/_/` path must be present, not
         # merely a home path absent. Absence alone is equally what you get from
         # scanning the wrong file or a stale artifact.
         #
@@ -315,7 +315,7 @@ jobs:
         # Gated only on the version being stable.
         if: steps.pkg.outputs.prerelease == 'false'
         #
-        # Deliberately ordered AFTER the NuGet.org push. NuGet.org is the
+        # Deliberately ordered after the NuGet.org push. NuGet.org is the
         # canonical feed and its publishes are irreversible (a version can be
         # unlisted but never replaced), so it must not be gated on a secondary
         # feed's availability. If this step fails, the canonical publish has
@@ -323,7 +323,7 @@ jobs:
         #
         # The coupling is not symmetric, and the `if:` below does not remove
         # it: a step's condition still implies success() unless stated
-        # otherwise, so a FAILED NuGet.org push skips this mirror as well.
+        # otherwise, so a failed NuGet.org push skips this mirror as well.
         # That is the accepted trade — the canonical feed is the one whose
         # failure should stop a release — but it does mean a NuGet.org outage
         # blocks GitHub Packages, and the fix in that case is to re-run the
@@ -331,13 +331,13 @@ jobs:
         #
         # Two GitHub Packages constraints shape this step:
         #
-        #   1. It does NOT support symbol packages. Pushing a `.snupkg` (or
+        #   1. It does not support symbol packages. Pushing a `.snupkg` (or
         #      letting the client auto-pair the adjacent one) is rejected as a
         #      version conflict, which would fail the job. `--no-symbols` stops
         #      the client from ever offering it, so symbols go to NuGet.org's
         #      symbol server only.
         #   2. Auth is the token, passed as the API key. `packages: write` is
-        #      declared here AND in both callers (release.yml,
+        #      declared here and in both callers (release.yml,
         #      check-upstream.yml) — a called workflow can only hold or reduce
         #      the caller's permissions, never elevate, so a caller that omits
         #      it yields a 403 here.
@@ -360,12 +360,12 @@ jobs:
           echo "::warning::${{ matrix.id }} ${{ steps.pkg.outputs.version }} is a prerelease version — NOTHING was published, to NuGet.org or GitHub Packages. Only stable versions (e.g. 1.0.4, not 1.0.4-g0123456789) are published. Nerdbank.GitVersioning appends the -g<commit> label when the built ref does not match publicReleaseRefSpec in version.json (currently ^refs/heads/main\$). Download the package from this run's Artifacts section if you need it."
 
       - name: Notice when NuGet.org publish is skipped
-        # Loud notice that a STABLE package reached GitHub Packages but not
+        # Loud notice that a stable package reached GitHub Packages but not
         # NuGet.org. Catches misconfigured secrets (e.g. `NUGET_TOKEN` vs
         # `NUGET_API_KEY`) that would otherwise silently fail for weeks.
         #
         # Conditioned on non-prerelease as well as the missing key, and ordered
-        # AFTER the GitHub Packages push: the message asserts in the past tense
+        # after the GitHub Packages push: the message asserts in the past tense
         # that the package reached GitHub Packages, so it must not fire when
         # that push was skipped (prerelease) or has not yet run. The prerelease
         # case is covered by the separate notice above.
@@ -377,7 +377,7 @@ jobs:
         # Gated on a stable version only — a prerelease build would otherwise
         # tag something that was never published.
         #
-        # Deliberately NOT gated on NUGET_API_KEY. Every version that reaches a
+        # Deliberately not gated on NUGET_API_KEY. Every version that reaches a
         # feed gets a matching tag and release, and GitHub Packages publishes
         # without any secret, so tying the tag to the NuGet.org key would leave
         # published versions with no corresponding tag in the repo.
@@ -439,7 +439,7 @@ jobs:
           #
           # Only when it really is the same commit. The refresh above was
           # written for a re-run and applied to any re-encounter of the tag,
-          # which is not the same thing: a version can repeat on a NEW commit
+          # which is not the same thing: a version can repeat on a new commit
           # whenever that commit does not advance this package's git height.
           # It happened — CS2OpenDev.Sdk.GameEvents 2.0.4 was tagged at one
           # commit and its release asset later replaced by a build from a
@@ -450,9 +450,8 @@ jobs:
           #
           # Refuse rather than pick a side. Two artifacts for one version is a
           # bug wherever it is resolved, and the feed is the copy that cannot
-          # be corrected — so the release page must not silently drift from
-          # it. A green run that overwrote a published artifact is worse than
-          # a red one that explains why.
+          # be corrected — so the release page must not silently drift from it.
+          #
           # Resolve the tag itself rather than reading `targetCommitish`, which
           # holds whatever was passed at creation and is a branch name ("main")
           # as often as a SHA — comparing that against a commit would fail every
@@ -468,7 +467,7 @@ jobs:
           fi
 
           # Leave it alone and say so — do not fail. A version repeating on a
-          # later commit is the NORMAL case, not an anomaly: pathFilters exist
+          # later commit is the normal case, not an anomaly: pathFilters exist
           # precisely so a commit that does not touch a package leaves its
           # version where it was, and every such push reaches this line. The
           # first version of this guard called that an error and turned every

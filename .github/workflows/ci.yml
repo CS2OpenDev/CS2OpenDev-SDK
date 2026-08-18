@@ -1,7 +1,7 @@
 name: CI
 
 # Gatekeeper workflow on every PR and every push to main. Runs the test suites
-# AND two regenerate-and-compare checks: the SDK/GameEvents sources and the
+# and two regenerate-and-compare checks: the SDK/GameEvents sources and the
 # staged protobuf subset must both match what's committed. That catches "edited
 # the generator but forgot to regen" and "bumped the tracker but forgot to
 # restage protos" PRs before they merge.
@@ -87,8 +87,7 @@ jobs:
         # never ships. That happened to CS2OpenDev.Sdk.Entities.Abstractions.
         #
         # PyYAML is installed rather than assumed. The script degrades to a
-        # warning without it, which is right for a local run and wrong here — a
-        # gate that quietly does nothing is the failure it exists to prevent.
+        # warning without it, which is right for a local run and wrong here.
         run: |
           python3 -m pip install --quiet --disable-pip-version-check pyyaml
           python3 scripts/check-release-wiring.py
@@ -96,8 +95,8 @@ jobs:
       - name: Self-test the proto surface gate
         # Replays the 3.0.6 -> 3.0.7 incident and its correction out of git, and
         # asserts the gate fires on one and not the other. A gate that silently
-        # stopped detecting anything would otherwise look identical to a clean run
-        # forever — the failure mode of every check that is never exercised.
+        # stopped detecting anything would otherwise look identical to a clean
+        # run forever.
         run: python3 scripts/check-migration-readiness.py --selftest proto
 
       - name: Self-test the SDK surface gate
@@ -127,7 +126,7 @@ jobs:
         #
         # names.lock.json is checked too, and it is not just tidiness. The lock
         # is what stops a word-vocabulary edit from renaming published API, and
-        # it only protects a name once that name is IN it. A regen that appends
+        # it only protects a name once that name is in it. A regen that appends
         # an entry and does not commit it leaves the name unpinned while looking
         # entirely green — the protection silently does not exist for exactly
         # the names most recently added.

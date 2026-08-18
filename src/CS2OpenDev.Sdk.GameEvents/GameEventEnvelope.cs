@@ -17,7 +17,7 @@ public delegate object GameEventFactory(in GameEventReader reader);
 /// <param name="RecordType">The generated record type this declaration produces.</param>
 /// <param name="Factory">Constructs that record from a decoded event.</param>
 /// <remarks>
-///     Exists because native event names are not unique — see
+///     Exists because native event names are not unique; see
 ///     <see cref="GameEventRegistry" />.
 /// </remarks>
 public sealed record GameEventDeclaration(string Source, Type RecordType, GameEventFactory Factory);
@@ -30,7 +30,7 @@ public sealed record GameEventDeclaration(string Source, Type RecordType, GameEv
 /// <remarks>
 ///     <para>
 ///         The generated records model exactly what the schema declares, and
-///         nothing else — <c>player_death</c> has an <c>attacker</c> because the
+///         nothing else: <c>player_death</c> has an <c>attacker</c> because the
 ///         schema says so. When it happened is a property of the fire, not of the
 ///         event, and it comes from the demo container rather than the event
 ///         message. Folding tick and frame numbers into the records would put
@@ -39,10 +39,10 @@ public sealed record GameEventDeclaration(string Source, Type RecordType, GameEv
 ///     </para>
 ///     <para>
 ///         Records are also <c>partial</c>, so a consumer who would rather carry
-///         this context on the record itself can add it in a sibling file — the
+///         this context on the record itself can add it in a sibling file: the
 ///         properties are init-only and property-based rather than positional, so
 ///         a partial can extend them without touching a primary constructor. This
-///         envelope is the recommended shape, not the only one.
+///         envelope is just the recommended shape.
 ///     </para>
 /// </remarks>
 public readonly record struct GameEventEnvelope<T>
@@ -69,7 +69,7 @@ public readonly record struct GameEventEnvelope<T>
 
     /// <summary>
     ///     Demo tick this fire was observed on. Supplied by the caller from the
-    ///     demo container — the event message does not carry it.
+    ///     demo container; the event message does not carry it.
     /// </summary>
     public int GameTick { get; }
 

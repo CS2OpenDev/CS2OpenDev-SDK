@@ -5,14 +5,13 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 // Tier 1 — unit tests for WordSplitter.
 //
 // Two halves, and the second matters more. The first pins that known compounds
-// split. The second pins that everything else is left EXACTLY as it was — the
+// split. The second pins that everything else is left exactly as it was: the
 // splitter's value depends on it never inventing a boundary, because a wrong
 // identifier compiles just as happily as a right one and no downstream check
 // catches it.
 public class WordSplitterTests
 {
-    // ── Splits it should make ────────────────────────────────────────────────
-
+    // Splits it should make
     /// <summary>Run-together lowercase compounds separate into their words.</summary>
     [Test]
     [Arguments("Userid", "UserId")]
@@ -50,8 +49,7 @@ public class WordSplitterTests
     public async Task Split_AllCapsWordEndingInId_IsUntouched(string input) =>
         await Assert.That(WordSplitter.Split(input)).IsEqualTo(input);
 
-    // ── Splits it must NOT make ──────────────────────────────────────────────
-
+    // Splits it must not make
     /// <summary>Compounds reported by a downstream consumer against the shipped 3.0.3 API (GitHub issue #2).</summary>
     [Test]
     [Arguments("Isbot", "IsBot")]
@@ -116,7 +114,7 @@ public class WordSplitterTests
     public async Task Split_DegenerateInput_IsReturnedUnchanged(string input) =>
         await Assert.That(WordSplitter.Split(input)).IsEqualTo(input);
 
-    // ── Compositionality ─────────────────────────────────────────────────────
+    // Compositionality
     //
     // The fold has to be a function of the run and nothing else. It was not: the
     // fast-path guard needed four LOWERCASE characters, so `Hbox` fell out early
@@ -142,7 +140,7 @@ public class WordSplitterTests
     public async Task Split_ShortRunWithLeadingCapital_IsStillSegmented(string input, string expected) =>
         await Assert.That(WordSplitter.Split(input)).IsEqualTo(expected);
 
-    // ── The CS2_GEN_006 near-miss filter ─────────────────────────────────────
+    // The CS2_GEN_006 near-miss filter
     //
     // Tested through the predicate rather than through `UnsegmentedRuns`, which
     // is a process-wide bucket that is never cleared and is written to by every

@@ -28,7 +28,7 @@ namespace CS2SchemaGen.Models;
 //
 // The supplement can add a native name; it can never replace one. If the
 // extracted schema already declares the name — under any source — Apply fails the
-// build. That rule is the whole design, not a safety rail bolted on:
+// build. That rule is the whole design:
 //
 //   * These entries are meant to be temporary. They are guesses about a shape
 //     Valve owns, and the moment the extractor sees the real declaration, the

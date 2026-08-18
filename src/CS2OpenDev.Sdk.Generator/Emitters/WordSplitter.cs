@@ -19,20 +19,20 @@ namespace CS2SchemaGen.Emitters;
 // rule that recovers the boundaries from the characters alone, so the words have
 // to be known.
 //
-// Why NOT a dictionary
+// Why not a dictionary
 // --------------------
 // A general English word list is actively harmful here: it turns `assister` into
 // Ass|Is|Ter and `hostage` into Host|Age. The vocabulary below is deliberately
-// small and domain-specific — the words that appear as parts of CS2 identifiers,
-// nothing else — and `Atomic` names the handful of single words a greedy match
+// small and domain-specific (only the words that appear as parts of CS2
+// identifiers), and `Atomic` names the handful of single words a greedy match
 // would still chew through.
 //
 // The safety property
 // -------------------
-// A run is rewritten ONLY when it segments completely into known tokens. Any run
+// A run is rewritten only when it segments completely into known tokens. Any run
 // that does not is emitted exactly as the generator emitted it before this class
-// existed. An unrecognised compound therefore produces the old name, never a
-// guess — the failure mode is a missed improvement, not a wrong identifier.
+// existed. An unrecognised compound therefore keeps its old name instead of
+// getting a guess; the worst case is a missed improvement.
 // `UnsegmentedRuns` collects those so they surface as a diagnostic for vocabulary
 // review rather than sitting unnoticed.
 internal static class WordSplitter
@@ -98,8 +98,8 @@ internal static class WordSplitter
         "stop", "tag", "text", "tone", "tree", "update", "view", "voice",
         "world",
 
-        // Third pass. Same source as the second — the CS2_GEN_006 report,
-        // read rather than guessed. Short entries here are the risky ones and
+        // Third pass. Same source as the second: the CS2_GEN_006 report.
+        // Short entries here are the risky ones and
         // each is paid for by a correspondingly larger Atomic list below.
         "able", "abs", "address", "align", "alpha", "amt", "animating", "arm",
         "armor", "around", "array", "asset", "assets", "auto", "back", "bad",
@@ -144,18 +144,18 @@ internal static class WordSplitter
         "restricted", "sav", "script", "spawn", "stacks", "token", "transform",
         "turn", "up", "values", "var", "vec",
 
-        // Sixth pass — the tail of the report.
+        // Sixth pass: the tail of the report.
         "container", "extract", "flags", "framed", "frames", "meter", "modified",
         "multi", "rumble", "sample", "set", "vector",
 
-        // Seventh pass — the last three the report named.
+        // Seventh pass: the last three the report named.
         "containers", "over", "plane", "drown", "recover",
 
-        // Eighth pass, and the source is different from every pass above: a
-        // downstream consumer reading the shipped 3.0.3 API (GitHub issue #2),
-        // not the CS2_GEN_006 report. The report could not have named these —
-        // see the three holes fixed in this same change — which is precisely why
-        // they had to be found by hand by somebody using the package.
+        // Eighth pass, from a different source: a downstream consumer reading
+        // the shipped 3.0.3 API (GitHub issue #2) rather than the CS2_GEN_006
+        // report. The report could not have named these (see the three holes
+        // fixed in this same change), which is why they had to be found by hand
+        // by somebody using the package.
         //
         //   isbot        -> IsBot          bot
         //   noreplay     -> NoReplay       replay
@@ -174,7 +174,7 @@ internal static class WordSplitter
 
     // Single words a greedy match would otherwise split. Every entry here is a
     // real word that happens to start with, or contain, a shorter token:
-    // `assister` (assist), `hostage` (host), `paradrop` is NOT here because
+    // `assister` (assist), `hostage` (host). `paradrop` is not here because
     // Para|Drop is the reading we want.
     private static readonly HashSet<string> Atomic = new(StringComparer.Ordinal)
     {
@@ -305,7 +305,7 @@ internal static class WordSplitter
         // `sndopvarlatchdata`) that no vocabulary should try to interpret.
         //
         // Machine-classified against the system dictionary, then reviewed. A
-        // word list is dangerous for DECIDING a split and safe for forbidding
+        // word list is dangerous for deciding a split and safe for forbidding
         // one, which is the only thing it is used for here. These also enter
         // the match table, so they protect themselves inside longer runs.
         "absolute", "absorption", "accounts", "additional", "additive",
@@ -376,7 +376,6 @@ internal static class WordSplitter
         //   hash  -> Has|H
         //   hold  -> H|Old
         //   hover -> H|Over
-        // None of them was reachable before; none is a judgement call.
         "both", "hash", "hold", "hover"
     };
 
@@ -403,7 +402,7 @@ internal static class WordSplitter
         @"[A-Z]+(?![a-z])|[A-Z][a-z0-9]*|[a-z]+|[0-9]+",
         RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-    // Match table: the vocabulary AND every atomic word, longest first.
+    // Match table: the vocabulary plus every atomic word, longest first.
     //
     // Atomic has to be in here, not just consulted for whole runs. Guarding only
     // the whole run left `globalentitydatabase` free to segment as
@@ -441,7 +440,7 @@ internal static class WordSplitter
     // Previously-decided splits, keyed by the lowercase run. A locked run is
     // returned verbatim and the vocabulary is never consulted for it again.
     //
-    // This exists because the vocabulary is RETROACTIVE, which is not obvious
+    // This exists because the vocabulary is retroactive, which is not obvious
     // until it bites. Adding a word to segment some new field also changes every
     // existing name that word can now cut: `base`, `gun` and `light` were added
     // for three new compounds and silently turned `Database`, `Shotgun` and
@@ -454,7 +453,7 @@ internal static class WordSplitter
     // regenerates and publishes unattended. The lock makes the vocabulary safe
     // to edit: it can only affect runs nobody has shipped yet.
     //
-    // Keyed on the RUN rather than the native name deliberately. Native names
+    // Deliberately keyed on the run rather than the native name. Native names
     // are not 1:1 with identifiers — `m_flScale` is `Scale` on most classes and
     // `FlScale` where that collides — so a native-keyed lock would have to
     // encode collision resolution too. The run is a pure input to a pure
@@ -470,7 +469,7 @@ internal static class WordSplitter
     internal static IReadOnlyDictionary<string, string> ResolvedRuns =>
         new SortedDictionary<string, string>(Decisions, StringComparer.Ordinal);
 
-    // Runs decided by the vocabulary because the lock had no entry — the review
+    // Runs decided by the vocabulary because the lock had no entry: the review
     // list for a release. Everything else is by definition unchanged.
     private static readonly ConcurrentDictionary<string, string> Fresh =
         new(StringComparer.Ordinal);
@@ -480,7 +479,7 @@ internal static class WordSplitter
 
     // ── Auditing the lock ────────────────────────────────────────────────────
     //
-    // The lock is authoritative for OUTPUT and blind for REVIEW, and those two
+    // The lock is authoritative for output and blind for review, and those two
     // roles were conflated. A locked run short-circuits before `TrySegment`, so
     // once 4,639 runs were pinned, CS2_GEN_006 could never again say anything
     // about any of them — including the ones pinned to a spelling the vocabulary
@@ -488,7 +487,7 @@ internal static class WordSplitter
     // from that moment the toolchain was structurally incapable of noticing.
     // A downstream consumer found it instead, which is the wrong way round.
     //
-    // So locked runs are still segmented — for reporting only. The pinned value
+    // So locked runs are still segmented, for reporting only. The pinned value
     // continues to win for the emitted name, unconditionally; nothing below
     // writes to `Decisions` or `Fresh`, so neither the generated code nor
     // names.lock.json can move as a result of an audit.
@@ -602,7 +601,7 @@ internal static class WordSplitter
             if (lockEntries.TryGetValue(key, out string? pinned))
             {
                 // Decided in an earlier release. The vocabulary does not get a
-                // vote — that is the entire point of the lock.
+                // vote; that is the entire point of the lock.
                 resolved = pinned;
 
                 if (record)
@@ -679,8 +678,8 @@ internal static class WordSplitter
     }
 
     // Finds a complete segmentation of the run, or reports that none exists.
-    // Succeeds only when every character is consumed by known tokens AND the
-    // result is more than one token — a run that IS a single vocabulary word is
+    // Succeeds only when every character is consumed by known tokens and the
+    // result is more than one token — a run that is itself a single vocabulary word is
     // not a split, it is the word.
     //
     // This backtracks; the first version did not, and greedy longest-match alone
@@ -710,17 +709,17 @@ internal static class WordSplitter
 
         if (!Solve(run, 0, found, failed) || found.Count < 2)
         {
-            // Report only a NEAR miss — a run that starts or ends with a known
+            // Report only a near miss: a run that starts or ends with a known
             // word but could not be finished.
             //
             // Reporting every failure was the obvious first cut and it was
             // useless: ~2,000 entries, almost all ordinary English
             // (`acceleration`, `dictionary`, `parachute`) that is already
-            // correct and must never be split. A list nobody can read is the
-            // same as no list. A near miss is different — `issilenced` matched
-            // `is` and died on the tail, `actorname` ends in `name` — and that
-            // is exactly the shape of a genuine vocabulary gap.
-            // `found.Count == 1` means the run was consumed entirely by ONE
+            // correct and must never be split. A near miss is different —
+            // `issilenced` matched `is` and died on the tail, `actorname` ends
+            // in `name` — and that is exactly the shape of a genuine
+            // vocabulary gap.
+            // `found.Count == 1` means the run was consumed entirely by one
             // token — it is a vocabulary word standing alone, which is already
             // correct and needs no split. Reporting those put `headshot`,
             // `loadout` and `ragdoll` on a list of things to fix, where the fix
@@ -806,7 +805,7 @@ internal static class WordSplitter
     // what makes this list readable at all (reporting every failure gave ~2,000
     // entries of ordinary English) but it has almost no discriminating power below
     // seven characters. If this list ever gets too long to read again, the thing to
-    // fix is the near-miss TEST, not the floor.
+    // fix is the near-miss test, not the floor.
     private const int NearMissFloor = 5;
 
     internal static bool IsReportableNearMiss(string run, int matchedTokens) =>
@@ -837,7 +836,7 @@ internal static class WordSplitter
     // True when the identifier contains at least one run TrySegment could act on.
     //
     // A run, as `Runs` carves them, is `[A-Z]?[a-z]+` — the capital belongs to
-    // the lowercase letters that follow it, so `Hbox` is ONE four-character run
+    // the lowercase letters that follow it, so `Hbox` is one four-character run
     // and not a stray `H` beside a three-character `box`. This counter has to
     // agree with that, which is why an uppercase letter restarts the count at 1
     // instead of zeroing it. The floor is 4 because that is TrySegment's floor:
@@ -849,19 +848,18 @@ internal static class WordSplitter
     // here and kept its spelling, while `HboxReverse` cleared the bar on
     // `everse` and had its `Hbox` run segmented on the way past — the same run,
     // two answers, `Hbox` and `HBoxReverse` shipping in one generated file.
-    // A cheap pre-filter must never decide anything; it may only decide whether
-    // to bother asking.
+    // The guard may only decide whether to bother asking, never the answer.
     //
     // Still a real filter: the great majority of Hungarian names reach here and
     // leave without touching the regex. Admitting three-lowercase-after-a-capital
-    // runs does mean more short runs get RECORDED into the lock, which is purely
+    // runs does mean more short runs get recorded into the lock, which is purely
     // additive — a run that cannot split resolves to itself either way.
     //
-    // Note the sibling context-dependence in the caller that this does NOT fix:
+    // Note the sibling context-dependence in the caller that this does not fix:
     // the `ID` -> `Id` fold is gated on `identifier.Length > 2`, so a bare `ID`
     // survives while `PlayerID` folds. That one is deliberate — `ID` alone is far
     // more likely to be an acronym than a suffix — and it never reaches the lock,
-    // so it cannot show up in a lock diff. Left as-is on purpose.
+    // so it cannot show up in a lock diff.
     private static bool HasSplittableRun(string s)
     {
         int run = 0;

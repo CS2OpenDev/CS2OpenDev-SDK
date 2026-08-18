@@ -3,28 +3,25 @@ using CS2OpenDev.Sdk.Entities;
 
 namespace CS2OpenDev.Sdk.Entities.Tests;
 
-// Verification for the emitted wrappers, in the order it gets harder: the
-// manifests are well-formed, the wrappers agree with the manifests, and the whole
-// thing composes over a reader and a world.
+// Tests for the emitted wrappers: manifests are well-formed, wrappers agree with
+// the manifests, and the whole thing composes over a reader and a world.
 //
 // The layout law under test is SDK#30's prefix rule:
 //
 //   layout(C) = layout(nearestCuratedAncestor(C)) ++ ordinal-sort(ownFields(C))
 //
 // which is what makes a base property's compile-time ordinal valid through every
-// descendant's binding. What these tests deliberately CANNOT prove: that the wire
-// agrees — the two projections here come from one computation and agree by
-// construction, so a layout that is self-consistently wrong about a real
-// serializer would pass every one of them. That half is DemoViewer.NET's
-// real-demo battery, per the SDK#25 division of labor.
+// descendant's binding. These tests cannot prove the wire agrees: both
+// projections here come from one computation and agree by construction, so a
+// layout that is self-consistently wrong about a real serializer would still
+// pass. That half is DemoViewer.NET's real-demo battery, per the SDK#25
+// division of labor.
 //
-// All of it runs against DictionaryEntityReader with no demo bytes and no parser,
-// which is exactly what the reference reader was shipped for. A failure here is a
-// fault in what this repo emits rather than in anyone's runtime.
+// Everything runs against DictionaryEntityReader with no demo bytes and no
+// parser, which is what the reference reader was shipped for. A failure here is
+// a fault in what this repo emits, not in anyone's runtime.
 public class EmittedWrapperTests
 {
-    // ── The manifests ────────────────────────────────────────────────────────
-
     /// <summary>Every emitted binding satisfies the contract's own structural rules.</summary>
     [Test]
     public async Task EveryBinding_Conforms()
@@ -88,7 +85,7 @@ public class EmittedWrapperTests
         }
     }
 
-    /// <summary>An alias never shadows a live field, and always targets one — the case that only shows up on demos recorded before a rename.</summary>
+    /// <summary>An alias never shadows a live field and always targets one. Only matters on demos recorded before a rename.</summary>
     [Test]
     public async Task Aliases_ResolveAndDoNotShadow()
     {
@@ -102,7 +99,7 @@ public class EmittedWrapperTests
         }
     }
 
-    /// <summary>A marker class curates nothing of its own, so its binding IS its base's layout, verbatim.</summary>
+    /// <summary>A marker class curates nothing of its own, so its binding is its base's layout, verbatim.</summary>
     [Test]
     public async Task MarkerBindings_AreTheirBasesLayoutVerbatim()
     {
@@ -140,15 +137,13 @@ public class EmittedWrapperTests
         await Assert.That(v).IsEqualTo(new Vector3(1, 2, 3));
     }
 
-    // ── The hierarchy ────────────────────────────────────────────────────────
-
-    // Every emitted base-type edge, as literal data. This is the pin that makes
-    // an unattended schema reparent fail CI instead of publishing a silently
-    // reshaped C# surface: base edges now derive from the live schema on every
-    // 4-hourly regen, and no other check looks at the emitted hierarchy — a
-    // base swap is case 1 in the #38 surface gate's own "cannot catch" list.
-    // A change here must arrive WITH a human edit to this table, names.lock
-    // discipline. typeof rather than strings, so a removed class fails the
+    // Every emitted base-type edge, as literal data. This pin is what makes an
+    // unattended schema reparent fail CI instead of publishing a silently
+    // reshaped C# surface: base edges derive from the live schema on every
+    // 4-hourly regen, no other check looks at the emitted hierarchy, and a base
+    // swap is case 1 in the #38 surface gate's own "cannot catch" list. A change
+    // here has to arrive with a human edit to this table, same discipline as
+    // names.lock. typeof rather than strings, so a removed class fails the
     // compile before it can fail the assertion.
     private static readonly Dictionary<Type, Type> ExpectedBases = new()
     {
@@ -186,11 +181,12 @@ public class EmittedWrapperTests
         [typeof(MolotovGrenade)] = typeof(BaseCSGrenade),
         [typeof(SmokeGrenade)] = typeof(BaseCSGrenade),
 
-        // The incendiary sits under the molotov, not beside it — the schema's
-        // shape, and the wire's (SDK#34 found it live as a LastWeapon target).
+        // The incendiary sits under the molotov, not beside it. That is the
+        // schema's shape, and the wire agrees: SDK#34 found it live as a
+        // LastWeapon target.
         [typeof(IncendiaryGrenade)] = typeof(MolotovGrenade),
 
-        // Shotguns are NOT guns. DemoViewer.NET measured exactly this: their
+        // Shotguns are not guns. DemoViewer.NET measured exactly this: their
         // serializers carry the weapon base's 8 paths and none of the gun's 3,
         // so a manifest routing them through CSWeaponBaseGun would emit three
         // ordinals that read absent on every real shotgun (SDK#30).
@@ -247,9 +243,9 @@ public class EmittedWrapperTests
         await Assert.That(emitted.Length).IsEqualTo(ExpectedBases.Count);
         await Assert.That(ExpectedBases.Count).IsEqualTo(61);
 
-        // A class is sealed exactly when nothing in the pin derives from it —
-        // sealing is a consequence of the edges, so it is asserted from them
-        // rather than pinned twice.
+        // A class is sealed exactly when nothing in the pin derives from it.
+        // Sealing follows from the edges, so it is asserted from them rather
+        // than pinned twice.
         HashSet<Type> curatedBases = ExpectedBases.Values
             .Where(t => t != typeof(EntityWrapper))
             .ToHashSet();
@@ -260,8 +256,6 @@ public class EmittedWrapperTests
             await Assert.That(wrapper.IsSealed).IsEqualTo(!curatedBases.Contains(wrapper));
         }
     }
-
-    // ── The factory ──────────────────────────────────────────────────────────
 
     /// <summary>A known class constructs its wrapper; an unknown one yields null rather than throwing.</summary>
     [Test]
@@ -284,13 +278,11 @@ public class EmittedWrapperTests
         EntityClassBinding b = Binding(engineClass);
 
         await Assert.That(EntityWrapperRegistry.Create(engineClass, Reader(b, []), new EmptyWorld())).IsNull();
-        // The type still exists — it is a usable base and a Resolve<T> target.
+        // The type still exists: it is a usable base and a Resolve<T> target.
         await Assert.That(EntityWrapperRegistry.Bindings.Any(x => x.EngineClass == engineClass)).IsTrue();
     }
 
-    // ── Reading ──────────────────────────────────────────────────────────────
-
-    /// <summary>Properties read the field their manifest ordinal names — the invariant the private ordinal constants stake everything on.</summary>
+    /// <summary>Properties read the field their manifest ordinal names — the invariant behind the private ordinal constants.</summary>
     [Test]
     public async Task Properties_ReadTheFieldTheirOrdinalNames()
     {
@@ -312,7 +304,7 @@ public class EmittedWrapperTests
 
     /// <summary>
     ///     A base property body executes over a derived class's binding and reads the right
-    ///     field — the exact read SDK#30 exists to make correct.
+    ///     field. This is the read SDK#30 exists to make correct.
     /// </summary>
     /// <remarks>
     ///     <c>BasePlayerWeapon.Clip1</c> compiles against <c>Ord.Clip1 = 2</c> in the base's
@@ -335,7 +327,7 @@ public class EmittedWrapperTests
 
         await Assert.That(w).IsTypeOf<AK47>();
 
-        // Through the base-typed reference — what a companion hands out.
+        // Through the base-typed reference, which is what a companion hands out.
         BasePlayerWeapon weapon = (BasePlayerWeapon)w!;
         await Assert.That(weapon.Clip1).IsEqualTo(30);
 
@@ -371,8 +363,8 @@ public class EmittedWrapperTests
         EntityClassBinding b = Binding(engineClass);
 
         // Absent is null, not (0,0,0). On a real GOTV demo absent is the normal
-        // case — the parent path never materialises, only the struct's cell
-        // leaves do (SDK#25, finding F3) — and a 0-default here presented that
+        // case (the parent path never materialises, only the struct's cell
+        // leaves do — SDK#25, finding F3), and a 0-default here presented that
         // as a plausible coordinate. Reflection because the three wrappers share
         // no base with an Origin member; the property's declared type is part of
         // what this test pins.
@@ -382,8 +374,8 @@ public class EmittedWrapperTests
         await Assert.That(origin.PropertyType).IsEqualTo(typeof(Vector3?));
         await Assert.That(origin.GetValue(absent)).IsNull();
 
-        // A runtime that stores a value under the canonical path — fabricated
-        // state, or reconstructed world coordinates — still serves it through
+        // A runtime that stores a value under the canonical path (fabricated
+        // state, or reconstructed world coordinates) still serves it through
         // the property. Nullability changes what absence reads as, not what
         // presence does.
         EntityWrapper present = EntityWrapperRegistry.Create(
@@ -412,19 +404,18 @@ public class EmittedWrapperTests
         await Assert.That(pawn.Buttons).IsEqualTo(pressed);
     }
 
-    // ── The SDK#41 cutover curation ──────────────────────────────────────────
-
     /// <summary>
     ///     The six quantized-origin leaves are seen-aware on every class carrying the
-    ///     relocated origin canonical: absent is null, never a coordinate. Cell 0 is a legal
-    ///     world cell — the consumer-side reconstruction is (cell − 32) × 512 + offset — so a
+    ///     relocated origin canonical: absent reads null, not a coordinate. Cell 0 is a legal
+    ///     world cell (the consumer-side reconstruction is (cell − 32) × 512 + offset), so a
     ///     0-default would place a never-received entity at −16384 on that axis.
     /// </summary>
     /// <remarks>
     ///     Reflection for the same reason as <see cref="Origin_IsSeenAware"/>: the three
     ///     carriers share no base with these members, and the declared property types
-    ///     (<c>int?</c> for cells, <c>float?</c> for offsets) are part of what is pinned —
-    ///     a boxed <c>object?</c> here would be the exact allocation the ask exists to remove.
+    ///     (<c>int?</c> for cells, <c>float?</c> for offsets) are part of what is pinned:
+    ///     a boxed <c>object?</c> here would be the exact allocation the SDK#41 ask exists
+    ///     to remove.
     /// </remarks>
     [Test]
     [Arguments("CCSPlayerPawn")]
@@ -449,8 +440,8 @@ public class EmittedWrapperTests
             await Assert.That(p.GetValue(absent)).IsNull();
         }
 
-        // Presence reads the raw wire value — including the zeros that motivated
-        // the nullability, which must survive the trip as values.
+        // Presence reads the raw wire value, including the zeros that motivated
+        // the nullability. Those must survive the trip as values.
         EntityWrapper present = EntityWrapperRegistry.Create(
             engineClass,
             Reader(b, new Dictionary<string, object?>
@@ -487,8 +478,8 @@ public class EmittedWrapperTests
         await Assert.That(pawn.OriginVecY).IsEqualTo(12.5f);
         await Assert.That(pawn.OriginVecZ).IsEqualTo(0.03125f);
 
-        // The struct-valued parent path stays absent — the leaves are curated
-        // BESIDE Origin, not through it, and neither read disturbs the other.
+        // The struct-valued parent path stays absent: the leaves are curated
+        // beside Origin, not through it, and neither read disturbs the other.
         await Assert.That(pawn.Origin).IsNull();
     }
 
@@ -506,8 +497,8 @@ public class EmittedWrapperTests
             }),
             new EmptyWorld())!;
 
-        // Base-typed, base ordinal constant, derived binding — the prefix law
-        // working for the newest fields exactly as it does for Clip1.
+        // Base-typed reference, base ordinal constant, derived binding: the
+        // prefix law working for the new fields the same way it does for Clip1.
         BaseCSGrenadeProjectile projectile = (BaseCSGrenadeProjectile)w;
         await Assert.That(projectile.OriginCellZ).IsEqualTo(31);
         await Assert.That(projectile.OriginCellX).IsNull();
@@ -557,18 +548,18 @@ public class EmittedWrapperTests
         Inferno inferno = (Inferno)EntityWrapperRegistry.Create("CInferno", reader, new EmptyWorld())!;
         await Assert.That(inferno.FireCount).IsEqualTo(7);
 
-        // The arrays answer by exact spelling through the hatch, boxed — the
-        // same read DemoViewer.NET's runtime serves today, unchanged by this
-        // curation.
+        // The arrays answer by exact spelling through the hatch, boxed. Same
+        // read DemoViewer.NET's runtime serves today; this curation does not
+        // change it.
         await Assert.That(reader.TryReadByEnginePath("m_bFireIsBurning", out object? v)).IsTrue();
         await Assert.That(v).IsEqualTo(burning);
     }
 
     /// <summary>
-    ///     The match-scoped totals live beside the round-scoped stats without confusion: two
-    ///     scopes, two name families, one service. The schema-true canonical routes through
-    ///     the embedded m_matchStats; the issue's serializer-flattened spelling still answers
-    ///     through the alias table, the genesis m_vecOrigin adaptation repeated.
+    ///     The match-scoped totals read beside the round-scoped stats. The schema-true
+    ///     canonical routes through the embedded m_matchStats; the issue's
+    ///     serializer-flattened spelling still answers through the alias table, the same
+    ///     adaptation as m_vecOrigin.
     /// </summary>
     [Test]
     public async Task MatchTotals_AreScopedApartFromRoundStats()
@@ -631,13 +622,11 @@ public class EmittedWrapperTests
         await Assert.That(controller.PendingTeamNum).IsEqualTo(2);
     }
 
-    // ── Handles ──────────────────────────────────────────────────────────────
-
     /// <summary>A handle crosses raw and resolves through the world, with a serial in the high bits so mask policy is genuinely exercised.</summary>
     [Test]
     public async Task Handle_CrossesRawAndResolves()
     {
-        // Serial 1 << 17 | slot 0x1234 — a handle that is not slot-0 luck.
+        // Serial 1 << 17 | slot 0x1234, so a pass here is not slot-0 luck.
         const uint handle = 0x0002_1234u;
 
         EntityClassBinding weaponBinding = Binding("CBasePlayerWeapon");
@@ -658,8 +647,8 @@ public class EmittedWrapperTests
         await Assert.That(pawn.ActiveWeaponHandle).IsEqualTo(handle);
         await Assert.That(pawn.ActiveWeapon).IsNotNull();
 
-        // No cast: the companion is BasePlayerWeapon? and Clip1 is right there.
-        // That this line compiles is half of what SDK#30 bought.
+        // No cast: the companion is BasePlayerWeapon?, so Clip1 is directly
+        // readable. SDK#30's hierarchy is what makes this compile.
         await Assert.That(pawn.ActiveWeapon!.Clip1).IsEqualTo(30);
     }
 
@@ -694,20 +683,21 @@ public class EmittedWrapperTests
         }
     }
 
-    // ── Companion typing (SDK#25 F1/F2, SDK#30 — all found over real demos) ──
+    // Companion typing. SDK#25 F1/F2 and SDK#30, all found over real demos.
 
     /// <summary>
     ///     The weapon companions carry the type a runtime's dispatch actually satisfies:
-    ///     a concrete weapon's wrapper IS a BasePlayerWeapon now, so the typed fold
+    ///     a concrete weapon's wrapper is a BasePlayerWeapon now, so the typed fold
     ///     succeeds and the companion stops needing a cast.
     /// </summary>
     /// <remarks>
-    ///     The #29 reversal, reversed again — with the hierarchy this time, which is what
-    ///     makes it correct. Under the flat emission a resolved <c>SmokeGrenade</c> was not
-    ///     a <c>BasePlayerWeapon</c>, so a companion typed that way read null for a weapon
-    ///     that resolved perfectly well (SDK#25, finding F1), and <c>EntityWrapper?</c> was
-    ///     the honest type. The declared property type is pinned by reflection because it
-    ///     is exactly what DemoViewer.NET's adaptation binds against.
+    ///     This reverses the #29 reversal, and the hierarchy is what makes the typed
+    ///     version correct this time. Under the flat emission a resolved
+    ///     <c>SmokeGrenade</c> was not a <c>BasePlayerWeapon</c>, so a companion typed
+    ///     that way read null for a weapon that resolved fine (SDK#25, finding F1), and
+    ///     <c>EntityWrapper?</c> was the honest type. The declared property type is
+    ///     pinned by reflection because it is what DemoViewer.NET's adaptation binds
+    ///     against.
     /// </remarks>
     [Test]
     public async Task WeaponCompanions_AreTypedForWhatARuntimeActuallyReturns()
@@ -742,7 +732,7 @@ public class EmittedWrapperTests
     /// <summary>
     ///     The one common weapon class SDK#34's measurements found missing from the curated
     ///     set: a live incendiary resolves through the LastWeapon companion and reads its
-    ///     inherited fields, all of them — it curates nothing of its own.
+    ///     inherited fields — all of them, since it curates nothing of its own.
     /// </summary>
     [Test]
     public async Task IncendiaryGrenade_IsCuratedAndResolvesAsALastWeapon()
@@ -774,7 +764,7 @@ public class EmittedWrapperTests
         await Assert.That(last!.Clip1).IsEqualTo(1);
     }
 
-    /// <summary>A handle declared against the client-side spelling of a curated class still gets its companion — controller to pawn is the most-used traversal there is.</summary>
+    /// <summary>A handle declared against the client-side spelling of a curated class still gets its companion. Controller to pawn is the most common traversal.</summary>
     [Test]
     public async Task ClientSpelledHandle_StillGetsItsCompanion()
     {
@@ -788,8 +778,8 @@ public class EmittedWrapperTests
         TableWorld world = new();
         world.Add(handle, target);
 
-        // m_hPlayerPawn declares CHandle< C_CSPlayerPawn > — the client spelling of
-        // the curated, server-named CCSPlayerPawn.
+        // m_hPlayerPawn declares CHandle< C_CSPlayerPawn >, the client spelling
+        // of the curated, server-named CCSPlayerPawn.
         CSPlayerController controller = new(
             Reader(Binding("CCSPlayerController"), new Dictionary<string, object?>
             {
@@ -820,12 +810,10 @@ public class EmittedWrapperTests
             }),
             world);
 
-        // Statically CSPlayerPawn?, not EntityWrapper? — the type still carries information.
+        // Statically CSPlayerPawn?, not EntityWrapper?. The type still carries information.
         CSPlayerPawn? typed = bomb.BombDefuser;
         await Assert.That(typed).IsNotNull();
     }
-
-    // ── Support ──────────────────────────────────────────────────────────────
 
     private static EntityClassBinding Binding(string engineClass) =>
         EntityWrapperRegistry.Bindings.Single(b => b.EngineClass == engineClass);

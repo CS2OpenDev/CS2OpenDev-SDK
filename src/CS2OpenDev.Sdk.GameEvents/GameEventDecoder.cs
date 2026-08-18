@@ -98,8 +98,8 @@ public sealed class GameEventDecoder
     /// <returns>
     ///     <see langword="false" /> when the event has no loaded descriptor, or
     ///     when its name is not one the SDK generates a record for. Both are
-    ///     expected during normal parsing — a demo may fire events this SDK build
-    ///     predates — so neither throws.
+    ///     expected during normal parsing (a demo may fire events this SDK build
+    ///     predates), so neither throws.
     /// </returns>
     public bool TryDecode(CMsgSource1LegacyGameEvent ev, out object? payload)
     {
@@ -154,7 +154,7 @@ public sealed class GameEventDecoder
     /// <remarks>
     ///     <see cref="TryDecode(CMsgSource1LegacyGameEvent, out object?)" />
     ///     resolves to the declaration CS2 actually fires. Use this only when you
-    ///     specifically want one of the others — see <see cref="GameEventRegistry" />.
+    ///     specifically want one of the others; see <see cref="GameEventRegistry" />.
     /// </remarks>
     public bool TryDecodeAs(CMsgSource1LegacyGameEvent ev, GameEventDeclaration declaration, out object? payload)
     {

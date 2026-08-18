@@ -82,8 +82,7 @@ public class SyntheticTypesTests
         }
     }
 
-    // ── CGraphEditorViewConfig synthetic (recovered from KV3 defaults) ───────
-
+    // CGraphEditorViewConfig synthetic (recovered from KV3 defaults)
     /// <summary>Emits <c>CGraphEditorViewAxis</c> with the five fields recovered from the <c>MGetKV3ClassDefaults</c> metadata: float Pos / int ScrollPos / float Min / Max / Scale.</summary>
     [Test]
     public async Task BuildSource_EmitsCGraphEditorViewAxisWithFiveFields()

@@ -10,8 +10,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 
 public class NameHelpersTests
 {
-    // ── ToTypeName: C++ type → C# type name ──────────────────────────────────
-
+    // ToTypeName: C++ type → C# type name
     /// <summary>Strips the C++ <c>_t</c> typedef suffix and PascalCases the result for class/struct names.</summary>
     [Test]
     [Arguments("AABB_t",              "AABB",              false, false)]
@@ -71,8 +70,7 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── ToPropName: C++ field → C# property name ─────────────────────────────
-
+    // ToPropName: C++ field → C# property name
     // Every prefix currently in NameHelpers.TypeHints — single-char (h/n/i/b/p/...) and
     // multi-char (vec/ang/rgb/clr/dw/sz/fl/un/ul). These all work today; this test pins
     // their behaviour so a regression in TypeHints is caught.
@@ -114,7 +112,7 @@ public class NameHelpersTests
     // unbalanced rounds → "BalancedRounds", inverting the meaning). Single-pass
     // stripping preserves the trailing word.
     //
-    // The second row pins that we ALSO don't chain when a chain would be cleaner —
+    // The second row pins that we also don't chain when a chain would be cleaner —
     // m_pVecRelationships keeps "VecRelationships" instead of stripping the trailing
     // "vec" down to "Relationships". The trade-off is intentional: one always-correct
     // pass beats a sometimes-cleaner chain that occasionally inverts meaning.
@@ -201,9 +199,8 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── ToPropNameAccessOnly: fallback used on collision ─────────────────────
-
-    /// <summary>Collision-fallback variant: strips ONLY the access prefix (<c>m_</c>) and keeps the Hungarian hint in the name (B4's stable form).</summary>
+    // ToPropNameAccessOnly: fallback used on collision
+    /// <summary>Collision-fallback variant: strips only the access prefix (<c>m_</c>) and keeps the Hungarian hint in the name (B4's stable form).</summary>
     [Test]
     [Arguments("m_pParent",  "PParent")]
     [Arguments("m_hParent",  "HParent")]
@@ -225,8 +222,7 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── ToEnumMemberName ────────────────────────────────────────────────────
-
+    // ToEnumMemberName
     /// <summary>Strips both the <c>k_</c> Valve prefix and the enum-type-derived base-name prefix (matched case-insensitively) from member names.</summary>
     [Test]
     [Arguments("EGameUIState_t",   "k_EGameUIState_Loading",       "Loading")]      // k_ + base name match
@@ -262,8 +258,7 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── SanitizeName / SanitizeFilename / Esc / XmlEscape ────────────────────
-
+    // SanitizeName / SanitizeFilename / Esc / XmlEscape
     /// <summary>Collapses each <c>::</c> scope operator to a single underscore (one underscore per separator, not two).</summary>
     [Test]
     [Arguments("Foo::Bar",        "Foo_Bar")]
@@ -325,8 +320,7 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── Defensive edge cases ────────────────────────────────────────────────
-
+    // Defensive edge cases
     /// <summary>Defensive: an empty input returns <c>_</c> rather than throwing or producing an empty identifier.</summary>
     [Test]
     public async Task ToPropName_EmptyInput_ReturnsUnderscore()
@@ -382,7 +376,7 @@ public class NameHelpersTests
         await Assert.That(actual).IsEqualTo("Class");
     }
 
-    // ── EscAttrString: full C# string-literal escape ────────────────────────────
+    // EscAttrString: full C# string-literal escape
     //
     // Schema metadata values (CE-2 / EE-1) get embedded as raw C# string literals
     // inside [NativeMetadata("…")] attributes. Real-world dumps contain MProperty

@@ -9,7 +9,7 @@ namespace CS2SchemaGen.SchemaLens;
 // checks that state against the live schema and emits `schema-lens/state.json`
 // for consumers to read.
 //
-// The op vocabulary is deliberately CLOSED and carries history + naming ONLY.
+// The op vocabulary is deliberately closed and carries history + naming only.
 // Read semantics — value transforms, storage lanes, fallback defaults — are the
 // consumer's business (issue #6 §3): they depend on how a consumer stores
 // decoded values, which this repo cannot know and must not guess. A migration
@@ -53,7 +53,7 @@ internal sealed record AddClassOp(string Class, string? NetName, string? Module)
 internal sealed record RemoveClassOp(string Class) : LensOp;
 
 // Tracks a field path. `TargetProperty` is the curated .NET property name; when
-// omitted it is derived from the LAST path segment via the same fold the class
+// omitted it is derived from the last path segment via the same fold the class
 // emitters use (NameHelpers.ToPropName), so the derived name obeys the word
 // vocabulary and the name lock like every other emitted identifier.
 internal sealed record AddFieldOp(string Class, string Field, string? TargetProperty) : LensOp;
@@ -75,7 +75,7 @@ internal sealed record AddAliasOp(string Class, string Canonical, string Alias) 
 // migration history should not have to reverse-engineer which happened.
 internal sealed record MoveSubServiceOp(string Class, string From, string To) : LensOp;
 
-// Records the FACT that a field's schema type changed between builds, as
+// Records the fact that a field's schema type changed between builds, as
 // rendered type-name strings. Deliberately no transform key: what a consumer
 // does about a widened integer is read semantics, and read semantics live on
 // the consumer's side of the §3 split.
@@ -89,7 +89,7 @@ internal sealed record IgnoreFieldOp(string Class, string Field) : LensOp;
 
 // ── Replayed state ───────────────────────────────────────────────────────────
 //
-// Everything below is CURATED content — it comes only from migrations, never
+// Everything below is curated content — it comes only from migrations, never
 // from the schema, and it is exactly the content the canonical hash covers.
 // Schema-derived data (types, widths, observed fields) is attached at
 // state.json render time and stays out of these types on purpose.

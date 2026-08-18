@@ -10,7 +10,7 @@ namespace CS2SchemaGen.Emitters;
 // preserved via [GameEventFieldType] so demo parsers / dispatchers can resolve
 // to the right entity flavour.
 //
-// The player-reference tags do NOT all project to `int`. Only the half of a
+// The player-reference tags do not all project to `int`. Only the half of a
 // player reference that carries a userid does; the half that carries a pawn
 // handle projects to `uint`, like the plain `ehandle` tag. Which half a given
 // field is comes from GameEventPawnExpansion, not from the tag — see

@@ -10,9 +10,9 @@ namespace CS2SchemaGen.SchemaLens;
 // Renders a schema TypeModel into the flat type-name string state.json carries,
 // and derives the effective wire width where one is derivable.
 //
-// This is deliberately NOT the C# projection TypeMapper produces. state.json is
+// This is deliberately not the C# projection TypeMapper produces. state.json is
 // read by non-.NET consumers, and what they need is a stable, recognisable
-// rendering of what the SCHEMA says — `int32`, `CHandle< CCSPlayerPawn >`,
+// rendering of what the schema says — `int32`, `CHandle< CCSPlayerPawn >`,
 // `char[128]` — not what this SDK chose to map it to. The strings are also the
 // vocabulary typeShift ops quote, so the renderer changing its output for an
 // unchanged schema type would forge type-history entries; keep it boring.

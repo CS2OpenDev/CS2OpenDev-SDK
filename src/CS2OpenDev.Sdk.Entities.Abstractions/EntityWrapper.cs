@@ -41,7 +41,7 @@ public abstract class EntityWrapper(IEntityFieldReader reader, IEntityWorld worl
     /// <remarks>
     ///     The curated set is a subset by design, so this is how a consumer reaches the rest
     ///     without waiting on curation. Returns <see langword="null"/> both for "never received"
-    ///     and for "received as null" — use
+    ///     and for "received as null"; use
     ///     <see cref="IEntityFieldReader.TryReadByEnginePath"/> directly when that difference
     ///     matters.
     /// </remarks>

@@ -21,8 +21,6 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 [NotInParallel("NameMap")]
 public class GeneratorPipelineTests
 {
-    // ── Attributes file content ──────────────────────────────────────────────
-
     /// <summary>
     ///     Pins the full surface of <c>CS2Schema.Attributes.g.cs</c>: <c>NativeName</c> (class+property),
     ///     <c>NativeOffset</c> (property), <c>NativeSize</c> (class, Q2), and <c>NativeMetadata</c> with
@@ -46,8 +44,6 @@ public class GeneratorPipelineTests
         await Assert.That(attr).Contains("AllowMultiple = true");
     }
 
-    // ── B1 end-to-end: compound Hungarian stripped through the pipeline ──────
-
     /// <summary>
     ///     B1 end-to-end: a field named <c>m_iszPlayerName</c> in the schema reaches the generated property as
     ///     <c>public string PlayerName</c> (not <c>IszPlayerName</c>).
@@ -70,15 +66,13 @@ public class GeneratorPipelineTests
         await Assert.That(source).DoesNotContain("IszPlayerName");
     }
 
-    // ── Name-map collision disambiguation ────────────────────────────────────
-    //
-    // When two C++ names map to the same desired C# name (because a CA1711 suffix
-    // strip flattens `CFooQueue` onto `CFoo`), the "natural" mapping — the class
-    // whose desired C# name equals its raw C++ name — must win the un-suffixed
+    // When two C++ names map to the same desired C# name (a CA1711 suffix strip
+    // flattens `CFooQueue` onto `CFoo`), the "natural" mapping — the class whose
+    // desired C# name equals its raw C++ name — must win the un-suffixed
     // identifier regardless of schema declaration order. The transformed class
-    // falls back to its sanitized raw name (`CFooQueue`), NOT an ordinal suffix
-    // like `CFoo2`. This is the regression case for `CHintMessage` /
-    // `CHintMessageQueue` in the real schema, where the loser appeared first.
+    // falls back to its sanitized raw name (`CFooQueue`), not an ordinal suffix
+    // like `CFoo2`. Regression case: `CHintMessage` / `CHintMessageQueue` in the
+    // real schema, where the loser appeared first.
 
     /// <summary>
     ///     Two-pass name map: when CA1711 strips <c>CFooQueue</c> → <c>CFoo</c>, the natural <c>CFoo</c> wins the
@@ -88,7 +82,7 @@ public class GeneratorPipelineTests
     [Test]
     public async Task Generator_CsNameCollision_NaturalMappingWins_RegardlessOfSchemaOrder()
     {
-        // CFooQueue is declared FIRST (the failing order before the two-pass fix).
+        // CFooQueue is declared first (the failing order before the two-pass fix).
         // Without "natural wins", schema order would let CFooQueue steal the bare
         // name and force CFoo onto an ordinal suffix.
         GeneratorHarness.RunResult result = GeneratorHarness.Run("""
@@ -107,12 +101,10 @@ public class GeneratorPipelineTests
         string client = result.GetModuleSource("client");
         await Assert.That(client).Contains("public partial class CFoo\n");
         await Assert.That(client).Contains("public partial class CFooQueue\n");
-        // The natural CFoo wins; CFooQueue must NOT have been forced onto an
+        // The natural CFoo wins; CFooQueue must not have been forced onto an
         // ordinal suffix like `CFoo2`.
         await Assert.That(client).DoesNotContain("public partial class CFoo2");
     }
-
-    // ── F1: reverse-lookup SchemaNames table ─────────────────────────────────
 
     /// <summary>
     ///     F1: emits <c>CS2Schema.SchemaNames.g.cs</c> with a <c>const string</c> per property name pointing back to its
@@ -136,8 +128,6 @@ public class GeneratorPipelineTests
         await Assert.That(source).Contains("public static class SchemaNames");
         await Assert.That(source).Contains("public const string Health = \"m_iHealth\";");
     }
-
-    // ── B3 end-to-end: char arrays come through the whole pipeline as string ─
 
     /// <summary>
     ///     B3 end-to-end: a <c>char[N]</c> field in <c>schemas.json</c> reaches the generated property as
@@ -164,8 +154,6 @@ public class GeneratorPipelineTests
         await Assert.That(source).DoesNotContain("public sbyte[] Name");
     }
 
-    // ── Module classification: identical-fingerprint duplicates → Common ─────
-
     /// <summary>
     ///     Classification: same-name same-fingerprint classes across modules dedupe into the <c>shared</c> (Common) file
     ///     rather than being emitted per-module.
@@ -191,7 +179,7 @@ public class GeneratorPipelineTests
         await Assert.That(result.HasModule("shared")).IsTrue();
         await Assert.That(result.GetModuleSource("shared")).Contains("public partial class CShared");
         // Per-module files for client/server may still exist for unrelated reasons, but
-        // they must NOT contain a duplicate CShared declaration.
+        // they must not contain a duplicate CShared declaration.
         if (result.HasModule("client"))
         {
             await Assert.That(result.GetModuleSource("client")).DoesNotContain("public partial class CShared");
@@ -233,8 +221,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.Files.ContainsKey("Stubs")).IsFalse();
     }
 
-    // ── Stubs file presence ──────────────────────────────────────────────────
-
     /// <summary>
     ///     When every referenced type is declared in the schema, no <c>CS2Schema.Stubs.g.cs</c> is emitted (empty stub
     ///     files would be noise).
@@ -255,8 +241,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.Files.ContainsKey("Stubs")).IsFalse();
     }
 
-    // ── Per-file using-directive minimization ────────────────────────────────
-
     /// <summary>
     ///     Per-file <c>using</c> minimisation: each module file imports only the cross-module namespaces it actually
     ///     references, never every namespace in the SDK.
@@ -265,7 +249,7 @@ public class GeneratorPipelineTests
     public async Task Generator_PerFileUsings_OnlyIncludesNamespacesActuallyReferenced()
     {
         // CFoo in module "a" references CBar in module "b". So a.cs needs `using CS2Schema.B;`.
-        // CIsolated in module "c" references no cross-module types. So c.cs must NOT have
+        // CIsolated in module "c" references no cross-module types. So c.cs must not have
         // `using CS2Schema.A;` or `using CS2Schema.B;`.
         GeneratorHarness.RunResult result = GeneratorHarness.Run("""
                                                                  {
@@ -286,8 +270,6 @@ public class GeneratorPipelineTests
         await Assert.That(cSrc).DoesNotContain("using CS2Schema.B;");
     }
 
-    // ── ME-3: source-traceability stamp from schemas.json metadata ───────────
-
     /// <summary>
     ///     ME-3 / F3: top-level <c>revision</c> and <c>version_date</c> in <c>schemas.json</c> are stamped into the
     ///     header of every emitted <c>.g.cs</c> file for source traceability.
@@ -307,8 +289,6 @@ public class GeneratorPipelineTests
         await Assert.That(source).Contains("10641237");
         await Assert.That(source).Contains("May 07 2026");
     }
-
-    // ── Forward-declared stubs ───────────────────────────────────────────────
 
     /// <summary>
     ///     An undeclared cross-module type referenced from a field is emitted as an empty <c>partial class</c> stub in
@@ -333,8 +313,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.Files["Stubs"]).Contains("public partial class CExternalUnknown");
     }
 
-    // ── Namespace plumbing ───────────────────────────────────────────────────
-
     /// <summary>
     ///     EX-2: the <c>CS2SchemaGen_Namespace</c> MSBuild property overrides the default <c>CS2Schema</c> namespace in
     ///     emitted source.
@@ -355,8 +333,6 @@ public class GeneratorPipelineTests
         await Assert.That(source).Contains("namespace CS2OpenSchema.Client;");
         await Assert.That(source).DoesNotContain("namespace CS2Schema.Client;");
     }
-
-    // ── Module classification: different fingerprint → per-module ────────────
 
     /// <summary>
     ///     Classification: same-name different-fingerprint classes keep their own per-module copies and no <c>shared</c>
@@ -420,8 +396,6 @@ public class GeneratorPipelineTests
         await Assert.That(source).Contains("public const string Ammo = \"m_iAmmo\";");
     }
 
-    // ── CE-1: stubs from `::`-replaced names should carry the original C++ name ─
-
     /// <summary>
     ///     CE-1: a stub whose original C++ name contained <c>::</c> gets sanitized to <c>Outer_Inner_Foo</c> in the
     ///     declaration but preserves the original via <c>[NativeName]</c>.
@@ -447,8 +421,6 @@ public class GeneratorPipelineTests
         await Assert.That(stubs).Contains("public partial class Outer_Inner_Foo");
         await Assert.That(stubs).Contains("[NativeName(\"Outer::Inner::Foo\")]");
     }
-
-    // ── Conflict propagation: enum-typed field also triggers demotion ────────
 
     /// <summary>
     ///     ME-1 propagation extends to enum-typed fields: a shared class referencing a per-module-conflicted enum is
@@ -488,8 +460,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.GetModuleSource("server")).Contains("public partial class CSafe");
     }
 
-    // ── Conflict propagation: shared classes referencing conflicted types ────
-
     /// <summary>
     ///     ME-1 propagation: an otherwise-shared class that references a per-module-conflicted class type gets demoted
     ///     out of <c>shared</c> to avoid ambiguous using-directives.
@@ -520,7 +490,7 @@ public class GeneratorPipelineTests
                                                                  }
                                                                  """);
 
-        // CSafe must NOT appear in shared — it would have an ambiguous CConflict reference.
+        // CSafe must not appear in shared; it would have an ambiguous CConflict reference.
         if (result.HasModule("shared"))
         {
             await Assert.That(result.GetModuleSource("shared")).DoesNotContain("public partial class CSafe");
@@ -529,8 +499,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.GetModuleSource("client")).Contains("public partial class CSafe");
         await Assert.That(result.GetModuleSource("server")).Contains("public partial class CSafe");
     }
-
-    // ── Filename derivation ──────────────────────────────────────────────────
 
     /// <summary>
     ///     The on-disk filename is <c>CS2Schema.shared.g.cs</c> but the namespace segment is <c>Common</c> (CA1716 —
@@ -557,8 +525,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.HasModule("shared")).IsTrue();
         await Assert.That(result.GetModuleSource("shared")).Contains("namespace CS2Schema.Common;");
     }
-    // ── Baseline: single class produces a module file ────────────────────────
-
     /// <summary>
     ///     End-to-end: a single class in module <c>client</c> emits a per-class file under the <c>client</c> module with
     ///     the correct namespace and class declaration.
@@ -579,8 +545,6 @@ public class GeneratorPipelineTests
         await Assert.That(source).Contains("namespace CS2Schema.Client;");
         await Assert.That(source).Contains("public partial class CFoo");
     }
-
-    // ── ME-2: deterministic output across runs ───────────────────────────────
 
     /// <summary>
     ///     ME-2 determinism: two generator runs over identical input produce byte-identical output across every emitted
@@ -630,8 +594,6 @@ public class GeneratorPipelineTests
             .Contains("namespace CS2Schema.PanoramaContent;");
     }
 
-    // ── TM-2: diagnostic for unknown atomics ─────────────────────────────────
-
     /// <summary>
     ///     TM-2: an unrecognised atomic name triggers a <c>CS2_GEN_003</c> info diagnostic so maintainers see new dumper
     ///     types instead of silently shipping stubs.
@@ -675,8 +637,6 @@ public class GeneratorPipelineTests
         await Assert.That(result.Files["Stubs"]).Contains("deliberately unprojected");
         await Assert.That(result.Diagnostics).DoesNotContain(d => d.Id == "CS2_GEN_003");
     }
-
-    // ── Q4 / sort stability: unsorted input → sorted output ──────────────────
 
     /// <summary>
     ///     Q4 sort stability: even when <c>schemas.json</c> lists classes in arbitrary order, the concatenation of
@@ -732,11 +692,10 @@ public class GeneratorPipelineTests
         await Assert.That(result.Files["Synthetics"]).Contains("public readonly struct Vector");
     }
 
-    // ── Schema 2.0 shapes that do not compile if passed through ──────────────
-    //
-    // Both of these produced a package that failed to build when the generator
-    // was first pointed at a real 2.0 artifact, and neither is caught by "did
-    // the regen succeed" — the generator exits 0 and emits invalid C#.
+    // Schema 2.0 shapes that do not compile if passed through. Both produced a
+    // package that failed to build when the generator was first pointed at a
+    // real 2.0 artifact, and neither is caught by "did the regen succeed": the
+    // generator exits 0 and emits invalid C#.
 
     /// <summary>
     ///     A 2.0 module name is a binary, and one of them is <c>!GlobalTypes</c>. Passed through it emitted

@@ -7,8 +7,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 // Replay is the audit trail for every name the Lens serves, so most of what is
 // worth testing here is refusal: the op vocabulary is closed, consumer-side
 // keys are rejected by name, and an op that does not apply cleanly throws
-// rather than best-effortsing. The happy paths matter too, but they are the
-// small half — a migration engine earns its keep by what it will not accept.
+// rather than best-effortsing.
 public class SchemaLensReplayTests
 {
     private static LensMigration Parse(string json, string id = "0000-test") =>
@@ -23,8 +22,7 @@ public class SchemaLensReplayTests
               "changes": [ {{changes}} ] }
             """, id);
 
-    // ── File-level validation ────────────────────────────────────────────────
-
+    // File-level validation
     /// <summary>The id must equal the filename stem — diagnostics quote the id, replay order is the filename.</summary>
     [Test]
     public async Task Parse_IdDisagreesWithFilenameStem_Throws()
@@ -91,8 +89,7 @@ public class SchemaLensReplayTests
         }
     }
 
-    // ── addClass ─────────────────────────────────────────────────────────────
-
+    // addClass
     /// <summary>An omitted netName derives mechanically: strip a leading 'C' followed by an uppercase letter.</summary>
     [Test]
     public async Task Replay_AddClass_DerivesNetNameByStrippingLeadingC()
@@ -156,8 +153,7 @@ public class SchemaLensReplayTests
         await Assert.That(ex.Message).Contains("already covered");
     }
 
-    // ── addField ─────────────────────────────────────────────────────────────
-
+    // addField
     /// <summary>
     ///     An omitted targetProperty derives through the SAME fold the class
     ///     emitters use — Hungarian strip, PascalCase, word split — so the Lens
@@ -178,7 +174,7 @@ public class SchemaLensReplayTests
         await Assert.That(state.Classes["CThing"].Fields["m_flStamina"].TargetProperty).IsEqualTo("Stamina");
     }
 
-    /// <summary>A dotted path derives from its LAST segment — the property names the leaf, not the route.</summary>
+    /// <summary>A dotted path derives from its last segment: the property names the leaf, not the route.</summary>
     [Test]
     public async Task Replay_AddField_DerivesFromLastSegmentOfDottedPath()
     {
@@ -232,11 +228,10 @@ public class SchemaLensReplayTests
         await Assert.That(ex.Message).Contains("addClass must precede");
     }
 
-    // ── rename / moveSubService ──────────────────────────────────────────────
-
+    // rename / moveSubService
     /// <summary>
-    ///     A rename moves the entry wholesale — target property, first-seen
-    ///     build and type history belong to the field, not to its spelling —
+    ///     A rename moves the entry wholesale (target property, first-seen
+    ///     build and type history belong to the field, not to its spelling)
     ///     and leaves every historical name resolving through the alias table.
     /// </summary>
     [Test]
@@ -302,8 +297,7 @@ public class SchemaLensReplayTests
         await Assert.That(ex.Message).Contains("m_iGhost");
     }
 
-    // ── addAlias ─────────────────────────────────────────────────────────────
-
+    // addAlias
     [Test]
     public async Task Replay_AddAliasForUnknownCanonical_Throws()
     {
@@ -331,9 +325,8 @@ public class SchemaLensReplayTests
         await Assert.That(ex.Message).Contains("collides");
     }
 
-    // ── removeField ──────────────────────────────────────────────────────────
-
-    /// <summary>A removed canonical takes its aliases with it — an alias to nothing serves nothing.</summary>
+    // removeField
+    /// <summary>A removed canonical takes its dependent aliases with it.</summary>
     [Test]
     public async Task Replay_RemoveField_RemovesDependentAliases()
     {
@@ -348,9 +341,8 @@ public class SchemaLensReplayTests
         await Assert.That(state.Classes["CThing"].Aliases).IsEmpty();
     }
 
-    // ── typeShift / ignoreField ──────────────────────────────────────────────
-
-    /// <summary>typeShift records the fact, stamped with the migration's build — and nothing else.</summary>
+    // typeShift / ignoreField
+    /// <summary>typeShift appends a history record stamped with the migration's build, and changes nothing else.</summary>
     [Test]
     public async Task Replay_TypeShift_AppendsHistoryWithBuild()
     {
@@ -398,8 +390,7 @@ public class SchemaLensReplayTests
         await Assert.That(state.Classes["CThing"].Fields.ContainsKey("m_iX")).IsTrue();
     }
 
-    // ── Hash checks ──────────────────────────────────────────────────────────
-
+    // Hash checks
     /// <summary>
     ///     The placeholder is recognised as the authoring flow, a wrong hash as
     ///     a broken signature, and the computed value as the one to paste.
@@ -423,7 +414,7 @@ public class SchemaLensReplayTests
         await Assert.That(wrong.IsPlaceholder).IsFalse();
         await Assert.That(wrong.Matches).IsFalse();
 
-        // Bake the computed hash back in — the authoring loop — and the check
+        // Bake the computed hash back in (the authoring loop) and the check
         // goes green.
         LensHashCheck baked = Replay(Parse($$"""
             { "id": "0000-test", "build": "genesis", "stateHash": "{{placeholder.ComputedHash}}",

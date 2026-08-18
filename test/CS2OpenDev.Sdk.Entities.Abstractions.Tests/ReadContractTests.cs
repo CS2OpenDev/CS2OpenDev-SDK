@@ -26,8 +26,7 @@ public class ReadContractTests
     private static DictionaryEntityReader Reader(Dictionary<string, object?> values) =>
         new(Binding(), values);
 
-    // ── Absent, received-null, and present are three different things ─────────
-
+    // Absent, received-null, and present are three different things
     /// <summary>A field never received reads as absent from every typed accessor — not as the type's default.</summary>
     [Test]
     public async Task NeverReceived_ReadsAsAbsentRatherThanDefault()
@@ -60,8 +59,7 @@ public class ReadContractTests
         await Assert.That(reader.TryReadInt32(0, out _)).IsFalse();
     }
 
-    // ── Ordinal addressing ────────────────────────────────────────────────────
-
+    // Ordinal addressing
     /// <summary>Ordinals outside the binding's space read as absent instead of throwing, so a stale wrapper degrades rather than crashing.</summary>
     [Test]
     [Arguments(-1)]
@@ -90,8 +88,7 @@ public class ReadContractTests
         await Assert.That(origin).IsEqualTo(new Vector3(1, 2, 3));
     }
 
-    // ── Typed reads ───────────────────────────────────────────────────────────
-
+    // Typed reads
     /// <summary>Reads a 64-bit field without truncating it, which is why the contract carries a UInt64 accessor at all.</summary>
     [Test]
     public async Task UInt64_ReadsWideValuesIntact()
@@ -183,8 +180,7 @@ public class ReadContractTests
         await Assert.That(reader.TryReadVector3(2, out _)).IsFalse();
     }
 
-    // ── The engine-path escape hatch ──────────────────────────────────────────
-
+    // The engine-path escape hatch
     /// <summary>Reads a field by its canonical wire path, bypassing the ordinal space.</summary>
     [Test]
     public async Task ByEnginePath_ReadsTheCanonicalSpelling()
@@ -214,8 +210,7 @@ public class ReadContractTests
         await Assert.That(reader.TryReadByEnginePath("m_nowhere", out _)).IsFalse();
     }
 
-    // ── Identity ──────────────────────────────────────────────────────────────
-
+    // Identity
     /// <summary>Reports the binding's engine class by default, and an override when one entity is read through a base class's binding.</summary>
     [Test]
     public async Task EngineClassName_DefaultsToTheBindingAndCanBeOverridden()

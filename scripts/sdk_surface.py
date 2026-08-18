@@ -35,7 +35,7 @@ losing either is a break the version number has to say out loud.
 
 Three details are worth stating because they depart from `proto_surface.py`:
 
-- **Nested types are first-class entries**, not folded into their parent. The
+- Nested types are first-class entries, not folded into their parent. The
   proto gate folds, because a protobuf consumer names the top-level type. A C#
   consumer names the nested one: `SchemaNames.AABB.MaxBounds` is how the whole
   reverse-lookup table is reached, and 3,054 of this package's named types are
@@ -43,12 +43,12 @@ Three details are worth stating because they depart from `proto_surface.py`:
   turn "`SchemaNames.AIBaseNPCDebugSnapshotData` was removed" into
   "`SchemaNames` lost 13 members", which is the wrong sentence.
 
-- **Generic types are keyed by CLR arity** -- CHandle`1, in the backtick
+- Generic types are keyed by CLR arity -- CHandle`1, in the backtick
   notation reflection uses -- rather than by `CHandle<T>`. Renaming a type
   parameter is not a break, and a model that reported it as one would be
   reporting noise on its first real run.
 
-- **Enum members carry their value.** This is the direct analogue of the proto
+- Enum members carry their value. This is the direct analogue of the proto
   gate tracking field tags: an enum member silently renumbered is a wrong answer
   at runtime rather than a compile error, which is the worse of the two.
 
@@ -84,7 +84,7 @@ release will experience.
 
 Where the acknowledgement lives
 -------------------------------
-The **root** `version.json`, not `src/CS2OpenDev.Sdk/version.json` -- which does
+The root `version.json`, not `src/CS2OpenDev.Sdk/version.json` -- which does
 not exist, and a reader coming from the proto gate will expect it to. The root
 file carries `"pathFilters": [":/src/CS2OpenDev.Sdk/"]`, so Nerdbank.GitVersioning
 treats it as this package's version source and every other package gets its own
@@ -95,10 +95,9 @@ build cannot infer, asserted once, checked mechanically thereafter.
 What it deliberately does not catch
 -----------------------------------
 This is a lexical model of the emitted source, not a compiler and not
-`Microsoft.DotNet.ApiCompat` against two built assemblies. The limits are worth
-stating rather than discovering:
+`Microsoft.DotNet.ApiCompat` against two built assemblies. Known limits:
 
-- **Inheritance is not expanded.** A type's entry holds only what its own file
+- Inheritance is not expanded. A type's entry holds only what its own file
   declares. 2,478 of the emitted types declare a base, and the members a derived
   type inherits are never re-declared in its own file. The base class is
   its own entry, so a member vanishing off a base *is* caught -- but it is
@@ -106,27 +105,27 @@ stating rather than discovering:
   (or back) reads here as one removal plus one unrelated addition when nothing
   broke at all. The declared base list is recorded, so a swapped base is
   reported; what it resolves to is not followed.
-- **Attribute changes.** `[NativeOffset]` moving, `[NativeName]` changing,
+- Attribute changes. `[NativeOffset]` moving, `[NativeName]` changing,
   `[EditorBrowsable]` appearing. Out of scope on purpose: those carry the native
   identity, which is independent of the C# projection a consumer compiles
   against, and they churn on every schema bump. `[EditorBrowsable(Never)]` is
   read, but only to describe removals in the report -- never to excuse one.
-- **Constant values.** `SchemaNames.AABB.MaxBounds` is recorded as a `const
+- Constant values. `SchemaNames.AABB.MaxBounds` is recorded as a `const
   string` named `MaxBounds`; that its value is `"m_vMaxBounds"` is not. A
   changed native identifier is invisible here, and nothing else checks it either
   -- `names.lock.json` pins the lowercase-run vocabulary that produces C# names,
   not the native strings those names map back to.
-- **Generic constraints** (`where T : …`) and type-parameter variance.
-- **Members the compiler synthesises.** A record's `Equals`, `GetHashCode`,
+- Generic constraints (`where T : …`) and type-parameter variance.
+- Members the compiler synthesises. A record's `Equals`, `GetHashCode`,
   `Deconstruct`, `<Clone>$` and `EqualityContract` exist on the shipped assembly
   and not in the source, so they are not modelled. Positional record parameters
   would land in the same hole; the emitter declares none today.
-- **Anything outside `src/CS2OpenDev.Sdk/`.** `CS2OpenDev.Sdk.GameEvents`,
+- Anything outside `src/CS2OpenDev.Sdk/`. `CS2OpenDev.Sdk.GameEvents`,
   `.Entities` and `.Entities.Abstractions` have their own `version.json` files
   and no gate of their own. The scope here matches the root `version.json`'s
   `pathFilters` exactly, so the surface and the version that acknowledges it
   cover the same files.
-- **The emitter's formatting.** Declarations are found by indentation and one
+- The emitter's formatting. Declarations are found by indentation and one
   member per line, which is safe because this tree is generated and would not be
   safe on hand-written C#. A reformat of the emitter is invisible to the compiler
   and would blind this model. That failure is why `SELFTEST_CASES` in
@@ -481,8 +480,7 @@ def surface_from_ref(ref: str, root: str = SDK_ROOT) -> Surface:
     One `git cat-file --batch` for the whole tree, rather than the proto gate's
     `git show` per file. That gate reads ~40 files; this one reads 4,616, twice
     per comparison and four times over in the self-test, and a process spawn per
-    file turns a two-second check into a two-minute one. A gate slow enough to be
-    annoying is a gate somebody eventually skips.
+    file turns a two-second check into a two-minute one.
     """
     listing = subprocess.run(
         ["git", "ls-tree", "-r", ref, "--", root],

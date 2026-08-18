@@ -27,8 +27,7 @@ public class EnumEmitterTests
         return sb.ToString();
     }
 
-    // ── Baseline shape ───────────────────────────────────────────────────────
-
+    // Baseline shape
     /// <summary>Emits the underlying CLR type clause (e.g. <c>: byte</c>) derived from the enum's <c>storage_size</c>.</summary>
     [Test]
     public async Task Emit_BasicEnum_HasUnderlyingTypeFromStorageSize()
@@ -68,8 +67,7 @@ public class EnumEmitterTests
         await Assert.That(src).DoesNotContain("[Flags]");
     }
 
-    // ── Member shape ─────────────────────────────────────────────────────────
-
+    // Member shape
     /// <summary>Stamps each enum member with <c>[NativeName]</c> carrying the raw C++ identifier and strips the enum-type prefix from the C# member name.</summary>
     [Test]
     public async Task Emit_Member_EmitsNativeNameAttribute()
@@ -93,8 +91,7 @@ public class EnumEmitterTests
         await Assert.That(src).Contains("A = 4294967295\n");
     }
 
-    // ── CA1069 duplicate-value handling ──────────────────────────────────────
-
+    // CA1069 duplicate-value handling
     /// <summary>Marks the second member of a duplicate-value pair with <c>[Obsolete("Alias for …")]</c> to satisfy CA1069.</summary>
     [Test]
     public async Task Emit_DuplicateValue_MarksLaterMemberAsObsoleteAlias()
@@ -107,8 +104,7 @@ public class EnumEmitterTests
         await Assert.That(src).Contains("[Obsolete(\"Alias for Primary.\")]");
     }
 
-    // ── CA1708 case-only collision ───────────────────────────────────────────
-
+    // CA1708 case-only collision
     /// <summary>Resolves case-only collisions (<c>Foo</c>/<c>foo</c>) by appending the raw C++ name as a suffix rather than an ordinal counter (NH-3).</summary>
     [Test]
     public async Task Emit_CaseCollidingMembers_DisambiguatorIsRawNativeName()
@@ -126,8 +122,7 @@ public class EnumEmitterTests
         await Assert.That(src).DoesNotContain("Foo2 = 2");
     }
 
-    // ── EE-1: enum-member metadata round-trip ────────────────────────────────
-
+    // EE-1: enum-member metadata round-trip
     /// <summary>Round-trips <c>MemberModel.Metadata</c> entries as <c>[NativeMetadata("Name", "Value")]</c> on the emitted enum member (EE-1).</summary>
     [Test]
     public async Task Emit_MemberMetadata_RoundTripsAsNativeMetadata()
@@ -139,8 +134,7 @@ public class EnumEmitterTests
         await Assert.That(src).Contains("[NativeMetadata(\"MDescription\", \"first\")]");
     }
 
-    // ── Defensive edge cases ─────────────────────────────────────────────────
-
+    // Defensive edge cases
     /// <summary>Omits the <c>: type</c> clause when the schema provides no <c>storage_size</c>.</summary>
     [Test]
     public async Task Emit_EnumWithoutStorageSize_OmitsUnderlyingType()
@@ -163,8 +157,7 @@ public class EnumEmitterTests
         await Assert.That(src).Contains("}");
     }
 
-    // ── Annotation-driven summary handling ───────────────────────────────────
-
+    // Annotation-driven summary handling
     /// <summary>Enum annotation description becomes the summary; schema name relocates to remarks as `Native name:`.</summary>
     [Test]
     public async Task Emit_AnnotatedEnum_DescriptionBecomesSummary_NameRelocatesToRemarks()

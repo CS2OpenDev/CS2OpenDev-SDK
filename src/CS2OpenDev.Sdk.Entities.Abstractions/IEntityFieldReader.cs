@@ -14,12 +14,12 @@ namespace CS2OpenDev.Sdk.Entities;
 ///         the array rather than against hard-coded numbers is immune to renumbering.
 ///     </para>
 ///     <para>
-///         <b>Every <c>TryRead*</c> returns <see langword="false"/> when the field has never
-///         been received on the wire.</b> "Absent" is distinct from a received default. That
-///         distinction is not decoration: <c>m_lifeState</c>'s <c>0</c> means <c>LIFE_ALIVE</c>,
+///         Every <c>TryRead*</c> returns <see langword="false"/> when the field has never
+///         been received on the wire. "Absent" is distinct from a received default, and the
+///         distinction matters: <c>m_lifeState</c>'s <c>0</c> means <c>LIFE_ALIVE</c>,
 ///         so a wrapper that cannot tell "alive" from "never transmitted" reports corpses as
-///         healthy. Both read policies a generated property needs — default-when-absent and
-///         null-when-absent — are one expression over a <c>TryRead</c>, which is why there are
+///         healthy. Both read policies a generated property needs (default-when-absent and
+///         null-when-absent) are one expression over a <c>TryRead</c>, which is why there are
 ///         no plain getters to duplicate the surface.
 ///     </para>
 ///     <para>
@@ -61,10 +61,10 @@ public interface IEntityFieldReader
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         The packing is <c>(serial &lt;&lt; index_bits) | index</c>, and <b>how many bits
-    ///         the index gets is not documented authoritatively upstream</b> — see
+    ///         The packing is <c>(serial &lt;&lt; index_bits) | index</c>, and how many bits
+    ///         the index gets is not documented authoritatively upstream; see
     ///         <c>docs/HANDLES.md</c>. Two implementations in this ecosystem already disagree
-    ///         about it. That is precisely why this returns an undecoded <see cref="uint"/>:
+    ///         about it. That is why this returns an undecoded <see cref="uint"/>:
     ///         had the contract decoded handles, one of those two readings would be frozen
     ///         into it.
     ///     </para>
@@ -74,7 +74,7 @@ public interface IEntityFieldReader
     ///     </para>
     ///     <para>
     ///         An implementation whose storage boxes handles at some other integral width must
-    ///         <b>fold</b> to these 32 bits rather than convert: the packed sentinel meaning
+    ///         fold to these 32 bits rather than convert: the packed sentinel meaning
     ///         "no entity" has the high bit set, and a checked conversion from a signed width
     ///         rejects it. Reporting that as absent would erase the difference between a field
     ///         that was never received and one that was explicitly set to nothing, which is the
@@ -91,15 +91,15 @@ public interface IEntityFieldReader
     /// <summary>Reads an Euler-angle field.</summary>
     /// <remarks>
     ///     <para>
-    ///         <b>Reading a position field as an angle, or an angle field as a vector, is
-    ///         implementation-defined.</b> An implementation may return the component triple
+    ///         Reading a position field as an angle, or an angle field as a vector, is
+    ///         implementation-defined. An implementation may return the component triple
     ///         reinterpreted, or report absent, and a consumer must not rely on either.
     ///     </para>
     ///     <para>
-    ///         This is a concession to how the wire actually works rather than a gap. Both
-    ///         shapes are three floats, and a runtime that decodes them into one storage
-    ///         representation has nothing left to discriminate on — the angle-ness is a fact
-    ///         about the schema, not about the value. Requiring refusal would oblige every
+    ///         The wire leaves no room to do better. Both shapes are three floats, and a
+    ///         runtime that decodes them into one storage representation has nothing left to
+    ///         discriminate on; the angle-ness is a fact about the schema, not about the
+    ///         value. Requiring refusal would oblige every
     ///         implementation to carry per-ordinal schema-type metadata purely to reject a
     ///         call no correct caller makes.
     ///     </para>
@@ -115,7 +115,7 @@ public interface IEntityFieldReader
     bool TryReadQAngle(int ordinal, out QAngle value);
 
     /// <summary>
-    ///     Reads any field as a boxed value — the escape for composites with no first-class
+    ///     Reads any field as a boxed value: the escape for composites with no first-class
     ///     representation here (typed arrays, strings, vectors of handles, sub-structures).
     /// </summary>
     /// <remarks>

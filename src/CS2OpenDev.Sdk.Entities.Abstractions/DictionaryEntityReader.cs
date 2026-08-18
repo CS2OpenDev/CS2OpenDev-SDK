@@ -7,13 +7,12 @@ namespace CS2OpenDev.Sdk.Entities;
 /// </summary>
 /// <remarks>
 ///     <para>
-///         This exists to answer an objection rather than to serve production traffic. Hosting
-///         entity wrappers here was declined on the grounds that this repository has no entity
-///         to wrap and no intention of acquiring a parser — which is true and stays true. This
-///         type makes it irrelevant: every generated wrapper can be tested against a
-///         <c>Dictionary&lt;string, object?&gt;</c> of field values, exercising name mapping,
-///         read policies, nullability, alias resolution and handle plumbing, without a single
-///         byte of demo being parsed. The repository still never parses a demo.
+///         Not a production reader. Hosting entity wrappers here was declined on the grounds
+///         that this repository has no entity to wrap and no intention of acquiring a parser;
+///         this type is what keeps that from blocking tests. Every generated wrapper can be
+///         exercised against a <c>Dictionary&lt;string, object?&gt;</c> of field values,
+///         covering name mapping, read policies, nullability, alias resolution and handle
+///         plumbing, without parsing a byte of demo.
 ///     </para>
 ///     <para>
 ///         Ships rather than staying in the test project so that it is also the conformance
@@ -21,13 +20,13 @@ namespace CS2OpenDev.Sdk.Entities;
 ///         know it agrees with this one about what the contract means.
 ///     </para>
 ///     <para>
-///         <b>Semantics this pins down.</b> A key absent from <paramref name="values"/> is a
-///         field never received, and every <c>TryRead*</c> returns <see langword="false"/>. A
-///         key present with a <see langword="null"/> value is a field received as null:
+///         A key absent from <paramref name="values"/> is a field never received, and every
+///         <c>TryRead*</c> returns <see langword="false"/>. A key present with a
+///         <see langword="null"/> value is a field received as null:
 ///         <see cref="TryReadObject"/> returns <see langword="true"/> with
 ///         <see langword="null"/>, and the typed readers return <see langword="false"/>
-///         because they have no value to hand back. That asymmetry is the contract, not an
-///         accident of this implementation.
+///         because they have no value to hand back. The asymmetry is deliberate and part of
+///         the contract.
 ///     </para>
 /// </remarks>
 /// <param name="binding">The class binding defining the ordinal space.</param>
@@ -98,14 +97,12 @@ public sealed class DictionaryEntityReader(
     /// <inheritdoc/>
     public bool TryReadEntityHandle(int ordinal, out uint rawHandle)
     {
-        // A width-fold, not a conversion, and the distinction is load-bearing.
-        //
-        // Routing handles through the same checked conversion as the numeric
-        // accessors made the invalid sentinel unreadable: `0xFFFFFFFF` written as an
-        // int `-1` overflows, and the read reported *absent*. But absent and
-        // "present, and explicitly nothing" are different facts about an entity —
-        // the whole reason this interface distinguishes them — and a handle reader
-        // that cannot return the sentinel cannot express the second one.
+        // Handles skip TryConvert on purpose. Routing them through the same checked
+        // conversion as the numeric accessors made the invalid sentinel unreadable:
+        // 0xFFFFFFFF written as an int -1 overflows, and the read reported absent.
+        // But absent and "present, and explicitly nothing" are different facts about
+        // an entity (the whole reason this interface distinguishes them), and a
+        // handle reader that cannot return the sentinel cannot express the second one.
         //
         // So every integral width folds unchecked to the packed 32 bits, and the
         // bit pattern crosses exactly as stored. Which of those patterns mean "no
@@ -131,8 +128,8 @@ public sealed class DictionaryEntityReader(
             case byte b: rawHandle = b; return true;
             case sbyte sb: rawHandle = unchecked((uint)sb); return true;
             default:
-                // Not an integral value at all — nothing to fold, so report absent
-                // rather than inventing a handle.
+                // not an integral value at all; nothing to fold, so report absent
+                // rather than inventing a handle
                 rawHandle = default;
                 return false;
         }
@@ -177,7 +174,7 @@ public sealed class DictionaryEntityReader(
             return true;
         }
 
-        // Not a canonical path — try it as a historical spelling. This is the alias table
+        // Not a canonical path, so try it as a historical spelling. This is the alias table
         // earning its place: a demo recorded before a rename names the field the old way, and
         // the binding is what knows the old way still means this field.
         if (_binding.Aliases.TryGetValue(enginePath, out string? canonical)
@@ -201,9 +198,9 @@ public sealed class DictionaryEntityReader(
         return _values.TryGetValue(_binding.CanonicalPaths[ordinal], out value);
     }
 
-    // Widening conversions only, and never a lossy one: a fixture written with `1` for a
+    // Widening conversions only, and never a lossy one: a fixture written with 1 for a
     // ulong field should work, but reading a float out of an int field should fail rather
-    // than silently truncate. Failure here reports as "absent", which is the honest answer —
+    // than silently truncate. Failure here reports as "absent", which is the honest answer:
     // the reader has no value of the requested type to hand back.
     private bool TryConvert<T>(int ordinal, out T value) where T : struct
     {

@@ -97,7 +97,7 @@ internal static class TypeMapper
         "CUtlStringTokenNoRegistration"
     };
 
-    // Handle atomics — project to the typed-handle value structs emitted by
+    // Handle atomics project to the typed-handle value structs emitted by
     // HandleTypes.BuildSource. Keying off the atomic name (instead of the
     // schema's old `handle_kind` field, which the current upstream cs2_schema.json
     // no longer carries) makes the dispatch survive the schema-source switch.
@@ -148,14 +148,14 @@ internal static class TypeMapper
         "CVariantBase"         // wraps the variant allocator class
     };
 
-    // Atomics whose semantic is "optional reference to T" — wraps `inner`
+    // Atomics whose semantic is "optional reference to T": wraps `inner`
     // and may be absent. Schema category: SCHEMA_ATOMIC_T.
     internal static readonly HashSet<string> OptionalRefAtoms = new(StringComparer.Ordinal)
     {
         "CAnimGraph2ParamOptionalRef"
     };
 
-    // SmartProp editor attributes — each is a typed editor value used by the
+    // SmartProp editor attributes: each is a typed editor value used by the
     // SmartProp editor system. Not networked at runtime; the runtime carries
     // the resolved value, not the attribute wrapper. Per-type projection
     // matches the obvious binding from the atomic name suffix. Schema
@@ -178,7 +178,7 @@ internal static class TypeMapper
         ["CSmartPropVariableComparison"]         = "object?"
     };
 
-    // Atomics projected to `nint` (IntPtr equivalent) — C-style function or
+    // Atomics projected to `nint` (IntPtr equivalent): C-style function or
     // foreign-resource pointers. Schema treats them as opaque atomics.
     //
     // Primary sources:
@@ -199,7 +199,7 @@ internal static class TypeMapper
         "IPLCompressedEnergyFields"
     };
 
-    // Opaque-but-shaped atomics — schema doesn't expose binary layout, but the
+    // Opaque-but-shaped atomics: schema doesn't expose binary layout, but the
     // type clearly carries some serialised payload. Project as nullable byte
     // arrays so consumers can move them around / hand them to a downstream
     // parser, rather than touching an empty stub class.
@@ -219,7 +219,7 @@ internal static class TypeMapper
         "CAnimGraph2ParamAutoResetOptionalRef"   // animation graph internal (one schema usage, no inner)
     };
 
-    // Atomics projected as `string?` — schema represents them as a name token
+    // Atomics projected as `string?`: schema represents them as a name token
     // rather than a structured value. KV3-member-name-set is a list of names,
     // so project that as `string[]?`.
     internal static readonly HashSet<string> NamedStringAtoms = new(StringComparer.Ordinal)
@@ -227,7 +227,7 @@ internal static class TypeMapper
         "CParticleNamedValueRef"
     };
 
-    // Synthetic math types emitted as readonly structs — keyed by C++ name.
+    // Synthetic math types emitted as readonly structs, keyed by C++ name.
     internal static readonly HashSet<string> SyntheticAtoms = new(StringComparer.Ordinal)
     {
         "Vector",
@@ -270,13 +270,13 @@ internal static class TypeMapper
 
     // ── Deliberately stubbed atomics (issue #33) ─────────────────────────────
     //
-    // Pulse VM internals that stay empty stub classes ON PURPOSE. This set is
+    // Pulse VM internals that deliberately stay empty stub classes. This set is
     // the decision record: an entry here means someone looked at the type and
     // chose the stub over a projection — do not "fix" one without new evidence.
-    // Keyed on the BARE template name, so the decision covers every current and
+    // Keyed on the bare template name, so the decision covers every current and
     // future instantiation of the template.
     //
-    //   CPulseObservableExpression — NOT a value wrapper, though it looks like
+    //   CPulseObservableExpression — not a value wrapper, though it looks like
     //     one. The field is 120 bytes in every schema use (offset arithmetic on
     //     CPulseCell_BooleanSwitchState and CPulseCell_TestYieldWithObservables):
     //     it carries the observable expression itself — bindings and evaluation
@@ -295,10 +295,10 @@ internal static class TypeMapper
     //
     // Effect: MapAtomicCore still falls through to the stub path for these (the
     // referencing properties need the class to exist), but the fall-through no
-    // longer registers a CS2_GEN_003 — a decided entry is not a gap, and the
-    // report stays a to-do list that reads empty when everything is decided.
+    // longer registers a CS2_GEN_003, so the report only lists what is still
+    // undecided.
     //
-    // Two things this deliberately does NOT change:
+    // Two things this deliberately does not change:
     //   ─ IsKnownAtomicName must keep returning false for these. "Known" is what
     //     suppresses stub emission, and these still need their stubs. Adding an
     //     entry to both sets produces properties referencing a class that is
@@ -309,7 +309,7 @@ internal static class TypeMapper
     //
     // What this cannot catch: if upstream ever reflects one of these as a real
     // class, the field stops being an ATOMIC and this set silently stops
-    // matching — which is the correct outcome, not a failure.
+    // matching — which is the outcome we would want anyway.
     internal static readonly HashSet<string> DeliberatelyStubbedAtoms = new(StringComparer.Ordinal)
     {
         "CPulseObservableExpression",
@@ -335,7 +335,7 @@ internal static class TypeMapper
     private static HashSet<string>? _unresolvedAtomics;
 
     // Atomics that fell through to a stub while upstream's own `atomicCategory`
-    // says they are a container shape. Keyed by the BARE template name with the
+    // says they are a container shape. Keyed by the bare template name with the
     // arguments stripped, because that is the unit a fix would act on: one entry
     // in CollectionAtoms covers every instantiation of it. Carries the category
     // and an occurrence count so the diagnostic can say how much is riding on it.
@@ -356,7 +356,7 @@ internal static class TypeMapper
 
     // Whether an atomic's C# projection surfaces its `Inner` type. Categories that
     // collapse to a primitive (string, int, Guid, byte[], synthetic structs, …) do
-    // NOT surface Inner — `CResourceNameTyped<MDLName_t>` projects to plain `string`,
+    // not surface Inner — `CResourceNameTyped<MDLName_t>` projects to plain `string`,
     // so `MDLName_t` never appears in the emitted source and shouldn't trigger a
     // `using` directive for its module. This predicate must mirror the branches in
     // `MapAtomicCore` — keep them in sync.
@@ -476,7 +476,7 @@ internal static class TypeMapper
         string baseResult = MapAtomicCore(at);
 
         // TM-1: honour the schema's nullable marker. Some branches (HandleKind,
-        // SmartPtr) already append `?` themselves — don't double up.
+        // SmartPtr) already append `?` themselves; don't double up.
         if (at.Nullable && !baseResult.EndsWith('?'))
         {
             return baseResult + "?";
@@ -490,7 +490,7 @@ internal static class TypeMapper
     // as unknown and emit a spurious stub class + CS2_GEN_003 diagnostic.
     private static string MapAtomicCore(AtomicType at)
     {
-        // Classification keys off the BARE template name. Schema 2.0 made an
+        // Classification keys off the bare template name. Schema 2.0 made an
         // atomic's `name` fully templated -- `CUtlVector< CGlobalSymbol >`, not
         // `CUtlVector` -- while every set in this file is keyed bare, so for three
         // schema majors no templated atomic matched anything and all 1,931 of them
@@ -498,10 +498,10 @@ internal static class TypeMapper
         // for that path: a stub's type name has to be the full instantiation.
         string name = BareAtomName(at.Name);
 
-        // Handle atomics — typed (CHandle, CStrongHandle, …) project to the
+        // Handle atomics: typed (CHandle, CStrongHandle, …) project to the
         // generic value structs emitted by HandleTypes; untyped (CEntityHandle,
         // CStrongHandleVoid) project to the corresponding non-generic structs.
-        // We key off the atomic NAME because the new upstream schema doesn't
+        // We key off the atomic name because the new upstream schema doesn't
         // carry the old `handle_kind` field at all (the legacy schemas.json did,
         // and the old branch below preserved that compat path for fixtures).
         if (TypedHandleAtoms.Contains(name))
@@ -532,33 +532,33 @@ internal static class TypeMapper
         // have a dedicated dispatch for it — `TypedHandleAtoms` covers every
         // case that branch used to handle.
 
-        // Storage shells around a single value of `inner` — animation/script
-        // wrappers. Projects to the inner type directly. See the comment block
+        // Storage shells around a single value of `inner` (animation/script
+        // wrappers). Projects to the inner type directly. See the comment block
         // around ValueWrapperAtoms for the source-of-truth references.
         if (ValueWrapperAtoms.Contains(name))
         {
             return at.Inner != null ? Map(at.Inner) : "object?";
         }
 
-        // "Optional ref to T" — wraps inner; projects as nullable inner.
+        // "Optional ref to T": wraps inner; projects as nullable inner.
         if (OptionalRefAtoms.Contains(name))
         {
             return at.Inner != null ? Map(at.Inner) + "?" : "object?";
         }
 
-        // Compressed animation streams — wraps inner as a compressed sequence.
+        // Compressed animation streams: wraps inner as a compressed sequence.
         if (name == "CCompressor")
         {
             return at.Inner != null ? Map(at.Inner) + "[]" : "byte[]";
         }
 
-        // Entity I/O typed output — fires events whose payload is the inner type.
+        // Entity I/O typed output: fires events whose payload is the inner type.
         if (name == "CEntityOutputTemplate")
         {
             return at.Inner != null ? Map(at.Inner) + "?" : "object?";
         }
 
-        // SmartProp editor attributes — per-type C# projection picked from the
+        // SmartProp editor attributes: per-type C# projection picked from the
         // atomic-name suffix. Editor-only at runtime, but we surface the
         // expected value type so consumers can inspect SmartProp metadata.
         if (SmartPropAttributeProjections.TryGetValue(name, out string? smartPropProjection))
@@ -574,7 +574,7 @@ internal static class TypeMapper
             return "nint";
         }
 
-        // Opaque serialised blobs — schema doesn't expose binary shape.
+        // Opaque serialised blobs. Schema doesn't expose binary shape.
         if (OpaqueBlobAtoms.Contains(name))
         {
             return "byte[]?";
@@ -586,7 +586,7 @@ internal static class TypeMapper
             return "object?";
         }
 
-        // Named-reference atomics — schema represents them as a name token.
+        // Named-reference atomics: schema represents them as a name token.
         if (NamedStringAtoms.Contains(name))
         {
             return "string?";
@@ -601,7 +601,7 @@ internal static class TypeMapper
             return "float[]?";
         }
 
-        // KV3 member-name set — list of name tokens.
+        // KV3 member-name set: list of name tokens.
         if (name == "CKV3MemberNameSet")
         {
             return "string[]?";
@@ -660,7 +660,7 @@ internal static class TypeMapper
             return "string";
         }
 
-        // CBitVec / CTypedBitVec — fixed-width bitvectors. Project as byte[]
+        // CBitVec / CTypedBitVec: fixed-width bitvectors. Project as byte[]
         // (the only shape the schema carries about them; CTypedBitVec's `inner`
         // is the count, not a meaningful element type).
         if (name is "CBitVec" or "CTypedBitVec")
@@ -688,7 +688,7 @@ internal static class TypeMapper
             return "float";
         }
 
-        // Synthetic math/geometry types — use ToTypeName for the C# name
+        // Synthetic math/geometry types: use ToTypeName for the C# name
         if (SyntheticAtoms.Contains(name))
         {
             return NameHelpers.Esc(NameHelpers.ToTypeName(name));

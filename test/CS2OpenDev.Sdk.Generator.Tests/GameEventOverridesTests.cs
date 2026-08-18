@@ -43,8 +43,7 @@ public class GameEventOverridesTests
         }
         """;
 
-    // ── Parsing ──────────────────────────────────────────────────────────────
-
+    // Parsing
     /// <summary>An overrides file parses into the tag map and the usings list.</summary>
     [Test]
     public async Task Parse_ReadsFieldTypesAndUsings()
@@ -91,8 +90,7 @@ public class GameEventOverridesTests
         await Assert.That(ex.Message).Contains("csharpType");
     }
 
-    // ── Applied to emission ──────────────────────────────────────────────────
-
+    // Applied to emission
     /// <summary>Without overrides, the built-in projection is unchanged.</summary>
     [Test]
     public async Task Emit_WithoutOverrides_UsesBuiltInProjection()

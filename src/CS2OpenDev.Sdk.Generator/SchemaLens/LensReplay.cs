@@ -57,11 +57,11 @@ internal static class LensReplay
             ? engineClass.Substring(1)
             : engineClass;
 
-    // The mechanical targetProperty rule: take the LAST segment of the dotted
+    // The mechanical targetProperty rule: take the last segment of the dotted
     // path and run it through the same fold every emitted property name takes
     // (Hungarian strip + PascalCase + word split). Reusing NameHelpers.ToPropName
     // rather than a local copy is load-bearing: the fold funnels through
-    // WordSplitter, so a derived Lens name obeys the vocabulary AND the name
+    // WordSplitter, so a derived Lens name obeys the vocabulary and the name
     // lock exactly like the SDK's own properties — one naming authority, not two.
     internal static string DeriveTargetProperty(string fieldPath)
     {
@@ -224,7 +224,7 @@ internal static class LensReplay
         }
     }
 
-    // Shared by rename and moveSubService — the mechanics ARE the same, and
+    // Shared by rename and moveSubService — the mechanics are the same, and
     // sharing the implementation is what keeps "same mechanics" true by
     // construction rather than by two blocks staying in step.
     private static void ApplyMove(
@@ -255,7 +255,7 @@ internal static class LensReplay
         }
 
         // The entry moves wholesale: target property, first-seen build and type
-        // history all belong to the FIELD, not to the spelling it happens to
+        // history all belong to the field, not to the spelling it happens to
         // have this build.
         cls.Fields.Add(to, entry);
 

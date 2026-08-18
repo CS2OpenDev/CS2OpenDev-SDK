@@ -8,7 +8,7 @@ namespace CS2SchemaGen.SchemaLens;
 
 // Loads and validates `schema-lens/` migration files.
 //
-// Validation is strict on purpose, and the strictness IS the contract:
+// Validation is strict on purpose, and the strictness is the contract:
 //
 //   * The op vocabulary is closed. An op this loader does not know is an error,
 //     not a skip — a skipped op would replay to a state whose hash still
@@ -28,7 +28,7 @@ namespace CS2SchemaGen.SchemaLens;
 // message; the exporter reports them under CS2_GEN_013.
 internal static class LensMigrationLoader
 {
-    // Lives inside the migrations directory but is OUTPUT, not input: it is the
+    // Lives inside the migrations directory but is output, not input: it is the
     // rendered current state, rewritten by every exporter run. Skipped here so
     // a directory listing stays the natural home for both.
     internal const string StateFileName = "state.json";

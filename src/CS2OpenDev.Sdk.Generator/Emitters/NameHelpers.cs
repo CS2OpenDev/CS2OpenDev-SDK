@@ -373,7 +373,7 @@ internal static class NameHelpers
 
     // Escapes characters that would terminate a `"..."` C# string literal. Used for
     // metadata values (CE-2 / EE-1) and any other content that comes from the schema
-    // and gets embedded into a generated attribute argument. Backslash MUST be replaced
+    // and gets embedded into a generated attribute argument. Backslash must be replaced
     // first so the substitutions for the other escapes aren't themselves re-escaped.
     internal static string EscAttrString(string s) =>
         s.Replace("\\", "\\\\")
@@ -397,7 +397,7 @@ internal static class NameHelpers
     // Replaces characters that aren't valid in a C# identifier. The C++ scope operator
     // `::` collapses to a single underscore (one conceptual separator). Every other
     // non-identifier character (template angle brackets, commas, spaces, …) becomes
-    // its own underscore — adjacent non-identifiers DO NOT collapse, so the result
+    // its own underscore — adjacent non-identifiers do not collapse, so the result
     // is stable and reversible from the original input shape.
 
     internal static string SanitizeName(string name)
@@ -416,12 +416,12 @@ internal static class NameHelpers
     //
     // Converts a C++ enum member name to a .NET PascalCase identifier.
     //
-    // Step 1   — strip k_ prefix.
-    // Step 2   — strip E{BaseName}_ or {BaseName}_ (case-insensitive match so that
-    //            ALL_CAPS member prefixes match a PascalCase base name).
-    // Step 2.5 — strip type-hint code from lowercase-start remainder.
-    // Step 3   — if ALL_CAPS_SNAKE → PascalCase each segment.
-    // Step 4   — PascalCase first letter.
+    // Step 1:   strip k_ prefix.
+    // Step 2:   strip E{BaseName}_ or {BaseName}_ (case-insensitive match so that
+    //           ALL_CAPS member prefixes match a PascalCase base name).
+    // Step 2.5: strip type-hint code from lowercase-start remainder.
+    // Step 3:   if ALL_CAPS_SNAKE → PascalCase each segment.
+    // Step 4:   PascalCase first letter.
 
     internal static string ToEnumMemberName(string enumCppTypeName, string memberName) =>
         WordSplitter.Split(ToEnumMemberNameCore(enumCppTypeName, memberName));
@@ -494,17 +494,17 @@ internal static class NameHelpers
     //
     // Converts a C++ field name to a .NET PascalCase property name.
     //
-    // Step 1 — strip access prefix:
+    // Step 1: strip access prefix:
     //   single lower + _  →  m_, s_, t_, g_
     //   two upper   + _  →  RS_, CS_, CB_, ...
     //   three upper + _  →  NPC_, DMG_, ... (only when not the whole name)
     //
-    // Step 2 — strip type-hint code (only when followed by an uppercase letter so
+    // Step 2: strip type-hint code (only when followed by an uppercase letter so
     //   we don't over-strip names like "flags", "bytes", "value"):
     //   vec, ang, rgb, clr, dw, sz, fl  →  multi-char hints (tried first)
     //   h, n, i, b, v, p, e, f, c, d, w, q  →  single-char hints
     //
-    // Step 3 — PascalCase the remainder; normalise any remaining underscores.
+    // Step 3: PascalCase the remainder; normalise any remaining underscores.
     //
     // Examples:
     //   m_flRadius    →  Radius       m_nCount               →  Count
@@ -595,11 +595,11 @@ internal static class NameHelpers
     //
     // Converts a C++ type name to an idiomatic .NET PascalCase type name.
     //
-    // Step 1 — replace C++ scope operator (::) with underscore.
-    // Step 2 — strip common C++ typedef suffixes (_t, _s, _e).
-    // Step 3 — split on underscores and PascalCase each segment.
-    // Step 4 — ensure first character is uppercase.
-    // Step 5 — strip CA1711-triggering suffixes based on type kind:
+    // Step 1: replace C++ scope operator (::) with underscore.
+    // Step 2: strip common C++ typedef suffixes (_t, _s, _e).
+    // Step 3: split on underscores and PascalCase each segment.
+    // Step 4: ensure first character is uppercase.
+    // Step 5: strip CA1711-triggering suffixes based on type kind:
     //           Enum types:   strip "Enum"; Flags→ append "s" to "Flag"; non-Flags→ strip "Flag"
     //           Class types:  strip "Attribute", "Queue", "Stack", "Flag"
     //
@@ -840,7 +840,7 @@ internal static class NameHelpers
         // TypeHints ensures compound prefixes (e.g. "isz") are tried before their
         // single-char shadow ("i"), so one pass is sufficient for legitimate Hungarian.
         //
-        // We deliberately do NOT chain strips (e.g. "p" → "vec") because chaining can
+        // We deliberately do not chain strips (e.g. "p" → "vec") because chaining can
         // mis-strip meaningful word starts: m_iUnBalancedRounds is "number of unbalanced
         // rounds", and chaining "i" then "un" would invert that to "BalancedRounds".
         foreach (string hint in TypeHints)

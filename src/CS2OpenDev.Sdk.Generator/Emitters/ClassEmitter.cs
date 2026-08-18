@@ -159,7 +159,7 @@ internal static class ClassEmitter
         // ── Attributes ───────────────────────────────────────────────────────────
         if (cls.Size > 0)
         {
-            // Informational: documents the native C++ size, NOT a P/Invoke contract.
+            // Informational: documents the native C++ size, not a P/Invoke contract.
             // The managed class layout is unrelated; consumers must not assume binary
             // compatibility. (Replaces the older [StructLayout(... Size = N)] which
             // implied a marshaling promise the SDK doesn't make.)

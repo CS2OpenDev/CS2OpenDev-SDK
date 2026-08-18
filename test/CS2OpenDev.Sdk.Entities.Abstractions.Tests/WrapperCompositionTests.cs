@@ -14,8 +14,7 @@ public class WrapperCompositionTests
 {
     private const string Origin = "m_CBodyComponent.m_pSceneNode.m_vecOrigin";
 
-    // ── What the emitter would generate ───────────────────────────────────────
-
+    // What the emitter would generate
     private sealed class BasePlayerWeapon(IEntityFieldReader reader, IEntityWorld world)
         : EntityWrapper(reader, world)
     {
@@ -57,8 +56,7 @@ public class WrapperCompositionTests
         }
     }
 
-    // ── A world with a handle table, standing in for a runtime ────────────────
-
+    // A world with a handle table, standing in for a runtime
     private sealed class FakeWorld : IEntityWorld
     {
         private readonly Dictionary<uint, EntityWrapper> _entities = [];
@@ -83,8 +81,7 @@ public class WrapperCompositionTests
         Aliases: new Dictionary<string, string>(),
         HandleOrdinals: []);
 
-    // ── The tests ─────────────────────────────────────────────────────────────
-
+    // The tests
     /// <summary>A wrapper reads its fields through the seam with no parser present.</summary>
     [Test]
     public async Task Wrapper_ReadsFieldsThroughTheSeam()

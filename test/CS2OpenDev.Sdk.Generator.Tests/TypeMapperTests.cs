@@ -12,8 +12,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 
 public class TypeMapperTests
 {
-    // ── MapBuiltin ───────────────────────────────────────────────────────────
-
+    // MapBuiltin
     /// <summary>Maps each C++ builtin scalar (<c>int32</c>, <c>float32</c>, <c>uint8</c>, …) to its canonical CLR primitive name.</summary>
     [Test]
     [Arguments("bool",    "bool")]
@@ -44,8 +43,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("sbyte");
     }
 
-    // ── B3: char[N] / char* should map to string / string? ───────────────────
-
+    // B3: char[N] / char* should map to string / string?
     /// <summary>B3: <c>char[N]</c> projects to <c>string</c> (C-style fixed-size string buffer), not <c>sbyte[]</c>.</summary>
     [Test]
     public async Task Map_FixedArrayOfChar_IsString()
@@ -82,8 +80,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("int?");
     }
 
-    // ── MapAtomic: known shapes ──────────────────────────────────────────────
-
+    // MapAtomic: known shapes
     /// <summary>Every Valve string-flavoured atomic (<c>CUtlString</c>, <c>CBufferString</c>, <c>CUtlStringToken</c>, …) projects to <c>string</c>.</summary>
     [Test]
     [Arguments("CUtlString",                "string")]
@@ -166,9 +163,8 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("Dictionary<int, float>");
     }
 
-    // ── Step 4 follow-up: classify the two real-schema atoms the plan called out ─
-
-    /// <summary>Step 4 follow-up: <c>CUtlStringMap&lt;T&gt;</c> (no <c>inner2</c> in the schema — key is implied string) projects to <c>Dictionary&lt;string, T&gt;</c>.</summary>
+    // Step 4 follow-up: classify the two real-schema atoms the plan called out
+    /// <summary>Step 4 follow-up: <c>CUtlStringMap&lt;T&gt;</c> (no <c>inner2</c> in the schema; the key is an implied string) projects to <c>Dictionary&lt;string, T&gt;</c>.</summary>
     [Test]
     public async Task MapAtomic_CUtlStringMap_WithInnerOnly_IsStringKeyedDictionary()
     {
@@ -202,7 +198,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("object[]");
     }
 
-    /// <summary>Pins that <see cref="TypeMapper.IsKnownAtomicName"/> mirrors every newly-classified atomic — otherwise <c>ModuleEmitter</c>'s stub pre-pass would emit spurious stubs.</summary>
+    /// <summary>Pins that <see cref="TypeMapper.IsKnownAtomicName"/> mirrors every newly-classified atomic; otherwise <c>ModuleEmitter</c>'s stub pre-pass would emit spurious stubs.</summary>
     [Test]
     [Arguments("CUtlStringMap")]
     [Arguments("CUtlVectorSIMDPaddedVector")]
@@ -214,7 +210,7 @@ public class TypeMapperTests
         await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsTrue();
     }
 
-    /// <summary>The presence of a legacy <c>HandleKind</c> field doesn't change the projection — name-based dispatch wins, so <c>CHandle</c> always projects to <c>CHandle&lt;T&gt;</c> regardless of whether the legacy schema field is set.</summary>
+    /// <summary>The presence of a legacy <c>HandleKind</c> field doesn't change the projection: name-based dispatch wins, so <c>CHandle</c> always projects to <c>CHandle&lt;T&gt;</c> regardless of whether the legacy schema field is set.</summary>
     [Test]
     public async Task MapAtomic_Handle_LegacyHandleKindIgnored()
     {
@@ -330,14 +326,14 @@ public class TypeMapperTests
         await Assert.That(TypeMapper.Map(type)).IsEqualTo("byte[]");
     }
 
-    // ── Researched atomic projections (P0 follow-up) ─────────────────────────
+    // Researched atomic projections (P0 follow-up)
     //
     // Each test ties the projection back to the schema atomic name. Sources
     // for the mappings live in TypeMapper's `ValueWrapperAtoms` / etc. comment
     // blocks (hl2sdk cs2 branch, DumpSource2's SchemaAtomicCategory_t enum,
     // CounterStrikeSharp's generated-schema projections).
 
-    /// <summary>Value-wrapper atomics project to their inner type — animation networked variables, script params, etc.</summary>
+    /// <summary>Value-wrapper atomics project to their inner type: animation networked variables, script params, etc.</summary>
     [Test]
     [Arguments("CAnimNetVar")]
     [Arguments("CAnimValue")]
@@ -396,7 +392,7 @@ public class TypeMapperTests
         await Assert.That(TypeMapper.Map(type)).IsEqualTo(expected);
     }
 
-    /// <summary>Foreign-pointer atomics project to <c>nint</c> — opaque pointers to FFI resources.</summary>
+    /// <summary>Foreign-pointer atomics project to <c>nint</c>: opaque pointers to FFI resources.</summary>
     [Test]
     [Arguments("HSCRIPT")]
     [Arguments("BASEPTR")]
@@ -471,8 +467,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("(int, float)");
     }
 
-    // ── TM-1: nullable atomic should append "?" ──────────────────────────────
-
+    // TM-1: nullable atomic should append "?"
     /// <summary>TM-1: an atomic carrying <c>nullable: true</c> in the schema appends <c>?</c> to its projected type.</summary>
     [Test]
     public async Task MapAtomic_Nullable_AppendsQuestionMark()
@@ -487,9 +482,8 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("string?");
     }
 
-    // ── Q3 / TM-2: unresolved atomics should emit stubs, not placeholders ─
-
-    /// <summary>Q3: an unrecognised atomic registers itself for stub emission and is referenced by its sanitized name — never as an <c>object /* … */</c> placeholder.</summary>
+    // Q3 / TM-2: unresolved atomics should emit stubs, not placeholders
+    /// <summary>Q3: an unrecognised atomic registers itself for stub emission and is referenced by its sanitized name, never as an <c>object /* … */</c> placeholder.</summary>
     [Test]
     [NotInParallel("NameMap")]
     public async Task MapAtomic_UnknownAtom_ResolvesToStubClassName()
@@ -502,8 +496,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("CFutureUnknownAtom");
     }
 
-    // ── TM-3: CResource* should match an explicit set, not a name prefix ─────
-
+    // TM-3: CResource* should match an explicit set, not a name prefix
     /// <summary>TM-3: known <c>CResource*</c> atomics in the explicit allow-set still project to <c>string</c>.</summary>
     [Test]
     [Arguments("CResourceString",       "string")]
@@ -527,8 +520,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsNotEqualTo("string");
     }
 
-    // ── DeclaredClass / DeclaredEnum: uses name map ──────────────────────────
-
+    // DeclaredClass / DeclaredEnum: uses name map
     /// <summary>A <see cref="DeclaredClassType"/> reference consults the static name map first, so field type names match the disambiguated declaration name.</summary>
     [Test]
     [NotInParallel("NameMap")]
@@ -557,8 +549,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("CFoo");
     }
 
-    // ── Synthetic atomics resolved via name (Vector, QAngle, etc.) ───────────
-
+    // Synthetic atomics resolved via name (Vector, QAngle, etc.)
     /// <summary>Synthetic atoms (Vector/QAngle/Matrix3x4/…) resolve by name and adopt the PascalCased synthetic struct name.</summary>
     [Test]
     [Arguments("Vector",         "Vector")]
@@ -574,8 +565,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── Nested type composition ──────────────────────────────────────────────
-
+    // Nested type composition
     /// <summary>Composition: <c>*(int[4])</c> projects to <c>int[]?</c> (nullable array).</summary>
     [Test]
     public async Task Map_PtrToFixedArray_ComposesNullableArray()
@@ -611,8 +601,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("int?[]");
     }
 
-    // ── Bitfield / Unknown ───────────────────────────────────────────────────
-
+    // Bitfield / Unknown
     /// <summary>A <see cref="BitfieldType"/> projects to <c>uint</c> regardless of width — the bit count is metadata, not a CLR shape.</summary>
     [Test]
     public async Task Map_Bitfield_IsUint()
@@ -631,8 +620,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo("object /* mystery */");
     }
 
-    // ── FormatEnumValue ──────────────────────────────────────────────────────
-
+    // FormatEnumValue
     /// <summary>Reinterprets negative enum values as their unsigned equivalent at the given storage width (1/2/4/8 bytes) so they compile against the unsigned underlying type.</summary>
     [Test]
     [Arguments(0L,   null, "0")]
@@ -648,8 +636,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    // ── Effective builtin width through a wrapper class ───────────────────────
-
+    // Effective builtin width through a wrapper class
     /// <summary>A struct that reduces to one builtin reports that builtin's width, which is what stops every consumer maintaining a hand-curated "secretly wide" table.</summary>
     [Test]
     public async Task WidthBytes_ResolvesThroughAWrapperClass()
@@ -682,8 +669,7 @@ public class TypeMapperTests
             .IsEqualTo(8);
     }
 
-    // ── BareAtomName / CS2_GEN_015 category drift ─────────────────────────────
-
+    // BareAtomName / CS2_GEN_015 category drift
     /// <summary>Strips template arguments so a schema 2.0 name (<c>CUtlVector&lt; CGlobalSymbol &gt;</c>) reduces to the bare name <c>TypeMapper</c>'s classification sets are keyed on.</summary>
     [Test]
     [Arguments("CUtlVector< CGlobalSymbol >", "CUtlVector")]
@@ -743,8 +729,7 @@ public class TypeMapperTests
         await Assert.That(TypeMapper.GetAtomicCategoryDrift().Count).IsEqualTo(0);
     }
 
-    // ── Issue #33: the eleven remaining unclassified atomics ─────────────────
-
+    // Issue #33: the eleven remaining unclassified atomics
     /// <summary>Issue #33 classifications: sound/token names to <c>string</c>, <c>CUtlDict</c> to a string-keyed dictionary, <c>RnSphere_t</c> to the synthetic struct.</summary>
     [Test]
     [Arguments("CGameSoundEventName", "string")]
@@ -757,7 +742,7 @@ public class TypeMapperTests
         await Assert.That(actual).IsEqualTo(expected);
     }
 
-    /// <summary>CUtlDict entries carry only <c>inner</c> (the value type) — the key is an implied string, same as <c>CUtlStringMap</c>.</summary>
+    /// <summary>CUtlDict entries carry only <c>inner</c> (the value type); the key is an implied string, same as <c>CUtlStringMap</c>.</summary>
     [Test]
     public async Task MapAtomic_CUtlDict_ProjectsToStringKeyedDictionary()
     {
@@ -782,7 +767,7 @@ public class TypeMapperTests
         await Assert.That(TypeMapper.IsKnownAtomicName(name)).IsTrue();
     }
 
-    /// <summary>The inverse lockstep: a deliberately-stubbed atomic must stay UNKNOWN to the stub pre-pass — "known" is what suppresses stub emission, and these still need their stub classes to exist.</summary>
+    /// <summary>The inverse lockstep: a deliberately-stubbed atomic must stay unknown to the stub pre-pass: "known" is what suppresses stub emission, and these still need their stub classes to exist.</summary>
     [Test]
     [Arguments("CPulseObservableExpression< bool >")]
     [Arguments("HPulseCell< CPulseCell_TestWaitWithCursorState >")]

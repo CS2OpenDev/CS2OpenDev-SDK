@@ -6,8 +6,8 @@ namespace CS2OpenDev.Sdk.Entities;
 /// <remarks>
 ///     <para>
 ///         Ships rather than living in this repository's tests, because the manifests a runtime
-///         consumes are not all ours: anyone emitting bindings — a fork, a future generator, a
-///         hand-written fixture in a consumer's test suite — can check them against the same
+///         consumes are not all ours: anyone emitting bindings (a fork, a future generator, a
+///         hand-written fixture in a consumer's test suite) can check them against the same
 ///         rules the generated ones satisfy. Running this at startup over a binding set costs
 ///         microseconds and turns a class of silent mis-binding into an exception with a
 ///         sentence attached.

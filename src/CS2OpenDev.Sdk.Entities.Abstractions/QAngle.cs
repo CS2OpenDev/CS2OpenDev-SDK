@@ -7,15 +7,15 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     <para>
 ///         Defined here rather than left to <see cref="System.Numerics.Vector3"/> because
 ///         <c>X/Y/Z</c> names on an angle triple invite exactly the mistake they look like they
-///         prevent — the engine's <c>QAngle</c> is not a position, and pitch is not <c>X</c> in
+///         prevent: the engine's <c>QAngle</c> is not a position, and pitch is not <c>X</c> in
 ///         any sense a reader should have to remember.
 ///     </para>
 ///     <para>
 ///         This and <see cref="System.Numerics.Vector3"/> are the entire composite vocabulary
 ///         of <see cref="IEntityFieldReader"/>, closed deliberately at two. They are the
 ///         composites whose wire encoding is identical for every parser, and whose absence
-///         would otherwise leave the most-read fields in the schema — <c>m_vecOrigin</c>,
-///         <c>m_angEyeAngles</c> — typed <c>object</c> forever. Everything else goes through
+///         would otherwise leave the most-read fields in the schema (<c>m_vecOrigin</c>,
+///         <c>m_angEyeAngles</c>) typed <c>object</c> forever. Everything else goes through
 ///         <see cref="IEntityFieldReader.TryReadObject"/>. Widening the set later is additive,
 ///         so starting minimal costs nothing.
 ///     </para>

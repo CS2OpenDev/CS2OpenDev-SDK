@@ -1,10 +1,10 @@
 name: Check upstream schema
 
-# Scheduled workflow that pulls the latest commit from BOTH upstream
+# Scheduled workflow that pulls the latest commit from both upstream
 # submodules, regenerates whatever changed, pushes the result directly to main,
-# AND publishes the new packages in the same run.
+# and publishes the new packages in the same run.
 #
-# Two upstreams, two artifacts, two clocks:
+# Two upstreams, each feeding its own package:
 #   upstream/       (CS2OpenDev-Docs)         -> schema JSON  -> CS2OpenDev.Sdk
 #   schema-tracker/ (CS2OpenDev-SchemaTracker) -> .proto files -> CS2OpenDev.Protos
 #
@@ -224,7 +224,7 @@ jobs:
           #
           # schema-lens/ is here for exactly the same reason, and it is not
           # optional. The exporter rewrites state.json on every run and stamps
-          # `schemaBuild` from the schema it just read, so EVERY bump changes
+          # `schemaBuild` from the schema it just read, so every bump changes
           # the file — not only the patches with Lens consequences. Leaving it
           # unstaged pushes a commit whose src/ advanced while state.json did
           # not, and ci.yml's regen fixed-point gate covers schema-lens/, so the
@@ -234,7 +234,7 @@ jobs:
           # already at 24662694.
           #
           # It also keeps CS2_GEN_012 honest. observedFields in the committed
-          # state IS the previous-build memory the gate compares against, so a
+          # state is the previous-build memory the gate compares against, so a
           # state file that never advances leaves the gate checking an ever
           # staler baseline while looking green.
           git add upstream schema-tracker src/CS2OpenDev.Sdk/ \

@@ -6,7 +6,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 
 // The canonical form and its hash (lens-canon-1).
 //
-// The hash is a signature over CURATED content, and both directions of that
+// The hash is a signature over curated content, and both directions of that
 // sentence need proving: identical decisions must hash identically no matter
 // when or how often they are replayed, and schema-derived data — which changes
 // every time Valve ships — must not be able to move the hash at all. A hash

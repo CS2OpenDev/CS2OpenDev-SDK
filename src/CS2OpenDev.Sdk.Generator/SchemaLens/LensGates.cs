@@ -11,12 +11,12 @@ namespace CS2SchemaGen.SchemaLens;
 // The staleness gates — the issue #6 §1 answer.
 //
 // Replay proves the migrations are internally coherent; these gates prove they
-// still describe the WORLD. Three directions of drift are checked, each with
+// still describe the world. Three directions of drift are checked, each with
 // its own diagnostic because each has its own remedy:
 //
 //   CS2_GEN_010 — a tracked name the schema no longer has (or no longer has
 //                 uniquely). The schema dropped something the Lens serves.
-//   CS2_GEN_011 — a rename whose retired name the schema has RE-GROWN. The
+//   CS2_GEN_011 — a rename whose retired name the schema has re-grown. The
 //                 schema un-dropped something a migration recorded as gone.
 //   CS2_GEN_012 — a new schema field on a covered class that no migration has
 //                 tracked or acknowledged. The schema added something the Lens
@@ -121,7 +121,7 @@ internal static class LensGates
 
         // ── Unmigrated schema changes (CS2_GEN_012) ──────────────────────────
         //
-        // Diffed against the COMMITTED state.json, not against this run's
+        // Diffed against the committed state.json, not against this run's
         // in-memory state: the committed file is the last reviewed truth, and
         // "new since someone last looked" is the only definition of new that a
         // review gate can honestly enforce. First run — no committed file, or
@@ -256,7 +256,7 @@ internal static class LensGates
         // Walks a dotted path from `root`. Each segment must name a field; the
         // search covers the class itself and its ancestors, and — after the
         // first pointer/embedded hop — its derived classes too. The asymmetry
-        // is deliberate: a covered class names the CONCRETE networked type, so
+        // is deliberate: a covered class names the concrete networked type, so
         // a field found only on a subclass would belong to some other entity.
         // A sub-service pointer, by contrast, is typed as the engine's base
         // service (`CPlayer_ItemServices`) while the instance a game entity
@@ -440,7 +440,7 @@ internal sealed record LensGateFailure(GeneratorDiagnostic Descriptor, string Me
 // A covered class as the current schema sees it: the class record, the module
 // that resolution landed on, the leaf schema type of every tracked canonical
 // path, and the class's own field names. Everything the state writer needs
-// that is NOT curated content.
+// that is not curated content.
 internal sealed record LensResolvedClass(
     ClassModel Class,
     string Module,

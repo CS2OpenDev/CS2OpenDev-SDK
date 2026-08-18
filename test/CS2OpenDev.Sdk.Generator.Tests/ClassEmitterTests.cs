@@ -17,8 +17,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 [NotInParallel("NameMap")]
 public class ClassEmitterTests
 {
-    // ── Test data builders ───────────────────────────────────────────────────
-
+    // Test data builders
     private static ClassModel MakeClass(
         string name = "CFoo",
         string module = "client",
@@ -47,8 +46,7 @@ public class ClassEmitterTests
         return sb.ToString();
     }
 
-    // ── Baseline shape ───────────────────────────────────────────────────────
-
+    // Baseline shape
     /// <summary>A field-bearing class emits a <c>public partial class</c> declaration with the expected C# name.</summary>
     [Test]
     public async Task Emit_BasicClass_ProducesPublicClassDeclaration()
@@ -84,8 +82,7 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("public abstract partial class CFoo");
     }
 
-    // ── XML doc / native-name plumbing ───────────────────────────────────────
-
+    // XML doc / native-name plumbing
     /// <summary>Includes the raw C++ class name in the XML doc comment for discoverability.</summary>
     [Test]
     public async Task Emit_PreservesCppNameInXmlDoc()
@@ -117,8 +114,7 @@ public class ClassEmitterTests
         await Assert.That(preamble).DoesNotContain("[NativeName(\"CFoo\")]");
     }
 
-    // ── Inheritance ──────────────────────────────────────────────────────────
-
+    // Inheritance
     /// <summary>Single-parent inheritance is emitted as a base-class clause on the class declaration.</summary>
     [Test]
     public async Task Emit_SingleParent_EmitsBaseClass()
@@ -146,8 +142,7 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("Additional parents: CParent2, CParent3");
     }
 
-    // ── Field property emission ──────────────────────────────────────────────
-
+    // Field property emission
     /// <summary>Each field becomes a public property with paired <c>[NativeName]</c> and <c>[NativeOffset]</c> attributes.</summary>
     [Test]
     public async Task Emit_Field_EmitsPropertyWithNativeAttributes()
@@ -158,8 +153,6 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("[NativeName(\"m_iHealth\")]");
         await Assert.That(src).Contains("[NativeOffset(0x10)]");
     }
-
-    // ── B4: collision should make BOTH fields use access-only naming ─────────
 
     /// <summary>When two fields strip to the same clean name (e.g. <c>m_pParent</c>/<c>m_hParent</c>), <em>both</em> fall back to access-only naming for order-stable output (B4).</summary>
     [Test]
@@ -195,8 +188,7 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("public int MaxHealth { get; set; }");
     }
 
-    // ── CE-2: metadata round-trip ────────────────────────────────────────────
-
+    // CE-2: metadata round-trip
     /// <summary>Round-trips each field-level metadata entry as <c>[NativeMetadata("Name")]</c> or <c>[NativeMetadata("Name", "Value")]</c> (CE-2).</summary>
     [Test]
     public async Task Emit_FieldMetadata_RoundTripsAsNativeMetadata()
@@ -223,8 +215,7 @@ public class ClassEmitterTests
         await Assert.That(src).DoesNotContain("[NativeMetadata(");
     }
 
-    // ── Combined modifier / parent path ──────────────────────────────────────
-
+    // Combined modifier / parent path
     /// <summary>Combines <c>abstract</c> modifier and inheritance clause correctly on a single class declaration.</summary>
     [Test]
     public async Task Emit_AbstractClassWithParent_EmitsBothModifierAndBase()
@@ -237,8 +228,7 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("public abstract partial class CChild : CParent");
     }
 
-    // ── Annotation-driven summary handling ───────────────────────────────────
-
+    // Annotation-driven summary handling
     /// <summary>When a class carries an annotation description, the description IS the summary and the schema name moves into the remarks block as `Native name: ...`.</summary>
     [Test]
     public async Task Emit_AnnotatedClass_DescriptionBecomesSummary_NameRelocatesToRemarks()
@@ -258,7 +248,7 @@ public class ClassEmitterTests
         await Assert.That(src).DoesNotContain("<para>Base class");
     }
 
-    /// <summary>Unannotated classes keep the schema name as the summary and do NOT add a `Native name:` prefix to remarks.</summary>
+    /// <summary>Unannotated classes keep the schema name as the summary and do not add a `Native name:` prefix to remarks.</summary>
     [Test]
     public async Task Emit_UnannotatedClass_SummaryIsSchemaName_NoRelocation()
     {
@@ -307,8 +297,7 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("///     Gets or sets Health.");
     }
 
-    // ── Class-level metadata round-trip (CE-3) ───────────────────────────────
-
+    // Class-level metadata round-trip (CE-3)
     /// <summary>Class-level metadata entries are emitted as `[NativeMetadata]` attributes on the class declaration so 3000+ schema-carried markers (MGetKV3ClassDefaults, MPropertyFriendlyName, …) survive into the C# projection instead of being silently dropped.</summary>
     [Test]
     public async Task Emit_ClassMetadata_RoundTripsAsNativeMetadata()
@@ -322,8 +311,7 @@ public class ClassEmitterTests
         await Assert.That(src).Contains("[NativeMetadata(\"MGetKV3ClassDefaults\")]");
     }
 
-    // ── Source 2 metadata → XML summary promotion ────────────────────────────
-
+    // Source 2 metadata → XML summary promotion
     /// <summary>MPropertyDescription is promoted to the class XML summary (priority: annotation &gt; MPropertyDescription &gt; MPropertyFriendlyName &gt; default). Surrounding quotes from the KV3-stringified value are stripped.</summary>
     [Test]
     public async Task Emit_ClassWithMPropertyDescription_PromotesToSummary()

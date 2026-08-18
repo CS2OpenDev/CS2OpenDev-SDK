@@ -7,17 +7,16 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 // Drives the emitter via GeneratorHarness.RunGameEvents and asserts on the
 // produced source-text strings. Each test feeds a minimal events JSON and
 // pins one observable behaviour:
-//   • Per-event file shape (record declaration, namespace, attributes).
-//   • Snake-case field-name normalisation.
-//   • Cross-source duplicate-name disambiguation (mod > game > core priority).
-//   • Local / Reliable property flags.
-//   • Empty-fields events emit a parameterless record.
-//   • SchemaEvents reverse-lookup registry contents.
+//   - Per-event file shape (record declaration, namespace, attributes).
+//   - Snake-case field-name normalisation.
+//   - Cross-source duplicate-name disambiguation (mod > game > core priority).
+//   - Local / Reliable property flags.
+//   - Empty-fields events emit a parameterless record.
+//   - SchemaEvents reverse-lookup registry contents.
 
 public class GameEventsEmitterTests
 {
-    // ── Per-event file shape ──────────────────────────────────────────────────
-
+    // Per-event file shape
     /// <summary>Emits a `public sealed partial record` declaration in the Events sub-namespace with the expected `{Name}Event` type name.</summary>
     [Test]
     public async Task Emit_BasicEvent_ProducesSealedRecordDeclaration()
@@ -112,8 +111,7 @@ public class GameEventsEmitterTests
         await Assert.That(src).Contains($"public required string {propName} {{ get; init; }}");
     }
 
-    // ── Type projection ───────────────────────────────────────────────────────
-
+    // Type projection
     /// <summary>Each KV1 type tag drives the C# property type via GameEventTypeMapper; this test catches accidental break-the-mapping refactors at the emitter level.</summary>
     [Test]
     [Arguments("string", "string")]
@@ -139,8 +137,7 @@ public class GameEventsEmitterTests
         await Assert.That(src).Contains($"public required {expectedClrType} Field {{ get; init; }}");
     }
 
-    // ── Local / Reliable flags ────────────────────────────────────────────────
-
+    // Local / Reliable flags
     /// <summary>`properties.local: "1"` lifts to `[GameEventLocal]` on the record declaration.</summary>
     [Test]
     public async Task Emit_LocalProperty_EmitsGameEventLocalAttribute()
@@ -192,8 +189,7 @@ public class GameEventsEmitterTests
         await Assert.That(src).DoesNotContain("[GameEventReliable]");
     }
 
-    // ── Empty events ──────────────────────────────────────────────────────────
-
+    // Empty events
     /// <summary>An event with no `fields` still emits a parameterless record so dispatchers can signal occurrence without a payload.</summary>
     [Test]
     public async Task Emit_NoFields_ProducesEmptyRecord()
@@ -210,8 +206,7 @@ public class GameEventsEmitterTests
         await Assert.That(src).DoesNotContain("public required");
     }
 
-    // ── Cross-source duplicate disambiguation ────────────────────────────────
-
+    // Cross-source duplicate disambiguation
     /// <summary>When the same name appears in multiple sources, the mod variant wins the unsuffixed name and the others get a source suffix.</summary>
     [Test]
     public async Task Emit_DuplicateName_ModWinsUnsuffixed_OthersGetSourceSuffix()
@@ -261,8 +256,7 @@ public class GameEventsEmitterTests
         await Assert.That(result.Files).ContainsKey("Events/RoundEndGameEvent");
     }
 
-    // ── Doc comments + annotations ───────────────────────────────────────────
-
+    // Doc comments + annotations
     /// <summary>An annotation description IS the summary (not wrapped in `para`) so IntelliSense tooltips lead with the curated text instead of the redundant schema name.</summary>
     [Test]
     public async Task Emit_EventAnnotationDescription_BecomesSummary()
@@ -302,7 +296,7 @@ public class GameEventsEmitterTests
         await Assert.That(src).Contains("Native name: <c>player_death</c>. Source: <c>core.gameevents</c>");
     }
 
-    /// <summary>Without an annotation description, the remarks block does NOT prefix `Native name:` because the schema name is already the summary text.</summary>
+    /// <summary>Without an annotation description, the remarks block does not prefix `Native name:` because the schema name is already the summary text.</summary>
     [Test]
     public async Task Emit_EventWithoutAnnotation_DoesNotPrefixNativeNameInRemarks()
     {
@@ -394,8 +388,7 @@ public class GameEventsEmitterTests
         await Assert.That(src).Contains("a game event, name may be 32 charaters long");
     }
 
-    // ── SchemaEvents registry ────────────────────────────────────────────────
-
+    // SchemaEvents registry
     /// <summary>Always emits a SchemaEvents reverse-lookup file when at least one event is present.</summary>
     [Test]
     public async Task Emit_AlwaysEmitsSchemaEventsRegistry()
@@ -442,8 +435,7 @@ public class GameEventsEmitterTests
         await Assert.That(result.Files).IsEmpty();
     }
 
-    // ── Schema-revision stamp passthrough ────────────────────────────────────
-
+    // Schema-revision stamp passthrough
     /// <summary>When a class-schema stamp is provided, each event file carries the same `Schema revision:` line — one stamp per CS2 build, shared between buckets.</summary>
     [Test]
     public async Task Emit_WithSchemaStamp_PropagatesRevisionLine()

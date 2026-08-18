@@ -8,10 +8,10 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 //
 // The fixture mirrors the real shapes the gates have to handle: a field
 // inherited from an ancestor (m_iHealth on a base class), a sub-service
-// pointer whose STATIC type is the engine base while the field lives on the
+// pointer whose static type is the engine base while the field lives on the
 // game-specific derivation (m_pItemServices → CItemServices, field on
 // CCSItemServices) — the exact CPlayer_ItemServices / CCSPlayer_ItemServices
-// shape CS2 ships — and a derived entity class whose fields must NOT satisfy a
+// shape CS2 ships — and a derived entity class whose fields must not satisfy a
 // lookup on its base, because a covered class names the concrete networked
 // type.
 public class SchemaLensGateTests
@@ -63,8 +63,7 @@ public class SchemaLensGateTests
         }
     }
 
-    // ── Resolution happy paths ───────────────────────────────────────────────
-
+    // Resolution happy paths
     /// <summary>
     ///     An inherited field and a derived-sub-service field both resolve: up
     ///     the ancestor chain from the covered class, and down into derivations
@@ -89,14 +88,13 @@ public class SchemaLensGateTests
         await Assert.That(LensTypeRenderer.WidthBytes(resolved.FieldTypes["m_pItemServices.m_bHasDefuser"]))
             .IsEqualTo(1);
 
-        // observedFields is the class's OWN census — inherited names stay with
+        // observedFields is the class's own census — inherited names stay with
         // their declaring class, or every base-class patch would trip every
         // covered descendant.
         await Assert.That(resolved.ObservedFields).IsEquivalentTo(["m_flValue", "m_pItemServices"]);
     }
 
-    // ── CS2_GEN_010 ──────────────────────────────────────────────────────────
-
+    // CS2_GEN_010
     /// <summary>A tracked field the schema has dropped is an error that names the remedy ops.</summary>
     [Test]
     public async Task Gates_UnresolvedTrackedField_FailsWith010()
@@ -167,8 +165,7 @@ public class SchemaLensGateTests
         await Assert.That(pinned.Resolution["CDual"].Module).IsEqualTo("client");
     }
 
-    // ── CS2_GEN_011 ──────────────────────────────────────────────────────────
-
+    // CS2_GEN_011
     /// <summary>
     ///     A rename whose retired name the schema declares AGAIN is superseded:
     ///     upstream re-grew the old name, and the migration must be revisited.
@@ -176,7 +173,7 @@ public class SchemaLensGateTests
     [Test]
     public async Task Gates_RenameWhoseFromResolvesAgain_FailsWith011()
     {
-        // The schema carries BOTH spellings: the rename's target resolves (so
+        // The schema carries both spellings: the rename's target resolves (so
         // no CS2_GEN_010 noise) and its retired source resolves too (the 011
         // condition).
         const string regrownSchema = """
@@ -197,8 +194,7 @@ public class SchemaLensGateTests
         await AssertSingleFailure(report, "CS2_GEN_011", "0000-test", "m_flValue", "resolves in the current schema again");
     }
 
-    // ── CS2_GEN_012 ──────────────────────────────────────────────────────────
-
+    // CS2_GEN_012
     private const string CommittedState = """
         { "classes": { "CThing": { "observedFields": [ "m_pItemServices" ] } } }
         """;
@@ -220,7 +216,7 @@ public class SchemaLensGateTests
         await AssertSingleFailure(report, "CS2_GEN_012", "CThing", "m_flValue");
     }
 
-    /// <summary>addField accounts for the new field — tracking it IS the decision.</summary>
+    /// <summary>addField accounts for the new field — tracking it is the decision.</summary>
     [Test]
     public async Task Gates_NewObservedField_SilencedByAddField()
     {

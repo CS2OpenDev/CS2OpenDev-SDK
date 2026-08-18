@@ -13,7 +13,7 @@ namespace CS2OpenDev.Sdk.GameEvents;
 /// <remarks>
 ///     <para>
 ///         The wire message carries a <em>positional</em> key list with no names on
-///         it — names live in the <c>CMsgSource1LegacyGameEventList</c> descriptor
+///         it; names live in the <c>CMsgSource1LegacyGameEventList</c> descriptor
 ///         table the server sends once per demo. This type pairs the two, so a
 ///         generated factory can ask for <c>"attacker"</c> without knowing it is
 ///         key 3 of this particular event.
@@ -61,8 +61,8 @@ public readonly struct GameEventReader
     public int KeyCount => _event?.Keys.Count ?? 0;
 
     /// <summary>
-    ///     Locates a key by native name. Absence is normal — the server omits keys
-    ///     it has no value for — so this returns <see langword="false"/> rather
+    ///     Locates a key by native name. Absence is normal (the server omits keys
+    ///     it has no value for), so this returns <see langword="false"/> rather
     ///     than throwing.
     /// </summary>
     public bool TryGetKey(string name, out CMsgSource1LegacyGameEvent.Types.key_t key)
@@ -78,7 +78,7 @@ public readonly struct GameEventReader
         // cost more to build than the scan costs to walk.
         //
         // Bounded by whichever of the two lists is shorter. A fire may carry more
-        // values than the descriptor names (or fewer), and neither is an error —
+        // values than the descriptor names (or fewer), and neither is an error;
         // the join is only defined over the overlap.
         int count = _keyNames.Count < _event.Keys.Count ? _keyNames.Count : _event.Keys.Count;
         for (int i = 0; i < count; i++)

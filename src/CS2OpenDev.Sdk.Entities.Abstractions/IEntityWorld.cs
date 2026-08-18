@@ -7,7 +7,7 @@ namespace CS2OpenDev.Sdk.Entities;
 /// <remarks>
 ///     <para>
 ///         Deliberately one member. Enumeration, queries by class, seeking and snapshots are
-///         all things a parser offers and a consumer gets from their parser — putting them here
+///         all things a parser offers and a consumer gets from their parser. Putting them here
 ///         would grow this into "a parser interface", which is the over-reach that makes
 ///         contracts rot. The discipline for the whole abstraction is that it contains exactly
 ///         the operations generated code emits, and nothing else.
@@ -24,7 +24,7 @@ public interface IEntityWorld
     ///         of the requested type: the "no entity" sentinels, an empty slot, a stale serial,
     ///         and a target whose actual class is not <typeparamref name="T"/>. Which of those
     ///         apply, and how the index and serial are extracted from
-    ///         <paramref name="rawHandle"/>, are the implementation's business — the bit split
+    ///         <paramref name="rawHandle"/>, are the implementation's business; the bit split
     ///         is not authoritatively documented and this contract does not presume it.
     ///     </para>
     ///     <para>

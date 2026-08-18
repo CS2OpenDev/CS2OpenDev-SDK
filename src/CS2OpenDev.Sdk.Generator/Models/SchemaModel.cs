@@ -86,7 +86,7 @@ internal record AtomicType(
     // null before it, so every use has to tolerate absence. Trailing with a
     // default so the existing construction sites and fixtures are unaffected.
     //
-    // Read for drift detection only (CS2_GEN_015), NOT to pick a projection. The
+    // Read for drift detection only (CS2_GEN_015), not to pick a projection. The
     // discriminator describes C++ template arity; the projection is a C# design
     // decision, and the two deliberately disagree in places — CResourceArray and
     // CRelativeArray are ATOMIC_T upstream and collections here, CUtlStringMap is

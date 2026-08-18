@@ -25,7 +25,7 @@ Tracked as https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/13.
 
 What the surface model is
 -------------------------
-For each `.proto` file, every **top-level** `message` or `enum`, mapped to the set
+For each `.proto` file, every top-level `message` or `enum`, mapped to the set
 of numbers declared anywhere inside its body (field tags and enum values alike).
 Both halves matter, and for the same reason: a consumer binds to a generated type
 by name and to its members by tag, so losing either is a break the version number
@@ -41,11 +41,11 @@ What it deliberately does not catch
 This is a lexical model, not a protobuf parser, and the limits are worth stating
 rather than discovering:
 
-- **Renames at a stable tag.** `optional string foo = 3` becoming `bar = 3` is a
+- Renames at a stable tag. `optional string foo = 3` becoming `bar = 3` is a
   source break for a C# consumer and reads here as no change at all. Catching it
   needs per-tag names, which needs real scope tracking.
-- **Type changes at a stable tag.** `int32 x = 3` -> `int64 x = 3` likewise.
-- **Cardinality changes.** `optional` -> `repeated` at the same tag.
+- Type changes at a stable tag. `int32 x = 3` -> `int64 x = 3` likewise.
+- Cardinality changes. `optional` -> `repeated` at the same tag.
 
 Each is a narrower break than a disappearance, and each would need a parser to see
 honestly. The failure this exists to stop is the wholesale one, and a check that

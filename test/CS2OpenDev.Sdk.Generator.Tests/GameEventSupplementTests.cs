@@ -8,10 +8,9 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 // Two properties carry the design, and both are asymmetric in a way that makes
 // them easy to get subtly wrong:
 //
-//   * A supplement must be able to ADD a native name and never to REPLACE one.
-//     The failure it prevents is not a wrong value — it is an invented event
-//     shape outliving the real declaration, shipped forever under a type name
-//     nobody notices is stale.
+//   * A supplement must be able to add a native name but never to replace one.
+//     The failure this prevents is an invented event shape outliving the real
+//     declaration, shipped forever under a type name nobody notices is stale.
 //   * An absent supplement must change nothing at all. The 289 extracted records
 //     have to be byte-identical to what they were before this hook existed, or
 //     every consumer takes a diff for a feature they did not ask for.
@@ -49,8 +48,7 @@ public class GameEventSupplementTests
         }
         """;
 
-    // ── Absent supplement is a no-op ─────────────────────────────────────────
-
+    // Absent supplement is a no-op
     /// <summary>
     ///     With no supplement file anywhere, resolution yields null — the caller's
     ///     signal to change nothing.
@@ -123,8 +121,7 @@ public class GameEventSupplementTests
         await Assert.That(run.Files["Events/ItemPickupEvent"]).DoesNotContain("CURATED SUPPLEMENT");
     }
 
-    // ── A supplement event is emitted ────────────────────────────────────────
-
+    // A supplement event is emitted
     /// <summary>A supplemented event becomes a record beside the extracted ones.</summary>
     [Test]
     public async Task Emit_SupplementEvent_ProducesARecord()
@@ -156,7 +153,7 @@ public class GameEventSupplementTests
             .RunGameEvents(ExtractedJson, supplementJson: SupplementJson)
             .Files["Events/ItemDropEvent"];
 
-        await Assert.That(record).Contains("CURATED SUPPLEMENT");
+        await Assert.That(record).Contains("Curated supplement");
         await Assert.That(record).Contains("not present in the extracted CS2");
         await Assert.That(record).Contains("CMsgSource1LegacyGameEventList");
         // The exit condition is documented too: a reader must know the record is
@@ -245,8 +242,7 @@ public class GameEventSupplementTests
         await Assert.That(registry).DoesNotContain("ItemDropSdkEvent");
     }
 
-    // ── Colliding with an extracted event fails loudly ───────────────────────
-
+    // Colliding with an extracted event fails loudly
     /// <summary>
     ///     A supplement naming an event the schema already declares fails the build.
     /// </summary>
@@ -285,7 +281,7 @@ public class GameEventSupplementTests
     public async Task Apply_NameCollidesAcrossDifferentSources_StillThrows()
     {
         // The extracted declaration is `mod.gameevents`; the supplement's is
-        // `sdk.supplement`. Different sources, same name — and it must still fail.
+        // `sdk.supplement`. Different sources, same name; it must still fail.
         Assert.Throws<InvalidOperationException>(() =>
             GameEventSupplement.Apply(
                 GameEventsModel.Parse(ExtractedJson),
@@ -298,8 +294,7 @@ public class GameEventSupplementTests
         await Assert.That(run.Files.ContainsKey("Events/ItemPickupSdkEvent")).IsFalse();
     }
 
-    // ── Supplement-internal validation ───────────────────────────────────────
-
+    // Supplement-internal validation
     /// <summary>
     ///     Two supplement entries for one name are rejected at parse time.
     /// </summary>
@@ -341,8 +336,7 @@ public class GameEventSupplementTests
         await Assert.That(GameEventSupplement.Parse("{}").Events).IsEmpty();
     }
 
-    // ── The three events this repo actually ships ────────────────────────────
-
+    // The three events this repo actually ships
     /// <summary>
     ///     The shipped supplement carries exactly the three events issue #3 reported,
     ///     and they emit under the names the SDK promises.

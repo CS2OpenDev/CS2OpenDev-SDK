@@ -8,7 +8,7 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     <para>
 ///         Demos are historical artifacts. A wrapper generated against today's schema is
 ///         routinely pointed at a recording from before a field existed, and the property has
-///         to mean something in that case — which is why post-launch fields are emitted
+///         to mean something in that case, which is why post-launch fields are emitted
 ///         nullable. This attribute is how a consumer finds out which those are without
 ///         reading the migrations.
 ///     </para>

@@ -53,7 +53,7 @@ internal sealed class DiskSink(string outputDir, HashSet<string> staleCandidates
             //
             // macOS and Windows resolve paths case-insensitively, so writing
             // `SoundLevel.cs` over an existing `Soundlevel.cs` updates the old
-            // inode and KEEPS THE OLD NAME. The write appears to succeed. Then
+            // inode and keeps the old name. The write appears to succeed. Then
             // the stale sweep — which holds the old casing and is told only the
             // new one — does not see the path as claimed, and deletes the file
             // that was just written.

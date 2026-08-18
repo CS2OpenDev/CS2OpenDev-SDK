@@ -20,7 +20,7 @@ namespace CS2SchemaGen.SchemaLens;
 // C# enum name or CLR type tag can leak into the preimage and quietly bind the
 // hash to this implementation.
 //
-// The form covers CURATED content only: classes, netName, per-field
+// The form covers curated content only: classes, netName, per-field
 // targetProperty / firstSeenBuild / typeHistory, aliases, ignored. It excludes
 // everything derived from the current schema — observedFields, schemaType,
 // widthBytes — because those change when Valve ships a patch, and a hash that
@@ -50,7 +50,7 @@ internal static class LensCanonicalForm
     //
     // Classes, fields and aliases in ordinal key order; ignored entries in
     // ordinal value order, indexed; typeHistory in applied order. Values are
-    // JSON — strings quoted, escaping ONLY what JSON itself requires (quote,
+    // JSON — strings quoted, escaping only what JSON itself requires (quote,
     // backslash, control characters), null as `null`, booleans lowercase,
     // integers decimal. Minimal escaping is part of the spec: the default
     // .NET encoder also escapes '<', '&' and friends, which would bind the

@@ -15,11 +15,11 @@ namespace CS2SchemaGen.SchemaLens;
 // The file is two layers in one document, and keeping the boundary sharp is
 // the point of its design:
 //
-//   * CURATED — classes, netName, targetProperty, firstSeenBuild, typeHistory,
+//   * curated — classes, netName, targetProperty, firstSeenBuild, typeHistory,
 //     aliases, ignored. Comes only from migrations; covered by `lensHash`.
-//   * DERIVED — module, schemaType, widthBytes, observedFields, schemaBuild.
+//   * derived — module, schemaType, widthBytes, observedFields, schemaBuild.
 //     Comes from the schema this run was gated against; changes whenever Valve
-//     ships, and therefore deliberately OUTSIDE the hash.
+//     ships, and therefore deliberately outside the hash.
 //
 // Output is deterministic to the byte — ordinal-sorted map keys, fixed member
 // order, two-space indent, LF, one trailing newline — because CI diffs it: a

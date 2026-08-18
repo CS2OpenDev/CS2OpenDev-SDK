@@ -17,8 +17,7 @@ namespace CS2OpenDev.Sdk.GameEvents.Tests;
 // duplicate-name resolution.
 public class GameEventDecoderTests
 {
-    // ── Fixtures ─────────────────────────────────────────────────────────────
-
+    // Fixtures
     private static CMsgSource1LegacyGameEventList DescriptorList(int eventId, string name, params string[] keys)
     {
         CMsgSource1LegacyGameEventList.Types.descriptor_t descriptor = new()
@@ -57,8 +56,7 @@ public class GameEventDecoderTests
 
     private static CMsgSource1LegacyGameEvent.Types.key_t Float(float v) => new() { ValFloat = v };
 
-    // ── The core path ────────────────────────────────────────────────────────
-
+    // The core path
     /// <summary>A descriptor table plus a positional fire decodes into the typed record with fields on the right properties.</summary>
     [Test]
     public async Task Decode_PlayerDeath_MapsPositionalKeysByName()
@@ -95,7 +93,7 @@ public class GameEventDecoderTests
         await Assert.That(death.Headshot).IsFalse();
     }
 
-    // ── The integer fallback chain ───────────────────────────────────────────
+    // The integer fallback chain
     //
     // This is the failure mode that makes hand-rolled decoders return zeroes for
     // values that are plainly on the wire. `userid` is declared
@@ -169,8 +167,7 @@ public class GameEventDecoderTests
         await Assert.That(((AchievementEarnedEvent)payload!).Achievement).IsEqualTo(short.MaxValue);
     }
 
-    // ── Descriptor-table behaviour ───────────────────────────────────────────
-
+    // Descriptor-table behaviour
     /// <summary>Without a descriptor table the fire is undecodable — keys have no names — and that is reported, not thrown.</summary>
     [Test]
     public async Task Decode_WithoutDescriptors_ReturnsFalse()
@@ -242,8 +239,7 @@ public class GameEventDecoderTests
         await Assert.That(decoder.ResolveName(Fire(999))).IsNull();
     }
 
-    // ── Envelope (B3) ────────────────────────────────────────────────────────
-
+    // Envelope (B3)
     /// <summary>The typed overload attaches demo transport context the event message does not carry.</summary>
     [Test]
     public async Task Decode_Envelope_CarriesTransportContext()
