@@ -73,7 +73,7 @@ local folder source. Each release's notes name the feeds that version actually r
 
 > **Do not resolve `CS2OpenDev.Sdk` from NuGet.org.** A `1.0.1` exists there from May 2026 and is the
 > only version that does. It is four majors stale, and it advertises `GPL-3.0-or-later`, a licence
-> this project's own history records as an error four days after publishing it ([`4d0bffb0`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/commit/4d0bffb0)).
+> this project's own history records as an error four days after publishing it ([`69d34ad4`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/commit/69d34ad4)).
 > This project is MIT. Unlisting that version is tracked in
 > [#5](https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/5); until it happens, an unqualified
 > `dotnet add package CS2OpenDev.Sdk` against the default feed will silently fetch it.
