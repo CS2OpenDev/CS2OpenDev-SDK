@@ -52,31 +52,22 @@ git submodule update --init --depth 1 schema-tracker
 
 ## Using the SDK
 
-**These packages are published to GitHub Packages, not NuGet.org.** Point a `nuget.config` at this
-org's feed:
+The packages are published to NuGet.org, so the default feed just works:
 
 ```xml
-<configuration>
-  <packageSources>
-    <add key="CS2OpenDev" value="https://nuget.pkg.github.com/CS2OpenDev/index.json" />
-  </packageSources>
-</configuration>
+<PackageReference Include="CS2OpenDev.Sdk" Version="0.9.0" />
 ```
 
-GitHub Packages requires an authenticated token even for public packages, so the alternative is to
-take the `.nupkg` off a [release page](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases) into a
-local folder source. Each release's notes name the feeds that version actually reached.
+They are also mirrored to this org's GitHub Packages feed
+(`https://nuget.pkg.github.com/CS2OpenDev/index.json`), which requires an authenticated token even
+for public packages, and every release attaches the `.nupkg` on its
+[release page](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases) for use as a local folder
+source. Each release's notes name the feeds that version actually reached.
 
-```xml
-<PackageReference Include="CS2OpenDev.Sdk" Version="4.1.5" />
-```
-
-> **Do not resolve `CS2OpenDev.Sdk` from NuGet.org.** A `1.0.1` exists there from May 2026 and is the
-> only version that does. It is four majors stale, and it advertises `GPL-3.0-or-later`, a licence
-> this project's own history records as an error four days after publishing it ([`69d34ad4`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/commit/69d34ad4)).
-> This project is MIT. Unlisting that version is tracked in
-> #5; until it happens, an unqualified
-> `dotnet add package CS2OpenDev.Sdk` against the default feed will silently fetch it.
+> An unlisted `CS2OpenDev.Sdk` `1.0.1` from May 2026 also exists on NuGet.org. It is stale and
+> advertises `GPL-3.0-or-later`, a licence this project's own history records as an error four days
+> after publishing it ([`69d34ad4`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/commit/69d34ad4));
+> this project is MIT. Being unlisted it never resolves on its own — just don't pin it explicitly.
 
 Then reference types out of the per-module namespaces. The root namespace is `CS2OpenSchema`; each schema module gets a child namespace (`CS2OpenSchema.Client`, `CS2OpenSchema.Server`, `CS2OpenSchema.Common`, etc.).
 
@@ -302,9 +293,7 @@ Nobody has to remember that rule anymore. `check-migration-readiness.py` compare
 
 The bot identity used for automated pushes is `CS2OpenDev-bot <bot@CS2OpenDev.invalid>`. `check-upstream.yml` calls the publish workflow as a *dependent job in the same run* (via `workflow_call`) rather than relying on its push to fire `release.yml`. GitHub blocks workflow-triggered pushes authenticated with the default `GITHUB_TOKEN` from triggering downstream workflows, and we'd rather skip the PAT-rotation burden.
 
-NuGet.org publishing is not enabled, on purpose. The publish steps are still gated on a `NUGET_API_KEY` secret, which is deliberately not set; every version reaches GitHub Packages and the release page instead. The workflow's own notices say which feeds a given version actually reached, so this stays checkable.
-
-Two consequences follow. The 4-hourly cron cannot publish irreversibly, because there is no credential for it to use, and that has already mattered: on 2026-08-13 it shipped `CS2OpenDev.Protos` 3.0.7 carrying a 188-type removal as a patch, and GitHub Packages let that version be deleted where NuGet.org would not have. And since a package on NuGet.org cannot depend on one that is not there, this choice blocks downstream *publishers*, not just convenience — discussed in #5.
+NuGet.org publishing runs on the release path only, via NuGet.org Trusted Publishing (OIDC) — there is no stored credential anywhere. The scheduled 4-hourly cron deliberately cannot reach NuGet.org: it neither sets the `nuget-org` input nor holds the `id-token` permission, so its publishes stay on GitHub Packages, where a bad version can still be deleted. That distinction has already mattered: on 2026-08-13 the cron shipped `CS2OpenDev.Protos` 3.0.7 carrying a 188-type removal as a patch, and GitHub Packages let that version be deleted where NuGet.org would not have. The workflow's own notices say which feeds a given version actually reached, so this stays checkable.
 
 #### What ends up in the published artifact
 
