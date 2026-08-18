@@ -47,6 +47,10 @@ on:
       # Root version.json only — the per-package ones are already covered by
       # their `src/<id>/**` globs above.
       - 'version.json'
+      # The root README ships inside the CS2OpenDev.Sdk package and is in the
+      # root version.json's pathFilters, so an edit to it moves that version
+      # and has to release.
+      - 'README.md'
   workflow_dispatch: {}
 
 # Releases must serialise — never two pushes to NuGet at once.
