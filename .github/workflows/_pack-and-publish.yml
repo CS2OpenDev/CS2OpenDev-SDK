@@ -41,8 +41,8 @@ on:
           Off by default so the scheduled bot path keeps feeding GitHub
           Packages only — NuGet.org publishes are irreversible, and the cron
           must not be able to make one unattended. The caller also needs
-          `id-token: write` and the NUGET_USER repository variable must name
-          the NuGet.org account that owns the trusted publishing policy.
+          `id-token: write`. The trusted publishing policy on NuGet.org is
+          owned by the account hardcoded on the login step below.
         type: boolean
         required: false
         default: false
@@ -315,7 +315,7 @@ jobs:
         if: inputs.nuget-org && env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
         uses: NuGet/login@v1
         with:
-          user: ${{ vars.NUGET_USER }}
+          user: sid2934
 
       - name: Publish to NuGet.org
         # Either key source enables the push: the legacy NUGET_API_KEY secret,
@@ -411,7 +411,7 @@ jobs:
         # case is covered by the separate notice above.
         if: env.NUGET_API_KEY == '' && steps.nuget-login.outputs.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
         run: |
-          echo "::warning::No NuGet.org key was available — ${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. NuGet.org publishing runs only on the release path, via the nuget-org input and the Trusted Publishing policy (NUGET_USER repository variable), or via the legacy NUGET_API_KEY secret."
+          echo "::warning::No NuGet.org key was available — ${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. NuGet.org publishing runs only on the release path, via the nuget-org input and the Trusted Publishing policy, or via the legacy NUGET_API_KEY secret."
 
       - name: Create GitHub Release
         # Gated on a stable version only — a prerelease build would otherwise

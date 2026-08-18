@@ -70,7 +70,7 @@ jobs:
     with:
       # NuGet.org via Trusted Publishing (OIDC). The policy on NuGet.org is
       # registered against this repository and this workflow file, under the
-      # account named by the NUGET_USER repository variable.
+      # account named on the login step in _pack-and-publish.yml.
       nuget-org: true
     secrets:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "6.0",
+  "version": "0.9",
   "versionHeightOffset": -1,
   "// versionHeightOffset": [
     "Cancels the commit that changes `version` above, so a MAJOR.MINOR bump cuts a",
