@@ -26,25 +26,11 @@ wire-IDs to message types by short name.
 
 ## Where to get it
 
-GitHub Packages only. The release job pushes to
-`https://nuget.pkg.github.com/CS2OpenDev/index.json` and attaches the `.nupkg` and `.snupkg` to the
-GitHub release. Each release's notes name the feeds that version actually reached, so this is
-checkable rather than something you have to take on trust.
-
-Two ways to consume it: a `nuget.config` source pointing at that feed, or the `.nupkg` off the
-release page into a local folder source. GitHub Packages requires an authenticated token even for
-public packages, which is reason enough for some consumers to prefer the second.
-
-An earlier revision of this page called NuGet.org "a gap rather than a decision — a credential, not
-a design question." That is no longer true in either half: it *is* a decision, and it has been
-made. This project publishes to GitHub Packages only.
-
-The cost that paragraph correctly identified still stands, now as a deliberate cost rather than an
-accident: a package on NuGet.org cannot declare a dependency on one that is not there, so this
-choice blocks downstream *publishers*, not just convenience. If you need to publish a NuGet.org
-package that depends on these types, the options are to vendor the generated types, to keep your
-dependency on them private, or to republish under an ID you own. Discussion in
-#5.
+NuGet.org, published from the release workflow via trusted publishing. Every version is also
+mirrored to this org's GitHub Packages feed (`https://nuget.pkg.github.com/CS2OpenDev/index.json`,
+which requires an authenticated token even for public packages), and the `.nupkg` and `.snupkg`
+are attached to the GitHub release. Each release's notes name the feeds that version actually
+reached, so this is checkable rather than something you have to take on trust.
 
 ## Which CS2 build?
 

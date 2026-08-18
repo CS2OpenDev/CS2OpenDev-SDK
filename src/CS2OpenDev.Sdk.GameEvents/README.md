@@ -3,11 +3,11 @@
 Decodes Counter-Strike 2's legacy game-event wire messages into the strongly-typed event records
 shipped by [`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK).
 
-> Published to GitHub Packages only. Add
-> `https://nuget.pkg.github.com/CS2OpenDev/index.json` as a package source, or take the `.nupkg` off
-> a [release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases). The `CS2OpenDev.Sdk` 1.0.1 on
-> NuGet.org is not this project's current output: it is four majors stale and carries a licence the
-> project disowned. See the root README.
+> Published to NuGet.org, and mirrored to GitHub Packages
+> (`https://nuget.pkg.github.com/CS2OpenDev/index.json`); the `.nupkg` is also attached to each
+> [release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases). Ignore the unlisted
+> `CS2OpenDev.Sdk` 1.0.1 from May 2026 — it is stale, carries a licence the project disowned, and
+> never resolves unless pinned explicitly. See the root README.
 
 Every CS2 demo parser ends up writing the same code: key-by-name dispatch, the `val_long` /
 `val_short` / `val_byte` fallback chain, entity-handle and controller-slot handling. This is that
@@ -176,8 +176,7 @@ message naming the valid set, rather than emitting code that will not compile.
 [`CS2OpenDev.Protos`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Protos),
 because the decoder's input type is a protobuf message, and
 [`CS2OpenDev.Sdk`](https://github.com/CS2OpenDev/CS2OpenDev-SDK/tree/main/src/CS2OpenDev.Sdk) for
-the event records. Both resolve from the same GitHub Packages feed as this package. Neither is on
-NuGet.org.
+the event records. Both resolve from NuGet.org, same as this package.
 
 This package exists so that split can hold: `CS2OpenDev.Sdk` ships zero package dependencies, and
 a consumer who only wants schema types is never made to take `Google.Protobuf`. CI asserts that

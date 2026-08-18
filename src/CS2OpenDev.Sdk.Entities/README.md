@@ -6,9 +6,9 @@ They read through [`CS2OpenDev.Sdk.Entities.Abstractions`](../CS2OpenDev.Sdk.Ent
 and touch nothing else: no schema type, no protobuf message, no parser. That is what lets the same
 wrappers run over any demo parser implementing the contract instead of one particular runtime.
 
-Published to GitHub Packages, not NuGet.org. Add
-`https://nuget.pkg.github.com/CS2OpenDev/index.json` as a package source, or take the `.nupkg` off
-a [release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases).
+Published to NuGet.org, and mirrored to GitHub Packages
+(`https://nuget.pkg.github.com/CS2OpenDev/index.json`); the `.nupkg` is also attached to each
+[release](https://github.com/CS2OpenDev/CS2OpenDev-SDK/releases).
 
 ## What you get
 

@@ -21,7 +21,8 @@
     "commit that sets it, which is a `version` change, so height is at least 1."
   ],
   "pathFilters": [
-    ":/src/CS2OpenDev.Sdk/"
+    ":/src/CS2OpenDev.Sdk/",
+    ":/README.md"
   ],
   "publicReleaseRefSpec": [
     "^refs/heads/main$"
