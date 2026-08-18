@@ -29,7 +29,7 @@ namespace CS2SchemaGen.Emitters;
 // a base property's compile-time ordinal constant addresses the same field
 // through every derived binding, exactly as a C++ base subobject sits at
 // offset 0 of every derived object. The ancestor walk follows Parents[0] to
-// the nearest CURATED class; uncurated intermediates contribute nothing.
+// the nearest curated class; uncurated intermediates contribute nothing.
 //
 // What this deliberately gives up: a binding's whole path array is no longer
 // globally ordinal-sorted — only a root's is, and each class's own suffix.
@@ -61,7 +61,7 @@ internal static class EntityWrapperEmitter
     // Curation, not inference: no schema fact distinguishes "0 is a sentinel"
     // from "0 is a state". Two ways in so far:
     //
-    //  - m_lifeState: a received 0 IS a state — LIFE_ALIVE — so a 0-default
+    //  - m_lifeState: a received 0 is a state (LIFE_ALIVE), so a 0-default
     //    getter makes a pawn that never transmitted the field indistinguishable
     //    from a live one.
     //  - the relocated origin canonical, on all three classes carrying it: the
@@ -75,15 +75,15 @@ internal static class EntityWrapperEmitter
     //    coordinate synthesis from them stays open deliberately, because decode
     //    arithmetic is read semantics and lives consumer-side (SDK#6 §3).
     //  - the quantized-origin leaves, on the same three classes: unlike the
-    //    struct parent these DO arrive on the wire, but a 0 that was never
-    //    received is not a missing position — it is a POSITION. Cell 0 is a
+    //    struct parent these do arrive on the wire, but a 0 that was never
+    //    received is not a missing position; it is a position. Cell 0 is a
     //    legal world cell, and the consumer-side reconstruction is
     //    (cell − 32) × 512 + offset, so a 0-default would place the entity at
     //    −16384 on that axis with full confidence. These were born nullable, so
     //    the growth warning below does not apply to them: no consumer was ever
     //    typed against a non-nullable spelling of these properties.
     //
-    // Growing this set is a BREAKING change for consumers typed against the
+    // Growing this set is a breaking change for consumers typed against the
     // non-nullable property — DemoViewer.NET has the four m_pInGameMoneyServices
     // money fields staged and commented out for exactly that reason. Treat an
     // addition as a major with a deprecation cycle, never a silent flip; a type
@@ -96,15 +96,15 @@ internal static class EntityWrapperEmitter
     // transmission gap rather than as the wire's actual shape.
     //
     // Declared before SeenAwareFields because static initializers run in
-    // declaration order — the other way round, the dictionary captures null.
+    // declaration order; the other way round, the dictionary captures null.
     private static readonly string[] StructOriginRemark =
     [
         "Nullable because this canonical path names a struct",
-        "(<c>CNetworkOriginCellCoordQuantizedVector</c>) whose leaves — <c>m_cellX/Y/Z</c>,",
-        "<c>m_vecX/Y/Z</c> — are what the wire actually carries; the struct-valued parent",
+        "(<c>CNetworkOriginCellCoordQuantizedVector</c>) whose leaves (<c>m_cellX/Y/Z</c>,",
+        "<c>m_vecX/Y/Z</c>) are what the wire actually carries. The struct-valued parent",
         "path never materialises over a GOTV demo, so a zero default would present that",
         "absence as the world origin. <see langword=\"null\"/> means no value is stored",
-        "under this path — it does NOT mean the entity is at <c>(0,0,0)</c>. A runtime",
+        "under this path, not that the entity is at <c>(0,0,0)</c>. A runtime",
         "that reconstructs world coordinates from the cell leaves and stores the result",
         "under this path serves it through this property."
     ];
@@ -117,7 +117,7 @@ internal static class EntityWrapperEmitter
         "Nullable because <c>0</c> is a real value on every axis of the quantized",
         "origin: cell 0 names a legal world cell, and the consumer-side",
         "reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero",
-        "would place the entity at −16384 on that axis rather than nowhere.",
+        "would read as a real position at −16384 on that axis.",
         "<see langword=\"null\"/> means this leaf has never been received on the",
         "wire. Unlike the struct-valued origin canonical, these leaves are exactly",
         "what a demo transmits, so on live entities presence is the normal case.",
@@ -160,8 +160,8 @@ internal static class EntityWrapperEmitter
         [("CPlantedC4", "m_CBodyComponent.m_pSceneNode.m_vecOrigin.m_vecZ")] = OriginLeafRemark
     };
 
-    // Abstract bases that are curated so the type hierarchy is complete — they
-    // are usable as base types and as Resolve<T> targets — but that never appear
+    // Abstract bases that are curated so the type hierarchy is complete (they
+    // are usable as base types and as Resolve<T> targets) but that never appear
     // as a live entity's class name in a demo. They get a wrapper and no registry
     // case, because a factory for them would be dead.
     //
@@ -215,7 +215,7 @@ internal static class EntityWrapperEmitter
             }
         }
 
-        // The nearest CURATED ancestor, walking Parents[0] past uncurated
+        // The nearest curated ancestor, walking Parents[0] past uncurated
         // intermediates (CCSWeaponBase, CEconEntity, ...), which contribute
         // nothing to any layout.
         Dictionary<string, string?> nearestCuratedAncestor = new(StringComparer.Ordinal);
@@ -295,7 +295,7 @@ internal static class EntityWrapperEmitter
     // ── Planning ─────────────────────────────────────────────────────────────
 
     // One class's full layout under the prefix law: the base layout's FieldPlans
-    // verbatim — their ordinals are already correct, because the prefix IS the
+    // verbatim — their ordinals are already correct, because the prefix is the
     // base's ordinal space — then own fields at ordinals offset by the prefix
     // length. Aliases merge the same way, inherited first.
     private static ClassLayout ComposeLayout(
@@ -317,7 +317,7 @@ internal static class EntityWrapperEmitter
         int ordinal = inheritedCount;
 
         // Fields is a SortedDictionary keyed StringComparer.Ordinal, so iteration
-        // order IS the own-segment's ordinal order. Stated rather than relied on
+        // order is the own-segment's ordinal order. Stated rather than relied on
         // silently, because the manifest's CanonicalPaths is built from the same
         // walk.
         foreach ((string canonical, LensFieldEntry entry) in cls.Fields)
@@ -355,7 +355,7 @@ internal static class EntityWrapperEmitter
             : new Dictionary<string, string>(baseLayout.Aliases, StringComparer.Ordinal);
 
         // Identity entries (canonical → canonical) are a lookup convenience in
-        // the replay model and must NOT reach the manifest: an alias whose key is
+        // the replay model and must not reach the manifest: an alias whose key is
         // a live canonical path would shadow the field, and BindingConformance
         // rightly rejects it.
         foreach ((string alias, string target) in cls.Aliases)
@@ -373,7 +373,7 @@ internal static class EntityWrapperEmitter
                 continue;
             }
 
-            // An own alias key naming an INHERITED canonical path. The
+            // An own alias key naming an inherited canonical path. The
             // own-vs-own case cannot reach here — the Lens replay rejects it —
             // so a hit is always cross-level.
             if (chainPaths.Contains(alias))
@@ -386,7 +386,7 @@ internal static class EntityWrapperEmitter
             aliases[alias] = target;
         }
 
-        // The other direction: an inherited alias key that THIS level curates
+        // The other direction: an inherited alias key that this level curates
         // as a canonical path. Within one class the Lens replay forbids the
         // collision; the chain is where it can now happen, and this level is
         // the one that introduces it — descendants inherit the conflict but do
@@ -470,7 +470,7 @@ internal static class EntityWrapperEmitter
         sb.AppendLine($"    : {plan.BaseNetName ?? "EntityWrapper"}(reader, world)");
         sb.AppendLine("{");
 
-        // Own fields only: inherited properties are exactly that — inherited.
+        // Own fields only: inherited properties come from the base class.
         // Their base-class ordinal constants stay correct through this class's
         // binding because the base layout is a verbatim prefix of it.
         IEnumerable<FieldPlan> ownFields = plan.Fields.Skip(plan.InheritedCount);
@@ -502,13 +502,13 @@ internal static class EntityWrapperEmitter
     private static void EmitProperty(StringBuilder sb, FieldPlan f, BindingPlan plan)
     {
         // The canonical engine path in the doc comment is the grep bridge between
-        // demo-facing names and .NET names — the thing someone reading a wire
+        // demo-facing names and .NET names: the thing someone reading a wire
         // dump needs in order to find this property.
         sb.AppendLine($"    /// <summary><c>{NameHelpers.XmlEscape(f.Canonical)}</c> ({NameHelpers.XmlEscape(f.SchemaType)}).</summary>");
 
         if (f.SeenAware)
         {
-            // The per-field remark from the curated set: why THIS field's absence
+            // The per-field remark from the curated set: why this field's absence
             // cannot be a zero, in the artifact a consumer actually reads.
             sb.AppendLine("    /// <remarks>");
             foreach (string line in SeenAwareFields[(plan.EngineClass, f.Canonical)])
@@ -591,7 +591,7 @@ internal static class EntityWrapperEmitter
         // `BasePlayerWeapon` — and that used to force `EntityWrapper` here,
         // because the emitted types were flat and the typed fold failed for
         // every real entity (SDK#25, finding F1). Now that the wrappers mirror
-        // the curated hierarchy, `SmokeGrenade` IS a `BasePlayerWeapon` and the
+        // the curated hierarchy, `SmokeGrenade` is a `BasePlayerWeapon` and the
         // typed fold succeeds for exactly the classes the wire can deliver.
         return plan.State.Classes[curated].NetName;
     }
@@ -620,14 +620,14 @@ internal static class EntityWrapperEmitter
         sb.AppendLine("///     </para>");
         sb.AppendLine("///     <para>");
         sb.AppendLine("///         <see cref=\"LensHash\"/> and <see cref=\"SchemaBuild\"/> identify the curated state");
-        sb.AppendLine("///         these wrappers were generated from. It is the hash of THIS repository\u2019s");
+        sb.AppendLine("///         these wrappers were generated from. It is the hash of this repository's");
         sb.AppendLine("///         <c>schema-lens/state.json</c>, under its own canonical form.");
         sb.AppendLine("///     </para>");
         sb.AppendLine("///     <para>");
         sb.AppendLine("///         <b>Do not compare it against a hash your own runtime computes.</b> An");
         sb.AppendLine("///         implementation that maintains its own Schema Lens hashes a different preimage");
-        sb.AppendLine("///         \u2014 different fields, different canonical form \u2014 so the two numbers are not");
-        sb.AppendLine("///         comparable and a mismatch would be guaranteed rather than meaningful. Assert");
+        sb.AppendLine("///         (different fields, different canonical form), so the two numbers are never");
+        sb.AppendLine("///         comparable and a mismatch tells you nothing. Assert");
         sb.AppendLine("///         your hash against your state, and this one against the <c>state.json</c> this");
         sb.AppendLine("///         package was published beside.");
         sb.AppendLine("///     </para>");
@@ -751,7 +751,7 @@ internal static class EntityWrapperEmitter
         Reads Reads,
         bool SeenAware);
 
-    // One class's composed layout under the prefix law. `Fields` is the WHOLE
+    // One class's composed layout under the prefix law. `Fields` is the whole
     // ordinal space — the inherited prefix verbatim, then own fields — and
     // `InheritedCount` is the boundary: the binding emits all of it, the
     // wrapper emits only what is after the boundary. Descendants embed this

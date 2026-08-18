@@ -15,18 +15,17 @@ namespace CS2OpenSchema.Events;
 /// <remarks>
 ///     Native name: <c>game_restart</c>. Source: <c>sdk.supplement</c>.
 ///     <para>
-///         CURATED SUPPLEMENT — <c>game_restart</c> is not present in the extracted CS2
+///         Curated supplement: <c>game_restart</c> is not present in the extracted CS2
 ///         schema. It is absent from <c>gameevents_schema.json</c> and from the
 ///         SchemaTracker artifact that file derives from, yet it appears in the
 ///         <c>CMsgSource1LegacyGameEventList</c> descriptor real GOTV demos carry, and it
-///         fires on the wire. This record exists because without one a name-driven
-///         dispatcher drops every fire in silence: unlike a missing field, a missing
-///         record breaks nothing that compiles.
+///         fires on the wire. Without this record a name-driven dispatcher drops
+///         every fire of the event, silently, and nothing at compile time catches it.
 ///     </para>
 ///     <para>
-///         No keys have been observed on this event, so the record is empty. That is an
-///         observation rather than a declaration: keys may exist that we have not seen.
-///         The record still earns its place — it is what lets a dispatcher see the fire.
+///         No keys have been observed on this event, so the record is empty. Keys may
+///         exist that we have not seen. The record is here so that a dispatcher can
+///         see the fire at all.
 ///         The record is temporary: when upstream starts declaring <c>game_restart</c>,
 ///         generation fails until the supplement entry is deleted and the extracted
 ///         declaration takes over. A supplement can add a name; it can never shadow one.

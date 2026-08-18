@@ -22,14 +22,14 @@ namespace CS2OpenDev.Sdk.Entities;
 ///     </para>
 ///     <para>
 ///         <see cref="LensHash"/> and <see cref="SchemaBuild"/> identify the curated state
-///         these wrappers were generated from. It is the hash of THIS repository’s
+///         these wrappers were generated from. It is the hash of this repository's
 ///         <c>schema-lens/state.json</c>, under its own canonical form.
 ///     </para>
 ///     <para>
 ///         <b>Do not compare it against a hash your own runtime computes.</b> An
 ///         implementation that maintains its own Schema Lens hashes a different preimage
-///         — different fields, different canonical form — so the two numbers are not
-///         comparable and a mismatch would be guaranteed rather than meaningful. Assert
+///         (different fields, different canonical form), so the two numbers are never
+///         comparable and a mismatch tells you nothing. Assert
 ///         your hash against your state, and this one against the <c>state.json</c> this
 ///         package was published beside.
 ///     </para>

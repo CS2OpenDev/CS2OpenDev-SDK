@@ -48,7 +48,7 @@ public readonly struct CEntityHandle : System.IEquatable<CEntityHandle>
 }
 
 /// <summary>
-///     Strongly-typed 32-bit entity handle. `Value` is the raw packed `(serial &lt;&lt; index_bits) | index`; the bit split is not documented authoritatively upstream, so decode it on your side and pin the assumption there. See docs/HANDLES.md.
+///     Strongly-typed 32-bit entity handle. `Value` is the raw packed `(serial &lt;&lt; index_bits) | index`; the bit split is not documented authoritatively upstream, so the SDK does not decode it. If you decode it downstream, keep the assumption tested on your side. See docs/HANDLES.md.
 /// </summary>
 /// <typeparam name="T">The referenced declared-class or resource type.</typeparam>
 public readonly struct CHandle<T> : System.IEquatable<CHandle<T>>

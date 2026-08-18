@@ -285,7 +285,7 @@ internal static class GameEventsEmitter
             // the value a reverse lookup needs; only the claim about where it
             // comes from changes.
             //
-            // The 11 `player_pawn` fields are NOT in this branch: those are
+            // The 11 `player_pawn` fields are not in this branch: those are
             // declared, and keep the ordinary wording plus their declared name.
             bool synthesisedCompanion = field.IsPawnHandle && field.Type == "player_controller_and_pawn";
             if (synthesisedCompanion)
@@ -329,14 +329,13 @@ internal static class GameEventsEmitter
         string native = NameHelpers.XmlEscape(ev.Name);
 
         sb.AppendLine("///     <para>");
-        sb.Append("///         CURATED SUPPLEMENT — <c>").Append(native)
+        sb.Append("///         Curated supplement: <c>").Append(native)
             .AppendLine("</c> is not present in the extracted CS2");
         sb.AppendLine("///         schema. It is absent from <c>gameevents_schema.json</c> and from the");
         sb.AppendLine("///         SchemaTracker artifact that file derives from, yet it appears in the");
         sb.AppendLine("///         <c>CMsgSource1LegacyGameEventList</c> descriptor real GOTV demos carry, and it");
-        sb.AppendLine("///         fires on the wire. This record exists because without one a name-driven");
-        sb.AppendLine("///         dispatcher drops every fire in silence: unlike a missing field, a missing");
-        sb.AppendLine("///         record breaks nothing that compiles.");
+        sb.AppendLine("///         fires on the wire. Without this record a name-driven dispatcher drops");
+        sb.AppendLine("///         every fire of the event, silently, and nothing at compile time catches it.");
         sb.AppendLine("///     </para>");
 
         sb.AppendLine("///     <para>");
@@ -349,14 +348,14 @@ internal static class GameEventsEmitter
         // record, since keys may exist that we simply have not seen.
         if (ev.Fields.Length > 0)
         {
-            sb.AppendLine("///         The properties below are observed rather than declared — what the descriptor");
-            sb.AppendLine("///         table carries in practice — so treat them as a floor, not a contract.");
+            sb.AppendLine("///         The properties below are observed, not declared: they are what the");
+            sb.AppendLine("///         descriptor table carries in practice. Keys may exist that we have not seen.");
         }
         else
         {
-            sb.AppendLine("///         No keys have been observed on this event, so the record is empty. That is an");
-            sb.AppendLine("///         observation rather than a declaration: keys may exist that we have not seen.");
-            sb.AppendLine("///         The record still earns its place — it is what lets a dispatcher see the fire.");
+            sb.AppendLine("///         No keys have been observed on this event, so the record is empty. Keys may");
+            sb.AppendLine("///         exist that we have not seen. The record is here so that a dispatcher can");
+            sb.AppendLine("///         see the fire at all.");
         }
 
         sb.Append("///         The record is temporary: when upstream starts declaring <c>").Append(native)

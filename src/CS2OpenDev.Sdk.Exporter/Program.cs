@@ -343,7 +343,7 @@ else
 // Runs before the name-diagnostics drain because targetProperty derivation
 // goes through WordSplitter, and any run it resolves must reach both the
 // CS2_GEN_006 report and the name lock like every other identifier.
-// Diagnostics the entity emitter reports land on ITS sink, not the main one,
+// Diagnostics the entity emitter reports land on its own sink, not the main one,
 // and the error-exit guard at the bottom drains the main sink only. Left alone
 // that would repeat the severity-as-decoration failure the guard exists to
 // close — an emit-time Error on a second sink would print nothing and exit 0.
@@ -399,7 +399,7 @@ if (Directory.Exists(lensDirectory))
         }
     }
 
-    // The committed state.json is read BEFORE it is rewritten — it is the
+    // The committed state.json is read before it is rewritten — it is the
     // baseline the CS2_GEN_012 gate diffs freshly-observed fields against.
     string lensStatePath = Path.Combine(lensDirectory, LensMigrationLoader.StateFileName);
     string? committedLensState = File.Exists(lensStatePath) ? File.ReadAllText(lensStatePath) : null;
@@ -548,7 +548,7 @@ foreach ((string id, GeneratorDiagnosticSeverity severity, string message) in si
 // That gap is what let CS2_GEN_015's subject survive three schema majors. The
 // generator had been reporting the individual names all along — 770 per regen at
 // Info — and a log line that nothing acts on is indistinguishable from silence.
-// Reporting an Error and then succeeding is the same failure one level up.
+// Reporting an Error and then exiting 0 repeats that failure one level up.
 //
 // So a reported Error now fails the run. The output is still written first, on
 // purpose: a maintainer diagnosing the failure wants to diff what the generator
@@ -597,7 +597,7 @@ static void WriteNameLock(string path, IReadOnlyDictionary<string, string> runs)
     StringBuilder sb = new();
     sb.AppendLine("{");
     sb.AppendLine("  \"$comment\": [");
-    sb.AppendLine("    \"Generated. Do not hand-edit — regenerate with cs2-sdk-exporter.\",");
+    sb.AppendLine("    \"Generated. Do not hand-edit; regenerate with cs2-sdk-exporter.\",");
     sb.AppendLine("    \"\",");
     sb.AppendLine("    \"Every run-together lowercase word the generator has resolved, and what\",");
     sb.AppendLine("    \"it resolved to. A run listed here is returned verbatim and the word\",");
@@ -610,7 +610,7 @@ static void WriteNameLock(string path, IReadOnlyDictionary<string, string> runs)
     sb.AppendLine("    \"that regenerates and publishes unattended.\",");
     sb.AppendLine("    \"\",");
     sb.AppendLine("    \"Entries are added, never rewritten. New upstream fields append here on\",");
-    sb.AppendLine("    \"the next regen; that diff is expected. A CHANGED entry is not, and means\",");
+    sb.AppendLine("    \"the next regen; that diff is expected. A changed entry is not, and means\",");
     sb.AppendLine("    \"someone ran --rebaseline-names, which renames shipped API and needs a\",");
     sb.AppendLine("    \"major version bump.\"");
     sb.AppendLine("  ],");

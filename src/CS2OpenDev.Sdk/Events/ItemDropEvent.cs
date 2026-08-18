@@ -15,17 +15,16 @@ namespace CS2OpenSchema.Events;
 /// <remarks>
 ///     Native name: <c>item_drop</c>. Source: <c>sdk.supplement</c>.
 ///     <para>
-///         CURATED SUPPLEMENT — <c>item_drop</c> is not present in the extracted CS2
+///         Curated supplement: <c>item_drop</c> is not present in the extracted CS2
 ///         schema. It is absent from <c>gameevents_schema.json</c> and from the
 ///         SchemaTracker artifact that file derives from, yet it appears in the
 ///         <c>CMsgSource1LegacyGameEventList</c> descriptor real GOTV demos carry, and it
-///         fires on the wire. This record exists because without one a name-driven
-///         dispatcher drops every fire in silence: unlike a missing field, a missing
-///         record breaks nothing that compiles.
+///         fires on the wire. Without this record a name-driven dispatcher drops
+///         every fire of the event, silently, and nothing at compile time catches it.
 ///     </para>
 ///     <para>
-///         The properties below are observed rather than declared — what the descriptor
-///         table carries in practice — so treat them as a floor, not a contract.
+///         The properties below are observed, not declared: they are what the
+///         descriptor table carries in practice. Keys may exist that we have not seen.
 ///         The record is temporary: when upstream starts declaring <c>item_drop</c>,
 ///         generation fails until the supplement entry is deleted and the extracted
 ///         declaration takes over. A supplement can add a name; it can never shadow one.

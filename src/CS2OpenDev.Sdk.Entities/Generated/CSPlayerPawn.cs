@@ -25,11 +25,11 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     /// <summary><c>m_CBodyComponent.m_pSceneNode.m_vecOrigin</c> (CNetworkOriginCellCoordQuantizedVector).</summary>
     /// <remarks>
     ///     Nullable because this canonical path names a struct
-    ///     (<c>CNetworkOriginCellCoordQuantizedVector</c>) whose leaves — <c>m_cellX/Y/Z</c>,
-    ///     <c>m_vecX/Y/Z</c> — are what the wire actually carries; the struct-valued parent
+    ///     (<c>CNetworkOriginCellCoordQuantizedVector</c>) whose leaves (<c>m_cellX/Y/Z</c>,
+    ///     <c>m_vecX/Y/Z</c>) are what the wire actually carries. The struct-valued parent
     ///     path never materialises over a GOTV demo, so a zero default would present that
     ///     absence as the world origin. <see langword="null"/> means no value is stored
-    ///     under this path — it does NOT mean the entity is at <c>(0,0,0)</c>. A runtime
+    ///     under this path, not that the entity is at <c>(0,0,0)</c>. A runtime
     ///     that reconstructs world coordinates from the cell leaves and stores the result
     ///     under this path serves it through this property.
     /// </remarks>
@@ -41,7 +41,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     Nullable because <c>0</c> is a real value on every axis of the quantized
     ///     origin: cell 0 names a legal world cell, and the consumer-side
     ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
-    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     would read as a real position at −16384 on that axis.
     ///     <see langword="null"/> means this leaf has never been received on the
     ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
     ///     what a demo transmits, so on live entities presence is the normal case.
@@ -56,7 +56,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     Nullable because <c>0</c> is a real value on every axis of the quantized
     ///     origin: cell 0 names a legal world cell, and the consumer-side
     ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
-    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     would read as a real position at −16384 on that axis.
     ///     <see langword="null"/> means this leaf has never been received on the
     ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
     ///     what a demo transmits, so on live entities presence is the normal case.
@@ -71,7 +71,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     Nullable because <c>0</c> is a real value on every axis of the quantized
     ///     origin: cell 0 names a legal world cell, and the consumer-side
     ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
-    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     would read as a real position at −16384 on that axis.
     ///     <see langword="null"/> means this leaf has never been received on the
     ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
     ///     what a demo transmits, so on live entities presence is the normal case.
@@ -86,7 +86,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     Nullable because <c>0</c> is a real value on every axis of the quantized
     ///     origin: cell 0 names a legal world cell, and the consumer-side
     ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
-    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     would read as a real position at −16384 on that axis.
     ///     <see langword="null"/> means this leaf has never been received on the
     ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
     ///     what a demo transmits, so on live entities presence is the normal case.
@@ -101,7 +101,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     Nullable because <c>0</c> is a real value on every axis of the quantized
     ///     origin: cell 0 names a legal world cell, and the consumer-side
     ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
-    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     would read as a real position at −16384 on that axis.
     ///     <see langword="null"/> means this leaf has never been received on the
     ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
     ///     what a demo transmits, so on live entities presence is the normal case.
@@ -116,7 +116,7 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     ///     Nullable because <c>0</c> is a real value on every axis of the quantized
     ///     origin: cell 0 names a legal world cell, and the consumer-side
     ///     reconstruction is <c>(cell − 32) × 512 + offset</c>, so a fabricated zero
-    ///     would place the entity at −16384 on that axis rather than nowhere.
+    ///     would read as a real position at −16384 on that axis.
     ///     <see langword="null"/> means this leaf has never been received on the
     ///     wire. Unlike the struct-valued origin canonical, these leaves are exactly
     ///     what a demo transmits, so on live entities presence is the normal case.

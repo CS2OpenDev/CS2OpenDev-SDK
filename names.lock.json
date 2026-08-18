@@ -1,6 +1,6 @@
 {
   "$comment": [
-    "Generated. Do not hand-edit — regenerate with cs2-sdk-exporter.",
+    "Generated. Do not hand-edit; regenerate with cs2-sdk-exporter.",
     "",
     "Every run-together lowercase word the generator has resolved, and what",
     "it resolved to. A run listed here is returned verbatim and the word",
@@ -13,7 +13,7 @@
     "that regenerates and publishes unattended.",
     "",
     "Entries are added, never rewritten. New upstream fields append here on",
-    "the next regen; that diff is expected. A CHANGED entry is not, and means",
+    "the next regen; that diff is expected. A changed entry is not, and means",
     "someone ran --rebaseline-names, which renames shipped API and needs a",
     "major version bump."
   ],

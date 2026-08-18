@@ -212,7 +212,7 @@ internal static class ModuleEmitter
         // ── Step 2: initial classification ───────────────────────────────────────
         //
         //  Full duplicate  = same name, multiple modules, identical fingerprint
-        //                    → emit ONE copy to CS2Schema.Shared
+        //                    → emit one copy to CS2Schema.Shared
         //  Genuine conflict = same name, multiple modules, different fingerprint
         //                    → each module keeps its own copy
         //  Unique           = appears in exactly one module
@@ -274,11 +274,11 @@ internal static class ModuleEmitter
         // ── Step 3: conflict propagation ─────────────────────────────────────────
         //
         // The shared file can only safely import the root namespace and namespaces of
-        // modules that are NOT involved in genuine naming conflicts.  For CS2 that
+        // modules that are not involved in genuine naming conflicts.  For CS2 that
         // means the shared file cannot have `using CS2Schema.Client;` or
         // `using CS2Schema.Server;`, because those two modules share 97+ names.
         //
-        // This also means the shared file cannot reference ANY type that lives
+        // This also means the shared file cannot reference any type that lives
         // exclusively inside a conflicting module — whether that type itself is a
         // genuine conflict or just happens to be unique to client/server.
         //
@@ -397,7 +397,7 @@ internal static class ModuleEmitter
         // ── Step 5: collect forward-declared stubs ────────────────────────────────
         //
         // Keys are sanitized C# names (used for stub-class identifiers and dedup
-        // against allDefinedNames). Values are the ORIGINAL C++ names — CE-1 uses
+        // against allDefinedNames). Values are the original C++ names — CE-1 uses
         // these to emit [NativeName] on stubs whose sanitized name differs from
         // their source (e.g. "Outer::Inner::Foo" → "Outer_Inner_Foo").
 
@@ -498,7 +498,7 @@ internal static class ModuleEmitter
         //
         // One reflected class or enum per source file. The "CS2Schema." prefix on
         // every AddSource hint is a filesystem-only name that the Exporter parses
-        // with ExporterCore.DeriveOutputName. It is NOT affected by the
+        // with ExporterCore.DeriveOutputName. It is not affected by the
         // CS2SchemaGen_Namespace MSBuild override — the namespace inside the file
         // uses `ns` (the property's value), but the on-disk hint stays constant so
         // the Exporter's prefix-strip stays a simple constant.
@@ -611,8 +611,8 @@ internal static class ModuleEmitter
         }
 
         // CS2_GEN_015: the subset of the above that upstream's own atomicCategory
-        // calls a container. Ordered by field count so the largest offender leads —
-        // this is a measurement, and the reader wants the scale first.
+        // calls a container. Ordered by field count so the largest offender leads
+        // the list.
         foreach ((string bare, (string category, int count)) in
                  TypeMapper.GetAtomicCategoryDrift()
                      .OrderByDescending(kv => kv.Value.Count)
@@ -625,17 +625,13 @@ internal static class ModuleEmitter
         // The name diagnostics (CS2_GEN_006 / CS2_GEN_009) used to be drained
         // here and no longer are — see the end of the exporter's Program.cs.
         //
-        // WordSplitter accumulates across the WHOLE run, but this method is only
+        // WordSplitter accumulates across the whole run, but this method is only
         // the first half of one: GameEventsEmitter runs after it, and the
         // game-event names are the flat KV1 ones (`userid`, `thrusmoke`) that the
         // splitter exists for in the first place. Draining here emptied the
         // bucket before a single one of them had been folded, so the entire
-        // game-event vocabulary was unreportable — the report was not quiet
-        // because there was nothing to say, it was quiet because it was taken
-        // before the interesting half of the work happened.
-        //
-        // The drain therefore belongs to whoever owns the full sequence, which is
-        // the host, not an emitter.
+        // game-event vocabulary was unreportable. The drain belongs to the host,
+        // which owns the full sequence.
     }
 
     private static void AddReferenced(Dictionary<string, string> names, string original)
@@ -883,7 +879,7 @@ internal static class ModuleEmitter
 
             // Root-namespace candidates are reachable via namespace nesting too, so
             // a using is unnecessary if rootNs is in the set — except synthetic
-            // atoms like AABB_t can ALSO have a per-module class shadowing them, in
+            // atoms like AABB_t can also have a per-module class shadowing them, in
             // which case we need the per-module using to bind to the real class
             // rather than fall back to the (possibly-not-emitted) synthetic.
             string? chosen = null;
@@ -1074,11 +1070,11 @@ internal static class ModuleEmitter
             // that interpolates a schema name into XML already escapes it.
             //
             // Two kinds of stub, and the summary says which: an undecided one is
-            // an open item CS2_GEN_003 also reports, a deliberate one is a
-            // recorded decision — the consumer who lands here should find the
-            // pointer to why, not an invitation to classify it.
+            // an open item CS2_GEN_003 also reports; a deliberate one is a
+            // recorded decision, so its summary points at the reasoning rather
+            // than inviting a fix.
             string reason = TypeMapper.DeliberatelyStubbedAtoms.Contains(TypeMapper.BareAtomName(original))
-                ? "deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record"
+                ? "deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms"
                 : "forward-declared stub (type not reflected in cs2_schema.json)";
             sb.AppendLine($"/// <summary>{NameHelpers.XmlEscape(original)} — {reason}.</summary>");
             // CE-1: when SanitizeName had to rewrite the original (typically because
@@ -1148,7 +1144,7 @@ internal static class ModuleEmitter
 
     // Walks a class's parents and field types, recording every external type name
     // referenced. The dictionary maps the sanitized C# identifier (used for stub
-    // emission and dedup) back to the ORIGINAL C++ name from the schema (used by
+    // emission and dedup) back to the original C++ name from the schema (used by
     // CE-1 to emit [NativeName] on stubs whose sanitized form differs).
     //
     // First-original-wins on collision: in the rare case two distinct C++ names

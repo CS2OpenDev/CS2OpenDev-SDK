@@ -26,41 +26,41 @@ public partial class Attribute_t
 {
 }
 
-/// <summary>CPulseObservableExpression&lt; CUtlString &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
+/// <summary>CPulseObservableExpression&lt; CUtlString &gt; — deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms.</summary>
 [NativeName("CPulseObservableExpression< CUtlString >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class CPulseObservableExpression__CUtlString__
 {
 }
 
-/// <summary>CPulseObservableExpression&lt; bool &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
+/// <summary>CPulseObservableExpression&lt; bool &gt; — deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms.</summary>
 [NativeName("CPulseObservableExpression< bool >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class CPulseObservableExpression__bool__
 {
 }
 
-/// <summary>CPulseObservableExpression&lt; float32 &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
+/// <summary>CPulseObservableExpression&lt; float32 &gt; — deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms.</summary>
 [NativeName("CPulseObservableExpression< float32 >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class CPulseObservableExpression__float32__
 {
 }
 
-/// <summary>HPulseCellBase — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
+/// <summary>HPulseCellBase — deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms.</summary>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class HPulseCellBase
 {
 }
 
-/// <summary>HPulseCell&lt; CPulseCell_TestWaitWithCursorState &gt; — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
+/// <summary>HPulseCell&lt; CPulseCell_TestWaitWithCursorState &gt; — deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms.</summary>
 [NativeName("HPulseCell< CPulseCell_TestWaitWithCursorState >")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class HPulseCell__CPulseCell_TestWaitWithCursorState__
 {
 }
 
-/// <summary>HYieldedCursor — deliberately unprojected — see TypeMapper.DeliberatelyStubbedAtoms for the decision record.</summary>
+/// <summary>HYieldedCursor — deliberately unprojected; the list and the reasons are in TypeMapper.DeliberatelyStubbedAtoms.</summary>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public partial class HYieldedCursor
 {
