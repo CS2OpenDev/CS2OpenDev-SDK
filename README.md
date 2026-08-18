@@ -55,7 +55,7 @@ git submodule update --init --depth 1 schema-tracker
 The packages are published to NuGet.org, so the default feed just works:
 
 ```xml
-<PackageReference Include="CS2OpenDev.Sdk" Version="0.9.0" />
+<PackageReference Include="CS2OpenDev.Sdk" Version="0.9.*" />
 ```
 
 They are also mirrored to this org's GitHub Packages feed
