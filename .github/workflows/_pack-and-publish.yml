@@ -1,10 +1,16 @@
 name: Pack and publish
 
-# Reusable workflow that packs every shipped package and publishes it to
-# NuGet.org. Invoked via `workflow_call` from both check-upstream.yml (scheduled
-# bot refresh) and release.yml (manual or version.json-driven release). Keeping
-# the pack+publish logic in one place avoids the chained-workflow gotcha where
-# the default GITHUB_TOKEN can't trigger downstream workflow_runs.
+# Reusable workflow that packs every shipped package and publishes it. Invoked
+# via `workflow_call` from both check-upstream.yml (scheduled bot refresh) and
+# release.yml (manual or version.json-driven release). Keeping the pack+publish
+# logic in one place avoids the chained-workflow gotcha where the default
+# GITHUB_TOKEN can't trigger downstream workflow_runs.
+#
+# Two feeds, two policies. Every stable version reaches GitHub Packages from
+# either caller. NuGet.org is opt-in per call (the nuget-org input, wired to
+# NuGet.org Trusted Publishing via OIDC): release.yml sets it, the scheduled
+# path does not — NuGet.org publishes are irreversible, so the unattended cron
+# is deliberately unable to make one.
 #
 # Five packages ship, and they do not share a version. Four clocks:
 #
@@ -29,9 +35,20 @@ on:
         type: string
         required: false
         default: ''
+      nuget-org:
+        description: >-
+          Publish stable versions to NuGet.org via Trusted Publishing (OIDC).
+          Off by default so the scheduled bot path keeps feeding GitHub
+          Packages only — NuGet.org publishes are irreversible, and the cron
+          must not be able to make one unattended. The caller also needs
+          `id-token: write` and the NUGET_USER repository variable must name
+          the NuGet.org account that owns the trusted publishing policy.
+        type: boolean
+        required: false
+        default: false
     secrets:
       NUGET_API_KEY:
-        description: NuGet.org publish key. When omitted the package is still built and uploaded as a workflow artifact so forks can download it.
+        description: NuGet.org publish key. Legacy path, superseded by the nuget-org input; still honoured if set. When neither is available the package is still built and uploaded as a workflow artifact so forks can download it.
         required: false
 
 permissions:
@@ -41,6 +58,10 @@ permissions:
   # only hold or reduce the caller's GITHUB_TOKEN permissions, never elevate
   # them, so a caller that omits this makes the push fail with a 403.
   packages: write
+  # Required to mint the OIDC token NuGet/login exchanges for a short-lived
+  # NuGet.org API key. Same caller rule as above: only release.yml grants it,
+  # so the scheduled path could not reach NuGet.org even if it set the input.
+  id-token: write
 
 jobs:
   publish:
@@ -284,8 +305,23 @@ jobs:
             ${{ steps.pkg.outputs.symbols }}
           if-no-files-found: error
 
+      - name: NuGet.org login (Trusted Publishing)
+        # Exchanges this job's OIDC token for a short-lived NuGet.org API key,
+        # against the trusted publishing policy registered on NuGet.org for
+        # this repository + workflow. Only on the release path (nuget-org
+        # input), only for stable versions, and only when no legacy secret is
+        # already supplying a key.
+        id: nuget-login
+        if: inputs.nuget-org && env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER }}
+
       - name: Publish to NuGet.org
-        if: env.NUGET_API_KEY != '' && steps.pkg.outputs.prerelease == 'false'
+        # Either key source enables the push: the legacy NUGET_API_KEY secret,
+        # or the short-lived trusted-publishing key minted above (empty when
+        # the login step was skipped).
+        if: (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '') && steps.pkg.outputs.prerelease == 'false'
         # The `.nupkg` and `.snupkg` are pushed as two explicit calls rather
         # than one wildcard. A glob does not literally match `.snupkg`, and
         # relying on the client auto-pairing the adjacent symbols package is
@@ -293,16 +329,20 @@ jobs:
         # involved. Naming both files explicitly removes the guesswork:
         # `--no-symbols` suppresses the implicit pairing, then the `.snupkg` is
         # pushed on its own to NuGet.org's symbol server.
+        env:
+          NUGET_ORG_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: |
+          KEY="${NUGET_API_KEY:-$NUGET_ORG_KEY}"
+
           dotnet nuget push "${{ steps.pkg.outputs.path }}" \
-            --api-key "$NUGET_API_KEY" \
+            --api-key "$KEY" \
             --source https://api.nuget.org/v3/index.json \
             --no-symbols \
             --skip-duplicate
 
           if [ -n "${{ steps.pkg.outputs.symbols }}" ]; then
             dotnet nuget push "${{ steps.pkg.outputs.symbols }}" \
-              --api-key "$NUGET_API_KEY" \
+              --api-key "$KEY" \
               --source https://api.nuget.org/v3/index.json \
               --skip-duplicate
           else
@@ -369,9 +409,9 @@ jobs:
         # that the package reached GitHub Packages, so it must not fire when
         # that push was skipped (prerelease) or has not yet run. The prerelease
         # case is covered by the separate notice above.
-        if: env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
+        if: env.NUGET_API_KEY == '' && steps.nuget-login.outputs.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
         run: |
-          echo "::warning::NUGET_API_KEY secret is not set on this repository — ${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. To enable NuGet.org publishing, add the secret in Settings → Secrets and variables → Actions."
+          echo "::warning::No NuGet.org key was available — ${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. NuGet.org publishing runs only on the release path, via the nuget-org input and the Trusted Publishing policy (NUGET_USER repository variable), or via the legacy NUGET_API_KEY secret."
 
       - name: Create GitHub Release
         # Gated on a stable version only — a prerelease build would otherwise
@@ -397,15 +437,17 @@ jobs:
           TARGET_SHA: ${{ steps.head.outputs.sha }}
           REVISION: ${{ steps.schema.outputs.revision }}
           DUMP_DATE: ${{ steps.schema.outputs.date-iso }}
+          NUGET_ORG_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: |
           set -euo pipefail
 
           # Record which feeds actually received this version, so the release
-          # page can't imply a NuGet.org publish that never happened.
-          if [ -n "${NUGET_API_KEY:-}" ]; then
+          # page can't imply a NuGet.org publish that never happened. Either
+          # key source (legacy secret or trusted-publishing login) counts.
+          if [ -n "${NUGET_API_KEY:-}${NUGET_ORG_KEY:-}" ]; then
             FEEDS='Published to NuGet.org (with symbols) and GitHub Packages.'
           else
-            FEEDS='Published to GitHub Packages only — NUGET_API_KEY is not configured, so this version is not on NuGet.org and its symbols were not published to a symbol server.'
+            FEEDS='Published to GitHub Packages only — no NuGet.org key was available on this run, so this version is not on NuGet.org and its symbols were not published to a symbol server.'
           fi
 
           # CS2OpenDev.Protos carries no schema revision — it is versioned on

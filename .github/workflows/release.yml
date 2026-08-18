@@ -59,9 +59,18 @@ permissions:
   # Passed through to _pack-and-publish.yml for the GitHub Packages push.
   # A reusable workflow cannot elevate beyond what its caller grants.
   packages: write
+  # Passed through for the NuGet.org Trusted Publishing login. Deliberately
+  # granted here and not in check-upstream.yml: this is what confines
+  # NuGet.org publishing to the release path.
+  id-token: write
 
 jobs:
   release:
     uses: ./.github/workflows/_pack-and-publish.yml
+    with:
+      # NuGet.org via Trusted Publishing (OIDC). The policy on NuGet.org is
+      # registered against this repository and this workflow file, under the
+      # account named by the NUGET_USER repository variable.
+      nuget-org: true
     secrets:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
