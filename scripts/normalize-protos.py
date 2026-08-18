@@ -58,7 +58,7 @@ PLATFORM = "windows-x86_64"
 # packets, entities, user messages and game events. The transitive import
 # closure over these is what gets staged; the GC/Steam matchmaking families are
 # reachable only through cstrike15_usermessages and come along for that reason
-# alone (see the A2 prune discussion in docs/upstream/).
+# alone.
 ROOTS = [
     "demo.proto",
     "netmessages.proto",

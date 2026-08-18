@@ -12,8 +12,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 
 public class GameEventsModelTests
 {
-    // ── Top-level ────────────────────────────────────────────────────────────
-
+    // Top-level
     /// <summary>Parses an empty events array into an empty <see cref="GameEventsRoot"/>.</summary>
     [Test]
     public async Task Parse_EmptyEvents()
@@ -30,8 +29,7 @@ public class GameEventsModelTests
         await Assert.That(root.Events).IsEmpty();
     }
 
-    // ── Event shape ──────────────────────────────────────────────────────────
-
+    // Event shape
     /// <summary>Surfaces every basic field on an event record (name, source, comment, fields).</summary>
     [Test]
     public async Task Parse_BasicEvent_PopulatesScalarFields()
@@ -80,7 +78,7 @@ public class GameEventsModelTests
         await Assert.That(ev.Reliable).IsFalse();
     }
 
-    // ── KV1 stringified bool flags ───────────────────────────────────────────
+    // KV1 stringified bool flags
     //
     // Upstream serialises `properties.local` / `properties.reliable` as the
     // strings "1" / "0" (a KV1 idiosyncrasy carried through the JSON mirror).
@@ -178,8 +176,7 @@ public class GameEventsModelTests
         await Assert.That(root.Events[0].Local).IsTrue();
     }
 
-    // ── Annotations ──────────────────────────────────────────────────────────
-
+    // Annotations
     /// <summary>Reads event-level <c>annotations.description</c> into the model.</summary>
     [Test]
     public async Task Parse_EventAnnotation_DescriptionOnly()
@@ -236,8 +233,7 @@ public class GameEventsModelTests
         await Assert.That(root.Events[0].Annotations).IsNull();
     }
 
-    // ── Multiple events ──────────────────────────────────────────────────────
-
+    // Multiple events
     /// <summary>Preserves insertion order of the events array — important for the source-priority disambiguator downstream.</summary>
     [Test]
     public async Task Parse_MultipleEvents_PreserveOrder()
@@ -258,7 +254,7 @@ public class GameEventsModelTests
         await Assert.That(root.Events[2].Name).IsEqualTo("third");
     }
 
-    // ── schema_format_version guard (CS2_GEN_004) ────────────────────────────
+    // schema_format_version guard (CS2_GEN_004)
     //
     // gameevents_schema.json carries the same header key as cs2_schema.json and
     // moved to 2.0 in the same cutover. Guarded independently so a future drift
@@ -278,7 +274,7 @@ public class GameEventsModelTests
                 """));
 
         await Assert.That(ex.Message).Contains("3.0");
-        await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
+        await Assert.That(ex.Message).Contains("docs/SCHEMA-FORMATS.md");
     }
 
     /// <summary>A 2.0 game-events schema parses, with field types unchanged from 1.x.</summary>

@@ -49,7 +49,7 @@ internal static class Descriptors
         GeneratorDiagnosticSeverity.Error,
         "Upstream schema declares schema_format_version {0}, but this generator supports {1}. "
         + "The schema shape changed and the generator has not been migrated — see "
-        + "docs/upstream/schematracker-migration.md for the breaking surface and the upstream blockers.");
+        + "docs/SCHEMA-FORMATS.md for what moved between the formats.");
 
     // Raised when a consumer-supplied game-event overrides file is present but
     // unusable. Reported rather than ignored: silently falling back to the
@@ -140,7 +140,7 @@ internal static class Descriptors
         "Schema Lens tracks '{0}', which does not resolve in the current schema: {1}");
 
     // A rename (or moveSubService) retired a path that the current schema
-    // declares AGAIN.
+    // declares again.
     //
     // Its own id rather than folding into CS2_GEN_010, for the same reason
     // CS2_GEN_008 is not CS2_GEN_007: this is the self-retiring shape. The
@@ -148,7 +148,7 @@ internal static class Descriptors
     // rename recorded it — and now upstream has re-grown that name, so the
     // recorded history no longer describes the world. Nothing is "wrong" in
     // the file; it has been overtaken, and the response is to revisit the
-    // migration (usually: the re-grown field is a NEW field that needs its own
+    // migration (usually: the re-grown field is a new field that needs its own
     // addField, and the old-name alias must go). A distinct id lets tooling
     // and maintainers recognise the case on sight.
     internal static readonly GeneratorDiagnostic LensRenameSuperseded = new(
@@ -160,9 +160,9 @@ internal static class Descriptors
     // tracked (addField) or acknowledged (ignoreField).
     //
     // This is the tripwire that makes a Valve patch touching a covered class
-    // FAIL CI instead of shipping a stale Lens. Without it, staleness is
+    // fail CI instead of shipping a stale Lens. Without it, staleness is
     // one-sided: CS2_GEN_010 catches names the schema dropped, but a field the
-    // schema ADDED simply doesn't exist as far as the Lens is concerned, and
+    // schema added simply doesn't exist as far as the Lens is concerned, and
     // "we never looked at it" is indistinguishable from "we chose not to track
     // it". The gate forces every new field through a human decision, and
     // ignoreField exists precisely so that decision can be "no, deliberately".
@@ -176,7 +176,7 @@ internal static class Descriptors
         + "Track it with addField or acknowledge it with ignoreField — a covered class "
         + "must never drift past the Lens unremarked.");
 
-    // A `schema-lens/` migration file is present but unusable — malformed
+    // A `schema-lens/` migration file is present but unusable: malformed
     // JSON, an unknown op, a key from the consumer's side of the §3 split, an
     // id that disagrees with its filename, or an op that does not apply
     // cleanly during replay. Same reasoning as CS2_GEN_007: continuing would
@@ -191,7 +191,7 @@ internal static class Descriptors
     // state at that point in history.
     //
     // The hash is the author's signature over the curated content, so a
-    // mismatch means the file changed after it was signed — hand-edited,
+    // mismatch means the file changed after it was signed: hand-edited,
     // merge-mangled, or replayed by an implementation that disagrees about the
     // canonical form. All are worth stopping the build for. The deliberate
     // exception is the authoring flow: a brand-new migration declares the
@@ -215,8 +215,6 @@ internal static class Descriptors
     // CUtlVectorSIMDPaddedVector ships without an `inner` at all. Those are C#
     // projection decisions, and the discriminator only describes C++ template
     // arity. Reporting them would train people to ignore this id.
-    //
-    // Error, and it fires zero times. That is the point.
     //
     // It shipped as a Warning describing a live defect, which is now repaired: the
     // count went 10 -> 0 when classification moved to the bare template name. A
@@ -275,10 +273,10 @@ internal static class Descriptors
     // nothing did, and the failure is the quiet kind: a consumer routing reads
     // by path resolves the canonical spelling and silently ignores the alias,
     // while the aliased ordinal's candidate walk probes the colliding spelling
-    // and can read a DIFFERENT field's storage. Readable-wrong, not loud —
-    // DemoViewer.NET named this gate load-bearing for their by-path routing
-    // (SDK#30), which is why it is an error here rather than a startup check
-    // in someone else's process.
+    // and can read a different field's storage. The failure is readable-wrong
+    // rather than loud. DemoViewer.NET named this gate load-bearing for their
+    // by-path routing (SDK#30), which is why it is an error here rather than a
+    // startup check in someone else's process.
     internal static readonly GeneratorDiagnostic AliasConflictAcrossChain = new(
         "CS2_GEN_017",
         GeneratorDiagnosticSeverity.Error,

@@ -10,8 +10,7 @@ namespace CS2_OpenDev.Sdk.Generator.Tests;
 
 public class SchemaModelTests
 {
-    // ── Type-category dispatch ───────────────────────────────────────────────
-
+    // Type-category dispatch
     /// <summary>Dispatches <c>category: "builtin"</c> JSON into a <see cref="BuiltinType"/> carrying the primitive name.</summary>
     [Test]
     public async Task Parse_BuiltinType()
@@ -176,8 +175,7 @@ public class SchemaModelTests
         await Assert.That(ut.Category).IsEqualTo("future_category");
     }
 
-    // ── Class-level shape ────────────────────────────────────────────────────
-
+    // Class-level shape
     /// <summary>Reads top-level class metadata (size, alignment, abstract flag, parents) into the <see cref="ClassModel"/>.</summary>
     [Test]
     public async Task Parse_ClassWithParents_AndAbstract_AndAlignment()
@@ -219,8 +217,7 @@ public class SchemaModelTests
         await Assert.That(cls.Parents.Length).IsEqualTo(0);
     }
 
-    // ── Enum-level shape ─────────────────────────────────────────────────────
-
+    // Enum-level shape
     /// <summary>Reads enum-level <c>flags</c> and <c>storage_size</c> plus the full member list with values.</summary>
     [Test]
     public async Task Parse_Enum_FlagsAndStorageSize()
@@ -248,8 +245,7 @@ public class SchemaModelTests
         await Assert.That(en.Members[2].Value).IsEqualTo(2L);
     }
 
-    // ── Metadata round-trip into the model ───────────────────────────────────
-
+    // Metadata round-trip into the model
     /// <summary>Reads field-level <c>metadata</c> entries (with optional values) into <c>FieldModel.Metadata</c>.</summary>
     [Test]
     public async Task Parse_FieldMetadata_IsCaptured()
@@ -300,8 +296,7 @@ public class SchemaModelTests
         await Assert.That(md[0].Value).IsEqualTo("first");
     }
 
-    // ── Empty / edge inputs ──────────────────────────────────────────────────
-
+    // Empty / edge inputs
     /// <summary>An empty <c>{}</c> document yields empty <c>Classes</c> and <c>Enums</c> arrays without throwing.</summary>
     [Test]
     public async Task Parse_EmptyDocument_ReturnsEmptyArrays()
@@ -325,7 +320,7 @@ public class SchemaModelTests
         await Assert.That(root.Classes.Length).IsEqualTo(1);
     }
 
-    // ── schema_format_version guard (CS2_GEN_004) ────────────────────────────
+    // schema_format_version guard (CS2_GEN_004)
     //
     // Upstream moved to format 2.0 on 2026-08-06, which reshaped every record
     // (numerics became JSON strings, `category` uppercased, the namespace key
@@ -344,7 +339,7 @@ public class SchemaModelTests
                 """));
 
         await Assert.That(ex.Message).Contains("3.0");
-        await Assert.That(ex.Message).Contains("docs/upstream/schematracker-migration.md");
+        await Assert.That(ex.Message).Contains("docs/SCHEMA-FORMATS.md");
         // The supported set is interpolated, and joining the bare majors used to
         // render "supports 1/2.x only" — which reads as a fraction. Assert the
         // rendered text, not just that a message came out.
@@ -389,7 +384,7 @@ public class SchemaModelTests
         await Assert.That(root.Classes.Length).IsEqualTo(1);
     }
 
-    // ── schema 2.0 record shape ──────────────────────────────────────────────
+    // schema 2.0 record shape
     //
     // These sit alongside the 1.x tests above rather than replacing them: both
     // shapes are live. The pinned submodule serves 1.1 and Docs publishes 2.0,

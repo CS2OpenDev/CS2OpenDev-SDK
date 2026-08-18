@@ -8,10 +8,9 @@ than left to whichever downstream step happens to break first:
 2. The staged `.proto` surface has not shrunk without `version.json` moving.
 3. The emitted C# surface has not lost a type or a member without the same.
 
-They arrived years apart in spirit and days apart in fact, and they share a
-lesson: the cron bumps, regenerates, commits, pushes and publishes unattended, so
-anything that must not ship has to be a hard failure *before* the regen, not a
-review item after it.
+The three share a lesson: the cron bumps, regenerates, commits, pushes and
+publishes unattended, so anything that must not ship has to be a hard failure
+*before* the regen, not a review item after it.
 
 Why the first condition exists
 ------------------------------
@@ -69,7 +68,7 @@ type change is reported loudly and proceeds; a removal, which has no benign
 reading, withholds. `scripts/sdk_surface.py` carries the surface model, the rest
 of that reasoning, and an explicit list of what a lexical model cannot see.
 
-The acknowledgement for this one is the **root** `version.json`, not a file under
+The acknowledgement for this one is the root `version.json`, not a file under
 `src/CS2OpenDev.Sdk/` -- there isn't one. The root file's
 `"pathFilters": [":/src/CS2OpenDev.Sdk/"]` is what makes it this package's
 version source, and it is the same file a human edits to cut a major.
@@ -249,8 +248,8 @@ SELFTEST_CASES = [
 def proto_selftest() -> int:
     """Replay known transitions tag-to-tag and assert the verdicts.
 
-    Needs no worktree: both sides come out of git. Cheap enough to run on every
-    PR, which is the point — a gate nobody exercises is a gate nobody trusts.
+    Needs no worktree: both sides come out of git, and it is cheap enough to run
+    on every PR.
     """
     global _ANNOTATE
     _ANNOTATE = False
@@ -430,8 +429,8 @@ def check_sdk_surface(baseline: str | None = None) -> int:
 #
 # The first case is counterfactual, and has to be. No released CS2OpenDev.Sdk tag
 # pair removes API without an acknowledging bump, so the only way to prove the
-# gate fires is to replay a real removal against the version that did NOT move.
-# That is the incident shape — the removal is real, only the acknowledgement is
+# gate fires is to replay a real removal against the version that did not move.
+# That is the incident shape: the removal is real, only the acknowledgement is
 # imagined away.
 SDK_SELFTEST_CASES = [
     ("CS2OpenDev.Sdk/v4.1.5", "CS2OpenDev.Sdk/v5.0.1", "4.1", "4.1", 1,
@@ -587,7 +586,7 @@ def check_schema_readiness() -> int:
         f"in schema {declared}. Without it the missing records fall back to "
         f"`module` — the binary — and collapse into a single namespace, which is "
         f"a breaking change for every consumer. Blocked on {ISSUE}. "
-        f"See docs/upstream/schematracker-migration.md."
+        f"See docs/SCHEMA-FORMATS.md."
     )
 
 

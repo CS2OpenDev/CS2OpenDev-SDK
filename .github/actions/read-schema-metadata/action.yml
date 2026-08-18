@@ -67,12 +67,12 @@ runs:
         # header the sed above missed, the jq fallback read the walker identity,
         # nothing was empty, and the action exited 0 having produced
         # `+cs.hl2sdk-cs2/5f891c90…` — slashes and all — as a SemVer 2 build
-        # metadata identifier. Anything non-numeric here is a header shape we
-        # have not been taught to read, and guessing is worse than stopping.
+        # metadata identifier. Anything non-numeric here is a header shape this
+        # action has not been taught to read, so it stops.
         if ! printf '%s' "$BUILD" | grep -qE '^[0-9]+$'; then
           echo "::error::No numeric build identity in $SCHEMA_PATH header." \
                "Read '$BUILD' from build_id; the header must carry it." \
-               "See docs/upstream/schematracker-migration.md."
+               "See docs/SCHEMA-FORMATS.md."
           exit 1
         fi
 
