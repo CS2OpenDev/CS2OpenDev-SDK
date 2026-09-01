@@ -128,10 +128,15 @@ This is a lexical model of the emitted source, not a compiler and not
 - The emitter's formatting. Declarations are found by indentation and one
   member per line, which is safe because this tree is generated and would not be
   safe on hand-written C#. A reformat of the emitter is invisible to the compiler
-  and would blind this model. That failure is why `SELFTEST_CASES` in
-  `check-migration-readiness.py` asserts the 4.1 -> 5.0 *counts* and not just the
-  verdict: a parser that quietly stopped seeing properties would still return a
-  clean diff, and only a case that knows the right number catches it.
+  and would blind this model -- and a blind model returns a clean diff and a
+  green verdict, which is the worst way for a gate to fail.
+
+  `SDK_SELFTEST_SHAPE` in `check-migration-readiness.py` catches a parser that
+  stops seeing properties, but only against its own fixture, so it cannot see an
+  emitter reformat at all. `SDK_SURFACE_FLOOR` is the one that can: it checks the
+  size of the live extraction inside the gate itself, on every run. Until
+  2026-09-01 this job belonged to a count pinned against the 4.1 -> 5.0 tags,
+  which worked until those tags were deleted.
 
 Member *reordering* is invisible, and that one is correct rather than a
 limitation -- it is precisely what a surface model buys over a text diff.
@@ -478,9 +483,9 @@ def surface_from_ref(ref: str, root: str = SDK_ROOT) -> Surface:
     """The surface as of a git ref. Raises CalledProcessError if the ref is absent.
 
     One `git cat-file --batch` for the whole tree, rather than the proto gate's
-    `git show` per file. That gate reads ~40 files; this one reads 4,616, twice
-    per comparison and four times over in the self-test, and a process spawn per
-    file turns a two-second check into a two-minute one.
+    `git show` per file. That gate reads ~40 files; this one reads 4,616 on each
+    side of every comparison, and a process spawn per file turns a two-second
+    check into a two-minute one.
     """
     listing = subprocess.run(
         ["git", "ls-tree", "-r", ref, "--", root],
