@@ -59,8 +59,16 @@ permissions:
   # them, so a caller that omits this makes the push fail with a 403.
   packages: write
   # Required to mint the OIDC token NuGet/login exchanges for a short-lived
-  # NuGet.org API key. Same caller rule as above: only release.yml grants it,
-  # so the scheduled path could not reach NuGet.org even if it set the input.
+  # NuGet.org API key. Same caller rule as above, and it bites harder here,
+  # because this is declared unconditionally while only one caller wanted it:
+  # withholding it in check-upstream.yml did not confine that path to GitHub
+  # Packages, it made the whole workflow fail to load (`startup_failure`, no
+  # jobs, 70 consecutive scheduled runs). Every caller must grant it.
+  #
+  # What confines NuGet.org to the release path is the `nuget-org` input, which
+  # gates both the login step and the push step below. A permission cannot do
+  # that job: it is checked when the run loads, so declining it takes the whole
+  # workflow down rather than one step.
   id-token: write
 
 jobs:
@@ -321,7 +329,15 @@ jobs:
         # Either key source enables the push: the legacy NUGET_API_KEY secret,
         # or the short-lived trusted-publishing key minted above (empty when
         # the login step was skipped).
-        if: (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '') && steps.pkg.outputs.prerelease == 'false'
+        #
+        # `inputs.nuget-org` gates this as well as the login step, and that is
+        # load-bearing rather than belt-and-braces. Without it the legacy secret
+        # alone was enough, and check-upstream.yml forwards that secret — so the
+        # unattended four-hourly cron would have made irreversible NuGet.org
+        # publishes the moment anyone set NUGET_API_KEY, which is not what
+        # either workflow's comments claimed. The repository has no secrets set
+        # today, so this closes the hole before it opens rather than after.
+        if: inputs.nuget-org && (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '') && steps.pkg.outputs.prerelease == 'false'
         # The `.nupkg` and `.snupkg` are pushed as two explicit calls rather
         # than one wildcard. A glob does not literally match `.snupkg`, and
         # relying on the client auto-pairing the adjacent symbols package is
@@ -409,9 +425,15 @@ jobs:
         # that the package reached GitHub Packages, so it must not fire when
         # that push was skipped (prerelease) or has not yet run. The prerelease
         # case is covered by the separate notice above.
-        if: env.NUGET_API_KEY == '' && steps.nuget-login.outputs.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
+        #
+        # It has to negate the whole push condition, not just the key half.
+        # Reading only the keys, this stayed silent on the scheduled path as
+        # soon as a NUGET_API_KEY existed — a run that deliberately published
+        # nothing to NuGet.org and said nothing about it, which is the exact
+        # shape of silence the step was added to break.
+        if: "!(inputs.nuget-org && (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '')) && steps.pkg.outputs.prerelease == 'false'"
         run: |
-          echo "::warning::No NuGet.org key was available — ${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. NuGet.org publishing runs only on the release path, via the nuget-org input and the Trusted Publishing policy, or via the legacy NUGET_API_KEY secret."
+          echo "::warning::${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. NuGet.org publishing runs only on the release path (the nuget-org input), and needs either the Trusted Publishing policy or the legacy NUGET_API_KEY secret."
 
       - name: Create GitHub Release
         # Gated on a stable version only — a prerelease build would otherwise

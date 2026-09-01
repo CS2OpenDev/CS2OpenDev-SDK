@@ -93,26 +93,33 @@ jobs:
           python3 scripts/check-release-wiring.py
 
       - name: Self-test the proto surface gate
-        # Replays the 3.0.6 -> 3.0.7 incident and its correction out of git, and
-        # asserts the gate fires on one and not the other. A gate that silently
-        # stopped detecting anything would otherwise look identical to a clean
-        # run forever.
+        # Replays the 3.0.7 shape — a top-level type gone, survivors down a field
+        # number — and asserts the gate fires on it and not on the same removal
+        # under an acknowledging bump. A gate that silently stopped detecting
+        # anything would otherwise look identical to a clean run forever.
+        #
+        # The cases were the real 3.0.6/3.0.7 tags until those tags stopped
+        # existing, which turned this step red on every push from 2026-08-18 and
+        # is the reason it now runs on fixture text. Tags are an input like any
+        # other, and this one was mutable by anyone retagging a release.
         run: python3 scripts/check-migration-readiness.py --selftest proto
 
       - name: Self-test the SDK surface gate
-        # Same argument, one step further. The verdict cases replay 4.1.5 -> 5.0.1
-        # twice: once against the version pair that actually shipped, which must
-        # pass, and once against a counterfactual unchanged 4.1, which must fail.
-        # No released CS2OpenDev.Sdk tag pair removes API unacknowledged, so the
-        # counterfactual is the only way to prove the gate fires at all.
+        # Same argument, one step further, and the same move off deleted tags —
+        # here 4.1.5 and 5.0.1. Three verdict cases plus the parse shape and the
+        # diff counts: a removal under an unchanged version must fail, the same
+        # removal under a bump must pass, and the 5.0 repair shape (property types
+        # moving, members arriving, nothing removed) must pass.
         #
-        # It also pins the counts — 1,923 property type changes across 820 classes,
-        # 760 types removed — against the numbers docs/MIGRATION-5.0.md was built
-        # from by a different method. That is the part that matters most: the C#
-        # surface is extracted lexically, so an emitter reformat that the compiler
-        # would not notice could blind the extractor, and an extractor that sees
-        # nothing produces a clean diff and a green verdict forever. Only a case
-        # that knows the right number catches that.
+        # The counterfactual is still the load-bearing one. No CS2OpenDev.Sdk
+        # release removes API unacknowledged, so holding the version still across
+        # a removal is the only way to prove the gate fires at all.
+        #
+        # What this step no longer does is watch the emitter. Pinned counts on
+        # fixture text cannot notice a reformat that blinds a lexical extractor,
+        # because the fixture does not change when the emitter does. That job is
+        # SDK_SURFACE_FLOOR's, inside the gate proper — which also means it now
+        # covers the unattended cron, where these self-tests have never run.
         run: python3 scripts/check-migration-readiness.py --selftest sdk
 
       - name: Regenerate SDK + game-event factories into a clean tree

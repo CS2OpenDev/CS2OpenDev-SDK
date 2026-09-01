@@ -87,7 +87,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import sdk_surface  # noqa: E402
-from proto_surface import diff, surface_from_disk, surface_from_ref  # noqa: E402
+from proto_surface import (  # noqa: E402
+    diff, surface_from_disk, surface_from_ref, surface_of_text,
+)
 
 SCHEMA = "upstream/docs/generated/downstream-codegen-schemas/cs2_schema.json"
 ISSUE = "https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker/issues/1"
@@ -102,6 +104,25 @@ SDK_DIR = Path(sdk_surface.SDK_ROOT)
 SDK_VERSION_JSON = "version.json"
 SDK_TAG_PREFIX = "CS2OpenDev.Sdk/v"
 SDK_SURFACE_ISSUE = "https://github.com/CS2OpenDev/CS2OpenDev-SDK/issues/32"
+
+# Both gates read their inputs with a lexical model, and a lexical model's worst
+# failure is not a wrong answer, it is no answer: a regex that stops matching
+# yields an empty surface, an empty surface removes nothing, and the gate returns
+# 0 forever while reporting "no removals" in a tone of complete confidence.
+#
+# The self-tests below cannot catch that. They run on fixture text, and fixture
+# text does not change when the emitter's formatting does — which is precisely
+# the event that would blind the extractor. So the live gates check the size of
+# what they just read, against the tree they are actually about to ship.
+#
+# These are not shrink thresholds. `_verdict` and `_sdk_verdict` are the shrink
+# check, and they compare against a released tag with a version bump as the
+# discharge. The floors sit an order of magnitude below the real surfaces (7,708
+# SDK types, 352 proto types as of 0.9) and answer a cruder question: did we read
+# the tree at all. A prune large enough to approach them is a MAJOR that the
+# gates proper will already be refusing.
+SDK_SURFACE_FLOOR = 1000
+PROTO_SURFACE_FLOOR = 50
 
 
 # Annotations are suppressed while the self-test runs. Its expected-failure case
@@ -118,6 +139,29 @@ def fail(msg: str) -> int:
 
 def note(msg: str) -> None:
     print(f"::notice::{msg}" if _ANNOTATE else f"       {msg}")
+
+
+def _floor_check(kind: str, count: int, floor: int, where: str) -> int:
+    """0 when an extraction is big enough to be believable, 1 when it is not.
+
+    Checked on both sides of every live comparison, not just the working tree.
+    Blindness that lands on the baseline alone reads as a pile of additions and
+    passes just as quietly as blindness on the disk side reads as removals — and
+    blindness on both sides is the silent one, because empty against empty is a
+    clean diff.
+    """
+    if count >= floor:
+        return 0
+    return fail(
+        f"{kind} surface extraction returned {count} type(s) from {where}, below "
+        f"the floor of {floor}. This is a claim about the extractor, not about "
+        f"the surface: at this size the model has almost certainly stopped "
+        f"matching the sources rather than the sources having almost entirely "
+        f"gone away. Check the emitted formatting against the patterns in "
+        f"scripts/{'sdk' if kind == 'SDK' else 'proto'}_surface.py before "
+        f"trusting any verdict from this run — a blind extractor reports 'no "
+        f"removals' for everything."
+    )
 
 
 def _latest_tag(prefix: str) -> str | None:
@@ -223,66 +267,167 @@ def check_proto_surface(baseline: str | None = None) -> int:
     except (subprocess.CalledProcessError, json.JSONDecodeError) as exc:
         return fail(f"Proto surface: could not read the baseline at {baseline}: {exc}")
 
+    after = surface_from_disk(PROTOS_DIR)
+    # `max`, not `or`: both sides get reported. Same reason `main` runs all three
+    # conditions — one unattended run should say everything it knows.
+    if max(
+        _floor_check("Proto", len(before), PROTO_SURFACE_FLOOR, baseline),
+        _floor_check("Proto", len(after), PROTO_SURFACE_FLOOR, f"{PROTOS_DIR}/"),
+    ):
+        return 1
+
     return _verdict(
         baseline,
         before,
-        surface_from_disk(PROTOS_DIR),
+        after,
         baseline_version,
         _declared_version(Path(PROTOS_VERSION_JSON).read_text(encoding="utf-8")),
     )
 
 
-# The incident this gate exists for, replayed from the tags it happened on. Both
-# directions matter: catching the removal proves the gate fires, and passing the
-# acknowledged version bump proves it does not simply refuse every shrink.
-SELFTEST_CASES = [
-    ("CS2OpenDev.Protos/v3.0.6", "CS2OpenDev.Protos/v3.0.7", 1,
-     "188 types removed under an unchanged 3.0 — the original incident"),
-    ("CS2OpenDev.Protos/v3.0.6", "CS2OpenDev.Protos/v4.1.1", 0,
+# The incident this gate exists for, reduced to the two shapes that make it: a
+# top-level type that disappears, and a surviving type that loses a field number.
+#
+# These used to be the real 3.0.6 -> 3.0.7 tags. They are fixtures now because
+# those tags no longer exist — the version line restarted at 0.9 and the old tags
+# went with it, which turned every self-test case into "could not read the ref"
+# and painted CI red on every push from 2026-08-18 onward. That is worth stating
+# plainly: a self-test anchored on release tags is a self-test that any retag,
+# version restart or history rewrite can silently disarm, and the tags are the
+# one input to this file nobody thinks of as an input.
+#
+# What is lost by moving off the tags is the tie to a transition that really
+# happened. What is kept is the part that does the work — proving the rule fires
+# on a removal and does not fire on an acknowledged one — and it is now kept
+# permanently rather than until the next retag. The tie to reality moved to the
+# floors above, which watch the live tree on every run instead.
+_PROTO_BEFORE = """\
+syntax = "proto2";
+
+message CMsgAlpha {
+  optional int32 first = 1;
+  optional string second = 2;
+  optional bool third = 3;
+}
+
+message CMsgBeta {
+  optional int32 only = 1;
+}
+
+enum EGamma {
+  GAMMA_NONE = 0;
+  GAMMA_ONE = 1;
+}
+"""
+
+# CMsgBeta gone entirely, CMsgAlpha down a field, EGamma down a value: one
+# removal and two shrinks, the 3.0.7 shape in miniature.
+_PROTO_REMOVED = """\
+syntax = "proto2";
+
+message CMsgAlpha {
+  optional int32 first = 1;
+  optional string second = 2;
+}
+
+enum EGamma {
+  GAMMA_NONE = 0;
+}
+"""
+
+# Everything kept, one message and one field added. Additions never block.
+_PROTO_GREW = """\
+syntax = "proto2";
+
+message CMsgAlpha {
+  optional int32 first = 1;
+  optional string second = 2;
+  optional bool third = 3;
+  optional float fourth = 4;
+}
+
+message CMsgBeta {
+  optional int32 only = 1;
+}
+
+message CMsgDelta {
+  optional int32 fresh = 1;
+}
+
+enum EGamma {
+  GAMMA_NONE = 0;
+  GAMMA_ONE = 1;
+}
+"""
+
+PROTO_SELFTEST_CASES = [
+    (_PROTO_BEFORE, _PROTO_REMOVED, "3.0", "3.0", 1,
+     "a type removed and two shrunk under an unchanged 3.0 — the 3.0.7 shape"),
+    (_PROTO_BEFORE, _PROTO_REMOVED, "3.0", "4.1", 0,
      "the same removals, acknowledged by 3.0 -> 4.1"),
-    ("CS2OpenDev.Protos/v3.0.7", "CS2OpenDev.Protos/v4.1.1", 0,
-     "renumbering only, no surface change"),
+    (_PROTO_BEFORE, _PROTO_GREW, "3.0", "3.0", 0,
+     "additions only, no version move needed"),
 ]
+
+# What the extractor must see in the fixture for the verdicts above to mean
+# anything. Without this a `surface_of_text` that returned {} would still satisfy
+# the two passing cases — empty against empty removes nothing — and only the
+# failing case would notice. Pinning the shape makes partial blindness (types
+# still matched, field numbers no longer) fail here rather than pass everywhere.
+PROTO_SELFTEST_SHAPE = {
+    "CMsgAlpha": [1, 2, 3],
+    "CMsgBeta": [1],
+    "EGamma": [0, 1],
+}
 
 
 def proto_selftest() -> int:
-    """Replay known transitions tag-to-tag and assert the verdicts.
+    """Assert the verdict rule on fixture text.
 
-    Needs no worktree: both sides come out of git, and it is cheap enough to run
-    on every PR.
+    Needs no worktree, no tags and no build, so it stays cheap enough to run on
+    every PR and cannot be disarmed by anything that happens to the tag namespace.
     """
     global _ANNOTATE
     _ANNOTATE = False
     failures = 0
-    for before_ref, after_ref, expected, why in SELFTEST_CASES:
-        try:
-            got = _verdict(
-                before_ref,
-                surface_from_ref(before_ref),
-                surface_from_ref(after_ref),
-                _version_at(before_ref, PROTOS_VERSION_JSON),
-                _version_at(after_ref, PROTOS_VERSION_JSON),
-            )
-        except subprocess.CalledProcessError as exc:
-            _ANNOTATE = True
-            print(f"::error::Self-test could not read {before_ref}..{after_ref}: {exc}")
-            _ANNOTATE = False
-            failures += 1
-            continue
+
+    got_shape = {n: sorted(v) for n, v in surface_of_text(_PROTO_BEFORE).items()}
+    if got_shape == PROTO_SELFTEST_SHAPE:
+        print(f"  ok   shape  {len(got_shape)} type(s) parsed from the fixture")
+    else:
+        _ANNOTATE = True
+        print(
+            f"::error::Self-test: the proto extractor read {got_shape} from the "
+            f"fixture, want {PROTO_SELFTEST_SHAPE}. The verdicts below are "
+            f"meaningless until this matches — a model that sees nothing reports "
+            f"no removals."
+        )
+        _ANNOTATE = False
+        failures += 1
+
+    for before_text, after_text, before_v, after_v, expected, why in PROTO_SELFTEST_CASES:
+        got = _verdict(
+            f"fixture {before_v}",
+            surface_of_text(before_text),
+            surface_of_text(after_text),
+            before_v,
+            after_v,
+        )
         verdict = "fail" if got else "pass"
         want = "fail" if expected else "pass"
         if got == expected:
-            print(f"  ok   {verdict:4}  {before_ref} -> {after_ref}  ({why})")
+            print(f"  ok   {verdict:4}  {before_v} -> {after_v}  ({why})")
         else:
             _ANNOTATE = True
-            print(f"::error::Self-test: {before_ref} -> {after_ref} gave {verdict}, want {want} ({why})")
+            print(f"::error::Self-test: {before_v} -> {after_v} gave {verdict}, want {want} ({why})")
             _ANNOTATE = False
             failures += 1
 
     _ANNOTATE = True
     if failures:
         return fail(f"Proto surface gate self-test: {failures} case(s) wrong.")
-    print(f"Proto surface gate self-test: {len(SELFTEST_CASES)}/{len(SELFTEST_CASES)} cases correct.")
+    total = len(PROTO_SELFTEST_CASES) + 1
+    print(f"Proto surface gate self-test: {total}/{total} cases correct.")
     return 0
 
 
@@ -413,86 +558,214 @@ def check_sdk_surface(baseline: str | None = None) -> int:
     except (subprocess.CalledProcessError, json.JSONDecodeError) as exc:
         return fail(f"SDK surface: could not read the baseline at {baseline}: {exc}")
 
+    after = sdk_surface.surface_from_disk(SDK_DIR)
+    if max(
+        _floor_check("SDK", len(before), SDK_SURFACE_FLOOR, baseline),
+        _floor_check("SDK", len(after), SDK_SURFACE_FLOOR, f"{SDK_DIR}/"),
+    ):
+        return 1
+
     return _sdk_verdict(
         baseline,
         before,
-        sdk_surface.surface_from_disk(SDK_DIR),
+        after,
         baseline_version,
         _declared_version(Path(SDK_VERSION_JSON).read_text(encoding="utf-8")),
     )
 
 
-# The 4.1 -> 5.0 transition, whose right answer is known independently: 1,923
-# property type changes across 820 classes is the count `docs/MIGRATION-5.0.md`
-# was built from, by a different method (a diff of property declarations out of
-# `git diff`). Two cases, plus the counts.
+# The 4.1 -> 5.0 shapes, in fixture form: stub classes dropped wholesale, and
+# properties whose declared types moved because the emitter learned to resolve
+# them. Same reasoning as the proto fixtures above — these were the v4.1.5 and
+# v5.0.1 tags until the version line restarted at 0.9 and took them with it.
 #
-# The first case is counterfactual, and has to be. No released CS2OpenDev.Sdk tag
-# pair removes API without an acknowledging bump, so the only way to prove the
-# gate fires is to replay a real removal against the version that did not move.
-# That is the incident shape: the removal is real, only the acknowledgement is
-# imagined away.
+# The removal case is counterfactual and has to be, exactly as it was against the
+# tags. No CS2OpenDev.Sdk release removes API without an acknowledging bump, so
+# the only way to prove the gate fires is to hold the version still across a real
+# removal shape: the removal is real, only the acknowledgement is imagined away.
+_SDK_BEFORE = """\
+namespace CS2OpenSchema.Fixture;
+
+public class CAlpha
+{
+    public float? Health { get; set; }
+    public string[] Names { get; set; }
+    public int Count { get; set; }
+}
+
+public class CBeta
+{
+    public bool Enabled { get; set; }
+}
+
+public enum EGamma : uint
+{
+    None = 0,
+    One = 1,
+}
+
+public static class SchemaNames
+{
+    public static class CAlpha
+    {
+        public const string Health = "m_flHealth";
+    }
+}
+"""
+
+# CBeta gone, CAlpha.Count gone: one type and one member removed. The 5.0 stub
+# drop in miniature, and the only case in this file that must come back `fail`.
+_SDK_REMOVED = """\
+namespace CS2OpenSchema.Fixture;
+
+public class CAlpha
+{
+    public float? Health { get; set; }
+    public string[] Names { get; set; }
+}
+
+public enum EGamma : uint
+{
+    None = 0,
+    One = 1,
+}
+
+public static class SchemaNames
+{
+    public static class CAlpha
+    {
+        public const string Health = "m_flHealth";
+    }
+}
+"""
+
+# Nothing removed. Two properties change type, one type and one member arrive.
+# This is the 1,923-property half of the 5.0 repair: reported loudly, never
+# blocked, because blocking it would have blocked the repair.
+_SDK_RETYPED = """\
+namespace CS2OpenSchema.Fixture;
+
+public class CAlpha
+{
+    public CHandle<CBaseEntity> Health { get; set; }
+    public List<string> Names { get; set; }
+    public int Count { get; set; }
+    public int Added { get; set; }
+}
+
+public class CBeta
+{
+    public bool Enabled { get; set; }
+}
+
+public class CDelta
+{
+    public int Fresh { get; set; }
+}
+
+public enum EGamma : uint
+{
+    None = 0,
+    One = 1,
+}
+
+public static class SchemaNames
+{
+    public static class CAlpha
+    {
+        public const string Health = "m_flHealth";
+    }
+}
+"""
+
 SDK_SELFTEST_CASES = [
-    ("CS2OpenDev.Sdk/v4.1.5", "CS2OpenDev.Sdk/v5.0.1", "4.1", "4.1", 1,
-     "760 stub classes removed under an unchanged 4.1 — the 5.0 repair, unacknowledged"),
-    ("CS2OpenDev.Sdk/v4.1.5", "CS2OpenDev.Sdk/v5.0.1", None, None, 0,
+    (_SDK_BEFORE, _SDK_REMOVED, "4.1", "4.1", 1,
+     "a type and a member removed under an unchanged 4.1 — the 5.0 drop, unacknowledged"),
+    (_SDK_BEFORE, _SDK_REMOVED, "4.1", "5.0", 0,
      "the same removals, acknowledged by 4.1 -> 5.0"),
-    ("CS2OpenDev.Sdk/v5.0.1", "CS2OpenDev.Sdk/v5.1.0", None, None, 0,
-     "a release that removed nothing"),
+    (_SDK_BEFORE, _SDK_RETYPED, "4.1", "4.1", 0,
+     "property types changed and members added, nothing removed"),
 ]
 
-# Asserted separately from the verdicts, and this is the load-bearing half. The
-# verdict cases only prove the *rule* still works; they would pass unchanged if
-# the extractor silently stopped recognising properties, because an empty diff
-# removes nothing. Pinning the counts is what makes an emitter reformat — which
-# is invisible to the compiler and would blind the lexical model — show up as a
-# red step instead of a permanently green one.
-SDK_SELFTEST_COUNTS = (
-    "CS2OpenDev.Sdk/v4.1.5", "CS2OpenDev.Sdk/v5.0.1",
-    {"property type changes": 1923, "declaring types": 820,
-     "removed types": 760, "removed members": 0},
-)
+# Asserted separately from the verdicts, and this is still the load-bearing half.
+# The verdict cases only prove the *rule* works; they would pass unchanged if the
+# extractor stopped recognising properties, because an empty diff removes nothing
+# and two of the three cases expect a pass.
+#
+# What these counts no longer do is watch the emitter. Against the tags they were
+# a fixed point on real generated sources, so a formatting change that blinded the
+# lexical model moved them; against fixture text they cannot be, because the
+# fixture does not change when the emitter does. That job moved to
+# SDK_SURFACE_FLOOR, which checks the live tree on every run of the gate proper —
+# including the cron's, which never ran these self-tests at all.
+SDK_SELFTEST_COUNTS = [
+    (_SDK_BEFORE, _SDK_REMOVED, "removed",
+     {"property type changes": 0, "declaring types": 0,
+      "removed types": 1, "removed members": 1}),
+    (_SDK_BEFORE, _SDK_RETYPED, "retyped",
+     {"property type changes": 2, "declaring types": 1,
+      "removed types": 0, "removed members": 0}),
+]
+
+# The extractor's own reading of the fixture, pinned. Same argument as the proto
+# shape check: without it a `surface_of_text` returning {} satisfies both passing
+# verdict cases, and partial blindness — types still matched, properties no
+# longer — reads as a clean run.
+SDK_SELFTEST_SHAPE = {
+    "CS2OpenSchema.Fixture.CAlpha": ["Count", "Health", "Names"],
+    "CS2OpenSchema.Fixture.CBeta": ["Enabled"],
+    "CS2OpenSchema.Fixture.EGamma": ["None", "One"],
+    "CS2OpenSchema.Fixture.SchemaNames": [],
+    "CS2OpenSchema.Fixture.SchemaNames.CAlpha": ["Health"],
+}
 
 
 def sdk_selftest() -> int:
     global _ANNOTATE
     _ANNOTATE = False
     failures = 0
-    cache: dict[str, sdk_surface.Surface] = {}
 
-    def surface(ref: str) -> sdk_surface.Surface:
-        if ref not in cache:
-            cache[ref] = sdk_surface.surface_from_ref(ref)
-        return cache[ref]
+    got_shape = {
+        name: sorted(entry.members)
+        for name, entry in sdk_surface.surface_of_text(_SDK_BEFORE).items()
+    }
+    if got_shape == SDK_SELFTEST_SHAPE:
+        print(f"  ok   shape  {len(got_shape)} type(s) parsed from the fixture")
+    else:
+        _ANNOTATE = True
+        print(
+            f"::error::Self-test: the SDK extractor read {got_shape} from the "
+            f"fixture, want {SDK_SELFTEST_SHAPE}. The verdicts below are "
+            f"meaningless until this matches — a model that sees nothing reports "
+            f"no removals."
+        )
+        _ANNOTATE = False
+        failures += 1
 
-    for before_ref, after_ref, before_v, after_v, expected, why in SDK_SELFTEST_CASES:
-        try:
-            got = _sdk_verdict(
-                before_ref,
-                surface(before_ref),
-                surface(after_ref),
-                before_v if before_v is not None else _version_at(before_ref, SDK_VERSION_JSON),
-                after_v if after_v is not None else _version_at(after_ref, SDK_VERSION_JSON),
-            )
-        except subprocess.CalledProcessError as exc:
-            _ANNOTATE = True
-            print(f"::error::Self-test could not read {before_ref}..{after_ref}: {exc}")
-            _ANNOTATE = False
-            failures += 1
-            continue
+    for before_text, after_text, before_v, after_v, expected, why in SDK_SELFTEST_CASES:
+        got = _sdk_verdict(
+            f"fixture {before_v}",
+            sdk_surface.surface_of_text(before_text),
+            sdk_surface.surface_of_text(after_text),
+            before_v,
+            after_v,
+        )
         verdict = "fail" if got else "pass"
         want = "fail" if expected else "pass"
         if got == expected:
-            print(f"  ok   {verdict:4}  {before_ref} -> {after_ref}  ({why})")
+            print(f"  ok   {verdict:4}  {before_v} -> {after_v}  ({why})")
         else:
             _ANNOTATE = True
-            print(f"::error::Self-test: {before_ref} -> {after_ref} gave {verdict}, want {want} ({why})")
+            print(f"::error::Self-test: {before_v} -> {after_v} gave {verdict}, want {want} ({why})")
             _ANNOTATE = False
             failures += 1
 
-    before_ref, after_ref, want_counts = SDK_SELFTEST_COUNTS
-    try:
-        d = sdk_surface.diff(surface(before_ref), surface(after_ref))
+    counted = 0
+    for before_text, after_text, label, want_counts in SDK_SELFTEST_COUNTS:
+        d = sdk_surface.diff(
+            sdk_surface.surface_of_text(before_text),
+            sdk_surface.surface_of_text(after_text),
+        )
         retyped = sdk_surface.property_type_changes(d)
         got_counts = {
             "property type changes": len(retyped),
@@ -500,34 +773,36 @@ def sdk_selftest() -> int:
             "removed types": len(d.removed_types),
             "removed members": len(d.removed_members),
         }
-    except subprocess.CalledProcessError as exc:
-        _ANNOTATE = True
-        print(f"::error::Self-test could not read {before_ref}..{after_ref}: {exc}")
-        _ANNOTATE = False
-        failures += 1
-        got_counts = {}
-
-    for label, want in want_counts.items():
-        got = got_counts.get(label)
-        if got == want:
-            print(f"  ok   {want:5}  {label}  ({before_ref} -> {after_ref})")
-        else:
-            _ANNOTATE = True
-            print(
-                f"::error::Self-test: {before_ref} -> {after_ref} counted {got} "
-                f"{label}, want {want}. docs/MIGRATION-5.0.md is the independent "
-                f"source for these; a mismatch means the extractor stopped seeing "
-                f"part of the surface, not that the history changed."
-            )
-            _ANNOTATE = False
-            failures += 1
+        counted += len(want_counts)
+        failures += _count_cases(label, got_counts, want_counts)
 
     _ANNOTATE = True
-    total = len(SDK_SELFTEST_CASES) + len(want_counts)
+    total = len(SDK_SELFTEST_CASES) + counted + 1
     if failures:
         return fail(f"SDK surface gate self-test: {failures} case(s) wrong.")
     print(f"SDK surface gate self-test: {total}/{total} cases correct.")
     return 0
+
+
+def _count_cases(label: str, got_counts: dict, want_counts: dict) -> int:
+    """Compare one fixture's counts against its pins. Returns the failure count."""
+    global _ANNOTATE
+    failures = 0
+    for name, want in want_counts.items():
+        got = got_counts.get(name)
+        if got == want:
+            print(f"  ok   {want:5}  {name}  ({label} fixture)")
+        else:
+            _ANNOTATE = True
+            print(
+                f"::error::Self-test: the {label} fixture counted {got} {name}, "
+                f"want {want}. The fixture is fixed text, so a mismatch means the "
+                f"extractor or the diff changed what it sees — not that the input "
+                f"moved."
+            )
+            _ANNOTATE = False
+            failures += 1
+    return failures
 
 
 def selftest() -> int:

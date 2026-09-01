@@ -63,9 +63,11 @@ permissions:
   # Passed through to _pack-and-publish.yml for the GitHub Packages push.
   # A reusable workflow cannot elevate beyond what its caller grants.
   packages: write
-  # Passed through for the NuGet.org Trusted Publishing login. Deliberately
-  # granted here and not in check-upstream.yml: this is what confines
-  # NuGet.org publishing to the release path.
+  # Passed through for the NuGet.org Trusted Publishing login. Not what confines
+  # NuGet.org publishing to the release path — that is the `nuget-org` input
+  # this workflow sets and check-upstream.yml does not. Every caller of
+  # _pack-and-publish.yml has to grant this, because the callee declares it at
+  # workflow level and a caller that withholds it cannot start the run at all.
   id-token: write
 
 jobs:
