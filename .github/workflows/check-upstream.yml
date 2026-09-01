@@ -42,6 +42,19 @@ permissions:
   # GitHub Packages. Without this the reusable workflow's own `packages: write`
   # is capped away by this caller and the push fails with a 403.
   packages: write
+  # Granted because _pack-and-publish.yml declares it at workflow level, not
+  # because anything on this path mints an OIDC token. A called workflow may
+  # only hold or reduce its caller's permissions, and GitHub checks that when it
+  # loads the run — before any `if:` is evaluated. So a caller that omits a
+  # permission the callee declares does not get a skipped publish job, it gets
+  # `startup_failure` and no jobs at all, `refresh` included. That is what
+  # happened here: every scheduled run from 2026-08-18 to 2026-09-01 died in
+  # under a second and the upstream refresh never ran once.
+  #
+  # This does not put NuGet.org within the cron's reach. That is the `nuget-org`
+  # input, which this caller does not set and which now gates the push step as
+  # well as the login step; the permission alone mints nothing.
+  id-token: write
 
 jobs:
   refresh:
