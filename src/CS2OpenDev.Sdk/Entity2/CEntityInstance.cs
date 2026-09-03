@@ -32,7 +32,7 @@ public partial class CEntityInstance
     public CScriptComponent? CScriptComponent { get; set; }
 
     /// <summary>
-    ///     CEntityIdentity pointer — the entity's identity record (name, class, handle, flags).
+    ///     CEntityIdentity pointer: the entity's identity record (name, class, handle, flags).
     /// </summary>
     /// <remarks>
     ///     Native field <c>m_pEntity</c> at offset <c>0x10</c>.
