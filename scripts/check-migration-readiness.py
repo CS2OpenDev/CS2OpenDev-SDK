@@ -431,7 +431,11 @@ def proto_selftest() -> int:
     return 0
 
 
-def _sdk_report(before: sdk_surface.Surface, d: sdk_surface.SurfaceDiff) -> None:
+def _sdk_report(
+    before: sdk_surface.Surface,
+    hoisted: set[tuple[str, str]],
+    d: sdk_surface.SurfaceDiff,
+) -> None:
     """Say out loud everything that changed but is not being blocked.
 
     This half is the actual answer to issue #32. Withholding a removal was never
@@ -468,8 +472,17 @@ def _sdk_report(before: sdk_surface.Surface, d: sdk_surface.SurfaceDiff) -> None
         first = "; ".join(f"{n}: {b} -> {a}" for n, b, a in d.redeclared[:3])
         note(
             f"SDK surface: {len(d.redeclared)} type(s) changed declaration — a base "
-            f"list, an interface or an enum's underlying type. {first}. Inherited "
-            f"members are not expanded by this model, so check what moved with them."
+            f"list, an interface or an enum's underlying type. {first}."
+        )
+
+    if hoisted:
+        moved = "; ".join(f"{t}.{m}" for t, m in sorted(hoisted)[:6])
+        note(
+            f"SDK surface: {len(hoisted)} member(s) stopped being declared on their "
+            f"own type and are still inherited from a base: a hoist into an "
+            f"interposed class, which a consumer compiles against unchanged. {moved}"
+            + ("; …" if len(hoisted) > 6 else "")
+            + ". Reported, not blocked."
         )
 
     if d.added_types or d.added_members:
@@ -490,9 +503,13 @@ def _sdk_verdict(baseline, before, after, baseline_version, current_version) -> 
     itself against.
     """
     d = sdk_surface.diff(before, after)
-    _sdk_report(before, d)
+    # A member that moved onto an interposed base is still bindable on the type
+    # it left, so it is not a removal. Only the ones no base satisfies are.
+    hoisted = sdk_surface.inherited_removals(after, d.removed_members)
+    gone = [m for m in d.removed_members if m not in hoisted]
+    _sdk_report(before, hoisted, d)
 
-    if not sdk_surface.removes_api(d):
+    if not (d.removed_types or gone):
         note(
             f"SDK surface: no removals against {baseline} "
             f"({len(after)} public types, {sum(len(e.members) for e in after.values())} "
@@ -507,8 +524,8 @@ def _sdk_verdict(baseline, before, after, baseline_version, current_version) -> 
         if d.removed_types else ""
     )
     members = (
-        f"{len(d.removed_members)} member(s) removed from surviving types"
-        if d.removed_members else ""
+        f"{len(gone)} member(s) removed from surviving types"
+        if gone else ""
     )
     summary = " and ".join(p for p in (character, members) if p)
 
@@ -520,13 +537,21 @@ def _sdk_verdict(baseline, before, after, baseline_version, current_version) -> 
         )
         return 0
 
+    # The annotation truncates to stay readable, so the whole list goes to the
+    # log first. Without this the tail of a removal is unrecoverable after the
+    # fact: nothing else records it and the run is what you get.
+    for type_name in sorted(d.removed_types):
+        print(f"  removed type    {type_name}")
+    for type_name, member in gone:
+        print(f"  removed member  {type_name}.{member}")
+
     names = ", ".join(sorted(d.removed_types)[:6])
-    lost = "; ".join(f"{t}.{m}" for t, m in d.removed_members[:6])
+    lost = "; ".join(f"{t}.{m}" for t, m in gone[:6])
     return fail(
         f"SDK surface lost public API without a version bump. Against {baseline}: "
         + summary
         + (f" [{names}{', …' if len(d.removed_types) > 6 else ''}]" if d.removed_types else "")
-        + (f" [{lost}{'; …' if len(d.removed_members) > 6 else ''}]" if d.removed_members else "")
+        + (f" [{lost}{'; …' if len(gone) > 6 else ''}]" if gone else "")
         + f". {SDK_VERSION_JSON} still declares {current_version}, so this would publish "
         f"as a patch off git height — the shape that put a 188-type removal out as "
         f"CS2OpenDev.Protos 3.0.7. Removing public API is a MAJOR: bump the root "
@@ -678,6 +703,81 @@ public static class SchemaNames
 }
 """
 
+# CAlpha keeps nothing of its own. Its three members move onto an interposed
+# base and it inherits all of them, so every `CAlpha.M` a consumer wrote still
+# compiles. `diff` still counts three removals, by design: the model is
+# declaration-level and the verdict is what reads the base chain.
+_SDK_HOISTED = """\
+namespace CS2OpenSchema.Fixture;
+
+public class CAlphaBase
+{
+    public float? Health { get; set; }
+    public string[] Names { get; set; }
+    public int Count { get; set; }
+}
+
+public class CAlpha : CAlphaBase
+{
+}
+
+public class CBeta
+{
+    public bool Enabled { get; set; }
+}
+
+public enum EGamma : uint
+{
+    None = 0,
+    One = 1,
+}
+
+public static class SchemaNames
+{
+    public static class CAlpha
+    {
+        public const string Health = "m_flHealth";
+    }
+}
+"""
+
+# Build 25218825 in miniature: an interposed base takes one member up and the
+# other two are gone, replaced by a member under a different name. Identical
+# declaration-level counts to the fixture above and the opposite verdict, which
+# is the whole point of reading the chain rather than trusting the count.
+_SDK_HOISTED_PARTIAL = """\
+namespace CS2OpenSchema.Fixture;
+
+public class CAlphaBase
+{
+    public int Count { get; set; }
+    public int Mode { get; set; }
+}
+
+public class CAlpha : CAlphaBase
+{
+}
+
+public class CBeta
+{
+    public bool Enabled { get; set; }
+}
+
+public enum EGamma : uint
+{
+    None = 0,
+    One = 1,
+}
+
+public static class SchemaNames
+{
+    public static class CAlpha
+    {
+        public const string Health = "m_flHealth";
+    }
+}
+"""
+
 SDK_SELFTEST_CASES = [
     (_SDK_BEFORE, _SDK_REMOVED, "4.1", "4.1", 1,
      "a type and a member removed under an unchanged 4.1 — the 5.0 drop, unacknowledged"),
@@ -685,6 +785,10 @@ SDK_SELFTEST_CASES = [
      "the same removals, acknowledged by 4.1 -> 5.0"),
     (_SDK_BEFORE, _SDK_RETYPED, "4.1", "4.1", 0,
      "property types changed and members added, nothing removed"),
+    (_SDK_BEFORE, _SDK_HOISTED, "4.1", "4.1", 0,
+     "every member hoisted onto an interposed base, all still bindable"),
+    (_SDK_BEFORE, _SDK_HOISTED_PARTIAL, "4.1", "4.1", 1,
+     "one member hoisted, two gone with it: the hoist excuses only what a base satisfies"),
 ]
 
 # Asserted separately from the verdicts, and this is still the load-bearing half.
@@ -705,6 +809,12 @@ SDK_SELFTEST_COUNTS = [
     (_SDK_BEFORE, _SDK_RETYPED, "retyped",
      {"property type changes": 2, "declaring types": 1,
       "removed types": 0, "removed members": 0}),
+    (_SDK_BEFORE, _SDK_HOISTED, "hoisted",
+     {"property type changes": 0, "declaring types": 0,
+      "removed types": 0, "removed members": 3}),
+    (_SDK_BEFORE, _SDK_HOISTED_PARTIAL, "partial hoist",
+     {"property type changes": 0, "declaring types": 0,
+      "removed types": 0, "removed members": 3}),
 ]
 
 # The extractor's own reading of the fixture, pinned. Same argument as the proto

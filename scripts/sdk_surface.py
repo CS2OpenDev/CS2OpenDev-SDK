@@ -97,14 +97,15 @@ What it deliberately does not catch
 This is a lexical model of the emitted source, not a compiler and not
 `Microsoft.DotNet.ApiCompat` against two built assemblies. Known limits:
 
-- Inheritance is not expanded. A type's entry holds only what its own file
-  declares. 2,478 of the emitted types declare a base, and the members a derived
-  type inherits are never re-declared in its own file. The base class is
-  its own entry, so a member vanishing off a base *is* caught -- but it is
-  reported against the base, and a member moved from a base to a derived class
-  (or back) reads here as one removal plus one unrelated addition when nothing
-  broke at all. The declared base list is recorded, so a swapped base is
-  reported; what it resolves to is not followed.
+- Inheritance is expanded for reachability only, never for the counts. A type's
+  entry still holds just what its own file declares, so `diff` reports a member
+  moved from a base to a derived class (or back) as one removal plus one
+  unrelated addition. `reachable_members` walks the declared base list to say
+  what a consumer can still bind to, which is what `inherited_removals` uses to
+  tell a hoist from a deletion. The walk is lexical too: it resolves a base
+  through the enclosing scopes and the file's `using` directives, and stops at
+  anything the surface does not contain. 2,468 of the 2,482 declared bases
+  resolve; the rest are `System` types with no surface of their own.
 - Attribute changes. `[NativeOffset]` moving, `[NativeName]` changing,
   `[EditorBrowsable]` appearing. Out of scope on purpose: those carry the native
   identity, which is independent of the C# projection a consumer compiles
@@ -165,6 +166,9 @@ _MODIFIERS = frozenset({
 _TYPE_KEYWORDS = frozenset({"class", "struct", "interface", "record", "enum"})
 
 _NAMESPACE = re.compile(r"^namespace\s+([A-Za-z_][\w.]*)\s*[;{]")
+# Plain imports only. An alias or `using static` does not bring a base into
+# scope under its simple name, and the emitter writes neither.
+_USING = re.compile(r"^using\s+([A-Za-z_][\w.]*)\s*;")
 
 # An enum member: `Foo`, `Foo = 3`, `Foo = -1,`. Deliberately strict, so a
 # wrapped attribute argument or a stray expression cannot be mistaken for one.
@@ -197,6 +201,7 @@ class TypeEntry(NamedTuple):
     bases: str           # declared base/interface list, verbatim; "" when none
     hidden: bool         # carries [EditorBrowsable(EditorBrowsableState.Never)]
     members: dict[str, Member]
+    usings: tuple[str, ...] = ()   # namespaces imported by the declaring file
 
 
 Surface = dict[str, TypeEntry]
@@ -396,6 +401,7 @@ def surface_of_text(text: str) -> Surface:
     """
     result: Surface = {}
     namespace = ""
+    usings: list[str] = []
     stack: list[tuple[int, str, str]] = []   # (indent, qualified name, kind)
     pending: list[str] = []                  # attributes seen since the last decl
 
@@ -405,6 +411,12 @@ def surface_of_text(text: str) -> Surface:
             continue
         if line.startswith("["):
             pending.append(line)
+            continue
+
+        m = _USING.match(line)
+        if m:
+            usings.append(m.group(1))
+            pending.clear()
             continue
 
         m = _NAMESPACE.match(line)
@@ -432,7 +444,7 @@ def surface_of_text(text: str) -> Surface:
                 if kind == "enum" and bases:
                     kind = f"enum : {bases}"
                     bases = ""
-                result[qualified] = TypeEntry(kind, bases, hidden, {})
+                result[qualified] = TypeEntry(kind, bases, hidden, {}, tuple(usings))
             elif hidden and not existing.hidden:
                 result[qualified] = existing._replace(hidden=True)
             stack.append((indent, qualified, result[qualified].kind))
@@ -587,3 +599,88 @@ def property_type_changes(d: SurfaceDiff) -> list[Change]:
 def removes_api(d: SurfaceDiff) -> bool:
     """True when something a consumer could have bound to is gone."""
     return bool(d.removed_types or d.removed_members)
+
+
+def _base_candidates(surface: Surface, owner: str, token: str) -> list[str]:
+    """Surface keys a base-list token could name, in C#'s own lookup order.
+
+    The emitter writes bases unqualified: `CCSPlayerCamera :
+    CCSCustomPlayerCamera` inside `namespace CS2OpenSchema.Client`, and
+    `CBodyComponent : CEntityComponent` under a `using CS2OpenSchema.Entity2;`.
+    Keys here are fully qualified, so the token is re-attached to each enclosing
+    scope outward first, then to each import. Enclosing scopes must come first:
+    that is the order the compiler uses, and `SchemaNames` nests constant
+    holders under the same simple names as the schema classes they describe.
+    """
+    head, _, args = token.partition("<")
+    name = head.strip()
+    if args:
+        name = f"{name}`{len(_split_top_level(args.rstrip('>')))}"
+    if "." in name:
+        return [name]
+
+    scopes = owner.split(".")[:-1]
+    nested = [".".join(scopes[:i] + [name]) for i in range(len(scopes), -1, -1)]
+    return nested + [f"{ns}.{name}" for ns in surface[owner].usings]
+
+
+def _resolve_base(surface: Surface, owner: str, token: str) -> str | None:
+    for candidate in _base_candidates(surface, owner, token):
+        if candidate in surface and candidate != owner:
+            return candidate
+    return None
+
+
+def reachable_members(surface: Surface) -> dict[str, frozenset[str]]:
+    """Member names bindable on each type: its own, plus every resolvable base's.
+
+    Best effort by construction. A base the surface does not contain -- a
+    `System` type, an interface from another assembly -- terminates that branch
+    rather than guessing, so the result is a subset of the real reachable set
+    and never a superset. Understating it can only report a removal that
+    inheritance actually covers; overstating it would excuse a real one.
+    """
+    resolved: dict[str, frozenset[str]] = {}
+    walking: set[str] = set()
+
+    def walk(name: str) -> frozenset[str]:
+        cached = resolved.get(name)
+        if cached is not None:
+            return cached
+        # A declaration cycle cannot come out of the emitter, but this walks
+        # whatever two arbitrary git refs contain. Cutting the back edge
+        # understates the cycle's members, which is the safe direction.
+        walking.add(name)
+        entry = surface[name]
+        members = set(entry.members)
+        for token in _split_top_level(entry.bases):
+            base = _resolve_base(surface, name, token)
+            if base is not None and base not in walking:
+                members |= walk(base)
+        walking.discard(name)
+        resolved[name] = frozenset(members)
+        return resolved[name]
+
+    for name in surface:
+        walk(name)
+    return resolved
+
+
+def inherited_removals(
+    after: Surface, removals: list[tuple[str, str]]
+) -> set[tuple[str, str]]:
+    """The declared-member removals a base class still satisfies.
+
+    Valve interposes a base class and hoists shared state into it. Build
+    25218825 put `CCSCustomPlayerCamera` between `CCSPlayerCamera` and
+    `C_BaseEntity` and moved `m_hPawn` up: the member stops being declared on
+    the derived type and stays bindable on it, so `X.M` still compiles. Those
+    are reported, never blocked. A removal missing from this set is gone from
+    the whole chain and is a real break.
+    """
+    reachable = reachable_members(after)
+    return {
+        (type_name, member)
+        for type_name, member in removals
+        if member in reachable.get(type_name, frozenset())
+    }
