@@ -289,8 +289,15 @@ def main():
 
     if not cands:
         print("\nNo in-class rename candidates.")
-        print("An absence here is itself a signal: a field that genuinely died leaves")
-        print("no successor, and `removeField` is then the honest migration.")
+        if moves_f or moves:
+            # An absence only reads as death when nothing else named a
+            # successor. Something above did, so the remedy is the one printed
+            # alongside it.
+            print("That absence is not the answer here: the evidence above already says")
+            print("where the field went. Draft from that, not `removeField`.")
+        else:
+            print("An absence here is itself a signal: a field that genuinely died leaves")
+            print("no successor, and `removeField` is then the honest migration.")
         return 0
 
     print(f"\nIN-CLASS RENAME CANDIDATES — {len(cands)}, ranked:")
