@@ -46,7 +46,7 @@ public static class EntityWrapperRegistry
     public const string LensHash = "sha256:bd27551a31bb92d1531c51e31475ff2c11a8b2f8df2290c8786bfa5d4f4698ff";
 
     /// <summary>The CS2 build the emitting schema described.</summary>
-    public const string SchemaBuild = "24701871";
+    public const string SchemaBuild = "25218825";
 
     /// <summary>Every class this assembly wraps, with the data a runtime needs to bind it.</summary>
     public static IReadOnlyList<EntityClassBinding> Bindings { get; } =
