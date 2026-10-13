@@ -4,8 +4,8 @@
   "// version": [
     "1.2. The single-walk asks (issue #3), five fields, all addField, no addClass.",
     "m_fFlags and m_pMovementServices.m_bDucked land on CCSPlayerPawn, m_iCoachingTeam",
-    "on CCSPlayerController, m_flThrowStrength on CBaseCSGrenade (covered by 0002 with",
-    "zero fields), and m_nExplodeEffectTickBegin on CBaseCSGrenadeProjectile. Both",
+    "on CCSPlayerController, m_flThrowStrength on CBaseCSGrenade (already covered,",
+    "with no fields), and m_nExplodeEffectTickBegin on CBaseCSGrenadeProjectile. Both",
     "bases already had live derived wrappers, so the two new fields reach six grenade",
     "and five projectile classes under the prefix layout. Additive by construction:",
     "no property removed, none retyped.",
