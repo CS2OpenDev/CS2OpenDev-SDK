@@ -18,4 +18,19 @@ namespace CS2OpenDev.Sdk.Entities;
 public class BaseCSGrenade(IEntityFieldReader reader, IEntityWorld world)
     : BasePlayerWeapon(reader, world)
 {
+    /// <summary><c>m_flThrowStrength</c> (float32).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0.0</c> is a real value: an underhand throw.
+    ///     <see langword="null"/> means the field has never been received on the wire.
+    /// </remarks>
+    [SchemaFieldVersion("25218825")]
+    public float? ThrowStrength => Reader.TryReadSingle(Ord.ThrowStrength, out float v) ? v : null;
+
+    // Ordinals into the binding's CanonicalPaths — the own segment, after the
+    // inherited prefix. Private because they are not API: a curation change on
+    // an ancestor renumbers every own segment below it.
+    private static class Ord
+    {
+        internal const int ThrowStrength = 8;
+    }
 }

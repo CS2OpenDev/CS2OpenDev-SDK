@@ -31,7 +31,7 @@ public sealed class MolotovProjectile(IEntityFieldReader reader, IEntityWorld wo
     // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int Detonated = 18;
-        internal const int IsIncGrenade = 19;
+        internal const int Detonated = 19;
+        internal const int IsIncGrenade = 20;
     }
 }

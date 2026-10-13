@@ -154,6 +154,14 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public bool KilledByHeadshot => Reader.TryReadBool(Ord.KilledByHeadshot, out bool v) ? v : false;
 
+    /// <summary><c>m_fFlags</c> (uint32).</summary>
+    /// <remarks>
+    ///     Nullable because <c>0</c> is a real state: airborne and not ducking.
+    ///     <see langword="null"/> means the field has never been received on the wire.
+    /// </remarks>
+    [SchemaFieldVersion("25218825")]
+    public int? Flags => Reader.TryReadInt32(Ord.Flags, out int v) ? v : null;
+
     /// <summary><c>m_flDeathTime</c> (GameTime_t).</summary>
     [SchemaFieldVersion("genesis")]
     public float DeathTime => Reader.TryReadSingle(Ord.DeathTime, out float v) ? v : 0f;
@@ -202,6 +210,10 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     /// <summary><c>m_pItemServices.m_bHasHelmet</c> (bool).</summary>
     [SchemaFieldVersion("genesis")]
     public bool HasHelmet => Reader.TryReadBool(Ord.HasHelmet, out bool v) ? v : false;
+
+    /// <summary><c>m_pMovementServices.m_bDucked</c> (bool).</summary>
+    [SchemaFieldVersion("25218825")]
+    public bool Ducked => Reader.TryReadBool(Ord.Ducked, out bool v) ? v : false;
 
     /// <summary><c>m_pMovementServices.m_flDuckAmount</c> (float32).</summary>
     [SchemaFieldVersion("24701871")]
@@ -295,30 +307,32 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
         internal const int IsScoped = 18;
         internal const int IsWalking = 19;
         internal const int KilledByHeadshot = 20;
-        internal const int DeathTime = 21;
-        internal const int ControllerHandle = 22;
-        internal const int OwnerEntityHandle = 23;
-        internal const int DeathFlags = 24;
-        internal const int Health = 25;
-        internal const int MaxHealth = 26;
-        internal const int ShotsFired = 27;
-        internal const int TeamNum = 28;
-        internal const int LifeState = 29;
-        internal const int HasDefuser = 30;
-        internal const int HasHelmet = 31;
-        internal const int DuckAmount = 32;
-        internal const int Stamina = 33;
-        internal const int Buttons = 34;
-        internal const int ObserverTargetHandle = 35;
-        internal const int ObserverMode = 36;
-        internal const int ActiveWeaponHandle = 37;
-        internal const int LastWeaponHandle = 38;
-        internal const int MyWeapons = 39;
-        internal const int LastPlaceName = 40;
-        internal const int CurrentEquipmentValue = 41;
-        internal const int FreezetimeEndEquipmentValue = 42;
-        internal const int RoundStartEquipmentValue = 43;
-        internal const int Velocity = 44;
-        internal const int ViewAngle = 45;
+        internal const int Flags = 21;
+        internal const int DeathTime = 22;
+        internal const int ControllerHandle = 23;
+        internal const int OwnerEntityHandle = 24;
+        internal const int DeathFlags = 25;
+        internal const int Health = 26;
+        internal const int MaxHealth = 27;
+        internal const int ShotsFired = 28;
+        internal const int TeamNum = 29;
+        internal const int LifeState = 30;
+        internal const int HasDefuser = 31;
+        internal const int HasHelmet = 32;
+        internal const int Ducked = 33;
+        internal const int DuckAmount = 34;
+        internal const int Stamina = 35;
+        internal const int Buttons = 36;
+        internal const int ObserverTargetHandle = 37;
+        internal const int ObserverMode = 38;
+        internal const int ActiveWeaponHandle = 39;
+        internal const int LastWeaponHandle = 40;
+        internal const int MyWeapons = 41;
+        internal const int LastPlaceName = 42;
+        internal const int CurrentEquipmentValue = 43;
+        internal const int FreezetimeEndEquipmentValue = 44;
+        internal const int RoundStartEquipmentValue = 45;
+        internal const int Velocity = 46;
+        internal const int ViewAngle = 47;
     }
 }

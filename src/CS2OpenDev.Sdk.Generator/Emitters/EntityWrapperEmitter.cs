@@ -82,6 +82,9 @@ internal static class EntityWrapperEmitter
     //    −16384 on that axis with full confidence. These were born nullable, so
     //    the growth warning below does not apply to them: no consumer was ever
     //    typed against a non-nullable spelling of these properties.
+    //  - m_fFlags and m_flThrowStrength (issue #3): 0 is airborne and standing, and
+    //    0.0 is an underhand throw. Born nullable, so the growth warning below
+    //    does not apply to them either.
     //
     // Growing this set is a breaking change for consumers typed against the
     // non-nullable property — DemoViewer.NET has the four m_pInGameMoneyServices
@@ -132,6 +135,16 @@ internal static class EntityWrapperEmitter
             "Nullable because a received <c>0</c> is a meaningful value for this field,",
             "so absence cannot be reported as zero. <see langword=\"null\"/> means the",
             "field has never been received on the wire."
+        ],
+        [("CCSPlayerPawn", "m_fFlags")] =
+        [
+            "Nullable because <c>0</c> is a real state: airborne and not ducking.",
+            "<see langword=\"null\"/> means the field has never been received on the wire."
+        ],
+        [("CBaseCSGrenade", "m_flThrowStrength")] =
+        [
+            "Nullable because <c>0.0</c> is a real value: an underhand throw.",
+            "<see langword=\"null\"/> means the field has never been received on the wire."
         ],
         [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
         [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
