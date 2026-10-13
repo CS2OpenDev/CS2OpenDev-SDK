@@ -85,7 +85,9 @@ than assuming.
 Three reasons so far.
 
 A received zero can be a state. `m_lifeState`'s `0` is `LIFE_ALIVE`, so a 0-default getter would
-make a pawn that never transmitted the field indistinguishable from a live one.
+make a pawn that never transmitted the field indistinguishable from a live one. `Flags` is the
+same shape: `0` means airborne and not ducking, a real state for a pawn in the air. So is
+`ThrowStrength`: `0.0` is a real underhand throw, not a grenade that was never thrown.
 
 The value can never arrive at all. `Origin`'s canonical path names a struct
 (`CNetworkOriginCellCoordQuantizedVector`) whose leaves are what the wire carries, so the parent

@@ -622,6 +622,121 @@ public class EmittedWrapperTests
         await Assert.That(controller.PendingTeamNum).IsEqualTo(2);
     }
 
+    /// <summary>The single-walk asks on the pawn and controller read through their curated names.</summary>
+    [Test]
+    public async Task SingleWalkAsks_ReadThroughTheirCuratedNames()
+    {
+        CSPlayerPawn pawn = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?>
+            {
+                // FL_ONGROUND | FL_DUCKING, so both bits have to survive the read.
+                ["m_fFlags"] = 3,
+                ["m_pMovementServices.m_bDucked"] = true,
+            }),
+            new EmptyWorld());
+
+        await Assert.That(pawn.Flags).IsEqualTo(3);
+        await Assert.That(pawn.Ducked).IsTrue();
+
+        CSPlayerController controller = new(
+            Reader(Binding("CCSPlayerController"), new Dictionary<string, object?>
+            {
+                ["m_iCoachingTeam"] = 3,
+            }),
+            new EmptyWorld());
+
+        await Assert.That(controller.CoachingTeam).IsEqualTo(3);
+
+        // These two take the 0 default: absence and 0 mean the same thing for them.
+        CSPlayerPawn emptyPawn = new(Reader(Binding("CCSPlayerPawn"), []), new EmptyWorld());
+        await Assert.That(emptyPawn.Ducked).IsFalse();
+        CSPlayerController emptyController = new(Reader(Binding("CCSPlayerController"), []), new EmptyWorld());
+        await Assert.That(emptyController.CoachingTeam).IsEqualTo(0);
+    }
+
+    /// <summary>ThrowStrength is curated on CBaseCSGrenade once and reads through every live grenade's binding.</summary>
+    [Test]
+    [Arguments("CHEGrenade")]
+    [Arguments("CFlashbang")]
+    [Arguments("CSmokeGrenade")]
+    [Arguments("CMolotovGrenade")]
+    [Arguments("CIncendiaryGrenade")]
+    [Arguments("CDecoyGrenade")]
+    public async Task ThrowStrength_ReadsThroughEveryGrenadeBinding(string engineClass)
+    {
+        EntityWrapper w = EntityWrapperRegistry.Create(
+            engineClass,
+            Reader(Binding(engineClass), new Dictionary<string, object?>
+            {
+                ["m_flThrowStrength"] = 0.5f,
+            }),
+            new EmptyWorld())!;
+
+        BaseCSGrenade grenade = (BaseCSGrenade)w;
+        await Assert.That(grenade.ThrowStrength).IsEqualTo(0.5f);
+    }
+
+    /// <summary>ExplodeEffectTickBegin is curated on the projectile base once and reads through every live projectile's binding.</summary>
+    [Test]
+    [Arguments("CHEGrenadeProjectile")]
+    [Arguments("CFlashbangProjectile")]
+    [Arguments("CSmokeGrenadeProjectile")]
+    [Arguments("CMolotovProjectile")]
+    [Arguments("CDecoyProjectile")]
+    public async Task ExplodeEffectTickBegin_ReadsThroughEveryProjectileBinding(string engineClass)
+    {
+        EntityWrapper w = EntityWrapperRegistry.Create(
+            engineClass,
+            Reader(Binding(engineClass), new Dictionary<string, object?>
+            {
+                ["m_nExplodeEffectTickBegin"] = 81234,
+            }),
+            new EmptyWorld())!;
+
+        BaseCSGrenadeProjectile projectile = (BaseCSGrenadeProjectile)w;
+        await Assert.That(projectile.ExplodeEffectTickBegin).IsEqualTo(81234);
+
+        BaseCSGrenadeProjectile undetonated = (BaseCSGrenadeProjectile)EntityWrapperRegistry.Create(
+            engineClass, Reader(Binding(engineClass), []), new EmptyWorld())!;
+        await Assert.That(undetonated.ExplodeEffectTickBegin).IsEqualTo(0);
+    }
+
+    /// <summary>Flags is seen-aware: 0 is airborne and standing, a real state, so absence reads null.</summary>
+    [Test]
+    public async Task Flags_IsSeenAware()
+    {
+        await Assert.That(typeof(CSPlayerPawn).GetProperty(nameof(CSPlayerPawn.Flags))!.PropertyType)
+            .IsEqualTo(typeof(int?));
+
+        EntityClassBinding b = Binding("CCSPlayerPawn");
+
+        CSPlayerPawn absent = new(Reader(b, []), new EmptyWorld());
+        await Assert.That(absent.Flags).IsNull();
+
+        CSPlayerPawn airborne = new(
+            Reader(b, new Dictionary<string, object?> { ["m_fFlags"] = 0 }), new EmptyWorld());
+        await Assert.That(airborne.Flags).IsEqualTo(0);
+    }
+
+    /// <summary>ThrowStrength is seen-aware: 0.0 is an underhand throw, a real value, so absence reads null.</summary>
+    [Test]
+    public async Task ThrowStrength_IsSeenAware()
+    {
+        await Assert.That(typeof(BaseCSGrenade).GetProperty(nameof(BaseCSGrenade.ThrowStrength))!.PropertyType)
+            .IsEqualTo(typeof(float?));
+
+        EntityClassBinding b = Binding("CHEGrenade");
+
+        BaseCSGrenade absent = (BaseCSGrenade)EntityWrapperRegistry.Create("CHEGrenade", Reader(b, []), new EmptyWorld())!;
+        await Assert.That(absent.ThrowStrength).IsNull();
+
+        BaseCSGrenade underhand = (BaseCSGrenade)EntityWrapperRegistry.Create(
+            "CHEGrenade",
+            Reader(b, new Dictionary<string, object?> { ["m_flThrowStrength"] = 0f }),
+            new EmptyWorld())!;
+        await Assert.That(underhand.ThrowStrength).IsEqualTo(0f);
+    }
+
     /// <summary>A handle crosses raw and resolves through the world, with a serial in the high bits so mask policy is genuinely exercised.</summary>
     [Test]
     public async Task Handle_CrossesRawAndResolves()

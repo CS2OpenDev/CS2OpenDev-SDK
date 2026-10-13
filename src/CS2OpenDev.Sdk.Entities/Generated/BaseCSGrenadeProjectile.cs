@@ -166,6 +166,10 @@ public class BaseCSGrenadeProjectile(IEntityFieldReader reader, IEntityWorld wor
     [SchemaFieldVersion("genesis")]
     public int Bounces => Reader.TryReadInt32(Ord.Bounces, out int v) ? v : 0;
 
+    /// <summary><c>m_nExplodeEffectTickBegin</c> (int32).</summary>
+    [SchemaFieldVersion("25218825")]
+    public int ExplodeEffectTickBegin => Reader.TryReadInt32(Ord.ExplodeEffectTickBegin, out int v) ? v : 0;
+
     /// <summary><c>m_nItemIndex</c> (uint16).</summary>
     [SchemaFieldVersion("genesis")]
     public int ItemIndex => Reader.TryReadInt32(Ord.ItemIndex, out int v) ? v : 0;
@@ -201,9 +205,10 @@ public class BaseCSGrenadeProjectile(IEntityFieldReader reader, IEntityWorld wor
         internal const int ThrowerHandle = 11;
         internal const int TeamNum = 12;
         internal const int Bounces = 13;
-        internal const int ItemIndex = 14;
-        internal const int InitialPosition = 15;
-        internal const int InitialVelocity = 16;
-        internal const int Velocity = 17;
+        internal const int ExplodeEffectTickBegin = 14;
+        internal const int ItemIndex = 15;
+        internal const int InitialPosition = 16;
+        internal const int InitialVelocity = 17;
+        internal const int Velocity = 18;
     }
 }

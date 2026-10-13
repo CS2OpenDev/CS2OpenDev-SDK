@@ -54,6 +54,10 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     /// </remarks>
     public CSPlayerPawn? PlayerPawn => World.Resolve<CSPlayerPawn>(PlayerPawnHandle);
 
+    /// <summary><c>m_iCoachingTeam</c> (int32).</summary>
+    [SchemaFieldVersion("25218825")]
+    public int CoachingTeam => Reader.TryReadInt32(Ord.CoachingTeam, out int v) ? v : 0;
+
     /// <summary><c>m_iCompetitiveRanking</c> (int32).</summary>
     [SchemaFieldVersion("genesis")]
     public int CompetitiveRanking => Reader.TryReadInt32(Ord.CompetitiveRanking, out int v) ? v : 0;
@@ -162,29 +166,30 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
         internal const int PawnIsAlive = 4;
         internal const int PawnHandle = 5;
         internal const int PlayerPawnHandle = 6;
-        internal const int CompetitiveRanking = 7;
-        internal const int CompetitiveWins = 8;
-        internal const int ConnectedState = 9;
-        internal const int MVPs = 10;
-        internal const int PawnArmor = 11;
-        internal const int PawnHealth = 12;
-        internal const int PendingTeamNum = 13;
-        internal const int Ping = 14;
-        internal const int Score = 15;
-        internal const int TeamNum = 16;
-        internal const int PlayerName = 17;
-        internal const int TotalRoundDamageDealt = 18;
-        internal const int NumRoundKills = 19;
-        internal const int NumRoundKillsHeadshots = 20;
-        internal const int MatchAssists = 21;
-        internal const int MatchDamage = 22;
-        internal const int MatchDeaths = 23;
-        internal const int MatchKills = 24;
-        internal const int Account = 25;
-        internal const int CashSpentThisRound = 26;
-        internal const int StartAccount = 27;
-        internal const int TotalCashSpent = 28;
-        internal const int SanitizedPlayerName = 29;
-        internal const int SteamID = 30;
+        internal const int CoachingTeam = 7;
+        internal const int CompetitiveRanking = 8;
+        internal const int CompetitiveWins = 9;
+        internal const int ConnectedState = 10;
+        internal const int MVPs = 11;
+        internal const int PawnArmor = 12;
+        internal const int PawnHealth = 13;
+        internal const int PendingTeamNum = 14;
+        internal const int Ping = 15;
+        internal const int Score = 16;
+        internal const int TeamNum = 17;
+        internal const int PlayerName = 18;
+        internal const int TotalRoundDamageDealt = 19;
+        internal const int NumRoundKills = 20;
+        internal const int NumRoundKillsHeadshots = 21;
+        internal const int MatchAssists = 22;
+        internal const int MatchDamage = 23;
+        internal const int MatchDeaths = 24;
+        internal const int MatchKills = 25;
+        internal const int Account = 26;
+        internal const int CashSpentThisRound = 27;
+        internal const int StartAccount = 28;
+        internal const int TotalCashSpent = 29;
+        internal const int SanitizedPlayerName = 30;
+        internal const int SteamID = 31;
     }
 }

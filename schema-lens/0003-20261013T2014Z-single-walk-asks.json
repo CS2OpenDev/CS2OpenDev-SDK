@@ -1,0 +1,39 @@
+{
+  "id": "0003-20261013T2014Z-single-walk-asks",
+  "build": "25218825",
+  "appliedAt": "2026-10-13T20:14:00Z",
+  "notes": "The five fields CS2DemoKit's single-walk release reads with no lens entry (issue #3), in the issue's order. (1) m_fFlags on CCSPlayerPawn, declared on CBaseEntity; consumers lower on-ground and ducking as bit tests over it. (2) m_pMovementServices.m_bDucked on CCSPlayerPawn: the pawn's pointer is typed CPlayer_MovementServices, the field lives on CCSPlayer_MovementServices, so it resolves by derived descent exactly like m_flDuckAmount. Kept although flags supersede it, because readers without flags still fall back to it. (3) m_iCoachingTeam on CCSPlayerController, for the coach column. (4) m_flThrowStrength on CBaseCSGrenade, which was covered with no fields; curating the base gives all six live grenade wrappers the property under the prefix layout. (5) m_nExplodeEffectTickBegin on CBaseCSGrenadeProjectile, inherited the same way by the five projectile wrappers. No new class, so the binding count stays at 61. Seen-aware policy: Flags and ThrowStrength are born nullable, because 0 is airborne and standing and 0.0 is an underhand throw, both real readings. Ducked, CoachingTeam and ExplodeEffectTickBegin take the 0 default like their siblings: standing, not coaching and not detonated are what absence means for them anyway.",
+  "stateHash": "sha256:1fa558b39fef18823e699444e4054ee153b4750782a0df5a1926b92e19b014bf",
+  "changes": [
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_fFlags",
+      "targetProperty": "Flags"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_pMovementServices.m_bDucked",
+      "targetProperty": "Ducked"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_iCoachingTeam",
+      "targetProperty": "CoachingTeam"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenade",
+      "field": "m_flThrowStrength",
+      "targetProperty": "ThrowStrength"
+    },
+    {
+      "op": "addField",
+      "class": "CBaseCSGrenadeProjectile",
+      "field": "m_nExplodeEffectTickBegin",
+      "targetProperty": "ExplodeEffectTickBegin"
+    }
+  ]
+}

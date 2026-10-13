@@ -1,5 +1,5 @@
 {
-  "lensHash": "sha256:bd27551a31bb92d1531c51e31475ff2c11a8b2f8df2290c8786bfa5d4f4698ff",
+  "lensHash": "sha256:1fa558b39fef18823e699444e4054ee153b4750782a0df5a1926b92e19b014bf",
   "schemaBuild": "25218825",
   "classes": {
     "CAK47": {
@@ -13,7 +13,14 @@
     "CBaseCSGrenade": {
       "netName": "BaseCSGrenade",
       "module": "server",
-      "fields": {},
+      "fields": {
+        "m_flThrowStrength": {
+          "targetProperty": "ThrowStrength",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "25218825"
+        }
+      },
       "aliases": {},
       "ignored": [],
       "observedFields": [
@@ -119,6 +126,12 @@
           "schemaType": "int32",
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
+        },
+        "m_nExplodeEffectTickBegin": {
+          "targetProperty": "ExplodeEffectTickBegin",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "25218825"
         },
         "m_nItemIndex": {
           "targetProperty": "ItemIndex",
@@ -702,6 +715,12 @@
           "widthBytes": null,
           "firstSeenBuild": "genesis"
         },
+        "m_iCoachingTeam": {
+          "targetProperty": "CoachingTeam",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "25218825"
+        },
         "m_iCompetitiveRanking": {
           "targetProperty": "CompetitiveRanking",
           "schemaType": "int32",
@@ -1019,6 +1038,12 @@
           "widthBytes": 1,
           "firstSeenBuild": "genesis"
         },
+        "m_fFlags": {
+          "targetProperty": "Flags",
+          "schemaType": "uint32",
+          "widthBytes": 4,
+          "firstSeenBuild": "25218825"
+        },
         "m_flDeathTime": {
           "targetProperty": "DeathTime",
           "schemaType": "GameTime_t",
@@ -1084,6 +1109,12 @@
           "schemaType": "bool",
           "widthBytes": 1,
           "firstSeenBuild": "genesis"
+        },
+        "m_pMovementServices.m_bDucked": {
+          "targetProperty": "Ducked",
+          "schemaType": "bool",
+          "widthBytes": 1,
+          "firstSeenBuild": "25218825"
         },
         "m_pMovementServices.m_flDuckAmount": {
           "targetProperty": "DuckAmount",
