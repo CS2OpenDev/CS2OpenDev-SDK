@@ -4,6 +4,7 @@ using System.Text;
 using CS2SchemaGen;
 using CS2SchemaGen.Emitters;
 using CS2SchemaGen.Models;
+using CS2SchemaGen.SchemaLens;
 
 #endregion
 
@@ -61,6 +62,31 @@ internal static class GeneratorHarness
 
         CapturingSink sink = new();
         GameEventFactoryEmitter.EmitAll(sink, events, stamp, overrides);
+
+        return new RunResult(sink.Files, sink.Diagnostics);
+    }
+
+    // Drives the entity wrapper emitter the way the Exporter does: replay one
+    // migration, resolve it through the gates, emit. Gate failures throw, since a
+    // fixture that does not resolve says nothing about emission.
+    internal static RunResult RunEntityWrappers(string schemasJson, string lensChanges)
+    {
+        SchemaRoot schema = SchemaModel.Parse(schemasJson);
+        LensMigration migration = LensMigrationLoader.Parse($$"""
+            { "id": "0000-test", "build": "test-build", "stateHash": "sha256:PLACEHOLDER",
+              "changes": [ {{lensChanges}} ] }
+            """, "0000-test");
+        LensReplayResult replay = LensReplay.Replay([migration]);
+        LensGateReport gates = LensGates.Run(replay.State, replay.Renames, schema, null);
+        if (gates.Failures.Count > 0)
+        {
+            throw new InvalidOperationException(
+                string.Join(Environment.NewLine, gates.Failures.Select(f => f.Message)));
+        }
+
+        CapturingSink sink = new();
+        EntityWrapperEmitter.EmitAll(sink, replay.State, schema, gates.Resolution, _ => null,
+            "sha256:test", "test-build", "CS2Schema");
 
         return new RunResult(sink.Files, sink.Diagnostics);
     }
