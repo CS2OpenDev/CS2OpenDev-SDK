@@ -52,6 +52,11 @@ jobs:
         # rather than the generator that emitted half of it.
         run: dotnet run --configuration Release --project test/CS2OpenDev.Sdk.GameEvents.Tests
 
+      - name: Test proto platform selection
+        # The cron restages from whichever platform the tracker published; this
+        # pins the fallback order and the refusals.
+        run: bash scripts/test-normalize-protos.sh
+
       - name: Verify staged protos are current
         # Re-derives the demo/engine subset from the schema-tracker submodule and
         # fails if `protos/` differs. Also compiles the subset in isolation, which
