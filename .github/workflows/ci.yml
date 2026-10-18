@@ -147,6 +147,7 @@ jobs:
         run: |
           if ! git diff --exit-code -- src/CS2OpenDev.Sdk/ \
                                        src/CS2OpenDev.Sdk.GameEvents/Generated/ \
+                                       src/CS2OpenDev.Sdk.Entities/Generated/ \
                                        names.lock.json \
                                        schema-lens/; then
             echo "::error::Regenerated sources differ from what is committed."

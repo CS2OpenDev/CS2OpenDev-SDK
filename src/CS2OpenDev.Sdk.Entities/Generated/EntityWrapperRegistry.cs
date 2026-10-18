@@ -43,10 +43,10 @@ namespace CS2OpenDev.Sdk.Entities;
 public static class EntityWrapperRegistry
 {
     /// <summary>Curation hash of the Schema Lens state these wrappers were emitted from.</summary>
-    public const string LensHash = "sha256:1fa558b39fef18823e699444e4054ee153b4750782a0df5a1926b92e19b014bf";
+    public const string LensHash = "sha256:2d065bd63e2600bcf4dc5571ed726ff13768db759f4702a94a2246c663eed5d9";
 
     /// <summary>The CS2 build the emitting schema described.</summary>
-    public const string SchemaBuild = "25218825";
+    public const string SchemaBuild = "25966348";
 
     /// <summary>Every class this assembly wraps, with the data a runtime needs to bind it.</summary>
     public static IReadOnlyList<EntityClassBinding> Bindings { get; } =
@@ -232,8 +232,10 @@ public static class EntityWrapperRegistry
                 "m_pInGameMoneyServices.m_iCashSpentThisRound",
                 "m_pInGameMoneyServices.m_iStartAccount",
                 "m_pInGameMoneyServices.m_iTotalCashSpent",
+                "m_sSanitizedClanTag",
                 "m_sSanitizedPlayerName",
                 "m_steamID",
+                "m_unClanId32bit",
             ],
             Aliases: new Dictionary<string, string>
             {
@@ -271,6 +273,7 @@ public static class EntityWrapperRegistry
                 "m_bKilledByHeadshot",
                 "m_fFlags",
                 "m_flDeathTime",
+                "m_flModifier0",
                 "m_hController",
                 "m_hOwnerEntity",
                 "m_iDeathFlags",
@@ -301,7 +304,7 @@ public static class EntityWrapperRegistry
             {
                 ["m_vecOrigin"] = "m_CBodyComponent.m_pSceneNode.m_vecOrigin",
             },
-            HandleOrdinals: [4, 23, 24, 37, 39, 40]),
+            HandleOrdinals: [4, 24, 25, 38, 40, 41]),
         new(
             EngineClass: "CCSPlayerPawnBase",
             NetName: "CSPlayerPawnBase",
@@ -694,6 +697,7 @@ public static class EntityWrapperRegistry
                 "m_bDidSmokeEffect",
                 "m_bExplodeFromInferno",
                 "m_nSmokeEffectTickBegin",
+                "m_nSmokeLightProbeRegen",
                 "m_vSmokeColor",
                 "m_vSmokeDetonationPos",
             ],

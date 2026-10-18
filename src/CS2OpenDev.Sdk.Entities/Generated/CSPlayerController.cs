@@ -146,6 +146,10 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     [SchemaFieldVersion("genesis")]
     public int TotalCashSpent => Reader.TryReadInt32(Ord.TotalCashSpent, out int v) ? v : 0;
 
+    /// <summary><c>m_sSanitizedClanTag</c> (CUtlString).</summary>
+    [SchemaFieldVersion("25966348")]
+    public object? SanitizedClanTag => Reader.TryReadObject(Ord.SanitizedClanTag, out object? v) ? v : null;
+
     /// <summary><c>m_sSanitizedPlayerName</c> (CUtlString).</summary>
     [SchemaFieldVersion("genesis")]
     public object? SanitizedPlayerName => Reader.TryReadObject(Ord.SanitizedPlayerName, out object? v) ? v : null;
@@ -153,6 +157,15 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     /// <summary><c>m_steamID</c> (uint64).</summary>
     [SchemaFieldVersion("genesis")]
     public ulong SteamID => Reader.TryReadUInt64(Ord.SteamID, out ulong v) ? v : 0ul;
+
+    /// <summary><c>m_unClanId32bit</c> (uint32).</summary>
+    /// <remarks>
+    ///     Nullable because this field has no established meaning on the wire, so
+    ///     a <c>0</c> cannot be told apart from an absence by inspection.
+    ///     <see langword="null"/> means the field has never been received.
+    /// </remarks>
+    [SchemaFieldVersion("25966348")]
+    public int? ClanId32bit => Reader.TryReadInt32(Ord.ClanId32bit, out int v) ? v : null;
 
     // Ordinals into the binding's CanonicalPaths — the own segment, after the
     // inherited prefix. Private because they are not API: a curation change on
@@ -189,7 +202,9 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
         internal const int CashSpentThisRound = 27;
         internal const int StartAccount = 28;
         internal const int TotalCashSpent = 29;
-        internal const int SanitizedPlayerName = 30;
-        internal const int SteamID = 31;
+        internal const int SanitizedClanTag = 30;
+        internal const int SanitizedPlayerName = 31;
+        internal const int SteamID = 32;
+        internal const int ClanId32bit = 33;
     }
 }
