@@ -35,8 +35,8 @@ public sealed class FlashbangProjectile(IEntityFieldReader reader, IEntityWorld 
     // an ancestor renumbers every own segment below it.
     private static class Ord
     {
-        internal const int TimeToDetonate = 18;
-        internal const int NumOpponentsHit = 19;
-        internal const int NumTeammatesHit = 20;
+        internal const int TimeToDetonate = 19;
+        internal const int NumOpponentsHit = 20;
+        internal const int NumTeammatesHit = 21;
     }
 }
