@@ -34,6 +34,15 @@ public sealed class SmokeGrenadeProjectile(IEntityFieldReader reader, IEntityWor
     [SchemaFieldVersion("genesis")]
     public int SmokeEffectTickBegin => Reader.TryReadInt32(Ord.SmokeEffectTickBegin, out int v) ? v : 0;
 
+    /// <summary><c>m_nSmokeLightProbeRegen</c> (uint8).</summary>
+    /// <remarks>
+    ///     Nullable because this field has no established meaning on the wire, so
+    ///     a <c>0</c> cannot be told apart from an absence by inspection.
+    ///     <see langword="null"/> means the field has never been received.
+    /// </remarks>
+    [SchemaFieldVersion("25966348")]
+    public int? SmokeLightProbeRegen => Reader.TryReadInt32(Ord.SmokeLightProbeRegen, out int v) ? v : null;
+
     /// <summary><c>m_vSmokeColor</c> (Vector).</summary>
     [SchemaFieldVersion("genesis")]
     public Vector3 SmokeColor => Reader.TryReadVector3(Ord.SmokeColor, out Vector3 v) ? v : default;
@@ -51,7 +60,8 @@ public sealed class SmokeGrenadeProjectile(IEntityFieldReader reader, IEntityWor
         internal const int DidSmokeEffect = 20;
         internal const int ExplodeFromInferno = 21;
         internal const int SmokeEffectTickBegin = 22;
-        internal const int SmokeColor = 23;
-        internal const int SmokeDetonationPos = 24;
+        internal const int SmokeLightProbeRegen = 23;
+        internal const int SmokeColor = 24;
+        internal const int SmokeDetonationPos = 25;
     }
 }

@@ -1,0 +1,30 @@
+{
+  "id": "0004-20261018T1654Z-clan-and-modifier-drift",
+  "build": "25966348",
+  "appliedAt": "2026-10-18T16:54:00Z",
+  "notes": "The four fields build 25966348 grew on covered classes, which CS2_GEN_012 held the regen on. All four are tracked rather than ignored. (1) m_sSanitizedClanTag on CCSPlayerController, a CUtlString, next to the m_sSanitizedPlayerName this class already tracks. (2) m_unClanId32bit on the same class, uint32. (3) m_flModifier0 on CCSPlayerPawn, float32. (4) m_nSmokeLightProbeRegen on CSmokeGrenadeProjectile, uint8. No new class, so the binding count stays at 61. Three of the four target properties are derived: nothing named them downstream, so the word vocabulary and names.lock.json decide. SanitizedClanTag is the exception and is explicit, because the derivation strips only the m_ and leaves SSanitizedClanTag. The sibling m_sSanitizedPlayerName on this same class reads SanitizedPlayerName, and a doubled S next to it would be the Lens recording a typo as a decision. Nothing has asked for any of these. They are tracked because the gate wants a decision and tracking is the one that keeps the reading available; the alternative was ignoreField, which would have recorded them as seen and surfaced nothing. The clan pair is the useful half: a clan tag and id on the controller are scoreboard data, and CCSTeam.m_szClanTeamname is already tracked. m_flModifier0 and m_nSmokeLightProbeRegen have no established meaning on the wire, so they ship as readings with no documented interpretation.",
+  "stateHash": "sha256:2d065bd63e2600bcf4dc5571ed726ff13768db759f4702a94a2246c663eed5d9",
+  "changes": [
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_sSanitizedClanTag",
+      "targetProperty": "SanitizedClanTag"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_unClanId32bit"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_flModifier0"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_nSmokeLightProbeRegen"
+    }
+  ]
+}

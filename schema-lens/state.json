@@ -1,6 +1,6 @@
 {
-  "lensHash": "sha256:1fa558b39fef18823e699444e4054ee153b4750782a0df5a1926b92e19b014bf",
-  "schemaBuild": "25218825",
+  "lensHash": "sha256:2d065bd63e2600bcf4dc5571ed726ff13768db759f4702a94a2246c663eed5d9",
+  "schemaBuild": "25966348",
   "classes": {
     "CAK47": {
       "netName": "AK47",
@@ -853,6 +853,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_sSanitizedClanTag": {
+          "targetProperty": "SanitizedClanTag",
+          "schemaType": "CUtlString",
+          "widthBytes": null,
+          "firstSeenBuild": "25966348"
+        },
         "m_sSanitizedPlayerName": {
           "targetProperty": "SanitizedPlayerName",
           "schemaType": "CUtlString",
@@ -864,6 +870,12 @@
           "schemaType": "uint64",
           "widthBytes": 8,
           "firstSeenBuild": "genesis"
+        },
+        "m_unClanId32bit": {
+          "targetProperty": "ClanId32bit",
+          "schemaType": "uint32",
+          "widthBytes": 4,
+          "firstSeenBuild": "25966348"
         }
       },
       "aliases": {
@@ -935,12 +947,14 @@
         "m_pInventoryServices",
         "m_recentKillQueue",
         "m_rtActiveMissionPeriod",
+        "m_sSanitizedClanTag",
         "m_sSanitizedPlayerName",
         "m_szClan",
         "m_szCrosshairCodes",
         "m_uiAbandonRecordedReason",
         "m_uiCommunicationMuteFlags",
         "m_unActiveQuestId",
+        "m_unClanId32bit",
         "m_unPlayerTvControlFlags"
       ]
     },
@@ -1049,6 +1063,12 @@
           "schemaType": "GameTime_t",
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
+        },
+        "m_flModifier0": {
+          "targetProperty": "Modifier0",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "25966348"
         },
         "m_hController": {
           "targetProperty": "ControllerHandle",
@@ -1260,6 +1280,7 @@
         "m_flLandingTimeSeconds",
         "m_flLastAttackedTeammate",
         "m_flLastPickupPriorityTime",
+        "m_flModifier0",
         "m_flNextSprayDecalTime",
         "m_flTimeOfLastInjury",
         "m_flVelocityModifier",
@@ -1845,6 +1866,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_nSmokeLightProbeRegen": {
+          "targetProperty": "SmokeLightProbeRegen",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "25966348"
+        },
         "m_vSmokeColor": {
           "targetProperty": "SmokeColor",
           "schemaType": "Vector",
@@ -1869,6 +1896,7 @@
         "m_fllastSimulationTime",
         "m_nRandomSeed",
         "m_nSmokeEffectTickBegin",
+        "m_nSmokeLightProbeRegen",
         "m_nVoxelFrameDataSize",
         "m_nVoxelUpdate",
         "m_vSmokeColor",

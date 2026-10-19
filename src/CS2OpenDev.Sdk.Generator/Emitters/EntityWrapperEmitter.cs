@@ -85,6 +85,12 @@ internal static class EntityWrapperEmitter
     //  - m_fFlags and m_flThrowStrength (issue #3): 0 is airborne and standing, and
     //    0.0 is an underhand throw. Born nullable, so the growth warning below
     //    does not apply to them either.
+    //  - m_unClanId32bit, m_flModifier0 and m_nSmokeLightProbeRegen, the build
+    //    25966348 drift: none has an established wire meaning, so whether 0 is a
+    //    reading or an absence is not known for any of them. Born nullable
+    //    because the two mistakes are not symmetric: a 0 default that should
+    //    have been nullable loses the distinction for good, while a needless
+    //    nullable only costs a null check.
     //
     // Growing this set is a breaking change for consumers typed against the
     // non-nullable property — DemoViewer.NET has the four m_pInGameMoneyServices
@@ -145,6 +151,24 @@ internal static class EntityWrapperEmitter
         [
             "Nullable because <c>0.0</c> is a real value: an underhand throw.",
             "<see langword=\"null\"/> means the field has never been received on the wire."
+        ],
+        [("CCSPlayerController", "m_unClanId32bit")] =
+        [
+            "Nullable because this field has no established meaning on the wire, so",
+            "a <c>0</c> cannot be told apart from an absence by inspection.",
+            "<see langword=\"null\"/> means the field has never been received."
+        ],
+        [("CCSPlayerPawn", "m_flModifier0")] =
+        [
+            "Nullable because this field has no established meaning on the wire, so",
+            "a <c>0.0</c> cannot be told apart from an absence by inspection.",
+            "<see langword=\"null\"/> means the field has never been received."
+        ],
+        [("CSmokeGrenadeProjectile", "m_nSmokeLightProbeRegen")] =
+        [
+            "Nullable because this field has no established meaning on the wire, so",
+            "a <c>0</c> cannot be told apart from an absence by inspection.",
+            "<see langword=\"null\"/> means the field has never been received."
         ],
         [("CCSPlayerPawn", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
         [("CBaseCSGrenadeProjectile", "m_CBodyComponent.m_pSceneNode.m_vecOrigin")] = StructOriginRemark,
