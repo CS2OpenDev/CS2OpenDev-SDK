@@ -593,12 +593,16 @@ jobs:
               --title "$TAG" \
               --notes "$NOTES" \
               --target "$TARGET_SHA"; then
-            # The one failure with a known cause: GITHUB_TOKEN can tag only the
-            # head of the branch, and the branch moved while this job ran. The
-            # packages are already on the feeds, so say exactly what is left.
+            # The one failure with a known cause: GITHUB_TOKEN can create a
+            # release only at the head of the branch, and the branch moved while
+            # this job ran. Pushing the tag by hand is not enough; the 0.9.8
+            # re-run still got the 403 with the tag in place. The release has to
+            # be created from a user account, after which a re-run of this job
+            # takes the refresh path above. The packages are already on the
+            # feeds, so say exactly what is left.
             HEAD_NOW=$(git ls-remote --heads origin "$BRANCH" | cut -f1)
             if [ -n "$HEAD_NOW" ] && [ "$HEAD_NOW" != "$TARGET_SHA" ]; then
-              echo "::error::${PKG_ID} ${TAG#*/v} is published, but ${BRANCH} moved to ${HEAD_NOW} during this job and GITHUB_TOKEN cannot tag a commit that is no longer the branch head. Push the tag yourself, then re-run this job to create the release: git tag '${TAG}' ${TARGET_SHA} && git push origin '${TAG}'"
+              echo "::error::${PKG_ID} ${TAG#*/v} is published, but ${BRANCH} moved to ${HEAD_NOW} during this job and GITHUB_TOKEN cannot create a release for a commit that is no longer the branch head. From a user account: gh run download ${GITHUB_RUN_ID} -n nupkg-${PKG_ID}-${TAG#*/v} -D pkg && gh release create '${TAG}' pkg/* --target ${TARGET_SHA} --title '${TAG}' --notes '(see this job log)'. Then re-run this job; it refreshes the assets and notes of the release it finds."
             fi
             exit 1
           fi
