@@ -737,7 +737,7 @@ public class EmittedWrapperTests
         await Assert.That(underhand.ThrowStrength).IsEqualTo(0f);
     }
 
-    /// <summary>The build 25966348 drift fields read through their names, with SanitizedClanTag curated rather than derived.</summary>
+    /// <summary>The build 26334290 drift fields read through their names, with SanitizedClanTag curated rather than derived.</summary>
     [Test]
     public async Task DriftFields_ReadThroughTheirNames()
     {
@@ -753,9 +753,14 @@ public class EmittedWrapperTests
         await Assert.That(controller.ClanId32bit).IsEqualTo(4242);
 
         CSPlayerPawn pawn = new(
-            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_flModifier0"] = 1.5f }),
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_flBigHeadScale"] = 1.5f }),
             new EmptyWorld());
-        await Assert.That(pawn.Modifier0).IsEqualTo(1.5f);
+        await Assert.That(pawn.BigHeadScale).IsEqualTo(1.5f);
+
+        CSGameRules rules = new(
+            Reader(Binding("CCSGameRules"), new Dictionary<string, object?> { ["m_nActiveMutators"] = 3 }),
+            new EmptyWorld());
+        await Assert.That(rules.ActiveMutators).IsEqualTo(3);
 
         SmokeGrenadeProjectile smoke = (SmokeGrenadeProjectile)EntityWrapperRegistry.Create(
             "CSmokeGrenadeProjectile",
@@ -770,14 +775,16 @@ public class EmittedWrapperTests
             .IsEqualTo(typeof(int?));
     }
 
-    /// <summary>ClanId32bit and Modifier0 are seen-aware because neither field's zero is known to be a reading or an absence.</summary>
+    /// <summary>ClanId32bit, BigHeadScale and SmokeLightProbeRegen are seen-aware because none of their zeros is known to be a reading or an absence; ActiveMutators is not, because 0 is no mutator either way.</summary>
     [Test]
     public async Task DriftFieldsWithUnknownZero_AreSeenAware()
     {
         await Assert.That(typeof(CSPlayerController).GetProperty(nameof(CSPlayerController.ClanId32bit))!.PropertyType)
             .IsEqualTo(typeof(int?));
-        await Assert.That(typeof(CSPlayerPawn).GetProperty(nameof(CSPlayerPawn.Modifier0))!.PropertyType)
+        await Assert.That(typeof(CSPlayerPawn).GetProperty(nameof(CSPlayerPawn.BigHeadScale))!.PropertyType)
             .IsEqualTo(typeof(float?));
+        await Assert.That(typeof(CSGameRules).GetProperty(nameof(CSGameRules.ActiveMutators))!.PropertyType)
+            .IsEqualTo(typeof(int));
         await Assert.That(typeof(SmokeGrenadeProjectile)
                 .GetProperty(nameof(SmokeGrenadeProjectile.SmokeLightProbeRegen))!.PropertyType)
             .IsEqualTo(typeof(int?));
@@ -786,7 +793,10 @@ public class EmittedWrapperTests
         await Assert.That(controller.ClanId32bit).IsNull();
 
         CSPlayerPawn pawn = new(Reader(Binding("CCSPlayerPawn"), []), new EmptyWorld());
-        await Assert.That(pawn.Modifier0).IsNull();
+        await Assert.That(pawn.BigHeadScale).IsNull();
+
+        CSGameRules rules = new(Reader(Binding("CCSGameRules"), []), new EmptyWorld());
+        await Assert.That(rules.ActiveMutators).IsEqualTo(0);
 
         SmokeGrenadeProjectile smokeAbsent = (SmokeGrenadeProjectile)EntityWrapperRegistry.Create(
             "CSmokeGrenadeProjectile", Reader(Binding("CSmokeGrenadeProjectile"), []), new EmptyWorld())!;
@@ -799,10 +809,10 @@ public class EmittedWrapperTests
             new EmptyWorld());
         await Assert.That(zeroId.ClanId32bit).IsEqualTo(0);
 
-        CSPlayerPawn zeroMod = new(
-            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_flModifier0"] = 0f }),
+        CSPlayerPawn zeroScale = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_flBigHeadScale"] = 0f }),
             new EmptyWorld());
-        await Assert.That(zeroMod.Modifier0).IsEqualTo(0f);
+        await Assert.That(zeroScale.BigHeadScale).IsEqualTo(0f);
 
         SmokeGrenadeProjectile zeroRegen = (SmokeGrenadeProjectile)EntityWrapperRegistry.Create(
             "CSmokeGrenadeProjectile",

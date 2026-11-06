@@ -43,10 +43,10 @@ namespace CS2OpenDev.Sdk.Entities;
 public static class EntityWrapperRegistry
 {
     /// <summary>Curation hash of the Schema Lens state these wrappers were emitted from.</summary>
-    public const string LensHash = "sha256:2d065bd63e2600bcf4dc5571ed726ff13768db759f4702a94a2246c663eed5d9";
+    public const string LensHash = "sha256:3f6f347d5af3144b555844c73789b03fb00870f8c7c490d714b199be51ed62d1";
 
     /// <summary>The CS2 build the emitting schema described.</summary>
-    public const string SchemaBuild = "25966348";
+    public const string SchemaBuild = "26334290";
 
     /// <summary>Every class this assembly wraps, with the data a runtime needs to bind it.</summary>
     public static IReadOnlyList<EntityClassBinding> Bindings { get; } =
@@ -164,6 +164,7 @@ public static class EntityWrapperRegistry
                 "m_gamePhase",
                 "m_iRoundTime",
                 "m_iRoundWinStatus",
+                "m_nActiveMutators",
                 "m_totalRoundsPlayed",
             ],
             Aliases: new Dictionary<string, string>(),
@@ -272,8 +273,8 @@ public static class EntityWrapperRegistry
                 "m_bIsWalking",
                 "m_bKilledByHeadshot",
                 "m_fFlags",
+                "m_flBigHeadScale",
                 "m_flDeathTime",
-                "m_flModifier0",
                 "m_hController",
                 "m_hOwnerEntity",
                 "m_iDeathFlags",

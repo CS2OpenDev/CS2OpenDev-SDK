@@ -147,7 +147,7 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     public int TotalCashSpent => Reader.TryReadInt32(Ord.TotalCashSpent, out int v) ? v : 0;
 
     /// <summary><c>m_sSanitizedClanTag</c> (CUtlString).</summary>
-    [SchemaFieldVersion("25966348")]
+    [SchemaFieldVersion("26334290")]
     public object? SanitizedClanTag => Reader.TryReadObject(Ord.SanitizedClanTag, out object? v) ? v : null;
 
     /// <summary><c>m_sSanitizedPlayerName</c> (CUtlString).</summary>
@@ -164,7 +164,7 @@ public sealed class CSPlayerController(IEntityFieldReader reader, IEntityWorld w
     ///     a <c>0</c> cannot be told apart from an absence by inspection.
     ///     <see langword="null"/> means the field has never been received.
     /// </remarks>
-    [SchemaFieldVersion("25966348")]
+    [SchemaFieldVersion("26334290")]
     public int? ClanId32bit => Reader.TryReadInt32(Ord.ClanId32bit, out int v) ? v : null;
 
     // Ordinals into the binding's CanonicalPaths — the own segment, after the

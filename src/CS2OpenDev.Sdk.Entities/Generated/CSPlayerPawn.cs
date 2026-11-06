@@ -162,18 +162,18 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("25218825")]
     public int? Flags => Reader.TryReadInt32(Ord.Flags, out int v) ? v : null;
 
-    /// <summary><c>m_flDeathTime</c> (GameTime_t).</summary>
-    [SchemaFieldVersion("genesis")]
-    public float DeathTime => Reader.TryReadSingle(Ord.DeathTime, out float v) ? v : 0f;
-
-    /// <summary><c>m_flModifier0</c> (float32).</summary>
+    /// <summary><c>m_flBigHeadScale</c> (float32).</summary>
     /// <remarks>
     ///     Nullable because this field has no established meaning on the wire, so
     ///     a <c>0.0</c> cannot be told apart from an absence by inspection.
     ///     <see langword="null"/> means the field has never been received.
     /// </remarks>
-    [SchemaFieldVersion("25966348")]
-    public float? Modifier0 => Reader.TryReadSingle(Ord.Modifier0, out float v) ? v : null;
+    [SchemaFieldVersion("26334290")]
+    public float? BigHeadScale => Reader.TryReadSingle(Ord.BigHeadScale, out float v) ? v : null;
+
+    /// <summary><c>m_flDeathTime</c> (GameTime_t).</summary>
+    [SchemaFieldVersion("genesis")]
+    public float DeathTime => Reader.TryReadSingle(Ord.DeathTime, out float v) ? v : 0f;
 
     /// <summary><c>m_hController</c> (CHandle&lt; CBasePlayerController &gt;).</summary>
     [SchemaFieldVersion("genesis")]
@@ -317,8 +317,8 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
         internal const int IsWalking = 19;
         internal const int KilledByHeadshot = 20;
         internal const int Flags = 21;
-        internal const int DeathTime = 22;
-        internal const int Modifier0 = 23;
+        internal const int BigHeadScale = 22;
+        internal const int DeathTime = 23;
         internal const int ControllerHandle = 24;
         internal const int OwnerEntityHandle = 25;
         internal const int DeathFlags = 26;

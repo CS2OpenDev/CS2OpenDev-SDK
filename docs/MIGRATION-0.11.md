@@ -1,11 +1,11 @@
 # Migrating to CS2OpenDev.Sdk 0.11
 
-**403 types and 224 members leave the public surface.** One upstream change accounts for most of
+**404 types and 224 members leave the public surface.** One upstream change accounts for most of
 it: the `smartprops` schema module is gone from CS2, taking the whole `CS2OpenSchema.Smartprops`
 namespace with it. The rest is a long tail across `Server`, `Common`, `Client` and the sound and
 pulse namespaces, plus the `SchemaNames` constants for entity classes upstream dropped.
 
-Measured against CS2 build 25966348 (from 25218825), a gap of five weeks of upstream churn.
+Measured against CS2 build 26334290 (from 25218825), a gap of seven weeks of upstream churn.
 Regenerate the inventory with:
 
 ```
@@ -13,7 +13,7 @@ dotnet run --configuration Release --project src/CS2OpenDev.Sdk.Exporter
 ```
 
 This release documents removals only. It makes no claim that the surviving surface was reviewed
-field by field: 241 types and 656 members were also added, and 18 property types changed, and
+field by field: 243 types and 671 members were also added, and 18 property types changed, and
 none of that was asked for or audited here.
 
 ## 1. `CS2OpenSchema.Smartprops` is gone entirely
@@ -64,7 +64,7 @@ to have touched them.
 ## 4. The `Server`, `Common` and sound long tail
 
 40 `Server` types, 28 `Common` types, 6 `PulseRuntimeLib`, 5 `PulseSystem`, 4
-`SoundsystemLowlevel`, 3 `Particles`, 2 `Soundsystem`, 1 `Entity2` and 1 `Resourcesystem`.
+`SoundsystemLowlevel`, 3 `Particles`, 2 `Soundsystem`, 2 `Resourcesystem` and 1 `Entity2`.
 
 99 of the 224 removed members are on surviving `Server` types. The largest clusters:
 
@@ -123,7 +123,7 @@ comparing type declarations would otherwise count them as losses.
 
 ## Everything else in this build
 
-Additions, which never block: 241 types and 656 members.
+Additions, which never block: 243 types and 671 members.
 
 Reported and not blocked, and not reviewed as part of this release:
 
@@ -147,6 +147,6 @@ The proto surface loses no top-level type and no field number against `CS2OpenDe
 model cannot see. `CS2OpenDev.Protos` ships 0.10 for it. Read `docs/MIGRATION-0.10-protos.md`
 before upgrading both packages together.
 
-That is the complete accounting: 403 types and 224 members removed, 241 types and 656 members
+That is the complete accounting: 404 types and 224 members removed, 243 types and 671 members
 added, 6 members hoisted, 7 type declarations changed, 18 property types changed, 225 members
 otherwise changed.

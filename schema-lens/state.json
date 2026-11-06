@@ -1,6 +1,6 @@
 {
-  "lensHash": "sha256:2d065bd63e2600bcf4dc5571ed726ff13768db759f4702a94a2246c663eed5d9",
-  "schemaBuild": "25966348",
+  "lensHash": "sha256:3f6f347d5af3144b555844c73789b03fb00870f8c7c490d714b199be51ed62d1",
+  "schemaBuild": "26334290",
   "classes": {
     "CAK47": {
       "netName": "AK47",
@@ -331,6 +331,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_nActiveMutators": {
+          "targetProperty": "ActiveMutators",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "26334290"
+        },
         "m_totalRoundsPlayed": {
           "targetProperty": "TotalRoundsPlayed",
           "schemaType": "int32",
@@ -484,6 +490,7 @@
         "m_iSpectatorSlotCount",
         "m_iTotalRoundsPlayed",
         "m_iUnBalancedRounds",
+        "m_nActiveMutators",
         "m_nCTTeamIntroVariant",
         "m_nCTTimeOuts",
         "m_nCTsAliveAtFreezetimeEnd",
@@ -857,7 +864,7 @@
           "targetProperty": "SanitizedClanTag",
           "schemaType": "CUtlString",
           "widthBytes": null,
-          "firstSeenBuild": "25966348"
+          "firstSeenBuild": "26334290"
         },
         "m_sSanitizedPlayerName": {
           "targetProperty": "SanitizedPlayerName",
@@ -875,7 +882,7 @@
           "targetProperty": "ClanId32bit",
           "schemaType": "uint32",
           "widthBytes": 4,
-          "firstSeenBuild": "25966348"
+          "firstSeenBuild": "26334290"
         }
       },
       "aliases": {
@@ -1058,17 +1065,17 @@
           "widthBytes": 4,
           "firstSeenBuild": "25218825"
         },
+        "m_flBigHeadScale": {
+          "targetProperty": "BigHeadScale",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "26334290"
+        },
         "m_flDeathTime": {
           "targetProperty": "DeathTime",
           "schemaType": "GameTime_t",
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
-        },
-        "m_flModifier0": {
-          "targetProperty": "Modifier0",
-          "schemaType": "float32",
-          "widthBytes": 4,
-          "firstSeenBuild": "25966348"
         },
         "m_hController": {
           "targetProperty": "ControllerHandle",
@@ -1272,6 +1279,7 @@
         "m_fLastGivenDefuserTime",
         "m_fMolotovDamageTime",
         "m_fSwitchedHandednessTime",
+        "m_flBigHeadScale",
         "m_flDealtDamageToEnemyMostRecentTimestamp",
         "m_flDeathInfoTime",
         "m_flEmitSoundTime",
@@ -1280,7 +1288,6 @@
         "m_flLandingTimeSeconds",
         "m_flLastAttackedTeammate",
         "m_flLastPickupPriorityTime",
-        "m_flModifier0",
         "m_flNextSprayDecalTime",
         "m_flTimeOfLastInjury",
         "m_flVelocityModifier",
@@ -1870,7 +1877,7 @@
           "targetProperty": "SmokeLightProbeRegen",
           "schemaType": "uint8",
           "widthBytes": 1,
-          "firstSeenBuild": "25966348"
+          "firstSeenBuild": "26334290"
         },
         "m_vSmokeColor": {
           "targetProperty": "SmokeColor",

@@ -3,7 +3,7 @@
 `CS2OpenDev.Protos` goes 0.9.6 → 0.10.0. **One field is renamed and changes cardinality**, in
 `CEconItemPreviewDataBlock`. Everything else in this restage is additive.
 
-Measured against CS2 build 25966348 (from 25218825).
+Measured against CS2 build 26334290 (from 25218825).
 
 ## `CEconItemPreviewDataBlock.customname` becomes `customnames`
 

@@ -40,7 +40,7 @@ public sealed class SmokeGrenadeProjectile(IEntityFieldReader reader, IEntityWor
     ///     a <c>0</c> cannot be told apart from an absence by inspection.
     ///     <see langword="null"/> means the field has never been received.
     /// </remarks>
-    [SchemaFieldVersion("25966348")]
+    [SchemaFieldVersion("26334290")]
     public int? SmokeLightProbeRegen => Reader.TryReadInt32(Ord.SmokeLightProbeRegen, out int v) ? v : null;
 
     /// <summary><c>m_vSmokeColor</c> (Vector).</summary>

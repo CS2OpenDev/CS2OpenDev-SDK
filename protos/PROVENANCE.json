@@ -1,5 +1,5 @@
 {
-  "build_id": 25966348,
+  "build_id": 26334290,
   "csharp_namespace": "CS2OpenSchema.Protos",
   "files": [
     "clientmessages.proto",
@@ -18,7 +18,7 @@
     "usermessages.proto",
     "valveextensions.proto"
   ],
-  "generated_utc": "2026-10-15T21:41:06Z",
+  "generated_utc": "2026-10-30T23:09:13Z",
   "platform": "windows-x86_64",
   "roots": [
     "clientmessages.proto",
@@ -33,6 +33,6 @@
     "usercmd.proto",
     "usermessages.proto"
   ],
-  "source_commit": "7fa75649659c64b2551f1db0188d1f404bd6890e",
+  "source_commit": "8fae82d2e29cc249044dc3a315dd64464eee1695",
   "source_repo": "https://github.com/CS2OpenDev/CS2OpenDev-SchemaTracker"
 }

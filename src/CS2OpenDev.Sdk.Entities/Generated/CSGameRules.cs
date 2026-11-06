@@ -58,6 +58,10 @@ public sealed class CSGameRules(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("genesis")]
     public int RoundWinStatus => Reader.TryReadInt32(Ord.RoundWinStatus, out int v) ? v : 0;
 
+    /// <summary><c>m_nActiveMutators</c> (int32).</summary>
+    [SchemaFieldVersion("26334290")]
+    public int ActiveMutators => Reader.TryReadInt32(Ord.ActiveMutators, out int v) ? v : 0;
+
     /// <summary><c>m_totalRoundsPlayed</c> (int32).</summary>
     [SchemaFieldVersion("genesis")]
     public int TotalRoundsPlayed => Reader.TryReadInt32(Ord.TotalRoundsPlayed, out int v) ? v : 0;
@@ -77,6 +81,7 @@ public sealed class CSGameRules(IEntityFieldReader reader, IEntityWorld world)
         internal const int GamePhase = 7;
         internal const int RoundTime = 8;
         internal const int RoundWinStatus = 9;
-        internal const int TotalRoundsPlayed = 10;
+        internal const int ActiveMutators = 10;
+        internal const int TotalRoundsPlayed = 11;
     }
 }
