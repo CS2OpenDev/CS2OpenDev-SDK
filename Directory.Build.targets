@@ -1,0 +1,13 @@
+<Project>
+    <!-- Nerdbank appends GitBuildVersion and two siblings to GITHUB_ENV from every
+         project it versions. Parallel project builds interleave those appends, and
+         the runner then rejects the whole file ("Unable to process file command
+         'env'"). Nothing in this repository reads the variables. -->
+    <Target Name="SuppressCloudBuildVersionVars"
+            AfterTargets="GetBuildVersion"
+            BeforeTargets="SetCloudBuildVersionVars">
+        <ItemGroup>
+            <CloudBuildVersionVars Remove="@(CloudBuildVersionVars)"/>
+        </ItemGroup>
+    </Target>
+</Project>

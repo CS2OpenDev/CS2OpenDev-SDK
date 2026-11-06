@@ -54,6 +54,13 @@ CSHARP_NAMESPACE = "CS2OpenSchema.Protos"
 # tool-side modules Linux has no binaries for.
 PLATFORM = "windows-x86_64"
 
+# The tracker can publish a build for one platform only. Fall back in this
+# order; the closure is identical across platforms.
+PLATFORM_FALLBACK = ["windows-x86_64", "linux-x86_64"]
+
+# The only files seen to differ between platforms. A fallback must not stage them.
+PLATFORM_DIVERGENT = {"enums_clientserver.proto", "steammessages_base.proto"}
+
 # Roots of the demo/engine wire path. Everything a `.dem` parser needs to read
 # packets, entities, user messages and game events. The transitive import
 # closure over these is what gets staged; the GC/Steam matchmaking families are
@@ -77,18 +84,30 @@ IMPORT_RE = re.compile(r'^import(?: public| weak)? "([^"]+)";', re.MULTILINE)
 SYNTAX_RE = re.compile(r'^(syntax\s*=\s*"proto[23]"\s*;)$', re.MULTILINE)
 
 
-def tracker_protos() -> pathlib.Path:
+def tracker_protos() -> tuple[pathlib.Path, str]:
     latest = TRACKER / "LATEST.json"
     if not latest.exists():
         sys.exit(
             "schema-tracker submodule is not initialised.\n"
             "  git submodule update --init --depth 1 schema-tracker"
         )
-    build_id = json.loads(latest.read_text(encoding="utf-8"))["build_id"]
-    path = TRACKER / "artifacts" / str(build_id) / PLATFORM / "protos"
-    if not path.is_dir():
-        sys.exit(f"no protos for build {build_id} / {PLATFORM} at {path}")
-    return path
+    meta = json.loads(latest.read_text(encoding="utf-8"))
+    build_id = meta["build_id"]
+    listed = meta.get("platforms") or [PLATFORM]
+    for platform in [p for p in PLATFORM_FALLBACK if p in listed]:
+        path = TRACKER / "artifacts" / str(build_id) / platform / "protos"
+        if path.is_dir():
+            if platform != PLATFORM:
+                print(
+                    f"::warning::build {build_id} has no {PLATFORM} protos; "
+                    f"staging from {platform}",
+                    file=sys.stderr,
+                )
+            return path, platform
+    sys.exit(
+        f"no protos for build {build_id} on any of {PLATFORM_FALLBACK} "
+        f"(LATEST.json lists {listed})"
+    )
 
 
 def closure(src: pathlib.Path) -> list[str]:
@@ -175,15 +194,20 @@ def main() -> None:
     ap.add_argument("--check", action="store_true", help="fail if protos/ differs from a fresh stage")
     args = ap.parse_args()
 
-    src = tracker_protos()
+    src, platform = tracker_protos()
     files = closure(src)
+    if platform != PLATFORM and PLATFORM_DIVERGENT.intersection(files):
+        sys.exit(
+            f"closure now includes {sorted(PLATFORM_DIVERGENT.intersection(files))}, "
+            f"which differ between platforms; refusing to stage from {platform}"
+        )
     latest = json.loads((TRACKER / "LATEST.json").read_text(encoding="utf-8"))
     build_id = latest["build_id"]
-    print(f"build {build_id} / {PLATFORM}: {len(files)} files in the demo/engine closure")
+    print(f"build {build_id} / {platform}: {len(files)} files in the demo/engine closure")
 
     provenance = {
         "build_id": build_id,
-        "platform": PLATFORM,
+        "platform": platform,
         "csharp_namespace": CSHARP_NAMESPACE,
         "generated_utc": latest.get("generated_utc"),
         "source_commit": latest.get("source_commit"),
