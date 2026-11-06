@@ -162,6 +162,15 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
     [SchemaFieldVersion("25218825")]
     public int? Flags => Reader.TryReadInt32(Ord.Flags, out int v) ? v : null;
 
+    /// <summary><c>m_flBigHeadScale</c> (float32).</summary>
+    /// <remarks>
+    ///     Nullable because this field has no established meaning on the wire, so
+    ///     a <c>0.0</c> cannot be told apart from an absence by inspection.
+    ///     <see langword="null"/> means the field has never been received.
+    /// </remarks>
+    [SchemaFieldVersion("26334290")]
+    public float? BigHeadScale => Reader.TryReadSingle(Ord.BigHeadScale, out float v) ? v : null;
+
     /// <summary><c>m_flDeathTime</c> (GameTime_t).</summary>
     [SchemaFieldVersion("genesis")]
     public float DeathTime => Reader.TryReadSingle(Ord.DeathTime, out float v) ? v : 0f;
@@ -308,31 +317,32 @@ public sealed class CSPlayerPawn(IEntityFieldReader reader, IEntityWorld world)
         internal const int IsWalking = 19;
         internal const int KilledByHeadshot = 20;
         internal const int Flags = 21;
-        internal const int DeathTime = 22;
-        internal const int ControllerHandle = 23;
-        internal const int OwnerEntityHandle = 24;
-        internal const int DeathFlags = 25;
-        internal const int Health = 26;
-        internal const int MaxHealth = 27;
-        internal const int ShotsFired = 28;
-        internal const int TeamNum = 29;
-        internal const int LifeState = 30;
-        internal const int HasDefuser = 31;
-        internal const int HasHelmet = 32;
-        internal const int Ducked = 33;
-        internal const int DuckAmount = 34;
-        internal const int Stamina = 35;
-        internal const int Buttons = 36;
-        internal const int ObserverTargetHandle = 37;
-        internal const int ObserverMode = 38;
-        internal const int ActiveWeaponHandle = 39;
-        internal const int LastWeaponHandle = 40;
-        internal const int MyWeapons = 41;
-        internal const int LastPlaceName = 42;
-        internal const int CurrentEquipmentValue = 43;
-        internal const int FreezetimeEndEquipmentValue = 44;
-        internal const int RoundStartEquipmentValue = 45;
-        internal const int Velocity = 46;
-        internal const int ViewAngle = 47;
+        internal const int BigHeadScale = 22;
+        internal const int DeathTime = 23;
+        internal const int ControllerHandle = 24;
+        internal const int OwnerEntityHandle = 25;
+        internal const int DeathFlags = 26;
+        internal const int Health = 27;
+        internal const int MaxHealth = 28;
+        internal const int ShotsFired = 29;
+        internal const int TeamNum = 30;
+        internal const int LifeState = 31;
+        internal const int HasDefuser = 32;
+        internal const int HasHelmet = 33;
+        internal const int Ducked = 34;
+        internal const int DuckAmount = 35;
+        internal const int Stamina = 36;
+        internal const int Buttons = 37;
+        internal const int ObserverTargetHandle = 38;
+        internal const int ObserverMode = 39;
+        internal const int ActiveWeaponHandle = 40;
+        internal const int LastWeaponHandle = 41;
+        internal const int MyWeapons = 42;
+        internal const int LastPlaceName = 43;
+        internal const int CurrentEquipmentValue = 44;
+        internal const int FreezetimeEndEquipmentValue = 45;
+        internal const int RoundStartEquipmentValue = 46;
+        internal const int Velocity = 47;
+        internal const int ViewAngle = 48;
     }
 }

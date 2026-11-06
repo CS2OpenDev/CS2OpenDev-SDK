@@ -1,6 +1,6 @@
 {
-  "lensHash": "sha256:1fa558b39fef18823e699444e4054ee153b4750782a0df5a1926b92e19b014bf",
-  "schemaBuild": "25218825",
+  "lensHash": "sha256:3f6f347d5af3144b555844c73789b03fb00870f8c7c490d714b199be51ed62d1",
+  "schemaBuild": "26334290",
   "classes": {
     "CAK47": {
       "netName": "AK47",
@@ -331,6 +331,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_nActiveMutators": {
+          "targetProperty": "ActiveMutators",
+          "schemaType": "int32",
+          "widthBytes": 4,
+          "firstSeenBuild": "26334290"
+        },
         "m_totalRoundsPlayed": {
           "targetProperty": "TotalRoundsPlayed",
           "schemaType": "int32",
@@ -484,6 +490,7 @@
         "m_iSpectatorSlotCount",
         "m_iTotalRoundsPlayed",
         "m_iUnBalancedRounds",
+        "m_nActiveMutators",
         "m_nCTTeamIntroVariant",
         "m_nCTTimeOuts",
         "m_nCTsAliveAtFreezetimeEnd",
@@ -853,6 +860,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_sSanitizedClanTag": {
+          "targetProperty": "SanitizedClanTag",
+          "schemaType": "CUtlString",
+          "widthBytes": null,
+          "firstSeenBuild": "26334290"
+        },
         "m_sSanitizedPlayerName": {
           "targetProperty": "SanitizedPlayerName",
           "schemaType": "CUtlString",
@@ -864,6 +877,12 @@
           "schemaType": "uint64",
           "widthBytes": 8,
           "firstSeenBuild": "genesis"
+        },
+        "m_unClanId32bit": {
+          "targetProperty": "ClanId32bit",
+          "schemaType": "uint32",
+          "widthBytes": 4,
+          "firstSeenBuild": "26334290"
         }
       },
       "aliases": {
@@ -935,12 +954,14 @@
         "m_pInventoryServices",
         "m_recentKillQueue",
         "m_rtActiveMissionPeriod",
+        "m_sSanitizedClanTag",
         "m_sSanitizedPlayerName",
         "m_szClan",
         "m_szCrosshairCodes",
         "m_uiAbandonRecordedReason",
         "m_uiCommunicationMuteFlags",
         "m_unActiveQuestId",
+        "m_unClanId32bit",
         "m_unPlayerTvControlFlags"
       ]
     },
@@ -1043,6 +1064,12 @@
           "schemaType": "uint32",
           "widthBytes": 4,
           "firstSeenBuild": "25218825"
+        },
+        "m_flBigHeadScale": {
+          "targetProperty": "BigHeadScale",
+          "schemaType": "float32",
+          "widthBytes": 4,
+          "firstSeenBuild": "26334290"
         },
         "m_flDeathTime": {
           "targetProperty": "DeathTime",
@@ -1252,6 +1279,7 @@
         "m_fLastGivenDefuserTime",
         "m_fMolotovDamageTime",
         "m_fSwitchedHandednessTime",
+        "m_flBigHeadScale",
         "m_flDealtDamageToEnemyMostRecentTimestamp",
         "m_flDeathInfoTime",
         "m_flEmitSoundTime",
@@ -1845,6 +1873,12 @@
           "widthBytes": 4,
           "firstSeenBuild": "genesis"
         },
+        "m_nSmokeLightProbeRegen": {
+          "targetProperty": "SmokeLightProbeRegen",
+          "schemaType": "uint8",
+          "widthBytes": 1,
+          "firstSeenBuild": "26334290"
+        },
         "m_vSmokeColor": {
           "targetProperty": "SmokeColor",
           "schemaType": "Vector",
@@ -1869,6 +1903,7 @@
         "m_fllastSimulationTime",
         "m_nRandomSeed",
         "m_nSmokeEffectTickBegin",
+        "m_nSmokeLightProbeRegen",
         "m_nVoxelFrameDataSize",
         "m_nVoxelUpdate",
         "m_vSmokeColor",

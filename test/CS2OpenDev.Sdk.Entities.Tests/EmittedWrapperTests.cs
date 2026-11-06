@@ -737,6 +737,102 @@ public class EmittedWrapperTests
         await Assert.That(underhand.ThrowStrength).IsEqualTo(0f);
     }
 
+    /// <summary>The build 26334290 drift fields read through their names, with SanitizedClanTag curated rather than derived.</summary>
+    [Test]
+    public async Task DriftFields_ReadThroughTheirNames()
+    {
+        CSPlayerController controller = new(
+            Reader(Binding("CCSPlayerController"), new Dictionary<string, object?>
+            {
+                ["m_sSanitizedClanTag"] = "NiP",
+                ["m_unClanId32bit"] = 4242,
+            }),
+            new EmptyWorld());
+
+        await Assert.That(controller.SanitizedClanTag).IsEqualTo("NiP");
+        await Assert.That(controller.ClanId32bit).IsEqualTo(4242);
+
+        CSPlayerPawn pawn = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_flBigHeadScale"] = 1.5f }),
+            new EmptyWorld());
+        await Assert.That(pawn.BigHeadScale).IsEqualTo(1.5f);
+
+        CSGameRules rules = new(
+            Reader(Binding("CCSGameRules"), new Dictionary<string, object?> { ["m_nActiveMutators"] = 3 }),
+            new EmptyWorld());
+        await Assert.That(rules.ActiveMutators).IsEqualTo(3);
+
+        SmokeGrenadeProjectile smoke = (SmokeGrenadeProjectile)EntityWrapperRegistry.Create(
+            "CSmokeGrenadeProjectile",
+            Reader(Binding("CSmokeGrenadeProjectile"), new Dictionary<string, object?>
+            {
+                ["m_nSmokeLightProbeRegen"] = 7,
+            }),
+            new EmptyWorld())!;
+        await Assert.That(smoke.SmokeLightProbeRegen).IsEqualTo(7);
+        await Assert.That(typeof(SmokeGrenadeProjectile)
+                .GetProperty(nameof(SmokeGrenadeProjectile.SmokeLightProbeRegen))!.PropertyType)
+            .IsEqualTo(typeof(int?));
+    }
+
+    /// <summary>ClanId32bit, BigHeadScale and SmokeLightProbeRegen are seen-aware because none of their zeros is known to be a reading or an absence; ActiveMutators is not, because 0 is no mutator either way.</summary>
+    [Test]
+    public async Task DriftFieldsWithUnknownZero_AreSeenAware()
+    {
+        await Assert.That(typeof(CSPlayerController).GetProperty(nameof(CSPlayerController.ClanId32bit))!.PropertyType)
+            .IsEqualTo(typeof(int?));
+        await Assert.That(typeof(CSPlayerPawn).GetProperty(nameof(CSPlayerPawn.BigHeadScale))!.PropertyType)
+            .IsEqualTo(typeof(float?));
+        await Assert.That(typeof(CSGameRules).GetProperty(nameof(CSGameRules.ActiveMutators))!.PropertyType)
+            .IsEqualTo(typeof(int));
+        await Assert.That(typeof(SmokeGrenadeProjectile)
+                .GetProperty(nameof(SmokeGrenadeProjectile.SmokeLightProbeRegen))!.PropertyType)
+            .IsEqualTo(typeof(int?));
+
+        CSPlayerController controller = new(Reader(Binding("CCSPlayerController"), []), new EmptyWorld());
+        await Assert.That(controller.ClanId32bit).IsNull();
+
+        CSPlayerPawn pawn = new(Reader(Binding("CCSPlayerPawn"), []), new EmptyWorld());
+        await Assert.That(pawn.BigHeadScale).IsNull();
+
+        CSGameRules rules = new(Reader(Binding("CCSGameRules"), []), new EmptyWorld());
+        await Assert.That(rules.ActiveMutators).IsEqualTo(0);
+
+        SmokeGrenadeProjectile smokeAbsent = (SmokeGrenadeProjectile)EntityWrapperRegistry.Create(
+            "CSmokeGrenadeProjectile", Reader(Binding("CSmokeGrenadeProjectile"), []), new EmptyWorld())!;
+        await Assert.That(smokeAbsent.SmokeLightProbeRegen).IsNull();
+
+        // A transmitted 0 has to stay distinguishable from the absences above; that is
+        // the whole reason these three were born nullable.
+        CSPlayerController zeroId = new(
+            Reader(Binding("CCSPlayerController"), new Dictionary<string, object?> { ["m_unClanId32bit"] = 0 }),
+            new EmptyWorld());
+        await Assert.That(zeroId.ClanId32bit).IsEqualTo(0);
+
+        CSPlayerPawn zeroScale = new(
+            Reader(Binding("CCSPlayerPawn"), new Dictionary<string, object?> { ["m_flBigHeadScale"] = 0f }),
+            new EmptyWorld());
+        await Assert.That(zeroScale.BigHeadScale).IsEqualTo(0f);
+
+        SmokeGrenadeProjectile zeroRegen = (SmokeGrenadeProjectile)EntityWrapperRegistry.Create(
+            "CSmokeGrenadeProjectile",
+            Reader(Binding("CSmokeGrenadeProjectile"), new Dictionary<string, object?> { ["m_nSmokeLightProbeRegen"] = 0 }),
+            new EmptyWorld())!;
+        await Assert.That(zeroRegen.SmokeLightProbeRegen).IsEqualTo(0);
+    }
+
+    /// <summary>SanitizedClanTag needs no seen-aware entry: the boxed path already defaults to null.</summary>
+    [Test]
+    public async Task SanitizedClanTag_IsNullableOnTheBoxedPath()
+    {
+        await Assert.That(typeof(CSPlayerController)
+                .GetProperty(nameof(CSPlayerController.SanitizedClanTag))!.PropertyType)
+            .IsEqualTo(typeof(object));
+
+        CSPlayerController controller = new(Reader(Binding("CCSPlayerController"), []), new EmptyWorld());
+        await Assert.That(controller.SanitizedClanTag).IsNull();
+    }
+
     /// <summary>A handle crosses raw and resolves through the world, with a serial in the high bits so mask policy is genuinely exercised.</summary>
     [Test]
     public async Task Handle_CrossesRawAndResolves()

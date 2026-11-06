@@ -43,6 +43,7 @@ internal static class WordSplitter
     [
         // identity / entity
         "account", "attacker", "avenger", "controller", "entity", "ent", "handle",
+        "device", "shared",
         "id", "index", "initiator", "instance", "network", "other", "owner",
         "player", "spectator", "steam", "target", "user", "victim", "xuid",
 
@@ -180,6 +181,10 @@ internal static class WordSplitter
     {
         // `pre` as a token makes these two splittable, and both are one word.
         "preset", "prefetch",
+
+        // `by` and `pass` are both tokens, which would give ByPass. .NET spells
+        // it Bypass (WebProxy.BypassProxyOnLocal).
+        "bypass",
 
         "drowning", "recovery",
 

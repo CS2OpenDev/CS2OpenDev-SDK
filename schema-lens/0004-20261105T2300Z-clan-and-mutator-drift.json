@@ -1,0 +1,35 @@
+{
+  "id": "0004-20261105T2300Z-clan-and-mutator-drift",
+  "build": "26334290",
+  "appliedAt": "2026-11-05T23:00:00Z",
+  "notes": "The five fields builds 25966348 through 26334290 grew on covered classes, which CS2_GEN_012 held the regen on from 2026-10-15. All five are tracked rather than ignored. (1) m_sSanitizedClanTag on CCSPlayerController, a CUtlString, next to the m_sSanitizedPlayerName this class already tracks. (2) m_unClanId32bit on the same class, uint32. (3) m_flBigHeadScale on CCSPlayerPawn, float32. Build 25966348 shipped it as m_flModifier0 and 26334290 renamed it before any release carried the old name, so the Lens records only the current one. (4) m_nActiveMutators on CCSGameRules, int32. (5) m_nSmokeLightProbeRegen on CSmokeGrenadeProjectile, uint8. No new class, so the binding count stays at 61. Four of the five target properties are derived: nothing named them downstream, so the word vocabulary and names.lock.json decide. SanitizedClanTag is the exception and is explicit, because the derivation strips only the m_ and leaves SSanitizedClanTag. The sibling m_sSanitizedPlayerName on this same class reads SanitizedPlayerName, and a doubled S next to it would be the Lens recording a typo as a decision. Nothing has asked for any of these. They are tracked because the gate wants a decision and tracking is the one that keeps the reading available; the alternative was ignoreField, which would have recorded them as seen and surfaced nothing. The clan pair is the useful half: a clan tag and id on the controller are scoreboard data, and CCSTeam.m_szClanTeamname is already tracked. The mutator pair names Valve's game-mode mutators, with the scale and the active set both arriving in the same two builds; neither has a documented wire meaning yet. m_nSmokeLightProbeRegen has none either.",
+  "stateHash": "sha256:3f6f347d5af3144b555844c73789b03fb00870f8c7c490d714b199be51ed62d1",
+  "changes": [
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_sSanitizedClanTag",
+      "targetProperty": "SanitizedClanTag"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerController",
+      "field": "m_unClanId32bit"
+    },
+    {
+      "op": "addField",
+      "class": "CCSPlayerPawn",
+      "field": "m_flBigHeadScale"
+    },
+    {
+      "op": "addField",
+      "class": "CCSGameRules",
+      "field": "m_nActiveMutators"
+    },
+    {
+      "op": "addField",
+      "class": "CSmokeGrenadeProjectile",
+      "field": "m_nSmokeLightProbeRegen"
+    }
+  ]
+}
