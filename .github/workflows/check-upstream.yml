@@ -299,3 +299,73 @@ jobs:
       ref: ${{ needs.refresh.outputs.pushed_sha }}
     secrets:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+  notify:
+    # The refresh fails closed by design: a gate trips, the job goes red, and
+    # nothing is pushed. What it did not do until now is tell anyone. Between
+    # 2026-09-23 and 2026-11-05 every scheduled run failed, through three
+    # different causes, and the first anyone looked was six weeks in.
+    #
+    # One issue, labelled `scheduled-refresh`, opened on the first failure and
+    # closed on the first success. A comment is added when the failing step
+    # changes, and otherwise at most once a week, so a known outage does not
+    # turn into a notification every four hours.
+    name: Report the refresh outcome
+    needs: refresh
+    if: always() && needs.refresh.result != 'cancelled'
+    runs-on: ubuntu-24.04
+    permissions:
+      issues: write
+      # To read which step of the refresh job failed.
+      actions: read
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RESULT: ${{ needs.refresh.result }}
+      LABEL: scheduled-refresh
+      TITLE: Scheduled upstream refresh is failing
+    steps:
+      - name: Open, update or close the outage issue
+        run: |
+          set -euo pipefail
+
+          existing=$(gh issue list --label "$LABEL" --state open --limit 1 \
+                       --json number --jq '.[0].number // empty')
+
+          if [ "$RESULT" = "success" ]; then
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "Recovered: $RUN_URL"
+              gh issue close "$existing"
+            fi
+            exit 0
+          fi
+
+          # The refresh job's own view of what failed. Available because the
+          # job has finished by the time this one starts.
+          step=$(gh run view "$GITHUB_RUN_ID" --json jobs \
+                   --jq '[.jobs[] | select(.conclusion == "failure") | .steps[]
+                          | select(.conclusion == "failure") | .name] | first // "unknown"')
+          marker="<!-- step: $step -->"
+          body=$(printf '%s\nFailing step: `%s`\nRun: %s\n\nThe refresh fails closed, so nothing was pushed or published. Every scheduled run will keep failing until the cause is fixed.' \
+                        "$marker" "$step" "$RUN_URL")
+
+          if [ -z "$existing" ]; then
+            gh label create "$LABEL" --force \
+              --description "The scheduled upstream refresh is failing" --color B60205
+            gh issue create --title "$TITLE" --label "$LABEL" --body "$body"
+            exit 0
+          fi
+
+          # Last recorded step and the time of the last post, body or comment.
+          last=$(gh issue view "$existing" --json body,createdAt,comments \
+                   --jq '([.comments[] | {body, at: .createdAt}] + [{body, at: .createdAt}])
+                         | max_by(.at) | "\(.at)\t\(.body | capture("<!-- step: (?<s>[^>]*) -->").s // "")"')
+          IFS=$'\t' read -r last_at last_step <<<"$last"
+          age=$(( $(date +%s) - $(date -d "$last_at" +%s) ))
+
+          if [ "$last_step" != "$step" ] || [ "$age" -gt $((7 * 24 * 3600)) ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            echo "Still failing at '$step'; issue #$existing already says so."
+          fi
