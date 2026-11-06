@@ -135,6 +135,34 @@ jobs:
         id: head
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
+      - name: Stop if the branch has already moved past this commit
+        # GITHUB_TOKEN can create a tag only at the current head of the branch.
+        # Two merges to main a minute apart queue two release runs; by the time
+        # the first one reaches "Create GitHub Release", main is at the second
+        # commit and every `gh release create` fails with 403 "Resource not
+        # accessible by integration". That happened on 2026-11-06: the first run
+        # pushed CS2OpenDev.Protos 0.9.8 to both feeds and then could not tag it.
+        #
+        # So check before anything irreversible. A superseded run publishes
+        # nothing; the run queued behind it builds the newer commit, whose git
+        # heights are at least as high, so every version still worth shipping
+        # ships from there. The patch number this run would have used is simply
+        # never issued, which git-height versioning never promised anyway.
+        #
+        # Window, not wall: a push that lands after this step and before the
+        # release step still fails there, with the remediation printed.
+        id: supersede
+        env:
+          TARGET_SHA: ${{ steps.head.outputs.sha }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          REMOTE_SHA=$(git ls-remote --heads origin "$BRANCH" | cut -f1)
+          if [ -n "$REMOTE_SHA" ] && [ "$REMOTE_SHA" != "$TARGET_SHA" ]; then
+            echo "::notice::${BRANCH} is at ${REMOTE_SHA}, past ${TARGET_SHA}. Publishing nothing; the run for the newer commit ships whatever is still new."
+            echo "superseded=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Refuse to publish a schema the SDK cannot attribute
         # Gated here rather than in the callers because both of them reach
         # publication through this workflow, and only one of them was covered.
@@ -146,23 +174,26 @@ jobs:
         #
         # Only the schema-derived packages. CS2OpenDev.Protos is built from
         # protos/ on its own clock and is unaffected by the enum gap.
-        if: matrix.schema_metadata
+        if: steps.supersede.outputs.superseded != 'true' && (matrix.schema_metadata)
         run: python3 scripts/check-migration-readiness.py
 
       - name: Set up .NET
+        if: steps.supersede.outputs.superseded != 'true'
         uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
 
       - name: Restore + build (Release)
+        if: steps.supersede.outputs.superseded != 'true'
         run: dotnet build ${{ matrix.path }} --configuration Release -nologo
 
       - name: Read CS2 schema metadata
         id: schema
-        if: matrix.schema_metadata
+        if: steps.supersede.outputs.superseded != 'true' && (matrix.schema_metadata)
         uses: ./.github/actions/read-schema-metadata
 
       - name: Pack
+        if: steps.supersede.outputs.superseded != 'true'
         run: |
           if [ "${{ matrix.schema_metadata }}" = "true" ]; then
             dotnet pack ${{ matrix.path }} \
@@ -175,6 +206,7 @@ jobs:
           fi
 
       - name: Resolve produced packages
+        if: steps.supersede.outputs.superseded != 'true'
         id: pkg
         env:
           ID: ${{ matrix.id }}
@@ -257,6 +289,7 @@ jobs:
         # first-party output (the assembly, its XML docs, README, and NuGet
         # metadata). Microsoft's and other vendors' binaries legitimately carry
         # their own CI agents' paths, but none are bundled here.
+        if: steps.supersede.outputs.superseded != 'true'
         env:
           PKG: ${{ steps.pkg.outputs.path }}
           SYM: ${{ steps.pkg.outputs.symbols }}
@@ -303,6 +336,7 @@ jobs:
           PY
 
       - name: Upload packages as workflow artifact
+        if: steps.supersede.outputs.superseded != 'true'
         uses: actions/upload-artifact@v7
         with:
           name: nupkg-${{ matrix.id }}-${{ steps.pkg.outputs.version }}
@@ -320,7 +354,7 @@ jobs:
         # input), only for stable versions, and only when no legacy secret is
         # already supplying a key.
         id: nuget-login
-        if: inputs.nuget-org && env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false'
+        if: steps.supersede.outputs.superseded != 'true' && (inputs.nuget-org && env.NUGET_API_KEY == '' && steps.pkg.outputs.prerelease == 'false')
         uses: NuGet/login@v1
         with:
           user: sid2934
@@ -337,7 +371,7 @@ jobs:
         # publishes the moment anyone set NUGET_API_KEY, which is not what
         # either workflow's comments claimed. The repository has no secrets set
         # today, so this closes the hole before it opens rather than after.
-        if: inputs.nuget-org && (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '') && steps.pkg.outputs.prerelease == 'false'
+        if: steps.supersede.outputs.superseded != 'true' && (inputs.nuget-org && (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '') && steps.pkg.outputs.prerelease == 'false')
         # The `.nupkg` and `.snupkg` are pushed as two explicit calls rather
         # than one wildcard. A glob does not literally match `.snupkg`, and
         # relying on the client auto-pairing the adjacent symbols package is
@@ -369,7 +403,7 @@ jobs:
         # Needs no repository secret — GITHUB_TOKEN is always present — so this
         # feed keeps a consumable package flowing while NUGET_API_KEY is unset.
         # Gated only on the version being stable.
-        if: steps.pkg.outputs.prerelease == 'false'
+        if: steps.supersede.outputs.superseded != 'true' && (steps.pkg.outputs.prerelease == 'false')
         #
         # Deliberately ordered after the NuGet.org push. NuGet.org is the
         # canonical feed and its publishes are irreversible (a version can be
@@ -411,7 +445,7 @@ jobs:
         # artifact, but never published to a feed. Say so explicitly — a run
         # that is green and published nothing is otherwise indistinguishable
         # from one that published successfully.
-        if: steps.pkg.outputs.prerelease == 'true'
+        if: steps.supersede.outputs.superseded != 'true' && (steps.pkg.outputs.prerelease == 'true')
         run: |
           echo "::warning::${{ matrix.id }} ${{ steps.pkg.outputs.version }} is a prerelease version — NOTHING was published, to NuGet.org or GitHub Packages. Only stable versions (e.g. 1.0.4, not 1.0.4-g0123456789) are published. Nerdbank.GitVersioning appends the -g<commit> label when the built ref does not match publicReleaseRefSpec in version.json (currently ^refs/heads/main\$). Download the package from this run's Artifacts section if you need it."
 
@@ -431,7 +465,7 @@ jobs:
         # soon as a NUGET_API_KEY existed — a run that deliberately published
         # nothing to NuGet.org and said nothing about it, which is the exact
         # shape of silence the step was added to break.
-        if: "!(inputs.nuget-org && (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '')) && steps.pkg.outputs.prerelease == 'false'"
+        if: steps.supersede.outputs.superseded != 'true' && (!(inputs.nuget-org && (env.NUGET_API_KEY != '' || steps.nuget-login.outputs.NUGET_API_KEY != '')) && steps.pkg.outputs.prerelease == 'false')
         run: |
           echo "::warning::${{ matrix.id }} ${{ steps.pkg.outputs.version }} was published to GitHub Packages, but NOT to NuGet.org, and its symbols were not published to any symbol server. NuGet.org publishing runs only on the release path (the nuget-org input), and needs either the Trusted Publishing policy or the legacy NUGET_API_KEY secret."
 
@@ -449,7 +483,7 @@ jobs:
         # on the protobuf clock and the others on the schema clock, so a bare
         # `v1.0.7` would be ambiguous the first time those diverge. Releases
         # tagged `v*` before this change belong to CS2OpenDev.Sdk.
-        if: steps.pkg.outputs.prerelease == 'false'
+        if: steps.supersede.outputs.superseded != 'true' && (steps.pkg.outputs.prerelease == 'false')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PKG_ID: ${{ matrix.id }}
@@ -457,6 +491,7 @@ jobs:
           PKG_SYMBOLS: ${{ steps.pkg.outputs.symbols }}
           TAG: ${{ matrix.id }}/v${{ steps.pkg.outputs.version }}
           TARGET_SHA: ${{ steps.head.outputs.sha }}
+          BRANCH: ${{ github.ref_name }}
           REVISION: ${{ steps.schema.outputs.revision }}
           DUMP_DATE: ${{ steps.schema.outputs.date-iso }}
           NUGET_ORG_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
@@ -553,10 +588,17 @@ jobs:
             echo "::notice::Release $TAG already exists at the same commit — refreshing its assets and notes."
             gh release upload "$TAG" "${ASSETS[@]}" --clobber
             gh release edit "$TAG" --notes "$NOTES"
-          else
-            gh release create "$TAG" \
+          elif ! gh release create "$TAG" \
               "${ASSETS[@]}" \
               --title "$TAG" \
               --notes "$NOTES" \
-              --target "$TARGET_SHA"
+              --target "$TARGET_SHA"; then
+            # The one failure with a known cause: GITHUB_TOKEN can tag only the
+            # head of the branch, and the branch moved while this job ran. The
+            # packages are already on the feeds, so say exactly what is left.
+            HEAD_NOW=$(git ls-remote --heads origin "$BRANCH" | cut -f1)
+            if [ -n "$HEAD_NOW" ] && [ "$HEAD_NOW" != "$TARGET_SHA" ]; then
+              echo "::error::${PKG_ID} ${TAG#*/v} is published, but ${BRANCH} moved to ${HEAD_NOW} during this job and GITHUB_TOKEN cannot tag a commit that is no longer the branch head. Push the tag yourself, then re-run this job to create the release: git tag '${TAG}' ${TARGET_SHA} && git push origin '${TAG}'"
+            fi
+            exit 1
           fi
