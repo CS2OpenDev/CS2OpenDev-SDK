@@ -1,0 +1,13 @@
+# Actions are referenced by major tag and nothing else moves them. Every runtime
+# deprecation so far (Node 16, Node 20) surfaced as a warning on green runs,
+# where nobody reads it.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns:
+          - "*"

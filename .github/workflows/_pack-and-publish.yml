@@ -74,7 +74,7 @@ permissions:
 jobs:
   publish:
     name: Pack and publish ${{ matrix.id }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       # Strictly sequential, in dependency order: CS2OpenDev.Sdk.GameEvents
       # declares dependencies on the other two, so publishing it first would put
@@ -120,7 +120,7 @@ jobs:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
       - name: Checkout (with submodules)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.ref || github.sha }}
           submodules: recursive
@@ -150,7 +150,7 @@ jobs:
         run: python3 scripts/check-migration-readiness.py
 
       - name: Set up .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
 
@@ -303,7 +303,7 @@ jobs:
           PY
 
       - name: Upload packages as workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: nupkg-${{ matrix.id }}-${{ steps.pkg.outputs.version }}
           # Named explicitly rather than globbed: a `${id}.*.*nupkg` pattern
